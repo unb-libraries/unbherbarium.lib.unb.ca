@@ -82,6 +82,10 @@ class MigrateEvent implements EventSubscriberInterface {
       $row->setSourceProperty('date_modified_iso', $filemaker_date);
     }
 
+    // Province Value - trim whitespace+strip periods.
+    $dwc_province = trim($row->getSourceProperty('stateprovince'));
+    $row->setSourceProperty('dwc_province', str_replace('.', '', $dwc_province));
+
     // Coordinate Precision.
     $precisionValue = trim($row->getSourceProperty('coordinateprecision'));
     $row->setSourceProperty('verbatim_coordinateprec', $precisionValue);
