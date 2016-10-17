@@ -35,11 +35,12 @@
                 "type:drupal-theme"
             ]
         },
+
         "patches": {
             "drupal/core": {
-                "Whatever this patch does": "https://www.drupal.org/files/issues/2811887-2-exposed-date-restore-type-ealier.patch"
+                "Views/Date/Exposed filters fix.": "https://www.drupal.org/files/issues/2811887-2-exposed-date-restore-type-ealier.patch"
             },
-            "search_api": {
+            "drupal/search_api": {
                 "Avoid dissapearing fields.": "https://www.drupal.org/files/issues/2792277-4--respect_syncing_state.patch"
             }
         }
