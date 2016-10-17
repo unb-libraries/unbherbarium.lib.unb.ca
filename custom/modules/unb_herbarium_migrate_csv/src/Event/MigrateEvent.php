@@ -58,19 +58,29 @@ class MigrateEvent implements EventSubscriberInterface {
     $date_str = str_replace("/", "-", trim($row->getSourceProperty('dc_created')));
     list($date_array['year'], $date_array['month'], $date_array['day']) = array_filter(explode("-", $date_str));
     if (!empty($date_array)) {
-      $iso_date = DrupalDateTime::arrayToISO($date_array);
+      if ($this->isValidYearRange($date_array['year']) &&
+        $this->isValidMonthRange($date_array['month']) &&
+        $this->isValidDayRange($date_array['day'])
+      ) {
+        $iso_date = DrupalDateTime::arrayToISO($date_array);
+      }
     }
     $row->setSourceProperty('date_created_iso', $iso_date);
 
     // DwC Modified from Filemaker (Date + time).
-    $iso_date = $date_array = $date_str = '';
+    $filemaker_date = $date_array = $date_str = '';
     $date_str = str_replace("/", "-", trim($row->getSourceProperty('dc_modified')));
     list($date_array['year'], $date_array['month'], $date_array['day']) = array_filter(explode("-", $date_str));
     list($date_array['hour'], $date_array['minute'], $date_array['second']) = array('00', '00', '00');
     if (!empty($date_array)) {
-      $iso_date = DrupalDateTime::arrayToISO($date_array);
+      if ($this->isValidYearRange($date_array['year']) &&
+        $this->isValidMonthRange($date_array['month']) &&
+        $this->isValidDayRange($date_array['day'])
+      ) {
+        $filemaker_date = DrupalDateTime::arrayToISO($date_array);
+      }
+      $row->setSourceProperty('date_modified_iso', $filemaker_date);
     }
-    $row->setSourceProperty('date_modified_iso', $iso_date);
 
     // Coordinate Precision.
     $precisionValue = trim($row->getSourceProperty('coordinateprecision'));
