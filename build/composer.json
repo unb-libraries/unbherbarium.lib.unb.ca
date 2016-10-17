@@ -35,7 +35,6 @@
                 "type:drupal-theme"
             ]
         },
-
         "patches": {
             "drupal/core": {
                 "Views/Date/Exposed filters fix.": "https://www.drupal.org/files/issues/2811887-2-exposed-date-restore-type-ealier.patch"
