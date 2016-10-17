@@ -1,0 +1,21 @@
+uuid: 838ff3e2-c2ef-43d5-a27c-0205bb2a2d79
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_record_number
+    - node.type.herbarium_sample
+  module:
+    - text
+id: node.herbarium_sample.field_dwc_record_number
+field_name: field_dwc_record_number
+entity_type: node
+bundle: herbarium_sample
+label: 'DwC:recordnumber'
+description: 'The CMH Accession ID for this specimen'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

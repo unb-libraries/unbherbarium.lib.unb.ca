@@ -1,0 +1,21 @@
+uuid: c835014a-31a2-45ed-b9e6-ed194a847a2b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_dwc_taxonid
+    - taxonomy.vocabulary.herbarium_sample_taxonomy
+  module:
+    - text
+id: taxonomy_term.herbarium_sample_taxonomy.field_dwc_taxonid
+field_name: field_dwc_taxonid
+entity_type: taxonomy_term
+bundle: herbarium_sample_taxonomy
+label: 'DwC:taxonID'
+description: 'An identifier for the set of taxon information. For CMH this is the ID from the old Filemaker Database. This is a legacy field and probably not necessary for new specimens.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

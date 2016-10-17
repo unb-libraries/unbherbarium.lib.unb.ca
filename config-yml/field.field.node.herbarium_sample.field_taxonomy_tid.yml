@@ -1,0 +1,21 @@
+uuid: e5abca75-04ad-4ad6-a8a4-f82fd37e6adc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_taxonomy_tid
+    - node.type.herbarium_sample
+id: node.herbarium_sample.field_taxonomy_tid
+field_name: field_taxonomy_tid
+entity_type: node
+bundle: herbarium_sample
+label: 'Assigned Taxon'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings: {  }
+field_type: entity_reference

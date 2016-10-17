@@ -1,0 +1,337 @@
+uuid: 7d8ade60-53f2-43f0-b44d-6b6ed690a8a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.herbarium_sample.field_collectors_tid
+    - field.field.node.herbarium_sample.field_dc_contributor_other
+    - field.field.node.herbarium_sample.field_dc_created
+    - field.field.node.herbarium_sample.field_dc_format
+    - field.field.node.herbarium_sample.field_dc_language
+    - field.field.node.herbarium_sample.field_dc_modified
+    - field.field.node.herbarium_sample.field_dc_publisher
+    - field.field.node.herbarium_sample.field_dc_rights
+    - field.field.node.herbarium_sample.field_dc_rightsholder
+    - field.field.node.herbarium_sample.field_dc_type
+    - field.field.node.herbarium_sample.field_dwc_basisofrecord
+    - field.field.node.herbarium_sample.field_dwc_collectioncode
+    - field.field.node.herbarium_sample.field_dwc_coordinateprecision
+    - field.field.node.herbarium_sample.field_dwc_country
+    - field.field.node.herbarium_sample.field_dwc_countrycode
+    - field.field.node.herbarium_sample.field_dwc_county
+    - field.field.node.herbarium_sample.field_dwc_datageneralizations
+    - field.field.node.herbarium_sample.field_dwc_day
+    - field.field.node.herbarium_sample.field_dwc_decimallatitude
+    - field.field.node.herbarium_sample.field_dwc_decimallongitude
+    - field.field.node.herbarium_sample.field_dwc_eventdate
+    - field.field.node.herbarium_sample.field_dwc_eventremarks
+    - field.field.node.herbarium_sample.field_dwc_georeferencedby
+    - field.field.node.herbarium_sample.field_dwc_habitat
+    - field.field.node.herbarium_sample.field_dwc_informationwithheld
+    - field.field.node.herbarium_sample.field_dwc_institutioncode
+    - field.field.node.herbarium_sample.field_dwc_institutionid
+    - field.field.node.herbarium_sample.field_dwc_month
+    - field.field.node.herbarium_sample.field_dwc_occurrenceremarks
+    - field.field.node.herbarium_sample.field_dwc_othercatalognumbers
+    - field.field.node.herbarium_sample.field_dwc_previousidents
+    - field.field.node.herbarium_sample.field_dwc_record_number
+    - field.field.node.herbarium_sample.field_dwc_reproductivecondition
+    - field.field.node.herbarium_sample.field_dwc_stateprovince
+    - field.field.node.herbarium_sample.field_dwc_verbatimeventdate
+    - field.field.node.herbarium_sample.field_dwc_verbatimlocality
+    - field.field.node.herbarium_sample.field_dwc_year
+    - field.field.node.herbarium_sample.field_geoheritage
+    - field.field.node.herbarium_sample.field_large_sample_surrogate
+    - field.field.node.herbarium_sample.field_large_sample_surrogate_msk
+    - field.field.node.herbarium_sample.field_taxonomy_tid
+    - field.field.node.herbarium_sample.field_verbatim_coordinateprec
+    - node.type.herbarium_sample
+  module:
+    - datetime
+    - image
+    - options
+    - text
+    - user
+id: node.herbarium_sample.default
+targetEntityType: node
+bundle: herbarium_sample
+mode: default
+content:
+  field_collectors_tid:
+    type: entity_reference_entity_view
+    weight: 1
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+  field_dc_contributor_other:
+    type: text_default
+    weight: 20
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dc_created:
+    type: datetime_default
+    weight: 18
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+  field_dc_format:
+    type: list_default
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dc_language:
+    type: list_default
+    weight: 9
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dc_modified:
+    type: datetime_default
+    weight: 19
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+  field_dc_publisher:
+    type: list_default
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dc_rights:
+    type: list_default
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dc_rightsholder:
+    type: list_default
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dc_type:
+    type: list_default
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_basisofrecord:
+    type: list_default
+    weight: 10
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_collectioncode:
+    type: list_default
+    weight: 7
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_coordinateprecision:
+    type: text_default
+    weight: 33
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_country:
+    type: text_default
+    weight: 23
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_countrycode:
+    type: text_default
+    weight: 24
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_county:
+    type: text_default
+    weight: 26
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_datageneralizations:
+    type: list_default
+    weight: 12
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_day:
+    type: number_integer
+    weight: 30
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+  field_dwc_decimallatitude:
+    weight: 31
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 6
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+  field_dwc_decimallongitude:
+    weight: 32
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 6
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+  field_dwc_eventdate:
+    type: datetime_default
+    weight: 17
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+  field_dwc_eventremarks:
+    weight: 22
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_dwc_georeferencedby:
+    type: text_default
+    weight: 34
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_habitat:
+    weight: 21
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_dwc_informationwithheld:
+    type: list_default
+    weight: 11
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_institutioncode:
+    type: list_default
+    weight: 15
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_institutionid:
+    type: list_default
+    weight: 8
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_month:
+    type: number_integer
+    weight: 29
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+  field_dwc_occurrenceremarks:
+    type: text_default
+    weight: 36
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_othercatalognumbers:
+    type: text_trimmed
+    weight: 14
+    label: above
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  field_dwc_previousidents:
+    type: text_default
+    weight: 37
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_record_number:
+    type: text_default
+    weight: 40
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_reproductivecondition:
+    type: text_default
+    weight: 13
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_stateprovince:
+    type: text_default
+    weight: 25
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_verbatimeventdate:
+    type: text_default
+    weight: 16
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_verbatimlocality:
+    type: text_default
+    weight: 27
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_year:
+    type: number_integer
+    weight: 28
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+  field_geoheritage:
+    type: text_default
+    weight: 35
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_large_sample_surrogate:
+    type: image
+    weight: 38
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+  field_large_sample_surrogate_msk:
+    type: image
+    weight: 39
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+  field_taxonomy_tid:
+    type: entity_reference_entity_view
+    weight: 0
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+hidden:
+  field_verbatim_coordinateprec: true
+  links: true

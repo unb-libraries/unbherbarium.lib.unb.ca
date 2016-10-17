@@ -1,0 +1,20 @@
+uuid: 12bd6045-34bf-43ee-9e81-a94749ad575b
+langcode: und
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_dwc_stateprovince
+field_name: field_dwc_stateprovince
+entity_type: node
+type: text
+settings:
+  max_length: 64
+module: text
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

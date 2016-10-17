@@ -1,0 +1,14 @@
+uuid: 6d9f1c56-aa8e-4831-8ec9-3231791bdf1a
+langcode: en
+status: true
+dependencies: {  }
+name: map_thumbnail_for_page
+label: map_thumbnail_for_page
+effects:
+  99b8bfd8-da4d-4cfb-8ba9-935953b02541:
+    uuid: 99b8bfd8-da4d-4cfb-8ba9-935953b02541
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 108
+      height: 119

@@ -1,0 +1,27 @@
+uuid: 872c5a74-42c5-471e-ac32-8895e34afb15
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_files_for_page
+    - node.type.page
+  module:
+    - file
+id: node.page.field_files_for_page
+field_name: field_files_for_page
+entity_type: node
+bundle: page
+label: 'Supplementary Files for Page'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: ''
+  file_extensions: 'doc pdf txt'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

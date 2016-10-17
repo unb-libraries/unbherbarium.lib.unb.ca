@@ -34,6 +34,14 @@
             "themes/contrib/{$name}": [
                 "type:drupal-theme"
             ]
+        },
+        "patches": {
+            "drupal/core": {
+                "Whatever this patch does": "https://www.drupal.org/files/issues/2811887-2-exposed-date-restore-type-ealier.patch"
+            },
+            "search_api": {
+                "Avoid dissapearing fields.": "https://www.drupal.org/files/issues/2792277-4--respect_syncing_state.patch"
+            }
         }
     },
     "license": "GPL-2.0+",
@@ -52,9 +60,12 @@
         "drupal-composer/drupal-scaffold": "^2.0.1",
         "drupal/config_update": "1.1",
         "drupal/console": "~1.0",
-        "drupal/core": "8.1.10",
+        "drupal/core": "8.2.1",
         "drupal/features": "3.0-beta8",
         "drupal/field_collection": "1.0-alpha1",
+        "drupal/field_group": "1.0-rc4",
+        "drupal/search_api": "1.0-beta2",
+        "drupal/views_autocomplete_filters": "1.1",
         "drush/drush": "~8.0"
     },
     "require-dev": {

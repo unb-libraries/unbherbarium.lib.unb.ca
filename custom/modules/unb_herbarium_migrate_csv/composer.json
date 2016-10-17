@@ -1,0 +1,14 @@
+{
+  "name": "drupal/unb_herbarium_migrate_csv",
+  "type": "drupal-module",
+  "description": "Migratation import from UNB Herbarium filemaker CSV export to D8 Sample node content.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/unb_herbarium_migrate_csv",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/unb_herbarium_migrate_csv",
+    "source": "http://cgit.drupalcode.org/unb_herbarium_migrate_csv"
+  },
+  "require": { }
+}

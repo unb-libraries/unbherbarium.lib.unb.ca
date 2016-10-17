@@ -1,0 +1,25 @@
+uuid: c21345d8-3367-4dfc-ba1b-70a7600809a2
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+    - user
+  theme:
+    - bartik
+id: bartik_user_login
+theme: bartik
+region: sidebar_first
+weight: 0
+provider: null
+plugin: user_login_block
+settings:
+  id: user_login_block
+  label: ''
+  provider: user
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '<front>'

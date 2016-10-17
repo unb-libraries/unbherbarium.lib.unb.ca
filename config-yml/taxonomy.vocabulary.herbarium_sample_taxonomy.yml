@@ -1,0 +1,9 @@
+uuid: ab79464b-5d2b-4ded-9cc4-cc7b642e5c63
+langcode: en
+status: true
+dependencies: {  }
+name: 'Herbarium Sample Taxonomy'
+vid: herbarium_sample_taxonomy
+description: ''
+hierarchy: 0
+weight: 0

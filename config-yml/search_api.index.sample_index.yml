@@ -1,0 +1,203 @@
+uuid: 603c362f-db52-4770-b103-61e9a0e477dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dc_type
+    - field.storage.node.field_dwc_basisofrecord
+    - field.storage.node.field_dwc_collectioncode
+    - field.storage.node.field_dwc_eventdate
+    - field.storage.node.field_dwc_country
+    - field.storage.node.field_dc_contributor_other
+    - field.storage.node.field_dwc_verbatimlocality
+    - field.storage.node.field_dwc_county
+    - field.storage.node.field_dwc_eventremarks
+    - field.storage.node.field_dwc_habitat
+    - field.storage.node.field_dwc_occurrenceremarks
+    - field.storage.node.field_dwc_othercatalognumbers
+    - field.storage.node.field_dwc_record_number
+    - search_api.server.search_api_db
+  module:
+    - search_api
+    - node
+id: sample_index
+name: 'Sample index'
+description: ''
+read_only: false
+field_settings:
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    boost: !!float 5
+  field_dc_type:
+    label: 'DC:type'
+    datasource_id: 'entity:node'
+    property_path: field_dc_type
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dc_type
+  field_dwc_basisofrecord:
+    label: 'DwC:basisOfRecord'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_basisofrecord
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_basisofrecord
+  field_dwc_collectioncode:
+    label: 'DwC:collectionCode'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_collectioncode
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_collectioncode
+  field_dwc_eventdate:
+    label: 'Collection Date'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_eventdate
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_eventdate
+  field_dwc_country:
+    label: 'DwC:country'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_country
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_country
+  field_dc_contributor_other:
+    label: 'DC:contributor.other'
+    datasource_id: 'entity:node'
+    property_path: field_dc_contributor_other
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dc_contributor_other
+  field_dwc_verbatimlocality:
+    label: 'DwC:verbatimLocality'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_verbatimlocality
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_verbatimlocality
+  field_dwc_county:
+    label: 'DwC:county'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_county
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_county
+  field_dwc_eventremarks:
+    label: 'DwC:eventRemarks'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_eventremarks
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_eventremarks
+  field_dwc_habitat:
+    label: 'DwC:habitat'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_habitat
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_habitat
+  field_dwc_occurrenceremarks:
+    label: 'DwC:occurrenceRemarks'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_occurrenceremarks
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_occurrenceremarks
+  field_dwc_othercatalognumbers:
+    label: 'DwC:otherCatalogNumbers'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_othercatalognumbers
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_othercatalognumbers
+  field_dwc_record_number:
+    label: 'DwC:recordnumber'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_record_number
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_record_number
+processor_settings:
+  transliteration:
+    plugin_id: transliteration
+    settings:
+      fields:
+        - title
+        - field_dc_contributor_other
+        - field_dc_type
+        - field_dwc_basisofrecord
+        - field_dwc_collectioncode
+        - field_dwc_country
+        - field_dwc_county
+        - field_dwc_eventremarks
+        - field_dwc_habitat
+        - field_dwc_occurrenceremarks
+        - field_dwc_othercatalognumbers
+        - field_dwc_verbatimlocality
+      weights:
+        preprocess_index: -10
+        preprocess_query: -10
+  ignorecase:
+    plugin_id: ignorecase
+    settings:
+      fields:
+        - title
+        - field_dc_contributor_other
+        - field_dc_type
+        - field_dwc_basisofrecord
+        - field_dwc_collectioncode
+        - field_dwc_country
+        - field_dwc_county
+        - field_dwc_eventremarks
+        - field_dwc_habitat
+        - field_dwc_occurrenceremarks
+        - field_dwc_othercatalognumbers
+      weights:
+        preprocess_index: -10
+        preprocess_query: -10
+  add_url:
+    plugin_id: add_url
+    settings: {  }
+  aggregated_field:
+    plugin_id: aggregated_field
+    settings: {  }
+  rendered_item:
+    plugin_id: rendered_item
+    settings: {  }
+options:
+  index_directly: true
+  cron_limit: 50
+datasource_settings:
+  'entity:node':
+    plugin_id: 'entity:node'
+    settings:
+      bundles:
+        default: false
+        selected:
+          - herbarium_sample
+      languages:
+        default: true
+        selected: {  }
+tracker_settings:
+  default:
+    plugin_id: default
+    settings: {  }
+server: search_api_db

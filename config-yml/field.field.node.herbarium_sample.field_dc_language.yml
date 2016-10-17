@@ -1,0 +1,23 @@
+uuid: 991a6bb8-42bd-4d88-9a6e-78300a0f4c8a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dc_language
+    - node.type.herbarium_sample
+  module:
+    - options
+id: node.herbarium_sample.field_dc_language
+field_name: field_dc_language
+entity_type: node
+bundle: herbarium_sample
+label: 'DC:language'
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: en-CA
+default_value_callback: ''
+settings: {  }
+field_type: list_string

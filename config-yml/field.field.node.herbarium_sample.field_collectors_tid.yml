@@ -1,0 +1,21 @@
+uuid: c6c554b3-3eac-46ff-8d51-13d7026b2a4c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_collectors_tid
+    - node.type.herbarium_sample
+id: node.herbarium_sample.field_collectors_tid
+field_name: field_collectors_tid
+entity_type: node
+bundle: herbarium_sample
+label: Collectors
+description: 'Person(s) that collected the specimen'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings: {  }
+field_type: entity_reference

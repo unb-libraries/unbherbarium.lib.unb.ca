@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Contains unb_herbarium_migrate_csv.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+define('UNB_HERBARIUM_MIGRATE_CSV_SPECIES_TAXONOMY_NAME', '');
+
+/**
+ * Implements hook_help().
+ */
+function unb_herbarium_migrate_csv_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the unb_herbarium_migrate_csv module.
+    case 'help.page.unb_herbarium_migrate_csv':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Migratation import from UNB Herbarium filemaker CSV export to D8 Sample node content.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function unb_herbarium_migrate_csv_theme() {
+  $theme = [];
+  return $theme;
+}

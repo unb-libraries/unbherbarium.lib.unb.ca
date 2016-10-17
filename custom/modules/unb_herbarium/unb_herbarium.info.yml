@@ -1,0 +1,5 @@
+name: Herbarium Core
+type: module
+description: UNB Herbarium Core Functions
+core: 8.x
+package: UNB Herbarium

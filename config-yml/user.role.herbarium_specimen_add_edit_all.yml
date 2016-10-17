@@ -1,0 +1,14 @@
+uuid: 54047bb9-f926-44f3-8921-4d4d7c2933df
+langcode: en
+status: true
+dependencies: {  }
+id: herbarium_specimen_add_edit_all
+label: 'Herbarium Specimen Add/Edit All'
+weight: 3
+is_admin: null
+permissions:
+  - 'create herbarium_sample content'
+  - 'delete any herbarium_sample content'
+  - 'delete own herbarium_sample content'
+  - 'edit any herbarium_sample content'
+  - 'edit own herbarium_sample content'

@@ -1,0 +1,25 @@
+uuid: c967f177-3e3e-4b6a-b7ed-a3a6cd04b763
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
+id: authenticated
+label: 'authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access content'
+  - 'access search_api_page'
+  - 'access site-wide contact form'
+  - 'delete terms in 6'
+  - 'edit terms in 6'
+  - 'edit terms in 7'
+  - 'use exclude node title'
+  - 'use search_api_autocomplete for search_api_page_1'
+  - 'use search_api_autocomplete for search_api_page_sample_search'
+  - 'use search_api_autocomplete for search_api_views_sample_index'
+  - 'use text format html'
+  - 'view herbarium sample location'
+  - 'view restricted herbarium data'
+  - 'view unmasked herbarium samples'

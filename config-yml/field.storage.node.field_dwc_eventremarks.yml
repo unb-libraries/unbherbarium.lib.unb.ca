@@ -1,0 +1,19 @@
+uuid: 6254f092-2695-41f2-9296-62ab2839af49
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_dwc_eventremarks
+field_name: field_dwc_eventremarks
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

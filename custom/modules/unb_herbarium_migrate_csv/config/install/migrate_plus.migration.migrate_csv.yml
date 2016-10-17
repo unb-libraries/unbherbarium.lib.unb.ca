@@ -1,0 +1,143 @@
+# The source data is in CSV files, so we use the 'csv' source plugin.
+id: herbarium_samples_csv
+label: CSV file migration
+
+migration_tags:
+  - CSV
+  - Herbarium Samples
+
+source:
+  plugin: csv
+  # Full path to the file.
+  path: '/app/html/modules/custom/unb_herbarium_migrate_csv/herbarium_samples_1000.csv'
+  # The number of rows at the beginning which are not data.
+  header_row_count: 0
+  # These are the field names from the source file representing the key
+  # uniquely identifying each game - they will be stored in the migration
+  # map table as columns sourceid1, sourceid2, and sourceid3.
+  keys:
+    - spmnid
+  # Here we identify the columns of interest in the source file. Each numeric
+  # key is the 0-based index of the column. For each column, the key below
+  # (e.g., "start_date") is the field name assigned to the data on import, to
+  # be used in field mappings below. The value is a user-friendly string for
+  # display by the migration UI.
+  column_names:
+    # So, here we're saying that the first field (index 0) on each line will
+    # be stored in the start_date field in the Row object during migration, and
+    # that name can be used to map the value below. "Date of game" will appear
+    # in the UI to describe this field.
+    0:
+      spmnid: SPMNKEY
+    1:
+      record_number: AccNum
+    7:
+      othercatalognumbers: Coll. #
+    8:
+      day: Day
+    9:
+      month: Month
+    10:
+      year: Yr
+    12:
+      habitat: Habitat
+    13:
+      eventremarks: Abundance
+    14:
+      county: County
+    15:
+      stateprovince: Prov_State
+    16:
+      country: Country
+    17:
+      verbatimlocality: Locality
+    21:
+      geoheritage_utmz: UTMZ
+    22:
+      geoheritage_utme: UTME
+    23:
+      geoheritage_utmn: UTMN
+    24:
+      latitudedegree: LATDEG
+    25:
+      latitudeminute: LATMIN
+    26:
+      latitudesecond: LATSEC
+    28:
+      longitudedegree: LONGDEG
+    29:
+      longitudeminute: LONGMIN
+    30:
+      longitudesecond: LONGSEC
+    33:
+      coordinateprecision: prec.
+    35:
+      georeferencedby: GeoRefBy
+    36:
+      reproductivecondition: Phenology
+    38:
+      tmp_title: DetAnnList
+    39:
+      eventremarks: Notes
+    40:
+      dc_created: Creation Date
+    41:
+      dc_modified: Modification Date
+    43:
+      contributor_other: Databaser
+    56:
+      latitudedecimal: LatDec
+    58:
+      longitudedecimal: LongDec
+    71:
+      latitudedigital: Digital Lat
+    72:
+      longitudedigital: Digital Long
+
+destination:
+# Here we're saying that each row of data (line from the CSV file) will be
+# used to create a node entity.
+  plugin: entity:node
+
+process:
+  # The content (node) type we are creating is 'Herbarium Sample'.
+  type:
+    plugin: default_value
+    default_value: herbarium_sample
+  # Most fields can be mapped directly - we just specify the destination (D8)
+  # field and the corresponding field name from above, and the values will be
+  # copied in.
+  title: title_string
+  field_spmnkey: spmnid
+  field_dwc_record_number: record_number
+  field_dwc_eventdate: date_iso
+  field_dc_created: date_created_iso
+  field_dwc_verbatimeventdate: dwc_verbatimeventdate
+  field_dc_modified: date_modified_iso
+  field_dwc_othercatalognumbers: othercatalognumbers
+  field_dwc_habitat: habitat
+  field_dwc_county: county
+  field_dwc_stateprovince: stateprovince
+  field_dwc_country: country
+  field_dwc_verbatimlocality: verbatimlocality
+  field_dwc_georeferencedby: georeferencedby
+  field_dwc_coordinateprecision: mapped_coord_prec
+  field_verbatim_coordinateprec: verbatim_coordinateprec
+  field_dwc_reproductivecondition: reproductivecondition
+  field_dwc_previousidents: tmp_title
+  field_dwc_eventremarks: eventremarks
+  field_dc_contributor_other: contributor_other
+  field_dwc_decimallatitude: dwc_latitude
+  field_dwc_decimallongitude: dwc_longitude
+  field_dwc_year: year
+  field_dwc_month: month
+  field_dwc_day: day
+  field_geoheritage: geo_heritage
+
+# Required to cleanup CMI.
+dependencies:
+  module:
+    - unb_herbarium_migrate_csv
+  enforced:
+    module:
+    - unb_herbarium_migrate_csv

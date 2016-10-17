@@ -1,0 +1,12 @@
+uuid: 56081714-3677-475d-81ab-9fcb4d47e6ca
+langcode: en
+status: true
+dependencies: {  }
+id: herbarium_specimen_add_edit_only
+label: 'Herbarium Specimen Add/Edit Only Own'
+weight: 2
+is_admin: null
+permissions:
+  - 'create herbarium_sample content'
+  - 'delete own herbarium_sample content'
+  - 'edit own herbarium_sample content'

@@ -1,0 +1,20 @@
+uuid: dd04b29d-f4fe-4407-ac81-305eb751e1ea
+langcode: und
+status: true
+dependencies:
+  module:
+    - taxonomy
+    - text
+id: taxonomy_term.field_dwc_taxonremarks
+field_name: field_dwc_taxonremarks
+entity_type: taxonomy_term
+type: text
+settings:
+  max_length: 255
+module: text
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,21 @@
+uuid: 27ae7e19-cff0-43c4-821d-04741a280b61
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_previousidents
+    - node.type.herbarium_sample
+  module:
+    - text
+id: node.herbarium_sample.field_dwc_previousidents
+field_name: field_dwc_previousidents
+entity_type: node
+bundle: herbarium_sample
+label: 'DwC:previousIdentifications'
+description: 'A list (concatenated and separated) of previous assignments of names for this specimen'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

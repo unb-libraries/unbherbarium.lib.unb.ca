@@ -1,0 +1,20 @@
+uuid: 1e7ebd0b-3484-4020-90d8-84696e8c4d0e
+langcode: und
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_dwc_country
+field_name: field_dwc_country
+entity_type: node
+type: text
+settings:
+  max_length: 255
+module: text
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

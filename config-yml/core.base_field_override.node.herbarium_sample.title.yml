@@ -1,0 +1,18 @@
+uuid: 5721cb90-6168-462c-af94-f17f1ca16859
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.herbarium_sample
+id: node.herbarium_sample.title
+field_name: title
+entity_type: node
+bundle: herbarium_sample
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

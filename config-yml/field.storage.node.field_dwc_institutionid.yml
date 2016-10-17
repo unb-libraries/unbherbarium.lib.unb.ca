@@ -1,0 +1,24 @@
+uuid: 12b74f3b-0cf2-4a74-a736-4032a0a1686c
+langcode: und
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_dwc_institutionid
+field_name: field_dwc_institutionid
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'urn:lsid:biocol.org:col:15300'
+      label: 'urn:lsid:biocol.org:col:15300'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

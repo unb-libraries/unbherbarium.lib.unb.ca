@@ -1,0 +1,20 @@
+uuid: 584c0919-b4f4-4d07-9fd5-b4dc6bd91b8f
+langcode: und
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_dwc_othercatalognumbers
+field_name: field_dwc_othercatalognumbers
+entity_type: node
+type: text
+settings:
+  max_length: 255
+module: text
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,18 @@
+uuid: f6ca5260-e5fa-4a96-8b80-27b33137aa6c
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_db
+id: search_api_db
+name: 'Search API DB'
+description: ''
+backend: search_api_db
+backend_config:
+  database: 'default:default'
+  database_text: ''
+  min_chars: 3
+  partial_matches: true
+  autocomplete:
+    suggest_suffix: true
+    suggest_words: true

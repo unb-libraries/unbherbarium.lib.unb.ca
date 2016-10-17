@@ -1,0 +1,21 @@
+uuid: da9dedb2-ccb0-46ab-bf42-aa4f8be21203
+langcode: en
+status: true
+dependencies: {  }
+id: herbarium_specimen_administrator
+label: 'Herbarium Specimen Administrator'
+weight: 4
+is_admin: null
+permissions:
+  - 'administer menu'
+  - 'create herbarium_sample content'
+  - 'create page content'
+  - 'delete any herbarium_sample content'
+  - 'delete any page content'
+  - 'delete own herbarium_sample content'
+  - 'delete own page content'
+  - 'delete terms in 7'
+  - 'edit any herbarium_sample content'
+  - 'edit any page content'
+  - 'edit own herbarium_sample content'
+  - 'edit own page content'

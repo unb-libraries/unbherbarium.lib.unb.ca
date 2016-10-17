@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains unb_herbarium_migrate_csv install functions.
+ */
+
+use Drupal\unb_herbarium_migrate_csv\Term\TermCreatorRow;
+
+/**
+ * Implements hook_install().
+ */
+function unb_herbarium_migrate_csv_install() {
+  $species_file = '/app/html/modules/custom/unb_herbarium_migrate_csv/species.csv';
+  if (($handle = fopen($species_file, "r")) !== FALSE) {
+    $null_header = fgetcsv($handle, 0);
+    while (($data = fgetcsv($handle, 0)) !== FALSE) {
+      if (count($data) == 38 && trim($data[0] != '')) {
+        $row = new TermCreatorRow($data);
+        $row->createTermFromRow();
+      }
+    }
+    fclose($handle);
+  }
+}

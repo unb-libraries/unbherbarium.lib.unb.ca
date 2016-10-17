@@ -1,0 +1,14 @@
+uuid: c9bb5ca2-e206-4853-86fb-c5d7e5b68355
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.herbarium_specimen_administrator
+  module:
+    - user
+id: user_add_role_action.herbarium_specimen_administrator
+label: 'Add the Herbarium Specimen Administrator role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: herbarium_specimen_administrator

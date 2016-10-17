@@ -1,0 +1,20 @@
+uuid: e123c742-1568-4ba2-8e33-1c5de53c6b8a
+langcode: und
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_dwc_verbatimlocality
+field_name: field_dwc_verbatimlocality
+entity_type: node
+type: text
+settings:
+  max_length: 255
+module: text
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

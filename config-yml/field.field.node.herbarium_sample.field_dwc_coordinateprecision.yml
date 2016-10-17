@@ -1,0 +1,21 @@
+uuid: c4b9ef36-c6dd-4ffc-961d-002d7e447174
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_coordinateprecision
+    - node.type.herbarium_sample
+  module:
+    - text
+id: node.herbarium_sample.field_dwc_coordinateprecision
+field_name: field_dwc_coordinateprecision
+entity_type: node
+bundle: herbarium_sample
+label: 'DwC:coordinatePrecision'
+description: 'A decimal representation of the precision of the coordinates given in the decimalLatitude and decimalLongitude'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

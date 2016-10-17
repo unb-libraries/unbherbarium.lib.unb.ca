@@ -1,0 +1,20 @@
+uuid: 710302b6-b600-45b0-b522-fb35ad990333
+langcode: und
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_dwc_coordinateprecision
+field_name: field_dwc_coordinateprecision
+entity_type: node
+type: text
+settings:
+  max_length: 255
+module: text
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
