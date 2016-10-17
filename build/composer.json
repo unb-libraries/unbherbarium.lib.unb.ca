@@ -40,7 +40,7 @@
                 "Views/Date/Exposed filters fix.": "https://www.drupal.org/files/issues/2811887-2-exposed-date-restore-type-ealier.patch"
             },
             "drupal/search_api": {
-                "Avoid dissapearing fields.": "https://www.drupal.org/files/issues/2792277-4--respect_syncing_state.patch"
+                "Avoid disappearing fields.": "https://www.drupal.org/files/issues/2792277-4--respect_syncing_state.patch"
             }
         }
     },
