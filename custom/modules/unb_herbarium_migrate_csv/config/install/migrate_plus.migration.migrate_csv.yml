@@ -117,7 +117,7 @@ process:
   field_dwc_othercatalognumbers: othercatalognumbers
   field_dwc_habitat: habitat
   field_dwc_county: county
-  field_dwc_stateprovince: stateprovince
+  field_dwc_stateprovince: dwc_stateprovince
   field_dwc_country: country
   field_dwc_verbatimlocality: verbatimlocality
   field_dwc_georeferencedby: georeferencedby
