@@ -1196,7 +1196,7 @@ display:
           relationship: none
           group_type: group
           admin_label: 'Max Date'
-          operator: '>='
+          operator: '<='
           value:
             min: ''
             max: ''
