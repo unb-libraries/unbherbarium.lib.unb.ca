@@ -65,25 +65,27 @@ third_party_settings:
       parent_name: ''
       weight: 6
       label: 'Initially Hidden Details'
-      format_type: accordion
+      format_type: tabs
       format_settings:
         label: 'Initially Hidden Details'
         effect: none
         id: ''
         classes: 'group-initially-hidden-details field-group-accordion'
+        direction: vertical
     group_taxonomy:
       children:
         - field_taxonomy_tid
       parent_name: group_initially_hidden_details
       weight: 48
       label: 'Assigned Taxon'
-      format_type: accordion_item
+      format_type: tab
       format_settings:
         label: 'Assigned Taxon'
         formatter: closed
         required_fields: true
         id: ''
         classes: 'group-taxonomy field-group-accordion-item'
+        description: ''
     group_habitat_location:
       children:
         - field_dwc_decimallatitude
@@ -102,13 +104,14 @@ third_party_settings:
       parent_name: group_initially_hidden_details
       weight: 49
       label: 'Specimen Habitat'
-      format_type: accordion_item
+      format_type: tab
       format_settings:
         label: 'Specimen Habitat'
         formatter: closed
         required_fields: true
         id: ''
         classes: 'group-habitat-location field-group-accordion-item'
+        description: ''
     group_date:
       children:
         - field_dwc_eventdate
@@ -117,26 +120,28 @@ third_party_settings:
       parent_name: group_initially_hidden_details
       weight: 50
       label: 'Date Information'
-      format_type: accordion_item
+      format_type: tab
       format_settings:
         label: 'Date Information'
         formatter: closed
         required_fields: true
         id: ''
         classes: 'group-date field-group-accordion-item'
+        description: ''
     group_previous_identifications:
       children:
         - field_dwc_previousidents
       parent_name: group_initially_hidden_details
       weight: 51
       label: 'Previous Identifications'
-      format_type: accordion_item
+      format_type: tab
       format_settings:
         label: 'Previous Identifications'
         formatter: closed
         required_fields: true
         id: ''
         classes: 'group-previous-identifications field-group-accordion-item'
+        description: ''
     group_details_license:
       children:
         - field_dc_modified
@@ -156,7 +161,7 @@ third_party_settings:
       parent_name: group_initially_hidden_details
       weight: 52
       label: 'Details / License'
-      format_type: accordion_item
+      format_type: tab
       format_settings:
         formatter: closed
         description: ''
@@ -175,7 +180,7 @@ content:
     third_party_settings: {  }
   field_collectors_tid:
     type: options_select
-    weight: 4
+    weight: 2
     settings: {  }
     third_party_settings: {  }
   field_dc_contributor_other:
@@ -189,9 +194,9 @@ content:
     type: datetime_datelist
     weight: 5
     settings:
+      date_order: MDY
+      time_type: none
       increment: 15
-      date_order: YMD
-      time_type: '24'
     third_party_settings: {  }
   field_dc_format:
     type: options_select
@@ -296,9 +301,9 @@ content:
     type: datetime_datelist
     weight: 4
     settings:
+      date_order: MDY
+      time_type: none
       increment: 15
-      date_order: YMD
-      time_type: '24'
     third_party_settings: {  }
   field_dwc_eventremarks:
     weight: 28
@@ -351,7 +356,7 @@ content:
     third_party_settings: {  }
   field_dwc_othercatalognumbers:
     type: text_textfield
-    weight: 2
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -365,14 +370,14 @@ content:
     third_party_settings: {  }
   field_dwc_record_number:
     type: text_textfield
-    weight: 5
+    weight: 1
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
   field_dwc_reproductivecondition:
     type: text_textfield
-    weight: 1
+    weight: 5
     settings:
       size: 60
       placeholder: ''
