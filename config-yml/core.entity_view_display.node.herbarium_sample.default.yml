@@ -48,10 +48,99 @@ dependencies:
     - node.type.herbarium_sample
   module:
     - datetime
+    - field_group
     - image
     - options
     - text
     - user
+third_party_settings:
+  field_group:
+    group_specimen_habitat:
+      children:
+        - field_dwc_decimallongitude
+        - field_dwc_decimallatitude
+        - field_dwc_coordinateprecision
+        - field_dwc_country
+        - field_dwc_habitat
+        - field_dwc_countrycode
+        - field_dwc_verbatimlocality
+        - field_dwc_stateprovince
+        - field_dwc_county
+        - field_dwc_eventremarks
+        - field_dwc_occurrenceremarks
+      parent_name: ''
+      weight: 8
+      label: 'Specimen Habitat'
+      format_type: tab
+      format_settings:
+        formatter: closed
+        description: ''
+        classes: ''
+        id: ''
+        direction: vertical
+    group_date_information:
+      children:
+        - field_dwc_eventdate
+        - field_dc_created
+        - field_dwc_verbatimeventdate
+      parent_name: ''
+      weight: 9
+      label: 'Date Information'
+      format_type: tab
+      format_settings:
+        label: 'Date Information'
+        formatter: closed
+        description: ''
+        id: ''
+        classes: ''
+    group_previous_identifications:
+      children:
+        - field_dwc_previousidents
+      parent_name: ''
+      weight: 10
+      label: 'Previous Identifications'
+      format_type: tab
+      format_settings:
+        formatter: closed
+        description: ''
+        classes: ''
+        id: ''
+    group_details_license:
+      children:
+        - field_dc_type
+        - field_dc_rightsholder
+        - field_dwc_informationwithheld
+        - field_dc_rights
+        - field_dwc_institutioncode
+        - field_dc_format
+        - field_dwc_collectioncode
+        - field_dwc_basisofrecord
+        - field_dwc_datageneralizations
+        - field_dwc_institutionid
+        - field_dc_publisher
+        - field_dc_language
+      parent_name: ''
+      weight: 11
+      label: 'Details / License'
+      format_type: tab
+      format_settings:
+        description: ''
+        classes: ''
+        id: ''
+        direction: vertical
+        formatter: closed
+    group_assigned_taxon:
+      children:
+        - field_taxonomy_tid
+      parent_name: ''
+      weight: 7
+      label: 'Assigned Taxon'
+      format_type: tab
+      format_settings:
+        formatter: closed
+        description: ''
+        classes: ''
+        id: ''
 id: node.herbarium_sample.default
 targetEntityType: node
 bundle: herbarium_sample
@@ -67,33 +156,33 @@ content:
     third_party_settings: {  }
   field_dc_contributor_other:
     type: text_default
-    weight: 20
+    weight: 2
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dc_created:
     type: datetime_default
-    weight: 18
+    weight: 22
     label: above
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: year_month_day
     third_party_settings: {  }
   field_dc_format:
     type: list_default
-    weight: 3
+    weight: 16
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dc_language:
     type: list_default
-    weight: 9
+    weight: 22
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dc_modified:
     type: datetime_default
-    weight: 19
+    weight: 15
     label: above
     settings:
       format_type: medium
@@ -101,80 +190,80 @@ content:
     third_party_settings: {  }
   field_dc_publisher:
     type: list_default
-    weight: 5
+    weight: 21
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dc_rights:
     type: list_default
-    weight: 4
+    weight: 14
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dc_rightsholder:
     type: list_default
-    weight: 6
+    weight: 11
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dc_type:
     type: list_default
-    weight: 2
+    weight: 10
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_basisofrecord:
     type: list_default
-    weight: 10
+    weight: 18
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_collectioncode:
     type: list_default
-    weight: 7
+    weight: 17
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_coordinateprecision:
     type: text_default
-    weight: 33
+    weight: 12
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_country:
     type: text_default
-    weight: 23
+    weight: 13
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_countrycode:
     type: text_default
-    weight: 24
+    weight: 15
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_county:
     type: text_default
-    weight: 26
+    weight: 18
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_datageneralizations:
     type: list_default
-    weight: 12
+    weight: 19
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_day:
     type: number_integer
-    weight: 30
+    weight: 14
     label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
   field_dwc_decimallatitude:
-    weight: 31
+    weight: 11
     label: above
     settings:
       thousand_separator: ''
@@ -184,7 +273,7 @@ content:
     third_party_settings: {  }
     type: number_decimal
   field_dwc_decimallongitude:
-    weight: 32
+    weight: 10
     label: above
     settings:
       thousand_separator: ''
@@ -195,33 +284,33 @@ content:
     type: number_decimal
   field_dwc_eventdate:
     type: datetime_default
-    weight: 17
+    weight: 21
     label: above
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: year_month_day
     third_party_settings: {  }
   field_dwc_eventremarks:
-    weight: 22
+    weight: 19
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
   field_dwc_georeferencedby:
     type: text_default
-    weight: 34
+    weight: 16
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_habitat:
-    weight: 21
+    weight: 14
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
   field_dwc_informationwithheld:
     type: list_default
-    weight: 11
+    weight: 13
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -233,13 +322,13 @@ content:
     third_party_settings: {  }
   field_dwc_institutionid:
     type: list_default
-    weight: 8
+    weight: 20
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_month:
     type: number_integer
-    weight: 29
+    weight: 13
     label: above
     settings:
       thousand_separator: ''
@@ -247,56 +336,56 @@ content:
     third_party_settings: {  }
   field_dwc_occurrenceremarks:
     type: text_default
-    weight: 36
+    weight: 20
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_othercatalognumbers:
     type: text_trimmed
-    weight: 14
+    weight: 3
     label: above
     settings:
       trim_length: 600
     third_party_settings: {  }
   field_dwc_previousidents:
     type: text_default
-    weight: 37
+    weight: 29
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_record_number:
     type: text_default
-    weight: 40
+    weight: 0
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_reproductivecondition:
     type: text_default
-    weight: 13
+    weight: 4
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_stateprovince:
     type: text_default
-    weight: 25
+    weight: 17
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_verbatimeventdate:
     type: text_default
-    weight: 16
+    weight: 23
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_verbatimlocality:
     type: text_default
-    weight: 27
+    weight: 16
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_year:
     type: number_integer
-    weight: 28
+    weight: 12
     label: above
     settings:
       thousand_separator: ''
@@ -304,13 +393,13 @@ content:
     third_party_settings: {  }
   field_geoheritage:
     type: text_default
-    weight: 35
+    weight: 17
     label: above
     settings: {  }
     third_party_settings: {  }
   field_large_sample_surrogate:
     type: image
-    weight: 38
+    weight: 5
     label: above
     settings:
       image_style: ''
@@ -318,7 +407,7 @@ content:
     third_party_settings: {  }
   field_large_sample_surrogate_msk:
     type: image
-    weight: 39
+    weight: 6
     label: above
     settings:
       image_style: ''
@@ -326,7 +415,7 @@ content:
     third_party_settings: {  }
   field_taxonomy_tid:
     type: entity_reference_entity_view
-    weight: 0
+    weight: 5
     label: above
     settings:
       view_mode: default
