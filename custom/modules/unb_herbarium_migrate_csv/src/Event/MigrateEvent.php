@@ -107,7 +107,7 @@ class MigrateEvent implements EventSubscriberInterface {
     $geoUTME = trim($row->getSourceProperty('geoheritage_utme'));
     $geoUTMN = trim($row->getSourceProperty('geoheritage_utmn'));
 
-    $accNum = $row->getSourceProperty('record_number');
+    $accNum = trim($row->getSourceProperty('record_number'));
     $longLatItems = array(
       $accNum,
       $longDec,
@@ -138,8 +138,14 @@ class MigrateEvent implements EventSubscriberInterface {
     }
 
     // Temporary title.
-    $tmp_title = (trim($row->getSourceProperty('tmp_title')) != '')  ? $row->getSourceProperty('tmp_title') : 'N/A';
+    $tmp_title = (trim($row->getSourceProperty('tmp_title')) != '')  ? $row->getSourceProperty('tmp_title') : 'Unavailable';
     $row->setSourceProperty('title_string', $tmp_title);
+
+    // Empty record number?
+    if (empty($accNum)) {
+      $accNum = "Unavailable";
+    }
+    $row->setSourceProperty('record_number_string', $accNum);
   }
 
   // Determine and return Coordinate Precision.

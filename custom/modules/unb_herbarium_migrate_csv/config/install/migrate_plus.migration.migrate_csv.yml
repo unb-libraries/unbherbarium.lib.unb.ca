@@ -109,7 +109,7 @@ process:
   # copied in.
   title: title_string
   field_spmnkey: spmnid
-  field_dwc_record_number: record_number
+  field_dwc_record_number: record_number_string
   field_dwc_eventdate: date_iso
   field_dc_created: date_created_iso
   field_dwc_verbatimeventdate: dwc_verbatimeventdate
