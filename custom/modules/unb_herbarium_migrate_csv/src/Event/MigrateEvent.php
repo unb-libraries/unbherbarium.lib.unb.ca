@@ -314,7 +314,7 @@ function convertDMStoDecimal($deg,$min,$sec) {
    * RETURNS : TRUE on validation, FALSE on fail.
    */
   public function isValidDayRange($dayValue) {
-    if ($dayValue > 0 && $dayValue < 31) {
+    if ($dayValue >= 1 && $dayValue <= 31) {
       return TRUE;
     }
     return FALSE;
@@ -330,7 +330,7 @@ function convertDMStoDecimal($deg,$min,$sec) {
    * RETURNS : TRUE on validation, FALSE on fail.
    */
   function isValidMonthRange($monthValue) {
-    if ($monthValue > 0 && $monthValue < 13) {
+    if ($monthValue >= 1 && $monthValue <= 12) {
       return TRUE;
     }
     return FALSE;
@@ -346,7 +346,7 @@ function convertDMStoDecimal($deg,$min,$sec) {
    * RETURNS : TRUE on validation, FALSE on fail.
    */
   function isValidYearRange($yearValue) {
-    if ($yearValue > 1799 && $yearValue < date("Y")) {
+    if ($yearValue >= 1800 && $yearValue <= date("Y")) {
       return TRUE;
     }
     return FALSE;
