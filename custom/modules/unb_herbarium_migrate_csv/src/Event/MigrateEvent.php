@@ -11,6 +11,7 @@ use Drupal\migrate_plus\Event\MigrateEvents;
 use Drupal\migrate_plus\Event\MigratePrepareRowEvent;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Drupal\taxonomy\Entity\Term;
 use Drupal\unb_herbarium_migrate_csv\lib\gPoint;
 
 class MigrateEvent implements EventSubscriberInterface {
