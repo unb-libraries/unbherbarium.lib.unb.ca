@@ -147,6 +147,27 @@ class MigrateEvent implements EventSubscriberInterface {
       $accNum = "Unavailable";
     }
     $row->setSourceProperty('record_number_string', $accNum);
+
+    // Sample Collectors
+    $sample_collector_ids = array();
+    $collectors = explode(";", $row->getSourceProperty('collectors'));
+    foreach ($collectors as $value) {
+      $term_value = trim($value);
+      if(!empty($term_value)) {
+        $term_tid = $this->collectorExists($term_value);
+        if (!empty($term_tid)) {
+          $term = Term::load($term_tid);
+        } else {
+          $term = Term::create([
+            'vid' => 'herbarium_sample_collectors',
+            'name' => $term_value,
+          ]);
+          $term->save();
+        }
+        $sample_collector_ids[] = $term->id();
+      }
+    }
+    $row->setSourceProperty('sample_collectors', $sample_collector_ids);
   }
 
   // Determine and return Coordinate Precision.
