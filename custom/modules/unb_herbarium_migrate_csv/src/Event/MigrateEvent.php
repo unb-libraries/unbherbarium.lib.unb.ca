@@ -358,4 +358,28 @@ function convertDMStoDecimal($deg,$min,$sec) {
     }
     return FALSE;
   }
+
+   /**
+   * Check if a herbarium sample collector term exists.
+   *
+   * @param string $value
+   *   The name of the term.
+   * @param array $parents
+   *   The parents of the term.
+   *
+   * @return mixed
+   *   Returns the TID of the term, if it exists. False otherwise.
+   */
+  public function collectorExists($value) {
+    $query = \Drupal::entityQuery('taxonomy_term');
+    $query->condition('vid', 'herbarium_sample_collectors');
+    $query->condition('name', $value);
+    $tids = $query->execute();
+    if (!empty($tids)) {
+      foreach ($tids as $tid) {
+        return $tid;
+      }
+    }
+    return FALSE;
+  }
 }
