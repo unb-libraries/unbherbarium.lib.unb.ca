@@ -31,6 +31,8 @@ source:
       spmnid: SPMNKEY
     1:
       record_number: AccNum
+    6:
+      collectors: Collectors
     7:
       othercatalognumbers: Coll. #
     8:
@@ -133,6 +135,7 @@ process:
   field_dwc_month: month
   field_dwc_day: day
   field_geoheritage: geo_heritage
+  field_collectors_tid: sample_collectors
 
 # Required to cleanup CMI.
 dependencies:
