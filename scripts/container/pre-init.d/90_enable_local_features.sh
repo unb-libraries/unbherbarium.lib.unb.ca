@@ -11,4 +11,6 @@ if [ "$DEPLOY_ENV" = "local" ]; then
   $DRUSH_COMMAND en --yes unb_herbarium_migrate_csv
   $DRUSH_COMMAND migrate-status
   $DRUSH_COMMAND migrate-import --all
+  $DRUSH_COMMAND pm-uninstall migrate_source_csv migrate_upgrade migrate_tools migrate_plus
+  $DRUSH_COMMAND cache-rebuild
 fi
