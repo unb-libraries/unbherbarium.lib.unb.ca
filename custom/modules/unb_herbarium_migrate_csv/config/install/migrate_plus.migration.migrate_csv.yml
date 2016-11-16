@@ -32,11 +32,11 @@ source:
     1:
       record_number: AccNum
     3:
-      assign_taxon: SPECID
+      assigned_taxon: SPECID
     6:
       collectors: Collectors
     7:
-      othercatalognumbers: Coll. #
+      othercatalognumbers: 'Coll. #'
     8:
       day: Day
     9:
