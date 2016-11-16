@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_taxonomy_tid
     - node.type.herbarium_sample
+    - taxonomy.vocabulary.herbarium_sample_taxonomy
 id: node.herbarium_sample.field_taxonomy_tid
 field_name: field_taxonomy_tid
 entity_type: node
@@ -17,5 +18,11 @@ default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'
-  handler_settings: {  }
+  handler_settings:
+    target_bundles:
+      herbarium_sample_taxonomy: herbarium_sample_taxonomy
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
 field_type: entity_reference
