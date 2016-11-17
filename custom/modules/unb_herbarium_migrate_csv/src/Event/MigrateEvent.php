@@ -172,11 +172,17 @@ class MigrateEvent implements EventSubscriberInterface {
     $row->setSourceProperty('sample_collectors', $sample_collector_ids);
 
     // Sample Taxonomy
+    $fieldname = 'field_dwc_taxonid';
+    $vocabulary = 'herbarium_sample_taxonomy';
     $tax_id = trim($row->getSourceProperty('assigned_taxon'));
-    if (is_numeric($tax_id)) {
-       $row->setSourceProperty('field_taxonomy_tid', $tax_id);
+    print "Taxon #:".$tax_id.", ";
+    $term_tid = $this->taxtermExists($tax_id, $fieldname, $vocabulary);
+    print "Term id:".$term_tid.";  ";
+    if (is_numeric($term_tid)) {
+      $term = Term::load($term_tid);
+      $assign_taxon_id = $term->id();
+      $row->setSourceProperty('assigned_taxon', $assign_taxon_id);
     }
-
   }
 
   // Determine and return Coordinate Precision.
