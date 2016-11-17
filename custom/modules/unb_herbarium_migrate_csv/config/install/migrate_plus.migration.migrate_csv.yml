@@ -138,6 +138,7 @@ process:
   field_dwc_day: day
   field_geoheritage: geo_heritage
   field_collectors_tid: sample_collectors
+  field_taxonomy_tid: assigned_taxon
 
 # Required to cleanup CMI.
 dependencies:
