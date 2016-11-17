@@ -31,7 +31,7 @@ source:
       spmnid: SPMNKEY
     1:
       record_number: AccNum
-    3:
+    2:
       assigned_taxon: SPECID
     6:
       collectors: Collectors
