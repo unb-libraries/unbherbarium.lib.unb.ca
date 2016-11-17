@@ -107,8 +107,8 @@ class MigrateEvent implements EventSubscriberInterface {
     $geoUTMZ = trim($row->getSourceProperty('geoheritage_utmz'));
     $geoUTME = trim($row->getSourceProperty('geoheritage_utme'));
     $geoUTMN = trim($row->getSourceProperty('geoheritage_utmn'));
-
     $accNum = trim($row->getSourceProperty('record_number'));
+
     $longLatItems = array(
       $accNum,
       $longDec,
@@ -150,17 +150,19 @@ class MigrateEvent implements EventSubscriberInterface {
 
     // Sample Collectors
     $sample_collector_ids = array();
+    $fieldname = 'name';
+    $vocabulary = 'herbarium_sample_collectors';
     $collectors = explode(";", $row->getSourceProperty('collectors'));
     foreach ($collectors as $value) {
       $term_value = trim($value);
       if(!empty($term_value)) {
-        $term_tid = $this->collectorExists($term_value);
+        $term_tid = $this->taxtermExists($term_value, $fieldname, $vocabulary);
         if (!empty($term_tid)) {
           $term = Term::load($term_tid);
         } else {
           $term = Term::create([
-            'vid' => 'herbarium_sample_collectors',
-            'name' => $term_value,
+            'vid' => $vocabulary,
+            $fieldname => $term_value,
           ]);
           $term->save();
         }
@@ -168,6 +170,13 @@ class MigrateEvent implements EventSubscriberInterface {
       }
     }
     $row->setSourceProperty('sample_collectors', $sample_collector_ids);
+
+    // Sample Taxonomy
+    $tax_id = trim($row->getSourceProperty('assigned_taxon'));
+    if (is_numeric($tax_id)) {
+       $row->setSourceProperty('field_taxonomy_tid', $tax_id);
+    }
+
   }
 
   // Determine and return Coordinate Precision.
@@ -391,10 +400,10 @@ function convertDMStoDecimal($deg,$min,$sec) {
    * @return mixed
    *   Returns the TID of the term, if it exists. False otherwise.
    */
-  public function collectorExists($value) {
+  public function taxtermExists($value, $field, $vocabulary) {
     $query = \Drupal::entityQuery('taxonomy_term');
-    $query->condition('vid', 'herbarium_sample_collectors');
-    $query->condition('name', $value);
+    $query->condition('vid', $vocabulary);
+    $query->condition($field, $value);
     $tids = $query->execute();
     if (!empty($tids)) {
       foreach ($tids as $tid) {
