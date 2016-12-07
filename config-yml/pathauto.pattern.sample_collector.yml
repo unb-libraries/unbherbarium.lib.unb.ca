@@ -1,0 +1,23 @@
+uuid: 25a24b27-ab97-4647-992b-320b5cde4b26
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: sample_collector
+label: 'Sample Collector'
+type: 'canonical_entities:taxonomy_term'
+pattern: 'collector/[term:name]'
+selection_criteria:
+  f56af73b-7e90-487a-9da4-dae902a6bcfd:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      herbarium_sample_collectors: herbarium_sample_collectors
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: f56af73b-7e90-487a-9da4-dae902a6bcfd
+selection_logic: and
+weight: -5
+relationships: {  }
