@@ -12,7 +12,8 @@ use Drupal\migrate_plus\Event\MigratePrepareRowEvent;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\taxonomy\Entity\Term;
-use Drupal\unb_herbarium_migrate_csv\lib\gPoint;
+use Drupal\unb_herbarium_migrate_csv\lib\GpointConverter;
+
 
 class MigrateEvent implements EventSubscriberInterface {
 
@@ -144,7 +145,7 @@ class MigrateEvent implements EventSubscriberInterface {
 
     // Empty record number?
     if (empty($accNum)) {
-      $accNum = "Unavailable";
+      $accNum = "NA";
     }
     $row->setSourceProperty('record_number_string', $accNum);
 
@@ -175,10 +176,8 @@ class MigrateEvent implements EventSubscriberInterface {
     $fieldname = 'field_dwc_taxonid';
     $vocabulary = 'herbarium_sample_taxonomy';
     $tax_id = trim($row->getSourceProperty('assigned_taxon'));
-    print "Taxon #:".$tax_id.", ";
-    $term_tid = $this->taxtermExists($tax_id, $fieldname, $vocabulary);
-    print "Term id:".$term_tid.";  ";
-    if (is_numeric($term_tid)) {
+    if (is_numeric($tax_id)) {
+      $term_tid = $this->taxtermExists($tax_id, $fieldname, $vocabulary);
       $term = Term::load($term_tid);
       $assign_taxon_id = $term->id();
       $row->setSourceProperty('assigned_taxon', $assign_taxon_id);
@@ -238,13 +237,12 @@ class MigrateEvent implements EventSubscriberInterface {
     } elseif (is_numeric($geoUtmz) &&
       is_numeric($geoUtme) &&
       is_numeric($geoUtmn)) {
-
-      $thisPoint = new gPoint();
-      $thisPoint->setUTM( $geoUtmz, $geoUtme, $geoUtmn.'T');
-      $thisPoint->convertTMtoLL();
-      if ($thisPoint->lat && $thisPoint->long) {
+      $thisPoint = new GpointConverter;
+      print "\n"."Easting=".$geoUtme.", Northing=".$geoUtmn.", Zone=".$geoUtmz;
+      list($latVal, $longVal) = $thisPoint->convertUtmToLatLng($geoUtme, $geoUtmn, $geoUtmz.'N');
+      if ($latVal && $longVal) {
         $srcMethod='Translated from UTM To Decimal';
-        list($longVal, $latVal)=array($thisPoint->long, $thisPoint->lat);
+        print "\n" . $srcMethod . ": (" . $longVal . ", " . $latVal . "); ";
       } else {
         print "Failure of Translation from UTM to Decimal";
       }
@@ -396,7 +394,7 @@ function convertDMStoDecimal($deg,$min,$sec) {
   }
 
    /**
-   * Check if a herbarium sample collector term exists.
+   * Check if a herbarium taxonony term exists.
    *
    * @param string $value
    *   The name of the term.
