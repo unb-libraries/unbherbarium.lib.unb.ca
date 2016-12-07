@@ -64,7 +64,9 @@
         "drupal/features": "3.1",
         "drupal/field_collection": "1.0-alpha1",
         "drupal/field_group": "1.0-rc6",
+        "drupal/pathauto": "1.0-beta1",
         "drupal/search_api": "1.0-beta3",
+        "drupal/token": "1.0-beta2",
         "drupal/views_autocomplete_filters": "1.1",
         "drush/drush": "~8.0"
     },
