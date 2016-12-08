@@ -179,9 +179,15 @@ class MigrateEvent implements EventSubscriberInterface {
     $tax_id = trim($row->getSourceProperty('assigned_taxon'));
     if (is_numeric($tax_id)) {
       $term_tid = $this->taxtermExists($tax_id, $fieldname, $vocabulary);
-      $term = Term::load($term_tid);
-      $assign_taxon_id = $term->id();
-      $row->setSourceProperty('assigned_taxon', $assign_taxon_id);
+      if (!empty($term_tid)) {
+        $term = Term::load($term_tid);
+        $assign_taxon_id = $term->id();
+        $row->setSourceProperty('assigned_taxon', $assign_taxon_id);
+      } else {
+        print "SPEC ID doesn't exist in vocabulary: " . $tax_id . "\n";
+      }
+    } else {
+      print "\nAcc #=" . $accNum . ": SPECID NOT NUMERIC!" . "\n";
     }
   }
 
