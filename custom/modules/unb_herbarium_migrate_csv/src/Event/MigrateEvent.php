@@ -245,13 +245,13 @@ class MigrateEvent implements EventSubscriberInterface {
       is_numeric($geoUtme) &&
       is_numeric($geoUtmn)) {
       $thisPoint = new GpointConverter;
-      print "\n"."Easting=".$geoUtme.", Northing=".$geoUtmn.", Zone=".$geoUtmz;
+      //print "\n"."Easting=".$geoUtme.", Northing=".$geoUtmn.", Zone=".$geoUtmz;
       list($latVal, $longVal) = $thisPoint->convertUtmToLatLng($geoUtme, $geoUtmn, $geoUtmz.'N');
       if ($latVal && $longVal) {
         $srcMethod='Translated from UTM To Decimal';
-        print "\n" . $srcMethod . ": (" . $longVal . ", " . $latVal . "); ";
+        //print "\n" . $srcMethod . ": (" . $longVal . ", " . $latVal . "); ";
       } else {
-        print "Failure of Translation from UTM to Decimal";
+        print "Failure of Translation from UTM to Decimal - acc id " . $id . "\n";
       }
     }
 
