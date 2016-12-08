@@ -139,9 +139,10 @@ class MigrateEvent implements EventSubscriberInterface {
       $row->setSourceProperty('dwc_latitude', $decLat);
     }
 
-    // Temporary title.
+    // Temporary title, max chars=255
     $tmp_title = (trim($row->getSourceProperty('tmp_title')) != '')  ? $row->getSourceProperty('tmp_title') : 'Unavailable';
-    $row->setSourceProperty('title_string', $tmp_title);
+    $trunc_title = substr($tmp_title, 0, 255);
+    $row->setSourceProperty('title_string', $trunc_title);
 
     // Empty record number?
     if (empty($accNum)) {
