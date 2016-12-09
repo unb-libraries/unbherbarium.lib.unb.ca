@@ -139,6 +139,8 @@ process:
   field_geoheritage: geo_heritage
   field_collectors_tid: sample_collectors
   field_taxonomy_tid: assigned_taxon
+  field_large_sample_surrogate: image_file_unmasked
+  field_large_sample_surrogate_msk: image_file_masked
 
 # Required to cleanup CMI.
 dependencies:
