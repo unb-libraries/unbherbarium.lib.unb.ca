@@ -45,6 +45,7 @@ dependencies:
     - field.field.node.herbarium_sample.field_large_sample_surrogate_msk
     - field.field.node.herbarium_sample.field_taxonomy_tid
     - field.field.node.herbarium_sample.field_verbatim_coordinateprec
+    - image.style.medium
     - node.type.herbarium_sample
   module:
     - datetime
@@ -402,16 +403,16 @@ content:
     weight: 5
     label: above
     settings:
-      image_style: ''
-      image_link: ''
+      image_style: medium
+      image_link: file
     third_party_settings: {  }
   field_large_sample_surrogate_msk:
     type: image
     weight: 6
     label: above
     settings:
-      image_style: ''
-      image_link: ''
+      image_style: medium
+      image_link: file
     third_party_settings: {  }
   field_taxonomy_tid:
     type: entity_reference_entity_view
