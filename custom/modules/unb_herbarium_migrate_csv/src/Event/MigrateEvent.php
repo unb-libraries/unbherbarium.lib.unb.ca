@@ -410,17 +410,17 @@ function convertDMStoDecimal($deg,$min,$sec) {
     return FALSE;
   }
 
-   /**
-   * Check if a herbarium taxonony term exists.
-   *
-   * @param string $value
-   *   The name of the term.
-   * @param array $parents
-   *   The parents of the term.
-   *
-   * @return mixed
-   *   Returns the TID of the term, if it exists. False otherwise.
-   */
+  /**
+  * Check if a herbarium taxonony term exists.
+  *
+  * @param string $value
+  *   The name of the term.
+  * @param array $parents
+  *   The parents of the term.
+  *
+  * @return mixed
+  *   Returns the TID of the term, if it exists. False otherwise.
+  */
   public function taxtermExists($value, $field, $vocabulary) {
     $query = \Drupal::entityQuery('taxonomy_term');
     $query->condition('vid', $vocabulary);
