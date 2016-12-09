@@ -7,6 +7,7 @@
 
 namespace Drupal\unb_herbarium_migrate_csv\Event;
 
+use Drupal\file\Entity\File;
 use Drupal\migrate_plus\Event\MigrateEvents;
 use Drupal\migrate_plus\Event\MigratePrepareRowEvent;
 use Drupal\Core\Datetime\DrupalDateTime;
@@ -423,4 +424,37 @@ function convertDMStoDecimal($deg,$min,$sec) {
     }
     return FALSE;
   }
+
+  /**
+   * Add a file to the public filesystem
+   *
+   * @param string $field_map
+   *    The destination mapping to the file field.
+   * @param string $source
+   *    The full path & filename of the source file.
+   *
+   * @return  booleen
+   *    Returns True if source file is found. False otherwise.
+   */
+  public function addFieldFile($row, $field_map, $source) {
+    $file_basename = basename($source);
+    $file_destination = "public://$file_basename";
+    print "Processing file: ".$source."\n";
+    if (file_exists($source)) {
+      $file_uri = file_unmanaged_copy($source, $file_destination,
+        FILE_EXISTS_REPLACE);
+      $public_file = File::Create([
+        'uri' => $file_uri,
+      ]);
+      $row->setSourceProperty(
+        $field_map,
+        $public_file
+      );
+      return TRUE;
+    }
+    else {
+      return FALSE;
+    }
+  }
+
 }
