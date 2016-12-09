@@ -34,6 +34,16 @@ class MigrateEvent implements EventSubscriberInterface {
    */
   public function onPrepareRow(MigratePrepareRowEvent $event) {
     $row = $event->getRow();
+    $images_path = UNB_HERBARIUM_MIGRATE_CSV_SPECIES_IMPORT_DATA_DIR;
+
+    // Accession Number, aka ID
+    $accNum = trim($row->getSourceProperty('record_number'));
+
+    // Surrogate Image Handling For Caching.
+    $file_unmasked = $images_path . 'u-'. $accNum . '.jpg';
+    $file_masked = $images_path . $accNum . '.jpg';
+    $this->addFieldFile($row, 'image_file_unmasked', $file_unmasked);
+    $this->addFieldFile($row, 'image_file_masked', $file_masked);
 
     $year = (trim($row->getSourceProperty('year')) != '')  ? $row->getSourceProperty('year') : NULL;
     $month = (trim($row->getSourceProperty('month')) != '') ? $row->getSourceProperty('month') : NULL;
@@ -109,7 +119,6 @@ class MigrateEvent implements EventSubscriberInterface {
     $geoUTMZ = trim($row->getSourceProperty('geoheritage_utmz'));
     $geoUTME = trim($row->getSourceProperty('geoheritage_utme'));
     $geoUTMN = trim($row->getSourceProperty('geoheritage_utmn'));
-    $accNum = trim($row->getSourceProperty('record_number'));
 
     $longLatItems = array(
       $accNum,
