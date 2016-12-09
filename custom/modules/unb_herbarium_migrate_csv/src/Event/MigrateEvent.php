@@ -437,6 +437,8 @@ function convertDMStoDecimal($deg,$min,$sec) {
   /**
    * Add a file to the public filesystem
    *
+   * @param object $row
+   *    The current row from CSV being migrated.
    * @param string $field_map
    *    The destination mapping to the file field.
    * @param string $source
@@ -445,10 +447,9 @@ function convertDMStoDecimal($deg,$min,$sec) {
    * @return  booleen
    *    Returns True if source file is found. False otherwise.
    */
-  public function addFieldFile($row, $field_map, $source) {
+  public function addFieldFile(&$row, $field_map, $source) {
     $file_basename = basename($source);
     $file_destination = "public://$file_basename";
-    print "Processing file: ".$source."\n";
     if (file_exists($source)) {
       $file_uri = file_unmanaged_copy($source, $file_destination,
         FILE_EXISTS_REPLACE);
