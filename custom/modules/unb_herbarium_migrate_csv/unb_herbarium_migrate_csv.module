@@ -8,6 +8,8 @@
 use Drupal\Core\Routing\RouteMatchInterface;
 
 define('UNB_HERBARIUM_MIGRATE_CSV_SPECIES_TAXONOMY_NAME', '');
+define('UNB_HERBARIUM_MIGRATE_CSV_SPECIES_IMPORT_DATA_DIR',
+  '/app/html/modules/custom/unb_herbarium_migrate_csv/data/images/');
 
 /**
  * Implements hook_help().
