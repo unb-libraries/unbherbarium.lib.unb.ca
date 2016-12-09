@@ -9,7 +9,7 @@ migration_tags:
 source:
   plugin: csv
   # Full path to the file.
-  path: '/app/html/modules/custom/unb_herbarium_migrate_csv/src/data/csv/herbarium_samples_7xxx.csv'
+  path: '/app/html/modules/custom/unb_herbarium_migrate_csv/data/csv/herbarium_samples_7xxx.csv'
   # The number of rows at the beginning which are not data.
   header_row_count: 0
   # These are the field names from the source file representing the key
