@@ -98,8 +98,12 @@ display:
             title: title
             field_dwc_county: field_dwc_county
             field_dwc_country: field_dwc_country
-            field_dwc_stateprovince: field_dwc_stateprovince
             field_dwc_eventdate: field_dwc_eventdate
+            field_dwc_stateprovince: field_dwc_stateprovince
+            field_dwc_habitat: field_dwc_habitat
+            field_dwc_verbatimlocality: field_dwc_verbatimlocality
+            field_large_sample_surrogate_msk: field_large_sample_surrogate_msk
+            field_large_sample_surrogate: field_large_sample_surrogate
           info:
             field_dwc_record_number:
               sortable: true
@@ -129,6 +133,13 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
+            field_dwc_eventdate:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
             field_dwc_stateprovince:
               sortable: false
               default_sort_order: asc
@@ -136,7 +147,28 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            field_dwc_eventdate:
+            field_dwc_habitat:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_dwc_verbatimlocality:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_large_sample_surrogate_msk:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_large_sample_surrogate:
               sortable: true
               default_sort_order: asc
               align: ''
@@ -655,7 +687,7 @@ display:
           field: field_large_sample_surrogate_msk
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: 'Image Masked'
           label: Image
           exclude: true
           alter:
@@ -757,7 +789,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: ''
+          empty: 'No Image'
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
