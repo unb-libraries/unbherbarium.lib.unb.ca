@@ -1,0 +1,25 @@
+uuid: e5621e16-5029-437c-8990-1c1217e1d4ee
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+    - user
+  theme:
+    - unbherbarium
+id: unbherbarium_user_login
+theme: unbherbarium
+region: '-1'
+weight: -1
+provider: null
+plugin: user_login_block
+settings:
+  id: user_login_block
+  label: ''
+  provider: user
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '<front>'
