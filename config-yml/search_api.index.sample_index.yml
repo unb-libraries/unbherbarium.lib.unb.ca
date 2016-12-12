@@ -16,6 +16,7 @@ dependencies:
     - field.storage.node.field_dwc_occurrenceremarks
     - field.storage.node.field_dwc_othercatalognumbers
     - field.storage.node.field_dwc_record_number
+    - field.storage.node.field_dwc_stateprovince
     - search_api.server.search_api_db
   module:
     - search_api
@@ -135,56 +136,93 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_dwc_record_number
+  field_dwc_stateprovince:
+    label: 'DwC:stateProvince'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_stateprovince
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_stateprovince
+  status:
+    label: 'Publishing status'
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+  title_str:
+    label: 'Title (string)'
+    datasource_id: 'entity:node'
+    property_path: title
+    type: string
+  field_dwc_record_number_str:
+    label: 'DwC:recordnumber (string)'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_record_number
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_record_number
 processor_settings:
-  transliteration:
-    plugin_id: transliteration
-    settings:
-      fields:
-        - title
-        - field_dc_contributor_other
-        - field_dc_type
-        - field_dwc_basisofrecord
-        - field_dwc_collectioncode
-        - field_dwc_country
-        - field_dwc_county
-        - field_dwc_eventremarks
-        - field_dwc_habitat
-        - field_dwc_occurrenceremarks
-        - field_dwc_othercatalognumbers
-        - field_dwc_verbatimlocality
-      weights:
-        preprocess_index: -10
-        preprocess_query: -10
   ignorecase:
     plugin_id: ignorecase
     settings:
       fields:
         - title
-        - field_dc_contributor_other
-        - field_dc_type
         - field_dwc_basisofrecord
         - field_dwc_collectioncode
         - field_dwc_country
+        - field_dc_contributor_other
+        - field_dwc_verbatimlocality
         - field_dwc_county
         - field_dwc_eventremarks
         - field_dwc_habitat
         - field_dwc_occurrenceremarks
-        - field_dwc_othercatalognumbers
+        - field_dwc_stateprovince
+        - title_str
+        - field_dwc_record_number_str
       weights:
         preprocess_index: -10
         preprocess_query: -10
-  add_url:
-    plugin_id: add_url
-    settings: {  }
+  transliteration:
+    plugin_id: transliteration
+    settings:
+      fields:
+        - title
+        - field_dwc_basisofrecord
+        - field_dwc_country
+        - field_dc_contributor_other
+        - field_dwc_verbatimlocality
+        - field_dwc_county
+        - field_dwc_eventremarks
+        - field_dwc_habitat
+        - field_dwc_occurrenceremarks
+        - title_str
+      weights:
+        preprocess_index: -10
+        preprocess_query: -10
+  highlight:
+    plugin_id: highlight
+    settings:
+      highlight: always
+      excerpt: true
+      excerpt_length: 256
+      exclude_fields: {  }
+      prefix: '<strong>'
+      suffix: '</strong>'
+      weights:
+        postprocess_query: 0
   aggregated_field:
     plugin_id: aggregated_field
     settings: {  }
   rendered_item:
     plugin_id: rendered_item
     settings: {  }
+  add_url:
+    plugin_id: add_url
+    settings: {  }
 options:
   index_directly: true
-  cron_limit: 50
+  cron_limit: 100
 datasource_settings:
   'entity:node':
     plugin_id: 'entity:node'
