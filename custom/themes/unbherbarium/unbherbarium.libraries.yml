@@ -1,0 +1,7 @@
+global:
+  version: VERSION
+  css:
+    base:
+      css/unbherbarium.css: {}
+  js:
+    js/unbherbarium.js: {}

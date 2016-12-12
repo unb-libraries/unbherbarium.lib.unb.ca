@@ -1,0 +1,10 @@
+/* Nav menu */
+.block-unbherbarium-main-menu {
+  background: #874468 url(../images/linkBarMiddle.gif) repeat-x;
+}
+.block-unbherbarium-main-menu a {
+  color: #fefefe;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+/* End Nav menu */
