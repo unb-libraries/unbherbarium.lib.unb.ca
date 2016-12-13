@@ -41,6 +41,7 @@ dependencies:
     - field.field.node.herbarium_sample.field_dwc_verbatimlocality
     - field.field.node.herbarium_sample.field_dwc_year
     - field.field.node.herbarium_sample.field_geoheritage
+    - field.field.node.herbarium_sample.field_gmap
     - field.field.node.herbarium_sample.field_large_sample_surrogate
     - field.field.node.herbarium_sample.field_large_sample_surrogate_msk
     - field.field.node.herbarium_sample.field_taxonomy_tid
@@ -52,6 +53,7 @@ dependencies:
     - datetime
     - field_group
     - options
+    - simple_gmap
     - text
     - user
 third_party_settings:
@@ -398,6 +400,24 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
+  field_gmap:
+    weight: 30
+    label: above
+    settings:
+      include_map: '1'
+      apikey: ''
+      iframe_width: '200'
+      iframe_height: '300'
+      static_scale: '1'
+      include_link: '1'
+      link_text: 'View larger map'
+      zoom_level: '7'
+      map_type: m
+      langcode: en
+      include_static_map: 0
+      include_text: 0
+    third_party_settings: {  }
+    type: simple_gmap
   field_large_sample_surrogate:
     type: colorbox
     weight: 10

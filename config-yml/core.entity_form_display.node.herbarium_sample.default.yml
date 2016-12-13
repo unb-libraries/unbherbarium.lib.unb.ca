@@ -41,6 +41,7 @@ dependencies:
     - field.field.node.herbarium_sample.field_dwc_verbatimlocality
     - field.field.node.herbarium_sample.field_dwc_year
     - field.field.node.herbarium_sample.field_geoheritage
+    - field.field.node.herbarium_sample.field_gmap
     - field.field.node.herbarium_sample.field_large_sample_surrogate
     - field.field.node.herbarium_sample.field_large_sample_surrogate_msk
     - field.field.node.herbarium_sample.field_taxonomy_tid
@@ -416,6 +417,13 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_gmap:
+    weight: 53
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
   field_large_sample_surrogate:
     type: image_image
     weight: 10
