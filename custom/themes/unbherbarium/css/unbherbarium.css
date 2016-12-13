@@ -11,6 +11,10 @@ h2 {
 nav {
   margin-bottom: 1em;
 }
+table tbody td,
+table tbody th {
+  padding: .25rem .625rem;
+}
 /* End Global */
 
 /* Nav menu */
@@ -46,10 +50,6 @@ nav {
   display: inline-block;
   width: 49%;
 }
-.search .form-item-min-date input,
-.search .form-item-max-date input {
-  max-width: 99%;
-}
 .search .form-wrapper {
   margin: 1em auto;
 }
@@ -64,10 +64,35 @@ nav {
 .search header {
   margin-bottom: 1em;
 }
+.search a img {
+  border: 1px solid #999;
+}
 /* End Search page */
 
-/* Misc */
-.field-label-above {
+/* Misc styles */
+.bottom-bar { /* center copyright */
+  text-align: center;
+}
+.field-label-above { /* whitespace between fields */
   margin-top: 1em;
+}
+.field-name-field-gmap { /* add loading indicator for gmap */
+  background: url(../images/loading.gif) no-repeat 60px center;
+}
+.pager { /* center pager list */
+  text-align: center;
+}
+.pager ul {
+  display: inline-block;
+  margin-left: 0;
+  margin-right: 0;
+}
+.pager .is-active a:focus,
+.pager .is-active a:hover { /* no hover for active pager */
+  cursor: default;
+  background-color: transparent;
+}
+.views-element-container td p { /* line up table row cells */
+  margin: 0;
 }
 /* End Misc */
