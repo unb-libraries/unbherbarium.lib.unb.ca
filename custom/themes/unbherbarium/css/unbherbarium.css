@@ -1,3 +1,18 @@
+/* Global */
+h1, h2, h3 {
+  font-weight: bold;
+}
+h1 {
+  font-size: x-large;
+}
+h2 {
+  font-size: large;
+}
+nav {
+  margin-bottom: 1em;
+}
+/* End Global */
+
 /* Nav menu */
 .block-unbherbarium-main-menu {
   background: #874468 url(../images/linkBarMiddle.gif) repeat-x;
@@ -5,6 +20,48 @@
 .block-unbherbarium-main-menu a {
   color: #fefefe;
   font-weight: bold;
-  text-transform: uppercase;
 }
 /* End Nav menu */
+
+/* Search page */
+.search form {
+  display: inline-block;
+  margin-right: 14%;
+  width: 35%;
+}
+.search label {
+  font-weight: bold;
+  margin-top: 1em;
+}
+.search input {
+  margin: 0;
+  max-width: 98%;
+}
+.search .description {
+  color: #808080;
+  font-size: smaller;
+}
+.search .form-item-min-date,
+.search .form-item-max-date {
+  display: inline-block;
+  width: 49%;
+}
+.search .form-item-min-date input,
+.search .form-item-max-date input {
+  max-width: 99%;
+}
+.search .form-wrapper {
+  margin: 1em auto;
+}
+.search form + div {
+  border: 1px solid #000;
+  max-width: 50%;
+  padding: 1em;
+  position: absolute;
+  top: 2.45em;
+  right: 0;
+}
+.search header {
+  margin-bottom: 1em;
+}
+/* End Search page */
