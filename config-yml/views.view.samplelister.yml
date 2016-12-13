@@ -14,11 +14,13 @@ dependencies:
     - field.storage.node.field_large_sample_surrogate_msk
     - image.style.herbarium_view_list_thumbnail
     - node.type.herbarium_sample
+    - taxonomy.vocabulary.herbarium_sample_collectors
   module:
     - colorbox
     - datetime
     - image
     - node
+    - taxonomy
     - text
     - user
     - views_autocomplete_filters
@@ -850,7 +852,7 @@ display:
           exposed: true
           expose:
             operator_id: title_op
-            label: 'Sample Name'
+            label: 'Scientific Name'
             description: 'Example: boreal'
             use_operator: false
             operator: title_op
@@ -888,24 +890,24 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: string
-        field_dwc_record_number_value:
-          id: field_dwc_record_number_value
-          table: node__field_dwc_record_number
-          field: field_dwc_record_number_value
+        field_collectors_tid_target_id:
+          id: field_collectors_tid_target_id
+          table: node__field_collectors_tid
+          field: field_collectors_tid_target_id
           relationship: none
           group_type: group
           admin_label: ''
-          operator: '='
-          value: ''
+          operator: or
+          value: {  }
           group: 1
           exposed: true
           expose:
-            operator_id: field_dwc_record_number_value_op
-            label: 'Accession ID'
-            description: 'Example: 65095'
+            operator_id: field_collectors_tid_target_id_op
+            label: 'Sample Collector'
+            description: 'Example: Hinds'
             use_operator: false
-            operator: field_dwc_record_number_value_op
-            identifier: id
+            operator: field_collectors_tid_target_id_op
+            identifier: collector
             required: false
             remember: false
             multiple: false
@@ -917,13 +919,7 @@ display:
               herbarium_specimen_add_edit_all: '0'
               herbarium_specimen_administrator: '0'
               herbarium_page_editor: '0'
-            autocomplete_filter: 0
-            autocomplete_min_chars: '0'
-            autocomplete_items: '10'
-            autocomplete_field: field_dwc_record_number
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -936,7 +932,13 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: string
+          reduce_duplicates: false
+          type: textfield
+          limit: true
+          vid: herbarium_sample_collectors
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
         field_dwc_country_value:
           id: field_dwc_country_value
           table: node__field_dwc_country
@@ -1084,55 +1086,6 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: string
-        field_dwc_verbatimlocality_value:
-          id: field_dwc_verbatimlocality_value
-          table: node__field_dwc_verbatimlocality
-          field: field_dwc_verbatimlocality_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '='
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_dwc_verbatimlocality_value_op
-            label: Location
-            description: 'Example: Grand Lake'
-            use_operator: false
-            operator: field_dwc_verbatimlocality_value_op
-            identifier: location
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              herbarium_specimen_add_edit_only: '0'
-              herbarium_specimen_add_edit_all: '0'
-              herbarium_specimen_administrator: '0'
-              herbarium_page_editor: '0'
-            autocomplete_filter: 1
-            autocomplete_min_chars: '3'
-            autocomplete_items: '10'
-            autocomplete_field: field_dwc_verbatimlocality
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: views_autocomplete_filters_string
         field_dwc_habitat_value:
           id: field_dwc_habitat_value
           table: node__field_dwc_habitat
@@ -1182,6 +1135,55 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: views_autocomplete_filters_string
+        field_dwc_verbatimlocality_value:
+          id: field_dwc_verbatimlocality_value
+          table: node__field_dwc_verbatimlocality
+          field: field_dwc_verbatimlocality_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_verbatimlocality_value_op
+            label: Location
+            description: 'Example: Grand Lake'
+            use_operator: false
+            operator: field_dwc_verbatimlocality_value_op
+            identifier: location
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+            autocomplete_filter: 1
+            autocomplete_min_chars: '3'
+            autocomplete_items: '10'
+            autocomplete_field: field_dwc_verbatimlocality
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: views_autocomplete_filters_string
         field_dwc_eventdate_value:
           id: field_dwc_eventdate_value
           table: node__field_dwc_eventdate
@@ -1199,8 +1201,8 @@ display:
           exposed: true
           expose:
             operator_id: field_dwc_eventdate_value_op
-            label: 'Min Date'
-            description: 'Preferred format: CCYY-MM'
+            label: 'Min Collection Date'
+            description: 'Format: YYYY'
             use_operator: false
             operator: field_dwc_eventdate_value_op
             identifier: min_date
@@ -1245,8 +1247,8 @@ display:
           exposed: true
           expose:
             operator_id: field_dwc_eventdate_value_1_op
-            label: 'Max Date'
-            description: 'Preferred format: CCYY-MM'
+            label: 'Max Collection Date'
+            description: 'Format: YYYY'
             use_operator: false
             operator: field_dwc_eventdate_value_1_op
             identifier: max_date
@@ -1274,47 +1276,58 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: datetime
-      sorts:
-        created:
-          id: created
-          table: node_field_data
-          field: created
-          order: DESC
-          entity_type: node
-          entity_field: created
-          plugin_id: date
+        field_dwc_record_number_value:
+          id: field_dwc_record_number_value
+          table: node__field_dwc_record_number
+          field: field_dwc_record_number_value
           relationship: none
           group_type: group
           admin_label: ''
-          exposed: false
+          operator: '='
+          value: ''
+          group: 1
+          exposed: true
           expose:
+            operator_id: field_dwc_record_number_value_op
+            label: 'Accession ID'
+            description: 'Example: 65095'
+            use_operator: false
+            operator: field_dwc_record_number_value_op
+            identifier: id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+            autocomplete_filter: 0
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_field: field_dwc_record_number
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
             label: ''
-          granularity: second
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: string
+      sorts: {  }
       title: 'Advanced Search'
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: "<div>\n<p>Please enter specific values in one or more fields of the form below. This will filter all samples in the database based on your criteria.</p>\n</div>"
-            format: full_html
-          plugin_id: text
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          content: 'Displaying @start - @end of @total'
-          plugin_id: result
+      header: {  }
       footer: {  }
       empty:
         area:
@@ -1337,6 +1350,7 @@ display:
         operator: AND
         groups:
           1: AND
+      css_class: search
     cache_metadata:
       max-age: 0
       contexts:
@@ -1344,6 +1358,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -1356,14 +1371,130 @@ display:
         - 'config:field.storage.node.field_dwc_verbatimlocality'
         - 'config:field.storage.node.field_large_sample_surrogate'
         - 'config:field.storage.node.field_large_sample_surrogate_msk'
+  attachment_1:
+    display_plugin: attachment
+    id: attachment_1
+    display_title: 'Guide Attachment'
+    position: 2
+    display_options:
+      display_extenders: {  }
+      displays:
+        page_1: page_1
+      filters: {  }
+      defaults:
+        filters: false
+        filter_groups: false
+        fields: false
+        footer: false
+        header: false
+        style: false
+        row: false
+        empty: false
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      pager:
+        type: some
+        options:
+          items_per_page: 1
+          offset: 0
+      fields:
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: "<h2>Using the CMH Database</h2>\n<p>Please enter specific values in one or more fields of the form below. This will filter all samples in the database based on your criteria.</p>\n"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          plugin_id: custom
+      footer: {  }
+      header: {  }
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: guide
+          default_row_class: false
+      row:
+        type: fields
+        options:
+          default_field_elements: false
+          inline: {  }
+          separator: ''
+          hide_empty: true
+      empty: {  }
+      display_description: ''
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
   page_1:
     display_plugin: page
     id: page_1
-    display_title: Page
+    display_title: 'Search Page'
     position: 1
     display_options:
       display_extenders: {  }
       path: advanced-search
+      display_description: ''
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          content: 'Displaying @start-@end of @total'
+          plugin_id: result
+      defaults:
+        header: false
     cache_metadata:
       max-age: 0
       contexts:
@@ -1371,6 +1502,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
