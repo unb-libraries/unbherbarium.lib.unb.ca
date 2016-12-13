@@ -141,6 +141,7 @@ process:
   field_taxonomy_tid: assigned_taxon
   field_large_sample_surrogate: image_file_unmasked
   field_large_sample_surrogate_msk: image_file_masked
+  field_gmap: one_line_gmap_address
 
 # Required to cleanup CMI.
 dependencies:
