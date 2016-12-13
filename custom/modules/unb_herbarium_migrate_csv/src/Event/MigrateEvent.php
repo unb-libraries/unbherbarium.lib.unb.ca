@@ -138,7 +138,7 @@ class MigrateEvent implements EventSubscriberInterface {
     );
     list($decLong, $decLat, $geoRefRem) =  $this->determineLongitudeLatitude($longLatItems);
     $row->setSourceProperty('geo_heritage', $geoRefRem);
-    if ($decLong != NULL) {
+    if ($decLat != NULL && $decLong != NULL) {
       $country = trim($row->getSourceProperty('country'));
       $isCanada = (substr(strtolower($country), 0 , 3) === "can" ) ? TRUE : FALSE;
       if ($decLong > 0 && $isCanada) {
@@ -147,6 +147,7 @@ class MigrateEvent implements EventSubscriberInterface {
       }
       $row->setSourceProperty('dwc_longitude', $decLong);
       $row->setSourceProperty('dwc_latitude', $decLat);
+      $row->setSourceProperty('one_line_gmap_address', $decLat . ',' . $decLong);
     }
 
     // Temporary title, max chars=255
