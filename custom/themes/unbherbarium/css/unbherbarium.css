@@ -64,12 +64,17 @@ table tbody th {
 .search header {
   margin-bottom: 1em;
 }
-.search a img {
-  border: 1px solid #999;
+.search a img,
+.field-item img,
+.field-item iframe {
+  border: 1px solid #999!important;
 }
 /* End Search page */
 
 /* Misc styles */
+[role="button"]:hover { /* link cursor for button role */
+  cursor: pointer;
+}
 .bottom-bar { /* center copyright */
   text-align: center;
 }
