@@ -1,4 +1,4 @@
-uuid: b910fe61-6dc2-4ef0-8ea6-af8d7e794dfc
+uuid: 1eb6aed3-4e11-428d-96d1-7e414440a350
 langcode: en
 status: true
 dependencies:
@@ -9,7 +9,7 @@ _core:
 id: bartik_page_title
 theme: bartik
 region: content
-weight: -50
+weight: -7
 provider: null
 plugin: page_title_block
 settings:
