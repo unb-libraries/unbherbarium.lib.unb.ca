@@ -28,6 +28,7 @@ Feature: Core
       | name      | status |
       | Test user |      1 |
       When I am logged in as "Test user"
+      And follow "Test user"
       Then I should see the link "Log out"
 
     Scenario: Create a term
