@@ -28,8 +28,8 @@ Feature: Core
       | name      | status |
       | Test user |      1 |
       When I am logged in as "Test user"
-      And follow "Test user"
-      Then I should see the link "Log out"
+      And I visit "user/"
+      Then I should see "Member for"
 
     Scenario: Create a term
       Given I am logged in as a user with the "administrator" role
