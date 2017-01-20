@@ -1,4 +1,4 @@
-uuid: c5246733-6358-4a02-bc6e-6c945c6ae15a
+uuid: 86bfd834-9a26-4c62-992e-ac713209dc9c
 langcode: en
 status: true
 dependencies:
@@ -7,19 +7,21 @@ dependencies:
     - field.storage.node.field_dwc_eventdate
     - field.storage.node.field_dwc_record_number
     - field.storage.node.field_large_sample_surrogate
-    - image.style.herbarium_view_list_thumbnail
-    - search_api.index.sample_index
+    - image.style.thumbnail
+    - search_api.index.herbarium
+    - system.menu.main
   module:
     - colorbox
     - datetime
     - search_api
     - text
+    - user
 id: searches
 label: Searches
 module: views
 description: ''
 tag: ''
-base_table: search_api_index_sample_index
+base_table: search_api_index_herbarium
 base_field: search_api_id
 core: 8.x
 display:
@@ -30,8 +32,9 @@ display:
     position: 0
     display_options:
       access:
-        type: none
-        options: {  }
+        type: perm
+        options:
+          perm: 'access content'
       cache:
         type: tag
         options: {  }
@@ -51,17 +54,12 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
-        type: full
+        type: mini
         options:
           items_per_page: 25
           offset: 0
           id: 0
           total_pages: null
-          tags:
-            previous: ‹‹
-            next: ››
-            first: '« First'
-            last: 'Last »'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -70,7 +68,9 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          quantity: 9
+          tags:
+            previous: ‹‹
+            next: ››
       style:
         type: table
         options:
@@ -83,20 +83,20 @@ display:
           summary: ''
           description: ''
           columns:
-            field_dwc_record_number_str: field_dwc_record_number_str
-            title_str: title_str
+            field_dwc_record_number: field_dwc_record_number
+            title_sort: title_sort
             field_dwc_county: field_dwc_county
             field_dwc_eventdate: field_dwc_eventdate
             field_large_sample_surrogate: field_large_sample_surrogate
           info:
-            field_dwc_record_number_str:
+            field_dwc_record_number:
               sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            title_str:
+            title_sort:
               sortable: true
               default_sort_order: asc
               align: ''
@@ -127,10 +127,10 @@ display:
       row:
         type: fields
       fields:
-        field_dwc_record_number_str:
-          id: field_dwc_record_number_str
-          table: search_api_index_sample_index
-          field: field_dwc_record_number_str
+        field_dwc_record_number:
+          id: field_dwc_record_number
+          table: search_api_index_herbarium
+          field: field_dwc_record_number
           relationship: none
           group_type: group
           admin_label: ''
@@ -171,7 +171,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: false
-          empty: ''
+          empty: Unknown
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -194,14 +194,14 @@ display:
             link_to_item: false
             multi_separator: ', '
           plugin_id: search_api_field
-        title_str:
-          id: title_str
-          table: search_api_index_sample_index
-          field: title_str
+        title_sort:
+          id: title_sort
+          table: search_api_index_herbarium
+          field: title_sort
           relationship: none
           group_type: group
           admin_label: ''
-          label: Title
+          label: Sample
           exclude: false
           alter:
             alter_text: false
@@ -237,7 +237,7 @@ display:
           element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: false
+          element_default_classes: true
           empty: ''
           hide_empty: false
           empty_zero: false
@@ -264,7 +264,7 @@ display:
           plugin_id: search_api_field
         field_dwc_county:
           id: field_dwc_county
-          table: search_api_index_sample_index
+          table: search_api_index_herbarium
           field: field_dwc_county
           relationship: none
           group_type: group
@@ -305,7 +305,7 @@ display:
           element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: false
+          element_default_classes: true
           empty: ''
           hide_empty: false
           empty_zero: false
@@ -323,7 +323,7 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          field_rendering: false
+          field_rendering: true
           fallback_handler: search_api
           fallback_options:
             link_to_item: false
@@ -331,7 +331,7 @@ display:
           plugin_id: search_api_field
         field_dwc_eventdate:
           id: field_dwc_eventdate
-          table: search_api_index_sample_index
+          table: search_api_index_herbarium
           field: field_dwc_eventdate
           relationship: none
           group_type: group
@@ -400,7 +400,7 @@ display:
           plugin_id: search_api_field
         field_large_sample_surrogate:
           id: field_large_sample_surrogate
-          table: search_api_datasource_sample_index_entity_node
+          table: search_api_datasource_herbarium_entity_node
           field: field_large_sample_surrogate
           relationship: none
           group_type: group
@@ -442,14 +442,14 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: 'No Image'
+          empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
           type: colorbox
           settings:
-            colorbox_node_style: herbarium_view_list_thumbnail
+            colorbox_node_style: thumbnail
             colorbox_node_style_first: ''
             colorbox_image_style: ''
             colorbox_gallery: post
@@ -474,29 +474,38 @@ display:
           entity_type: node
           plugin_id: search_api_field
       filters:
-        status:
-          id: status
-          table: search_api_index_sample_index
-          field: status
+        title:
+          id: title
+          table: search_api_index_herbarium
+          field: title
           relationship: none
           group_type: group
           admin_label: ''
           operator: '='
-          value: true
+          value:
+            min: ''
+            max: ''
+            value: ''
           group: 1
-          exposed: false
+          exposed: true
           expose:
-            operator_id: ''
-            label: ''
+            operator_id: title_op
+            label: 'Scientific Name'
             description: ''
             use_operator: false
-            operator: ''
-            identifier: ''
+            operator: title_op
+            identifier: title
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
           is_grouped: false
           group_info:
             label: ''
@@ -509,8 +518,335 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: search_api_boolean
-      sorts: {  }
+          plugin_id: search_api_string
+        name:
+          id: name
+          table: search_api_index_herbarium
+          field: name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: name_op
+            label: 'Sample Collector'
+            description: ''
+            use_operator: false
+            operator: name_op
+            identifier: collector
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_text
+        field_dwc_country:
+          id: field_dwc_country
+          table: search_api_index_herbarium
+          field: field_dwc_country
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_country_op
+            label: Country
+            description: ''
+            use_operator: false
+            operator: field_dwc_country_op
+            identifier: country
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_text
+        field_dwc_stateprovince:
+          id: field_dwc_stateprovince
+          table: search_api_index_herbarium
+          field: field_dwc_stateprovince
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_stateprovince_op
+            label: Province/State
+            description: ''
+            use_operator: false
+            operator: field_dwc_stateprovince_op
+            identifier: stateprovince
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_text
+        field_dwc_county:
+          id: field_dwc_county
+          table: search_api_index_herbarium
+          field: field_dwc_county
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_county_op
+            label: County
+            description: ''
+            use_operator: false
+            operator: field_dwc_county_op
+            identifier: county
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_text
+        field_dwc_habitat:
+          id: field_dwc_habitat
+          table: search_api_index_herbarium
+          field: field_dwc_habitat
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_habitat_op
+            label: Habitat
+            description: ''
+            use_operator: false
+            operator: field_dwc_habitat_op
+            identifier: habitat
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_text
+        field_dwc_verbatimlocality:
+          id: field_dwc_verbatimlocality
+          table: search_api_index_herbarium
+          field: field_dwc_verbatimlocality
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_verbatimlocality_op
+            label: Location
+            description: ''
+            use_operator: false
+            operator: field_dwc_verbatimlocality_op
+            identifier: location
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_text
+        field_dwc_record_number:
+          id: field_dwc_record_number
+          table: search_api_index_herbarium
+          field: field_dwc_record_number
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_record_number_op
+            label: 'Accession ID'
+            description: ''
+            use_operator: false
+            operator: field_dwc_record_number_op
+            identifier: id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_numeric
+      sorts:
+        search_api_relevance:
+          id: search_api_relevance
+          table: search_api_index_herbarium
+          field: search_api_relevance
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
       title: Searches
       header:
         result:
@@ -534,6 +870,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - user.permissions
       tags:
         - 'config:field.storage.node.field_dwc_county'
         - 'config:field.storage.node.field_dwc_eventdate'
@@ -547,12 +884,22 @@ display:
     display_options:
       display_extenders: {  }
       path: searches
+      menu:
+        type: normal
+        title: 'Advanced Search'
+        description: ''
+        expanded: false
+        parent: ''
+        weight: 0
+        context: '0'
+        menu_name: main
     cache_metadata:
       max-age: 0
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - user.permissions
       tags:
         - 'config:field.storage.node.field_dwc_county'
         - 'config:field.storage.node.field_dwc_eventdate'

@@ -9,7 +9,7 @@ dependencies:
     - bartik
 id: bartik_user_login
 theme: bartik
-region: header
+region: '-1'
 weight: -1
 provider: null
 plugin: user_login_block
