@@ -1348,6 +1348,8 @@ display:
       defaults:
         fields: false
         pager: false
+        filters: false
+        filter_groups: false
       pager:
         type: full
         options:
@@ -1369,6 +1371,463 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
+      filters:
+        title:
+          id: title
+          table: search_api_index_herbarium
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: title_op
+            label: 'Scientific Name'
+            description: ''
+            use_operator: false
+            operator: title_op
+            identifier: title
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_string
+        name:
+          id: name
+          table: search_api_index_herbarium
+          field: name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: name_op
+            label: 'Sample Collector'
+            description: ''
+            use_operator: false
+            operator: name_op
+            identifier: collector
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_text
+        field_dwc_country:
+          id: field_dwc_country
+          table: search_api_index_herbarium
+          field: field_dwc_country
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_country_op
+            label: Country
+            description: ''
+            use_operator: false
+            operator: field_dwc_country_op
+            identifier: country
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_text
+        field_dwc_stateprovince:
+          id: field_dwc_stateprovince
+          table: search_api_index_herbarium
+          field: field_dwc_stateprovince
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_stateprovince_op
+            label: Province/State
+            description: ''
+            use_operator: false
+            operator: field_dwc_stateprovince_op
+            identifier: stateprovince
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_text
+        field_dwc_county:
+          id: field_dwc_county
+          table: search_api_index_herbarium
+          field: field_dwc_county
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_county_op
+            label: County
+            description: ''
+            use_operator: false
+            operator: field_dwc_county_op
+            identifier: county
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_text
+        field_dwc_habitat:
+          id: field_dwc_habitat
+          table: search_api_index_herbarium
+          field: field_dwc_habitat
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_habitat_op
+            label: Habitat
+            description: ''
+            use_operator: false
+            operator: field_dwc_habitat_op
+            identifier: habitat
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_text
+        field_dwc_verbatimlocality:
+          id: field_dwc_verbatimlocality
+          table: search_api_index_herbarium
+          field: field_dwc_verbatimlocality
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_verbatimlocality_op
+            label: Location
+            description: ''
+            use_operator: false
+            operator: field_dwc_verbatimlocality_op
+            identifier: location
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_text
+        field_dwc_eventdate:
+          id: field_dwc_eventdate
+          table: search_api_index_herbarium
+          field: field_dwc_eventdate
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '>='
+          value:
+            min: ''
+            max: ''
+            value: ''
+            type: date
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_eventdate_op
+            label: 'Collection Date (YYYY)'
+            description: 'Min date'
+            use_operator: false
+            operator: field_dwc_eventdate_op
+            identifier: min_date
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_date
+        field_dwc_eventdate_1:
+          id: field_dwc_eventdate_1
+          table: search_api_index_herbarium
+          field: field_dwc_eventdate
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '<='
+          value:
+            min: ''
+            max: ''
+            value: ''
+            type: date
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_eventdate_1_op
+            label: ' '
+            description: 'Max date'
+            use_operator: false
+            operator: field_dwc_eventdate_1_op
+            identifier: max_date
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_date
+        field_dwc_record_number:
+          id: field_dwc_record_number
+          table: search_api_index_herbarium
+          field: field_dwc_record_number
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_record_number_op
+            label: 'Accession ID'
+            description: ''
+            use_operator: false
+            operator: field_dwc_record_number_op
+            identifier: id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              herbarium_page_editor: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_numeric
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: 0
       contexts:
