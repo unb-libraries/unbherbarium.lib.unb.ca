@@ -12,7 +12,7 @@ dependencies:
     - field.storage.node.field_dwc_eventdate
     - field.storage.node.field_dwc_record_number
     - field.storage.node.field_large_sample_surrogate
-    - search_api.server.search_api_db
+    - search_api.server.solr_lib_unb_ca
   module:
     - taxonomy
     - search_api
@@ -136,4 +136,4 @@ tracker_settings:
 options:
   index_directly: true
   cron_limit: 50
-server: search_api_db
+server: solr_lib_unb_ca
