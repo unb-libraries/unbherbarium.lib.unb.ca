@@ -11,6 +11,7 @@ dependencies:
     - field.storage.node.field_dwc_verbatimlocality
     - field.storage.node.field_dwc_eventdate
     - field.storage.node.field_dwc_record_number
+    - field.storage.node.field_large_sample_surrogate
     - search_api.server.search_api_db
   module:
     - taxonomy
@@ -97,6 +98,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_dwc_record_number
+  field_large_sample_surrogate:
+    label: 'Specimen Image'
+    datasource_id: 'entity:node'
+    property_path: field_large_sample_surrogate
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_large_sample_surrogate
 datasource_settings:
   'entity:node':
     bundles:
@@ -107,9 +116,6 @@ datasource_settings:
       default: true
       selected: {  }
 processor_settings:
-  aggregated_field: {  }
-  rendered_item: {  }
-  add_url: {  }
   ignorecase:
     fields:
       - title
@@ -122,6 +128,9 @@ processor_settings:
     weights:
       preprocess_index: -10
       preprocess_query: -10
+  aggregated_field: {  }
+  rendered_item: {  }
+  add_url: {  }
 tracker_settings:
   default: {  }
 options:
