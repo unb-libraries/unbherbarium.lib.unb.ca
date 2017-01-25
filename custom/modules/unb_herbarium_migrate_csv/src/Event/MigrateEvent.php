@@ -155,10 +155,6 @@ class MigrateEvent implements EventSubscriberInterface {
     $trunc_title = substr($tmp_title, 0, 255);
     $row->setSourceProperty('title_string', $trunc_title);
 
-    // Empty record number?
-    if (empty($accNum)) {
-      $accNum = "NA";
-    }
     $row->setSourceProperty('record_number_string', $accNum);
 
     // Sample Collectors
