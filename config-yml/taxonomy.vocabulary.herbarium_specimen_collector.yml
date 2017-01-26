@@ -1,9 +1,0 @@
-uuid: 2af8bf41-9a99-4a48-aafc-1b8ef20f9e7f
-langcode: en
-status: true
-dependencies: {  }
-name: 'Herbarium Specimen Collector'
-vid: herbarium_specimen_collector
-description: ''
-hierarchy: 0
-weight: 0
