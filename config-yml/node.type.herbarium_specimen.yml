@@ -9,7 +9,7 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-name: 'Herbarium Sample'
+name: 'Herbarium Specimen'
 type: herbarium_specimen
 description: 'Record representing a herbarium specimen held by CMH'
 help: ''
