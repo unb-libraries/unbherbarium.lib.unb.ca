@@ -8,6 +8,7 @@ dependencies:
   - field
   - field_group
   - file
+  - herbarium_core
   - image
   - menu_ui
   - node
