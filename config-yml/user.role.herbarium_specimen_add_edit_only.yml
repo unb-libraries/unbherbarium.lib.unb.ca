@@ -7,6 +7,6 @@ label: 'Herbarium Specimen Add/Edit Only Own'
 weight: 2
 is_admin: null
 permissions:
-  - 'create herbarium_sample content'
-  - 'delete own herbarium_sample content'
-  - 'edit own herbarium_sample content'
+  - 'create herbarium_specimen content'
+  - 'delete own herbarium_specimen content'
+  - 'edit own herbarium_specimen content'

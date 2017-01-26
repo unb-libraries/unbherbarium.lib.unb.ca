@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_collectors_tid
+    - field.storage.node.field_collector_tid
     - field.storage.node.field_dwc_country
     - field.storage.node.field_dwc_county
     - field.storage.node.field_dwc_eventdate

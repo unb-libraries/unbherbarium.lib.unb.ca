@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - node.type.herbarium_sample
+    - node.type.herbarium_specimen
   module:
     - node
     - user
@@ -144,7 +144,7 @@ display:
           admin_label: ''
           operator: in
           value:
-            herbarium_sample: herbarium_sample
+            herbarium_specimen: herbarium_specimen
           group: 1
           exposed: false
           expose:

@@ -1,0 +1,23 @@
+uuid: 06a3c246-f7d2-4a59-b37b-b9d3368a4a35
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_countrycode
+    - node.type.herbarium_specimen
+  module:
+    - text
+id: node.herbarium_specimen.field_dwc_countrycode
+field_name: field_dwc_countrycode
+entity_type: node
+bundle: herbarium_specimen
+label: 'DwC:countryCode'
+description: '3166-1-alpha-2 country code in which the sample habitat occurs. Usually ''CA'''
+required: false
+translatable: true
+default_value:
+  -
+    value: CA
+default_value_callback: ''
+settings: {  }
+field_type: text

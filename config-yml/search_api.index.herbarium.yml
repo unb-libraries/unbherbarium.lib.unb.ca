@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_collectors_tid
+    - field.storage.node.field_collector_tid
     - field.storage.node.field_dwc_country
     - field.storage.node.field_dwc_county
     - field.storage.node.field_dwc_stateprovince
@@ -36,11 +36,11 @@ field_settings:
   name:
     label: 'Collectors » Taxonomy term » Name'
     datasource_id: 'entity:node'
-    property_path: 'field_collectors_tid:entity:name'
+    property_path: 'field_collector_tid:entity:name'
     type: text
     dependencies:
       config:
-        - field.storage.node.field_collectors_tid
+        - field.storage.node.field_collector_tid
       module:
         - taxonomy
   field_dwc_country:
@@ -128,7 +128,7 @@ datasource_settings:
     bundles:
       default: false
       selected:
-        - herbarium_sample
+        - herbarium_specimen
     languages:
       default: true
       selected: {  }

@@ -268,7 +268,7 @@ class TermCreatorRow {
    */
   public function checkStubTermExists($value, $parents) {
     $query = \Drupal::entityQuery('taxonomy_term');
-    $query->condition('vid', 'herbarium_sample_taxonomy');
+    $query->condition('vid', 'herbarium_specimen_taxonomy');
     $query->condition('name', $value);
 
     $tids = $query->execute();
@@ -300,7 +300,7 @@ class TermCreatorRow {
     }
     else {
       $term = Term::create([
-        'vid' => 'herbarium_sample_taxonomy',
+        'vid' => 'herbarium_specimen_taxonomy',
         'name' => $this->xn,
         'parent' => array($parents),
       ]);
@@ -325,7 +325,7 @@ class TermCreatorRow {
     }
     else {
       $term = Term::create([
-        'vid' => 'herbarium_sample_taxonomy',
+        'vid' => 'herbarium_specimen_taxonomy',
         'name' => $this->spec,
         'parent' => array($parents),
       ]);
@@ -350,7 +350,7 @@ class TermCreatorRow {
     }
     else {
       $term = Term::create([
-        'vid' => 'herbarium_sample_taxonomy',
+        'vid' => 'herbarium_specimen_taxonomy',
         'name' => $this->txn,
         'parent' => array($parents),
       ]);
@@ -378,7 +378,7 @@ class TermCreatorRow {
     $family_tid = $this->checkStubTermExists($value, $parents);
     if (empty($family_tid)) {
       $term = Term::create([
-        'vid' => 'herbarium_sample_taxonomy',
+        'vid' => 'herbarium_specimen_taxonomy',
         'name' => $value,
         'parent' => $parents,
         'field_dwc_taxonid' => $unique_id,

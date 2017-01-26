@@ -1,0 +1,23 @@
+uuid: 2cb2314f-f82a-4e09-8d00-3693c5370b2c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_month
+    - node.type.herbarium_specimen
+id: node.herbarium_specimen.field_dwc_month
+field_name: field_dwc_month
+entity_type: node
+bundle: herbarium_specimen
+label: 'DwC:month'
+description: 'The ordinal month in which the Event occurred. This field is a placeholder for proper DwC output and need not be populated.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: 12
+  prefix: ''
+  suffix: ''
+field_type: integer

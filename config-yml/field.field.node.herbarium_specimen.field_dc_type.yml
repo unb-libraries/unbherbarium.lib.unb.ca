@@ -1,0 +1,23 @@
+uuid: 46d5eaec-9a17-4adc-aceb-a69ad88ad285
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dc_type
+    - node.type.herbarium_specimen
+  module:
+    - options
+id: node.herbarium_specimen.field_dc_type
+field_name: field_dc_type
+entity_type: node
+bundle: herbarium_specimen
+label: 'DC:type'
+description: 'The nature or genre of the resource. Most certainly ''Still Image'' for digitized CMH samples.'
+required: true
+translatable: true
+default_value:
+  -
+    value: 'Still Image'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

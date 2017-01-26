@@ -158,9 +158,9 @@ class MigrateEvent implements EventSubscriberInterface {
     $row->setSourceProperty('record_number_string', $accNum);
 
     // Sample Collectors
-    $sample_collector_ids = array();
+    $specimen_collector_ids = array();
     $fieldname = 'name';
-    $vocabulary = 'herbarium_sample_collectors';
+    $vocabulary = 'herbarium_specimen_collector';
     $collectors = explode(";", $row->getSourceProperty('collectors'));
     foreach ($collectors as $value) {
       $term_value = trim($value);
@@ -175,14 +175,14 @@ class MigrateEvent implements EventSubscriberInterface {
           ]);
           $term->save();
         }
-        $sample_collector_ids[] = $term->id();
+        $specimen_collector_ids[] = $term->id();
       }
     }
-    $row->setSourceProperty('sample_collectors', $sample_collector_ids);
+    $row->setSourceProperty('specimen_collector', $specimen_collector_ids);
 
     // Sample Taxonomy
     $fieldname = 'field_dwc_taxonid';
-    $vocabulary = 'herbarium_sample_taxonomy';
+    $vocabulary = 'herbarium_specimen_taxonomy';
     $tax_id = trim($row->getSourceProperty('assigned_taxon'));
     if (is_numeric($tax_id)) {
       $term_tid = $this->taxtermExists($tax_id, $fieldname, $vocabulary);
@@ -268,29 +268,6 @@ class MigrateEvent implements EventSubscriberInterface {
       'UTM : ' . $geoUtmz . '/' . $geoUtme . '/' . $geoUtmn;
 
     return array ($longVal, $latVal, $geoHeritage);
-
-    /*
-    if ($tempLong && $tempLat) {
-
-
-      // Now check if Decimals are in range.
-      if (_herbariumImportCheckLocalGeoRange($tempLong,$tempLat)) {
-        _herbariumImportLogReport(" Within acceptable range. Validated.)\n");
-
-        // Format to standard '6 after decimal'
-        $tempLat=number_format($tempLat,6);
-        $tempLong=number_format($tempLong,6);
-        $itemArray['verifiedlat']=$tempLat;
-        $itemArray['verifiedlong']=$tempLong;
-        $itemArray['sourcemethod']=$srcMethod;
-        _herbariumImportLogReport("Coordinates : $tempLat,$tempLong\n");
-        _herbariumImportIncrementSystemVariable('herbarium_sample_import_geo_success');
-
-        // print "$tempLat\t$tempLong\n";
-      } else {
-        _herbariumImportLogReport(" Not within acceptable range. Not included.)\n");
-      }
-    }*/
   }
 
 /*

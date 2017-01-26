@@ -1,0 +1,21 @@
+uuid: e6e6858e-c7a3-4526-8950-cb6f03f4bb26
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dc_created
+    - node.type.herbarium_specimen
+  module:
+    - datetime
+id: node.herbarium_specimen.field_dc_created
+field_name: field_dc_created
+entity_type: node
+bundle: herbarium_specimen
+label: 'Record Creation Date'
+description: 'The date this specimen was added to the database itself.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

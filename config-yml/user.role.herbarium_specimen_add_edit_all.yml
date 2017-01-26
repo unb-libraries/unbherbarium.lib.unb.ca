@@ -7,8 +7,8 @@ label: 'Herbarium Specimen Add/Edit All'
 weight: 3
 is_admin: null
 permissions:
-  - 'create herbarium_sample content'
-  - 'delete any herbarium_sample content'
-  - 'delete own herbarium_sample content'
-  - 'edit any herbarium_sample content'
-  - 'edit own herbarium_sample content'
+  - 'create herbarium_specimen content'
+  - 'delete any herbarium_specimen content'
+  - 'delete own herbarium_specimen content'
+  - 'edit any herbarium_specimen content'
+  - 'edit own herbarium_specimen content'

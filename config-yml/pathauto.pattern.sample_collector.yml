@@ -13,7 +13,7 @@ selection_criteria:
   f56af73b-7e90-487a-9da4-dae902a6bcfd:
     id: 'entity_bundle:taxonomy_term'
     bundles:
-      herbarium_sample_collectors: herbarium_sample_collectors
+      herbarium_specimen_collector: herbarium_specimen_collector
     negate: false
     context_mapping:
       taxonomy_term: taxonomy_term

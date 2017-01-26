@@ -1,0 +1,23 @@
+uuid: ff5699a7-bdcf-4f4c-948b-e5852f321791
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_year
+    - node.type.herbarium_specimen
+id: node.herbarium_specimen.field_dwc_year
+field_name: field_dwc_year
+entity_type: node
+bundle: herbarium_specimen
+label: 'DwC:year'
+description: 'The four-digit year in which the Event occurred. This field is a placeholder for proper DwC output and need not be populated.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

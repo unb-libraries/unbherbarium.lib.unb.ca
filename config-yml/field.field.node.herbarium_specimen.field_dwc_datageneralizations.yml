@@ -1,0 +1,23 @@
+uuid: f6a89c6c-a214-43a3-9b68-afdbef39e80d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_datageneralizations
+    - node.type.herbarium_specimen
+  module:
+    - options
+id: node.herbarium_specimen.field_dwc_datageneralizations
+field_name: field_dwc_datageneralizations
+entity_type: node
+bundle: herbarium_specimen
+label: 'DwC:dataGeneralizations'
+description: 'Actions taken to make the shared data less specific or complete than in its original form. CMH uses this to report that Geo-Location data cannot be guaranteed to be entirely accurate.'
+required: true
+translatable: true
+default_value:
+  -
+    value: 'Geographic location is approximate. More precise information may be available for individual samples.'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

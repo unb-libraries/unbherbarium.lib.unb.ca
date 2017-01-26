@@ -13,7 +13,7 @@ selection_criteria:
   03aa1e5e-215a-41b2-9dcf-6041f76c9711:
     id: 'entity_bundle:taxonomy_term'
     bundles:
-      herbarium_sample_taxonomy: herbarium_sample_taxonomy
+      herbarium_specimen_taxonomy: herbarium_specimen_taxonomy
     negate: false
     context_mapping:
       taxonomy_term: taxonomy_term
