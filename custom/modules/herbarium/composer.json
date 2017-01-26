@@ -1,0 +1,14 @@
+{
+  "name": "drupal/herbarium_core",
+  "type": "drupal-module",
+  "description": "herbarium_core Core Functions",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/herbarium_core",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/herbarium_core",
+    "source": "http://cgit.drupalcode.org/herbarium_core"
+  },
+  "require": { }
+}

@@ -1,15 +1,15 @@
 <?php
 
-namespace Drupal\unb_herbarium\Form;
+namespace Drupal\herbarium_core\Form;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\State\StateInterface;
-use Drupal\Core\Form\ConfigFormBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Configure UNB Herbarium filesystem settings for this site.
+ * Configure Herbarium filesystem settings for this site.
  */
 class HerbariumFilesystemSettingsForm extends ConfigFormBase {
 
@@ -47,21 +47,21 @@ class HerbariumFilesystemSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'unb_herbarium_admin_filesystem';
+    return 'herbarium_core_admin_filesystem';
   }
 
   /**
    * {@inheritdoc}
    */
   protected function getEditableConfigNames() {
-    return ['unb_herbarium.filesystem'];
+    return ['herbarium_core.filesystem'];
   }
 
   /**
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $config = $this->config('unb_herbarium.filesystem');
+    $config = $this->config('herbarium_core.filesystem');
 
     $form['filepath'] = array(
       '#type' => 'fieldset',
@@ -91,11 +91,11 @@ class HerbariumFilesystemSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->config('unb_herbarium.filesystem')
+    $this->config('herbarium_core.filesystem')
       ->set('filepath.archival_masters', $form_state->getValue('filepath_archival_masters'))
       ->save();
 
-    $this->config('unb_herbarium.filesystem')
+    $this->config('herbarium_core.filesystem')
       ->set('filepath.jp2_surrogates', $form_state->getValue('filepath_jp2_surrogates'))
       ->save();
 

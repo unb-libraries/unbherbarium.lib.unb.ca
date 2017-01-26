@@ -1,14 +1,14 @@
-unb_herbarium.admin_config:
-  path: '/admin/config/unb_herbarium'
+herbarium_core.admin_config:
+  path: '/admin/config/herbarium_core'
   defaults:
     _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
-    _title: 'UNB Herbarium'
+    _title: 'Herbarium'
   requirements:
     _permission: 'access administration pages'
-unb_herbarium.admin_config.filesystem:
-  path: '/admin/config/unb_herbarium/filesystem'
+herbarium_core.admin_config.filesystem:
+  path: '/admin/config/herbarium_core/filesystem'
   defaults:
-    _form: 'Drupal\unb_herbarium\Form\HerbariumFilesystemSettingsForm'
+    _form: 'Drupal\herbarium_core\Form\HerbariumFilesystemSettingsForm'
     _title: 'Herbarium FileSystem Settings'
   requirements:
     _permission: 'access administration pages'

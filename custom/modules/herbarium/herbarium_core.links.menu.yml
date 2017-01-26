@@ -1,0 +1,12 @@
+herbarium_core.admin:
+  route_name: herbarium_core.admin_config
+  parent: system.admin_config
+  title: Herbarium
+  description: 'Configure the Herbarium and content types.'
+  weight: -10
+herbarium_core.admin.filesystem:
+  title: 'Herbarium Filesystem Settings'
+  parent: herbarium_core.admin
+  description: 'Configure the herbarium asset filesystem settings.'
+  route_name: herbarium_core.admin_config.filesystem
+  weight: -10

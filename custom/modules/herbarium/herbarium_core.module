@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains herbarium_core.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function herbarium_core_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the herbarium_core module.
+    case 'help.page.herbarium_core':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Herbarium Core Functions') . '</p>';
+      return $output;
+
+    default:
+  }
+}
