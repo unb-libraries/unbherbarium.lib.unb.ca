@@ -1,0 +1,83 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dc_replaces
+    - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dwc_class
+    - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dwc_measurementid
+    - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dwc_measurementtype
+    - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dwc_measurementvalue
+    - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dwc_scientificnameauthor
+    - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dwc_taxonid
+    - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dwc_taxonrank
+    - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dwc_taxonremarks
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
+  module:
+    - options
+    - text
+id: taxonomy_term.herbarium_specimen_taxonomy.default
+targetEntityType: taxonomy_term
+bundle: herbarium_specimen_taxonomy
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+  field_dc_replaces:
+    type: text_default
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_class:
+    type: text_default
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_measurementid:
+    type: text_default
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_measurementtype:
+    type: list_default
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_measurementvalue:
+    type: text_default
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_scientificnameauthor:
+    type: text_default
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_taxonid:
+    type: text_default
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_taxonrank:
+    type: text_default
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_dwc_taxonremarks:
+    type: text_default
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

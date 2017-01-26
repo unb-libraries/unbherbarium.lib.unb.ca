@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_previousidents
+    - node.type.herbarium_specimen
+  module:
+    - text
+id: node.herbarium_specimen.field_dwc_previousidents
+field_name: field_dwc_previousidents
+entity_type: node
+bundle: herbarium_specimen
+label: 'DwC:previousIdentifications'
+description: 'A list (concatenated and separated) of previous assignments of names for this specimen'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

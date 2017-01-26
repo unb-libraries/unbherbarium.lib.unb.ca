@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_institutioncode
+    - node.type.herbarium_specimen
+  module:
+    - options
+id: node.herbarium_specimen.field_dwc_institutioncode
+field_name: field_dwc_institutioncode
+entity_type: node
+bundle: herbarium_specimen
+label: 'DwC:institutionCode'
+description: 'The name (or acronym) in use by the institution having custody of the specimen. Most certainly ''UNB'' for all CMH specimen.'
+required: true
+translatable: true
+default_value:
+  -
+    value: UNB
+default_value_callback: ''
+settings: {  }
+field_type: list_string

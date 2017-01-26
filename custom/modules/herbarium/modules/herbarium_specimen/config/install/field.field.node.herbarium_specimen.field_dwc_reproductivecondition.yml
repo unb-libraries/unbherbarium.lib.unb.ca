@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_reproductivecondition
+    - node.type.herbarium_specimen
+  module:
+    - text
+id: node.herbarium_specimen.field_dwc_reproductivecondition
+field_name: field_dwc_reproductivecondition
+entity_type: node
+bundle: herbarium_specimen
+label: 'DwC:reproductiveCondition'
+description: 'The reproductive condition of the specimen'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

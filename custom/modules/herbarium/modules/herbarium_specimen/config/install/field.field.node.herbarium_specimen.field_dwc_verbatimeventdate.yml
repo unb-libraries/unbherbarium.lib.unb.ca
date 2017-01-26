@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_verbatimeventdate
+    - node.type.herbarium_specimen
+  module:
+    - text
+id: node.herbarium_specimen.field_dwc_verbatimeventdate
+field_name: field_dwc_verbatimeventdate
+entity_type: node
+bundle: herbarium_specimen
+label: 'DwC:verbatimEventDate'
+description: 'The verbatim (freetext) date transcription from the original database.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

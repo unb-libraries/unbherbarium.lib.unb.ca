@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_dc_replaces
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
+  module:
+    - text
+id: taxonomy_term.herbarium_specimen_taxonomy.field_dc_replaces
+field_name: field_dc_replaces
+entity_type: taxonomy_term
+bundle: herbarium_specimen_taxonomy
+label: 'DC:replaces'
+description: 'The full scientific name that this item replaces.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

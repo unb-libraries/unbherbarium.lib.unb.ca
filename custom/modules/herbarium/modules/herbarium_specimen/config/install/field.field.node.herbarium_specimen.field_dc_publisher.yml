@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dc_publisher
+    - node.type.herbarium_specimen
+  module:
+    - options
+id: node.herbarium_specimen.field_dc_publisher
+field_name: field_dc_publisher
+entity_type: node
+bundle: herbarium_specimen
+label: 'DC:publisher'
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: 'Fredericton: University of New Brunswick'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

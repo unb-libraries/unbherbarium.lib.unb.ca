@@ -1,0 +1,165 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_collector_tid
+    - field.storage.node.field_dwc_country
+    - field.storage.node.field_dwc_county
+    - field.storage.node.field_dwc_stateprovince
+    - field.storage.node.field_dwc_habitat
+    - field.storage.node.field_dwc_verbatimlocality
+    - field.storage.node.field_dwc_eventdate
+    - field.storage.node.field_dwc_record_number
+    - field.storage.node.field_large_sample_surrogate
+    - search_api.server.solr_lib_unb_ca
+  module:
+    - taxonomy
+    - search_api
+    - node
+id: herbarium
+name: Herbarium
+description: ''
+read_only: false
+field_settings:
+  title:
+    label: 'Title (search)'
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    boost: !!float 21
+  title_sort:
+    label: 'Title (sort)'
+    datasource_id: 'entity:node'
+    property_path: title
+    type: string
+  name:
+    label: 'Collectors » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_collector_tid:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_collector_tid
+      module:
+        - taxonomy
+  field_dwc_country:
+    label: 'DwC:country'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_country
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_country
+  field_dwc_county:
+    label: 'DwC:county'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_county
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_county
+  field_dwc_stateprovince:
+    label: 'DwC:stateProvince'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_stateprovince
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_stateprovince
+  field_dwc_habitat:
+    label: 'DwC:habitat'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_habitat
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_habitat
+  field_dwc_verbatimlocality:
+    label: 'DwC:verbatimLocality'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_verbatimlocality
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_verbatimlocality
+  field_dwc_eventdate:
+    label: 'Collection Date'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_eventdate
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_eventdate
+  field_dwc_record_number:
+    label: 'DwC:recordnumber'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_record_number
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_record_number
+  field_large_sample_surrogate:
+    label: 'Specimen Image'
+    datasource_id: 'entity:node'
+    property_path: field_large_sample_surrogate
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_large_sample_surrogate
+  field_dwc_eventdate_fulltext:
+    label: 'Collection Date (Fulltext)'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_eventdate
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_eventdate
+  field_dwc_record_number_fulltext:
+    label: 'DwC:recordnumber (Fulltext)'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_record_number
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_record_number
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - herbarium_specimen
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  ignorecase:
+    fields:
+      - title
+      - name
+      - field_dwc_country
+      - field_dwc_county
+      - field_dwc_stateprovince
+      - field_dwc_habitat
+      - field_dwc_verbatimlocality
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+  transliteration:
+    fields:
+      - title
+      - name
+      - field_dwc_country
+      - field_dwc_county
+      - field_dwc_stateprovince
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+  aggregated_field: {  }
+  rendered_item: {  }
+  add_url: {  }
+tracker_settings:
+  default: {  }
+options:
+  index_directly: true
+  cron_limit: 50
+server: solr_lib_unb_ca

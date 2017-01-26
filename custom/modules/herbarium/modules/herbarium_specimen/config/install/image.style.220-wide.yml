@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 220-wide
+label: 220-wide
+effects:
+  ce8df89a-4437-49c2-85c8-56fc9a87f64d:
+    uuid: ce8df89a-4437-49c2-85c8-56fc9a87f64d
+    id: image_scale
+    weight: 1
+    data:
+      width: 220
+      height: null
+      upscale: true

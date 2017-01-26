@@ -1,0 +1,28 @@
+name: 'Herbarium Specimen'
+description: 'Herbarium Specimen'
+type: module
+core: 8.x
+dependencies:
+  - colorbox
+  - datetime
+  - field
+  - field_group
+  - file
+  - image
+  - menu_ui
+  - node
+  - options
+  - path
+  - pathauto
+  - search_api
+  - search_api_autocomplete
+  - search_api_db
+  - search_api_solr
+  - simple_gmap
+  - taxonomy
+  - text
+  - user
+  - views
+  - views_autocomplete_filters
+version: 8.x-1.0
+package: Herbarium

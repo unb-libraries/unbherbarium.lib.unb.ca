@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_decimallongitude
+    - node.type.herbarium_specimen
+id: node.herbarium_specimen.field_dwc_decimallongitude
+field_name: field_dwc_decimallongitude
+entity_type: node
+bundle: herbarium_specimen
+label: 'DwC:decimalLongitude'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

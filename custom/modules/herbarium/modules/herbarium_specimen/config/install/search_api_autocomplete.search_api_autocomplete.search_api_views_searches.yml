@@ -1,0 +1,40 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_collector_tid
+    - field.storage.node.field_dwc_country
+    - field.storage.node.field_dwc_county
+    - field.storage.node.field_dwc_eventdate
+    - field.storage.node.field_dwc_habitat
+    - field.storage.node.field_dwc_record_number
+    - field.storage.node.field_dwc_stateprovince
+    - field.storage.node.field_dwc_verbatimlocality
+    - field.storage.node.field_large_sample_surrogate
+    - search_api.server.search_api_db
+  module:
+    - node
+    - search_api
+    - taxonomy
+id: search_api_views_searches
+label: search_api_views_searches
+index_id: herbarium
+suggester_id: server
+type: views
+options:
+  suggester_configuration:
+    fields:
+      title: 0
+      name: 0
+      field_dwc_country: 0
+      field_dwc_county: 0
+      field_dwc_stateprovince: 0
+      field_dwc_habitat: 0
+      field_dwc_verbatimlocality: 0
+  min_length: '2'
+  results: 1
+  delay: ''
+  custom:
+    display: page_1
+  submit_button_selector: ':submit'
+  autosubmit: 1

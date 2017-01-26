@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dc_rightsholder
+    - node.type.herbarium_specimen
+  module:
+    - options
+id: node.herbarium_specimen.field_dc_rightsholder
+field_name: field_dc_rightsholder
+entity_type: node
+bundle: herbarium_specimen
+label: 'DC:rightsHolder'
+description: 'The person or organization owning or managing rights over the resource. CMH specimen are typically ''Connell Memorial Herbarium, University of New Brunswick'''
+required: true
+translatable: true
+default_value:
+  -
+    value: 'Connell Memorial Herbarium, University of New Brunswick'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

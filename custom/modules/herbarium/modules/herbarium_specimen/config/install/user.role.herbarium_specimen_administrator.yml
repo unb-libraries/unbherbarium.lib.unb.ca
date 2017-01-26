@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: herbarium_specimen_administrator
+label: 'Herbarium Specimen Administrator'
+weight: 4
+is_admin: null

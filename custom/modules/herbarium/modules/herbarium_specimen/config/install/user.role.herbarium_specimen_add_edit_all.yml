@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: herbarium_specimen_add_edit_all
+label: 'Herbarium Specimen Add/Edit All'
+weight: 3
+is_admin: null

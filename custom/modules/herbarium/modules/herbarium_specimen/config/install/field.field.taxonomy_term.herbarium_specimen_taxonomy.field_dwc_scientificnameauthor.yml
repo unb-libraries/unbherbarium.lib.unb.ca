@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_dwc_scientificnameauthor
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
+  module:
+    - text
+id: taxonomy_term.herbarium_specimen_taxonomy.field_dwc_scientificnameauthor
+field_name: field_dwc_scientificnameauthor
+entity_type: taxonomy_term
+bundle: herbarium_specimen_taxonomy
+label: 'DwC:scientificNameAuthorship'
+description: 'The authorship information for the scientificName formatted according to the conventions of the applicable nomenclaturalCode. Examples : L., (Britt.)Sarg., etc.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text
