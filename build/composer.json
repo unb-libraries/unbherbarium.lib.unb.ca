@@ -39,8 +39,8 @@
             "drupal/core": {
                 "Views/Date/Exposed filters fix.": "https://www.drupal.org/files/issues/2811887-2-exposed-date-restore-type-ealier.patch"
             },
-            "drupal/search_api": {
-                "Avoid disappearing fields.": "https://www.drupal.org/files/issues/2792277-4--respect_syncing_state.patch"
+            "drupal/core": {
+                "Date Popup add-on.": "https://www.drupal.org/files/issues/2648950-42.patch"
             }
         }
     },
