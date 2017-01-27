@@ -306,7 +306,7 @@ class TermCreatorRow {
       ]);
     }
 
-    $term->set('field_dwc_taxonid', $this->specid);
+    $this->setFullProperties($term);
     $term->save();
   }
 
@@ -331,7 +331,7 @@ class TermCreatorRow {
       ]);
     }
 
-    $term->set('field_dwc_taxonid', $this->specid);
+    $this->setFullProperties($term);
     $term->save();
   }
 
@@ -356,7 +356,7 @@ class TermCreatorRow {
       ]);
     }
 
-    $term->set('field_dwc_taxonid', $this->specid);
+    $this->setFullProperties($term);
     $term->save();
   }
 
@@ -478,6 +478,13 @@ class TermCreatorRow {
     $this->alternatename = $this->getRowColumnData(34);
     $this->invasivespecies = $this->getRowColumnData(36);
     $this->itiscode = $this->getRowColumnData(37);
+  }
+
+  /**
+   * Set this the term field data.
+   */
+  public function setFullProperties(&$term) {
+    $term->set('field_dwc_taxonid', $this->specid);
   }
 
 }
