@@ -535,7 +535,7 @@ display:
             preserve_tags: ''
             html: false
           element_type: ''
-          element_class: ''
+          element_class: specimen-image
           element_label_type: ''
           element_label_class: ''
           element_label_colon: true
@@ -1078,6 +1078,7 @@ display:
             max: ''
             value: ''
             type: date
+            widget: date
           group: 1
           exposed: true
           expose:
