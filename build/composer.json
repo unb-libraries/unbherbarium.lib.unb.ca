@@ -37,10 +37,10 @@
         },
         "patches": {
             "drupal/core": {
-                "Views/Date/Exposed filters fix.": "https://www.drupal.org/files/issues/2811887-2-exposed-date-restore-type-ealier.patch"
+                "Views/Date/Exposed filters fix.": "https://www.drupal.org/files/issues/2811887-19-fix-tests.patch"
             },
             "drupal/core": {
-                "Date Popup add-on.": "https://www.drupal.org/files/issues/2648950-65.patch"
+                "Views date type exposed filter.": "https://www.drupal.org/files/issues/2648950-65.patch"
             }
         }
     },
