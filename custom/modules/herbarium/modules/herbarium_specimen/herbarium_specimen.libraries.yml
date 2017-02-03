@@ -1,0 +1,5 @@
+views-form:
+  version: VERSION
+  css:
+    theme:
+      css/herbarium_specimen.views_form.css: {}

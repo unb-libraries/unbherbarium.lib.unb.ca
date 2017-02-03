@@ -1,0 +1,23 @@
+/* Style Chosen widget consistently with other exposed filters */
+.views-exposed-form .form-select a {
+  border-radius: 0;
+  line-height: 24px;
+  margin-top: 2px;
+}
+
+/* Respect image style in Views search results */
+.view td img {
+  border: 1px solid #ccc;
+  max-width: inherit;
+}
+
+.view td a {
+  border: 0;
+}
+
+.view td a:focus img,
+.view td a:hover img {
+  border-color: #999;
+  transform: scale(1.05, 1.05);
+  transition: transform 0.1s ease;
+}
