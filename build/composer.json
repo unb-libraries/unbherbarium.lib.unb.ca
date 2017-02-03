@@ -73,7 +73,7 @@
         "drupal-composer/drupal-scaffold": "^2.0.1",
         "drupal/config_update": "1.1",
         "drupal/console": "~1.0",
-        "drupal/core": "8.2.5",
+        "drupal/core": "8.2.6",
         "drupal/zurb_foundation": "6.0-alpha1",
         "jackmoore/colorbox": "master",
         "drupal/colorbox": "1.2",
