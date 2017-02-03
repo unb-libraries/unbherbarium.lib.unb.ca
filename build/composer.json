@@ -65,6 +65,21 @@
                     "composer/installers": "~1.0"
                 }
             }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "drmonty/chosen",
+                "version": "1.6.1",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/harvesthq/chosen/releases/download/v1.6.1/chosen_v1.6.1.zip",
+                    "type": "zip"
+                },
+                "require": {
+                    "composer/installers": "~1.0"
+                }
+            }
         }
     ],
     "require": {
@@ -75,6 +90,7 @@
         "drupal/console": "~1.0",
         "drupal/core": "8.2.6",
         "drupal/zurb_foundation": "6.0-alpha1",
+        "drupal/chosen": "2.1",
         "jackmoore/colorbox": "master",
         "drupal/colorbox": "1.2",
         "drupal/features": "3.1",

@@ -3,6 +3,7 @@ description: 'Herbarium Specimen'
 type: module
 core: 8.x
 dependencies:
+  - chosen
   - colorbox
   - datetime
   - field
