@@ -578,7 +578,7 @@ display:
     display_options:
       display_extenders: {  }
       display_description: ''
-      path: advanced-search
+      path: advanced
       title: 'Advanced Search'
       defaults:
         title: false
