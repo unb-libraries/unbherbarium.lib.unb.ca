@@ -3,12 +3,15 @@ description: 'UNB custom search'
 type: module
 core: 8.x
 dependencies:
+  - colorbox
   - herbarium_core
   - herbarium_specimen
   - node
   - search_api
   - search_api_solr
+  - taxonomy
   - text
+  - user
   - views
 version: 8.x-1.0
 package: 'UNB Herbarium'

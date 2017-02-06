@@ -3,8 +3,13 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_dwc_record_number
+    - field.storage.node.field_collector_tid
+    - field.storage.node.field_dwc_country
+    - field.storage.node.field_dwc_stateprovince
+    - field.storage.node.field_dwc_county
     - search_api.server.solr_lib_unb_ca
   module:
+    - taxonomy
     - search_api
     - node
 id: unb_herbarium
@@ -13,13 +18,13 @@ description: ''
 read_only: false
 field_settings:
   title:
-    label: Title
+    label: 'Title (fulltext)'
     datasource_id: 'entity:node'
     property_path: title
     type: text
     boost: !!float 21
   field_dwc_record_number:
-    label: 'DwC:recordnumber'
+    label: 'DwC:recordnumber (fulltext)'
     datasource_id: 'entity:node'
     property_path: field_dwc_record_number
     type: text
@@ -39,6 +44,40 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_dwc_record_number
+  name:
+    label: 'Collectors » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_collector_tid:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_collector_tid
+      module:
+        - taxonomy
+  field_dwc_country:
+    label: 'DwC:country (fulltext)'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_country
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_country
+  field_dwc_stateprovince:
+    label: 'DwC:stateProvince (fulltext)'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_stateprovince
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_stateprovince
+  field_dwc_county:
+    label: 'DwC:county (fulltext)'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_county
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_county
 datasource_settings:
   'entity:node':
     bundles:
