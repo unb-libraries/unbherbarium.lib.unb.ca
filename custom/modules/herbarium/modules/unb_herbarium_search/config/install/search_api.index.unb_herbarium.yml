@@ -1,0 +1,76 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_record_number
+    - search_api.server.solr_lib_unb_ca
+  module:
+    - search_api
+    - node
+id: unb_herbarium
+name: 'UNB Herbarium'
+description: ''
+read_only: false
+field_settings:
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    boost: !!float 21
+  field_dwc_record_number:
+    label: 'DwC:recordnumber'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_record_number
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_record_number
+  title_sort:
+    label: 'Title (sort)'
+    datasource_id: 'entity:node'
+    property_path: title
+    type: string
+  field_dwc_record_number_sort:
+    label: 'DwC:recordnumber (sort)'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_record_number
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_record_number
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - herbarium_specimen
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  ignorecase:
+    fields:
+      - title
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+  highlight:
+    highlight: always
+    highlight_partial: true
+    excerpt: true
+    excerpt_length: 256
+    exclude_fields: {  }
+    prefix: '<strong>'
+    suffix: '</strong>'
+    weights:
+      postprocess_query: 0
+  aggregated_field: {  }
+  rendered_item: {  }
+  add_url: {  }
+tracker_settings:
+  default: {  }
+options:
+  index_directly: true
+  cron_limit: 100
+server: solr_lib_unb_ca
