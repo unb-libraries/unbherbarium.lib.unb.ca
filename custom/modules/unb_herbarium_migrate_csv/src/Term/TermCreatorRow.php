@@ -306,6 +306,7 @@ class TermCreatorRow {
       ]);
     }
 
+    $term->set('field_dwc_taxonrank', $this->txt);
     $this->setFullProperties($term);
     $term->save();
   }
@@ -331,6 +332,7 @@ class TermCreatorRow {
       ]);
     }
 
+    $term->set('field_dwc_taxonrank', 'Species');
     $this->setFullProperties($term);
     $term->save();
   }
@@ -356,6 +358,7 @@ class TermCreatorRow {
       ]);
     }
 
+    $term->set('field_dwc_taxonrank', $this->txt);
     $this->setFullProperties($term);
     $term->save();
   }
