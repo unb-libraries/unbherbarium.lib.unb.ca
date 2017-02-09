@@ -1,7 +1,7 @@
 langcode: en
 status: true
 dependencies: {  }
-name: 'Herbarium Sample Taxonomy'
+name: 'Herbarium Specimen Taxonomy'
 vid: herbarium_specimen_taxonomy
 description: ''
 hierarchy: 0
