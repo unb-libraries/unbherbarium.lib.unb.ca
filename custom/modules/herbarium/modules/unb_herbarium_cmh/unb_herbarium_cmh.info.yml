@@ -1,10 +1,9 @@
-name: 'UNB Herbarium Search'
+name: 'Connell Memorial Herbarium'
 description: 'UNB custom search'
 type: module
 core: 8.x
 dependencies:
   - colorbox
-  - herbarium_core
   - herbarium_specimen
   - node
   - search_api
