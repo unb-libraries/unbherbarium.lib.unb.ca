@@ -7,3 +7,5 @@ weight: 5
 is_admin: null
 permissions:
   - 'delete any herbarium_specimen content'
+  - 'administer users'
+  - 'access user profiles'
