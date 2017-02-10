@@ -5,3 +5,5 @@ id: cmh_database_administrator
 label: 'CMH Database Administrator'
 weight: 5
 is_admin: null
+permissions:
+  - 'delete any herbarium_specimen content'
