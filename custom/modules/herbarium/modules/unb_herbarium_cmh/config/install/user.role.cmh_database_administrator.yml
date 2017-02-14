@@ -9,3 +9,5 @@ permissions:
   - 'delete any herbarium_specimen content'
   - 'administer users'
   - 'access user profiles'
+  - 'add terms in herbarium_specimen_taxonomy'
+  - 'reorder terms in herbarium_specimen_taxonomy'
