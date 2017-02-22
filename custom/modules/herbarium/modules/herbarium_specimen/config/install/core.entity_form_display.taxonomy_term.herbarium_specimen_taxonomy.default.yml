@@ -2,6 +2,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_cmh_english_common_names
+    - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_cmh_french_common_names
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dc_replaces
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dwc_class
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dwc_measurementid
@@ -27,6 +29,20 @@ content:
       placeholder: ''
       rows: 5
     third_party_settings: {  }
+  field_cmh_english_common_names:
+    weight: 32
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_cmh_french_common_names:
+    weight: 33
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
   field_dc_replaces:
     type: text_textfield
     weight: 0

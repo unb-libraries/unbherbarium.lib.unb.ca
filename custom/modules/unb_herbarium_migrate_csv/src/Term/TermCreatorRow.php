@@ -571,6 +571,10 @@ class TermCreatorRow {
    */
   public function setFullProperties(&$term) {
     $term->set('field_dwc_taxonid', $this->specid);
+    $term->set('field_dwc_measurementvalue', $this->status);
+    $term->set('field_dc_replaces', $this->name1st);
+    $term->set('field_cmh_english_common_names', $this->commonname);
+    $term->set('field_cmh_french_common_names', $this->frenchname);
   }
 
 }
