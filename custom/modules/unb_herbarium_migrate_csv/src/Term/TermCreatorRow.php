@@ -4,6 +4,8 @@ namespace Drupal\unb_herbarium_migrate_csv\Term;
 
 use Drupal\taxonomy\Entity\Term;
 
+define('IMPORT_SPEC_NAME_UNKNOWN_VALUE', 'Unknown');
+
 /**
  * Defines the object for creating terms from a taxonomy CSV row.
  */
@@ -247,6 +249,8 @@ class TermCreatorRow {
    */
   public $itiscode = NULL;
 
+  public $taxauth = NULL;
+
   /**
    * Constructor.
    */
@@ -258,18 +262,18 @@ class TermCreatorRow {
   /**
    * Check if a stub term relating to this row exists.
    *
-   * @param string $value
+   * @param string $name
    *   The name of the term.
-   * @param array $parents
-   *   The parents of the term.
+   * @param array $parent
+   *   The TID of the parent term.
    *
    * @return mixed
    *   Returns the TID of the stub term, if it exists. False otherwise.
    */
-  public function checkStubTermExists($value, $parents) {
+  public function checkStubTermExists($name, $parent = NULL) {
     $query = \Drupal::entityQuery('taxonomy_term');
     $query->condition('vid', 'herbarium_specimen_taxonomy');
-    $query->condition('name', $value);
+    $query->condition('name', $name);
 
     $tids = $query->execute();
     if (!empty($tids)) {
@@ -277,7 +281,8 @@ class TermCreatorRow {
         $storage = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term');
         $test_parents = $storage->loadParents($tid);
         $test_parents_array = array_keys($test_parents);
-        if ($test_parents_array == $parents) {
+        $parent_tid = array_pop($test_parents_array);
+        if ($parent_tid == $parent) {
           return $tid;
         }
       }
@@ -286,147 +291,225 @@ class TermCreatorRow {
   }
 
   /**
-   * Create a full hybrid level taxonomy term.
-   *
-   * @param array $parents
-   *   The parents of the term.
-   */
-  public function createFullHybridLevelTerm($parents) {
-    $stub_tid = $this->checkStubTermExists($this->xn, $parents);
-    if (!empty($stub_tid)) {
-      $term = Term::load($stub_tid);
-      $term->set('name', $this->xn);
-      $term->set('parent', $parents);
-    }
-    else {
-      $term = Term::create([
-        'vid' => 'herbarium_specimen_taxonomy',
-        'name' => $this->xn,
-        'parent' => array($parents),
-      ]);
-    }
-
-    $term->set('field_dwc_taxonrank', $this->txt);
-    $this->setFullProperties($term);
-    $term->save();
-  }
-
-  /**
-   * Create a full species level taxonomy term.
-   *
-   * @param array $parents
-   *   The parents of the term.
-   */
-  public function createFullSpeciesLevelTerm($parents) {
-    $stub_tid = $this->checkStubTermExists($this->spec, $parents);
-    if (!empty($stub_tid)) {
-      $term = Term::load($stub_tid);
-      $term->set('name', $this->spec);
-      $term->set('parent', $parents);
-    }
-    else {
-      $term = Term::create([
-        'vid' => 'herbarium_specimen_taxonomy',
-        'name' => $this->spec,
-        'parent' => array($parents),
-      ]);
-    }
-
-    $term->set('field_dwc_taxonrank', 'Species');
-    $this->setFullProperties($term);
-    $term->save();
-  }
-
-  /**
-   * Create a full variant level taxonomy term.
-   *
-   * @param array $parents
-   *   The parents of the term.
-   */
-  public function createFullVariantLevelTerm($parents) {
-    $stub_tid = $this->checkStubTermExists($this->txn, $parents);
-    if (!empty($stub_tid)) {
-      $term = Term::load($stub_tid);
-      $term->set('name', $this->txn);
-      $term->set('parent', $parents);
-    }
-    else {
-      $term = Term::create([
-        'vid' => 'herbarium_specimen_taxonomy',
-        'name' => $this->txn,
-        'parent' => array($parents),
-      ]);
-    }
-
-    $term->set('field_dwc_taxonrank', $this->txt);
-    $this->setFullProperties($term);
-    $term->save();
-  }
-
-  /**
    * Create a stub taxonomy term to be later fully populated.
    *
-   * @param string $value
+   * @param string $name
    *   The name of the term.
-   * @param string $unique_id
-   *   The unique ID used to identify the term.
-   * @param array $parents
-   *   The parents of the term.
+   * @param int $parent
+   *   The TID of the parent term.
    *
    * @return int
    *   Returns the TID of the created stub term, or an existing one matching
    *   the given values.
    */
-  public function createStubTerm($value, $unique_id = NULL, $parents = array()) {
-    $family_tid = $this->checkStubTermExists($value, $parents);
-    if (empty($family_tid)) {
+  public function createStubTerm($name, $parent = 0) {
+    $stub_tid = $this->checkStubTermExists($name, $parent);
+    if ($stub_tid == FALSE) {
       $term = Term::create([
         'vid' => 'herbarium_specimen_taxonomy',
-        'name' => $value,
-        'parent' => $parents,
-        'field_dwc_taxonid' => $unique_id,
+        'name' => $name,
+        'parent' => array($parent),
       ]);
       $term->save();
       return $term->id();
     }
-    return $family_tid;
+    return $stub_tid;
   }
 
   /**
    * Create a taxonomy term from the row of data.
    */
   public function createTermFromRow() {
-    if (trim($this->spec) == '') {
-      $this->spec = 'Unknown';
-    }
-    if (trim($this->txn) == '') {
-      $this->txn = 'Unknown';
-    }
-    if (trim($this->xn) == '') {
-      $this->xn = 'Unknown';
+
+    // Level 5 Record.
+    if (
+      trim($this->xt) != ''
+    ) {
+
+      $spec_label = trim($this->xt);
+      $spec_name = trim($this->xn);
+      $spec_auth = trim($this->xndauth);
+
+      if ($spec_name == '') {
+        $spec_name = IMPORT_SPEC_NAME_UNKNOWN_VALUE;
+      }
+
+      $family_tid = $this->createStubTerm($this->family);
+      $genus_tid = $this->createStubTerm($this->gen, $family_tid);
+      $species_tid = $this->createStubTerm($this->spec, $genus_tid);
+      $variant_tid = $this->createStubTerm($this->txn, $species_tid);
+
+      $stub_tid = $this->checkStubTermExists($spec_name, $variant_tid);
+
+      if (!empty($stub_tid)) {
+        $term = Term::load($stub_tid);
+        $term->set('name', $spec_name);
+        $term->set('parent', array($variant_tid));
+        $term->set('field_dwc_scientificnameauthor', $spec_auth);
+      }
+      else {
+        $term = Term::create([
+          'vid' => 'herbarium_specimen_taxonomy',
+          'name' => $spec_name,
+          'parent' => array($variant_tid),
+          'field_dwc_scientificnameauthor' => $spec_auth,
+        ]);
+      }
+
+      $this->setFullProperties($term);
+      $term->save();
     }
 
-    if (!empty($this->xt)) {
-      // This is hybrid level species item.
-      $family_tid = $this->createStubTerm($this->family, $this->famid);
-      $genus_tid = $this->createStubTerm($this->gen, $this->genid, array($family_tid));
-      $species_tid = $this->createStubTerm($this->spec, NULL, array($genus_tid));
-      $variant_tid = $this->createStubTerm($this->txn, NULL, array($species_tid));
-      $this->createFullHybridLevelTerm(array($variant_tid));
+    // Level 4 Record.
+    elseif (
+      trim($this->txt) != '' &&
+      trim($this->xt) == '' &&
+      trim($this->xn) == '' &&
+      trim($this->spec) != ''
+    ) {
+      $spec_label = trim($this->txt);
+      $spec_name = trim($this->txn);
+      $spec_auth = trim($this->taxauth);
+
+      if ($spec_name == '') {
+        $spec_name = IMPORT_SPEC_NAME_UNKNOWN_VALUE;
+      }
+
+      $family_tid = $this->createStubTerm($this->family);
+      $genus_tid = $this->createStubTerm($this->gen, $family_tid);
+      $species_tid = $this->createStubTerm($this->spec, $genus_tid);
+      $stub_tid = $this->checkStubTermExists($spec_name, $species_tid);
+
+      if (!empty($stub_tid)) {
+        $term = Term::load($stub_tid);
+        $term->set('name', $spec_name);
+        $term->set('parent', array($species_tid));
+        $term->set('field_dwc_scientificnameauthor', $spec_auth);
+      }
+      else {
+        $term = Term::create([
+          'vid' => 'herbarium_specimen_taxonomy',
+          'name' => $spec_name,
+          'parent' => array($species_tid),
+          'field_dwc_scientificnameauthor' => $spec_auth,
+        ]);
+      }
+
+      $this->setFullProperties($term);
+      $term->save();
     }
-    elseif (!empty($this->txt)) {
-      // This is ssp/variant level species item.
-      $family_tid = $this->createStubTerm($this->family, $this->famid);
-      $genus_tid = $this->createStubTerm($this->gen, $this->genid, array($family_tid));
-      $species_tid = $this->createStubTerm($this->spec, NULL, array($genus_tid));
-      $this->createFullVariantLevelTerm(array($species_tid));
+
+    // Level 3.1 Record.
+    elseif (
+      trim($this->txt) != '' &&
+      trim($this->xt) == '' &&
+      trim($this->xn) == '' &&
+      trim($this->spec) == ''
+    ) {
+      $spec_label = trim($this->txt);
+      $spec_name = trim($this->txn);
+      $spec_auth = trim($this->taxauth);
+
+      if ($spec_name == '') {
+        $spec_name = IMPORT_SPEC_NAME_UNKNOWN_VALUE;
+      }
+
+      $family_tid = $this->createStubTerm($this->family);
+      $genus_tid = $this->createStubTerm($this->gen, $family_tid);
+      $stub_tid = $this->checkStubTermExists($spec_name, $genus_tid);
+
+      if (!empty($stub_tid)) {
+        $term = Term::load($stub_tid);
+        $term->set('name', $spec_name);
+        $term->set('parent', array($genus_tid));
+        $term->set('field_dwc_scientificnameauthor', $spec_auth);
+      }
+      else {
+        $term = Term::create([
+          'vid' => 'herbarium_specimen_taxonomy',
+          'name' => $spec_name,
+          'parent' => array($genus_tid),
+          'field_dwc_scientificnameauthor' => $spec_auth,
+        ]);
+      }
+
+      $this->setFullProperties($term);
+      $term->save();
+    }
+
+    // Level 3.2 Record.
+    elseif (
+      trim($this->spec) != '' &&
+      trim($this->txt) == '' &&
+      trim($this->txn) == '' &&
+      trim($this->xt) == '' &&
+      trim($this->xn) == ''
+    ) {
+      $spec_label = 'sp.';
+      $spec_name = trim($this->spec);
+      $spec_auth = trim($this->auth);
+
+      $family_tid = $this->createStubTerm($this->family);
+      $genus_tid = $this->createStubTerm($this->gen, $family_tid);
+      $stub_tid = $this->checkStubTermExists($spec_name, $genus_tid);
+
+      if (!empty($stub_tid)) {
+        $term = Term::load($stub_tid);
+        $term->set('name', $spec_name);
+        $term->set('parent', array($genus_tid));
+        $term->set('field_dwc_scientificnameauthor', $spec_auth);
+      }
+      else {
+        $term = Term::create([
+          'vid' => 'herbarium_specimen_taxonomy',
+          'name' => $spec_name,
+          'parent' => array($genus_tid),
+          'field_dwc_scientificnameauthor' => $spec_auth,
+        ]);
+      }
+
+      $this->setFullProperties($term);
+      $term->save();
+    }
+
+    // Level 2 Record.
+    elseif (
+      trim($this->gen) != '' &&
+      trim($this->spec) == '' &&
+      trim($this->txt) == '' &&
+      trim($this->txn) == '' &&
+      trim($this->xt) == '' &&
+      trim($this->xn) == ''
+    ) {
+      $spec_label = 'gen.';
+      $spec_name = trim($this->gen);
+      $spec_auth = trim($this->auth);
+
+      $family_tid = $this->createStubTerm($this->family);
+      $stub_tid = $this->checkStubTermExists($spec_name, $family_tid);
+
+      if (!empty($stub_tid)) {
+        $term = Term::load($stub_tid);
+        $term->set('name', $spec_name);
+        $term->set('parent', array($family_tid));
+        $term->set('field_dwc_scientificnameauthor', $spec_auth);
+      }
+      else {
+        $term = Term::create([
+          'vid' => 'herbarium_specimen_taxonomy',
+          'name' => $spec_name,
+          'parent' => array($family_tid),
+          'field_dwc_scientificnameauthor' => $spec_auth,
+        ]);
+      }
+
+      $this->setFullProperties($term);
+      $term->save();
     }
     else {
-      // This is species level species item.
-      $family_tid = $this->createStubTerm($this->family, $this->famid);
-      $genus_tid = $this->createStubTerm($this->gen, $this->genid, array($family_tid));
-      $this->createFullSpeciesLevelTerm(array($genus_tid));
+      print "Skipping Row [{$this->specid}]\n";
     }
+
   }
 
   /**
