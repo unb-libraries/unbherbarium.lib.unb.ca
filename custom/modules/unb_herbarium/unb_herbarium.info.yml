@@ -4,8 +4,10 @@ type: module
 core: 8.x
 dependencies:
   - colorbox
+  - csv_serialization
   - herbarium_specimen
   - node
+  - rest
   - search_api
   - search_api_solr
   - system
