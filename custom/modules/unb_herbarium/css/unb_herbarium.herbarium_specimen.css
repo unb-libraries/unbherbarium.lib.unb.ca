@@ -1,0 +1,28 @@
+dl {
+    border: 1px solid #ccc;
+    padding: 0.5em;
+}
+dl > div:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+    padding: .5em .25em;
+}
+dt {
+
+    float: left;
+    width: 33%;
+    clear:left;
+    font-weight: bold;
+    color: green;
+    min-width: 200px;
+}
+
+dd {
+
+    margin: 0 0 0 33%;
+    width: 67%;
+}
+
+
+.more {
+   display: none;
+}

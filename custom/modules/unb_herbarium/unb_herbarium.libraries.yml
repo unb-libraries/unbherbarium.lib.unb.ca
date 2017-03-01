@@ -1,0 +1,10 @@
+herbarium_specimen:
+  version: VERSION
+  css:
+    theme:
+      css/unb_herbarium.herbarium_specimen.css: {}
+
+  js:
+    js/unb_herbarium.herbarium_specimen.js: {}
+  dependencies:
+    - core/jquery
