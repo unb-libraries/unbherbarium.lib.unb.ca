@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * @file
+ * Contains unb_herbarium.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\Entity\Node;
+use Drupal\Core\Render\Element;
+
+/**
+* Implements hook_help().
+*/
+function unb_herbarium_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the UNB Herbarium.
+    case 'help.page.unb_herbarium':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('UNB Herbarium Features') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+* Implements hook_theme().
+*/
+function unb_herbarium_theme($existing, $type, $theme, $path) {
+  return array(
+    'node__herbarium_specimen' => array(
+      'arguments' => array(
+        'view' => NULL,
+        'field' => NULL,
+        'row' => NULL,
+        'output' => NULL,
+      ),
+      'template' => 'node--herbarium-specimen',
+      'path' => drupal_get_path('module', 'unb_herbarium') . '/templates',
+    ),
+  );
+}
+
+/**
+* Implements hook_preprocess_hook().
+*/
+function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
+  $node = $variables['elements']['#node'];
+
+  // Helpful $content variable for templates.
+  $variables += array('content' => array());
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}

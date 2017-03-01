@@ -1,0 +1,43 @@
+{{ attach_library('unb_herbarium/herbarium_specimen') }}
+
+<h1>Custom Herbarium Specimen template</h1>
+
+<div{{ content_attributes }}>
+    <dl>
+        <div>
+            <dt>{% trans %}Descriptor{%  endtrans %}</dt>
+            <dd>{% trans %}Value{% endtrans %}</dd>
+        </div>
+        <div class="more">
+            <dt class="descriptor">{{ content.field_dwc_institutioncode|field_label }}</dt>
+            <dd class="value">{{ content.field_dwc_institutioncode|field_value }}</dd>
+        </div>
+        <div class="more">
+            <dt class="descriptor">{{ content.field_dwc_informationwithheld|field_label }}</dt>
+            <dd class="value">{{ content.field_dwc_informationwithheld|field_value }}</dd>
+        </div>
+        <div class="more">
+            <dt class="descriptor">{{ content.field_dwc_datageneralizations|field_label }}</dt>
+            <dd class="value">{{ content.field_dwc_datageneralizations|field_value }}</dd>
+        </div>
+
+        <div>
+            <dt class="descriptor">{{ content.field_dwc_basisofrecord|field_label }}</dt>
+            <dd class="value">{{ content.field_dwc_basisofrecord|field_value }}</dd>
+        </div>
+        <div>
+            <dt class="descriptor">{{ content.field_collector_tid|field_label }}</dt>
+            <dd class="value">{{ content.field_collector_tid|field_value }}</dd>
+        </div>
+        <div>
+            <dt class="descriptor">{{ content.field_dwc_habitat|field_label }}</dt>
+            <dd class="value">{{ content.field_dwc_habitat|field_value }}</dd>
+        </div>
+        <div>
+            <dt class="descriptor">{{ content.field_taxonomy_tid|field_label }}</dt>
+            <dd class="value">{{ content.field_taxonomy_tid|field_value }}</dd>
+        </div>
+    </dl>
+
+    <div><a id="toggle">Toggle Records Details</a></div>
+</div>
