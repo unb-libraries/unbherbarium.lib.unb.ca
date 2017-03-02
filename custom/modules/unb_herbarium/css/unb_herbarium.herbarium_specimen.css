@@ -153,6 +153,8 @@ dd {
     }
     dl h3 {
         display: block;
+        font-size: 115%;
+        margin-top: 1.5em;
     }
     dt {
         clear: left;
