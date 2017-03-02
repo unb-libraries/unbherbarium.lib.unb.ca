@@ -13,6 +13,7 @@ dependencies:
   - system
   - taxonomy
   - text
+  - twig_field_value
   - user
   - views
 version: 8.x-1.0
