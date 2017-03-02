@@ -26,6 +26,13 @@ function unb_herbarium_help($route_name, RouteMatchInterface $route_match) {
 }
 
 /**
+ * Implements hook_theme_registry_alter().
+ */
+function unb_herbarium_theme_registry_alter(&$theme_registry) {
+  $theme_registry['taxonomy_term']['path'] = drupal_get_path('module', 'unb_herbarium') . '/templates';
+}
+
+/**
 * Implements hook_theme().
 */
 function unb_herbarium_theme($existing, $type, $theme, $path) {
