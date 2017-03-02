@@ -2,42 +2,74 @@
 
 <h1>Custom Herbarium Specimen template</h1>
 
-<div{{ content_attributes }}>
-    <dl>
-        <div>
-            <dt>{% trans %}Descriptor{%  endtrans %}</dt>
-            <dd>{% trans %}Value{% endtrans %}</dd>
-        </div>
-        <div class="more">
-            <dt class="descriptor">{{ content.field_dwc_institutioncode|field_label }}</dt>
-            <dd class="value">{{ content.field_dwc_institutioncode|field_value }}</dd>
-        </div>
-        <div class="more">
-            <dt class="descriptor">{{ content.field_dwc_informationwithheld|field_label }}</dt>
-            <dd class="value">{{ content.field_dwc_informationwithheld|field_value }}</dd>
-        </div>
-        <div class="more">
-            <dt class="descriptor">{{ content.field_dwc_datageneralizations|field_label }}</dt>
-            <dd class="value">{{ content.field_dwc_datageneralizations|field_value }}</dd>
-        </div>
+{% if teaser %}
+    {{ content }}
+{% else %}
+    <div class="clear">
+        <input class="tgl" id="toggle" type="checkbox"/>
+        <label class="tgl-btn" data-tg-off="More details" data-tg-on="Less details" for="toggle"></label>
+    </div>
 
-        <div>
-            <dt class="descriptor">{{ content.field_dwc_basisofrecord|field_label }}</dt>
-            <dd class="value">{{ content.field_dwc_basisofrecord|field_value }}</dd>
-        </div>
-        <div>
-            <dt class="descriptor">{{ content.field_collector_tid|field_label }}</dt>
-            <dd class="value">{{ content.field_collector_tid|field_value }}</dd>
-        </div>
-        <div>
-            <dt class="descriptor">{{ content.field_dwc_habitat|field_label }}</dt>
-            <dd class="value">{{ content.field_dwc_habitat|field_value }}</dd>
-        </div>
-        <div>
-            <dt class="descriptor">{{ content.field_taxonomy_tid|field_label }}</dt>
-            <dd class="value">{{ content.field_taxonomy_tid|field_value }}</dd>
-        </div>
-    </dl>
 
-    <div><a id="toggle">Toggle Records Details</a></div>
-</div>
+    <div{{ content_attributes }}>
+        <dl>
+            <div class="header">
+                <dt>{% trans %}Descriptor{%  endtrans %}</dt>
+                <dd>{% trans %}Value{% endtrans %}</dd>
+            </div>
+            <div>
+                <dt class="descriptor">{{ content.field_dwc_record_number|field_label }}</dt>
+                <dd class="value">{{ content.field_dwc_record_number|field_value }}</dd>
+            </div>
+            <div>
+                <dt class="descriptor">{{ content.field_dwc_othercatalognumbers|field_label }}</dt>
+                <dd class="value">{{ content.field_dwc_othercatalognumbers|field_value }}</dd>
+            </div>
+            <div>
+                <dt class="descriptor">{{ content.field_dwc_reproductivecondition|field_label }}</dt>
+                <dd class="value">{{ content.field_dwc_reproductivecondition|field_value }}</dd>
+            </div>
+
+            <div class="full">
+                <dt class="descriptor">{{ content.field_dwc_institutioncode|field_label }}</dt>
+                <dd class="value">{{ content.field_dwc_institutioncode|field_value }}</dd>
+            </div>
+            <div class="full">
+                <dt class="descriptor">{{ content.field_dwc_informationwithheld|field_label }}</dt>
+                <dd class="value">{{ content.field_dwc_informationwithheld|field_value }}</dd>
+            </div>
+            <div class="full">
+                <dt class="descriptor">{{ content.field_dwc_datageneralizations|field_label }}</dt>
+                <dd class="value">{{ content.field_dwc_datageneralizations|field_value }}</dd>
+            </div>
+            <div>
+                <dt class="descriptor">{{ content.field_dwc_basisofrecord|field_label }}</dt>
+                <dd class="value">{{ content.field_dwc_basisofrecord|field_value }}</dd>
+            </div>
+            <div>
+                <dt class="descriptor">{{ content.field_collector_tid|field_label }}</dt>
+                <dd class="value">{{ content.field_collector_tid|field_value }}</dd>
+            </div>
+            <div>
+                <dt class="descriptor">{{ content.field_dwc_habitat|field_label }}</dt>
+                <dd class="value">{{ content.field_dwc_habitat|field_value }}</dd>
+            </div>
+            <div>
+                <dt class="descriptor">{{ content.field_dwc_stateprovince|field_label }}</dt>
+                <dd class="value">{{ content.field_dwc_stateprovince|field_value }}</dd>
+            </div>
+            <div>
+                <dt class="descriptor">{{ content.field_dwc_county|field_label }}</dt>
+                <dd class="value">{{ content.field_dwc_county|field_value }}</dd>
+            </div>
+            <div>
+                <dt class="descriptor">{{ content.field_dwc_verbatimlocality|field_label }}</dt>
+                <dd class="value">{{ content.field_dwc_verbatimlocality|field_value }}</dd>
+            </div>
+            <div class="full">
+                <dt class="descriptor">{{ content.field_taxonomy_tid|field_label }}</dt>
+                <dd class="value">{{ content.field_taxonomy_tid|field_value }}</dd>
+            </div>
+        </dl>
+    </div>
+{% endif %}

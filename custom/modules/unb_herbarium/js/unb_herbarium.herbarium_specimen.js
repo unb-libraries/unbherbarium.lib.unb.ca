@@ -1,5 +1,5 @@
 jQuery(document).ready(function() {
-    jQuery("#toggle").click(function () {
-        jQuery(".more").toggle("slide");
+    jQuery('#toggle').click(function () {
+        jQuery('.full').toggle(200);
     });
 });
