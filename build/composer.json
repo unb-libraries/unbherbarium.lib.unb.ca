@@ -103,6 +103,7 @@
         "drupal/simple_gmap": "1.2",
         "drupal/taxonomy_access_fix": "2.1",
         "drupal/token": "1.0-rc1",
+        "drupal/twig_field_value": "1.1",
         "drupal/views_autocomplete_filters": "1.1",
         "drupal/zurb_foundation": "6.0-alpha2",
         "drush/drush": "~8.0",
