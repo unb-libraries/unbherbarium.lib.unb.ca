@@ -1,5 +1,5 @@
 FROM unblibraries/drupal:alpine-nginx-php7-8.x-composer
-MAINTAINER Jacob Sanford <jsanford@unb.ca>
+MAINTAINER UNB Libraries <libsupport@unb.ca>
 
 LABEL name="unbherbarium.ca"
 LABEL vcs-ref=""
@@ -18,6 +18,11 @@ ENV DRUPAL_CONFIGURATION_EXPORT_SKIP devel
 # Newrelic.
 ENV NEWRELIC_PHP_VERSION 7.0.0.186
 ENV NEWRELIC_PHP_ARCH musl
+
+# Add Mail Sending
+RUN apk --update add postfix && \
+  rm -f /var/cache/apk/*
+COPY package-conf/postfix/main.cf /etc/postfix/main.cf
 
 # Add nginx and PHP conf.
 COPY package-conf/nginx/app.conf /etc/nginx/conf.d/app.conf
