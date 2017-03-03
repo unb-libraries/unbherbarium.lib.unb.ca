@@ -5,23 +5,30 @@
 {% if teaser %}
     {{ content }}
 {% else %}
-    <div class="clear">
+    <div class="details">
         <input class="tgl" id="toggle" type="checkbox"/>
-        <label class="tgl-btn" data-tg-off="More details" data-tg-on="Less details" for="toggle"></label>
+        <label class="tgl-btn" data-tg-off="More details >" data-tg-on=" < Less details" for="toggle"></label>
     </div>
-
 
     <article {{ content_attributes }}>
         <dl>
             <header>
-                <dt>{% trans %}Descriptor{%  endtrans %}</dt>
+                <dt>{% trans %}Descriptor{% endtrans %}</dt>
                 <dd>{% trans %}Value{% endtrans %}</dd>
             </header>
             <section class="full">
-                <h3>Record Level</h3>
+                <h3>{% trans %}Record Level{% endtrans %}</h3>
                 <div>
                     <dt>{{ content.field_dwc_institutioncode|field_label }}</dt>
                     <dd>{{ content.field_dwc_institutioncode|field_value }}</dd>
+                </div>
+                <div>
+                    <dt>{{ content.field_dwc_institutionid|field_label }}</dt>
+                    <dd>{{ content.field_dwc_institutionid|field_value }}</dd>
+                </div>
+                <div>
+                    <dt>{{ content.field_dwc_basisofrecord|field_label }}</dt>
+                    <dd>{{ content.field_dwc_basisofrecord|field_value }}</dd>
                 </div>
                 <div>
                     <dt>{{ content.field_dwc_informationwithheld|field_label }}</dt>
@@ -33,9 +40,9 @@
                 </div>
             </section>
             <section>
-                <div class="full">
-                    <h3>Occurence</h3>
-                </div>
+                <h3 class="full">
+                    {% trans %}Occurence{% endtrans %}
+                </h3>
                 <div>
                     <dt>{{ content.field_dwc_record_number|field_label }}</dt>
                     <dd>{{ content.field_dwc_record_number|field_value }}</dd>
@@ -48,7 +55,7 @@
                     <dt>{{ content.field_dwc_othercatalognumbers|field_label }}</dt>
                     <dd>{{ content.field_dwc_othercatalognumbers|field_value }}</dd>
                 </div>
-                <div class="condensed">
+                <div>
                     <dt>{{ content.field_dwc_reproductivecondition|field_label }}</dt>
                     <dd>{{ content.field_dwc_reproductivecondition|field_value }}</dd>
                 </div>
@@ -58,18 +65,18 @@
                 </div>
             </section>
             <section>
-                <div class="full">
-                    <h3>Event</h3>
-                </div>
+                <h3 class="full">
+                    {% trans %}Event{% endtrans %}
+                </h3>
                 <div>
                     <dt>{{ content.field_dwc_habitat|field_label }}</dt>
                     <dd>{{ content.field_dwc_habitat|field_value }}</dd>
                 </div>
             </section>
             <section>
-                <div class="full">
-                    <h3>Location</h3>
-                </div>
+                <h3 class="full">
+                    {% trans %}Location{% endtrans %}
+                </h3>
 
                 <div>
                     <dt>{{ content.field_dwc_country|field_label }}</dt>
@@ -90,12 +97,23 @@
             </section>
 
             <section class="full">
-                <div>
-                    <h3>Taxon</h3>
-                </div>
+                <h3>{% trans %}Taxon{% endtrans %}</h3>
                 <dt>{{ content.field_taxonomy_tid|field_label }}</dt>
                 <dd>{{ content.field_taxonomy_tid|field_value }}</dd>
             </section>
         </dl>
     </article>
+    <aside>
+        {% if content.field_large_sample_surrogate %}
+          <figure>
+              {{ content.field_large_sample_surrogate }}
+              <figcaption>{% trans %}Click specimen image to enlarge{% endtrans %}</figcaption>
+          </figure>
+        {% endif %}
+        {% if content.field_gmap %}
+            <div class="map">
+                {{ content.field_gmap|field_value }}
+            </div>
+        {% endif %}
+    </aside>
 {% endif %}
