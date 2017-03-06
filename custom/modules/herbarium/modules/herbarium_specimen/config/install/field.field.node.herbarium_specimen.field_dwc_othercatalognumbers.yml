@@ -10,8 +10,8 @@ id: node.herbarium_specimen.field_dwc_othercatalognumbers
 field_name: field_dwc_othercatalognumbers
 entity_type: node
 bundle: herbarium_specimen
-label: 'DwC:otherCatalogNumbers'
-description: 'Other catalogue / Set numbers identifying this specimen'
+label: 'Other Catalogue No.'
+description: 'DwC:otherCatalogNumbers - Other catalogue / Set numbers identifying this specimen'
 required: false
 translatable: true
 default_value: {  }

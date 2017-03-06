@@ -10,8 +10,8 @@ id: node.herbarium_specimen.field_dwc_habitat
 field_name: field_dwc_habitat
 entity_type: node
 bundle: herbarium_specimen
-label: 'DwC:habitat'
-description: ''
+label: Habitat
+description: 'DwC:habitat'
 required: false
 translatable: false
 default_value: {  }

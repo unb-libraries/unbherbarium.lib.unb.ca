@@ -10,8 +10,8 @@ id: node.herbarium_specimen.field_dwc_stateprovince
 field_name: field_dwc_stateprovince
 entity_type: node
 bundle: herbarium_specimen
-label: 'DwC:stateProvince'
-description: 'The state or province the specimen habitat exists in'
+label: State/Province/Territory
+description: 'DwC:stateProvince - The state or province the specimen habitat exists in'
 required: false
 translatable: true
 default_value: {  }

@@ -8,8 +8,8 @@ id: node.herbarium_specimen.field_dwc_decimallatitude
 field_name: field_dwc_decimallatitude
 entity_type: node
 bundle: herbarium_specimen
-label: 'DwC:decimalLatitude'
-description: ''
+label: 'Decimal Latitude'
+description: 'DwC:decimalLatitude'
 required: false
 translatable: false
 default_value: {  }

@@ -8,8 +8,8 @@ id: node.herbarium_specimen.field_dwc_day
 field_name: field_dwc_day
 entity_type: node
 bundle: herbarium_specimen
-label: 'DwC:day'
-description: 'The integer day of the month on which the Event occurred. This field is a placeholder for proper DwC output and need not be populated.'
+label: Day
+description: 'DwC:day - The integer day of the month on which the Event occurred. This field is a placeholder for proper DwC output and need not be populated.'
 required: false
 translatable: true
 default_value: {  }

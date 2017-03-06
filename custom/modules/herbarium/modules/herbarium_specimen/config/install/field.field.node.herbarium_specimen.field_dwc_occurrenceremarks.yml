@@ -10,8 +10,8 @@ id: node.herbarium_specimen.field_dwc_occurrenceremarks
 field_name: field_dwc_occurrenceremarks
 entity_type: node
 bundle: herbarium_specimen
-label: 'DwC:occurrenceRemarks'
-description: 'Comments or notes about the specimen'
+label: 'Occurrence Remarks'
+description: 'DwC:occurrenceRemarks - Comments or notes about the specimen'
 required: false
 translatable: true
 default_value: {  }

@@ -8,8 +8,8 @@ id: node.herbarium_specimen.field_dwc_decimallongitude
 field_name: field_dwc_decimallongitude
 entity_type: node
 bundle: herbarium_specimen
-label: 'DwC:decimalLongitude'
-description: ''
+label: 'Decimal Longitude'
+description: 'DwC:decimalLongitude'
 required: false
 translatable: false
 default_value: {  }

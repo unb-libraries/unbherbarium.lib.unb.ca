@@ -8,14 +8,14 @@ id: node.herbarium_specimen.field_dwc_year
 field_name: field_dwc_year
 entity_type: node
 bundle: herbarium_specimen
-label: 'DwC:year'
-description: 'The four-digit year in which the Event occurred. This field is a placeholder for proper DwC output and need not be populated.'
+label: Year
+description: 'DwC:year - The four-digit year in which the Event occurred. This field is a placeholder for proper DwC output and need not be populated.'
 required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  min: 0
+  min: 1800
   max: null
   prefix: ''
   suffix: ''

@@ -10,8 +10,8 @@ id: node.herbarium_specimen.field_dwc_previousidents
 field_name: field_dwc_previousidents
 entity_type: node
 bundle: herbarium_specimen
-label: 'DwC:previousIdentifications'
-description: 'A list (concatenated and separated) of previous assignments of names for this specimen'
+label: 'Previous Identifications'
+description: 'DwC:previousIdentifications - A list (concatenated and separated) of previous assignments of names for this specimen'
 required: false
 translatable: true
 default_value: {  }

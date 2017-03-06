@@ -10,13 +10,14 @@ id: node.herbarium_specimen.field_dwc_country
 field_name: field_dwc_country
 entity_type: node
 bundle: herbarium_specimen
-label: 'DwC:country'
-description: 'The name of the country the specimen habitat exists in'
+label: Country
+description: 'DwC:country - The name of the country the specimen habitat exists in'
 required: false
 translatable: true
 default_value:
   -
     value: Canada
+    format: basic_html
 default_value_callback: ''
 settings: {  }
 field_type: text

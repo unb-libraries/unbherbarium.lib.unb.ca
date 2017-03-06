@@ -8,8 +8,8 @@ id: node.herbarium_specimen.field_dwc_month
 field_name: field_dwc_month
 entity_type: node
 bundle: herbarium_specimen
-label: 'DwC:month'
-description: 'The ordinal month in which the Event occurred. This field is a placeholder for proper DwC output and need not be populated.'
+label: Month
+description: 'DwC:month - The ordinal month in which the Event occurred. This field is a placeholder for proper DwC output and need not be populated.'
 required: false
 translatable: true
 default_value: {  }

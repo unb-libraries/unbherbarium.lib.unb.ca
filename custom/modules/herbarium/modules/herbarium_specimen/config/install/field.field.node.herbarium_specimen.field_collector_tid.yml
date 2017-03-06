@@ -9,8 +9,8 @@ id: node.herbarium_specimen.field_collector_tid
 field_name: field_collector_tid
 entity_type: node
 bundle: herbarium_specimen
-label: Collectors
-description: 'Person(s) that collected the specimen'
+label: 'Recorded By'
+description: 'Collectors - Person(s) that collected the specimen'
 required: false
 translatable: true
 default_value: {  }

@@ -10,8 +10,8 @@ id: node.herbarium_specimen.field_dwc_reproductivecondition
 field_name: field_dwc_reproductivecondition
 entity_type: node
 bundle: herbarium_specimen
-label: 'DwC:reproductiveCondition'
-description: 'The reproductive condition of the specimen'
+label: 'Reproductive Condition'
+description: 'DwC:reproductiveCondition - The reproductive condition of the specimen'
 required: false
 translatable: true
 default_value: {  }

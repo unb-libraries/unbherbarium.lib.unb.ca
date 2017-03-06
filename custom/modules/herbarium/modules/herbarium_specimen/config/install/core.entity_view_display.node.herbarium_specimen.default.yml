@@ -252,7 +252,9 @@ content:
     weight: 20
     label: above
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
   field_dwc_othercatalognumbers:
     type: text_trimmed
     weight: 3
@@ -338,8 +340,8 @@ content:
       colorbox_image_style: ''
       colorbox_gallery: post
       colorbox_gallery_custom: ''
-      colorbox_caption: auto
-      colorbox_caption_custom: ''
+      colorbox_caption: entity_title
+      colorbox_caption_custom: 'Click to enlarge'
     third_party_settings: {  }
   field_taxonomy_tid:
     type: entity_reference_entity_view

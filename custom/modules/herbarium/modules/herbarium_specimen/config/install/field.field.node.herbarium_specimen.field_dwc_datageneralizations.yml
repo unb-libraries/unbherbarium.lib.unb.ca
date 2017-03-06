@@ -10,8 +10,8 @@ id: node.herbarium_specimen.field_dwc_datageneralizations
 field_name: field_dwc_datageneralizations
 entity_type: node
 bundle: herbarium_specimen
-label: 'DwC:dataGeneralizations'
-description: 'Actions taken to make the shared data less specific or complete than in its original form. CMH uses this to report that Geo-Location data cannot be guaranteed to be entirely accurate.'
+label: 'Data Generalizations'
+description: 'DwC:dataGeneralizations - Actions taken to make the shared data less specific or complete than in its original form. CMH uses this to report that Geo-Location data cannot be guaranteed to be entirely accurate.'
 required: true
 translatable: true
 default_value:

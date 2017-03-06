@@ -10,8 +10,8 @@ id: node.herbarium_specimen.field_dwc_institutioncode
 field_name: field_dwc_institutioncode
 entity_type: node
 bundle: herbarium_specimen
-label: 'DwC:institutionCode'
-description: 'The name (or acronym) in use by the institution having custody of the specimen. Most certainly ''UNB'' for all CMH specimen.'
+label: 'Institution Code'
+description: 'DwC:institutionCode - The name (or acronym) in use by the institution having custody of the specimen. Most certainly ''UNB'' for all CMH specimen.'
 required: true
 translatable: true
 default_value:

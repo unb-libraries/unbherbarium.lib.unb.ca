@@ -10,8 +10,8 @@ id: node.herbarium_specimen.field_dwc_verbatimlocality
 field_name: field_dwc_verbatimlocality
 entity_type: node
 bundle: herbarium_specimen
-label: 'DwC:verbatimLocality'
-description: 'The original textual description of the specimen''s habitat'
+label: 'Verbatim Locality'
+description: 'DwC:verbatimLocality - The original textual description of the specimen''s habitat'
 required: false
 translatable: true
 default_value: {  }

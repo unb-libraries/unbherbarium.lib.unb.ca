@@ -10,8 +10,8 @@ id: node.herbarium_specimen.field_dwc_informationwithheld
 field_name: field_dwc_informationwithheld
 entity_type: node
 bundle: herbarium_specimen
-label: 'DwC:informationWithheld'
-description: 'Detail any additional information that exists, but that has not been shared in the record'
+label: 'Information Withheld'
+description: 'DwC:informationWithheld - Detail any additional information that exists, but that has not been shared in the record'
 required: true
 translatable: true
 default_value:
