@@ -50,6 +50,7 @@ dependencies:
   module:
     - colorbox
     - datetime
+    - empty_fields
     - options
     - simple_gmap
     - text
@@ -183,7 +184,9 @@ content:
       decimal_separator: .
       scale: 6
       prefix_suffix: true
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
     type: number_decimal
   field_dwc_decimallongitude:
     weight: 10
@@ -193,7 +196,9 @@ content:
       decimal_separator: .
       scale: 6
       prefix_suffix: true
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
     type: number_decimal
   field_dwc_eventdate:
     type: datetime_default
@@ -207,7 +212,9 @@ content:
     weight: 19
     label: above
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
     type: text_default
   field_dwc_georeferencedby:
     type: text_default
@@ -219,7 +226,9 @@ content:
     weight: 14
     label: above
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
     type: text_default
   field_dwc_informationwithheld:
     type: list_default

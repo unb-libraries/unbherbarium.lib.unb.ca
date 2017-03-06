@@ -6,6 +6,7 @@ dependencies:
   - chosen
   - colorbox
   - datetime
+  - empty_fields
   - field
   - field_group
   - file
