@@ -67,7 +67,9 @@ content:
     settings:
       view_mode: default
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
   field_dc_contributor_other:
     type: text_default
     weight: 2
@@ -270,7 +272,9 @@ content:
     label: above
     settings:
       trim_length: 600
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
   field_dwc_previousidents:
     type: text_default
     weight: 29
@@ -288,7 +292,9 @@ content:
     weight: 4
     label: above
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
   field_dwc_stateprovince:
     type: text_default
     weight: 17
