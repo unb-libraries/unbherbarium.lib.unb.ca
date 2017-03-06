@@ -94,7 +94,7 @@
         "jackmoore/colorbox": "master",
         "drupal/colorbox": "1.2",
         "drupal/csv_serialization": "1.0",
-        "drupal/empty_fielda": "1.0-alpha1",
+        "drupal/empty_fields": "1.0-alpha1",
         "drupal/features": "3.2",
         "drupal/field_collection": "1.0-alpha1",
         "drupal/field_group": "1.0-rc6",
