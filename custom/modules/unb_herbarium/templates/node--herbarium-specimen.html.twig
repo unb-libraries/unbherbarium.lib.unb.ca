@@ -16,13 +16,16 @@
                 <dt>{% trans %}Descriptor{% endtrans %}</dt>
                 <dd>{% trans %}Value{% endtrans %}</dd>
             </header>
-            <section class="full">
-                <h3>{% trans %}Record Level{% endtrans %}</h3>
-                <div>
+
+            <section>
+                <h3 class="full">
+                    {% trans %}Record Level{% endtrans %}
+                </h3>
+                <div class="full">
                     <dt>{{ content.field_dwc_institutioncode|field_label }}</dt>
                     <dd>{{ content.field_dwc_institutioncode|field_value }}</dd>
                 </div>
-                <div>
+                <div class="full">
                     <dt>{{ content.field_dwc_institutionid|field_label }}</dt>
                     <dd>{{ content.field_dwc_institutionid|field_value }}</dd>
                 </div>
@@ -30,15 +33,16 @@
                     <dt>{{ content.field_dwc_basisofrecord|field_label }}</dt>
                     <dd>{{ content.field_dwc_basisofrecord|field_value }}</dd>
                 </div>
-                <div>
+                <div class="full">
                     <dt>{{ content.field_dwc_informationwithheld|field_label }}</dt>
                     <dd>{{ content.field_dwc_informationwithheld|field_value }}</dd>
                 </div>
-                <div>
+                <div class="full">
                     <dt>{{ content.field_dwc_datageneralizations|field_label }}</dt>
                     <dd>{{ content.field_dwc_datageneralizations|field_value }}</dd>
                 </div>
             </section>
+
             <section>
                 <h3 class="full">
                     {% trans %}Occurence{% endtrans %}
@@ -55,29 +59,54 @@
                     <dt>{{ content.field_dwc_othercatalognumbers|field_label }}</dt>
                     <dd>{{ content.field_dwc_othercatalognumbers|field_value }}</dd>
                 </div>
-                <div>
+                <div class="full">
                     <dt>{{ content.field_dwc_reproductivecondition|field_label }}</dt>
                     <dd>{{ content.field_dwc_reproductivecondition|field_value }}</dd>
                 </div>
-                <div>
-                    <dt>{{ content.field_dwc_basisofrecord|field_label }}</dt>
-                    <dd>{{ content.field_dwc_basisofrecord|field_value }}</dd>
+                <div class="full">
+                    <dt>{{ content.field_dwc_occurrenceremarks|field_label }}</dt>
+                    <dd>{{ content.field_dwc_occurrenceremarks|field_value }}</dd>
+                </div>
+                <div class="full">
+                    <dt>{{ content.field_dwc_previousidents|field_label }}</dt>
+                    <dd>{{ content.field_dwc_previousidents|field_value }}</dd>
                 </div>
             </section>
+
             <section>
                 <h3 class="full">
                     {% trans %}Event{% endtrans %}
                 </h3>
+                <div class="full">
+                    <dt>{{ content.field_dwc_year|field_label }}</dt>
+                    <dd>{{ content.field_dwc_year|field_value }}</dd>
+                </div>
+                <div class="full">
+                    <dt>{{ content.field_dwc_month|field_label }}</dt>
+                    <dd>{{ content.field_dwc_month|field_value }}</dd>
+                </div>
+                <div class="full">
+                    <dt>{{ content.field_dwc_day|field_label }}</dt>
+                    <dd>{{ content.field_dwc_day|field_value }}</dd>
+                </div>
+                <div>
+                    <dt>{{ content.field_dwc_verbatimeventdate|field_label }}</dt>
+                    <dd>{{ content.field_dwc_verbatimeventdate|field_value }}</dd>
+                </div>
                 <div>
                     <dt>{{ content.field_dwc_habitat|field_label }}</dt>
                     <dd>{{ content.field_dwc_habitat|field_value }}</dd>
                 </div>
+                <div class="full">
+                    <dt>{{ content.field_dwc_eventremarks|field_label }}</dt>
+                    <dd>{{ content.field_dwc_eventremarks|field_value }}</dd>
+                </div>
             </section>
+
             <section>
                 <h3 class="full">
                     {% trans %}Location{% endtrans %}
                 </h3>
-
                 <div>
                     <dt>{{ content.field_dwc_country|field_label }}</dt>
                     <dd>{{ content.field_dwc_country|field_value }}</dd>
@@ -94,12 +123,32 @@
                     <dt>{{ content.field_dwc_verbatimlocality|field_label }}</dt>
                     <dd>{{ content.field_dwc_verbatimlocality|field_value }}</dd>
                 </div>
+                <div class="full">
+                    <dt>{{ content.field_dwc_decimallatitude|field_label }}</dt>
+                    <dd>{{ content.field_dwc_decimallatitude|field_value }}</dd>
+                </div>
+                <div class="full">
+                    <dt>{{ content.field_dwc_decimallongitude|field_label }}</dt>
+                    <dd>{{ content.field_dwc_decimallongitude|field_value }}</dd>
+                </div>
             </section>
 
             <section class="full">
-                <h3>{% trans %}Taxon{% endtrans %}</h3>
+                <h3>
+                    {% trans %}Taxon{% endtrans %}
+                </h3>
                 <dt>{{ content.field_taxonomy_tid|field_label }}</dt>
                 <dd>{{ content.field_taxonomy_tid|field_value }}</dd>
+            </section>
+
+            <section>
+                <h3 class="full">
+                    {% trans %}Measurement Or Fact{% endtrans %}
+                </h3>
+                <div>
+                    <dt>Test</dt>
+                    <dd>N/A</dd>
+                </div>
             </section>
         </dl>
     </article>
