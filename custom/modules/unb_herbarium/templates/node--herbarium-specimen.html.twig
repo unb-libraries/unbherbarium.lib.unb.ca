@@ -47,11 +47,11 @@
                 <h3 class="full">
                     {% trans %}Occurence{% endtrans %}
                 </h3>
-                <div>
+                <div><!-- UNB Accession No. -->
                     <dt>{{ content.field_dwc_record_number|field_label }}</dt>
                     <dd>{{ content.field_dwc_record_number|field_value }}</dd>
                 </div>
-                <div>
+                <div><!-- Collector(s) -->
                     <dt>{{ content.field_collector_tid|field_label }}</dt>
                     <dd>{{ content.field_collector_tid|field_value }}</dd>
                 </div>
@@ -59,7 +59,7 @@
                     <dt>{{ content.field_dwc_othercatalognumbers|field_label }}</dt>
                     <dd>{{ content.field_dwc_othercatalognumbers|field_value }}</dd>
                 </div>
-                <div class="full">
+                <div><!-- Phenology -->
                     <dt>{{ content.field_dwc_reproductivecondition|field_label }}</dt>
                     <dd>{{ content.field_dwc_reproductivecondition|field_value }}</dd>
                 </div>
@@ -89,7 +89,7 @@
                     <dt>{{ content.field_dwc_day|field_label }}</dt>
                     <dd>{{ content.field_dwc_day|field_value }}</dd>
                 </div>
-                <div>
+                <div><!-- Verbatim Collection Date -->
                     <dt>{{ content.field_dwc_verbatimeventdate|field_label }}</dt>
                     <dd>{{ content.field_dwc_verbatimeventdate|field_value }}</dd>
                 </div>
@@ -97,7 +97,7 @@
                     <dt>{{ content.field_dwc_habitat|field_label }}</dt>
                     <dd>{{ content.field_dwc_habitat|field_value }}</dd>
                 </div>
-                <div class="full">
+                <div><!-- Abundance -->
                     <dt>{{ content.field_dwc_eventremarks|field_label }}</dt>
                     <dd>{{ content.field_dwc_eventremarks|field_value }}</dd>
                 </div>
@@ -115,7 +115,7 @@
                     <dt>{{ content.field_dwc_stateprovince|field_label }}</dt>
                     <dd>{{ content.field_dwc_stateprovince|field_value }}</dd>
                 </div>
-                <div>
+                <div class="full">
                     <dt>{{ content.field_dwc_county|field_label }}</dt>
                     <dd>{{ content.field_dwc_county|field_value }}</dd>
                 </div>
@@ -131,23 +131,61 @@
                     <dt>{{ content.field_dwc_decimallongitude|field_label }}</dt>
                     <dd>{{ content.field_dwc_decimallongitude|field_value }}</dd>
                 </div>
+                <div class="full">
+                    <dt>{{ content.field_dwc_georeferencedby|field_label }}</dt>
+                    <dd>{{ content.field_dwc_georeferencedby|field_value }}</dd>
+                </div>
             </section>
 
-            <section class="full">
-                <h3>
+            <section>
+                <h3 class="full">
                     {% trans %}Taxon{% endtrans %}
                 </h3>
-                <dt>{{ content.field_taxonomy_tid|field_label }}</dt>
-                <dd>{{ content.field_taxonomy_tid|field_value }}</dd>
+                <div><!-- Provide default if empty example -->
+                    <dt>{{ assigned_taxon|field_label }}</dt>
+                    <dd>{{ assigned_taxon|field_value }}</dd>
+                </div>
+                <div><!-- Taxon Remarks -->
+                    <dt>
+                        {%- if taxon_remarks|field_label -%}
+                            {{ taxon_remarks|field_label }}
+                        {% else %}
+                            {% trans %}Origin{% endtrans %}
+                        {% endif %}
+                     </dt>
+                    <dd>{{ taxon_remarks|field_value }}</dd>
+                </div>
+                <div>
+                    <dt>{{ en_common_names|field_label }}</dt>
+                    <dd>{{ en_common_names|field_value|safe_join('; ') }}</dd>
+                </div>
+                <div>
+                    <dt>{{ fr_common_names|field_label }}</dt>
+                    <dd>{{ fr_common_names|field_value|safe_join('; ') }}</dd>
+                </div>
             </section>
 
             <section>
                 <h3 class="full">
                     {% trans %}Measurement Or Fact{% endtrans %}
                 </h3>
-                <div>
-                    <dt>Test</dt>
-                    <dd>N/A</dd>
+                <div class="full">
+                    <dt>{{ measurement_type|field_label }}</dt>
+                    <dd>{{ measurement_type|field_value }}</dd>
+                </div>
+                <div><!-- Rarity Ranking -->
+                    <dt>
+                        {%- if measurement_value|field_label -%}
+                            {{ measurement_value|field_label }}
+                        {% else %}
+                            {% trans %}Measurement Value{% endtrans %}
+                        {% endif %}
+                    </dt>
+                    <dd>{{ measurement_value|field_value }}</dd>
+                </div>
+                <div class="full">
+                    <dt>{{ measurement_id|field_label }}</dt>
+                    <dd>{{ measurement_id|field_value }}</dd>
                 </div>
             </section>
         </dl>
