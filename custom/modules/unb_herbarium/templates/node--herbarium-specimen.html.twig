@@ -145,16 +145,6 @@
                     <dt>{{ assigned_taxon|field_label }}</dt>
                     <dd>{{ assigned_taxon|field_value }}</dd>
                 </div>
-                <div><!-- Taxon Remarks -->
-                    <dt>
-                        {%- if taxon_remarks|field_label -%}
-                            {{ taxon_remarks|field_label }}
-                        {% else %}
-                            {% trans %}Origin{% endtrans %}
-                        {% endif %}
-                     </dt>
-                    <dd>{{ taxon_remarks|field_value }}</dd>
-                </div>
                 <div>
                     <dt>{{ en_common_names|field_label }}</dt>
                     <dd>{{ en_common_names|field_value|safe_join('; ') }}</dd>
@@ -162,6 +152,16 @@
                 <div>
                     <dt>{{ fr_common_names|field_label }}</dt>
                     <dd>{{ fr_common_names|field_value|safe_join('; ') }}</dd>
+                </div>
+                <div><!-- Taxon Remarks -->
+                    <dt>
+                        {%- if taxon_remarks|field_label -%}
+                            {{ taxon_remarks|field_label }}
+                        {% else %}
+                            {% trans %}Origin{% endtrans %}
+                        {% endif %}
+                    </dt>
+                    <dd>{{ taxon_remarks|field_value }}</dd>
                 </div>
             </section>
 
