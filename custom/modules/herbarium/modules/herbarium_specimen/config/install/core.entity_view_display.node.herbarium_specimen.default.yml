@@ -223,7 +223,9 @@ content:
     weight: 17
     label: above
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
   field_dwc_habitat:
     weight: 14
     label: above
@@ -365,7 +367,9 @@ content:
     settings:
       view_mode: default
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
 hidden:
   field_large_sample_surrogate_msk: true
   field_verbatim_coordinateprec: true

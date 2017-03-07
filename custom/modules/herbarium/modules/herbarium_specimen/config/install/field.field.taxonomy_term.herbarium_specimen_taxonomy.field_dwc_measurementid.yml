@@ -10,13 +10,14 @@ id: taxonomy_term.herbarium_specimen_taxonomy.field_dwc_measurementid
 field_name: field_dwc_measurementid
 entity_type: taxonomy_term
 bundle: herbarium_specimen_taxonomy
-label: 'DwC:measurementID'
-description: 'The rarity ranking authority, generally http://www.accdc.com/webranks/NBVASC.HTM'
+label: 'Measurement ID'
+description: 'DwC:measurementID - The rarity ranking authority, generally http://www.accdc.com/webranks/NBVASC.HTM'
 required: false
 translatable: true
 default_value:
   -
     value: 'http://www.accdc.com/webranks/NBVASC.HTM'
+    format: basic_html
 default_value_callback: ''
 settings: {  }
 field_type: text

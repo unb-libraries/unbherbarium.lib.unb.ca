@@ -10,8 +10,8 @@ id: taxonomy_term.herbarium_specimen_taxonomy.field_dwc_measurementvalue
 field_name: field_dwc_measurementvalue
 entity_type: taxonomy_term
 bundle: herbarium_specimen_taxonomy
-label: 'DwC:measurementValue'
-description: 'The Rarity Ranking Value : The geography location of samples with taxonomy a rarity ranking value of less than 2 are hidden from public view and require logging in.'
+label: 'Measurement Value'
+description: 'DwC:measurementValue - The Rarity Ranking Value : The geography location of samples with taxonomy a rarity ranking value of less than 2 are hidden from public view and require logging in.'
 required: false
 translatable: true
 default_value: {  }

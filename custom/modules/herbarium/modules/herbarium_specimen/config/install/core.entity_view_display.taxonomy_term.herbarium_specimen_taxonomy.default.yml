@@ -15,6 +15,7 @@ dependencies:
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dwc_taxonremarks
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
   module:
+    - empty_fields
     - options
     - text
 id: taxonomy_term.herbarium_specimen_taxonomy.default
@@ -59,19 +60,25 @@ content:
     weight: 0
     label: above
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
   field_dwc_measurementtype:
     type: list_default
     weight: 0
     label: above
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
   field_dwc_measurementvalue:
     type: text_default
     weight: 0
     label: above
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
   field_dwc_scientificnameauthor:
     type: text_default
     weight: 0

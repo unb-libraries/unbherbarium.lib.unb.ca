@@ -10,8 +10,8 @@ id: node.herbarium_specimen.field_dwc_georeferencedby
 field_name: field_dwc_georeferencedby
 entity_type: node
 bundle: herbarium_specimen
-label: 'DwC:georeferencedBy'
-description: ''
+label: 'Georeferenced By'
+description: 'DwC:georeferencedBy'
 required: false
 translatable: true
 default_value: {  }
