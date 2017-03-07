@@ -145,6 +145,7 @@ dl h3 {
 }
 dd {
   margin-bottom: 1em;
+  margin-left: 0;
 }
 
 main aside img,
@@ -162,13 +163,15 @@ aside .field--type-image img {
 aside figure {
   margin: 0 0 1em 0;
 }
+aside .field--type-image {
+  border: 1px solid #ececec;
+}
 a.colorbox {
 	display: block;
 	overflow: hidden;
 }
 
 aside figure img {
-	border: 1px solid #ececec;
 	display: block;
 	-webkit-transition: all .3s ease;
 	-moz-transition: all .3s ease;
@@ -215,6 +218,11 @@ aside figure img:hover {
   dd {
       margin: 0 0 0 36%;
       width: 64%;
+      min-height:1.5em;
+  }
+  dd p:first-child,
+  dd p:last-child {
+    margin: 0;
   }
 }
 @media (min-width: 800px) {
