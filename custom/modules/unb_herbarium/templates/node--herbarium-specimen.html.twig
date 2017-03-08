@@ -135,33 +135,57 @@
                     </div>
                 </section>
 
-            <section>
-                <h3 class="toggle">
-                    {% trans %}Taxon{% endtrans %}
-                </h3>
-                <div><!-- Provide default if empty example -->
-                    <dt>{{ assigned_taxon|field_label }}</dt>
-                    <dd>{{ assigned_taxon|field_value }}</dd>
-                </div>
-                <div>
-                    <dt>{{ en_common_names|field_label }}</dt>
-                    <dd>{{ en_common_names|field_value|safe_join('; ') }}</dd>
-                </div>
-                <div>
-                    <dt>{{ fr_common_names|field_label }}</dt>
-                    <dd>{{ fr_common_names|field_value|safe_join('; ') }}</dd>
-                </div>
-                <div><!-- Taxon Remarks -->
-                    <dt>
-                        {%- if taxon_remarks|field_label -%}
-                            {{ taxon_remarks|field_label }}
-                        {% else %}
-                            {% trans %}Origin{% endtrans %}
-                        {% endif %}
-                    </dt>
-                    <dd>{{ taxon_remarks|field_value }}</dd>
-                </div>
-            </section>
+                <section>
+                    <h3 class="toggle">
+                        {% trans %}Taxon{% endtrans %}
+                    </h3>
+                    <div><!-- Provide default if empty example -->
+                        <dt>{{ assigned_taxon|field_label }}</dt>
+                        <dd>{{ assigned_taxon|field_value }}</dd>
+                    </div>
+                    <div>
+                        <dt>
+                            {%- if en_common_names|field_label -%}
+                                {{ en_common_names|field_label }}
+                            {% else %}
+                                {% trans %}English Common Names(s){% endtrans %}
+                            {% endif %}
+                        </dt>
+                        <dd>
+                            {%- if en_common_names|field_value -%}
+                            <ul>
+                                <li>{{ en_common_names|field_value|safe_join('</li><li>') }}</li>
+                            </ul>
+                            {% endif %}
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>
+                            {%- if fr_common_names|field_label -%}
+                                {{ fr_common_names|field_label }}
+                            {% else %}
+                                {% trans %}French Common Names(s){% endtrans %}
+                            {% endif %}
+                        </dt>
+                        <dd>
+                            {%- if fr_common_names|field_value -%}
+                            <ul>
+                                <li>{{ fr_common_names|field_value|safe_join('</li><li>') }}</li>
+                            </ul>
+                            {%  endif %}
+                        </dd>
+                    </div>
+                    <div><!-- Taxon Remarks -->
+                        <dt>
+                            {%- if taxon_remarks|field_label -%}
+                                {{ taxon_remarks|field_label }}
+                            {% else %}
+                                {% trans %}Origin{% endtrans %}
+                            {% endif %}
+                        </dt>
+                        <dd>{{ taxon_remarks|field_value }}</dd>
+                    </div>
+                </section>
 
                 <section>
                     <h3 class="toggle">
