@@ -6,8 +6,8 @@
     {{ content }}
 {% else %}
     <div class="details">
-        <input class="tgl" id="toggle" type="checkbox"/>
-        <label class="tgl-btn" data-tg-off="More details >" data-tg-on=" < Less details" for="toggle"></label>
+        <input id="toggle-widget" class="toggle-switch" type="checkbox"/>
+        <label class="toggle-switch__label" data-tg-off="{% trans %}More details{% endtrans %}&nbsp;&raquo;" data-tg-on="&laquo;&nbsp;{% trans %}Less details{% endtrans %}" for="toggle-widget"></label>
     </div>
 
     <article {{ content_attributes }}>
@@ -18,14 +18,14 @@
             </header>
 
             <section>
-                <h3 class="full">
+                <h3 class="toggle">
                     {% trans %}Record Level{% endtrans %}
                 </h3>
-                <div class="full">
+                <div class="toggle">
                     <dt>{{ content.field_dwc_institutioncode|field_label }}</dt>
                     <dd>{{ content.field_dwc_institutioncode|field_value }}</dd>
                 </div>
-                <div class="full">
+                <div class="toggle">
                     <dt>{{ content.field_dwc_institutionid|field_label }}</dt>
                     <dd>{{ content.field_dwc_institutionid|field_value }}</dd>
                 </div>
@@ -33,18 +33,18 @@
                     <dt>{{ content.field_dwc_basisofrecord|field_label }}</dt>
                     <dd>{{ content.field_dwc_basisofrecord|field_value }}</dd>
                 </div>
-                <div class="full">
+                <div class="toggle">
                     <dt>{{ content.field_dwc_informationwithheld|field_label }}</dt>
                     <dd>{{ content.field_dwc_informationwithheld|field_value }}</dd>
                 </div>
-                <div class="full">
+                <div class="toggle">
                     <dt>{{ content.field_dwc_datageneralizations|field_label }}</dt>
                     <dd>{{ content.field_dwc_datageneralizations|field_value }}</dd>
                 </div>
             </section>
 
             <section>
-                <h3 class="full">
+                <h3 class="toggle">
                     {% trans %}Occurence{% endtrans %}
                 </h3>
                 <div><!-- UNB Accession No. -->
@@ -63,29 +63,29 @@
                     <dt>{{ content.field_dwc_reproductivecondition|field_label }}</dt>
                     <dd>{{ content.field_dwc_reproductivecondition|field_value }}</dd>
                 </div>
-                <div class="full">
+                <div class="toggle">
                     <dt>{{ content.field_dwc_occurrenceremarks|field_label }}</dt>
                     <dd>{{ content.field_dwc_occurrenceremarks|field_value }}</dd>
                 </div>
-                <div class="full">
+                <div class="toggle">
                     <dt>{{ content.field_dwc_previousidents|field_label }}</dt>
                     <dd>{{ content.field_dwc_previousidents|field_value }}</dd>
                 </div>
             </section>
 
             <section>
-                <h3 class="full">
+                <h3 class="toggle">
                     {% trans %}Event{% endtrans %}
                 </h3>
-                <div class="full">
+                <div class="toggle">
                     <dt>{{ content.field_dwc_year|field_label }}</dt>
                     <dd>{{ content.field_dwc_year|field_value }}</dd>
                 </div>
-                <div class="full">
+                <div class="toggle">
                     <dt>{{ content.field_dwc_month|field_label }}</dt>
                     <dd>{{ content.field_dwc_month|field_value }}</dd>
                 </div>
-                <div class="full">
+                <div class="toggle">
                     <dt>{{ content.field_dwc_day|field_label }}</dt>
                     <dd>{{ content.field_dwc_day|field_value }}</dd>
                 </div>
@@ -104,7 +104,7 @@
             </section>
 
             <section>
-                <h3 class="full">
+                <h3 class="toggle">
                     {% trans %}Location{% endtrans %}
                 </h3>
                 <div>
@@ -115,7 +115,7 @@
                     <dt>{{ content.field_dwc_stateprovince|field_label }}</dt>
                     <dd>{{ content.field_dwc_stateprovince|field_value }}</dd>
                 </div>
-                <div class="full">
+                <div class="toggle">
                     <dt>{{ content.field_dwc_county|field_label }}</dt>
                     <dd>{{ content.field_dwc_county|field_value }}</dd>
                 </div>
@@ -123,22 +123,22 @@
                     <dt>{{ content.field_dwc_verbatimlocality|field_label }}</dt>
                     <dd>{{ content.field_dwc_verbatimlocality|field_value }}</dd>
                 </div>
-                <div class="full">
+                <div class="toggle">
                     <dt>{{ content.field_dwc_decimallatitude|field_label }}</dt>
                     <dd>{{ content.field_dwc_decimallatitude|field_value }}</dd>
                 </div>
-                <div class="full">
+                <div class="toggle">
                     <dt>{{ content.field_dwc_decimallongitude|field_label }}</dt>
                     <dd>{{ content.field_dwc_decimallongitude|field_value }}</dd>
                 </div>
-                <div class="full">
+                <div class="toggle">
                     <dt>{{ content.field_dwc_georeferencedby|field_label }}</dt>
                     <dd>{{ content.field_dwc_georeferencedby|field_value }}</dd>
                 </div>
             </section>
 
             <section>
-                <h3 class="full">
+                <h3 class="toggle">
                     {% trans %}Taxon{% endtrans %}
                 </h3>
                 <div><!-- Provide default if empty example -->
@@ -166,10 +166,10 @@
             </section>
 
             <section>
-                <h3 class="full">
+                <h3 class="toggle">
                     {% trans %}Measurement Or Fact{% endtrans %}
                 </h3>
-                <div class="full">
+                <div class="toggle">
                     <dt>{{ measurement_type|field_label }}</dt>
                     <dd>{{ measurement_type|field_value }}</dd>
                 </div>
@@ -183,7 +183,7 @@
                     </dt>
                     <dd>{{ measurement_value|field_value }}</dd>
                 </div>
-                <div class="full">
+                <div class="toggle">
                     <dt>{{ measurement_id|field_label }}</dt>
                     <dd>{{ measurement_id|field_value }}</dd>
                 </div>

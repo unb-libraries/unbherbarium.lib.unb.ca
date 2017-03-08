@@ -25,34 +25,37 @@ article a:not(.colorbox):hover {
   margin-bottom: 1em;
 }
 
+.toggle {
+   display: none;
+}
+
 /* animated details toggle button */
-.tgl,
-.tgl:after,
-.tgl:before,
-.tgl *,
-.tgl *:after,
-.tgl *:before,
-.tgl + .tgl-btn {
-    box-sizing: border-box;
+.toggle-switch,
+.toggle-switch:after,
+.toggle-switch:before,
+.toggle-switch *,
+.toggle-switch *:after,
+.toggle-switch *:before,
+.toggle-switch + .toggle-switch__label {
+  box-sizing: border-box;
 }
-.tgl::-moz-selection,
-.tgl:after::-moz-selection,
-.tgl:before::-moz-selection,
-.tgl *::-moz-selection,
-.tgl *:after::-moz-selection,
-.tgl *:before::-moz-selection,
-.tgl + .tgl-btn::-moz-selection,
-.tgl::selection,
-.tgl:after::selection,
-.tgl:before::selection,
-.tgl *::selection,
-.tgl *:after::selection,
-.tgl *:before::selection,
-.tgl + .tgl-btn::selection{
-    background: none;
+.toggle-switch::-moz-selection,
+.toggle-switch:after::-moz-selection,
+.toggle-switch:before::-moz-selection,
+.toggle-switch *::-moz-selection,
+.toggle-switch *:after::-moz-selection,
+.toggle-switch *:before::-moz-selection,
+.toggle-switch + .toggle-switch__label::-moz-selection,
+.toggle-switch::selection,
+.toggle-switch:after::selection,
+.toggle-switch:before::selection,
+.toggle-switch *::selection,
+.toggle-switch *:after::selection,
+.toggle-switch *:before::selection,
+.toggle-switch + .toggle-switch__label::selection{
+  background: none;
 }
-.tgl + .tgl-btn {
-  outline: 0;
+.toggle-switch + .toggle-switch__label {
   display: block;
   width: 8em;
   height: 2em;
@@ -63,8 +66,8 @@ article a:not(.colorbox):hover {
   -ms-user-select: none;
   user-select: none;
 }
-.tgl + .tgl-btn:after,
-.tgl + .tgl-btn:before {
+.toggle-switch + .toggle-switch__label:after,
+.toggle-switch + .toggle-switch__label:before {
   position: relative;
   display: block;
   content: "";
@@ -75,10 +78,10 @@ article a:not(.colorbox):hover {
 .tgl + .tgl-btn:before {
   display: none;
 }
-.tgl:checked + .tgl-btn:after {
-  right: 50%;
+.toggle-switch:checked + .toggle-switch__label:after {
+  right: 50%%
 }
-.tgl + .tgl-btn {
+.toggle-switch + .toggle-switch__label {
   overflow: hidden;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -87,8 +90,8 @@ article a:not(.colorbox):hover {
   background: #888;
   font-family: sans-serif;
 }
-.tgl + .tgl-btn:after,
-.tgl + .tgl-btn:before {
+.toggle-switch + .toggle-switch__label:after,
+.toggle-switch + .toggle-switch__label:before {
   display: inline-block;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
@@ -100,30 +103,30 @@ article a:not(.colorbox):hover {
   color: #fff;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
-.tgl + .tgl-btn:after {
+.toggle-switch + .toggle-switch__label:after {
   right: 100%;
   content: attr(data-tg-on);
 }
-.tgl + .tgl-btn:before {
+.toggle-switch + .toggle-switch__label:before {
   right: 0;
   content: attr(data-tg-off);
 }
-.tgl + .tgl-btn:active {
+.toggle-switch + .toggle-switch__label:active {
   background: #888;
 }
-.tgl + .tgl-btn:active:before {
+.toggle-switch + .toggle-switch__label:active:before {
   right: -10%;
 }
-.tgl:checked + .tgl-btn {
+.toggle-switch:checked + .toggle-switch__label {
   background: #96281B;
 }
-.tgl:checked + .tgl-btn:before {
+.toggle-switch:checked + .toggle-switch__label:before {
   right: -100%;
 }
-.tgl:checked + .tgl-btn:after {
+.toggle-switch:checked + .toggle-switch__label:after {
   right: 0;
 }
-.tgl:checked + .tgl-btn:active:after {
+.toggle-switch:checked + .toggle-switch__label:active:after {
   right: 10%;
 }
 

@@ -1,5 +1,5 @@
 jQuery(document).ready(function() {
-    jQuery('#toggle').click(function () {
-        jQuery('.full').toggle(300);
+    jQuery('#toggle-widget').click(function () {
+        jQuery('.toggle').toggle(300);
     });
 });
