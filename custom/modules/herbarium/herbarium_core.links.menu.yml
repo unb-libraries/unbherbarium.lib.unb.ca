@@ -10,3 +10,9 @@ herbarium_core.admin.filesystem:
   description: 'Configure the herbarium asset filesystem settings.'
   route_name: herbarium_core.admin_config.filesystem
   weight: -10
+herbarium_core.admin.image:
+  title: 'Herbarium Image Settings'
+  parent: herbarium_core.admin
+  description: 'Configure the herbarium image processing seettings.'
+  route_name: herbarium_core.admin_config.image
+  weight: -10
