@@ -1,35 +1,37 @@
 .clear:after,
-.details:after,
-main aside:after {
+.specimen-details aside:after {
   content: "";
   clear: both;
   display: table;
 }
 
-article a:not(.colorbox) {
+.specimen-details a div {
+  display: inline;
+}
+a.colorbox {
+  display: block;
+  overflow: hidden;
+}
+.specimen-details a:not(.colorbox) {
 	border-bottom: 1px dotted #96281B;
 	color: #96281B;
 	display: inline;
 	text-decoration: none;
 }
-article a div {
-	display: inline;
-}
-article a:not(.colorbox):focus,
-article a:not(.colorbox):hover {
+.specimen-details a:not(.colorbox):focus,
+.specimen-details a:not(.colorbox):hover {
 	border-bottom-style: solid;
 	color: #96281B;
 }
-
-.details {
-  margin-bottom: 1em;
+.specimen-details figure a {
+  border: 1px solid #ececec;
 }
 
 .toggle {
    display: none;
 }
 
-/* animated details toggle button */
+/* animated checkbox toggle button */
 .toggle-switch,
 .toggle-switch:after,
 .toggle-switch:before,
@@ -56,11 +58,12 @@ article a:not(.colorbox):hover {
   background: none;
 }
 .toggle-switch + .toggle-switch__label {
-  display: block;
-  width: 8em;
-  height: 2em;
-  position: relative;
   cursor: pointer;
+  display: block;
+  width: auto;
+  height: 2em;
+  margin-bottom: .75em;
+  position: relative;
 }
 .toggle-switch + .toggle-switch__label:after,
 .toggle-switch + .toggle-switch__label:before {
@@ -75,13 +78,11 @@ article a:not(.colorbox):hover {
   position: absolute;
 }
 .toggle-switch {
-  margin: 1em;
+  margin: .5em;
 }
-.toggle-switch:focus + .toggle-switch__label {
-  outline-color: rgb(77, 144, 254);
-  outline-style: auto;
-  outline-width: 5px;
-  outline-offset: -2px
+.toggle-switch:focus + .toggle-switch__label,
+.toggle-switch__label:active {
+  box-shadow: 0 5px 5px -2px rgb(77, 144, 254);3
 }
 .toggle-switch:checked + .toggle-switch__label:after {
   right: 50%%
@@ -91,8 +92,8 @@ article a:not(.colorbox):hover {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   -webkit-transition: all .3s ease;
-  transition: all .3s ease, outline-offset .01s linear, outline-width .01s linear, outline-color .01s linear;
-  background: #888;
+  transition: all .3s ease, box-shadow .01s linear;
+  background: #666;
   font-family: sans-serif;
 }
 .toggle-switch + .toggle-switch__label:after,
@@ -116,11 +117,8 @@ article a:not(.colorbox):hover {
   right: 0;
   content: attr(data-tg-off);
 }
-.toggle-switch + .toggle-switch__label:active {
-  background: #888;
-}
 .toggle-switch + .toggle-switch__label:active:before {
-  right: -10%;
+  right: -5%;
 }
 .toggle-switch:checked + .toggle-switch__label {
   background: #96281B;
@@ -132,7 +130,7 @@ article a:not(.colorbox):hover {
   right: 0;
 }
 .toggle-switch:checked + .toggle-switch__label:active:after {
-  right: 10%;
+  right: 5%;
 }
 
 /* dl default display */
@@ -146,52 +144,57 @@ dl h3,
 dt {
 	color: #66573f;
   font-weight: bold;
+  margin: 0;
+  min-width: 205px;
+}
+dt:after {
+  content: ':';
 }
 dl h3 {
 	display: none;
 }
 dd {
-  margin-bottom: 1em;
   margin-left: 0;
+  margin-bottom: 1em;
+}
+dd ul {
+  margin: 0;
+  padding: 0;
+}
+dd li {
+  list-style-type: none;
 }
 
-main aside img,
-main aside iframe {
-	display:inline-block;
+.specimen-details aside figure,
+.specimen-details aside > .map,
+.specimen-details aside iframe {
+	display: inline-block;
   max-width: 100%;
 }
-aside figure,
-aside > .map {
-  display: inline-block;
-}
-aside .field--type-image img {
-  margin-bottom: 6px;
-}
-aside figure {
+.specimen-details aside figure {
   margin: 0 0 1em 0;
 }
-aside .field--type-image {
-  border: 1px solid #ececec;
+.specimen-details figure img {
+  display: block;
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  transition: all .3s ease;
 }
-a.colorbox {
-	display: block;
-	overflow: hidden;
+.specimen-details .field--type-image img {
+  margin-bottom: 0;
 }
-
-aside figure img {
-	display: block;
-	-webkit-transition: all .3s ease;
-	-moz-transition: all .3s ease;
-	-o-transition: all .3s ease;
-	-ms-transition: all .3s ease;
-	transition: all .3s ease;
+.specimen-details figure img:hover {
+  transform: scale(1.1,1.1);
 }
-aside figure img:hover {
-	transform: scale(1.1,1.1);
+.specimen-details figcaption {
+  margin-top: 6px;
 }
 .gmap { /* add loading indicator for gmap */
   background: url(../images/loading.gif) no-repeat 60px center;
 }
+
 @media (min-width: 640px) {
   /* dl table display */
   dl {
@@ -218,9 +221,12 @@ aside figure img:hover {
     padding: .25em .5em;
   }
   dt {
-      clear: left;
-      float: left;
-      width: 35%;
+    clear: left;
+    float: left;
+    width: 35%;
+  }
+  dt:after {
+    content: '';
   }
   dd {
       margin: 0 0 0 36%;
@@ -232,12 +238,12 @@ aside figure img:hover {
     margin: 0;
   }
 }
-@media (min-width: 800px) {
-  main article {
+@media (min-width: 1024px) {
+  .specimen-details article {
       float: left;
       width: 74%;
   }
-  main aside {
+  .specimen-details aside {
       float: right;
       max-width: 25%;
   }
