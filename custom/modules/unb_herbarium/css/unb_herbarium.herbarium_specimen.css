@@ -61,10 +61,6 @@ article a:not(.colorbox):hover {
   height: 2em;
   position: relative;
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 .toggle-switch + .toggle-switch__label:after,
 .toggle-switch + .toggle-switch__label:before {
@@ -74,9 +70,18 @@ article a:not(.colorbox):hover {
   width: 50%;
   height: 100%;
 }
-.tgl,
-.tgl + .tgl-btn:before {
-  display: none;
+.toggle-switch,
+.toggle-switch + .toggle-switch__label:before {
+  position: absolute;
+}
+.toggle-switch {
+  margin: 1em;
+}
+.toggle-switch:focus + .toggle-switch__label {
+  outline-color: rgb(77, 144, 254);
+  outline-style: auto;
+  outline-width: 5px;
+  outline-offset: -2px
 }
 .toggle-switch:checked + .toggle-switch__label:after {
   right: 50%%
@@ -86,7 +91,7 @@ article a:not(.colorbox):hover {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   -webkit-transition: all .3s ease;
-  transition: all .3s ease;
+  transition: all .3s ease, outline-offset .01s linear, outline-width .01s linear, outline-color .01s linear;
   background: #888;
   font-family: sans-serif;
 }
