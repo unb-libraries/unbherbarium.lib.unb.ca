@@ -23,8 +23,9 @@ a.colorbox {
 	border-bottom-style: solid;
 	color: #96281B;
 }
-.specimen-details figure a {
-  border: 1px solid #ececec;
+.specimen-details figure a,
+.gmap iframe {
+  border: 1px solid #ececec!important;
 }
 
 .toggle {
@@ -172,7 +173,7 @@ dd li {
   max-width: 100%;
 }
 .specimen-details aside figure {
-  margin: 0 0 1em 0;
+  margin: 0 1em 1em 0;
 }
 .specimen-details figure img {
   display: block;
@@ -193,6 +194,7 @@ dd li {
 }
 .gmap { /* add loading indicator for gmap */
   background: url(../images/loading.gif) no-repeat 60px center;
+  display: inline-block;
 }
 
 @media (min-width: 640px) {
@@ -229,9 +231,9 @@ dd li {
     content: '';
   }
   dd {
-      margin: 0 0 0 36%;
-      width: 64%;
-      min-height:1.5em;
+    margin: 0 0 0 36%;
+    min-height: 1.5em;
+    width: 64%;
   }
   dd p:first-child,
   dd p:last-child {
@@ -240,11 +242,19 @@ dd li {
 }
 @media (min-width: 1024px) {
   .specimen-details article {
-      float: left;
-      width: 74%;
+    float: left;
+    width: 74%;
   }
   .specimen-details aside {
-      float: right;
-      max-width: 25%;
+    float: right;
+    max-width: 25%;
+    text-align: right;
+  }
+  .specimen-details aside figcaption,
+  .specimen-details aside p {
+    text-align: left;
+  }
+  .specimen-details aside figure {
+    margin-right: 0;
   }
 }
