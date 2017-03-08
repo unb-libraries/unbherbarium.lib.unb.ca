@@ -1,3 +1,11 @@
+.clear:after,
+.details:after,
+main aside:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
 article a:not(.colorbox) {
 	border-bottom: 1px dotted #96281B;
 	color: #96281B;
@@ -12,16 +20,7 @@ article a:not(.colorbox):hover {
 	border-bottom-style: solid;
 	color: #96281B;
 }
-.full {
-   display: none;
-}
-.clear:after,
-.details:after,
-main aside:after {
-  content: "";
-  clear: both;
-  display: table;
-}
+
 .details {
   margin-bottom: 1em;
 }
