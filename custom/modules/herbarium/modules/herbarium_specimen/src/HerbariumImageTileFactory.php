@@ -35,7 +35,10 @@ class HerbariumImageTileFactory {
   public static function BuildImageTiles($file, &$context) {
     // Remove old image tile stuff
     $context['message'] = t(
-      'Generating DZI/Tiled Images For FID'
+      'Generating DZI and tiled images for specimen image [@fid]',
+      array(
+        '@fid' => $file->id()
+      )
     );
 
     $obj = new static($file);
@@ -43,7 +46,10 @@ class HerbariumImageTileFactory {
     $obj->GenerateTiles();
 
     $context['results'][] = t(
-      'Generated DZI/Tiled Images For FID'
+      'Generated DZI and tiled images for specimen image [@fid]',
+      array(
+        '@fid' => $file->id()
+      )
     );
   }
 
