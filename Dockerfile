@@ -20,9 +20,13 @@ ENV DRUPAL_PRIVATE_FILE_PATH /app/private_filesystem
 ENV NEWRELIC_PHP_VERSION 7.0.0.186
 ENV NEWRELIC_PHP_ARCH musl
 
-# Add Mail Sending
-RUN apk --update add postfix && \
-  rm -f /var/cache/apk/*
+# Add Mail Sending and ImageMagick/MagickSlicer
+RUN apk --update add postfix imagemagick bash && \
+  rm -f /var/cache/apk/* && \
+  curl -O https://raw.githubusercontent.com/VoidVolker/MagickSlicer/master/magick-slicer.sh && \
+  mv magick-slicer.sh /usr/local/bin/magick-slicer && \
+  chmod +x /usr/local/bin/magick-slicer
+
 COPY package-conf/postfix/main.cf /etc/postfix/main.cf
 
 # Add nginx and PHP conf.
