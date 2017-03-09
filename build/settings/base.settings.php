@@ -14,3 +14,4 @@ if (isset($_SERVER['APPLICATION_ENV'])) {
 }
 
 // Add common includes below.
+$settings['file_private_path']  = '/app/private_filesystem';
