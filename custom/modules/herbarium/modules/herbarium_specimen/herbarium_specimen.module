@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\herbarium_specimen\HerbariumImageTileFactory;
 
 /**
  * Implements hook_preprocess_views_exposed_form().
@@ -32,7 +33,7 @@ function herbarium_specimen_node_presave(EntityInterface $node) {
           $node->get('field_large_sample_surrogate')->get(0)->getValue()['target_id'] != $node->original->get('field_large_sample_surrogate')->get(0)->getValue()['target_id']
         )
       ) {
-        // Image Needs Update.
+        HerbariumImageTileFactory::BuildImageTiles($node->get('field_large_sample_surrogate')->get(0));
       }
     }
 
