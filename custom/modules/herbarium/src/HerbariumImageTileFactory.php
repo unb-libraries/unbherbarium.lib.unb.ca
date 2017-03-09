@@ -35,6 +35,20 @@ class HerbariumImageTileFactory {
   public static function BuildImageTiles($file) {
     // Remove old image tile stuff
     $obj = new static($file);
+    $obj->DeleteExistingTiles();
+    $obj->GenerateTiles();
+  }
+
+  /**
+   * Delete the existing tiles and DZI for this file, if they exist.
+   */
+  protected function DeleteExistingTiles() {
+  }
+
+  /**
+   * Generate the tiles and DZI for this file.
+   */
+  protected function GenerateTiles() {
   }
 
 }
