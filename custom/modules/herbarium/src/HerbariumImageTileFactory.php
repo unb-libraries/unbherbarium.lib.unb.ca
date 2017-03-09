@@ -14,7 +14,7 @@ class HerbariumImageTileFactory {
    *
    * @var object
    */
-  private $file;
+  protected $file;
 
   /**
    * Constructor.
