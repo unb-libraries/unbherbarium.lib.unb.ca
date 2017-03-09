@@ -32,11 +32,19 @@ class HerbariumImageTileFactory {
    * @param object $file
    *   The Drupal File object to generate the DZI and tiles for.
    */
-  public static function BuildImageTiles($file) {
+  public static function BuildImageTiles($file, &$context) {
     // Remove old image tile stuff
+    $context['message'] = t(
+      'Generating DZI/Tiled Images For FID'
+    );
+
     $obj = new static($file);
     $obj->DeleteExistingTiles();
     $obj->GenerateTiles();
+
+    $context['results'][] = t(
+      'Generated DZI/Tiled Images For FID'
+    );
   }
 
   /**

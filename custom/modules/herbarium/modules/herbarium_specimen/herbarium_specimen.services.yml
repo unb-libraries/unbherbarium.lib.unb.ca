@@ -1,0 +1,5 @@
+services:
+  herbarium_specimen.image_tile_factory:
+    class: Drupal\herbarium_specimen\HerbariumImageTileFactory
+    tags:
+      - { name: video_caption }

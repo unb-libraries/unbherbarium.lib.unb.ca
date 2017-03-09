@@ -34,19 +34,18 @@ function herbarium_specimen_node_presave(EntityInterface $node) {
       ) {
 
         $batch = array(
-          'title' => t('Generating Tiled Images for Zoom Viewer'),
+          'title' => t('Generating Specimen Surrogate Images'),
+          'init_message' => t('Generating Specimen Surrogate Images'),
           'operations' => array(
             array(
               array(
-                '\Drupal\herbarium_specimen\HerbariumImageTileFactory',
-                'BuildImageTiles'
+                'Drupal\herbarium_specimen\HerbariumImageTileFactory',
+                'BuildImageTiles',
               ),
-              array(
-                $node->get('field_large_sample_surrogate')->get(0)
-              ),
+              array($node->get('field_large_sample_surrogate')->get(0))
             ),
           ),
-         );
+        );
 
         batch_set($batch);
       }
