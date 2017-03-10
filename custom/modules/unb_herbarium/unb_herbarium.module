@@ -5,7 +5,6 @@
  * Contains unb_herbarium.module.
  */
 
-use Drupal\node\Entity\Node;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
@@ -65,4 +64,3 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $variables['specimen_en_common_names'] = $assigned_tax_term_list->get(0)->entity->get('field_cmh_english_common_names')->view();
   $variables['specimen_fr_common_names'] = $assigned_tax_term_list->get(0)->entity->get('field_cmh_french_common_names')->view();
 }
-
