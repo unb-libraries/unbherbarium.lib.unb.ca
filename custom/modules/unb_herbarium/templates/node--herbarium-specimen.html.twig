@@ -161,6 +161,26 @@
                         <dt>{{ specimen_assigned_taxon|field_label }}</dt>
                         <dd>{{ specimen_assigned_taxon|field_value }}</dd>
                     </div>
+                    <div><!-- Authority -->
+                        <dt>
+                            {%- if specimen_authority|field_label -%}
+                                {{ specimen_authority|field_label }}
+                            {% else %}
+                                {% trans %}Scientific Name Authorship{% endtrans %}
+                            {% endif %}
+                        </dt>
+                        <dd>{{ specimen_authority|field_value }}</dd>
+                    </div>
+                    <div class="toggle-default-off">
+                        <dt>
+                            {%- if specimen_taxon_rank|field_label -%}
+                                {{ specimen_taxon_rank|field_label }}
+                            {% else %}
+                                {% trans %}Taxon Rank{% endtrans %}
+                            {% endif %}
+                        </dt>
+                        <dd>{{ specimen_taxon_rank|field_value }}</dd>
+                    </div>
                     <div>
                         <dt>
                             {%- if specimen_en_common_names|field_label -%}
