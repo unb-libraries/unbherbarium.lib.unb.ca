@@ -44,7 +44,6 @@ dependencies:
     - field.field.node.herbarium_specimen.field_large_sample_surrogate
     - field.field.node.herbarium_specimen.field_large_sample_surrogate_msk
     - field.field.node.herbarium_specimen.field_taxonomy_tid
-    - field.field.node.herbarium_specimen.field_verbatim_coordinateprec
     - image.style.thumbnail
     - node.type.herbarium_specimen
   module:
@@ -442,13 +441,6 @@ content:
     weight: 49
     settings: {  }
     third_party_settings: {  }
-  field_verbatim_coordinateprec:
-    weight: 20
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: text_textfield
   path:
     type: path
     weight: 12
