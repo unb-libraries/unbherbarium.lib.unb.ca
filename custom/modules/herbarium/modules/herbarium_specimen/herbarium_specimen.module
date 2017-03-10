@@ -40,9 +40,9 @@ function herbarium_specimen_node_presave(EntityInterface $node) {
             array(
               array(
                 'Drupal\herbarium_specimen\HerbariumImageTileFactory',
-                'BuildImageTiles',
+                'buildImageTiles',
               ),
-              array($node->get('field_large_sample_surrogate')->get(0)->entity)
+              array($node->get('field_large_sample_surrogate')->get(0)->entity),
             ),
           ),
         );

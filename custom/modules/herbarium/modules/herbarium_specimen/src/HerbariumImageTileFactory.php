@@ -2,8 +2,6 @@
 
 namespace Drupal\herbarium_specimen;
 
-use Drupal\node\Entity\Node;
-
 /**
  * HerbariumImageTileFactory caption set object.
  */
@@ -31,24 +29,26 @@ class HerbariumImageTileFactory {
    *
    * @param object $file
    *   The Drupal File object to generate the DZI and tiles for.
+   * @param array $context
+   *   The Batch API context array.
    */
-  public static function BuildImageTiles($file, &$context) {
-    // Remove old image tile stuff
+  public static function buildImageTiles($file, array &$context) {
+    // Remove old image tile stuff.
     $context['message'] = t(
       'Generating DZI and tiled images for specimen image [@fid]',
       array(
-        '@fid' => $file->id()
+        '@fid' => $file->id(),
       )
     );
 
     $obj = new static($file);
-    $obj->DeleteExistingTiles();
-    $obj->GenerateTiles();
+    $obj->deleteExistingTiles();
+    $obj->generateTiles();
 
     $context['results'][] = t(
       'Generated DZI and tiled images for specimen image [@fid]',
       array(
-        '@fid' => $file->id()
+        '@fid' => $file->id(),
       )
     );
   }
@@ -56,13 +56,13 @@ class HerbariumImageTileFactory {
   /**
    * Delete the existing tiles and DZI for this file, if they exist.
    */
-  protected function DeleteExistingTiles() {
+  protected function deleteExistingTiles() {
   }
 
   /**
    * Generate the tiles and DZI for this file.
    */
-  protected function GenerateTiles() {
+  protected function generateTiles() {
   }
 
 }
