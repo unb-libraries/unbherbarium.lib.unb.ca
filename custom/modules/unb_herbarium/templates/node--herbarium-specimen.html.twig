@@ -87,6 +87,10 @@
                         <dt>{{ content.field_dwc_day|field_label }}</dt>
                         <dd>{{ content.field_dwc_day|field_value }}</dd>
                     </div>
+                    <div class="toggle-default-on">
+                        <dt>{{ content.field_dwc_eventdate|field_label }}</dt>
+                        <dd>{{ content.field_dwc_eventdate|field_value }}</dd>
+                    </div>
                     <div><!-- Verbatim Collection Date -->
                         <dt>{{ content.field_dwc_verbatimeventdate|field_label }}</dt>
                         <dd>{{ content.field_dwc_verbatimeventdate|field_value }}</dd>
@@ -223,9 +227,13 @@
                         <dt>{{ specimen_measurement_id|field_label }}</dt>
                         <dd>{{ specimen_measurement_id|field_value }}</dd>
                     </div>
-                    <div class="toggle">
-                        <dt>{{ measurement_id|field_label }}</dt>
-                        <dd>{{ measurement_id|field_value }}</dd>
+                    <div class="toggle-default-off">
+                        <dt>{{ content.field_dc_contributor_other|field_label }}</dt>
+                        <dd>{{ content.field_dc_contributor_other|field_value }}</dd>
+                    </div>
+                    <div class="toggle-default-off">
+                        <dt>{% trans %}Created{% endtrans %}</dt>
+                        <dd>{{ node.createdtime|format_date('html_date') }}</dd>
                     </div>
                 </section>
             </dl>
