@@ -1,19 +1,20 @@
-langcode: und
+langcode: en
 status: true
 dependencies:
   module:
     - node
-    - text
 id: node.field_dwc_georeferencedby
 field_name: field_dwc_georeferencedby
 entity_type: node
-type: text
+type: string
 settings:
   max_length: 255
-module: text
+  is_ascii: false
+  case_sensitive: false
+module: core
 locked: false
 cardinality: 1
-translatable: false
+translatable: true
 indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

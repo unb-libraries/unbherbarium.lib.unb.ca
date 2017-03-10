@@ -4,17 +4,15 @@ dependencies:
   config:
     - field.storage.node.field_dwc_verbatimlocality
     - node.type.herbarium_specimen
-  module:
-    - text
 id: node.herbarium_specimen.field_dwc_verbatimlocality
 field_name: field_dwc_verbatimlocality
 entity_type: node
 bundle: herbarium_specimen
 label: 'Verbatim Locality'
-description: 'DwC:verbatimLocality - The original textual description of the specimen''s habitat'
+description: 'DwC:verbatimLocality - The original textual description of the specimen''s habitat.'
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: text
+field_type: string

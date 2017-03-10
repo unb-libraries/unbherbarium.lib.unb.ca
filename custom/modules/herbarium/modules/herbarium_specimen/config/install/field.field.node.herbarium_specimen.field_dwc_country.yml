@@ -4,20 +4,17 @@ dependencies:
   config:
     - field.storage.node.field_dwc_country
     - node.type.herbarium_specimen
-  module:
-    - text
 id: node.herbarium_specimen.field_dwc_country
 field_name: field_dwc_country
 entity_type: node
 bundle: herbarium_specimen
 label: Country
-description: 'DwC:country - The name of the country the specimen habitat exists in'
+description: 'DwC:country - The name of the country the specimen habitat exists in.'
 required: false
-translatable: true
+translatable: false
 default_value:
   -
     value: Canada
-    format: basic_html
 default_value_callback: ''
 settings: {  }
-field_type: text
+field_type: string
