@@ -2,6 +2,7 @@
 
 namespace Drupal\herbarium_specimen\Form;
 
+use \Drupal\file\Entity\File;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Serialization\Json;
@@ -34,7 +35,7 @@ class ManageArchivalMasterForm extends FormBase {
       '#title' => t('TIF File'),
       '#type' => 'managed_file',
       '#description' => t('Upload a archival master file, allowed extensions: TIF TIFF'),
-      '#upload_location' => 'private://srt_upload/',
+      '#upload_location' => 'private://archival_master_upload/',
       '#required' => TRUE,
       '#upload_validators' => array(
         'file_validate_extensions' => array('tif', 'tiff'),
@@ -63,6 +64,32 @@ class ManageArchivalMasterForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+    // Validate structure of SRT file.
+    $fid = $form_state->getValue('tiff_file')[0];
+    $tiff_file = File::load($fid);
+
+    $batch = array(
+      'title' => t('Generating Specimen Surrogate Images'),
+      'init_message' => t('Generating Specimen Surrogate Images'),
+      'operations' => array(
+        array(
+          array(
+            'Drupal\herbarium_specimen\HerbariumImageTileFactory',
+            'buildJPGSurrogate',
+          ),
+          array($tiff_file),
+        ),
+        array(
+          array(
+            'Drupal\herbarium_specimen\HerbariumImageTileFactory',
+            'buildImageTiles',
+          ),
+          array($tiff_file),
+        ),
+      ),
+    );
+
+    batch_set($batch);
   }
 
 }

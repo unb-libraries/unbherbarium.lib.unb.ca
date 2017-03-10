@@ -21,7 +21,7 @@ ENV NEWRELIC_PHP_VERSION 7.0.0.186
 ENV NEWRELIC_PHP_ARCH musl
 
 # Add Mail Sending and ImageMagick/MagickSlicer
-RUN apk --update add postfix imagemagick bash && \
+RUN apk --update add tiff-dev tiff postfix imagemagick bash && \
   rm -f /var/cache/apk/* && \
   curl -O https://raw.githubusercontent.com/VoidVolker/MagickSlicer/master/magick-slicer.sh && \
   mv magick-slicer.sh /usr/local/bin/magick-slicer && \

@@ -48,6 +48,12 @@ class HerbariumImageTileFactory {
     $obj->generateTiles($context);
   }
 
+  public static function buildJPGSurrogate($file, array &$context) {
+    // Remove old image tile stuff.
+    $obj = new static($file);
+    $obj->generateJpgSurrogate($context);
+  }
+
   /**
    * Delete the existing tiles and DZI for this file, if they exist.
    */
@@ -69,13 +75,42 @@ class HerbariumImageTileFactory {
     );
 
     exec(
-      "cd {$this->file_path_parts['dirname']} && /usr/local/bin/magick-slicer {$this->file_path_parts['basename']} --extension jpg",
+      "cd {$this->file_path_parts['dirname']} && convert {$this->file_path_parts['basename']} {$this->file_path_parts['filename']}.jpg",
+      $output,
+      $return
+    );
+
+    exec(
+      "cd {$this->file_path_parts['dirname']} && /usr/local/bin/magick-slicer {$this->file_path_parts['filename']}.jpg",
       $output,
       $return
     );
 
     $context['results'][] = t(
       'Generated DZI and tiled images for specimen image [@fid]',
+      array(
+        '@fid' => $this->file->id(),
+      )
+    );
+  }
+
+
+  protected function generateJpgSurrogate(&$context) {
+    $context['message'] = t(
+      'Generating JPG specimen surrogate image for archival master [@fid]',
+      array(
+        '@fid' => $this->file->id(),
+      )
+    );
+
+    exec(
+      "cd {$this->file_path_parts['dirname']} && convert {$this->file_path_parts['basename']} {$this->file_path_parts['filename']}.jpg",
+      $output,
+      $return
+    );
+
+    $context['results'][] = t(
+      'Generated JPG specimen surrogate image for archival master [@fid]',
       array(
         '@fid' => $this->file->id(),
       )
