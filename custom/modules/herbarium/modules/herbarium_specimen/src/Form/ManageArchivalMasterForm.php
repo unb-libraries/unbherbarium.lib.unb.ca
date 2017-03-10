@@ -72,6 +72,17 @@ class ManageArchivalMasterForm extends FormBase {
       'title' => t('Generating Specimen Surrogate Images'),
       'init_message' => t('Generating Specimen Surrogate Images'),
       'operations' => array(
+
+        array(
+          array(
+            'Drupal\herbarium_specimen\HerbariumImageTileFactory',
+            'setBatchMessage',
+          ),
+          array(
+            t('Generating JPG specimen surrogate image for archival master')
+          ),
+        ),
+
         array(
           array(
             'Drupal\herbarium_specimen\HerbariumImageTileFactory',
@@ -79,6 +90,17 @@ class ManageArchivalMasterForm extends FormBase {
           ),
           array($tiff_file),
         ),
+
+        array(
+          array(
+            'Drupal\herbarium_specimen\HerbariumImageTileFactory',
+            'setBatchMessage',
+          ),
+          array(
+            t('Generating DZI and tiled images for specimen image')
+          ),
+        ),
+
         array(
           array(
             'Drupal\herbarium_specimen\HerbariumImageTileFactory',
@@ -86,6 +108,7 @@ class ManageArchivalMasterForm extends FormBase {
           ),
           array($tiff_file),
         ),
+
       ),
     );
 

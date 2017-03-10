@@ -67,20 +67,13 @@ class HerbariumImageTileFactory {
    *   The Batch API context array.
    */
   protected function generateTiles(&$context) {
-    $context['message'] = t(
-      'Generating DZI and tiled images for specimen image [@fid]',
-      array(
-        '@fid' => $this->file->id(),
-      )
-    );
-
     exec(
       "cd {$this->file_path_parts['dirname']} && /usr/local/bin/magick-slicer {$this->file_path_parts['filename']}.jpg",
       $output,
       $return
     );
 
-    $context['results'][] = t(
+    $context['message'] = t(
       'Generated DZI and tiled images for specimen image [@fid]',
       array(
         '@fid' => $this->file->id(),
@@ -88,26 +81,37 @@ class HerbariumImageTileFactory {
     );
   }
 
+  /**
+   * Generate the JPG surrogate to be used for this file.
+   *
+   * @param array $context
+   *   The Batch API context array.
+   */
   protected function generateJpgSurrogate(&$context) {
-    $context['message'] = t(
-      'Generating JPG specimen surrogate image for archival master [@fid]',
-      array(
-        '@fid' => $this->file->id(),
-      )
-    );
-
     exec(
       "cd {$this->file_path_parts['dirname']} && convert {$this->file_path_parts['basename']} {$this->file_path_parts['filename']}.jpg",
       $output,
       $return
     );
 
-    $context['results'][] = t(
+    $context['message'] = t(
       'Generated JPG specimen surrogate image for archival master [@fid]',
       array(
         '@fid' => $this->file->id(),
       )
     );
+  }
+
+  /**
+   * Set a message in the batch status.
+   *
+   * @param string $message
+   *   The message to display.
+   * @param array $context
+   *   The Batch API context array.
+   */
+  public static function setBatchMessage($message, &$context) {
+    $context['message'] = $message;
   }
 
 }
