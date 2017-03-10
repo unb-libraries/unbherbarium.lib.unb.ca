@@ -28,8 +28,11 @@ a.colorbox {
   border: 1px solid #ececec!important;
 }
 
-.toggle {
+.toggle-default-off {
    display: none;
+}
+.toggle-default-on {
+  display: block;
 }
 
 /* animated checkbox toggle button */
