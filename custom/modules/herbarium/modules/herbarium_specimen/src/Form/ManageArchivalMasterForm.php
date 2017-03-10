@@ -2,7 +2,8 @@
 
 namespace Drupal\herbarium_specimen\Form;
 
-use \Drupal\file\Entity\File;
+use Drupal\file\Entity\File;
+use Drupal\node\Entity\Node;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Serialization\Json;
@@ -64,9 +65,9 @@ class ManageArchivalMasterForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Validate structure of SRT file.
     $fid = $form_state->getValue('tiff_file')[0];
     $tiff_file = File::load($fid);
+    $nid = $form_state->getValue('nid')[0];
 
     $batch = array(
       'title' => t('Generating Specimen Surrogate Images'),
@@ -76,9 +77,25 @@ class ManageArchivalMasterForm extends FormBase {
         array(
           array(
             'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
+            'deleteExistingAssets',
+          ),
+          array($tiff_file),
+        ),
+
+        array(
+          array(
+            'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
             'buildJPGSurrogate',
           ),
           array($tiff_file),
+        ),
+
+        array(
+          array(
+            'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
+            'attachSurrogatesToNode',
+          ),
+          array($tiff_file, $nid),
         ),
 
         array(
@@ -92,7 +109,7 @@ class ManageArchivalMasterForm extends FormBase {
         array(
           array(
             'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
-            'deleteLocalTiff',
+            'cleanupFiles',
           ),
           array($tiff_file),
         ),
