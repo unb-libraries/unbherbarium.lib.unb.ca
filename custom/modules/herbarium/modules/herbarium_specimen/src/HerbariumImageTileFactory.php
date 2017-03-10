@@ -63,6 +63,7 @@ class HerbariumImageTileFactory {
    * Generate the tiles and DZI for this file.
    */
   protected function generateTiles() {
+    exec("cd /app/private_filesystem && /usr/local/bin/magick-slicer u-7828.jpg");
   }
 
 }
