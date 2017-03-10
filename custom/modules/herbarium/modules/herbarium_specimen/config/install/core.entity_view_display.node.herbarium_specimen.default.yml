@@ -333,8 +333,17 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-  field_gmap:
+  field_geoheritage:
+    type: string
     weight: 22
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
+  field_gmap:
+    weight: 23
     label: hidden
     settings:
       include_map: '1'
@@ -375,6 +384,5 @@ content:
       empty_fields:
         handler: nbsp
 hidden:
-  field_geoheritage: true
   field_large_sample_surrogate_msk: true
   links: true
