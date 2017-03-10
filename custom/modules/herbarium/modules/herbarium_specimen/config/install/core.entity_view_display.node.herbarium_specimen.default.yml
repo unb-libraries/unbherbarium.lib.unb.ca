@@ -61,7 +61,7 @@ mode: default
 content:
   field_collector_tid:
     type: entity_reference_entity_view
-    weight: 32
+    weight: 33
     label: above
     settings:
       view_mode: default
@@ -74,7 +74,9 @@ content:
     label: above
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
     type: string
   field_dc_created:
     type: datetime_default
@@ -141,7 +143,9 @@ content:
     weight: 18
     label: above
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
   field_dwc_coordinateprecision:
     weight: 3
     label: above
@@ -164,7 +168,9 @@ content:
     label: above
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
     type: string
   field_dwc_county:
     weight: 5
@@ -234,10 +240,12 @@ content:
     label: above
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
     type: string
   field_dwc_habitat:
-    weight: 23
+    weight: 24
     label: above
     settings: {  }
     third_party_settings:
@@ -246,88 +254,104 @@ content:
     type: text_default
   field_dwc_informationwithheld:
     type: list_default
-    weight: 24
+    weight: 25
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_institutioncode:
     type: list_default
-    weight: 25
+    weight: 26
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_institutionid:
     type: list_default
-    weight: 26
+    weight: 27
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_month:
     type: number_integer
-    weight: 27
+    weight: 28
     label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
   field_dwc_occurrenceremarks:
-    weight: 28
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-  field_dwc_othercatalognumbers:
     weight: 29
     label: above
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
+    type: string
+  field_dwc_othercatalognumbers:
+    weight: 30
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
     type: string
   field_dwc_previousidents:
     type: text_default
-    weight: 30
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-  field_dwc_record_number:
     weight: 31
     label: above
+    settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
+  field_dwc_record_number:
+    weight: 32
+    label: above
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
     type: string
   field_dwc_reproductivecondition:
-    weight: 33
+    weight: 34
     label: above
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
     type: string
   field_dwc_stateprovince:
-    weight: 36
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-  field_dwc_verbatimeventdate:
     weight: 37
     label: above
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
     type: string
-  field_dwc_verbatimlocality:
+  field_dwc_verbatimeventdate:
     weight: 38
     label: above
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
+    type: string
+  field_dwc_verbatimlocality:
+    weight: 39
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
     type: string
   field_dwc_year:
     type: number_integer
-    weight: 39
+    weight: 40
     label: above
     settings:
       thousand_separator: ''
@@ -362,7 +386,7 @@ content:
     type: simple_gmap
   field_large_sample_surrogate:
     type: colorbox
-    weight: 35
+    weight: 36
     label: hidden
     settings:
       colorbox_node_style: 220-wide
@@ -375,7 +399,7 @@ content:
     third_party_settings: {  }
   field_taxonomy_tid:
     type: entity_reference_entity_view
-    weight: 34
+    weight: 35
     label: above
     settings:
       view_mode: default
