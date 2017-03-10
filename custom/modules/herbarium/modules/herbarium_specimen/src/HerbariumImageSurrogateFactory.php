@@ -48,12 +48,28 @@ class HerbariumImageSurrogateFactory {
     $obj->generateDZITiles($context);
   }
 
+  /**
+   * Build surrogate JPG from TIFF to be used for derivatives.
+   *
+   * @param object $file
+   *   The Drupal TIFF File object to generate the DZI and tiles for.
+   * @param array $context
+   *   The Batch API context array.
+   */
   public static function buildJPGSurrogate($file, array &$context) {
     // Remove old image tile stuff.
     $obj = new static($file);
     $obj->generateJpgSurrogate($context);
   }
 
+  /**
+   * Remove local TIFF after archiving to remote store.
+   *
+   * @param object $file
+   *   The Drupal TIFF File object to generate the DZI and tiles for.
+   * @param array $context
+   *   The Batch API context array.
+   */
   public static function deleteLocalTiff($file, array &$context) {
     // Remove old image tile stuff.
     $obj = new static($file);
