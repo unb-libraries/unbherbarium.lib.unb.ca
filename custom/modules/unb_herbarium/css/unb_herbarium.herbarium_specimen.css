@@ -5,6 +5,12 @@
   display: table;
 }
 
+.description {
+  color: #888;
+  font-size: .92em;
+  margin: .5em auto 0 auto;
+}
+
 .specimen-details a div {
   display: inline;
 }
@@ -200,6 +206,21 @@ dd li {
   display: inline-block;
 }
 
+.fieldset-toggle legend input,
+.fieldset-toggle legend label {
+  display: inline-block;
+}
+.fieldset-toggle legend label {
+  margin-right: .25em;
+}
+.fieldset-toggle {
+  border: none;
+  border-top: 1px solid #ddd;
+  padding: 0;
+}
+.fieldset-toggle .views-exposed-form input {
+  height: 2em;
+}
 @media (min-width: 640px) {
   /* dl table display */
   dl {

@@ -1,0 +1,40 @@
+{{ attach_library('unb_herbarium/herbarium_specimen') }}
+{#
+/**
+ * @file
+ * Theme override for a views exposed form.
+ *
+ * Available variables:
+ * - form: A render element representing the form.
+ *
+ * @see template_preprocess_views_exposed_form()
+ */=
+#}
+{% if q is not empty %}
+  {#
+    This ensures that, if clean URLs are off, the 'q' is added first,
+    as a hidden form element, so that it shows up first in the POST URL.
+  #}
+  {{ q }}
+{% endif %}
+
+{% set filter_state, checkbox_attribute = 'hide', NULL %}
+{#
+  form["actions"]["reset"]["#access"] = 'bool(false)' when reset button hidden, NULL when shown.
+#}
+{% if form["actions"]["reset"]["#access"] is not defined %}
+  {% set filter_state, checkbox_attribute = 'show', 'checked' %}
+{% endif %}
+
+<fieldset class="fieldset-toggle form--inline clearfix">
+  <legend>
+    <input id="show-filters" class="toggle-filters-display" type="checkbox" {{ checkbox_attribute }}/>
+    <label for="show-filters">{% trans %}Show filters{% endtrans %}</label>
+  </legend>
+  <div{{ attributes.addClass(filter_state) }}>
+    <p class="description">
+      {% trans %}Narrow your result list by applying one of more of the filters below.{% endtrans %}
+    </p>
+    {{ form }}
+  </div>
+</fieldset>
