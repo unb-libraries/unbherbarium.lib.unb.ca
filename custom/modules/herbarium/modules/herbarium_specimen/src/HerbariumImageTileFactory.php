@@ -15,6 +15,13 @@ class HerbariumImageTileFactory {
   protected $file;
 
   /**
+   * An associative array : file path information as returned by pathinfo().
+   *
+   * @var array
+   */
+  protected $file_path_parts;
+
+  /**
    * Constructor.
    *
    * @param object $file
@@ -22,6 +29,8 @@ class HerbariumImageTileFactory {
    */
   protected function __construct($file) {
     $this->file = $file;
+    $file_path = drupal_realpath($this->file->getFileUri());
+    $this->file_path_parts = pathinfo($file_path);
   }
 
   /**
@@ -34,23 +43,9 @@ class HerbariumImageTileFactory {
    */
   public static function buildImageTiles($file, array &$context) {
     // Remove old image tile stuff.
-    $context['message'] = t(
-      'Generating DZI and tiled images for specimen image [@fid]',
-      array(
-        '@fid' => $file->id(),
-      )
-    );
-
     $obj = new static($file);
     $obj->deleteExistingTiles();
-    $obj->generateTiles();
-
-    $context['results'][] = t(
-      'Generated DZI and tiled images for specimen image [@fid]',
-      array(
-        '@fid' => $file->id(),
-      )
-    );
+    $obj->generateTiles($context);
   }
 
   /**
@@ -61,9 +56,30 @@ class HerbariumImageTileFactory {
 
   /**
    * Generate the tiles and DZI for this file.
+   *
+   * @param array $context
+   *   The Batch API context array.
    */
-  protected function generateTiles() {
-    exec("cd /app/private_filesystem && /usr/local/bin/magick-slicer u-7828.jpg");
+  protected function generateTiles(&$context) {
+    $context['message'] = t(
+      'Generating DZI and tiled images for specimen image [@fid]',
+      array(
+        '@fid' => $this->file->id(),
+      )
+    );
+
+    exec(
+      "cd {$this->file_path_parts['dirname']} && /usr/local/bin/magick-slicer {$this->file_path_parts['basename']} --extension jpg",
+      $output,
+      $return
+    );
+
+    $context['results'][] = t(
+      'Generated DZI and tiled images for specimen image [@fid]',
+      array(
+        '@fid' => $this->file->id(),
+      )
+    );
   }
 
 }

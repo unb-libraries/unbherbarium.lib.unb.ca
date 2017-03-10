@@ -1,0 +1,5 @@
+herbarium_specimen.manage_archival_master:
+  route_name: herbarium_specimen.manage_archival_master
+  title: 'Upload Archival Master'
+  base_route: entity.node.canonical
+  weight: 101
