@@ -62,7 +62,7 @@ mode: default
 content:
   field_collector_tid:
     type: entity_reference_entity_view
-    weight: 1
+    weight: 33
     label: above
     settings:
       view_mode: default
@@ -72,33 +72,37 @@ content:
         handler: nbsp
   field_dc_contributor_other:
     type: text_default
-    weight: 2
+    weight: 6
     label: above
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
   field_dc_created:
     type: datetime_default
-    weight: 22
+    weight: 31
     label: above
     settings:
       timezone_override: ''
-      format_type: year_month_day
-    third_party_settings: {  }
+      format_type: html_date
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
   field_dc_format:
     type: list_default
-    weight: 16
+    weight: 7
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dc_language:
     type: list_default
-    weight: 22
+    weight: 8
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dc_modified:
     type: datetime_default
-    weight: 16
+    weight: 9
     label: above
     settings:
       format_type: medium
@@ -106,80 +110,80 @@ content:
     third_party_settings: {  }
   field_dc_publisher:
     type: list_default
-    weight: 21
+    weight: 10
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dc_rights:
     type: list_default
-    weight: 14
+    weight: 11
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dc_rightsholder:
     type: list_default
-    weight: 11
+    weight: 12
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dc_type:
     type: list_default
-    weight: 10
+    weight: 13
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_basisofrecord:
     type: list_default
-    weight: 18
+    weight: 0
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_collectioncode:
     type: list_default
-    weight: 17
+    weight: 14
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_coordinateprecision:
     type: text_default
-    weight: 12
+    weight: 15
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_country:
     type: text_default
-    weight: 13
+    weight: 2
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_countrycode:
     type: text_default
-    weight: 15
+    weight: 17
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_county:
     type: text_default
-    weight: 18
+    weight: 3
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_datageneralizations:
     type: list_default
-    weight: 19
+    weight: 4
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_day:
     type: number_integer
-    weight: 15
+    weight: 5
     label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
   field_dwc_decimallatitude:
-    weight: 11
+    weight: 18
     label: above
     settings:
       thousand_separator: ''
@@ -191,7 +195,7 @@ content:
         handler: nbsp
     type: number_decimal
   field_dwc_decimallongitude:
-    weight: 10
+    weight: 19
     label: above
     settings:
       thousand_separator: ''
@@ -204,14 +208,16 @@ content:
     type: number_decimal
   field_dwc_eventdate:
     type: datetime_default
-    weight: 21
+    weight: 1
     label: above
     settings:
       timezone_override: ''
-      format_type: year_month_day
-    third_party_settings: {  }
+      format_type: html_date
+    third_party_settings:
+      empty_fields:
+        handler: ''
   field_dwc_eventremarks:
-    weight: 19
+    weight: 16
     label: above
     settings: {  }
     third_party_settings:
@@ -220,14 +226,14 @@ content:
     type: text_default
   field_dwc_georeferencedby:
     type: text_default
-    weight: 17
+    weight: 22
     label: above
     settings: {  }
     third_party_settings:
       empty_fields:
         handler: nbsp
   field_dwc_habitat:
-    weight: 14
+    weight: 21
     label: above
     settings: {  }
     third_party_settings:
@@ -236,25 +242,25 @@ content:
     type: text_default
   field_dwc_informationwithheld:
     type: list_default
-    weight: 13
+    weight: 24
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_institutioncode:
     type: list_default
-    weight: 15
+    weight: 25
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_institutionid:
     type: list_default
-    weight: 20
+    weight: 26
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_month:
     type: number_integer
-    weight: 14
+    weight: 27
     label: above
     settings:
       thousand_separator: ''
@@ -262,7 +268,7 @@ content:
     third_party_settings: {  }
   field_dwc_occurrenceremarks:
     type: text_default
-    weight: 20
+    weight: 28
     label: above
     settings: {  }
     third_party_settings:
@@ -270,7 +276,7 @@ content:
         handler: nbsp
   field_dwc_othercatalognumbers:
     type: text_trimmed
-    weight: 3
+    weight: 29
     label: above
     settings:
       trim_length: 600
@@ -279,19 +285,19 @@ content:
         handler: nbsp
   field_dwc_previousidents:
     type: text_default
-    weight: 29
+    weight: 30
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_record_number:
     type: text_default
-    weight: 0
+    weight: 32
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_reproductivecondition:
     type: text_default
-    weight: 4
+    weight: 34
     label: above
     settings: {  }
     third_party_settings:
@@ -299,25 +305,25 @@ content:
         handler: nbsp
   field_dwc_stateprovince:
     type: text_default
-    weight: 17
+    weight: 37
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_verbatimeventdate:
     type: text_default
-    weight: 23
+    weight: 38
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_verbatimlocality:
     type: text_default
-    weight: 16
+    weight: 39
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_year:
     type: number_integer
-    weight: 13
+    weight: 40
     label: above
     settings:
       thousand_separator: ''
@@ -325,12 +331,14 @@ content:
     third_party_settings: {  }
   field_geoheritage:
     type: text_default
-    weight: 18
+    weight: 23
     label: above
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
   field_gmap:
-    weight: 11
+    weight: 20
     label: hidden
     settings:
       include_map: '1'
@@ -349,7 +357,7 @@ content:
     type: simple_gmap
   field_large_sample_surrogate:
     type: colorbox
-    weight: 10
+    weight: 36
     label: hidden
     settings:
       colorbox_node_style: 220-wide
@@ -362,7 +370,7 @@ content:
     third_party_settings: {  }
   field_taxonomy_tid:
     type: entity_reference_entity_view
-    weight: 5
+    weight: 35
     label: above
     settings:
       view_mode: default
