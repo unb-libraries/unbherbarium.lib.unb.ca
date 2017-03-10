@@ -99,13 +99,8 @@ class MigrateEvent implements EventSubscriberInterface {
     $dwc_province = trim($row->getSourceProperty('stateprovince'));
     $row->setSourceProperty('dwc_stateprovince', str_replace('.', '', $dwc_province));
 
-    // Coordinate Precision.
-    $precisionValue = trim($row->getSourceProperty('coordinateprecision'));
-    $row->setSourceProperty('verbatim_coordinateprec', $precisionValue);
-    $coordPrec = $this->precMap($precisionValue);
-    $row->setSourceProperty('mapped_coord_prec', $coordPrec);
-
     // Geo Heritage (Longitude/Latitude).
+    $precisionValue = trim($row->getSourceProperty('coordinateprecision'));
     $longDec = trim($row->getSourceProperty('longitudedecimal'));
     $latDec = trim($row->getSourceProperty('latitudedecimal'));
     $longDig = trim($row->getSourceProperty('longitudedigital'));
@@ -122,6 +117,7 @@ class MigrateEvent implements EventSubscriberInterface {
 
     $longLatItems = array(
       $accNum,
+      $precisionValue,
       $longDec,
       $latDec,
       $longDig,
@@ -138,6 +134,11 @@ class MigrateEvent implements EventSubscriberInterface {
     );
     list($decLong, $decLat, $geoRefRem) =  $this->determineLongitudeLatitude($longLatItems);
     $row->setSourceProperty('geo_heritage', $geoRefRem);
+
+    // Coordinate Precision.
+    $coordPrec = $this->precMap($precisionValue);
+    $row->setSourceProperty('mapped_coord_prec', $coordPrec);
+
     if ($decLat != NULL && $decLong != NULL) {
       $country = trim($row->getSourceProperty('country'));
       $isCanada = (substr(strtolower($country), 0 , 3) === "can" ) ? TRUE : FALSE;
@@ -230,7 +231,7 @@ class MigrateEvent implements EventSubscriberInterface {
   public function determineLongitudeLatitude($longLatVals) {
     $longVal = $latVal = '';
     $srcMethod = "Unknown";
-    list($id, $longDec, $latDec, $longDig, $latDig, $longDeg, $longMin, $longSec, $latDeg, $latMin, $latSec, $geoUtmz, $geoUtme, $geoUtmn) = $longLatVals;
+    list($id, $prec, $longDec, $latDec, $longDig, $latDig, $longDeg, $longMin, $longSec, $latDeg, $latMin, $latSec, $geoUtmz, $geoUtme, $geoUtmn) = $longLatVals;
     if ($this->testLongitudeLatitudeFormat($longDec, $latDec)) {
       $srcMethod = "Direct From Spreadsheet";
       $longVal = $longDec;
@@ -265,7 +266,8 @@ class MigrateEvent implements EventSubscriberInterface {
     $geoHeritage = $srcMethod . " - Raw Decimal : " . $longDec . '/' . $latDec . '|' .
       'DMS : ' . $latDeg . '.' . $latMin . '.' . $latSec . '/' .
       $longDeg . '.' . $longMin . '.' . $longSec . '|' .
-      'UTM : ' . $geoUtmz . '/' . $geoUtme . '/' . $geoUtmn;
+      'UTM : ' . $geoUtmz . '/' . $geoUtme . '/' . $geoUtmn . '|' .
+      'Precision : ' . $prec;
 
     return array ($longVal, $latVal, $geoHeritage);
   }
