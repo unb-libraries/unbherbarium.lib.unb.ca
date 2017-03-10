@@ -102,16 +102,4 @@ class HerbariumImageTileFactory {
     );
   }
 
-  /**
-   * Set a message in the batch status.
-   *
-   * @param string $message
-   *   The message to display.
-   * @param array $context
-   *   The Batch API context array.
-   */
-  public static function setBatchMessage($message, &$context) {
-    $context['message'] = $message;
-  }
-
 }
