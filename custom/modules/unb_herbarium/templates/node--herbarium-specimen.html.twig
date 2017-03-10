@@ -213,7 +213,7 @@
             </dl>
         </article>
         <aside>
-            {% if content.field_large_sample_surrogate %}
+            {% if content.field_large_sample_surrogate|field_value %}
               <figure>
                   {{ content.field_large_sample_surrogate }}
                   <figcaption>{% trans %}Click specimen image to enlarge{% endtrans %}</figcaption>
