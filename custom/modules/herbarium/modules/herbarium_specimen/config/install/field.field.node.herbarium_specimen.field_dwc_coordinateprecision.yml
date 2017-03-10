@@ -4,17 +4,19 @@ dependencies:
   config:
     - field.storage.node.field_dwc_coordinateprecision
     - node.type.herbarium_specimen
-  module:
-    - text
 id: node.herbarium_specimen.field_dwc_coordinateprecision
 field_name: field_dwc_coordinateprecision
 entity_type: node
 bundle: herbarium_specimen
-label: 'DwC:coordinatePrecision'
-description: 'A decimal representation of the precision of the coordinates given in the decimalLatitude and decimalLongitude'
+label: 'Coordinate Precision'
+description: 'DwC:coordinatePrecision Decimal degrees, range typically from <b>0.1</b> <i>(large city or district)</i> to <b>0.00001</b> <i>(individual trees)</i>'
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: text
+settings:
+  min: !!float 0
+  max: !!float 1
+  prefix: ''
+  suffix: ''
+field_type: float

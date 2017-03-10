@@ -1,19 +1,17 @@
-langcode: und
+langcode: en
 status: true
 dependencies:
   module:
     - node
-    - text
 id: node.field_dwc_coordinateprecision
 field_name: field_dwc_coordinateprecision
 entity_type: node
-type: text
-settings:
-  max_length: 255
-module: text
+type: float
+settings: {  }
+module: core
 locked: false
 cardinality: 1
-translatable: false
+translatable: true
 indexes: {  }
 persist_with_no_fields: false
 custom_storage: false
