@@ -154,7 +154,9 @@ content:
       decimal_separator: .
       scale: 2
       prefix_suffix: true
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
     type: number_decimal
   field_dwc_country:
     weight: 4
