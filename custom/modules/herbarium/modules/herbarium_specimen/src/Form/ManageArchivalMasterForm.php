@@ -75,7 +75,7 @@ class ManageArchivalMasterForm extends FormBase {
 
         array(
           array(
-            'Drupal\herbarium_specimen\HerbariumImageTileFactory',
+            'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
             'buildJPGSurrogate',
           ),
           array($tiff_file),
@@ -83,12 +83,19 @@ class ManageArchivalMasterForm extends FormBase {
 
         array(
           array(
-            'Drupal\herbarium_specimen\HerbariumImageTileFactory',
-            'buildImageTiles',
+            'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
+            'buildDZITiles',
           ),
           array($tiff_file),
         ),
 
+        array(
+          array(
+            'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
+            'deleteLocalTiff',
+          ),
+          array($tiff_file),
+        ),
       ),
     );
 

@@ -3,9 +3,9 @@
 namespace Drupal\herbarium_specimen;
 
 /**
- * HerbariumImageTileFactory caption set object.
+ * HerbariumImageSurrogateFactory caption set object.
  */
-class HerbariumImageTileFactory {
+class HerbariumImageSurrogateFactory {
 
   /**
    * The Drupal File object to generate the DZI and tiles for.
@@ -41,17 +41,23 @@ class HerbariumImageTileFactory {
    * @param array $context
    *   The Batch API context array.
    */
-  public static function buildImageTiles($file, array &$context) {
+  public static function buildDZITiles($file, array &$context) {
     // Remove old image tile stuff.
     $obj = new static($file);
     $obj->deleteExistingTiles();
-    $obj->generateTiles($context);
+    $obj->generateDZITiles($context);
   }
 
   public static function buildJPGSurrogate($file, array &$context) {
     // Remove old image tile stuff.
     $obj = new static($file);
     $obj->generateJpgSurrogate($context);
+  }
+
+  public static function deleteLocalTiff($file, array &$context) {
+    // Remove old image tile stuff.
+    $obj = new static($file);
+    $obj->deleteTempArchivalFile($context);
   }
 
   /**
@@ -66,7 +72,7 @@ class HerbariumImageTileFactory {
    * @param array $context
    *   The Batch API context array.
    */
-  protected function generateTiles(&$context) {
+  protected function generateDZITiles(&$context) {
     exec(
       "cd {$this->file_path_parts['dirname']} && /usr/local/bin/magick-slicer {$this->file_path_parts['filename']}.jpg",
       $output,
@@ -102,4 +108,17 @@ class HerbariumImageTileFactory {
     );
   }
 
+  /**
+   * Delete the uploaded archival tiff from local.
+   *
+   * @param array $context
+   *   The Batch API context array.
+   */
+  protected function deleteTempArchivalFile(&$context) {
+    $this->file->delete();
+
+    $context['message'] = t(
+      'Deleted locally uploaded archival TIFF'
+    );
+  }
 }
