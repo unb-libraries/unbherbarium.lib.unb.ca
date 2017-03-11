@@ -17,79 +17,109 @@ class HerbariumImageSurrogateFactory {
    */
   protected $file;
 
+  /**
+   * The parent node of the file object.
+   *
+   * @var object
+   */
+  protected $node;
 
   /**
    * An associative array : file path information as returned by pathinfo().
    *
    * @var array
    */
-  protected $file_path_parts;
+  protected $filePathParts;
 
   /**
    * Constructor.
    *
-   * @param object $file
-   *   The Drupal File object to generate the DZI and tiles for.
+   * @param object $fid
+   *   The file ID of the archival TIFF File object.
+   * @param object $nid
+   *   The node id of the parent herbarium specimen.
    */
-  protected function __construct($file) {
-    $this->file = $file;
+  protected function __construct($fid, $nid) {
+    $this->file = File::load($fid);
+    $this->node = Node::load($nid);
+
     $file_path = drupal_realpath($this->file->getFileUri());
-    $this->file_path_parts = pathinfo($file_path);
+    $this->filePathParts = pathinfo($file_path);
   }
 
   /**
-   * Build DZI and custom map tiles for an image.
+   * Attach the image surrogates to the node image fields.
    *
-   * @param object $file
-   *   The Drupal File object to generate the DZI and tiles for.
+   * @param object $fid
+   *   The file ID of the archival TIFF File object.
+   * @param object $nid
+   *   The node id of the parent herbarium specimen.
    * @param array $context
    *   The Batch API context array.
    */
-  public static function buildDZITiles($file, array &$context) {
-    // Remove old image tile stuff.
-    $obj = new static($file);
-    $obj->generateDZITiles($context);
+  public static function attachSurrogatesToNode($fid, $nid, array &$context) {
+    $obj = new static($fid, $nid);
+    $obj->attachNodeSurrogates($context);
   }
 
   /**
-   * Build surrogate JPG from TIFF to be used for derivatives.
+   * Build the DZI and tile files for the archival image.
    *
-   * @param object $file
-   *   The Drupal TIFF File object to generate the DZI and tiles for.
+   * @param object $fid
+   *   The file ID of the archival TIFF File object.
+   * @param object $nid
+   *   The node id of the parent herbarium specimen.
    * @param array $context
    *   The Batch API context array.
    */
-  public static function buildJPGSurrogate($file, array &$context) {
-    // Remove old image tile stuff.
-    $obj = new static($file);
+  public static function buildDziTiles($fid, $nid, array &$context) {
+    $obj = new static($fid, $nid);
+    $obj->generateDziTiles($context);
+  }
+
+  /**
+   * Create the master JPG surrogate from the archival image.
+   *
+   * @param object $fid
+   *   The file ID of the archival TIFF File object.
+   * @param object $nid
+   *   The node id of the parent herbarium specimen.
+   * @param array $context
+   *   The Batch API context array.
+   */
+  public static function buildJpgSurrogate($fid, $nid, array &$context) {
+    $obj = new static($fid, $nid);
     $obj->generateJpgSurrogate($context);
   }
 
   /**
    * Remove local files after processing.
    *
-   * @param object $file
-   *   The Drupal TIFF File object to generate the DZI and tiles for.
+   * @param object $fid
+   *   The file ID of the archival TIFF File object.
+   * @param object $nid
+   *   The node id of the parent herbarium specimen.
    * @param array $context
    *   The Batch API context array.
    */
-  public static function cleanupFiles($file, array &$context) {
-    // Remove old image tile stuff.
-    $obj = new static($file);
+  public static function cleanupFiles($fid, $nid, array &$context) {
+    $obj = new static($fid, $nid);
     $obj->deleteTempFiles($context);
   }
 
-  public static function deleteExistingAssets($file, array &$context) {
-    // Remove old image tile stuff.
-    $obj = new static($file);
+  /**
+   * Delete any existing assets from the DZI/Tile directory.
+   *
+   * @param object $fid
+   *   The file ID of the archival TIFF File object.
+   * @param object $nid
+   *   The node id of the parent herbarium specimen.
+   * @param array $context
+   *   The Batch API context array.
+   */
+  public static function deleteExistingAssets($fid, $nid, array &$context) {
+    $obj = new static($fid, $nid);
     $obj->deleteGeneratedAssets($context);
-  }
-
-  public static function attachSurrogatesToNode($file, $nid, array &$context) {
-    // Remove old image tile stuff.
-    die($nid);
-    $obj = new static($file);
-    $obj->attachNodeSurrogates($nid, $context);
   }
 
   /**
@@ -104,9 +134,11 @@ class HerbariumImageSurrogateFactory {
    * @param array $context
    *   The Batch API context array.
    */
-  protected function generateDZITiles(&$context) {
+  protected function generateDziTiles(array &$context) {
+    $nid = $this->node->id();
+
     exec(
-      "cd {$this->file_path_parts['dirname']} && /usr/local/bin/magick-slicer {$this->file_path_parts['filename']}.jpg",
+      "cd {$this->filePathParts['dirname']} && /usr/local/bin/magick-slicer $nid.jpg",
       $output,
       $return
     );
@@ -125,9 +157,11 @@ class HerbariumImageSurrogateFactory {
    * @param array $context
    *   The Batch API context array.
    */
-  protected function generateJpgSurrogate(&$context) {
+  protected function generateJpgSurrogate(array &$context) {
+    $nid = $this->node->id();
+
     exec(
-      "cd {$this->file_path_parts['dirname']} && convert {$this->file_path_parts['basename']} {$this->file_path_parts['filename']}.jpg",
+      "cd {$this->filePathParts['dirname']} && convert {$this->filePathParts['basename']} $nid.jpg",
       $output,
       $return
     );
@@ -146,10 +180,10 @@ class HerbariumImageSurrogateFactory {
    * @param array $context
    *   The Batch API context array.
    */
-  protected function deleteTempFiles(&$context) {
+  protected function deleteTempFiles(array &$context) {
     $this->file->delete();
     exec(
-      "cd {$this->file_path_parts['dirname']} && rm -rf *.jpg *.tif *.tiff",
+      "cd {$this->filePathParts['dirname']} && rm -rf *.jpg *.tif *.tiff",
       $output,
       $return
     );
@@ -165,9 +199,9 @@ class HerbariumImageSurrogateFactory {
    * @param array $context
    *   The Batch API context array.
    */
-  protected function deleteGeneratedAssets(&$context) {
+  protected function deleteGeneratedAssets(array &$context) {
     exec(
-      "cd {$this->file_path_parts['dirname']} && rm -rf *.jpg *.dzi *_files",
+      "cd {$this->filePathParts['dirname']} && rm -rf *.jpg *.dzi *_files",
       $output,
       $return
     );
@@ -181,26 +215,25 @@ class HerbariumImageSurrogateFactory {
    * @param array $context
    *   The Batch API context array.
    */
-  protected function attachNodeSurrogates($nid, &$context) {
-    $node = Node::load($nid);
-
-    $unmasked_filename =  "{$this->file_path_parts['dirname']}/{$this->file_path_parts['filename']}.jpg";
+  protected function attachNodeSurrogates(array &$context) {
+    $nid = $this->node->id();
+    $unmasked_filename = "{$this->filePathParts['dirname']}/$nid.jpg";
 
     // Create file.
     $target_path = 'private://specimen_images';
     file_prepare_directory($target_path, FILE_CREATE_DIRECTORY);
     $file_destination = "$target_path/$nid.jpg";
-    $uri  = file_unmanaged_copy($unmasked_filename, $file_destination, FILE_EXISTS_REPLACE);
+    $uri = file_unmanaged_copy($unmasked_filename, $file_destination, FILE_EXISTS_REPLACE);
     $file = File::Create([
       'uri' => $uri,
     ]);
 
-    if (!empty($node->get('field_large_sample_surrogate')->entity)) {
-      $node->get('field_large_sample_surrogate')->entity->delete();
+    if (!empty($this->node->get('field_large_sample_surrogate')->entity)) {
+      $this->node->get('field_large_sample_surrogate')->entity->delete();
     }
 
-    $node->get('field_large_sample_surrogate')->setValue($file);
-    $node->save();
+    $this->node->get('field_large_sample_surrogate')->setValue($file);
+    $this->node->save();
 
     $context['message'] = t('Attached unmasked image to specimen.');
   }

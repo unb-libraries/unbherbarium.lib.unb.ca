@@ -2,15 +2,8 @@
 
 namespace Drupal\herbarium_specimen\Form;
 
-use Drupal\file\Entity\File;
-use Drupal\node\Entity\Node;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Component\Serialization\Json;
-use Drupal\Core\Url;
-use Drupal\pmportal_video\Captions\VideoCaptionLine;
-use Drupal\pmportal_video\Captions\VideoCaptionSet;
-use Drupal\views\Views;
 
 /**
  * ManageArchivalMasterForm object.
@@ -36,7 +29,7 @@ class ManageArchivalMasterForm extends FormBase {
       '#title' => t('TIF File'),
       '#type' => 'managed_file',
       '#description' => t('Upload a archival master file, allowed extensions: TIF TIFF'),
-      '#upload_location' => "private://archival_master_upload/$node/",
+      '#upload_location' => "private://dzi/$node/",
       '#required' => TRUE,
       '#upload_validators' => array(
         'file_validate_extensions' => array('tif', 'tiff'),
@@ -66,8 +59,7 @@ class ManageArchivalMasterForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $fid = $form_state->getValue('tiff_file')[0];
-    $tiff_file = File::load($fid);
-    $nid = $form_state->getValue('nid')[0];
+    $nid = $form_state->getValue('nid');
 
     $batch = array(
       'title' => t('Generating Specimen Surrogate Images'),
@@ -79,15 +71,15 @@ class ManageArchivalMasterForm extends FormBase {
             'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
             'deleteExistingAssets',
           ),
-          array($tiff_file),
+          array($fid, $nid),
         ),
 
         array(
           array(
             'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
-            'buildJPGSurrogate',
+            'buildJpgSurrogate',
           ),
-          array($tiff_file),
+          array($fid, $nid),
         ),
 
         array(
@@ -95,15 +87,15 @@ class ManageArchivalMasterForm extends FormBase {
             'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
             'attachSurrogatesToNode',
           ),
-          array($tiff_file, $nid),
+          array($fid, $nid),
         ),
 
         array(
           array(
             'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
-            'buildDZITiles',
+            'buildDziTiles',
           ),
-          array($tiff_file),
+          array($fid, $nid),
         ),
 
         array(
@@ -111,7 +103,7 @@ class ManageArchivalMasterForm extends FormBase {
             'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
             'cleanupFiles',
           ),
-          array($tiff_file),
+          array($fid, $nid),
         ),
       ),
     );
