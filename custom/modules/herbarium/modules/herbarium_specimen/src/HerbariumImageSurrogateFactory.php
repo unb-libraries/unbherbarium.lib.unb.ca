@@ -161,7 +161,7 @@ class HerbariumImageSurrogateFactory {
     $nid = $this->node->id();
 
     exec(
-      "cd {$this->filePathParts['dirname']} && convert {$this->filePathParts['basename']} $nid.jpg",
+      "cd {$this->filePathParts['dirname']} && convert {$this->filePathParts['basename']} -unsharp 0x1.0+0.5+0 $nid.jpg",
       $output,
       $return
     );
