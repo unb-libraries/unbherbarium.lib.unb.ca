@@ -33,19 +33,19 @@ class MigrateEvent implements EventSubscriberInterface {
    *   The prepare-row event.
    */
   public function onPrepareRow(MigratePrepareRowEvent $event) {
-    $row = $event->getRow();
     $images_path = UNB_HERBARIUM_MIGRATE_CSV_SPECIES_IMPORT_DATA_DIR;
+    $row = $event->getRow();
 
     // Accession Number, aka ID
     $accNum = trim($row->getSourceProperty('record_number'));
 
     // Surrogate Image Handling For Caching.
-    $file_unmasked = $images_path . 'u-'. $accNum . '.jpg';
+    $file_unmasked = $images_path . 'u-' . $accNum . '.jpg';
     $file_masked = $images_path . $accNum . '.jpg';
     $this->addFieldFile($row, 'image_file_unmasked', $file_unmasked);
     $this->addFieldFile($row, 'image_file_masked', $file_masked);
 
-    $year = (trim($row->getSourceProperty('year')) != '')  ? $row->getSourceProperty('year') : NULL;
+    $year = (trim($row->getSourceProperty('year')) != '') ? $row->getSourceProperty('year') : NULL;
     $month = (trim($row->getSourceProperty('month')) != '') ? $row->getSourceProperty('month') : NULL;
     $day = (trim($row->getSourceProperty('day')) != '') ? $row->getSourceProperty('day') : NULL;
 
@@ -84,7 +84,11 @@ class MigrateEvent implements EventSubscriberInterface {
     $filemaker_date = $date_array = $date_str = '';
     $date_str = str_replace("/", "-", trim($row->getSourceProperty('dc_modified')));
     list($date_array['year'], $date_array['month'], $date_array['day']) = array_filter(explode("-", $date_str));
-    list($date_array['hour'], $date_array['minute'], $date_array['second']) = array('00', '00', '00');
+    list($date_array['hour'], $date_array['minute'], $date_array['second']) = array(
+      '00',
+      '00',
+      '00'
+    );
     if (!empty($date_array)) {
       if ($this->isValidYearRange($date_array['year']) &&
         $this->isValidMonthRange($date_array['month']) &&
@@ -132,7 +136,7 @@ class MigrateEvent implements EventSubscriberInterface {
       $geoUTME,
       $geoUTMN,
     );
-    list($decLong, $decLat, $geoRefRem) =  $this->determineLongitudeLatitude($longLatItems);
+    list($decLong, $decLat, $geoRefRem) = $this->determineLongitudeLatitude($longLatItems);
     $row->setSourceProperty('geo_heritage', $geoRefRem);
 
     // Coordinate Precision.
@@ -141,7 +145,7 @@ class MigrateEvent implements EventSubscriberInterface {
 
     if ($decLat != NULL && $decLong != NULL) {
       $country = trim($row->getSourceProperty('country'));
-      $isCanada = (substr(strtolower($country), 0 , 3) === "can" ) ? TRUE : FALSE;
+      $isCanada = (substr(strtolower($country), 0, 3) === "can") ? TRUE : FALSE;
       if ($decLong > 0 && $isCanada) {
         // Canadian Longitude should be negative.
         $decLong = $decLong * (-1);
@@ -152,7 +156,7 @@ class MigrateEvent implements EventSubscriberInterface {
     }
 
     // Temporary title, max chars=255
-    $tmp_title = (trim($row->getSourceProperty('tmp_title')) != '')  ? $row->getSourceProperty('tmp_title') : 'Unavailable';
+    $tmp_title = (trim($row->getSourceProperty('tmp_title')) != '') ? $row->getSourceProperty('tmp_title') : 'Unavailable';
     $trunc_title = substr($tmp_title, 0, 255);
     $row->setSourceProperty('title_string', $trunc_title);
 
@@ -165,7 +169,7 @@ class MigrateEvent implements EventSubscriberInterface {
     $collectors = explode(";", $row->getSourceProperty('collectors'));
     foreach ($collectors as $value) {
       $term_value = trim($value);
-      if(!empty($term_value)) {
+      if (!empty($term_value)) {
         $term_tid = $this->taxtermExists($term_value, $fieldname, $vocabulary);
         if (!empty($term_tid)) {
           $term = Term::load($term_tid);
