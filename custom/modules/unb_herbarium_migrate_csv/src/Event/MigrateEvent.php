@@ -205,16 +205,16 @@ class MigrateEvent implements EventSubscriberInterface {
 
   // Determine and return Coordinate Precision.
   public function precMap($prec) {
-    $coordPrec = '';
+    $coordPrec = NULL;
     if (is_numeric($prec)) {
       $intPrec = floor ($prec);
       if ($intPrec >= 1 && $intPrec <= 5) {
         $precisionMap = array(
-          1 => '.00001',
-          2 => '.0001',
-          3 => '.001',
-          4 => '.01',
-          5 => '.1',
+          1 => '0.00001',
+          2 => '0.0001',
+          3 => '0.001',
+          4 => '0.01',
+          5 => '0.1',
         );
         $coordPrec = $precisionMap[$intPrec];
       }
