@@ -19,8 +19,6 @@ class ManageArchivalMasterForm extends FormBase {
 
   /**
    * {@inheritdoc}
-   *
-   * @TODO: Update legacy code to use theme_form().
    */
   public function buildForm(array $form, FormStateInterface $form_state, $node = NULL) {
     $form = array();
@@ -61,54 +59,9 @@ class ManageArchivalMasterForm extends FormBase {
     $fid = $form_state->getValue('tiff_file')[0];
     $nid = $form_state->getValue('nid');
 
-    $batch = array(
-      'title' => t('Generating Specimen Surrogate Images'),
-      'init_message' => t('Generating Specimen Surrogate Images'),
-      'operations' => array(
-
-        array(
-          array(
-            'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
-            'deleteExistingAssets',
-          ),
-          array($fid, $nid),
-        ),
-
-        array(
-          array(
-            'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
-            'buildJpgSurrogate',
-          ),
-          array($fid, $nid),
-        ),
-
-        array(
-          array(
-            'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
-            'attachSurrogatesToNode',
-          ),
-          array($fid, $nid),
-        ),
-
-        array(
-          array(
-            'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
-            'buildDziTiles',
-          ),
-          array($fid, $nid),
-        ),
-
-        array(
-          array(
-            'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
-            'cleanupFiles',
-          ),
-          array($fid, $nid),
-        ),
-      ),
+    batch_set(
+      _herbarium_specimen_generate_specimen_surrogates_batch($nid, $fid)
     );
-
-    batch_set($batch);
   }
 
 }

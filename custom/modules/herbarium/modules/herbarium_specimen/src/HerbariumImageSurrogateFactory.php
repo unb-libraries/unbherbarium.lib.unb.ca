@@ -32,6 +32,20 @@ class HerbariumImageSurrogateFactory {
   protected $filePathParts;
 
   /**
+   * The amount of the original image height to mask, to cover label.
+   *
+   * @var float
+   */
+  protected $maskedHeightFactor = 0.23;
+
+  /**
+   * The amount of the original image width to mask, to cover label.
+   *
+   * @var float
+   */
+  protected $maskedWidthFactor = 0.45;
+
+  /**
    * Constructor.
    *
    * @param object $fid
@@ -93,6 +107,21 @@ class HerbariumImageSurrogateFactory {
   }
 
   /**
+   * Create the maked JPG surrogate from the archival image.
+   *
+   * @param object $fid
+   *   The file ID of the archival TIFF File object.
+   * @param object $nid
+   *   The node id of the parent herbarium specimen.
+   * @param array $context
+   *   The Batch API context array.
+   */
+  public static function buildMaskedJpgSurrogate($fid, $nid, array &$context) {
+    $obj = new static($fid, $nid);
+    $obj->generateMaskedJpgSurrogate($context);
+  }
+
+  /**
    * Remove local files after processing.
    *
    * @param object $fid
@@ -104,7 +133,7 @@ class HerbariumImageSurrogateFactory {
    */
   public static function cleanupFiles($fid, $nid, array &$context) {
     $obj = new static($fid, $nid);
-    $obj->deleteTempFiles($context);
+    // $obj->deleteTempFiles($context);
   }
 
   /**
@@ -175,6 +204,32 @@ class HerbariumImageSurrogateFactory {
   }
 
   /**
+   * Generate the masked JPG surrogate to be used for this file.
+   *
+   * @param array $context
+   *   The Batch API context array.
+   */
+  protected function generateMaskedJpgSurrogate(array &$context) {
+    $nid = $this->node->id();
+    list($width, $height, $type, $attr) = getimagesize("{$this->filePathParts['dirname']}/$nid.jpg");
+    $mask_start_x = $width * (1 - $this->maskedWidthFactor);
+    $mask_start_y = $height * (1 - $this->maskedHeightFactor);
+
+    exec(
+      "cd {$this->filePathParts['dirname']} && convert $nid.jpg -strokewidth 0 -fill \"rgba(255,255,255,1)\" -draw \"rectangle $mask_start_x,$mask_start_y $width,$height\" {$nid}_masked.jpg",
+      $output,
+      $return
+    );
+
+    $context['message'] = t(
+      'Generated Masked JPG specimen surrogate image for archival master [@fid]',
+      array(
+        '@fid' => $this->file->id(),
+      )
+    );
+  }
+
+  /**
    * Delete the uploaded archival tiff from local.
    *
    * @param array $context
@@ -218,21 +273,41 @@ class HerbariumImageSurrogateFactory {
   protected function attachNodeSurrogates(array &$context) {
     $nid = $this->node->id();
     $unmasked_filename = "{$this->filePathParts['dirname']}/$nid.jpg";
+    $masked_filename = "{$this->filePathParts['dirname']}/{$nid}_masked.jpg";
 
-    // Create file.
-    $target_path = 'private://specimen_images';
-    file_prepare_directory($target_path, FILE_CREATE_DIRECTORY);
-    $file_destination = "$target_path/$nid.jpg";
-    $uri = file_unmanaged_copy($unmasked_filename, $file_destination, FILE_EXISTS_REPLACE);
-    $file = File::Create([
-      'uri' => $uri,
+    // Create unmasked file object.
+    $target_path_u = 'private://specimen_images';
+    file_prepare_directory($target_path_u, FILE_CREATE_DIRECTORY);
+    $file_destination_u = "$target_path_u/$nid.jpg";
+    $uri_u = file_unmanaged_copy($unmasked_filename, $file_destination_u, FILE_EXISTS_REPLACE);
+    $file_u = File::Create([
+      'uri' => $uri_u,
     ]);
+    $file_u->setPermanent();
+    $file_u->save();
 
+    // Create unmasked file object.
+    $target_path_m = 'public://specimen_images';
+    file_prepare_directory($target_path_m, FILE_CREATE_DIRECTORY);
+    $file_destination_m = "$target_path_m/{$nid}_masked.jpg";
+    $uri_m = file_unmanaged_copy($masked_filename, $file_destination_m, FILE_EXISTS_REPLACE);
+    $file_m = File::Create([
+      'uri' => $uri_m,
+    ]);
+    $file_m->setPermanent();
+    $file_m->save();
+
+    // Remove existing JPG surrogates.
     if (!empty($this->node->get('field_large_sample_surrogate')->entity)) {
       $this->node->get('field_large_sample_surrogate')->entity->delete();
     }
+    if (!empty($this->node->get('field_large_sample_surrogate_msk')->entity)) {
+      $this->node->get('field_large_sample_surrogate_msk')->entity->delete();
+    }
 
-    $this->node->get('field_large_sample_surrogate')->setValue($file);
+    // Attach new existing JPG surrogates.
+    $this->node->get('field_large_sample_surrogate')->setValue($file_u);
+    $this->node->get('field_large_sample_surrogate_msk')->setValue($file_m);
     $this->node->save();
 
     $context['message'] = t('Attached unmasked image to specimen.');
