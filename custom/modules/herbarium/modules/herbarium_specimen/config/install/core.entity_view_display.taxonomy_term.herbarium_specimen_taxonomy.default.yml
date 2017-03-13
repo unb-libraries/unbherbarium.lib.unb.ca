@@ -84,7 +84,9 @@ content:
     weight: 0
     label: above
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
   field_dwc_taxonid:
     type: text_default
     weight: 0
