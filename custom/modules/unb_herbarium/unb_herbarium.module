@@ -58,6 +58,16 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $node = $variables['elements']['#node'];
 
   $assigned_tax_term_list = $node->get('field_taxonomy_tid');
+  $tid = $assigned_tax_term_list->get(0)->entity->id();
+  $genus_tid = unb_herbarium_get_parent_tid($tid);
+  $family_tid = unb_herbarium_get_parent_tid($genus_tid);
+
+  // var_dump($node->field_taxonomy_tid->entity->toArray());
+  // Infraspecific Epithet = genus name specific epithet connecting term(rank)
+  // $specific_epithet = $assigned_tax_term_list->get(0)->entity->getName();
+
+  $variables['specimen_family'] = unb_herbarium_get_tax_term_link($family_tid);
+  $variables['specimen_genus'] = unb_herbarium_get_tax_term_link($genus_tid);
   $variables['specimen_assigned_taxon'] = $assigned_tax_term_list->view();
   $variables['specimen_authority'] = $assigned_tax_term_list->get(0)->entity->get('field_dwc_scientificnameauthor')->view();
   $variables['specimen_taxon_rank'] = $assigned_tax_term_list->get(0)->entity->get('field_dwc_taxonrank')->view();
