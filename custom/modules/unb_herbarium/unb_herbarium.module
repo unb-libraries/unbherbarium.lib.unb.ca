@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Implements hook_help().
@@ -66,4 +67,27 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $variables['specimen_measurement_id'] = $assigned_tax_term_list->get(0)->entity->get('field_dwc_measurementid')->view();
   $variables['specimen_en_common_names'] = $assigned_tax_term_list->get(0)->entity->get('field_cmh_english_common_names')->view();
   $variables['specimen_fr_common_names'] = $assigned_tax_term_list->get(0)->entity->get('field_cmh_french_common_names')->view();
+}
+
+/**
+ * Returns the parent id of a given taxonomy term id.
+ */
+function unb_herbarium_get_parent_tid($tid) {
+  $storage = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term');
+  $parent_object_array = $storage->loadParents($tid);
+  $parent_tid_array = array_keys($parent_object_array);
+  $parent_tid = $parent_tid_array['0'];
+
+  return $parent_tid;
+}
+
+/**
+ * Returns an array of linked taxonomy term name of the given tid.
+ */
+function unb_herbarium_get_tax_term_link($tid) {
+  $term = Term::load($tid);
+  $name = $term->getName();
+  $href = $term->url();
+
+  return "<a href=\"$href\">$name</a>";
 }
