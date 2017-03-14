@@ -169,6 +169,14 @@
                             </dt>
                         <dd>{{ specimen_class|field_value }}</dd>
                     </div>
+                    <div>
+                        <dt>{% trans %}Family{% endtrans %}</dt>
+                        <dd>{{ specimen_family|raw }}</dd>
+                    </div>
+                    <div>
+                        <dt>{% trans %}Genus{% endtrans %}</dt>
+                        <dd>{{ specimen_genus|raw }}</dd>
+                    </div>
                     <div><!-- Provide default if empty example -->
                         <dt>{{ specimen_assigned_taxon|field_label }}</dt>
                         <dd>{{ specimen_assigned_taxon|field_value }}</dd>
