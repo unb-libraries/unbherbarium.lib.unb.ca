@@ -36,6 +36,8 @@ npm run start
 ```
 
 ### Other useful commands
+* ```behat-tests``` : Run behat tests on a running container.
+* ```build-theme``` : Build theme assets.
 * ```clean``` : Clean up typically created files by node and other scripts.
 * ```container-shell``` : Opens a /sh prompt into the container.
 * ```destroy``` :  Alias for instance-destroy.
