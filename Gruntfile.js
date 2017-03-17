@@ -12,6 +12,9 @@ module.exports = function (grunt) {
       behat_tests: {
         command: 'docker exec ' + pkgJson.config.siteuri  + ' /scripts/runTests.sh'
       },
+      cache_rebuild: {
+          command: 'docker exec ' + pkgJson.config.siteuri  + ' sh -c \'drush --root=/app/html cache-rebuild\''
+      },
       copygithooks: {
         command: 'cp --force package-conf/git-hooks/* .git/hooks/'
       },
@@ -79,6 +82,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('behat-tests', ['shell:behat_tests']);
   grunt.registerTask('build-theme', ['shell:theme_build']);
+  grunt.registerTask('cache-rebuild', ['shell:cache_rebuild']);
   grunt.registerTask('composerinstall', ['clean:githooks', 'shell:composerinstall']);
   grunt.registerTask('default', ['clean']);
   grunt.registerTask('disable-dev-mode', ['shell:disable_dev_mode']);

@@ -19,6 +19,8 @@
     "clean": "./node_modules/.bin/grunt clean:all",
     "clean-all-no-gitclean": "./node_modules/.bin/grunt clean:all-no-gitclean",
     "container-shell": "docker exec -i -t $npm_package_config_siteuri sh",
+    "cache-rebuild": "./node_modules/.bin/grunt cache-rebuild",
+    "cr": "npm run cache-rebuild",
     "destroy": "npm run instance-destroy",
     "disable-dev-mode": "./node_modules/.bin/grunt disable-dev-mode",
     "enable-dev-mode": "./node_modules/.bin/grunt enable-dev-mode",
