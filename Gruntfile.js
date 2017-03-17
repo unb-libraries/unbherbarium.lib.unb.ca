@@ -13,7 +13,7 @@ module.exports = function (grunt) {
         command: 'docker exec ' + pkgJson.config.siteuri  + ' /scripts/runTests.sh'
       },
       copygithooks: {
-        command: 'cp package-conf/git-hooks/* .git/hooks/'
+        command: 'cp --force package-conf/git-hooks/* .git/hooks/'
       },
       composerinstall: {
         command: './node_modules/.bin/composer install'
