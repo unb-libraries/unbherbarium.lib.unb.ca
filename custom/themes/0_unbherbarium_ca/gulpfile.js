@@ -64,8 +64,7 @@ var gulp      = require('gulp'),
   svgo        = require('imagemin-svgo'),
   concat      = require('gulp-concat'),
   uglify      = require('gulp-uglify'),
-  rename      = require('gulp-rename'),
-  browserSync = require('browser-sync').create();
+  rename      = require('gulp-rename');
 
 // The default task.
 gulp.task('default', ['build']);
