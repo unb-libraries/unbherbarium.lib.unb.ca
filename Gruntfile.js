@@ -84,6 +84,7 @@ module.exports = function (grunt) {
   grunt.registerTask('disable-dev-mode', ['shell:disable_dev_mode']);
   grunt.registerTask('enable-dev-mode', ['shell:enable_dev_mode']);
   grunt.registerTask('clean:all', ['clean:composer', 'clean:githooks', 'clean:node', 'clean:tmp_transfer', 'clean:theme', 'shell:gitclean']);
+  grunt.registerTask('clean:all-no-gitclean', ['clean:composer', 'clean:githooks', 'clean:node', 'clean:tmp_transfer', 'clean:theme']);
   grunt.registerTask('githooks', ['clean:githooks', 'shell:copygithooks']);
   grunt.registerTask('instance-destroy', ['shell:instance_destroy']);
   grunt.registerTask('instance-start-over', ['shell:instance_stop', 'shell:instance_destroy', 'instance-start']);

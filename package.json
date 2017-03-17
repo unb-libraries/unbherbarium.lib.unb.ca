@@ -17,6 +17,7 @@
     "behat-tests": "./node_modules/.bin/grunt behat-tests",
     "build-theme": "./node_modules/.bin/grunt build-theme",
     "clean": "./node_modules/.bin/grunt clean:all",
+    "clean-all-no-gitclean": "./node_modules/.bin/grunt clean:all-no-gitclean",
     "container-shell": "docker exec -i -t $npm_package_config_siteuri sh",
     "destroy": "npm run instance-destroy",
     "disable-dev-mode": "./node_modules/.bin/grunt disable-dev-mode",
