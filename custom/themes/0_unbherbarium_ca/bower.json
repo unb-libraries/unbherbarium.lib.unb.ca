@@ -19,11 +19,11 @@
     "tests"
   ],
   "dependencies": {
-    "Scut": "scut#~1.2.1",
-    "breakpoint": "https://github.com/at-import/breakpoint.git#~v2.6.1",
-    "chroma": "https://github.com/JohnAlbin/chroma.git#~1.1.2",
-    "susy": "~2.2.6",
-    "typey": "*",
+    "scut": "~1.4.0",
+    "breakpoint-sass": "~v2.7.1",
+    "chroma": "~1.2.6",
+    "susy": "~2.2.12",
+    "typey": "~1.1.1",
     "html5shiv": "~3.7.3"
   },
   "devDependencies": {
