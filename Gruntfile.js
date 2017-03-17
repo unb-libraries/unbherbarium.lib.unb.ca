@@ -85,8 +85,8 @@ module.exports = function (grunt) {
   grunt.registerTask('clean:all', ['clean:composer', 'clean:githooks', 'clean:node', 'clean:tmp_transfer', 'shell:gitclean']);
   grunt.registerTask('githooks', ['clean:githooks', 'shell:copygithooks']);
   grunt.registerTask('instance-destroy', ['shell:instance_destroy']);
-  grunt.registerTask('instance-start-over', ['shell:instance_stop', 'shell:instance_destroy', 'shell:instance_start']);
-  grunt.registerTask('instance-start', ['shell:instance_start']);
+  grunt.registerTask('instance-start-over', ['shell:instance_stop', 'shell:instance_destroy', 'instance-start']);
+  grunt.registerTask('instance-start', ['build-theme', 'shell:instance_start']);
   grunt.registerTask('instance-stop', ['shell:instance_stop']);
   grunt.registerTask('remote-dev-sync', ['shell:remote_dev_sync']);
   grunt.registerTask('repo-start-over', ['shell:instance_stop', 'shell:instance_destroy', 'clean:all', 'shell:gitpullcurrent', 'shell:node_install', 'setup']);
