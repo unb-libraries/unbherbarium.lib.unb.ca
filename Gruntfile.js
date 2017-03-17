@@ -16,7 +16,7 @@ module.exports = function (grunt) {
           command: 'docker exec ' + pkgJson.config.siteuri  + ' sh -c \'drush --root=/app/html cache-rebuild\''
       },
       copygithooks: {
-        command: 'cp --force package-conf/git-hooks/* .git/hooks/'
+        command: 'cp package-conf/git-hooks/* .git/hooks/'
       },
       composerinstall: {
         command: './node_modules/.bin/composer install'
