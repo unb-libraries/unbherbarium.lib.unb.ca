@@ -218,10 +218,12 @@
                             {% endif %}
                         </dt>
                         <dd>
-                            {%- if specimen_n_common_names|field_value -%}
-                            <ul>
-                                <li>{{ specimen_en_common_names|field_value|safe_join('</li><li>') }}</li>
-                            </ul>
+                            {%- if specimen_en_common_names|field_value -%}
+                                <ul>
+                                    <li>{{ specimen_en_common_names|field_value|safe_join('</li><li>') }}</li>
+                                </ul>
+                            {% else %}
+                                {{ specimen_en_common_names|field_value }}
                             {% endif %}
                         </dd>
                     </div>
@@ -235,9 +237,11 @@
                         </dt>
                         <dd>
                             {%- if specimen_fr_common_names|field_value -%}
-                            <ul>
-                                <li>{{ specimen_fr_common_names|field_value|safe_join('</li><li>') }}</li>
-                            </ul>
+                                <ul>
+                                    <li>{{ specimen_fr_common_names|field_value|safe_join('</li><li>') }}</li>
+                                </ul>
+                            {% else %}
+                                {{ specimen_fr_common_names|field_value }}
                             {%  endif %}
                         </dd>
                     </div>
