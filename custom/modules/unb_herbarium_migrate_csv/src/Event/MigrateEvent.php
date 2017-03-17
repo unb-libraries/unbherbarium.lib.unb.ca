@@ -156,9 +156,11 @@ class MigrateEvent implements EventSubscriberInterface {
     }
 
     // Temporary title => 255 chars of DetAnnList, aka Previous Identifications
-    $dwc_previousidents = trim($row->getSourceProperty('previous_identifications'));
+    $dwc_previousidents_raw = trim($row->getSourceProperty('previous_identifications'));
+    // DetAnnList field values are delimited by vertical tab character.
+    $dwc_previousidents = explode("\v", $dwc_previousidents_raw);
     $row->setSourceProperty('previous_identifications', $dwc_previousidents);
-    $tmp_title = ($dwc_previousidents != '') ? substr($dwc_previousidents, 0, 255) : 'Temporary title';
+    $tmp_title = ($dwc_previousidents_raw != '') ? substr($dwc_previousidents_raw, 0, 255) : 'Temporary title';
     $row->setSourceProperty('title_string', $tmp_title);
 
     // Record Number aka UNB Accession No.

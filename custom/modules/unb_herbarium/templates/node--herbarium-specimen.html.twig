@@ -67,7 +67,15 @@
                     </div>
                     <div class="toggle-default-off">
                         <dt>{{ content.field_previous_identifications|field_label }}</dt>
-                        <dd>{{ content.field_previous_identifications|field_value }}</dd>
+                        <dd>
+                            {%- if content.field_previous_identifications|field_value -%}
+                                <ul>
+                                    <li>{{ content.field_previous_identifications|field_value|safe_join('</li><li>') }}</li>
+                                </ul>
+                            {%  else %}
+                                {{ content.field_previous_identifications|field_value }}
+                            {% endif %}
+                        </dd>
                     </div>
                 </section>
 
