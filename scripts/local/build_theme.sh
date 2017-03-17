@@ -5,5 +5,5 @@ if ls custom/themes* 1> /dev/null 2>&1; then
   fi
 
   cd custom/themes/*/
-  gulp
+  node_modules/gulp/bin/gulp.js
 fi
