@@ -3,9 +3,6 @@
 var path = require('path');
 var options = {};
 
-// For use with browsersync.
-// var local_uri = 'thunder.local'; // 'sitename.local'
-
 // For use with gulp-shell in special cases.
 var cliSass = 'node_modules/node-sass/bin/node-sass';
 
@@ -13,10 +10,6 @@ var cliSass = 'node_modules/node-sass/bin/node-sass';
 // Edit these paths and options.
 // #############################
 
-// The root paths are used to construct all the other paths in this
-// configuration. The "project" root path is where this gulpfile.js is located.
-// This gulpfile is based on the Zen 7.6 version with several modifications
-// to remove Ruby dependencies and add other features.
 options.rootPath = {
   project: __dirname + '/',
   styleGuide: __dirname + '/styleguide/',
@@ -178,32 +171,6 @@ gulp.task('images', function () {
       .pipe(jpegoptim({max: 70})())
       .pipe(svgo()())
       .pipe(gulp.dest('dist/img'));
-});
-
-// ##############################
-// Watch for changes and rebuild.
-// ##############################
-// gulp.task('watch', ['watch:lint-and-styleguide', 'watch:js'], function (cb) {
-gulp.task('watch', ['watch:js'], function (cb) {
-  // Since watch:css will never return, call it last (not as dependency.)
-  runSequence(['watch:css'], cb);
-});
-
-gulp.task('watch:css', ['lint:sass', 'styles'], function () {
-  return gulp.watch([
-      options.theme.sass + '**/*.scss'
-    ], options.gulpWatchOptions, ['lint:sass','styles']);
-});
-
-gulp.task('watch:lint-and-styleguide', ['styleguide', 'lint:sass'], function () {
-  return gulp.watch([
-      options.theme.sass + '**/*.scss',
-      options.theme.sass + '**/*.hbs'
-    ], options.gulpWatchOptions, ['styleguide', 'lint:sass']);
-});
-
-gulp.task('watch:js', ['lint:js', 'scripts'], function () {
-  return gulp.watch([options.theme.js + '**/*.js'], options.gulpWatchOptions, ['lint:js','scripts']);
 });
 
 // ######################
