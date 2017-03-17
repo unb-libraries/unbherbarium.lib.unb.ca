@@ -50,6 +50,12 @@ module.exports = function (grunt) {
       tail_logs: {
         command: 'docker-compose logs -f'
       },
+      theme_build: {
+        command: './scripts/local/build_theme.sh'
+      },
+      theme_setup: {
+        command: './scripts/local/setup_theme.sh'
+      },
       uli: {
         command: 'docker exec ' + pkgJson.config.siteuri  + ' sh -c \'drush --root=/app/html uli | sed -e "s|http://default|$DEV_WEB_URI|g"\''
       },
@@ -71,6 +77,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-shell');
 
   grunt.registerTask('behat-tests', ['shell:behat_tests']);
+  grunt.registerTask('build-theme', ['shell:theme_build']);
   grunt.registerTask('composerinstall', ['clean:githooks', 'shell:composerinstall']);
   grunt.registerTask('default', ['clean']);
   grunt.registerTask('disable-dev-mode', ['shell:disable_dev_mode']);
@@ -83,8 +90,9 @@ module.exports = function (grunt) {
   grunt.registerTask('instance-stop', ['shell:instance_stop']);
   grunt.registerTask('remote-dev-sync', ['shell:remote_dev_sync']);
   grunt.registerTask('repo-start-over', ['shell:instance_stop', 'shell:instance_destroy', 'clean:all', 'shell:gitpullcurrent', 'shell:node_install', 'setup']);
-  grunt.registerTask('setup', ['validationsetup']);
+  grunt.registerTask('setup', ['validationsetup', 'theme-setup']);
   grunt.registerTask('tail-logs', ['shell:tail_logs']);
+  grunt.registerTask('theme-setup', ['shell:theme_setup']);
   grunt.registerTask('write-config', ['shell:write_config']);
   grunt.registerTask('uli', ['shell:uli']);
   grunt.registerTask('validate-php', ['shell:validatephp']);
