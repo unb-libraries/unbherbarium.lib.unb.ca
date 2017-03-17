@@ -80,7 +80,7 @@ source:
     36:
       reproductivecondition: Phenology
     38:
-      tmp_title: DetAnnList
+      previous_identifications: DetAnnList
     39:
       eventremarks: Notes
     40:
@@ -111,36 +111,37 @@ process:
   # Most fields can be mapped directly - we just specify the destination (D8)
   # field and the corresponding field name from above, and the values will be
   # copied in.
-  title: title_string
-  field_spmnkey: spmnid
-  field_dwc_record_number: record_number_string
-  field_dwc_eventdate: date_iso
-  field_dc_created: date_created_iso
-  field_dwc_verbatimeventdate: dwc_verbatimeventdate
-  field_dc_modified: date_modified_iso
-  field_dwc_othercatalognumbers: othercatalognumbers
-  field_dwc_habitat: habitat
-  field_dwc_county: county
-  field_dwc_stateprovince: dwc_stateprovince
-  field_dwc_country: country
-  field_dwc_verbatimlocality: verbatimlocality
-  field_dwc_georeferencedby: georeferencedby
-  field_dwc_coordinateprecision: mapped_coord_prec
-  field_dwc_reproductivecondition: reproductivecondition
-  field_dwc_previousidents: tmp_title
-  field_dwc_eventremarks: eventremarks
+
+  field_collector_tid: specimen_collector
   field_dc_contributor_other: contributor_other
+  field_dc_created: date_created_iso
+  field_dc_modified: date_modified_iso
+  field_dwc_coordinateprecision: mapped_coord_prec
+  field_dwc_country: country
+  field_dwc_county: county
+  field_dwc_day: day
   field_dwc_decimallatitude: dwc_latitude
   field_dwc_decimallongitude: dwc_longitude
-  field_dwc_year: year
+  field_dwc_eventdate: date_iso
+  field_dwc_eventremarks: eventremarks
+  field_dwc_georeferencedby: georeferencedby
+  field_dwc_habitat: habitat
   field_dwc_month: month
-  field_dwc_day: day
+  field_dwc_othercatalognumbers: othercatalognumbers
+  field_dwc_record_number: record_number_string
+  field_dwc_reproductivecondition: reproductivecondition
+  field_dwc_stateprovince: dwc_stateprovince
+  field_dwc_verbatimeventdate: dwc_verbatimeventdate
+  field_dwc_verbatimlocality: verbatimlocality
+  field_dwc_year: year
   field_geoheritage: geo_heritage
-  field_collector_tid: specimen_collector
-  field_taxonomy_tid: assigned_taxon
+  field_gmap: one_line_gmap_address
   field_large_sample_surrogate: image_file_unmasked
   field_large_sample_surrogate_msk: image_file_masked
-  field_gmap: one_line_gmap_address
+  field_previous_identifications: previous_identifications
+  field_spmnkey: spmnid
+  field_taxonomy_tid: assigned_taxon
+  title: title_string
 
 # Required to cleanup CMI.
 dependencies:
