@@ -32,7 +32,6 @@ dependencies:
     - field.field.node.herbarium_specimen.field_dwc_month
     - field.field.node.herbarium_specimen.field_dwc_occurrenceremarks
     - field.field.node.herbarium_specimen.field_dwc_othercatalognumbers
-    - field.field.node.herbarium_specimen.field_dwc_previousidents
     - field.field.node.herbarium_specimen.field_dwc_record_number
     - field.field.node.herbarium_specimen.field_dwc_reproductivecondition
     - field.field.node.herbarium_specimen.field_dwc_stateprovince
@@ -43,6 +42,7 @@ dependencies:
     - field.field.node.herbarium_specimen.field_gmap
     - field.field.node.herbarium_specimen.field_large_sample_surrogate
     - field.field.node.herbarium_specimen.field_large_sample_surrogate_msk
+    - field.field.node.herbarium_specimen.field_previous_identifications
     - field.field.node.herbarium_specimen.field_taxonomy_tid
     - image.style.220-wide
     - node.type.herbarium_specimen
@@ -298,14 +298,6 @@ content:
       empty_fields:
         handler: nbsp
     type: string
-  field_dwc_previousidents:
-    type: text_default
-    weight: 31
-    label: above
-    settings: {  }
-    third_party_settings:
-      empty_fields:
-        handler: nbsp
   field_dwc_record_number:
     weight: 32
     label: above
@@ -399,6 +391,14 @@ content:
       colorbox_caption: entity_title
       colorbox_caption_custom: 'Click to enlarge'
     third_party_settings: {  }
+  field_previous_identifications:
+    weight: 31
+    label: above
+    settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
+    type: text_default
   field_taxonomy_tid:
     type: entity_reference_entity_view
     weight: 35

@@ -32,7 +32,6 @@ dependencies:
     - field.field.node.herbarium_specimen.field_dwc_month
     - field.field.node.herbarium_specimen.field_dwc_occurrenceremarks
     - field.field.node.herbarium_specimen.field_dwc_othercatalognumbers
-    - field.field.node.herbarium_specimen.field_dwc_previousidents
     - field.field.node.herbarium_specimen.field_dwc_record_number
     - field.field.node.herbarium_specimen.field_dwc_reproductivecondition
     - field.field.node.herbarium_specimen.field_dwc_stateprovince
@@ -43,6 +42,7 @@ dependencies:
     - field.field.node.herbarium_specimen.field_gmap
     - field.field.node.herbarium_specimen.field_large_sample_surrogate
     - field.field.node.herbarium_specimen.field_large_sample_surrogate_msk
+    - field.field.node.herbarium_specimen.field_previous_identifications
     - field.field.node.herbarium_specimen.field_taxonomy_tid
     - image.style.thumbnail
     - node.type.herbarium_specimen
@@ -359,13 +359,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-  field_dwc_previousidents:
-    type: text_textarea
-    weight: 3
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
   field_dwc_record_number:
     weight: 58
     settings:
@@ -435,6 +428,13 @@ content:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
+  field_previous_identifications:
+    weight: 71
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
   field_taxonomy_tid:
     type: options_select
     weight: 49
