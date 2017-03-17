@@ -92,7 +92,7 @@ function unb_herbarium_get_parent_tid($tid) {
 }
 
 /**
- * Returns an array of linked taxonomy term name of the given tid.
+ * Returns raw html of linked taxonomy term name for given tid.
  */
 function unb_herbarium_get_tax_term_link($tid) {
   $term = Term::load($tid);
