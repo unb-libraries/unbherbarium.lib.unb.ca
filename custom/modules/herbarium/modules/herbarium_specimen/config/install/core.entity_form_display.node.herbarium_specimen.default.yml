@@ -431,10 +431,10 @@ content:
   field_previous_identifications:
     weight: 71
     settings:
-      rows: 5
+      size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
+    type: text_textfield
   field_taxonomy_tid:
     type: options_select
     weight: 49

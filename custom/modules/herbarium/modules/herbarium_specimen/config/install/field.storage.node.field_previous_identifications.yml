@@ -7,8 +7,9 @@ dependencies:
 id: node.field_previous_identifications
 field_name: field_previous_identifications
 entity_type: node
-type: text_long
-settings: {  }
+type: text
+settings:
+  max_length: 255
 module: text
 locked: false
 cardinality: -1
