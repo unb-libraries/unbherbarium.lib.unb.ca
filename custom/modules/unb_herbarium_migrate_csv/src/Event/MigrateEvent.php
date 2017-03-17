@@ -155,11 +155,13 @@ class MigrateEvent implements EventSubscriberInterface {
       $row->setSourceProperty('one_line_gmap_address', $decLat . ',' . $decLong);
     }
 
-    // Temporary title, max chars=255
-    $tmp_title = (trim($row->getSourceProperty('tmp_title')) != '') ? $row->getSourceProperty('tmp_title') : 'Unavailable';
-    $trunc_title = substr($tmp_title, 0, 255);
-    $row->setSourceProperty('title_string', $trunc_title);
+    // Temporary title => 255 chars of DetAnnList, aka Previous Identifications
+    $dwc_previousidents = trim($row->getSourceProperty('previous_identifications'));
+    $row->setSourceProperty('previous_identifications', $dwc_previousidents);
+    $tmp_title = ($dwc_previousidents != '') ? substr($dwc_previousidents, 0, 255) : 'Temporary title';
+    $row->setSourceProperty('title_string', $tmp_title);
 
+    // Record Number aka UNB Accession No.
     $row->setSourceProperty('record_number_string', $accNum);
 
     // Sample Collectors
