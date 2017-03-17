@@ -259,8 +259,9 @@ dd li {
     min-height: 1.5em;
     width: 64%;
   }
-  dd p:first-child,
-  dd p:last-child {
+  dd > p:first-child,
+  dd > p:last-child,
+  dd li p {
     margin: 0;
   }
 }
