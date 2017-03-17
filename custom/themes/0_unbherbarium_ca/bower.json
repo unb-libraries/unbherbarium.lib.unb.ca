@@ -1,0 +1,32 @@
+{
+  "name": "unbherbarium_ca",
+  "version": "0.0.0",
+  "homepage": "https://github.com/unb-libraries/unbherbarium.ca",
+  "authors": [
+    "UNB Libraries"
+  ],
+  "description": "unbherbarium_ca Drupal theme",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "libraries",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Scut": "scut#~1.2.1",
+    "breakpoint": "https://github.com/at-import/breakpoint.git#~v2.6.1",
+    "chroma": "https://github.com/JohnAlbin/chroma.git#~1.1.2",
+    "susy": "~2.2.6",
+    "typey": "*",
+    "html5shiv": "~3.7.3"
+  },
+  "devDependencies": {
+    "compass-mixins": "~1.0.2"
+  }
+}
