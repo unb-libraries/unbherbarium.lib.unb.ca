@@ -40,6 +40,7 @@ npm run start
 * ```build-theme``` : Build theme assets.
 * ```clean``` : Clean up typically created files by node and other scripts.
 * ```container-shell``` : Opens a /sh prompt into the container.
+* ```cr / cache-rebuild``` : Rebuild the Drupal cache.
 * ```destroy``` :  Alias for instance-destroy.
 * ```instance-destroy``` :  Destroys the local instance and removes container and data.
 * ```instance-start-over``` : Stops and destroys any running containers, removes data and volumes, leaving the status similar to immediately after node run setup.
