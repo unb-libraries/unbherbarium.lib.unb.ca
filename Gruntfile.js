@@ -5,6 +5,7 @@ module.exports = function (grunt) {
       composer: ['vendor', 'composer.lock'],
       githooks: ['.git/hooks/*.sample'],
       node: ['node_modules', 'npm-debug.log'],
+      theme: ['custom/themes/*/bower_components', 'custom/themes/*/node_modules', 'custom/themes/*/.sass-cache', 'custom/themes/*/npm-debug.log'],
       tmp_transfer: ['tmp-config', 'tmp-db', 'tmp-files']
     },
     shell: {
@@ -82,7 +83,7 @@ module.exports = function (grunt) {
   grunt.registerTask('default', ['clean']);
   grunt.registerTask('disable-dev-mode', ['shell:disable_dev_mode']);
   grunt.registerTask('enable-dev-mode', ['shell:enable_dev_mode']);
-  grunt.registerTask('clean:all', ['clean:composer', 'clean:githooks', 'clean:node', 'clean:tmp_transfer', 'shell:gitclean']);
+  grunt.registerTask('clean:all', ['clean:composer', 'clean:githooks', 'clean:node', 'clean:tmp_transfer', 'clean:theme', 'shell:gitclean']);
   grunt.registerTask('githooks', ['clean:githooks', 'shell:copygithooks']);
   grunt.registerTask('instance-destroy', ['shell:instance_destroy']);
   grunt.registerTask('instance-start-over', ['shell:instance_stop', 'shell:instance_destroy', 'instance-start']);
