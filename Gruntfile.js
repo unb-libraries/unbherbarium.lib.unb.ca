@@ -55,10 +55,10 @@ module.exports = function (grunt) {
         command: 'docker-compose logs -f'
       },
       theme_build: {
-        command: './scripts/local/build_theme.sh'
+        command: './scripts/local/build_themes.sh'
       },
       theme_setup: {
-        command: './scripts/local/setup_theme.sh'
+        command: './scripts/local/setup_themes.sh'
       },
       uli: {
         command: 'docker exec ' + pkgJson.config.siteuri  + ' sh -c \'drush --root=/app/html uli | sed -e "s|http://default|$DEV_WEB_URI|g"\''
