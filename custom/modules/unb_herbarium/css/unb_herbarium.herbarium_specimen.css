@@ -255,9 +255,9 @@ dd li {
     content: '';
   }
   dd {
-    margin: 0 0 0 36%;
+    margin: 0 0 0 37%;
     min-height: 1.5em;
-    width: 64%;
+    width: 63%;
   }
   dd > p:first-child,
   dd > p:last-child,
