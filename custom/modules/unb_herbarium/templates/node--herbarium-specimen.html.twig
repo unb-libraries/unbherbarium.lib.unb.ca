@@ -68,12 +68,12 @@
                     <div class="toggle-default-off">
                         <dt>{{ content.field_previous_identifications|field_label }}</dt>
                         <dd>
-                            {%- if content.field_previous_identifications|field_value -%}
+                            {% if content.field_previous_identifications|field_value['0']['#text'] matches '#[\\w]{2,}#' %}
                                 <ul>
                                     <li>{{ content.field_previous_identifications|field_value|safe_join('</li><li>') }}</li>
                                 </ul>
-                            {%  else %}
-                                {{ content.field_previous_identifications|field_value }}
+                            {% else %}
+                                {{- content.field_previous_identifications|field_value -}}
                             {% endif %}
                         </dd>
                     </div>
