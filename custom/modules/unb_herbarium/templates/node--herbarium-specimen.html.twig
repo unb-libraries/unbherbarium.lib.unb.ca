@@ -143,10 +143,9 @@
                     </div>
                     <div class="toggle-default-off">
                         <dt>{{ content.field_dwc_coordinateprecision|field_label }}</dt>
-                        {% set field_dwc_coordinateprecision = content.field_dwc_coordinateprecision|field_value['0']['#markup'] %}
                         <dd>
                             {# strip all right-side zeros from precision value array for display #}
-                            {% if field_dwc_coordinateprecision matches '#\.[0-9]+$#' %}
+                            {% if content.field_dwc_coordinateprecision|field_value['0']['#markup'] matches '#\.[0-9]+$#' %}
                                 {{ content.field_dwc_coordinateprecision|field_value['0']['#markup']|trim('0', 'right') }}
                             {% else %}
                                 {{ content.field_dwc_coordinateprecision|field_value }}
