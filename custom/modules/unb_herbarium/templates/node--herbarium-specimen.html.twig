@@ -234,7 +234,7 @@
                                 {% trans %}French Common Names(s){% endtrans %}
                             {% endif %}
                         </dt>
-                        <dd>
+                        <dd lang="fr">
                             {%- if specimen_fr_common_names|field_value -%}
                                 <ul>
                                     <li>{{ specimen_fr_common_names|field_value|safe_join('</li><li>') }}</li>
