@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP class to convert Latitude+Longitude coordinates into UTM and wise versa.
+ * PHP class to convert Latitude+Longitude coordinates into UTM and vise versa.
  *
  * Code for datum and UTM conversion was converted from C++ code written by Chuck Gantz (chuck.gantz@globalstar.com) from http://www.gpsy.com/gpsinfo/geotoutm/
  * The C++ code was refactored and rewritten into PHP code by Hans Duedal (hd@onlinecity.dk).
@@ -22,7 +22,7 @@
  * @link http://www.gpsy.com/gpsinfo/geotoutm/
  * @link https://gist.github.com/840476
  */
-namespace Drupal\unb_herbarium_migrate_csv\lib;
+namespace Drupal\unb_herbarium_migrate_csv\GpointConverter;
 
 class GpointConverter
 {
