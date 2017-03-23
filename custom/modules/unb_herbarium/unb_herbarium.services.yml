@@ -1,0 +1,5 @@
+services:
+  example.route_subscriber:
+    class: Drupal\unb_herbarium\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
