@@ -9,7 +9,7 @@
  *
  * @author chuck.gantz@globalstar.com, hd@onlinecity.dk
  *
- * GpointConverter (conversion between geographic points) Copyright (C) 2011 Hans Duedal (hd@onlinecity.dk)
+ * Gpoint (conversion between geographic points) Copyright (C) 2011 Hans Duedal (hd@onlinecity.dk)
  *
  * This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
@@ -22,7 +22,8 @@
  * @link http://www.gpsy.com/gpsinfo/geotoutm/
  * @link https://gist.github.com/840476
  */
-namespace Drupal\unb_herbarium_migrate_csv\GpointConverter;
+
+namespace Drupal\unb_herbarium_migrate_csv\Gpoint;
 
 class GpointConverter
 {
