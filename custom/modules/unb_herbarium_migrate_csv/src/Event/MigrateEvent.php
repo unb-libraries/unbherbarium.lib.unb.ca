@@ -67,29 +67,31 @@ class MigrateEvent implements EventSubscriberInterface {
     $row->setSourceProperty('dwc_verbatimeventdate', $date_str);
 
     // Record Creation Date.
-    $iso_date = $date_array = $date_str = '';
+    $iso_date = $date_str = '';
+    $date_array = [];
     $date_str = str_replace("/", "-", trim($row->getSourceProperty('dc_created')));
-    list($date_array['year'], $date_array['month'], $date_array['day']) = array_filter(explode("-", $date_str));
-    if (!empty($date_array)) {
+    if (!empty($date_str)) {
+      list($date_array['year'], $date_array['month'], $date_array['day']) = array_filter(explode("-", $date_str));
       if ($this->isValidYearRange($date_array['year']) &&
         $this->isValidMonthRange($date_array['month']) &&
-        $this->isValidDayRange($date_array['day'])
-      ) {
+        $this->isValidDayRange($date_array['day'])) {
         $iso_date = DrupalDateTime::arrayToISO($date_array);
       }
     }
     $row->setSourceProperty('date_created_iso', $iso_date);
 
     // DwC Modified from Filemaker (Date + time).
-    $filemaker_date = $date_array = $date_str = '';
+    $filemaker_date = $date_str = '';
+    $date_array = [];
     $date_str = str_replace("/", "-", trim($row->getSourceProperty('dc_modified')));
-    list($date_array['year'], $date_array['month'], $date_array['day']) = array_filter(explode("-", $date_str));
-    list($date_array['hour'], $date_array['minute'], $date_array['second']) = array(
-      '00',
-      '00',
-      '00'
-    );
-    if (!empty($date_array)) {
+    if (!empty($date_str)) {
+      list($date_array['year'], $date_array['month'], $date_array['day']) = array_filter(explode("-", $date_str));
+      list($date_array['hour'], $date_array['minute'], $date_array['second']) = array(
+        '00',
+        '00',
+        '00'
+      );
+
       if ($this->isValidYearRange($date_array['year']) &&
         $this->isValidMonthRange($date_array['month']) &&
         $this->isValidDayRange($date_array['day'])
