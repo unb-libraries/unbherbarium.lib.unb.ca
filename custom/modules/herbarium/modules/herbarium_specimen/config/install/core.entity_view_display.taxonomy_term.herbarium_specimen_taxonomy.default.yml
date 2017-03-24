@@ -13,6 +13,7 @@ dependencies:
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dwc_taxonid
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dwc_taxonrank
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dwc_taxonremarks
+    - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_synonyms
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
   module:
     - empty_fields
@@ -45,19 +46,19 @@ content:
     type: string
   field_dc_replaces:
     type: text_default
-    weight: 0
+    weight: 8
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_class:
     type: text_default
-    weight: 0
+    weight: 1
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_measurementid:
     type: text_default
-    weight: 0
+    weight: 4
     label: above
     settings: {  }
     third_party_settings:
@@ -65,7 +66,7 @@ content:
         handler: nbsp
   field_dwc_measurementtype:
     type: list_default
-    weight: 0
+    weight: 5
     label: above
     settings: {  }
     third_party_settings:
@@ -73,7 +74,7 @@ content:
         handler: nbsp
   field_dwc_measurementvalue:
     type: text_default
-    weight: 0
+    weight: 6
     label: above
     settings: {  }
     third_party_settings:
@@ -81,7 +82,7 @@ content:
         handler: nbsp
   field_dwc_scientificnameauthor:
     type: text_default
-    weight: 0
+    weight: 9
     label: above
     settings: {  }
     third_party_settings:
@@ -89,20 +90,28 @@ content:
         handler: nbsp
   field_dwc_taxonid:
     type: text_default
-    weight: 0
+    weight: 11
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_taxonrank:
     type: text_default
-    weight: 0
+    weight: 12
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_taxonremarks:
     type: text_default
-    weight: 0
+    weight: 7
     label: above
     settings: {  }
     third_party_settings: {  }
+  field_synonyms:
+    weight: 10
+    label: above
+    settings: {  }
+    third_party_settings:
+      empty_fields:
+        handler: nbsp
+    type: text_default
 hidden: {  }
