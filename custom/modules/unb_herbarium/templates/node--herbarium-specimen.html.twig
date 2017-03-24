@@ -244,6 +244,23 @@
                             {%  endif %}
                         </dd>
                     </div>
+                    <div class="toggle-default-off">
+                        <dt>{%- if specimen_synonyms|field_label -%}
+                                {{ specimen_synonyms|field_label }}
+                            {% else %}
+                                {% trans %}Synonyms{% endtrans %}
+                            {% endif %}
+                        </dt>
+                        <dd>
+                            {% if specimen_synonyms|field_value['0']['#text'] matches '#[\\w]{2,}#' %}
+                                <ul>
+                                    <li>{{ specimen_synonyms|field_value|safe_join('</li><li>') }}</li>
+                                </ul>
+                            {% else %}
+                                {{- specimen_synonyms|field_value -}}
+                            {% endif %}
+                        </dd>
+                    </div>
                     <div><!-- Taxon Remarks -->
                         <dt>
                             {%- if specimen_taxon_remarks|field_label -%}
