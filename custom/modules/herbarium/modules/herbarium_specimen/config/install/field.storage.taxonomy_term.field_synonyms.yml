@@ -9,7 +9,7 @@ field_name: field_synonyms
 entity_type: taxonomy_term
 type: text
 settings:
-  max_length: 255
+  max_length: 512
 module: text
 locked: false
 cardinality: -1
