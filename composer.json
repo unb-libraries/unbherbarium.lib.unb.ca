@@ -4,7 +4,6 @@
   "name": "Provision scaffolding for deploying instance. Unrelated to Drupal site.",
   "require-dev": {
     "squizlabs/php_codesniffer": "2.5.1",
-    "twbs/bootstrap-sass": "^3.3.7",
     "drupal/coder": "^8.2.7"
   }
 }
