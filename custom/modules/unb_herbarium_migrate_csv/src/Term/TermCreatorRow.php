@@ -310,6 +310,9 @@ class TermCreatorRow {
         'name' => $name,
         'parent' => array($parent),
       ]);
+      // Populate DwC:taxonRank field.
+      $taxonRank = $parent ? 'Genus' : 'Family';
+      $term->set('field_dwc_taxonrank', $taxonRank);
       $term->save();
       return $term->id();
     }
@@ -353,6 +356,7 @@ class TermCreatorRow {
           'name' => $spec_name,
           'parent' => array($variant_tid),
           'field_dwc_scientificnameauthor' => $spec_auth,
+          'field_dwc_taxonrank' => trim($this->xt),
         ]);
       }
 
@@ -392,6 +396,7 @@ class TermCreatorRow {
           'name' => $spec_name,
           'parent' => array($species_tid),
           'field_dwc_scientificnameauthor' => $spec_auth,
+          'field_dwc_taxonrank' => trim($this->txt),
         ]);
       }
 
@@ -430,6 +435,7 @@ class TermCreatorRow {
           'name' => $spec_name,
           'parent' => array($genus_tid),
           'field_dwc_scientificnameauthor' => $spec_auth,
+          'field_dwc_taxonrank' => trim($this->txt),
         ]);
       }
 
@@ -465,6 +471,7 @@ class TermCreatorRow {
           'name' => $spec_name,
           'parent' => array($genus_tid),
           'field_dwc_scientificnameauthor' => $spec_auth,
+          'field_dwc_taxonrank' => 'Species',
         ]);
       }
 
