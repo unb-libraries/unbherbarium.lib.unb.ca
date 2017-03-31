@@ -582,7 +582,7 @@ class TermCreatorRow {
     $term->set('field_dc_replaces', $this->name1st);
     $term->set('field_cmh_english_common_names', array_map('trim', explode(',', $this->commonname)));
     $term->set('field_cmh_french_common_names', array_map('trim', explode(',', $this->frenchname)));
-    $term->set('field_synonyms', array_map('trim', explode("\v", $this->synonyms)));
+    $term->set('field_synonyms', array_map('trim', preg_split('/[\v;]/', $this->synonyms)));
   }
 
 }
