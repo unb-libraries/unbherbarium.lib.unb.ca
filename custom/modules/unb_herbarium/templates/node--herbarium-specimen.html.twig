@@ -74,7 +74,8 @@
                         <div class="toggle-default-off">
                             <dt>{{ content.field_previous_identifications|field_label }}</dt>
                             <dd>
-                                {% if content.field_previous_identifications|field_value['0']['#text'] matches '#[\\w]{2,}#' %}
+                                {# Mark up as list if field array contains 2+ items #}
+                                {% if content.field_previous_identifications|field_value|length > 1 %}
                                     <ul>
                                         <li>{{ content.field_previous_identifications|field_value|safe_join('</li><li>') }}</li>
                                     </ul>
@@ -251,9 +252,14 @@
                         <div class="toggle-default-off">
                             <dt>{{ specimen_synonyms|field_label }}</dt>
                             <dd>
-                                <ul>
-                                    <li>{{- specimen_synonyms|field_value|safe_join('</li><li>') -}}</li>
-                                </ul>
+                                {# Mark up as list when synonym array contain 2+ items #}
+                                {% if specimen_synonyms|field_value|length > 1 %}
+                                    <ul>
+                                        <li>{{ specimen_synonyms|field_value|safe_join('</li><li>') }}</li>
+                                    </ul>
+                                {% else %}
+                                    {{ specimen_synonyms|field_value }}
+                                {% endif %}
                             </dd>
                         </div>
                     {% endif %}
