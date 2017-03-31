@@ -206,13 +206,7 @@
                 <h3 class="toggle-default-off">{% trans %}Taxon{% endtrans %}</h3>
                 <dl>
                     <div>
-                        <dt>
-                            {%- if specimen_class|field_label -%}
-                                {{ specimen_class|field_label }}
-                            {% else %}
-                                {% trans %}Class{% endtrans %}
-                            {% endif %}
-                            </dt>
+                        <dt>{{ specimen_class|field_label }} </dt>
                         <dd>{{ specimen_class|field_value }}</dd>
                     </div>
                     <div>
