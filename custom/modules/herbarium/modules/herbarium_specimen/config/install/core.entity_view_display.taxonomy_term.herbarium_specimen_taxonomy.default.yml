@@ -61,33 +61,25 @@ content:
     weight: 4
     label: above
     settings: {  }
-    third_party_settings:
-      empty_fields:
-        handler: nbsp
+    third_party_settings: {  }
   field_dwc_measurementtype:
     type: list_default
     weight: 5
     label: above
     settings: {  }
-    third_party_settings:
-      empty_fields:
-        handler: nbsp
+    third_party_settings: {  }
   field_dwc_measurementvalue:
     type: text_default
     weight: 6
     label: above
     settings: {  }
-    third_party_settings:
-      empty_fields:
-        handler: nbsp
+    third_party_settings: {  }
   field_dwc_scientificnameauthor:
     type: text_default
     weight: 9
     label: above
     settings: {  }
-    third_party_settings:
-      empty_fields:
-        handler: nbsp
+    third_party_settings: {  }
   field_dwc_taxonid:
     type: text_default
     weight: 11
@@ -110,8 +102,6 @@ content:
     weight: 10
     label: above
     settings: {  }
-    third_party_settings:
-      empty_fields:
-        handler: nbsp
+    third_party_settings: {  }
     type: text_default
 hidden: {  }
