@@ -16,7 +16,6 @@ dependencies:
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_synonyms
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
   module:
-    - empty_fields
     - options
     - text
 id: taxonomy_term.herbarium_specimen_taxonomy.default

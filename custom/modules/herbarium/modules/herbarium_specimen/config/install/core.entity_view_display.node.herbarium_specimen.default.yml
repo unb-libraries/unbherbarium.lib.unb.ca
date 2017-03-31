@@ -49,7 +49,6 @@ dependencies:
   module:
     - colorbox
     - datetime
-    - empty_fields
     - options
     - simple_gmap
     - text
