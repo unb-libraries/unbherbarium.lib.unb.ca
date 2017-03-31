@@ -6,17 +6,18 @@
     <div class="specimen-details">
         <input id="toggle-widget" class="toggle-switch" type="checkbox"/>
         <label class="toggle-switch__label" data-tg-off="{% trans %}More details{% endtrans %}&nbsp;&raquo;" data-tg-on="&laquo;&nbsp;{% trans %}Less details{% endtrans %}" for="toggle-widget"></label>
-        <article {{ content_attributes }}>
-            <dl>
-                <header>
+
+        <main {{ content_attributes }}>
+            <header>
+                <dl>
                     <dt>{% trans %}Descriptor{% endtrans %}</dt>
                     <dd>{% trans %}Value{% endtrans %}</dd>
-                </header>
+                </dl>
+            </header>
 
-                <section>
-                    <h3 class="toggle-default-off">
-                        {% trans %}Record Level{% endtrans %}
-                    </h3>
+            <section>
+                <h3 class="toggle-default-off">{% trans %}Record Level{% endtrans %}</h3>
+                <dl>
                     <div class="toggle-default-off">
                         <dt>{{ content.field_dwc_institutioncode|field_label }}</dt>
                         <dd>{{ content.field_dwc_institutioncode|field_value }}</dd>
@@ -37,12 +38,12 @@
                         <dt>{{ content.field_dwc_datageneralizations|field_label }}</dt>
                         <dd>{{ content.field_dwc_datageneralizations|field_value }}</dd>
                     </div>
-                </section>
+                </dl>
+            </section>
 
-                <section>
-                    <h3 class="toggle-default-off">
-                        {% trans %}Occurence{% endtrans %}
-                    </h3>
+            <section>
+                <h3 class="toggle-default-off">{% trans %}Occurence{% endtrans %}</h3>
+                <dl>
                     <div><!-- UNB Accession No. -->
                         <dt>{{ content.field_dwc_record_number|field_label }}</dt>
                         <dd>{{ content.field_dwc_record_number|field_value }}</dd>
@@ -51,119 +52,159 @@
                         <dt>{{ content.field_collector_tid|field_label }}</dt>
                         <dd>{{ content.field_collector_tid|field_value }}</dd>
                     </div>
-                    <div>
-                        <dt>{{ content.field_dwc_othercatalognumbers|field_label }}</dt>
-                        <dd>{{ content.field_dwc_othercatalognumbers|field_value }}</dd>
-                    </div>
-                    <div><!-- Phenology -->
-                        <dt>{{ content.field_dwc_reproductivecondition|field_label }}</dt>
-                        <dd>{{ content.field_dwc_reproductivecondition|field_value }}</dd>
-                    </div>
-                    <div class="toggle-default-off">
-                        <dt>{{ content.field_dwc_occurrenceremarks|field_label }}</dt>
-                        <dd>{{ content.field_dwc_occurrenceremarks|field_value }}</dd>
-                    </div>
-                    <div class="toggle-default-off">
-                        <dt>{{ content.field_previous_identifications|field_label }}</dt>
-                        <dd>
-                            {% if content.field_previous_identifications|field_value['0']['#text'] matches '#[\\w]{2,}#' %}
-                                <ul>
-                                    <li>{{ content.field_previous_identifications|field_value|safe_join('</li><li>') }}</li>
-                                </ul>
-                            {% else %}
-                                {{- content.field_previous_identifications|field_value -}}
-                            {% endif %}
-                        </dd>
-                    </div>
-                </section>
+                    {% if content.field_dwc_othercatalognumbers|field_label %}
+                        <div>
+                            <dt>{{ content.field_dwc_othercatalognumbers|field_label }}</dt>
+                            <dd>{{ content.field_dwc_othercatalognumbers|field_value }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if content.field_dwc_reproductivecondition|field_label %}
+                        <div><!-- Phenology -->
+                            <dt>{{ content.field_dwc_reproductivecondition|field_label }}</dt>
+                            <dd>{{ content.field_dwc_reproductivecondition|field_value }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if content.field_dwc_occurrenceremarks|field_label %}
+                        <div class="toggle-default-off">
+                            <dt>{{ content.field_dwc_occurrenceremarks|field_label }}</dt>
+                            <dd>{{ content.field_dwc_occurrenceremarks|field_value }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if content.field_previous_identifications|field_label %}
+                        <div class="toggle-default-off">
+                            <dt>{{ content.field_previous_identifications|field_label }}</dt>
+                            <dd>
+                                {% if content.field_previous_identifications|field_value['0']['#text'] matches '#[\\w]{2,}#' %}
+                                    <ul>
+                                        <li>{{ content.field_previous_identifications|field_value|safe_join('</li><li>') }}</li>
+                                    </ul>
+                                {% else %}
+                                    {{ content.field_previous_identifications|field_value }}
+                                {% endif %}
+                            </dd>
+                        </div>
+                    {% endif %}
+                </dl>
+            </section>
 
-                <section>
-                    <h3 class="toggle-default-off">
-                        {% trans %}Event{% endtrans %}
-                    </h3>
+            <section>
+                <h3 class="toggle-default-off">{% trans %}Event{% endtrans %}</h3>
+                <dl>
+                    {% if content.field_dwc_year|field_label %}
                     <div class="toggle-default-off">
                         <dt>{{ content.field_dwc_year|field_label }}</dt>
                         <dd>{{ content.field_dwc_year|field_value }}</dd>
                     </div>
-                    <div class="toggle-default-off">
-                        <dt>{{ content.field_dwc_month|field_label }}</dt>
-                        <dd>{{ content.field_dwc_month|field_value }}</dd>
-                    </div>
-                    <div class="toggle-default-off">
-                        <dt>{{ content.field_dwc_day|field_label }}</dt>
-                        <dd>{{ content.field_dwc_day|field_value }}</dd>
-                    </div>
-                    <div class="toggle-default-on">
-                        <dt>{{ content.field_dwc_eventdate|field_label }}</dt>
-                        <dd>{{ content.field_dwc_eventdate|field_value }}</dd>
-                    </div>
-                    <div><!-- Verbatim Collection Date -->
-                        <dt>{{ content.field_dwc_verbatimeventdate|field_label }}</dt>
-                        <dd>{{ content.field_dwc_verbatimeventdate|field_value }}</dd>
-                    </div>
-                    <div>
-                        <dt>{{ content.field_dwc_habitat|field_label }}</dt>
-                        <dd>{{ content.field_dwc_habitat|field_value }}</dd>
-                    </div>
-                    <div><!-- Abundance -->
-                        <dt>{{ content.field_dwc_eventremarks|field_label }}</dt>
-                        <dd>{{ content.field_dwc_eventremarks|field_value }}</dd>
-                    </div>
-                </section>
+                    {% endif %}
+                    {% if content.field_dwc_month|field_label %}
+                        <div class="toggle-default-off">
+                            <dt>{{ content.field_dwc_month|field_label }}</dt>
+                            <dd>{{ content.field_dwc_month|field_value }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if content.field_dwc_day|field_label %}
+                        <div class="toggle-default-off">
+                            <dt>{{ content.field_dwc_day|field_label }}</dt>
+                            <dd>{{ content.field_dwc_day|field_value }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if content.field_dwc_eventdate|field_label %}
+                        <div class="toggle-default-on">
+                            <dt>{{ content.field_dwc_eventdate|field_label }}</dt>
+                            <dd>{{ content.field_dwc_eventdate|field_value }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if content.field_dwc_verbatimeventdate|field_label %}
+                        <div><!-- Verbatim Collection Date -->
+                            <dt>{{ content.field_dwc_verbatimeventdate|field_label }}</dt>
+                            <dd>{{ content.field_dwc_verbatimeventdate|field_value }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if content.field_dwc_habitat|field_label %}
+                        <div>
+                            <dt>{{ content.field_dwc_habitat|field_label }}</dt>
+                            <dd>{{ content.field_dwc_habitat|field_value }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if content.field_dwc_eventremarks|field_label %}
+                        <div><!-- Abundance -->
+                            <dt>{{ content.field_dwc_eventremarks|field_label }}</dt>
+                            <dd>{{ content.field_dwc_eventremarks|field_value }}</dd>
+                        </div>
+                    {% endif %}
+                </dl>
+            </section>
 
-                <section>
-                    <h3 class="toggle-default-off">
-                        {% trans %}Location{% endtrans %}
-                    </h3>
-                    <div>
-                        <dt>{{ content.field_dwc_country|field_label }}</dt>
-                        <dd>{{ content.field_dwc_country|field_value }}</dd>
-                    </div>
-                    <div>
-                        <dt>{{ content.field_dwc_stateprovince|field_label }}</dt>
-                        <dd>{{ content.field_dwc_stateprovince|field_value }}</dd>
-                    </div>
-                    <div class="toggle-default-off">
-                        <dt>{{ content.field_dwc_county|field_label }}</dt>
-                        <dd>{{ content.field_dwc_county|field_value }}</dd>
-                    </div>
-                    <div>
-                        <dt>{{ content.field_dwc_verbatimlocality|field_label }}</dt>
-                        <dd>{{ content.field_dwc_verbatimlocality|field_value }}</dd>
-                    </div>
-                    <div class="toggle-default-off">
-                        <dt>{{ content.field_dwc_decimallatitude|field_label }}</dt>
-                        <dd>{{ content.field_dwc_decimallatitude|field_value }}</dd>
-                    </div>
-                    <div class="toggle-default-off">
-                        <dt>{{ content.field_dwc_decimallongitude|field_label }}</dt>
-                        <dd>{{ content.field_dwc_decimallongitude|field_value }}</dd>
-                    </div>
-                    <div class="toggle-default-off">
-                        <dt>{{ content.field_dwc_coordinateprecision|field_label }}</dt>
-                        <dd>
-                            {# strip all right-side zeros from precision value array for display #}
-                            {% if content.field_dwc_coordinateprecision|field_value['0']['#markup'] matches '#\.[0-9]+$#' %}
-                                {{ content.field_dwc_coordinateprecision|field_value['0']['#markup']|trim('0', 'right') }}
-                            {% else %}
-                                {{ content.field_dwc_coordinateprecision|field_value }}
-                            {% endif %}
-                        </dd>
-                    </div>
-                    <div class="toggle-default-off">
-                        <dt>{{ content.field_dwc_georeferencedby|field_label }}</dt>
-                        <dd>{{ content.field_dwc_georeferencedby|field_value }}</dd>
-                    </div>
-                    <div class="toggle-default-off">
-                        <dt>{{ content.field_geoheritage|field_label }}</dt>
-                        <dd>{{ content.field_geoheritage|field_value }}</dd>
-                    </div>
-                </section>
+            <section>
+                <h3 class="toggle-default-off">{% trans %}Location{% endtrans %}</h3>
+                <dl>
+                    {% if content.field_dwc_country|field_label %}
+                        <div>
+                            <dt>{{ content.field_dwc_country|field_label }}</dt>
+                            <dd>{{ content.field_dwc_country|field_value }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if content.field_dwc_stateprovince|field_label %}
+                        <div>
+                            <dt>{{ content.field_dwc_stateprovince|field_label }}</dt>
+                            <dd>{{ content.field_dwc_stateprovince|field_value }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if content.field_dwc_county|field_label %}
+                        <div class="toggle-default-off">
+                            <dt>{{ content.field_dwc_county|field_label }}</dt>
+                            <dd>{{ content.field_dwc_county|field_value }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if content.field_dwc_verbatimlocality|field_label %}
+                        <div>
+                            <dt>{{ content.field_dwc_verbatimlocality|field_label }}</dt>
+                            <dd>{{ content.field_dwc_verbatimlocality|field_value }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if content.field_dwc_decimallatitude|field_label %}
+                        <div class="toggle-default-off">
+                            <dt>{{ content.field_dwc_decimallatitude|field_label }}</dt>
+                            <dd>{{ content.field_dwc_decimallatitude|field_value }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if content.field_dwc_decimallongitude|field_label %}
+                        <div class="toggle-default-off">
+                            <dt>{{ content.field_dwc_decimallongitude|field_label }}</dt>
+                            <dd>{{ content.field_dwc_decimallongitude|field_value }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if content.field_dwc_coordinateprecision|field_label %}
+                        <div class="toggle-default-off">
+                            <dt>{{ content.field_dwc_coordinateprecision|field_label }}</dt>
+                            <dd>
+                                {# strip all right-side zeros from precision value array for display #}
+                                {% if content.field_dwc_coordinateprecision|field_value['0']['#markup'] matches '#\.[0-9]+$#' %}
+                                    {{ content.field_dwc_coordinateprecision|field_value['0']['#markup']|trim('0', 'right') }}
+                                {% else %}
+                                    {{ content.field_dwc_coordinateprecision|field_value }}
+                                {% endif %}
+                            </dd>
+                        </div>
+                    {% endif %}
+                    {% if content.field_dwc_georeferencedby|field_label %}
+                        <div class="toggle-default-off">
+                            <dt>{{ content.field_dwc_georeferencedby|field_label }}</dt>
+                            <dd>{{ content.field_dwc_georeferencedby|field_value }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if content.field_dwc_stateprovince|field_label %}
+                        <div class="toggle-default-off">
+                            <dt>{{ content.field_geoheritage|field_label }}</dt>
+                            <dd>{{ content.field_geoheritage|field_value }}</dd>
+                        </div>
+                    {% endif %}
+                </dl>
+            </section>
 
-                <section>
-                    <h3 class="toggle-default-off">
-                        {% trans %}Taxon{% endtrans %}
-                    </h3>
+            <section>
+                <h3 class="toggle-default-off">{% trans %}Taxon{% endtrans %}</h3>
+                <dl>
                     <div>
                         <dt>
                             {%- if specimen_class|field_label -%}
@@ -184,126 +225,87 @@
                     </div>
                     <div><!-- Provide default if empty example -->
                         <dt>{{ specimen_assigned_taxon|field_label }}</dt>
-                        <dd>{{ specimen_assigned_taxon|field_value }}</dd>
+                        <dd>{{- specimen_assigned_taxon|field_value -}}</dd>
                     </div>
-                    <div><!-- Authority -->
-                        <dt>
-                            {%- if specimen_authority|field_label -%}
-                                {{ specimen_authority|field_label }}
-                            {% else %}
-                                {% trans %}Scientific Name Authorship{% endtrans %}
-                            {% endif %}
-                        </dt>
-                        <dd>{{ specimen_authority|field_value }}</dd>
-                    </div>
+                    {% if specimen_authority|field_label %}
+                        <div><!-- Authority -->
+                            <dt>{{ specimen_authority|field_label }}</dt>
+                            <dd>{{ specimen_authority|field_value }}</dd>
+                        </div>
+                    {% endif %}
                     <div class="toggle-default-off">
-                        <dt>
-                            {%- if specimen_taxon_rank|field_label -%}
-                                {{ specimen_taxon_rank|field_label }}
-                            {% else %}
-                                {% trans %}Taxon Rank{% endtrans %}
-                            {% endif %}
-                        </dt>
-                        <dd>{{ specimen_taxon_rank|field_value }}</dd>
+                        <dt>{{ specimen_taxon_rank|field_label }}</dt>
+                        <dd>{{- specimen_taxon_rank|field_value -}}</dd>
                     </div>
-                    <div>
-                        <dt>
-                            {%- if specimen_en_common_names|field_label -%}
-                                {{ specimen_en_common_names|field_label }}
-                            {% else %}
-                                {% trans %}English Common Names(s){% endtrans %}
-                            {% endif %}
-                        </dt>
-                        <dd>
-                            {%- if specimen_en_common_names|field_value -%}
+                    {% if specimen_en_common_names|field_label %}
+                        <div>
+                            <dt>{{ specimen_en_common_names|field_label }}</dt>
+                            <dd>
                                 <ul>
-                                    <li>{{ specimen_en_common_names|field_value|safe_join('</li><li>') }}</li>
+                                    <li>{{- specimen_en_common_names|field_value|safe_join('</li><li>') -}}</li>
                                 </ul>
-                            {% else %}
-                                {{ specimen_en_common_names|field_value }}
-                            {% endif %}
-                        </dd>
-                    </div>
-                    <div>
-                        <dt>
-                            {%- if specimen_fr_common_names|field_label -%}
-                                {{ specimen_fr_common_names|field_label }}
-                            {% else %}
-                                {% trans %}French Common Names(s){% endtrans %}
-                            {% endif %}
-                        </dt>
-                        <dd lang="fr">
-                            {%- if specimen_fr_common_names|field_value -%}
+                            </dd>
+                        </div>
+                    {% endif %}
+                    {% if specimen_fr_common_names|field_label %}
+                        <div>
+                            <dt>{{ specimen_fr_common_names|field_label }}</dt>
+                            <dd lang="fr">
                                 <ul>
                                     <li>{{ specimen_fr_common_names|field_value|safe_join('</li><li>') }}</li>
                                 </ul>
-                            {% else %}
-                                {{ specimen_fr_common_names|field_value }}
-                            {%  endif %}
-                        </dd>
-                    </div>
-                    <div class="toggle-default-off">
-                        <dt>{%- if specimen_synonyms|field_label -%}
-                                {{ specimen_synonyms|field_label }}
-                            {% else %}
-                                {% trans %}Synonyms{% endtrans %}
-                            {% endif %}
-                        </dt>
-                        <dd>
-                            {% if specimen_synonyms|field_value['0']['#text'] matches '#[\\w]{2,}#' %}
+                            </dd>
+                        </div>
+                    {% endif %}
+                    {% if specimen_synonyms|field_label %}
+                        <div class="toggle-default-off">
+                            <dt>{{ specimen_synonyms|field_label }}</dt>
+                            <dd>
                                 <ul>
-                                    <li>{{ specimen_synonyms|field_value|safe_join('</li><li>') }}</li>
+                                    <li>{{- specimen_synonyms|field_value|safe_join('</li><li>') -}}</li>
                                 </ul>
-                            {% else %}
-                                {{- specimen_synonyms|field_value -}}
-                            {% endif %}
-                        </dd>
-                    </div>
-                    <div><!-- Taxon Remarks -->
-                        <dt>
-                            {%- if specimen_taxon_remarks|field_label -%}
-                                {{ specimen_taxon_remarks|field_label }}
-                            {% else %}
-                                {% trans %}Origin{% endtrans %}
-                            {% endif %}
-                        </dt>
-                        <dd>{{ specimen_taxon_remarks|field_value }}</dd>
-                    </div>
-                </section>
+                            </dd>
+                        </div>
+                    {% endif %}
+                    {% if specimen_taxon_remarks|field_label %}
+                        <div><!-- Taxon Remarks -->
+                            <dt>{{ specimen_taxon_remarks|field_label }}</dt>
+                            <dd>{{ specimen_taxon_remarks|field_value }}</dd>
+                        </div>
+                    {% endif %}
+                </dl>
+            </section>
 
-                <section>
-                    <h3 class="toggle-default-off">
-                        {% trans %}Measurement Or Fact{% endtrans %}
-                    </h3>
+            <section>
+                <h3 class="toggle-default-off">{% trans %}Measurement Or Fact{% endtrans %}</h3>
+                <dl>
                     <div class="toggle-default-off">
                         <dt>{{ specimen_measurement_type|field_label }}</dt>
                         <dd>{{ specimen_measurement_type|field_value }}</dd>
                     </div>
-                    <div><!-- Rarity Ranking -->
-                        <dt>
-                            {%- if specimen_measurement_value|field_label -%}
-                                {{ specimen_measurement_value|field_label }}
-                            {% else %}
-                                {% trans %}Measurement Value{% endtrans %}
-                            {% endif %}
-                        </dt>
-                        <dd>{{ specimen_measurement_value|field_value }}</dd>
-                    </div>
+                    {% if specimen_measurement_value|field_label %}
+                        <div><!-- Rarity Ranking -->
+                            <dt>{{ specimen_measurement_value|field_label }}</dt>
+                            <dd>{{ specimen_measurement_value|field_value }}</dd>
+                        </div>
+                    {% endif %}
                     <div class="toggle-default-off">
                         <dt>{{ specimen_measurement_id|field_label }}</dt>
                         <dd>{{ specimen_measurement_id|field_value }}</dd>
                     </div>
-                    <div class="toggle-default-off">
-                        <dt>{{ content.field_dc_contributor_other|field_label }}</dt>
-                        <dd>{{ content.field_dc_contributor_other|field_value }}</dd>
-                    </div>
+                    {% if content.field_dc_contributor_other|field_label %}
+                        <div class="toggle-default-off">
+                            <dt>{{ content.field_dc_contributor_other|field_label }}</dt>
+                            <dd>{{ content.field_dc_contributor_other|field_value }}</dd>
+                        </div>
+                    {% endif %}
                     <div class="toggle-default-off">
                         <dt>{% trans %}Created{% endtrans %}</dt>
                         <dd>{{ node.createdtime|format_date('html_date') }}</dd>
                     </div>
-                </section>
-            </dl>
-        </article>
+                </dl>
+            </section>
+        </main>
         <aside>
             {% if content.field_large_sample_surrogate|field_value %}
               <figure>
