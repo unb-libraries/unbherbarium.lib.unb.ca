@@ -48,10 +48,12 @@
                         <dt>{{ content.field_dwc_record_number|field_label }}</dt>
                         <dd>{{ content.field_dwc_record_number|field_value }}</dd>
                     </div>
-                    <div><!-- Collector(s) -->
-                        <dt>{{ content.field_collector_tid|field_label }}</dt>
-                        <dd>{{ content.field_collector_tid|field_value }}</dd>
-                    </div>
+                    {% if content.field_collector_tid|field_label %}
+                        <div><!-- Collector(s) -->
+                            <dt>{{ content.field_collector_tid|field_label }}</dt>
+                            <dd>{{ content.field_collector_tid|field_value }}</dd>
+                        </div>
+                    {% endif %}
                     {% if content.field_dwc_othercatalognumbers|field_label %}
                         <div>
                             <dt>{{ content.field_dwc_othercatalognumbers|field_label }}</dt>
