@@ -90,23 +90,23 @@
 
             <section>
                 <h3 class="toggle-default-off">{% trans %}Event{% endtrans %}</h3>
-                <dl>
-                    {% if content.field_dwc_year|field_label %}
+                  <dl>
+                    {% if collection_date_year %}
                     <div class="toggle-default-off">
-                        <dt>{{ content.field_dwc_year|field_label }}</dt>
-                        <dd>{{ content.field_dwc_year|field_value }}</dd>
+                        <dt>{% trans %}Year{% endtrans %}</dt>
+                        <dd>{{ collection_date_year }}</dd>
                     </div>
                     {% endif %}
-                    {% if content.field_dwc_month|field_label %}
+                    {% if collection_date_month %}
                         <div class="toggle-default-off">
-                            <dt>{{ content.field_dwc_month|field_label }}</dt>
-                            <dd>{{ content.field_dwc_month|field_value }}</dd>
+                            <dt>{% trans %}Month{% endtrans %}</dt>
+                            <dd>{{ collection_date_month }}</dd>
                         </div>
                     {% endif %}
-                    {% if content.field_dwc_day|field_label %}
+                    {% if collection_date_day %}
                         <div class="toggle-default-off">
-                            <dt>{{ content.field_dwc_day|field_label }}</dt>
-                            <dd>{{ content.field_dwc_day|field_value }}</dd>
+                            <dt>{% trans %}Day{% endtrans %}</dt>
+                            <dd>{{ collection_date_day }}</dd>
                         </div>
                     {% endif %}
                     {% if content.field_dwc_eventdate|field_label %}

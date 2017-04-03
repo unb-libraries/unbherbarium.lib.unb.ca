@@ -119,21 +119,18 @@ process:
   field_dwc_coordinateprecision: mapped_coord_prec
   field_dwc_country: country
   field_dwc_county: county
-  field_dwc_day: day
   field_dwc_decimallatitude: dwc_latitude
   field_dwc_decimallongitude: dwc_longitude
   field_dwc_eventdate: date_iso
   field_dwc_eventremarks: eventremarks
   field_dwc_georeferencedby: georeferencedby
   field_dwc_habitat: habitat
-  field_dwc_month: month
   field_dwc_othercatalognumbers: othercatalognumbers
   field_dwc_record_number: record_number_string
   field_dwc_reproductivecondition: reproductivecondition
   field_dwc_stateprovince: dwc_stateprovince
   field_dwc_verbatimeventdate: dwc_verbatimeventdate
   field_dwc_verbatimlocality: verbatimlocality
-  field_dwc_year: year
   field_geoheritage: geo_heritage
   field_gmap: one_line_gmap_address
   field_large_sample_surrogate: image_file_unmasked

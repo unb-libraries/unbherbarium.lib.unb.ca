@@ -62,7 +62,6 @@ class MigrateEvent implements EventSubscriberInterface {
     $row->setSourceProperty('date_iso', $iso_date);
 
     // Verbatim Event Date.
-    $date_str = '';
     $date_str = 'Y: ' . $year . ' M: ' . $month . ' D: ' . $day;
     $row->setSourceProperty('dwc_verbatimeventdate', $date_str);
 
