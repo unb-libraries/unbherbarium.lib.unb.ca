@@ -10,7 +10,7 @@ id: node.herbarium_specimen.field_dwc_eventremarks
 field_name: field_dwc_eventremarks
 entity_type: node
 bundle: herbarium_specimen
-label: 'Event Remarks'
+label: Abundance
 description: 'DwC:eventRemarks'
 required: false
 translatable: false

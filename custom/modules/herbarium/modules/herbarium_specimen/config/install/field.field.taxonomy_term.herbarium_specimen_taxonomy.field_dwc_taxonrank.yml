@@ -10,8 +10,8 @@ id: taxonomy_term.herbarium_specimen_taxonomy.field_dwc_taxonrank
 field_name: field_dwc_taxonrank
 entity_type: taxonomy_term
 bundle: herbarium_specimen_taxonomy
-label: 'DwC:taxonRank'
-description: 'The taxonomic rank of the most specific name in the scientific name : Family, Genus, Species, var.'
+label: 'Taxon Rank'
+description: 'DwC:taxonRank - The taxonomic rank of the most specific name in the scientific name : Family, Genus, Species, var.'
 required: false
 translatable: true
 default_value: {  }

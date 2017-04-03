@@ -8,7 +8,7 @@ id: node.herbarium_specimen.field_dwc_record_number
 field_name: field_dwc_record_number
 entity_type: node
 bundle: herbarium_specimen
-label: 'Record Number'
+label: 'UNB Accession No.'
 description: 'DwC:recordnumber - The CMH Accession ID for this specimen.'
 required: false
 translatable: false
