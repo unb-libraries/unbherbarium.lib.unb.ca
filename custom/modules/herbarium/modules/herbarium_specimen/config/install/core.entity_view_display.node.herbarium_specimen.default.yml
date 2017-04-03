@@ -209,9 +209,7 @@ content:
     settings:
       timezone_override: ''
       format_type: html_date
-    third_party_settings:
-      empty_fields:
-        handler: ''
+    third_party_settings: {  }
   field_dwc_eventremarks:
     weight: 20
     label: above

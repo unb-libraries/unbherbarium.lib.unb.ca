@@ -49,12 +49,6 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-  field_dwc_class:
-    type: text_default
-    weight: 1
-    label: above
-    settings: {  }
-    third_party_settings: {  }
   field_dwc_measurementid:
     type: text_default
     weight: 4
@@ -103,4 +97,5 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
-hidden: {  }
+hidden:
+  field_dwc_class: true

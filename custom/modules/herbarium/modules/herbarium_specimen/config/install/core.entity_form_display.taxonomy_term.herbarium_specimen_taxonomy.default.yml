@@ -51,13 +51,6 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_dwc_class:
-    type: text_textfield
-    weight: 0
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_dwc_measurementid:
     type: text_textfield
     weight: 0
@@ -124,4 +117,5 @@ content:
     weight: 30
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_dwc_class: true
