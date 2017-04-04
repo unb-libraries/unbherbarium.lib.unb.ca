@@ -228,7 +228,8 @@
                     {% endif %}
                     <div class="toggle-default-off">
                         <dt>{{ specimen_taxon_rank|field_label }}</dt>
-                        <dd>{{- specimen_taxon_rank|field_value -}}</dd>
+                        {# Don't render Taxon Rank taxonomy page link #}
+                        <dd>{{ specimen_taxon_rank|field_value|render|striptags }}</dd>
                     </div>
                     {% if specimen_en_common_names|field_label %}
                         <div>
