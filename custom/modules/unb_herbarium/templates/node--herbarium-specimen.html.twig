@@ -44,12 +44,12 @@
             <section>
                 <h3 class="toggle-default-off">{% trans %}Occurence{% endtrans %}</h3>
                 <dl>
-                    <div><!-- UNB Accession No. -->
+                    <div>{# UNB Accession No.#}
                         <dt>{{ content.field_dwc_record_number|field_label }}</dt>
                         <dd>{{ content.field_dwc_record_number|field_value }}</dd>
                     </div>
                     {% if content.field_collector_tid|field_label %}
-                        <div><!-- Collector(s) -->
+                        <div>{# Collector(s) #}
                             <dt>{{ content.field_collector_tid|field_label }}</dt>
                             <dd>{{ content.field_collector_tid|field_value }}</dd>
                         </div>
@@ -61,7 +61,7 @@
                         </div>
                     {% endif %}
                     {% if content.field_dwc_reproductivecondition|field_label %}
-                        <div><!-- Phenology -->
+                        <div>{# Phenology #}
                             <dt>{{ content.field_dwc_reproductivecondition|field_label }}</dt>
                             <dd>{{ content.field_dwc_reproductivecondition|field_value }}</dd>
                         </div>
@@ -118,7 +118,7 @@
                         </div>
                     {% endif %}
                     {% if content.field_dwc_verbatimeventdate|field_label %}
-                        <div><!-- Verbatim Collection Date -->
+                        <div>{# Verbatim Collection Date #}
                             <dt>{{ content.field_dwc_verbatimeventdate|field_label }}</dt>
                             <dd>{{ content.field_dwc_verbatimeventdate|field_value }}</dd>
                         </div>
@@ -130,7 +130,7 @@
                         </div>
                     {% endif %}
                     {% if content.field_dwc_eventremarks|field_label %}
-                        <div><!-- Abundance -->
+                        <div>{# Abundance #}
                             <dt>{{ content.field_dwc_eventremarks|field_label }}</dt>
                             <dd>{{ content.field_dwc_eventremarks|field_value }}</dd>
                         </div>
@@ -181,7 +181,7 @@
                         <div class="toggle-default-off">
                             <dt>{{ content.field_dwc_coordinateprecision|field_label }}</dt>
                             <dd>
-                                {# strip all right-side zeros from precision value array for display #}
+                                {# Strip all right-side zeros from precision value array for display #}
                                 {% if content.field_dwc_coordinateprecision|field_value['0']['#markup'] matches '#\.[0-9]+$#' %}
                                     {{ content.field_dwc_coordinateprecision|field_value['0']['#markup']|trim('0', 'right') }}
                                 {% else %}
@@ -216,12 +216,12 @@
                         <dt>{% trans %}Genus{% endtrans %}</dt>
                         <dd>{{ specimen_genus|raw }}</dd>
                     </div>
-                    <div><!-- Provide default if empty example -->
+                    <div>{# Provide default if empty example #}
                         <dt>{{ specimen_assigned_taxon|field_label }}</dt>
                         <dd>{{- specimen_assigned_taxon|field_value -}}</dd>
                     </div>
                     {% if specimen_authority|field_label %}
-                        <div><!-- Authority -->
+                        <div>{# Authority #}
                             <dt>{{ specimen_authority|field_label }}</dt>
                             <dd>{{ specimen_authority|field_value }}</dd>
                         </div>
@@ -266,7 +266,7 @@
                         </div>
                     {% endif %}
                     {% if specimen_taxon_remarks|field_label %}
-                        <div><!-- Taxon Remarks -->
+                        <div>{# Taxon Remarks #}
                             <dt>{{ specimen_taxon_remarks|field_label }}</dt>
                             <dd>{{ specimen_taxon_remarks|field_value }}</dd>
                         </div>
@@ -282,7 +282,7 @@
                         <dd>{{ specimen_measurement_type|field_value }}</dd>
                     </div>
                     {% if specimen_measurement_value|field_label %}
-                        <div><!-- Rarity Ranking -->
+                        <div>{# Rarity Ranking #}
                             <dt>{{ specimen_measurement_value|field_label }}</dt>
                             <dd>{{ specimen_measurement_value|field_value }}</dd>
                         </div>
