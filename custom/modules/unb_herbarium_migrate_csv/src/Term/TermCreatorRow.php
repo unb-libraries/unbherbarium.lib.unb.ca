@@ -353,7 +353,7 @@ class TermCreatorRow {
    *   Returns the TID of the created stub term, or an existing one matching
    *   the given values.
    */
-  public function createStubTerm($name, $parent = 0) {
+  public function createStubTerm($name, $taxon_rank = 'Family', $parent = 0) {
     $stub_tid = $this->checkStubTermExists($name, $parent);
     if ($stub_tid == FALSE) {
       $term = Term::create([
@@ -361,9 +361,10 @@ class TermCreatorRow {
         'name' => $name,
         'parent' => array($parent),
       ]);
+
       // Populate DwC:taxonRank field.
-      $taxonRank = $parent ? 'Genus' : 'Family';
-      $term->set('field_dwc_taxonrank', $taxonRank);
+      $term->set('field_dwc_taxonrank', $this->getTaxonRankId($taxon_rank));
+
       $term->save();
       return $term->id();
     }
@@ -377,21 +378,21 @@ class TermCreatorRow {
 
     // Level 5 Record.
     if (
-      trim($this->xt) != ''
+      $this->xt != ''
     ) {
 
-      $spec_label = trim($this->xt);
-      $spec_name = trim($this->xn);
-      $spec_auth = trim($this->xndauth);
+      $spec_label = $this->xt;
+      $spec_name = $this->xn;
+      $spec_auth = $this->xndauth;
 
       if ($spec_name == '') {
         $spec_name = IMPORT_SPEC_NAME_UNKNOWN_VALUE;
       }
 
       $family_tid = $this->createStubTerm($this->family);
-      $genus_tid = $this->createStubTerm($this->gen, $family_tid);
-      $species_tid = $this->createStubTerm($this->spec, $genus_tid);
-      $variant_tid = $this->createStubTerm($this->txn, $species_tid);
+      $genus_tid = $this->createStubTerm($this->gen, 'Genus', $family_tid);
+      $species_tid = $this->createStubTerm($this->spec, 'Species', $genus_tid);
+      $variant_tid = $this->createStubTerm($this->txn, $this->xt, $species_tid);
 
       $stub_tid = $this->checkStubTermExists($spec_name, $variant_tid);
 
@@ -407,7 +408,7 @@ class TermCreatorRow {
           'name' => $spec_name,
           'parent' => array($variant_tid),
           'field_dwc_scientificnameauthor' => $spec_auth,
-          'field_dwc_taxonrank' => trim($this->xt),
+          'field_dwc_taxonrank' => $this->getTaxonRankId($this->xt),
         ]);
       }
 
@@ -417,22 +418,23 @@ class TermCreatorRow {
 
     // Level 4 Record.
     elseif (
-      trim($this->txt) != '' &&
-      trim($this->xt) == '' &&
-      trim($this->xn) == '' &&
-      trim($this->spec) != ''
+      $this->txt != '' &&
+      $this->xt == '' &&
+      $this->xn == '' &&
+      $this->spec != ''
     ) {
-      $spec_label = trim($this->txt);
-      $spec_name = trim($this->txn);
-      $spec_auth = trim($this->taxauth);
+      $spec_label = $this->txt;
+      $spec_name = $this->txn;
+      $spec_auth = $this->taxauth;
 
       if ($spec_name == '') {
         $spec_name = IMPORT_SPEC_NAME_UNKNOWN_VALUE;
       }
 
       $family_tid = $this->createStubTerm($this->family);
-      $genus_tid = $this->createStubTerm($this->gen, $family_tid);
-      $species_tid = $this->createStubTerm($this->spec, $genus_tid);
+      $genus_tid = $this->createStubTerm($this->gen, 'Genus', $family_tid);
+      $species_tid = $this->createStubTerm($this->spec, 'Species', $genus_tid);
+
       $stub_tid = $this->checkStubTermExists($spec_name, $species_tid);
 
       if (!empty($stub_tid)) {
@@ -447,7 +449,7 @@ class TermCreatorRow {
           'name' => $spec_name,
           'parent' => array($species_tid),
           'field_dwc_scientificnameauthor' => $spec_auth,
-          'field_dwc_taxonrank' => trim($this->txt),
+          'field_dwc_taxonrank' => $this->getTaxonRankId($this->txt),
         ]);
       }
 
@@ -457,22 +459,22 @@ class TermCreatorRow {
 
     // Level 3.1 Record.
     elseif (
-      trim($this->txt) != '' &&
-      trim($this->xt) == '' &&
-      trim($this->xn) == '' &&
-      trim($this->spec) == ''
+      $this->txt != '' &&
+      $this->xt == '' &&
+      $this->xn == '' &&
+      $this->spec == ''
     ) {
-      $spec_label = trim($this->txt);
-      $spec_name = trim($this->txn);
-      $spec_auth = trim($this->taxauth);
+      $spec_label = $this->txt;
+      $spec_name = $this->txn;
+      $spec_auth = $this->taxauth;
 
       if ($spec_name == '') {
         $spec_name = IMPORT_SPEC_NAME_UNKNOWN_VALUE;
       }
 
       $family_tid = $this->createStubTerm($this->family);
-      $genus_tid = $this->createStubTerm($this->gen, $family_tid);
-      $stub_tid = $this->checkStubTermExists($spec_name, $genus_tid);
+      $genus_tid = $this->createStubTerm($this->gen, 'Genus', $family_tid);
+      $stub_tid = $this->checkStubTermExists($spec_name, 'sect. Species', $genus_tid);
 
       if (!empty($stub_tid)) {
         $term = Term::load($stub_tid);
@@ -486,7 +488,7 @@ class TermCreatorRow {
           'name' => $spec_name,
           'parent' => array($genus_tid),
           'field_dwc_scientificnameauthor' => $spec_auth,
-          'field_dwc_taxonrank' => trim($this->txt),
+          'field_dwc_taxonrank' => $this->getTaxonRankId($this->txt),
         ]);
       }
 
@@ -496,19 +498,19 @@ class TermCreatorRow {
 
     // Level 3.2 Record.
     elseif (
-      trim($this->spec) != '' &&
-      trim($this->txt) == '' &&
-      trim($this->txn) == '' &&
-      trim($this->xt) == '' &&
-      trim($this->xn) == ''
+      $this->spec != '' &&
+      $this->txt == '' &&
+      $this->txn == '' &&
+      $this->xt == '' &&
+      $this->xn == ''
     ) {
       $spec_label = 'sp.';
-      $spec_name = trim($this->spec);
-      $spec_auth = trim($this->auth);
+      $spec_name = $this->spec;
+      $spec_auth = $this->auth;
 
       $family_tid = $this->createStubTerm($this->family);
-      $genus_tid = $this->createStubTerm($this->gen, $family_tid);
-      $stub_tid = $this->checkStubTermExists($spec_name, $genus_tid);
+      $genus_tid = $this->createStubTerm($this->gen, 'Genus', $family_tid);
+      $stub_tid = $this->checkStubTermExists($spec_name, 'Species', $genus_tid);
 
       if (!empty($stub_tid)) {
         $term = Term::load($stub_tid);
@@ -522,7 +524,7 @@ class TermCreatorRow {
           'name' => $spec_name,
           'parent' => array($genus_tid),
           'field_dwc_scientificnameauthor' => $spec_auth,
-          'field_dwc_taxonrank' => 'Species',
+          'field_dwc_taxonrank' => $this->getTaxonRankId('Species'),
         ]);
       }
 
@@ -532,16 +534,16 @@ class TermCreatorRow {
 
     // Level 2 Record.
     elseif (
-      trim($this->gen) != '' &&
-      trim($this->spec) == '' &&
-      trim($this->txt) == '' &&
-      trim($this->txn) == '' &&
-      trim($this->xt) == '' &&
-      trim($this->xn) == ''
+      $this->gen != '' &&
+      $this->spec == '' &&
+      $this->txt == '' &&
+      $this->txn == '' &&
+      $this->xt == '' &&
+      $this->xn == ''
     ) {
       $spec_label = 'gen.';
-      $spec_name = trim($this->gen);
-      $spec_auth = trim($this->auth);
+      $spec_name = $this->gen;
+      $spec_auth = $this->auth;
 
       $family_tid = $this->createStubTerm($this->family);
       $stub_tid = $this->checkStubTermExists($spec_name, $family_tid);
