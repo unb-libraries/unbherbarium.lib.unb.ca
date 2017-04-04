@@ -396,7 +396,7 @@ function convertDMStoDecimal($deg,$min,$sec) {
   }
 
   /**
-  * Check if a herbarium taxonony term exists.
+  * Check if a taxonony term exists.
   *
   * @param string $value
   *   The name of the term.
