@@ -80,11 +80,12 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_dwc_taxonrank:
-    type: text_default
     weight: 12
     label: above
-    settings: {  }
+    settings:
+      link: true
     third_party_settings: {  }
+    type: entity_reference_label
   field_dwc_taxonremarks:
     type: text_default
     weight: 7

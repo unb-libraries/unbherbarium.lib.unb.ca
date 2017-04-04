@@ -85,12 +85,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_dwc_taxonrank:
-    type: text_textfield
-    weight: 0
+    weight: 35
     settings:
+      match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    type: entity_reference_autocomplete
   field_dwc_taxonremarks:
     type: text_textfield
     weight: 0

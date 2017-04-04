@@ -4,17 +4,24 @@ dependencies:
   config:
     - field.storage.taxonomy_term.field_dwc_taxonrank
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
-  module:
-    - text
+    - taxonomy.vocabulary.taxon_rank
 id: taxonomy_term.herbarium_specimen_taxonomy.field_dwc_taxonrank
 field_name: field_dwc_taxonrank
 entity_type: taxonomy_term
 bundle: herbarium_specimen_taxonomy
 label: 'Taxon Rank'
-description: 'DwC:taxonRank - The taxonomic rank of the most specific name in the scientific name : Family, Genus, Species, var.'
-required: false
-translatable: true
+description: 'DwC:taxonRank - The taxonomic rank of the most specific name in the scientific name : Family, Genus, Species, var., ssp., x'
+required: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: text
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      taxon_rank: taxon_rank
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
