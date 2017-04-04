@@ -260,6 +260,57 @@ class TermCreatorRow {
   }
 
   /**
+   * Check if a taxonony term exists.
+   *
+   * @param string $value
+   *   The name of the term.
+   * @param string $field
+   *   The machine name of the field.
+   * @param string $vocabulary
+   *   The machine name of the vocabulary.
+   *
+   * @return mixed
+   *   Returns the TID of the term, if it exists. False otherwise.
+   */
+  public function taxtermExists($value, $field, $vocabulary) {
+    $query = \Drupal::entityQuery('taxonomy_term');
+    $query->condition('vid', $vocabulary);
+    $query->condition($field, $value);
+    $tids = $query->execute();
+    if (!empty($tids)) {
+      foreach ($tids as $tid) {
+        return $tid;
+      }
+    }
+    return FALSE;
+  }
+
+  /**
+   * Generate Taxon Rank vocabulary terms.
+   *
+   * @param string $taxon_rank
+   *   The name of the taxon rank term.
+   *
+   * @return mixed
+   *   Returns the TID of the pre-existing/created taxon rank term.
+   */
+  public function getTaxonRankId($taxon_rank) {
+    $rank_term_tid = $this->taxtermExists($taxon_rank, 'name', 'taxon_rank');
+    if (!empty($rank_term_tid)) {
+      $rank_term = Term::load($rank_term_tid);
+    }
+    else {
+      $rank_term = Term::create([
+        'vid' => 'taxon_rank',
+        'name' => $taxon_rank,
+      ]);
+      $rank_term->save();
+    }
+
+    return $rank_term->id();
+  }
+
+  /**
    * Check if a stub term relating to this row exists.
    *
    * @param string $name
