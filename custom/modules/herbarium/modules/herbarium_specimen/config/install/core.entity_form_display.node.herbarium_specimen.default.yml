@@ -19,7 +19,6 @@ dependencies:
     - field.field.node.herbarium_specimen.field_dwc_countrycode
     - field.field.node.herbarium_specimen.field_dwc_county
     - field.field.node.herbarium_specimen.field_dwc_datageneralizations
-    - field.field.node.herbarium_specimen.field_dwc_day
     - field.field.node.herbarium_specimen.field_dwc_decimallatitude
     - field.field.node.herbarium_specimen.field_dwc_decimallongitude
     - field.field.node.herbarium_specimen.field_dwc_eventdate
@@ -29,7 +28,6 @@ dependencies:
     - field.field.node.herbarium_specimen.field_dwc_informationwithheld
     - field.field.node.herbarium_specimen.field_dwc_institutioncode
     - field.field.node.herbarium_specimen.field_dwc_institutionid
-    - field.field.node.herbarium_specimen.field_dwc_month
     - field.field.node.herbarium_specimen.field_dwc_occurrenceremarks
     - field.field.node.herbarium_specimen.field_dwc_othercatalognumbers
     - field.field.node.herbarium_specimen.field_dwc_record_number
@@ -37,7 +35,6 @@ dependencies:
     - field.field.node.herbarium_specimen.field_dwc_stateprovince
     - field.field.node.herbarium_specimen.field_dwc_verbatimeventdate
     - field.field.node.herbarium_specimen.field_dwc_verbatimlocality
-    - field.field.node.herbarium_specimen.field_dwc_year
     - field.field.node.herbarium_specimen.field_geoheritage
     - field.field.node.herbarium_specimen.field_gmap
     - field.field.node.herbarium_specimen.field_large_sample_surrogate
@@ -277,12 +274,6 @@ content:
     weight: 10
     settings: {  }
     third_party_settings: {  }
-  field_dwc_day:
-    type: number
-    weight: 9
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
   field_dwc_decimallatitude:
     weight: 17
     settings:
@@ -326,24 +317,18 @@ content:
     type: text_textarea
   field_dwc_informationwithheld:
     type: options_select
-    weight: 4
+    weight: 14
     settings: {  }
     third_party_settings: {  }
   field_dwc_institutioncode:
     type: options_select
-    weight: 6
+    weight: 16
     settings: {  }
     third_party_settings: {  }
   field_dwc_institutionid:
     type: options_select
-    weight: 11
+    weight: 21
     settings: {  }
-    third_party_settings: {  }
-  field_dwc_month:
-    type: number
-    weight: 8
-    settings:
-      placeholder: ''
     third_party_settings: {  }
   field_dwc_occurrenceremarks:
     weight: 68
@@ -394,12 +379,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-  field_dwc_year:
-    type: number
-    weight: 7
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
   field_geoheritage:
     weight: 66
     settings:
