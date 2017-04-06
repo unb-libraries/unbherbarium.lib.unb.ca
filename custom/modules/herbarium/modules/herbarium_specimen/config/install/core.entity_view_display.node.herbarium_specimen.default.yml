@@ -71,13 +71,13 @@ content:
     third_party_settings: {  }
     type: string
   field_dc_created:
-    type: datetime_default
-    weight: 6
+    weight: 40
     label: above
     settings:
+      format_type: medium
       timezone_override: ''
-      format_type: html_date
     third_party_settings: {  }
+    type: datetime_default
   field_dc_format:
     type: list_default
     weight: 9

@@ -10,10 +10,10 @@ id: node.herbarium_specimen.field_dc_created
 field_name: field_dc_created
 entity_type: node
 bundle: herbarium_specimen
-label: Created
-description: 'Record Creation Date -0 The date this specimen was added to the database itself.'
+label: 'Record Creation Date'
+description: 'The date this specimen was added to the database itself.'
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }

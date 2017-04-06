@@ -86,17 +86,16 @@ third_party_settings:
       children:
         - field_dwc_decimallatitude
         - field_dwc_decimallongitude
-        - field_dwc_coordinateprecision
-        - field_verbatim_coordinateprec
         - field_dwc_habitat
-        - field_dwc_verbatimlocality
         - field_dwc_eventremarks
-        - field_dwc_occurrenceremarks
         - field_dwc_country
         - field_dwc_county
         - field_dwc_countrycode
         - field_dwc_stateprovince
         - field_dwc_georeferencedby
+        - field_dwc_coordinateprecision
+        - field_dwc_occurrenceremarks
+        - field_dwc_verbatimlocality
       parent_name: group_initially_hidden_details
       weight: 49
       label: 'Specimen Habitat'
@@ -125,8 +124,7 @@ third_party_settings:
         classes: 'group-date field-group-accordion-item'
         description: ''
     group_previous_identifications:
-      children:
-        - field_dwc_previousidents
+      children: {  }
       parent_name: group_initially_hidden_details
       weight: 51
       label: 'Previous Identifications'
@@ -151,9 +149,9 @@ third_party_settings:
         - field_dwc_basisofrecord
         - field_dwc_datageneralizations
         - field_dwc_institutionid
-        - field_geoheritage
         - field_dc_publisher
         - field_dc_language
+        - field_geoheritage
       parent_name: group_initially_hidden_details
       weight: 52
       label: 'Details / License'
@@ -187,59 +185,59 @@ content:
     third_party_settings: {  }
     type: string_textfield
   field_dc_created:
-    type: datetime_datelist
     weight: 5
     settings:
       date_order: MDY
       time_type: none
       increment: 15
     third_party_settings: {  }
+    type: datetime_datelist
   field_dc_format:
     type: options_select
-    weight: 7
+    weight: 17
     settings: {  }
     third_party_settings: {  }
   field_dc_language:
     type: options_select
-    weight: 14
+    weight: 23
     settings: {  }
     third_party_settings: {  }
   field_dc_modified:
     type: datetime_datelist
-    weight: 0
+    weight: 11
     settings:
+      date_order: MDY
+      time_type: none
       increment: 15
-      date_order: YMD
-      time_type: '24'
     third_party_settings: {  }
   field_dc_publisher:
     type: options_select
-    weight: 13
+    weight: 22
     settings: {  }
     third_party_settings: {  }
   field_dc_rights:
     type: options_select
-    weight: 5
+    weight: 15
     settings: {  }
     third_party_settings: {  }
   field_dc_rightsholder:
     type: options_select
-    weight: 2
+    weight: 13
     settings: {  }
     third_party_settings: {  }
   field_dc_type:
     type: options_select
-    weight: 1
+    weight: 12
     settings: {  }
     third_party_settings: {  }
   field_dwc_basisofrecord:
     type: options_select
-    weight: 9
+    weight: 19
     settings: {  }
     third_party_settings: {  }
   field_dwc_collectioncode:
     type: options_select
-    weight: 8
+    weight: 18
     settings: {  }
     third_party_settings: {  }
   field_dwc_coordinateprecision:
@@ -271,7 +269,7 @@ content:
     type: string_textfield
   field_dwc_datageneralizations:
     type: options_select
-    weight: 10
+    weight: 20
     settings: {  }
     third_party_settings: {  }
   field_dwc_decimallatitude:
@@ -366,7 +364,7 @@ content:
     third_party_settings: {  }
     type: string_textfield
   field_dwc_verbatimeventdate:
-    weight: 60
+    weight: 6
     settings:
       size: 60
       placeholder: ''
@@ -380,7 +378,7 @@ content:
     third_party_settings: {  }
     type: string_textfield
   field_geoheritage:
-    weight: 66
+    weight: 24
     settings:
       size: 60
       placeholder: ''
