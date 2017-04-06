@@ -66,38 +66,41 @@ class MigrateEvent implements EventSubscriberInterface {
     $row->setSourceProperty('dwc_verbatimeventdate', $date_str);
 
     // Record Creation Date.
-    $iso_date = $date_str = '';
     $date_array = [];
+    $record_creation_date_valid = FALSE;
     $date_str = str_replace("/", "-", trim($row->getSourceProperty('dc_created')));
     if (!empty($date_str)) {
       list($date_array['year'], $date_array['month'], $date_array['day']) = array_filter(explode("-", $date_str));
       if ($this->isValidYearRange($date_array['year']) &&
         $this->isValidMonthRange($date_array['month']) &&
-        $this->isValidDayRange($date_array['day'])) {
+        $this->isValidDayRange($date_array['day'])
+      ) {
+        $record_creation_date_valid = TRUE;
         $iso_date = DrupalDateTime::arrayToISO($date_array);
+        $row->setSourceProperty('date_created_iso', $iso_date);
+        $timestamp = strtotime($date_str);
+        $row->setSourceProperty('created_timestamp', (int) $timestamp);
+        $row->setSourceProperty('changed_timestamp', (int) $timestamp);
       }
     }
-    $row->setSourceProperty('date_created_iso', $iso_date);
 
-    // DwC Modified from Filemaker (Date + time).
-    $filemaker_date = $date_str = '';
+    // Modification Date.
     $date_array = [];
     $date_str = str_replace("/", "-", trim($row->getSourceProperty('dc_modified')));
     if (!empty($date_str)) {
       list($date_array['year'], $date_array['month'], $date_array['day']) = array_filter(explode("-", $date_str));
-      list($date_array['hour'], $date_array['minute'], $date_array['second']) = array(
-        '00',
-        '00',
-        '00'
-      );
-
       if ($this->isValidYearRange($date_array['year']) &&
         $this->isValidMonthRange($date_array['month']) &&
         $this->isValidDayRange($date_array['day'])
       ) {
-        $filemaker_date = DrupalDateTime::arrayToISO($date_array);
+        $iso_date = DrupalDateTime::arrayToISO($date_array);
+        $row->setSourceProperty('date_modified_iso', $iso_date);
+        $timestamp = strtotime($date_str);
+        $row->setSourceProperty('changed_timestamp', (int) $timestamp);
+        if (!$record_creation_date_valid) {
+          $row->setSourceProperty('created_timestamp', (int) $timestamp);
+        }
       }
-      $row->setSourceProperty('date_modified_iso', $filemaker_date);
     }
 
     // Province Value - trim whitespace+strip periods.
@@ -372,7 +375,7 @@ function convertDMStoDecimal($deg,$min,$sec) {
    *
    * RETURNS : TRUE on validation, FALSE on fail.
    */
-  function isValidMonthRange($monthValue) {
+  public function isValidMonthRange($monthValue) {
     if ($monthValue >= 1 && $monthValue <= 12) {
       return TRUE;
     }
@@ -388,7 +391,7 @@ function convertDMStoDecimal($deg,$min,$sec) {
    *
    * RETURNS : TRUE on validation, FALSE on fail.
    */
-  function isValidYearRange($yearValue) {
+  public function isValidYearRange($yearValue) {
     if ($yearValue >= 1800 && $yearValue <= date("Y")) {
       return TRUE;
     }
