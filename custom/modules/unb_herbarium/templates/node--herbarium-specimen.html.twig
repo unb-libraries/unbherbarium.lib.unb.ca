@@ -302,6 +302,10 @@
                         <dt>{% trans %}Created{% endtrans %}</dt>
                         <dd>{{ node.createdtime|format_date('html_date') }}</dd>
                     </div>
+                    <div class="toggle-default-off">
+                        <dt>{% trans %}Modified{% endtrans %}</dt>
+                        <dd>{{ node.changedtime|format_date('html_date') }}</dd>
+                    </div>
                 </dl>
             </section>
         </main>
