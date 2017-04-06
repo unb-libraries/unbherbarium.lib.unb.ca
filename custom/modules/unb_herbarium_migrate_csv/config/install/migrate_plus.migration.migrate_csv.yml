@@ -116,6 +116,8 @@ process:
   field_dc_contributor_other: contributor_other
   field_dc_created: date_created_iso
   field_dc_modified: date_modified_iso
+  created: created_timestamp
+  changed: changed_timestamp
   field_dwc_coordinateprecision: mapped_coord_prec
   field_dwc_country: country
   field_dwc_county: county
