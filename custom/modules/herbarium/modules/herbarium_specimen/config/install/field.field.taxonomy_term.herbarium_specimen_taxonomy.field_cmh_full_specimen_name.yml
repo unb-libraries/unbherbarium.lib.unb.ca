@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_cmh_full_specimen_name
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
+  module:
+    - text
+id: taxonomy_term.herbarium_specimen_taxonomy.field_cmh_full_specimen_name
+field_name: field_cmh_full_specimen_name
+entity_type: taxonomy_term
+bundle: herbarium_specimen_taxonomy
+label: 'Full Specimen Name'
+description: 'The full name of this specimen.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text
