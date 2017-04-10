@@ -22,3 +22,14 @@ function herbarium_core_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
+
+/**
+ * Returns the parent id of a given taxonomy term id.
+ */
+function _herbarium_core_get_specimen_parent($tid) {
+  $storage = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term');
+  $parent_object_array = $storage->loadParents($tid);
+  return array_shift(
+    array_keys($parent_object_array)
+  );
+}

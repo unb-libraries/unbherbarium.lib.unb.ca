@@ -61,8 +61,8 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $tid = $assigned_tax_term_list->get(0)->entity->id();
 
   // TODO: traverse up tree until we have a rank of 'Species'.
-  $genus_tid = _unb_herbarium_get_specimen_parent($tid);
-  $family_tid = _unb_herbarium_get_specimen_parent($genus_tid);
+  $genus_tid = _herbarium_core_get_specimen_parent($tid);
+  $family_tid = _herbarium_core_get_specimen_parent($genus_tid);
 
   // Split date into separate year/month/day fields for full details mode.
   $collection_date = $node->get('field_dwc_eventdate')->getString();
@@ -87,17 +87,6 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $variables['specimen_fr_common_names'] = $assigned_tax_term_list->get(0)->entity->get('field_cmh_french_common_names')->view();
   $variables['specimen_synonyms'] = $assigned_tax_term_list->get(0)->entity->get('field_synonyms')->view();
   $variables['specimen_taxon_remarks'] = $assigned_tax_term_list->get(0)->entity->get('field_dwc_taxonremarks')->view();
-}
-
-/**
- * Returns the parent id of a given taxonomy term id.
- */
-function _unb_herbarium_get_specimen_parent($tid) {
-  $storage = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term');
-  $parent_object_array = $storage->loadParents($tid);
-  return array_shift(
-    array_keys($parent_object_array)
-  );
 }
 
 /**
