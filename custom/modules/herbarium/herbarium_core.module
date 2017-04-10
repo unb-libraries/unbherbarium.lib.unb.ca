@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+define('HERBARIUM_CORE_SPECIMEN_VOCABULARY_ID', 'herbarium_specimen_taxonomy');
 
 /**
  * Implements hook_help().
