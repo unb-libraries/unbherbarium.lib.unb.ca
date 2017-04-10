@@ -27,9 +27,22 @@ function herbarium_core_help($route_name, RouteMatchInterface $route_match) {
  * Returns the parent id of a given taxonomy term id.
  */
 function _herbarium_core_get_specimen_parent($tid) {
+/**
+ * Returns the first parent of a given taxonomy term.
+ *
+ * @param int $tid
+ *   The term ID of the term to query.
+ *
+ * @return int
+ *   The term ID of the parent term, FALSE if term has no parents.
+ */
+function _herbarium_core_get_term_first_parent($tid) {
   $storage = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term');
+  /* @var $storage \Drupal\taxonomy\TermStorageInterface */
+
   $parent_object_array = $storage->loadParents($tid);
-  return array_shift(
-    array_keys($parent_object_array)
-  );
+  if (!empty($parent_object_array)) {
+    return array_shift($parent_object_array)->id();
+  }
+  return FALSE;
 }
