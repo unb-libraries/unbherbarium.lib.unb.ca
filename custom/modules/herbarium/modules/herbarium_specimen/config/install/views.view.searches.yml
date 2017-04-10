@@ -64,9 +64,9 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Apply
-          reset_button: true
-          reset_button_label: 'Start Over'
+          submit_button: 'Apply filters'
+          reset_button: false
+          reset_button_label: 'Reset filters'
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
           sort_asc_label: Asc
@@ -584,6 +584,7 @@ display:
         title: false
         filters: false
         filter_groups: false
+        css_class: false
       filters:
         status:
           id: status
@@ -646,7 +647,7 @@ display:
           exposed: true
           expose:
             operator_id: title_op
-            label: 'Scientific Name:'
+            label: 'Scientific Name'
             description: ''
             use_operator: false
             operator: title_op
@@ -683,102 +684,6 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: views_autocomplete_filters_string
-        field_collector_tid_target_id:
-          id: field_collector_tid_target_id
-          table: node__field_collector_tid
-          field: field_collector_tid_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_collector_tid_target_id_op
-            label: 'Collector:'
-            description: ''
-            use_operator: false
-            operator: field_collector_tid_target_id_op
-            identifier: collector
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              herbarium_specimen_add_edit_only: '0'
-              herbarium_specimen_add_edit_all: '0'
-              herbarium_specimen_administrator: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: herbarium_specimen_collector
-          hierarchy: false
-          error_message: false
-          plugin_id: taxonomy_index_tid
-        field_dwc_record_number_value:
-          id: field_dwc_record_number_value
-          table: node__field_dwc_record_number
-          field: field_dwc_record_number_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: contains
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_dwc_record_number_value_op
-            label: 'Accession ID'
-            description: ''
-            use_operator: false
-            operator: field_dwc_record_number_value_op
-            identifier: id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              herbarium_specimen_add_edit_only: '0'
-              herbarium_specimen_add_edit_all: '0'
-              herbarium_specimen_administrator: '0'
-            autocomplete_filter: 0
-            autocomplete_min_chars: '0'
-            autocomplete_items: '10'
-            autocomplete_field: field_dwc_record_number
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: views_autocomplete_filters_string
         field_dwc_country_value:
           id: field_dwc_country_value
           table: node__field_dwc_country
@@ -792,7 +697,7 @@ display:
           exposed: true
           expose:
             operator_id: field_dwc_country_value_op
-            label: 'Country:'
+            label: Country
             description: ''
             use_operator: false
             operator: field_dwc_country_value_op
@@ -807,11 +712,6 @@ display:
               herbarium_specimen_add_edit_only: '0'
               herbarium_specimen_add_edit_all: '0'
               herbarium_specimen_administrator: '0'
-              cmh_database_administrator: '0'
-              student: '0'
-              researcher: '0'
-              public_user: '0'
-              herbarium_admin: '0'
             autocomplete_filter: 0
             autocomplete_min_chars: '0'
             autocomplete_items: '10'
@@ -845,7 +745,7 @@ display:
           exposed: true
           expose:
             operator_id: field_dwc_stateprovince_value_op
-            label: 'Province/Territory/State:'
+            label: Province/Territory/State
             description: ''
             use_operator: false
             operator: field_dwc_stateprovince_value_op
@@ -893,7 +793,7 @@ display:
           exposed: true
           expose:
             operator_id: field_dwc_county_value_op
-            label: 'County:'
+            label: County
             description: ''
             use_operator: false
             operator: field_dwc_county_value_op
@@ -908,11 +808,6 @@ display:
               herbarium_specimen_add_edit_only: '0'
               herbarium_specimen_add_edit_all: '0'
               herbarium_specimen_administrator: '0'
-              cmh_database_administrator: '0'
-              student: '0'
-              researcher: '0'
-              public_user: '0'
-              herbarium_admin: '0'
             autocomplete_filter: 0
             autocomplete_min_chars: '0'
             autocomplete_items: '10'
@@ -946,8 +841,8 @@ display:
           exposed: true
           expose:
             operator_id: field_dwc_habitat_value_op
-            label: 'Place Collected:'
-            description: ''
+            label: Habitat
+            description: 'Eg: sandy soil near the smoke house'
             use_operator: false
             operator: field_dwc_habitat_value_op
             identifier: habitat
@@ -999,8 +894,8 @@ display:
           exposed: true
           expose:
             operator_id: field_dwc_verbatimlocality_value_op
-            label: 'Locality Description:'
-            description: ''
+            label: Locality
+            description: 'Eg: about 3 mi. N of Melrose'
             use_operator: false
             operator: field_dwc_verbatimlocality_value_op
             identifier: locality
@@ -1014,6 +909,11 @@ display:
               herbarium_specimen_add_edit_only: '0'
               herbarium_specimen_add_edit_all: '0'
               herbarium_specimen_administrator: '0'
+              cmh_database_administrator: '0'
+              student: '0'
+              researcher: '0'
+              public_user: '0'
+              herbarium_admin: '0'
             autocomplete_filter: 1
             autocomplete_min_chars: '0'
             autocomplete_items: '10'
@@ -1052,7 +952,7 @@ display:
           exposed: true
           expose:
             operator_id: field_dwc_eventdate_value_op
-            label: 'Date Collected From:'
+            label: 'Date Collected (From)'
             description: ''
             use_operator: false
             operator: field_dwc_eventdate_value_op
@@ -1067,6 +967,11 @@ display:
               herbarium_specimen_add_edit_only: '0'
               herbarium_specimen_add_edit_all: '0'
               herbarium_specimen_administrator: '0'
+              cmh_database_administrator: '0'
+              student: '0'
+              researcher: '0'
+              public_user: '0'
+              herbarium_admin: '0'
           is_grouped: false
           group_info:
             label: ''
@@ -1098,7 +1003,7 @@ display:
           exposed: true
           expose:
             operator_id: field_dwc_eventdate_value_1_op
-            label: 'To:'
+            label: (To)
             description: ''
             use_operator: false
             operator: field_dwc_eventdate_value_1_op
@@ -1113,6 +1018,11 @@ display:
               herbarium_specimen_add_edit_only: '0'
               herbarium_specimen_add_edit_all: '0'
               herbarium_specimen_administrator: '0'
+              cmh_database_administrator: '0'
+              student: '0'
+              researcher: '0'
+              public_user: '0'
+              herbarium_admin: '0'
           is_grouped: false
           group_info:
             label: ''
@@ -1126,6 +1036,107 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: datetime
+        field_collector_tid_target_id:
+          id: field_collector_tid_target_id
+          table: node__field_collector_tid
+          field: field_collector_tid_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_collector_tid_target_id_op
+            label: Collector
+            description: ''
+            use_operator: false
+            operator: field_collector_tid_target_id_op
+            identifier: collector
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: herbarium_specimen_collector
+          hierarchy: false
+          error_message: false
+          plugin_id: taxonomy_index_tid
+        field_dwc_record_number_value:
+          id: field_dwc_record_number_value
+          table: node__field_dwc_record_number
+          field: field_dwc_record_number_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_record_number_value_op
+            label: 'UNB Accession ID'
+            description: 'Eg: 10000'
+            use_operator: false
+            operator: field_dwc_record_number_value_op
+            identifier: id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              cmh_database_administrator: '0'
+              student: '0'
+              researcher: '0'
+              public_user: '0'
+              herbarium_admin: '0'
+            autocomplete_filter: 0
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_field: field_dwc_record_number
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: views_autocomplete_filters_string
       filter_groups:
         operator: AND
         groups:
@@ -1139,6 +1150,7 @@ display:
         weight: 0
         context: '0'
         menu_name: tools
+      css_class: browse
     cache_metadata:
       max-age: 0
       contexts:
