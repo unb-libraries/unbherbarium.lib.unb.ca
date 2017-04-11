@@ -8,7 +8,7 @@ id: taxonomy_term.herbarium_specimen_taxonomy.field_cmh_french_common_names
 field_name: field_cmh_french_common_names
 entity_type: taxonomy_term
 bundle: herbarium_specimen_taxonomy
-label: 'French Common Name(s)'
+label: 'French Common Name'
 description: ''
 required: false
 translatable: false

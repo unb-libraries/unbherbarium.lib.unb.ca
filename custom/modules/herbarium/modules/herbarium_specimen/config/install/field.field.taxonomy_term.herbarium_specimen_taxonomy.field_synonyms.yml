@@ -10,7 +10,7 @@ id: taxonomy_term.herbarium_specimen_taxonomy.field_synonyms
 field_name: field_synonyms
 entity_type: taxonomy_term
 bundle: herbarium_specimen_taxonomy
-label: Synonyms
+label: Synonym
 description: ''
 required: false
 translatable: false

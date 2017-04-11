@@ -10,7 +10,7 @@ id: taxonomy_term.herbarium_specimen_taxonomy.field_cmh_full_specimen_name
 field_name: field_cmh_full_specimen_name
 entity_type: taxonomy_term
 bundle: herbarium_specimen_taxonomy
-label: 'Full Specimen Name'
+label: 'Scientific Name'
 description: 'The full name of this specimen.'
 required: false
 translatable: false
