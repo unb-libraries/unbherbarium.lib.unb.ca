@@ -3,6 +3,7 @@
 {% if teaser %}
     {{ content }}
 {% else %}
+    <h2>{{ specimen_full_name|field_value }}</h2>
     <div class="specimen-details">
         <input id="toggle-widget" class="toggle-switch" type="checkbox"/>
         <label class="toggle-switch__label" data-tg-off="{% trans %}More details{% endtrans %}&nbsp;&raquo;" data-tg-on="&laquo;&nbsp;{% trans %}Less details{% endtrans %}" for="toggle-widget"></label>
@@ -208,6 +209,10 @@
             <section>
                 <h3 class="toggle-default-off">{% trans %}Taxon{% endtrans %}</h3>
                 <dl>
+                    <div class="toggle-default-off">
+                        <dt>{{ specimen_full_name|field_label }}</dt>
+                        <dd>{{ specimen_full_name|field_value }}</dd>
+                    </div>
                     <div>
                         <dt>{% trans %}Family{% endtrans %}</dt>
                         <dd>{{ specimen_family|raw }}</dd>
@@ -218,7 +223,7 @@
                     </div>
                     <div>{# Provide default if empty example #}
                         <dt>{{ specimen_assigned_taxon|field_label }}</dt>
-                        <dd>{{- specimen_assigned_taxon|field_value -}}</dd>
+                        <dd>{{ specimen_assigned_taxon|field_value }}</dd>
                     </div>
                     {% if specimen_authority|field_label %}
                         <div>{# Authority #}
@@ -231,39 +236,56 @@
                         {# Don't render Taxon Rank taxonomy page link #}
                         <dd>{{ specimen_taxon_rank|field_value|render|striptags }}</dd>
                     </div>
+                    {% if specimen_infraspecific_epithet|field_label %}
+                        <div>{# Authority #}
+                            <dt>{{ specimen_infraspecific_epithet|field_label }}</dt>
+                            <dd>{{ specimen_infraspecific_epithet|field_value }}</dd>
+                        </div>
+                    {% endif %}
                     {% if specimen_en_common_names|field_label %}
                         <div>
-                            <dt>{{ specimen_en_common_names|field_label }}</dt>
-                            <dd>
-                                <ul>
-                                    <li>{{- specimen_en_common_names|field_value|safe_join('</li><li>') -}}</li>
-                                </ul>
-                            </dd>
+                            {% if specimen_en_common_names|field_value|length > 1 %}
+                                <dt>{{ specimen_en_common_names|field_label }}s</dt>
+                                <dd>
+                                    <ul>
+                                        <li>{{ specimen_en_common_names|field_value|safe_join('</li><li>') }}</li>
+                                    </ul>
+                                </dd>
+                            {% else %}
+                                <dt>{{ specimen_en_common_names|field_label }}</dt>
+                                <dd>{{- specimen_en_common_names|field_value -}}</dd>
+                            {% endif %}
                         </div>
                     {% endif %}
                     {% if specimen_fr_common_names|field_label %}
                         <div>
-                            <dt>{{ specimen_fr_common_names|field_label }}</dt>
-                            <dd lang="fr">
-                                <ul>
-                                    <li>{{ specimen_fr_common_names|field_value|safe_join('</li><li>') }}</li>
-                                </ul>
-                            </dd>
+                            {% if specimen_fr_common_names|field_value|length > 1 %}
+                                <dt>{{ specimen_fr_common_names|field_label }}s</dt>
+                                <dd lang="fr">
+                                    <ul>
+                                        <li>{{ specimen_fr_common_names|field_value|safe_join('</li><li>') }}</li>
+                                    </ul>
+                                </dd>
+                            {% else %}
+                                <dt>{{ specimen_fr_common_names|field_label }}</dt>
+                                <dd lang="fr">{{- specimen_fr_common_names|field_value -}}</dd>
+                            {% endif %}
                         </div>
                     {% endif %}
                     {% if specimen_synonyms|field_label %}
                         <div class="toggle-default-off">
-                            <dt>{{ specimen_synonyms|field_label }}</dt>
-                            <dd>
-                                {# Mark up as list when synonym array contain 2+ items #}
-                                {% if specimen_synonyms|field_value|length > 1 %}
-                                    <ul>
-                                        <li>{{ specimen_synonyms|field_value|safe_join('</li><li>') }}</li>
-                                    </ul>
-                                {% else %}
-                                    {{ specimen_synonyms|field_value }}
-                                {% endif %}
-                            </dd>
+                            {# Mark up as list when synonym array contain 2+ items #}
+                            {% if specimen_synonyms|field_value|length > 1 %}
+                              <dt>{{ specimen_synonyms|field_label }}s</dt>
+                              <dd>
+                                <ul>
+                                    <li>{{ specimen_synonyms|field_value|safe_join('</li><li>') }}</li>
+                                </ul>
+                              </dd>
+                            {% else %}
+                                <dt>{{ specimen_synonyms|field_label }}</dt>
+                                <dd>{{ specimen_synonyms|field_value }}</dd>
+                            {% endif %}
                         </div>
                     {% endif %}
                     {% if specimen_taxon_remarks|field_label %}
