@@ -134,28 +134,28 @@ function _herbarium_core_term_build_full_name(TermInterface $term, array $omit_r
   foreach ($ancestors as $ancestor) {
     // Label.
     if (
-      in_array(
-        $ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANK_FIELD)->entity->getName(),
-        HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANK_LABELS_TO_PRINT
-      )
+    in_array(
+      $ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANK_FIELD)->entity->getName(),
+      HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANK_LABELS_TO_PRINT
+    )
     ) {
       $full_name[] = $ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANK_FIELD)->entity->getName();
     }
 
     // Name.
-    $full_name[] = trim($ancestor->getName());
+    if ($style_html) {
+      $full_name[] = '<em>' . $ancestor->getName() . '</em>';
+    }
+    else {
+      $full_name[] = $ancestor->getName();
+    }
 
     // Authority.
     if (!empty($ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_AUTH_FIELD)
       ->getString())
     ) {
-      if ($style_html) {
-        $full_name[] = '<em>' . $ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_AUTH_FIELD)->getString() . '</em>';
-      }
-      else {
-        $full_name[] = $ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_AUTH_FIELD)
-          ->getString();
-      }
+      $full_name[] = $ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_AUTH_FIELD)
+        ->getString();
     }
   }
 
@@ -187,16 +187,16 @@ function _herbarium_core_term_build_infraspecific_name(TermInterface $term, $sty
       $infraspecific_name[] = $ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANK_FIELD)->entity->getName();
 
       // Name.
-      $infraspecific_name[] = trim($ancestor->getName());
+      if ($style_html) {
+        $infraspecific_name[] = '<em>' . $ancestor->getName() . '</em>';
+      }
+      else {
+        $infraspecific_name[] = $ancestor->getName();
+      }
 
       // Authority.
       if (!empty($ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_AUTH_FIELD)->getString())) {
-        if ($style_html) {
-          $infraspecific_name[] = '<em>' . $ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_AUTH_FIELD)->getString() . '</em>';
-        }
-        else {
-          $infraspecific_name[] = $ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_AUTH_FIELD)->getString();
-        }
+        $infraspecific_name[] = $ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_AUTH_FIELD)->getString();
       }
     }
   }
