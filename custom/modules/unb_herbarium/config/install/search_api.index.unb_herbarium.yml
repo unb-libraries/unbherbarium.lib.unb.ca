@@ -7,6 +7,13 @@ dependencies:
     - field.storage.node.field_dwc_country
     - field.storage.node.field_dwc_stateprovince
     - field.storage.node.field_dwc_county
+    - field.storage.node.field_taxonomy_tid
+    - field.storage.taxonomy_term.field_cmh_english_common_names
+    - field.storage.taxonomy_term.field_cmh_french_common_names
+    - field.storage.node.field_dc_contributor_other
+    - field.storage.node.field_dwc_eventremarks
+    - field.storage.node.field_dwc_habitat
+    - field.storage.node.field_dwc_verbatimlocality
     - search_api.server.solr_lib_unb_ca
   module:
     - taxonomy
@@ -78,6 +85,60 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_dwc_county
+  field_cmh_english_common_names:
+    label: "Specific Epithet\t  » Taxonomy term » English Common Name(s)"
+    datasource_id: 'entity:node'
+    property_path: 'field_taxonomy_tid:entity:field_cmh_english_common_names'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_taxonomy_tid
+        - field.storage.taxonomy_term.field_cmh_english_common_names
+      module:
+        - taxonomy
+  field_cmh_french_common_names:
+    label: "Specific Epithet\t  » Taxonomy term » French Common Name(s)"
+    datasource_id: 'entity:node'
+    property_path: 'field_taxonomy_tid:entity:field_cmh_french_common_names'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_taxonomy_tid
+        - field.storage.taxonomy_term.field_cmh_french_common_names
+      module:
+        - taxonomy
+  field_dc_contributor_other:
+    label: 'Contributor Other'
+    datasource_id: 'entity:node'
+    property_path: field_dc_contributor_other
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dc_contributor_other
+  field_dwc_eventremarks:
+    label: Abundance
+    datasource_id: 'entity:node'
+    property_path: field_dwc_eventremarks
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_eventremarks
+  field_dwc_habitat:
+    label: Habitat
+    datasource_id: 'entity:node'
+    property_path: field_dwc_habitat
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_habitat
+  field_dwc_verbatimlocality:
+    label: 'Verbatim Locality'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_verbatimlocality
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_verbatimlocality
 datasource_settings:
   'entity:node':
     bundles:
@@ -88,12 +149,6 @@ datasource_settings:
       default: true
       selected: {  }
 processor_settings:
-  ignorecase:
-    fields:
-      - title
-    weights:
-      preprocess_index: -10
-      preprocess_query: -10
   highlight:
     highlight: always
     highlight_partial: true
@@ -105,8 +160,14 @@ processor_settings:
     weights:
       postprocess_query: 0
   aggregated_field: {  }
-  rendered_item: {  }
+  ignorecase:
+    fields:
+      - title
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
   add_url: {  }
+  rendered_item: {  }
 tracker_settings:
   default: {  }
 options:
