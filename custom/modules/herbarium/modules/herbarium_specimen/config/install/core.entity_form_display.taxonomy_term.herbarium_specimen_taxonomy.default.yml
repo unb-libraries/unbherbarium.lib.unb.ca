@@ -5,6 +5,7 @@ dependencies:
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_cmh_english_common_names
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_cmh_french_common_names
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_cmh_full_specimen_name
+    - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_cmh_infraspecific_specimen
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dc_replaces
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dwc_class
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_dwc_measurementid
@@ -121,4 +122,5 @@ content:
     third_party_settings: {  }
 hidden:
   field_cmh_full_specimen_name: true
+  field_cmh_infraspecific_specimen: true
   field_dwc_class: true

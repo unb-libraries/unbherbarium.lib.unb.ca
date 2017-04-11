@@ -9,9 +9,10 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermInterface;
 
-define('HERBARIUM_CORE_SPECIMEN_VOCABULARY_ID', 'herbarium_specimen_taxonomy');
 define('HERBARIUM_CORE_SPECIMEN_VOCABULARY_AUTH_FIELD', 'field_dwc_scientificnameauthor');
 define('HERBARIUM_CORE_SPECIMEN_VOCABULARY_FULL_NAME_FIELD', 'field_cmh_full_specimen_name');
+define('HERBARIUM_CORE_SPECIMEN_VOCABULARY_ID', 'herbarium_specimen_taxonomy');
+define('HERBARIUM_CORE_SPECIMEN_VOCABULARY_INFRASPECIFIC_EPITHET_FIELD', 'field_cmh_infraspecific_specimen');
 define('HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANK_FIELD', 'field_dwc_taxonrank');
 define(
   'HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANK_LABELS_TO_PRINT',
@@ -26,6 +27,14 @@ define(
   'HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANKS_TO_OMIT_PRINTING',
   [
     'Family',
+  ]
+);
+define(
+  'HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANKS_TO_OMIT_INFRASPECIFIC',
+  [
+    'Family',
+    'Genus',
+    'Species',
   ]
 );
 
@@ -55,6 +64,12 @@ function herbarium_core_taxonomy_term_presave(TermInterface $term) {
       _herbarium_core_term_build_full_name($term, HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANKS_TO_OMIT_PRINTING)
     );
     $term->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_FULL_NAME_FIELD)->format = 'full_html';
+
+    // Populate the infraspecific species name.
+    $term->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_INFRASPECIFIC_EPITHET_FIELD)->setValue(
+      _herbarium_core_term_build_infraspecific_name($term)
+    );
+    $term->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_INFRASPECIFIC_EPITHET_FIELD)->format = 'full_html';
 
     // Trigger the presave hook for all next generation children.
     $storage = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term');
@@ -145,6 +160,48 @@ function _herbarium_core_term_build_full_name(TermInterface $term, array $omit_r
   }
 
   return implode(' ', $full_name);
+}
+
+/**
+ * Build the infraspecific species name representation for a specimen term.
+ *
+ * @param \Drupal\taxonomy\TermInterface $term
+ *   The term to build.
+ * @param bool $style_html
+ *   TRUE if the output should be styled with HTML tags. FALSE otherwise.
+ *
+ * @return string
+ *   The  infraspecific species name for the specimen term.
+ */
+function _herbarium_core_term_build_infraspecific_name(TermInterface $term, $style_html = TRUE) {
+  $infraspecific_name = [];
+
+  if (!in_array(
+      $term->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANK_FIELD)->entity->getName(),
+        HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANKS_TO_OMIT_INFRASPECIFIC
+    )
+  ) {
+    $ancestors = _herbarium_core_term_get_ancestors($term, HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANKS_TO_OMIT_INFRASPECIFIC);
+    foreach ($ancestors as $ancestor) {
+      // Label.
+      $infraspecific_name[] = $ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANK_FIELD)->entity->getName();
+
+      // Name.
+      $infraspecific_name[] = trim($ancestor->getName());
+
+      // Authority.
+      if (!empty($ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_AUTH_FIELD)->getString())) {
+        if ($style_html) {
+          $infraspecific_name[] = '<em>' . $ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_AUTH_FIELD)->getString() . '</em>';
+        }
+        else {
+          $infraspecific_name[] = $ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_AUTH_FIELD)->getString();
+        }
+      }
+    }
+  }
+
+  return implode(' ', $infraspecific_name);
 }
 
 /**
