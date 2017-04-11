@@ -99,7 +99,7 @@
         "drupal/pathauto": "1.0-rc1",
         "drupal/search_api": "1.0-rc2",
         "drupal/search_api_autocomplete": "1.0-alpha1",
-        "drupal/search_api_solr": "1.0-beta1",
+        "drupal/search_api_solr": "1.x-dev",
         "drupal/simple_gmap": "1.2",
         "drupal/taxonomy_access_fix": "2.1",
         "drupal/token": "1.0-rc1",
@@ -108,7 +108,7 @@
         "drush/drush": "~8.0",
         "harvesthq/chosen": "1.6.*",
         "jackmoore/colorbox": "master",
-        "solarium/solarium": "3.6.*"
+        "solarium/solarium": "3.7.*"
     },
     "require-dev": {
         "behat/mink": "~1.7",
