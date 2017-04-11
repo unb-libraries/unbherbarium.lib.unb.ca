@@ -14,4 +14,5 @@ if [ "$DEPLOY_ENV" = "local" ]; then
   $DRUSH_COMMAND en --yes unb_herbarium_migrate_csv
   $DRUSH_COMMAND migrate-status
   $DRUSH_COMMAND migrate-import --all
+  $DRUSH_COMMAND eval '_herbarium_core_rebuild_specimen_taxonomy_terms();'
 fi

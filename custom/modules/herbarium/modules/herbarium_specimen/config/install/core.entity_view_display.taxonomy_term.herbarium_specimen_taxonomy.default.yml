@@ -75,11 +75,12 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_dwc_scientificnameauthor:
-    type: text_default
-    weight: 9
+    weight: 14
     label: above
-    settings: {  }
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
+    type: string
   field_dwc_taxonid:
     type: text_default
     weight: 11

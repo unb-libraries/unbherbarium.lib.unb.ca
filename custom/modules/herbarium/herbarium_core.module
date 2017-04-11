@@ -6,7 +6,28 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\taxonomy\TermInterface;
+
 define('HERBARIUM_CORE_SPECIMEN_VOCABULARY_ID', 'herbarium_specimen_taxonomy');
+define('HERBARIUM_CORE_SPECIMEN_VOCABULARY_AUTH_FIELD', 'field_dwc_scientificnameauthor');
+define('HERBARIUM_CORE_SPECIMEN_VOCABULARY_FULL_NAME_FIELD', 'field_cmh_full_specimen_name');
+define('HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANK_FIELD', 'field_dwc_taxonrank');
+define(
+  'HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANK_LABELS_TO_PRINT',
+  [
+    'sect.',
+    'ssp.',
+    'var.',
+    'x',
+  ]
+);
+define(
+  'HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANKS_TO_OMIT_PRINTING',
+  [
+    'Family',
+  ]
+);
 
 /**
  * Implements hook_help().
@@ -25,25 +46,147 @@ function herbarium_core_help($route_name, RouteMatchInterface $route_match) {
 }
 
 /**
- * Returns the parent id of a given taxonomy term id.
+ * Implements hook_taxonomy_term_presave().
  */
-function _herbarium_core_get_specimen_parent($tid) {
+function herbarium_core_taxonomy_term_presave(TermInterface $term) {
+  if ($term->getVocabularyId() == HERBARIUM_CORE_SPECIMEN_VOCABULARY_ID) {
+    // Populate the full name field.
+    $term->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_FULL_NAME_FIELD)->setValue(
+      _herbarium_core_term_build_full_name($term, HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANKS_TO_OMIT_PRINTING)
+    );
+    $term->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_FULL_NAME_FIELD)->format = 'full_html';
+
+    // Trigger the presave hook for all next generation children.
+    $storage = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term');
+    /* @var $storage \Drupal\taxonomy\TermStorageInterface */
+    $child_terms = $storage->loadChildren($term->id());
+
+    if (!empty($child_terms)) {
+      $batch = [
+        'title' => t('Updating Full Name and Data for Term Children'),
+        'init_message' => t('Querying term children.'),
+        'operations' => [],
+      ];
+
+      foreach ($child_terms as $child_term) {
+        $batch['operations'][] = [
+          [
+            $child_term,
+            'save',
+          ],
+          [],
+        ];
+      }
+
+      batch_set($batch);
+    }
+  }
+}
+
+/**
+ * Rebuilds all taxonomy terms in specimen vocabulary.
+ */
+function _herbarium_core_rebuild_specimen_taxonomy_terms() {
+  $terms = \Drupal::entityTypeManager()
+    ->getStorage('taxonomy_term')
+    ->loadTree(HERBARIUM_CORE_SPECIMEN_VOCABULARY_ID);
+
+  if (!empty($terms)) {
+    foreach ($terms as $term) {
+      $term_obj = Term::load($term->tid);
+      $term_obj->save();
+    }
+  }
+}
+
+/**
+ * Build the full name representation for a specimen taxonomy term.
+ *
+ * @param \Drupal\taxonomy\TermInterface $term
+ *   The term to build.
+ * @param string[] $omit_ranks
+ *   An array of taxon rank names to omit.
+ * @param bool $style_html
+ *   TRUE if the output should be styled with HTML tags. FALSE otherwise.
+ *
+ * @return string
+ *   The full name representation for the specimen taxonomy term.
+ */
+function _herbarium_core_term_build_full_name(TermInterface $term, array $omit_ranks = [], $style_html = TRUE) {
+  $full_name = [];
+  $ancestors = _herbarium_core_term_get_ancestors($term, $omit_ranks);
+
+  foreach ($ancestors as $ancestor) {
+    // Label.
+    if (
+      in_array(
+        $ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANK_FIELD)->entity->getName(),
+        HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANK_LABELS_TO_PRINT
+      )
+    ) {
+      $full_name[] = $ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANK_FIELD)->entity->getName();
+    }
+
+    // Name.
+    $full_name[] = trim($ancestor->getName());
+
+    // Authority.
+    if (!empty($ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_AUTH_FIELD)
+      ->getString())
+    ) {
+      if ($style_html) {
+        $full_name[] = '<em>' . $ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_AUTH_FIELD)->getString() . '</em>';
+      }
+      else {
+        $full_name[] = $ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_AUTH_FIELD)
+          ->getString();
+      }
+    }
+  }
+
+  return implode(' ', $full_name);
+}
+
+/**
+ * Returns the ancestors of a taxonomy term, with an optional upper limit.
+ *
+ * @param \Drupal\taxonomy\TermInterface $term
+ *   The term to query.
+ * @param string[] $omit_ranks
+ *   An array of taxon rank names to omit.
+ *
+ * @return \Drupal\taxonomy\TermInterface[]
+ *   An array of ancestors.
+ */
+function _herbarium_core_term_get_ancestors(TermInterface $term, array $omit_ranks = []) {
+  $parents = [$term];
+  $parent = _herbarium_core_term_get_first_parent($term);
+
+  while ($parent !== FALSE) {
+    if (!in_array($parent->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANK_FIELD)->entity->getName(), $omit_ranks)) {
+      $parents[] = $parent;
+    }
+    $parent = _herbarium_core_term_get_first_parent($parent);
+  }
+  return array_reverse($parents);
+}
+
 /**
  * Returns the first parent of a given taxonomy term.
  *
- * @param int $tid
- *   The term ID of the term to query.
+ * @param \Drupal\taxonomy\TermInterface $term
+ *   The term to query.
  *
- * @return int
- *   The term ID of the parent term, FALSE if term has no parents.
+ * @return mixed
+ *   The first parent term, FALSE if no parents.
  */
-function _herbarium_core_get_term_first_parent($tid) {
+function _herbarium_core_term_get_first_parent(TermInterface $term) {
   $storage = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term');
   /* @var $storage \Drupal\taxonomy\TermStorageInterface */
 
-  $parent_object_array = $storage->loadParents($tid);
-  if (!empty($parent_object_array)) {
-    return array_shift($parent_object_array)->id();
+  $parent_terms = $storage->loadParents($term->id());
+  if (!empty($parent_terms)) {
+    return array_shift($parent_terms);
   }
   return FALSE;
 }

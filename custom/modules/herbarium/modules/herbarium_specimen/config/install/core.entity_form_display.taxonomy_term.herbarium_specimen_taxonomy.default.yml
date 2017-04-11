@@ -72,12 +72,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_dwc_scientificnameauthor:
-    type: text_textfield
-    weight: 0
+    weight: 36
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    type: string_textfield
   field_dwc_taxonid:
     type: text_textfield
     weight: 0
