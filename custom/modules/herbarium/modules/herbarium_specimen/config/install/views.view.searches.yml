@@ -595,8 +595,8 @@ display:
     display_options:
       display_extenders: {  }
       display_description: ''
-      path: advanced
-      title: 'Database Browser'
+      path: browse-samples
+      title: 'Browse Samples'
       defaults:
         title: false
         filters: false
@@ -1188,7 +1188,7 @@ display:
           1: AND
       menu:
         type: normal
-        title: 'Database Browser'
+        title: 'Browse Samples'
         description: ''
         expanded: false
         parent: ''
