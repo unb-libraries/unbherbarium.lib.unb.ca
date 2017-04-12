@@ -38,8 +38,7 @@
         },
         "patches": {
             "drupal/core": {
-                "Views date type exposed filter.": "https://www.drupal.org/files/issues/2648950-79-8.2.x.patch",
-                "Views/Date/Exposed filters fix.": "https://www.drupal.org/files/issues/2811887-34.patch"
+                "Views date type exposed filter.": "https://www.drupal.org/files/issues/2648950-79-8.2.x.patch"
             }
         }
     },
