@@ -18,6 +18,7 @@ dependencies:
     - field.storage.node.field_dwc_verbatimeventdate
     - field.storage.node.field_dwc_verbatimlocality
     - field.storage.node.field_large_sample_surrogate
+    - field.storage.taxonomy_term.field_cmh_full_specimen_name
     - image.style.thumbnail
     - node.type.herbarium_specimen
     - system.menu.tools
@@ -104,12 +105,28 @@ display:
           summary: ''
           description: ''
           columns:
-            field_dwc_record_number: field_dwc_record_number
             title: title
+            nid: nid
+            field_dwc_record_number: field_dwc_record_number
+            field_cmh_full_specimen_name: field_cmh_full_specimen_name
             field_dwc_county: field_dwc_county
             field_dwc_eventdate: field_dwc_eventdate
             field_large_sample_surrogate: field_large_sample_surrogate
           info:
+            title:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            nid:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
             field_dwc_record_number:
               sortable: true
               default_sort_order: asc
@@ -117,7 +134,7 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            title:
+            field_cmh_full_specimen_name:
               sortable: true
               default_sort_order: asc
               align: ''
@@ -587,6 +604,7 @@ display:
         css_class: false
         use_ajax: false
         fields: false
+        relationships: false
       filters:
         status:
           id: status
@@ -1180,68 +1198,6 @@ display:
       css_class: browse
       use_ajax: true
       fields:
-        field_dwc_record_number:
-          id: field_dwc_record_number
-          table: node__field_dwc_record_number
-          field: field_dwc_record_number
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ID
-          exclude: false
-          alter:
-            alter_text: true
-            text: '{{ field_dwc_record_number__value }}'
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: false
-          empty: NA
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: text_default
-          settings: {  }
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
         title:
           id: title
           table: node_field_data
@@ -1250,7 +1206,7 @@ display:
           group_type: group
           admin_label: ''
           label: 'Scientific Name'
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -1306,6 +1262,195 @@ display:
           field_api_classes: false
           entity_type: node
           entity_field: title
+          plugin_id: field
+        nid:
+          id: nid
+          table: node_field_data
+          field: nid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ID
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_unformatted
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: node
+          entity_field: nid
+          plugin_id: field
+        field_dwc_record_number:
+          id: field_dwc_record_number
+          table: node__field_dwc_record_number
+          field: field_dwc_record_number
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ID
+          exclude: false
+          alter:
+            alter_text: true
+            text: '{{ field_dwc_record_number__value }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: NA
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_cmh_full_specimen_name:
+          id: field_cmh_full_specimen_name
+          table: taxonomy_term__field_cmh_full_specimen_name
+          field: field_cmh_full_specimen_name
+          relationship: field_taxonomy_tid
+          group_type: group
+          admin_label: ''
+          label: 'Scientific Name'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: true
+            path: '/node/{{ nid }}'
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: '{{ title }}'
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: text_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
           plugin_id: field
         field_dwc_county:
           id: field_dwc_county
@@ -1503,6 +1648,16 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+      relationships:
+        field_taxonomy_tid:
+          id: field_taxonomy_tid
+          table: node__field_taxonomy_tid
+          field: field_taxonomy_tid
+          relationship: none
+          group_type: group
+          admin_label: 'field_taxonomy_tid: Taxonomy term'
+          required: true
+          plugin_id: standard
     cache_metadata:
       max-age: 0
       contexts:
@@ -1518,6 +1673,7 @@ display:
         - 'config:field.storage.node.field_dwc_eventdate'
         - 'config:field.storage.node.field_dwc_record_number'
         - 'config:field.storage.node.field_large_sample_surrogate'
+        - 'config:field.storage.taxonomy_term.field_cmh_full_specimen_name'
   browse:
     display_plugin: page
     id: browse
