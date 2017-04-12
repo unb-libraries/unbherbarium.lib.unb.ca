@@ -7,6 +7,7 @@
 
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\taxonomy\Entity\Term;
+use Drupal\taxonomy\TermInterface;
 
 /**
  * Implements hook_help().
@@ -61,8 +62,8 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $tid = $assigned_tax_term_list->get(0)->entity->id();
 
   // TODO: traverse up tree until we have a rank of 'Species'.
-  $genus_tid = _herbarium_core_term_get_first_parent(Term::load($tid))->id();
-  $family_tid = _herbarium_core_term_get_first_parent(Term::load($genus_tid))->id();
+  $genus_term = _herbarium_core_term_get_ancestor_rank(Term::load($tid), 'Genus');
+  $family_term = _herbarium_core_term_get_ancestor_rank(Term::load($tid), 'Family');
 
   // Split date into separate year/month/day fields for full details mode.
   $collection_date = $node->get('field_dwc_eventdate')->getString();
@@ -75,8 +76,8 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
 
   $variables['specimen_full_name'] = $assigned_tax_term_list->get(0)->entity->get('field_cmh_full_specimen_name')->view();
   $variables['specimen_assigned_taxon'] = $assigned_tax_term_list->view();
-  $variables['specimen_family'] = unb_herbarium_get_tax_term_link($family_tid);
-  $variables['specimen_genus'] = unb_herbarium_get_tax_term_link($genus_tid);
+  $variables['specimen_family'] = unb_herbarium_get_tax_term_link($genus_term);
+  $variables['specimen_genus'] = unb_herbarium_get_tax_term_link($family_term);
   $variables['specimen_assigned_taxon'] = $assigned_tax_term_list->view();
   $variables['specimen_authority'] = $assigned_tax_term_list->get(0)->entity->get('field_dwc_scientificnameauthor')->view();
   $variables['specimen_taxon_rank'] = $assigned_tax_term_list->get(0)->entity->get('field_dwc_taxonrank')->view();
@@ -93,9 +94,14 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
 
 /**
  * Returns raw html of linked taxonomy term name for given tid.
+ *
+ * @param \Drupal\taxonomy\TermInterface $term
+ *   The term to query.
+ *
+ * @return string
+ *   The HTML link to the taxonomy term.
  */
-function unb_herbarium_get_tax_term_link($tid) {
-  $term = Term::load($tid);
+function unb_herbarium_get_tax_term_link(TermInterface $term) {
   $name = $term->getName();
   $href = $term->url();
 

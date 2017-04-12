@@ -247,3 +247,26 @@ function _herbarium_core_term_get_first_parent(TermInterface $term) {
   }
   return FALSE;
 }
+
+/**
+ * Returns the ancestor of the term with a specific rank.
+ *
+ * @param \Drupal\taxonomy\TermInterface $term
+ *   The term to query.
+ * @param string $rank_to_return
+ *   The rank of the ancestor to return.
+ *
+ * @return mixed
+ *   The term corresponding to rank_to_return, FALSE if none found.
+ */
+function _herbarium_core_term_get_ancestor_rank(TermInterface $term, $rank_to_return = 'Species') {
+  $ancestors = _herbarium_core_term_get_ancestors($term);
+
+  foreach ($ancestors as $ancestor) {
+    if ($ancestor->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANK_FIELD)->entity->getName() == $rank_to_return) {
+      return $ancestor;
+    }
+  }
+
+  return FALSE;
+}
