@@ -11,4 +11,6 @@ no_results_text: 'No results match'
 disabled_themes:
   bartik: '0'
   seven: '0'
-chosen_include: 2
+  bootstrap: '0'
+  unbherbarium_ca: '0'
+chosen_include: 1
