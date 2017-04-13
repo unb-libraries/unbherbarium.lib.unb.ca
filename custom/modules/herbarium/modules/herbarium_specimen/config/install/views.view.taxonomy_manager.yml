@@ -7,7 +7,7 @@ dependencies:
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
     - taxonomy.vocabulary.taxon_rank
   content:
-    - 'taxonomy_term:taxon_rank:59ab1930-d7b3-4188-af2f-578de2f03946'
+    - 'taxonomy_term:taxon_rank:c5ac383d-eb6d-4cba-8b59-630df3ab4728'
   module:
     - taxonomy
     - text
@@ -31,7 +31,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'access content'
+          perm: 'administer taxonomy'
       cache:
         type: tag
         options: {  }
