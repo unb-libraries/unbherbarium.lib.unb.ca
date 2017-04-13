@@ -393,7 +393,6 @@ class TermCreatorRow {
       $genus_tid = $this->createStubTerm($this->gen, 'Genus', $family_tid);
       $species_tid = $this->createStubTerm($this->spec, 'Species', $genus_tid);
       $variant_tid = $this->createStubTerm($this->txn, $this->txt, $species_tid);
-
       $stub_tid = $this->checkStubTermExists($spec_name, $variant_tid);
 
       if (!empty($stub_tid)) {
@@ -434,7 +433,6 @@ class TermCreatorRow {
       $family_tid = $this->createStubTerm($this->family);
       $genus_tid = $this->createStubTerm($this->gen, 'Genus', $family_tid);
       $species_tid = $this->createStubTerm($this->spec, 'Species', $genus_tid);
-
       $stub_tid = $this->checkStubTermExists($spec_name, $species_tid);
 
       if (!empty($stub_tid)) {
@@ -474,7 +472,7 @@ class TermCreatorRow {
 
       $family_tid = $this->createStubTerm($this->family);
       $genus_tid = $this->createStubTerm($this->gen, 'Genus', $family_tid);
-      $stub_tid = $this->checkStubTermExists($spec_name, 'sect. Species', $genus_tid);
+      $stub_tid = $this->checkStubTermExists($spec_name, $genus_tid);
 
       if (!empty($stub_tid)) {
         $term = Term::load($stub_tid);
@@ -510,7 +508,7 @@ class TermCreatorRow {
 
       $family_tid = $this->createStubTerm($this->family);
       $genus_tid = $this->createStubTerm($this->gen, 'Genus', $family_tid);
-      $stub_tid = $this->checkStubTermExists($spec_name, 'Species', $genus_tid);
+      $stub_tid = $this->checkStubTermExists($spec_name, $genus_tid);
 
       if (!empty($stub_tid)) {
         $term = Term::load($stub_tid);
