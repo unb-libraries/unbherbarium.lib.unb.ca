@@ -77,7 +77,11 @@ display:
       style:
         type: table
         options:
-          grouping: {  }
+          grouping:
+            -
+              field: name_1
+              rendered: true
+              rendered_strip: false
           row_class: ''
           default_row_class: true
           override: true
@@ -86,27 +90,13 @@ display:
           summary: ''
           description: ''
           columns:
-            field_dwc_taxonid: field_dwc_taxonid
-            name: name
-            field_dwc_taxonrank: field_dwc_taxonrank
-            name_1: name_1
             field_dwc_taxonrank_1: field_dwc_taxonrank_1
+            name_1: name_1
+            field_dwc_taxonrank: field_dwc_taxonrank
+            name: name
+            field_dwc_taxonid: field_dwc_taxonid
           info:
-            field_dwc_taxonid:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            name:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_dwc_taxonrank:
+            field_dwc_taxonrank_1:
               sortable: true
               default_sort_order: asc
               align: ''
@@ -120,7 +110,21 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            field_dwc_taxonrank_1:
+            field_dwc_taxonrank:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            name:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_dwc_taxonid:
               sortable: true
               default_sort_order: asc
               align: ''
@@ -140,7 +144,7 @@ display:
           group_type: group
           admin_label: ''
           label: 'Parent Rank'
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -202,11 +206,11 @@ display:
           relationship: parent
           group_type: group
           admin_label: ''
-          label: Parent
-          exclude: false
+          label: ''
+          exclude: true
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '<b>{{ field_dwc_taxonrank_1 }}: {{ name_1 }}</b>'
             make_link: false
             path: ''
             absolute: false
@@ -235,7 +239,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -331,7 +335,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Child Term'
+          label: Term
           exclude: false
           alter:
             alter_text: false
@@ -397,7 +401,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Child Term SpecID'
+          label: SpecID
           exclude: false
           alter:
             alter_text: false
@@ -517,59 +521,6 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
-        field_dwc_taxonrank_target_id_2:
-          id: field_dwc_taxonrank_target_id_2
-          table: taxonomy_term__field_dwc_taxonrank
-          field: field_dwc_taxonrank_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_dwc_taxonrank_target_id_2_op
-            label: 'Taxon Rank'
-            description: ''
-            use_operator: false
-            operator: field_dwc_taxonrank_target_id_2_op
-            identifier: field_dwc_taxonrank_target_id_2
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              herbarium_specimen_add_edit_only: '0'
-              herbarium_specimen_add_edit_all: '0'
-              herbarium_specimen_administrator: '0'
-              cmh_database_administrator: '0'
-              student: '0'
-              researcher: '0'
-              public_user: '0'
-              herbarium_admin: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: taxon_rank
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
         name:
           id: name
           table: taxonomy_term_field_data
@@ -583,7 +534,7 @@ display:
           exposed: true
           expose:
             operator_id: name_op
-            label: 'Child Term'
+            label: 'Term name'
             description: 'Enter specimen name (partial match support)'
             use_operator: false
             operator: name_op
@@ -638,7 +589,7 @@ display:
           exposed: true
           expose:
             operator_id: field_dwc_taxonid_value_op
-            label: 'Child Term SpecID'
+            label: SpecID
             description: 'Enter one of more spec ids'
             use_operator: false
             operator: field_dwc_taxonid_value_op
