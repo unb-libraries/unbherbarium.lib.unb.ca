@@ -587,9 +587,9 @@ display:
         - 'config:field.storage.node.field_dwc_eventdate'
         - 'config:field.storage.node.field_dwc_record_number'
         - 'config:field.storage.node.field_large_sample_surrogate'
-  advanced:
+  browse:
     display_plugin: page
-    id: advanced
+    id: browse
     display_title: 'Browse with Filters'
     position: 2
     display_options:
@@ -1674,9 +1674,9 @@ display:
         - 'config:field.storage.node.field_dwc_record_number'
         - 'config:field.storage.node.field_large_sample_surrogate'
         - 'config:field.storage.taxonomy_term.field_cmh_full_specimen_name'
-  browse:
+  page_1:
     display_plugin: page
-    id: browse
+    id: page_1
     display_title: Browse
     position: 1
     display_options:
