@@ -605,6 +605,7 @@ display:
         use_ajax: false
         fields: false
         relationships: false
+        empty: false
       filters:
         status:
           id: status
@@ -1658,6 +1659,20 @@ display:
           admin_label: 'field_taxonomy_tid: Taxonomy term'
           required: true
           plugin_id: standard
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: "<div role=\"contentinfo\" aria-label=\"no results\" class=\"alert alert-warning\">\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\n  Your search did not match any records.\n</div>\n\n<p><b><span class=\"glyphicon glyphicon-info-sign\"></span> Suggestions:</b></p>\n<ul>\n  <li>Make sure that all words are spelled correctly.</li>\n  <li>Try different keywords.</li>\n  <li>Try using a partial word search: <kbd>card</kbd> will match <kbd>cardamine</kbd>.\n</ul>\n<p>You may also <span class=\"glyphicon glyphicon-remove-circle\"></span>\n  <a href=\"/browse-samples\">remove all search filters</a>\n  to start over.\n</p>"
+            format: full_html
+          plugin_id: text
     cache_metadata:
       max-age: 0
       contexts:
