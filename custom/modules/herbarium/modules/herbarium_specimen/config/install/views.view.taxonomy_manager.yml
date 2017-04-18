@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.storage.taxonomy_term.field_dwc_taxonid
     - field.storage.taxonomy_term.field_dwc_taxonrank
+    - system.menu.tools
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
     - taxonomy.vocabulary.taxon_rank
   content:
@@ -210,7 +211,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: '<b>{{ field_dwc_taxonrank_1 }}: {{ name_1 }}</b>'
+            text: '<b><span class="glyphicon glyphicon-plus"></span> {{ name_1 }}</b> <i>({{ field_dwc_taxonrank_1 }})</i>'
             make_link: false
             path: ''
             absolute: false
@@ -683,7 +684,20 @@ display:
           content: 'Displaying @start - @end of @total'
           plugin_id: result
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: "<div class=\"alert alert-warning\">\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\n  No results matched your filter selection.\n</div>"
+            format: full_html
+          plugin_id: text
       relationships:
         parent:
           id: parent
@@ -720,6 +734,15 @@ display:
     display_options:
       display_extenders: {  }
       path: taxonomy-manager
+      menu:
+        type: normal
+        title: 'Taxonomy Manager'
+        description: ''
+        expanded: false
+        parent: ''
+        weight: 0
+        context: '0'
+        menu_name: tools
     cache_metadata:
       max-age: 0
       contexts:
