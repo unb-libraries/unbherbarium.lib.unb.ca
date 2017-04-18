@@ -312,7 +312,11 @@
                     {% endif %}
                     <div class="toggle-default-off">
                         <dt>{{ specimen_measurement_id|field_label }}</dt>
-                        <dd>{{ specimen_measurement_id|field_value }}</dd>
+                        {% if specimen_measurement_id_url %}
+                            <dd>{{ specimen_measurement_id_url|raw }}</dd>
+                        {% else %}
+                            <dd>{{ specimen_measurement_id|field_value }}</dd>
+                        {% endif %}
                     </div>
                     {% if content.field_dc_contributor_other|field_label %}
                         <div class="toggle-default-off">

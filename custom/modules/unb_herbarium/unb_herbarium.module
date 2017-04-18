@@ -84,7 +84,17 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $variables['specimen_class'] = $assigned_tax_term_list->get(0)->entity->get('field_dwc_class')->view();
   $variables['specimen_measurement_type'] = $assigned_tax_term_list->get(0)->entity->get('field_dwc_measurementtype')->view();
   $variables['specimen_measurement_value'] = $assigned_tax_term_list->get(0)->entity->get('field_dwc_measurementvalue')->view();
-  $variables['specimen_measurement_id'] = $assigned_tax_term_list->get(0)->entity->get('field_dwc_measurementid')->view();
+
+  $specimen_measurement_id = $assigned_tax_term_list->get(0)->entity->get('field_dwc_measurementid')->view();
+  $variables['specimen_measurement_id'] = $specimen_measurement_id;
+  $measurement_id_text_value = $specimen_measurement_id['0']['#text'];
+  if (filter_var($measurement_id_text_value, FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED)) {
+    $variables['specimen_measurement_id_url'] = '<a href="' . $measurement_id_text_value . '">' . $measurement_id_text_value . '</a>';
+  }
+  else {
+    $variables['specimen_measurement_id_url'] = NULL;
+  }
+
   $variables['specimen_en_common_names'] = $assigned_tax_term_list->get(0)->entity->get('field_cmh_english_common_names')->view();
   $variables['specimen_fr_common_names'] = $assigned_tax_term_list->get(0)->entity->get('field_cmh_french_common_names')->view();
   $variables['specimen_synonyms'] = $assigned_tax_term_list->get(0)->entity->get('field_synonyms')->view();
