@@ -13,6 +13,7 @@ dependencies:
   - search_api_solr
   - system
   - taxonomy
+  - taxonomy_manager
   - text
   - twig_field_value
   - user
