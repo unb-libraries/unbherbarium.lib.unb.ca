@@ -39,6 +39,10 @@
         "patches": {
             "drupal/core": {
                 "Views date type exposed filter.": "https://www.drupal.org/files/issues/2648950-79-8.2.x.patch"
+            },
+            "drupal/taxonomy_manager": {
+                "Taxonomy Manager Invalid Placeholder": "https://www.drupal.org/files/issues/invalid_place_holder_issue-2681969-2.patch",
+                "Taxonomy Manager JSON Load Error": "https://www.drupal.org/files/issues/2673054-load-error-11.patch"
             }
         }
     },
@@ -101,6 +105,7 @@
         "drupal/search_api_solr": "1.x-dev",
         "drupal/simple_gmap": "1.2",
         "drupal/taxonomy_access_fix": "2.1",
+        "drupal/taxonomy_manager": "1.x-dev",
         "drupal/token": "1.0-rc1",
         "drupal/twig_field_value": "1.1",
         "drupal/views_autocomplete_filters": "1.1",
