@@ -109,7 +109,9 @@
         "drupal/token": "1.0-rc1",
         "drupal/twig_field_value": "1.1",
         "drupal/views_autocomplete_filters": "1.1",
-        "drush/drush": "~8.0",
+        "drush/drush": "~8.1",
+        "webflo/drupal-finder": "^0.2.1",
+        "webmozart/path-util": "^2.3",
         "harvesthq/chosen": "1.6.*",
         "jackmoore/colorbox": "master",
         "solarium/solarium": "~3.8"
