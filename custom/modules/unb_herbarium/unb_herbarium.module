@@ -31,13 +31,14 @@ function unb_herbarium_help($route_name, RouteMatchInterface $route_match) {
 function unb_herbarium_theme_registry_alter(&$theme_registry) {
   $theme_registry['taxonomy_term']['path'] = drupal_get_path('module', 'unb_herbarium') . '/templates';
   $theme_registry['views_exposed_form']['path'] = drupal_get_path('module', 'unb_herbarium') . '/templates';
+  $theme_registry['page_title']['path'] = drupal_get_path('module', 'unb_herbarium') . '/templates';
 }
 
 /**
  * Implements hook_theme().
  */
 function unb_herbarium_theme($existing, $type, $theme, $path) {
-  return array(
+  $variables = array(
     'node__herbarium_specimen' => array(
       'arguments' => array(
         'view' => NULL,
@@ -50,6 +51,7 @@ function unb_herbarium_theme($existing, $type, $theme, $path) {
       'base hook' => 'node__herbarium_specimen',
     ),
   );
+  return $variables;
 }
 
 /**
@@ -59,9 +61,11 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $node = $variables['elements']['#node'];
 
   $assigned_tax_term_list = $node->get('field_taxonomy_tid');
-  $tid = $assigned_tax_term_list->get(0)->entity->id();
+  $tid = $assigned_tax_term_list
+    ->get(0)
+    ->entity
+    ->id();
 
-  // TODO: traverse up tree until we have a rank of 'Species'.
   $genus_term = _herbarium_core_term_get_ancestor_rank(Term::load($tid), 'Genus');
   $family_term = _herbarium_core_term_get_ancestor_rank(Term::load($tid), 'Family');
 
@@ -74,17 +78,46 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
     $variables['collection_date_day'] = $date->format('d');
   }
 
-  $variables['specimen_full_name'] = $assigned_tax_term_list->get(0)->entity->get('field_cmh_full_specimen_name')->view();
+  $variables['specimen_full_name'] = $assigned_tax_term_list
+    ->get(0)
+    ->entity
+    ->get('field_cmh_full_specimen_name')
+    ->view();
+
   $variables['specimen_assigned_taxon'] = $assigned_tax_term_list->view();
+
   $variables['specimen_family'] = unb_herbarium_get_tax_term_link($family_term);
   $variables['specimen_genus'] = unb_herbarium_get_tax_term_link($genus_term);
-  $variables['specimen_assigned_taxon'] = $assigned_tax_term_list->view();
-  $variables['specimen_authority'] = $assigned_tax_term_list->get(0)->entity->get('field_dwc_scientificnameauthor')->view();
-  $variables['specimen_taxon_rank'] = $assigned_tax_term_list->get(0)->entity->get('field_dwc_taxonrank')->view();
-  $variables['specimen_measurement_type'] = $assigned_tax_term_list->get(0)->entity->get('field_dwc_measurementtype')->view();
-  $variables['specimen_measurement_value'] = $assigned_tax_term_list->get(0)->entity->get('field_dwc_measurementvalue')->view();
 
-  $specimen_measurement_id = $assigned_tax_term_list->get(0)->entity->get('field_dwc_measurementid')->view();
+  $variables['specimen_authority'] = $assigned_tax_term_list
+    ->get(0)
+    ->entity
+    ->get('field_dwc_scientificnameauthor')
+    ->view();
+
+  $variables['specimen_taxon_rank'] = $assigned_tax_term_list
+    ->get(0)
+    ->entity
+    ->get('field_dwc_taxonrank')
+    ->view();
+
+  $variables['specimen_measurement_type'] = $assigned_tax_term_list
+    ->get(0)
+    ->entity
+    ->get('field_dwc_measurementtype')
+    ->view();
+
+  $variables['specimen_measurement_value'] = $assigned_tax_term_list
+    ->get(0)
+    ->entity
+    ->get('field_dwc_measurementvalue')
+    ->view();
+
+  $specimen_measurement_id = $assigned_tax_term_list
+    ->get(0)
+    ->entity
+    ->get('field_dwc_measurementid')
+    ->view();
   $variables['specimen_measurement_id'] = $specimen_measurement_id;
   $measurement_id_text_value = $specimen_measurement_id['0']['#text'];
   if (filter_var($measurement_id_text_value, FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED)) {
@@ -167,6 +200,5 @@ function unb_herbarium_preprocess_page_title(&$variables) {
 function unb_herbarium_get_tax_term_link(TermInterface $term) {
   $name = $term->getName();
   $href = $term->url();
-
   return "<a href=\"$href\">$name</a>";
 }
