@@ -45,8 +45,6 @@ source:
       year: Yr
     12:
       habitat: Habitat
-    13:
-      eventremarks: Abundance
     14:
       county: County
     15:
@@ -87,6 +85,8 @@ source:
       dc_created: Creation Date
     41:
       dc_modified: Modification Date
+    42:
+      occurrenceremarks: Comments
     43:
       contributor_other: Databaser
     56:
@@ -127,6 +127,7 @@ process:
   field_dwc_eventremarks: eventremarks
   field_dwc_georeferencedby: georeferencedby
   field_dwc_habitat: habitat
+  field_dwc_occurrenceremarks: occurrenceremarks
   field_dwc_othercatalognumbers: othercatalognumbers
   field_dwc_record_number: record_number_string
   field_dwc_reproductivecondition: reproductivecondition
