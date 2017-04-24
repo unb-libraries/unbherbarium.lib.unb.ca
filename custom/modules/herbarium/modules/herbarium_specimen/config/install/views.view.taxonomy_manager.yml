@@ -7,8 +7,6 @@ dependencies:
     - system.menu.tools
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
     - taxonomy.vocabulary.taxon_rank
-  content:
-    - 'taxonomy_term:taxon_rank:68cf31c8-330b-4aef-b245-1cad71154f1c'
   module:
     - taxonomy
     - text
