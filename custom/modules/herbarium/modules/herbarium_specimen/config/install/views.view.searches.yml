@@ -33,7 +33,7 @@ dependencies:
     - user
     - views_autocomplete_filters
 id: searches
-label: Searches
+label: Browse
 module: views
 description: ''
 tag: ''
