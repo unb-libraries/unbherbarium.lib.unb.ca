@@ -529,19 +529,6 @@ display:
         menu_name: main
       display_description: ''
       header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: "<p>Enter a query in the box below to search for a specific sample in the collection.</p>\n\n<p>In most cases, this will yield the results you are looking for. For more targeted searching, entering specific values on the <a href=\"/advanced-search\">Advanced Search</a> form may provide results that cannot be located via this method.</p>"
-            format: basic_html
-          plugin_id: text
         result:
           id: result
           table: views
