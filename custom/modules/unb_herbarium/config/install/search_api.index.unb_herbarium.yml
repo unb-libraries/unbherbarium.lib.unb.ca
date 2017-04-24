@@ -14,6 +14,10 @@ dependencies:
     - field.storage.node.field_dwc_eventremarks
     - field.storage.node.field_dwc_habitat
     - field.storage.node.field_dwc_verbatimlocality
+    - field.storage.node.field_dwc_eventdate
+    - field.storage.node.field_dwc_verbatimeventdate
+    - field.storage.node.field_dwc_occurrenceremarks
+    - field.storage.node.field_dwc_othercatalognumbers
     - search_api.server.solr_lib_unb_ca
   module:
     - taxonomy
@@ -29,7 +33,7 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: title
     type: text
-    boost: !!float 21
+    boost: !!float 13
   field_dwc_record_number:
     label: 'DwC:recordnumber (fulltext)'
     datasource_id: 'entity:node'
@@ -90,6 +94,7 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: 'field_taxonomy_tid:entity:field_cmh_english_common_names'
     type: text
+    boost: !!float 21
     dependencies:
       config:
         - field.storage.node.field_taxonomy_tid
@@ -101,6 +106,7 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: 'field_taxonomy_tid:entity:field_cmh_french_common_names'
     type: text
+    boost: !!float 21
     dependencies:
       config:
         - field.storage.node.field_taxonomy_tid
@@ -139,6 +145,38 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_dwc_verbatimlocality
+  field_dwc_eventdate:
+    label: 'Collection Date'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_eventdate
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_eventdate
+  field_dwc_verbatimeventdate:
+    label: 'Verbatim Event Date'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_verbatimeventdate
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_verbatimeventdate
+  field_dwc_occurrenceremarks:
+    label: 'Occurrence Remarks'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_occurrenceremarks
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_occurrenceremarks
+  field_dwc_othercatalognumbers:
+    label: 'Other Catalogue No.'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_othercatalognumbers
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_othercatalognumbers
 datasource_settings:
   'entity:node':
     bundles:
