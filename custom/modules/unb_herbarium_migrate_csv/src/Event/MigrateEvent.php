@@ -50,16 +50,18 @@ class MigrateEvent implements EventSubscriberInterface {
     $day = (trim($row->getSourceProperty('day')) != '') ? $row->getSourceProperty('day') : NULL;
 
     // Collection Date.
-    $iso_date = '';
-    if ($year != NULL) {
+    $iso_date = NULL;
+    if ($this->isValidYearRange($year) &&
+        $this->isValidMonthRange($month) &&
+        $this->isValidDayRange($day)) {
       $date_array = array(
         'year' => $year,
         'month' => $month,
         'day' => $day,
       );
       $iso_date = DrupalDateTime::arrayToISO($date_array);
+      $row->setSourceProperty('date_iso', $iso_date);
     }
-    $row->setSourceProperty('date_iso', $iso_date);
 
     // Verbatim Event Date.
     $date_str = 'Y: ' . $year . ' M: ' . $month . ' D: ' . $day;
