@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_dwc_county
+    - field.storage.node.field_dwc_eventdate
     - field.storage.node.field_dwc_record_number
     - field.storage.node.field_large_sample_surrogate
     - image.style.thumbnail
@@ -10,6 +11,7 @@ dependencies:
     - system.menu.main
   module:
     - colorbox
+    - datetime
     - search_api
     - text
     - user
@@ -86,38 +88,38 @@ display:
             field_dwc_record_number_sort: field_dwc_record_number_sort
             title_sort: title_sort
             field_dwc_county: field_dwc_county
+            field_dwc_eventdate_1: field_dwc_eventdate_1
             field_large_sample_surrogate: field_large_sample_surrogate
-            search_api_relevance: search_api_relevance
           info:
             field_dwc_record_number_sort:
-              sortable: true
+              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
             title_sort:
-              sortable: true
+              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
             field_dwc_county:
-              sortable: true
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_dwc_eventdate_1:
+              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
             field_large_sample_surrogate:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            search_api_relevance:
-              sortable: true
-              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
@@ -756,6 +758,75 @@ display:
             link_to_item: false
             multi_separator: ', '
           plugin_id: search_api_field
+        field_dwc_eventdate:
+          id: field_dwc_eventdate
+          table: search_api_index_unb_herbarium
+          field: field_dwc_eventdate
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Collection Date'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: Unknown
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: datetime_custom
+          settings:
+            timezone_override: ''
+            date_format: Y/m/d
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            multi_separator: ', '
+          plugin_id: search_api_field
         field_large_sample_surrogate:
           id: field_large_sample_surrogate
           table: search_api_datasource_unb_herbarium_entity_node
@@ -842,5 +913,6 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_dwc_county'
+        - 'config:field.storage.node.field_dwc_eventdate'
         - 'config:field.storage.node.field_dwc_record_number'
         - 'config:field.storage.node.field_large_sample_surrogate'

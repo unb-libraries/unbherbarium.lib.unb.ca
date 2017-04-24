@@ -5,6 +5,7 @@ core: 8.x
 dependencies:
   - colorbox
   - csv_serialization
+  - datetime
   - herbarium_core
   - herbarium_specimen
   - node
