@@ -15,6 +15,7 @@ $color-header-bg: #f5f5f5;
 $color-header-bg-darker: #eee;
 $color-header-accent: #ddd;
 $color-table-even: #f9f9f9;
+$color-desc: #808080;
 
 // Animated checkbox toggle button.
 .toggle-switch,
@@ -181,6 +182,11 @@ select[data-drupal-selector="edit-collector"] + .form-control {
 .form-inline .form-control,
 .form-inline .input-group {
   width: 100%;
+}
+
+.no-result {
+  color: $color-desc;
+  white-space: nowrap;
 }
 
 @media (max-width: 1199px) {
