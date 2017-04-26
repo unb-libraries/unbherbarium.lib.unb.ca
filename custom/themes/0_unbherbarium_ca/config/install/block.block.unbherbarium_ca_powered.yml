@@ -1,0 +1,22 @@
+uuid: a63d7504-b697-4d38-b646-31510d74a2a9
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - unbherbarium_ca
+_core:
+  default_config_hash: 1BEdi3a5Zc-kWJ3k0ov5JgSISVH3LxxEBGQ8kK8H5dg
+id: unbherbarium_ca_powered
+theme: unbherbarium_ca
+region: '-1'
+weight: -6
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+visibility: {  }

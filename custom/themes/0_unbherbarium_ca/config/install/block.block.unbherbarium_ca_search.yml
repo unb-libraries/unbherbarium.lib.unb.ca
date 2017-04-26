@@ -1,0 +1,22 @@
+uuid: 9ef97975-2c43-4590-879e-68f1105f3856
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - unbherbarium_ca
+_core:
+  default_config_hash: EOosAZXWdtMiKn9XAvA01M54aLVEClVB4OPBurBUN2c
+id: unbherbarium_ca_search
+theme: unbherbarium_ca
+region: '-1'
+weight: -7
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: Search
+  provider: search
+  label_display: visible
+visibility: {  }

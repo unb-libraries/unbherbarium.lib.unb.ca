@@ -1,0 +1,22 @@
+uuid: e27ae8a2-3795-49fe-ac3f-4245a472de7f
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - unbherbarium_ca
+_core:
+  default_config_hash: kFwrIBq-sKWzcu2s5lab8FwqerR-Uhj6rV29VwQFEIA
+id: unbherbarium_ca_messages
+theme: unbherbarium_ca
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

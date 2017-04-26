@@ -1,0 +1,20 @@
+uuid: fe2bf543-86df-4005-bed3-47b301215372
+langcode: en
+status: true
+dependencies:
+  theme:
+    - unbherbarium_ca
+_core:
+  default_config_hash: zRh1vZatSwGWjKMGcdjn_tsN-hSftgNraEuG5R4PatY
+id: unbherbarium_ca_local_actions
+theme: unbherbarium_ca
+region: content
+weight: -8
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

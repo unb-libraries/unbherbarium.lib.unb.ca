@@ -1,0 +1,22 @@
+uuid: 2f694ff3-10cc-48bb-ac47-60f93b28e3fe
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - unbherbarium_ca
+_core:
+  default_config_hash: DEcrf1Hs9hFNclJoRNaUznCa6attrZlcHW9b3kJcmKo
+id: unbherbarium_ca_help
+theme: unbherbarium_ca
+region: content
+weight: -8
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: 2a5d6854-50ab-45c1-808c-48ee28f0f8c1
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - unbherbarium_ca
+_core:
+  default_config_hash: oWQ24lee45vZyCyWB9KMuwbKBAkDXvwEwNUtscFWOIo
+id: unbherbarium_ca_content
+theme: unbherbarium_ca
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }
