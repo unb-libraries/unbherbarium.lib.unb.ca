@@ -80,29 +80,45 @@ display:
         options:
           grouping: {  }
           row_class: ''
-          default_row_class: true
-          override: true
-          sticky: true
+          default_row_class: false
+          override: false
+          sticky: false
           caption: ''
           summary: ''
           description: ''
           columns:
-            field_dwc_record_number_sort: field_dwc_record_number_sort
-            title_sort: title_sort
+            search_api_relevance: search_api_relevance
+            field_dwc_record_number: field_dwc_record_number
+            title: title
+            nid: nid
+            field_cmh_full_specimen_name: field_cmh_full_specimen_name
             field_dwc_county: field_dwc_county
-            field_dwc_eventdate_1: field_dwc_eventdate_1
+            field_dwc_eventdate: field_dwc_eventdate
             field_large_sample_surrogate: field_large_sample_surrogate
           info:
-            field_dwc_record_number_sort:
+            search_api_relevance:
               sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            title_sort:
-              sortable: false
-              default_sort_order: asc
+            field_dwc_record_number:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            title:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            nid:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_cmh_full_specimen_name:
               align: ''
               separator: ''
               empty_column: false
@@ -114,7 +130,7 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            field_dwc_eventdate_1:
+            field_dwc_eventdate:
               sortable: false
               default_sort_order: asc
               align: ''
