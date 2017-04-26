@@ -18,6 +18,7 @@ dependencies:
     - field.storage.node.field_dwc_verbatimeventdate
     - field.storage.node.field_dwc_occurrenceremarks
     - field.storage.node.field_dwc_othercatalognumbers
+    - field.storage.taxonomy_term.field_cmh_full_specimen_name
     - search_api.server.solr_lib_unb_ca
   module:
     - taxonomy
@@ -32,26 +33,14 @@ field_settings:
     label: 'Title (fulltext)'
     datasource_id: 'entity:node'
     property_path: title
-    type: text
+    type: string
     boost: !!float 13
   field_dwc_record_number:
     label: 'DwC:recordnumber (fulltext)'
     datasource_id: 'entity:node'
     property_path: field_dwc_record_number
     type: text
-    dependencies:
-      config:
-        - field.storage.node.field_dwc_record_number
-  title_sort:
-    label: 'Title (sort)'
-    datasource_id: 'entity:node'
-    property_path: title
-    type: string
-  field_dwc_record_number_sort:
-    label: 'DwC:recordnumber (sort)'
-    datasource_id: 'entity:node'
-    property_path: field_dwc_record_number
-    type: integer
+    boost: !!float 2
     dependencies:
       config:
         - field.storage.node.field_dwc_record_number
@@ -94,7 +83,7 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: 'field_taxonomy_tid:entity:field_cmh_english_common_names'
     type: text
-    boost: !!float 21
+    boost: !!float 13
     dependencies:
       config:
         - field.storage.node.field_taxonomy_tid
@@ -106,7 +95,7 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: 'field_taxonomy_tid:entity:field_cmh_french_common_names'
     type: text
-    boost: !!float 21
+    boost: !!float 13
     dependencies:
       config:
         - field.storage.node.field_taxonomy_tid
@@ -177,6 +166,18 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_dwc_othercatalognumbers
+  processed:
+    label: "Specific Epithet\t  » Taxonomy term » Scientific Name » Processed text"
+    datasource_id: 'entity:node'
+    property_path: 'field_taxonomy_tid:entity:field_cmh_full_specimen_name:processed'
+    type: text
+    boost: !!float 21
+    dependencies:
+      config:
+        - field.storage.node.field_taxonomy_tid
+        - field.storage.taxonomy_term.field_cmh_full_specimen_name
+      module:
+        - taxonomy
 datasource_settings:
   'entity:node':
     bundles:
