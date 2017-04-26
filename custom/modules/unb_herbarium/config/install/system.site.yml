@@ -1,4 +1,4 @@
-uuid: 85c96bf2-f1b6-4612-8305-d3d3769d5255
+uuid: ''
 name: 'Connell Memorial Herbarium'
 mail: admin@example.com
 slogan: ''
@@ -10,5 +10,4 @@ admin_compact_mode: false
 weight_select_max: 100
 langcode: en
 default_langcode: en
-_core:
-  default_config_hash: AyT9s8OUcclfALRE_imByOMgtZ19eOlqdF6zI3p7yqo
+
