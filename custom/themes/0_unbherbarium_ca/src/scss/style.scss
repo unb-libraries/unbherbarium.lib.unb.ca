@@ -16,6 +16,8 @@ $color-header-bg-darker: #eee;
 $color-header-accent: #ddd;
 $color-table-even: #f9f9f9;
 $color-desc: #808080;
+$color-link: #337ab7;
+$color-hover: #23527c;
 
 // Animated checkbox toggle button.
 .toggle-switch,
@@ -124,6 +126,7 @@ $color-desc: #808080;
 .view-header {
   font-size: 110%;
   font-weight: bold;
+  margin-bottom: .5em;
 }
 
 #toggleFilters {
@@ -146,19 +149,17 @@ label {
 .table>thead:first-child>tr:first-child>th {
   border-top: 2px solid $color-header-accent;
 }
-.browse .table>thead>tr>th {
+.view .table>thead>tr>th {
   background-color: $color-header-bg;
   white-space: nowrap;
 }
-.browse .table-striped>tbody>tr:nth-of-type(even) {
+.view .table-striped>tbody>tr:nth-of-type(even) {
    background-color: $color-table-even;
 }
-.browse .table-striped>tbody>tr:nth-of-type(odd) {
+.view .table-striped>tbody>tr:nth-of-type(odd) {
   background-color: inherit;
 }
-.browse th a {
-  color: #4f4f4f;
-}
+
 .tablesort {
   vertical-align: text-bottom;
 }
@@ -189,6 +190,38 @@ select[data-drupal-selector="edit-collector"] + .form-control {
   white-space: nowrap;
 }
 
+a:link,
+a:visited{
+  color: $color-link;
+  text-decoration: none;
+}
+.view .table a {
+  display: block;
+}
+a:focus,
+a:hover,
+th a:focus,
+th a:hover {
+  color: $color-hover;
+  text-decoration: underline;
+}
+th a {
+  color: $color-text;
+}
+
+h1 {
+  margin-top: 0;
+}
+progress {
+  width: 100%;
+}
+
+.view .table th a,
+.view .table td a {
+  display: block;
+}
+
+// Responsive overrides.
 @media (max-width: 1199px) {
   .form-inline .form-group {
     width: 49%;
