@@ -13,3 +13,11 @@
 
 # Disable the CDN provider so compiled source files can be used.
 cdn_provider: ''
+logo:
+  path: ''
+  url: ''
+  use_default: 0
+navbar_position: fixed-top
+table_responsive: '-1'
+table: ''
+navbar_inverse: 1
