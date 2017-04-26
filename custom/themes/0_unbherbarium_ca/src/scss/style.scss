@@ -221,6 +221,13 @@ progress {
   display: block;
 }
 
+.navbar-brand {
+  font-size: x-large;
+}
+.navbar {
+  opacity: .94;
+}
+
 // Responsive overrides.
 @media (max-width: 1199px) {
   .form-inline .form-group {
