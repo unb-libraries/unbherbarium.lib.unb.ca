@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - unb_herbarium
+  theme:
+    - unbherbarium_ca
+id: dedicationstatement
+theme: unbherbarium_ca
+region: footer
+weight: -7
+provider: null
+plugin: dedication
+settings:
+  id: dedication
+  label: 'Dedication Statement'
+  provider: unb_herbarium
+  label_display: '0'
+visibility: {  }
