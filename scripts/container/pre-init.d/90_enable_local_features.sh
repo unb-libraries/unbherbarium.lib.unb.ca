@@ -15,8 +15,8 @@ if [ "$DEPLOY_ENV" = "local" ]; then
   $DRUSH_COMMAND migrate-status
   $DRUSH_COMMAND migrate-import --all
   $DRUSH_COMMAND eval '_herbarium_core_rebuild_specimen_taxonomy_terms();'
-  $DRUSH_COMMAND en --yes unb_herbarium
   $DRUSH_COMMAND en unbherbarium_ca
   $DRUSH_COMMAND config-set system.theme default unbherbarium_ca
+  $DRUSH_COMMAND en --yes unb_herbarium
   $DRUSH_COMMAND cache-rebuild
 fi
