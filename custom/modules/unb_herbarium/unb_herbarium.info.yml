@@ -3,6 +3,7 @@ description: 'UNB custom features'
 type: module
 core: 8.x
 dependencies:
+  - block
   - colorbox
   - csv_serialization
   - datetime
