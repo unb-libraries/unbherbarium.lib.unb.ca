@@ -149,12 +149,15 @@ label {
 .table>thead:first-child>tr:first-child>th {
   border-top: 2px solid $color-header-accent;
 }
+.table>tbody:last-child>tr:last-child>td {
+  border-bottom: 1px solid $color-header-accent;
+}
 .view .table>thead>tr>th {
   background-color: $color-header-bg;
   white-space: nowrap;
 }
 .view .table-striped>tbody>tr:nth-of-type(even) {
-   background-color: $color-table-even;
+  background-color: $color-table-even;
 }
 .view .table-striped>tbody>tr:nth-of-type(odd) {
   background-color: inherit;
@@ -226,6 +229,25 @@ progress {
 }
 .navbar {
   opacity: .94;
+}
+
+.footer {
+  margin-top: 8em;
+  padding-top: 2em;
+  padding-bottom: 1em;
+}
+footer section {
+  text-align: center;
+}
+.dedication {
+  color: $color-desc;
+  margin-bottom: 1em;
+}
+.dedication a {
+  color: $color-desc;
+}
+footer .unb-lib-logo {
+  max-width: 350px;
 }
 
 // Responsive overrides.
