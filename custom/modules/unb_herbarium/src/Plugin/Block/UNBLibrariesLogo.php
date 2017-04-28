@@ -5,7 +5,7 @@ namespace Drupal\unb_herbarium\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 
 /**
- * Provides a 'Dedication' Block.
+ * Provides a 'UNB Librarires Logo' Block.
  *
  * @Block(
  *   id = "unblibrarieslogo",
@@ -21,7 +21,7 @@ class UNBLibrariesLogo extends BlockBase {
     return array(
       '#markup' => $this->t('
         <div>
-            <img alt="UNB Libraries" class="unb-lib-logo" src="/modules/custom/unb_herbarium/images/UNB-Libraries-Red-Black.png" />
+            <a href="//lib.unb.ca"><img alt="UNB Libraries" class="unb-lib-logo" src="/modules/custom/unb_herbarium/images/UNB-Libraries-Red-Black.png" /></a>
         </div>
       '),
     );
