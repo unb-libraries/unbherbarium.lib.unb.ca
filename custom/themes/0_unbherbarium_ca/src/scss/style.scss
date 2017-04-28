@@ -232,7 +232,7 @@ progress {
 }
 
 .footer {
-  margin-top: 8em;
+  margin-top: 1em;
   padding-top: 2em;
   padding-bottom: 1em;
 }
@@ -250,15 +250,33 @@ footer .unb-lib-logo {
   max-width: 350px;
 }
 
+.hidden,
+#views-exposed-form-unb-search-page label {
+  overflow: hidden;
+  text-indent: 100%;
+  width: 1px;
+  height: 1px;
+}
+#views-exposed-form-unb-search-page .form-item-query {
+  width: 100%;
+}
+
+.form-control {
+  padding: 6px;
+}
+
 // Responsive overrides.
 @media (max-width: 1199px) {
-  .form-inline .form-group {
-    width: 49%;
+  #edit-submit-unb-search {
+    width: 100%;
   }
 }
 @media (min-width: 1200px) {
   .form-inline .form-group {
     margin-bottom: .5em;
     width: 33%;
+  }
+  #views-exposed-form-unb-search-page .form-item-query {
+    width: 58%;
   }
 }
