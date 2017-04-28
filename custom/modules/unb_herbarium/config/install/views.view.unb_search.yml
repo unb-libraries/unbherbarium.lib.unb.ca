@@ -551,7 +551,7 @@ display:
         title: 'Search the Database'
         description: ''
         expanded: false
-        parent: ''
+        parent: unb_herbarium.database
         weight: 0
         context: '0'
         menu_name: main
