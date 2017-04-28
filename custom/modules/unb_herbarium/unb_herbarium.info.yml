@@ -1,5 +1,6 @@
-name: 'Connell Memorial Herbarium'
-description: 'UNB custom features'
+name: Connell Memorial Herbarium
+description: UNB CMH custom features
+package: UNB Herbarium
 type: module
 core: 8.x
 dependencies:
@@ -20,5 +21,3 @@ dependencies:
   - twig_field_value
   - user
   - views
-version: 8.x-1.0
-package: 'UNB Herbarium'
