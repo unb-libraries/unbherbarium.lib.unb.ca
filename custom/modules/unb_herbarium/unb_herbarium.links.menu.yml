@@ -1,0 +1,7 @@
+unb_herbarium.database:
+  title: Database
+  description: Database toggle item in Main navigation menu
+  parent: main
+  menu_name: main
+  route_name: database.content
+  expanded: TRUE

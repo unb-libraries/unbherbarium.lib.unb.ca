@@ -1,0 +1,7 @@
+database.content:
+  path: '/database'
+  defaults:
+    _controller: 'Drupal\unb_herbarium\Controller\DatabaseController::content'
+    _title: 'Database'
+  requirements:
+    _permission: 'access content'
