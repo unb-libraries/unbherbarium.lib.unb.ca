@@ -8,9 +8,13 @@ dependencies:
   - colorbox
   - csv_serialization
   - datetime
+  - field
   - herbarium_core
   - herbarium_specimen
+  - image
+  - menu_ui
   - node
+  - path
   - rest
   - search_api
   - search_api_solr
@@ -21,3 +25,4 @@ dependencies:
   - twig_field_value
   - user
   - views
+  - views_slideshow_cycle
