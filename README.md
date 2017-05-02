@@ -30,7 +30,7 @@ composer install
 ```
 
 ```
-dockworker container:start_over
+dockworker container:start-over
 ```
 
 ### 3. Other useful commands
