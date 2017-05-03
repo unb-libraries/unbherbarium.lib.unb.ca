@@ -212,3 +212,19 @@ function _unb_herbarium_get_tax_term_link(TermInterface $term) {
   $href = $term->url();
   return "<a href=\"$href\">$name</a>";
 }
+
+/**
+ * Unsets herbarium specimen's geo location related content fields.
+ *
+ * @param array $variables
+ *   The variables array containing the content fields to unpublish.
+ *
+ */
+function _unb_herbarium_restrict_display(&$variables) {
+  // Remove classified geo location info.
+  unset($variables['content']['field_dwc_decimallatitude']);
+  unset($variables['content']['field_dwc_decimallongitude']);
+  unset($variables['content']['field_geoheritage']);
+  unset($variables['content']['field_dwc_verbatimlocality']);
+  unset($variables['content']['field_gmap']);
+}
