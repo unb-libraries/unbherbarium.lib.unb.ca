@@ -28,61 +28,62 @@ content:
   description:
     label: hidden
     type: text_default
-    weight: 0
+    weight: 1
     settings: {  }
     third_party_settings: {  }
   field_cmh_english_common_names:
-    weight: 1
+    weight: 3
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_cmh_french_common_names:
-    weight: 2
+    weight: 4
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_cmh_full_specimen_name:
-    weight: 12
+    weight: 9
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
   field_cmh_infraspecific_specimen:
-    weight: 13
+    weight: 5
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
   field_dc_replaces:
     type: text_default
-    weight: 7
+    weight: 0
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_measurementid:
     type: text_default
-    weight: 3
+    weight: 6
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_measurementtype:
     type: list_default
-    weight: 4
+    weight: 7
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_measurementvalue:
-    type: text_default
-    weight: 5
+    weight: 8
     label: above
-    settings: {  }
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
+    type: string
   field_dwc_scientificnameauthor:
-    weight: 11
+    weight: 10
     label: above
     settings:
       link_to_entity: false
@@ -90,12 +91,12 @@ content:
     type: string
   field_dwc_taxonid:
     type: text_default
-    weight: 9
+    weight: 2
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_taxonrank:
-    weight: 10
+    weight: 12
     label: above
     settings:
       link: true
@@ -103,12 +104,12 @@ content:
     type: entity_reference_label
   field_dwc_taxonremarks:
     type: text_default
-    weight: 6
+    weight: 13
     label: above
     settings: {  }
     third_party_settings: {  }
   field_synonyms:
-    weight: 8
+    weight: 11
     label: above
     settings: {  }
     third_party_settings: {  }
