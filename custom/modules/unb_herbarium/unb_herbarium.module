@@ -102,6 +102,13 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $variables['specimen_measurement_value'] = $specific_epithet
     ->get('field_dwc_measurementvalue')
     ->view();
+  $endangered = "/[sS]{1}[1-2]{1}/";
+  $SRank = $specific_epithet
+    ->get('field_dwc_measurementvalue')
+    ->getString();
+  if (preg_match($endangered, $SRank) && $variables['logged_in'] === FALSE) {
+    _unb_herbarium_unpublish_location_info($variables);
+  }
 
   $specimen_measurement_id = $specific_epithet
     ->get('field_dwc_measurementid')
@@ -192,14 +199,14 @@ function _unb_herbarium_get_tax_term_link(TermInterface $term) {
 }
 
 /**
- * Unsets herbarium specimen's geo location related content fields.
+ * Unsets herbarium specimen content fields with geo location information.
  *
  * @param array $variables
- *   The variables array containing the content fields to unpublish.
+ *   The variables array containing the sensitive fields to hide.
  *
  */
-function _unb_herbarium_restrict_display(&$variables) {
-  // Remove classified geo location info.
+function _unb_herbarium_unpublish_location_info(&$variables) {
+  // Hide sensitive location information for endangered species.
   unset($variables['content']['field_dwc_decimallatitude']);
   unset($variables['content']['field_dwc_decimallongitude']);
   unset($variables['content']['field_geoheritage']);
