@@ -106,8 +106,18 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $sRank = $specific_epithet
     ->get('field_dwc_measurementvalue')
     ->getString();
-  if (preg_match($endangered, $sRank) && $variables['logged_in'] === FALSE) {
-    _unb_herbarium_unpublish_location_info($variables);
+  if (preg_match($endangered, $sRank)) {
+    $user = \Drupal::currentUser();
+    if ($user->hasPermission('view private files')) {
+      $variables['view_endangered'] = TRUE;
+    }
+    else {
+      $variables['view_endangered'] = FALSE;
+      _unb_herbarium_unpublish_location_info($variables);
+    }
+  }
+  else {
+    $variables['view_endangered'] = TRUE;
   }
 
   $specimen_measurement_id = $specific_epithet
@@ -141,6 +151,7 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $variables['specimen_infraspecific_epithet'] = $specific_epithet
     ->get('field_cmh_infraspecific_specimen')
     ->view();
+
 }
 
 /**

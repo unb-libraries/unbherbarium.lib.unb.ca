@@ -335,12 +335,15 @@
             </section>
         </main>
         <aside>
-            {% if content.field_large_sample_surrogate|field_value %}
+            {# If view_endangered is TRUE then use unmasked image field else use masked version #}
+            {% set specimen_image = view_endangered ? content.field_large_sample_surrogate : content.field_large_sample_surrogate_msk %}
+            {% if specimen_image|field_value %}
               <figure>
-                  {{ content.field_large_sample_surrogate }}
+                  {{ specimen_image }}
                   <figcaption>{% trans %}Click specimen image to enlarge{% endtrans %}</figcaption>
               </figure>
             {% endif %}
+
             {% if content.field_gmap %}
                 <div class="gmap">
                     {{ content.field_gmap|field_value }}

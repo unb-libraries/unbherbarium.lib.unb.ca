@@ -18,17 +18,11 @@
   {{ q }}
 {% endif %}
 
-{% set filter_state, checkbox_attribute = 'hide', NULL %}
-{#
-  form["actions"]["reset"]["#access"] = 'bool(false)' when reset button hidden, NULL when shown.
-#}
-{% if form["actions"]["reset"]["#access"] is not defined %}
-  {% set filter_state, checkbox_attribute = 'show', 'checked' %}
-{% endif %}
+{% set filter_state = 'hide' %}
 
 <fieldset class="fieldset-toggle form--inline clearfix">
   <legend>
-    <input id="show-filters" class="toggle-filters-display" type="checkbox" {{ checkbox_attribute }}/>
+    <input id="show-filters" class="toggle-filters-display" type="checkbox" checked />
     <label for="show-filters">{% trans %}Show filters{% endtrans %}</label>
   </legend>
   <div{{ attributes.addClass(filter_state) }}>
