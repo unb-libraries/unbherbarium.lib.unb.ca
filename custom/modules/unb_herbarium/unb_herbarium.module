@@ -38,19 +38,19 @@ function unb_herbarium_theme_registry_alter(&$theme_registry) {
  * Implements hook_theme().
  */
 function unb_herbarium_theme($existing, $type, $theme, $path) {
-  $variables = array(
-    'node__herbarium_specimen' => array(
-      'arguments' => array(
+  $variables = [
+    'node__herbarium_specimen' => [
+      'arguments' => [
         'view' => NULL,
         'field' => NULL,
         'row' => NULL,
         'output' => NULL,
-      ),
+      ],
       'template' => 'node--herbarium-specimen',
       'path' => drupal_get_path('module', 'unb_herbarium') . '/templates',
       'base hook' => 'node__herbarium_specimen',
-    ),
-  );
+    ],
+  ];
   return $variables;
 }
 
@@ -102,11 +102,11 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $variables['specimen_measurement_value'] = $specific_epithet
     ->get('field_dwc_measurementvalue')
     ->view();
-  $endangered = "/[sS]{1}[1-2]{1}/";
-  $SRank = $specific_epithet
+  $endangered = "/[sS][12](?!\d)/";
+  $sRank = $specific_epithet
     ->get('field_dwc_measurementvalue')
     ->getString();
-  if (preg_match($endangered, $SRank) && $variables['logged_in'] === FALSE) {
+  if (preg_match($endangered, $sRank) && $variables['logged_in'] === FALSE) {
     _unb_herbarium_unpublish_location_info($variables);
   }
 
@@ -156,6 +156,7 @@ function unb_herbarium_preprocess_page_title(&$variables) {
         ->entity
         ->get('field_cmh_full_specimen_name')
         ->view();
+
       // Get field value using Twig Field Value module logic.
       if (isset($full_title['#items'])) {
         $element = $full_title['#items'];
@@ -203,9 +204,8 @@ function _unb_herbarium_get_tax_term_link(TermInterface $term) {
  *
  * @param array $variables
  *   The variables array containing the sensitive fields to hide.
- *
  */
-function _unb_herbarium_unpublish_location_info(&$variables) {
+function _unb_herbarium_unpublish_location_info(array &$variables) {
   // Hide sensitive location information for endangered species.
   unset($variables['content']['field_dwc_decimallatitude']);
   unset($variables['content']['field_dwc_decimallongitude']);

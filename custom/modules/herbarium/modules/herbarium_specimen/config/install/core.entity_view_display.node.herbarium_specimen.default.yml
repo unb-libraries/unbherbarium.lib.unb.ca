@@ -57,7 +57,7 @@ mode: default
 content:
   field_collector_tid:
     type: entity_reference_entity_view
-    weight: 33
+    weight: 30
     label: above
     settings:
       view_mode: default
@@ -71,7 +71,7 @@ content:
     third_party_settings: {  }
     type: string
   field_dc_created:
-    weight: 40
+    weight: 38
     label: above
     settings:
       format_type: medium
@@ -80,19 +80,19 @@ content:
     type: datetime_default
   field_dc_format:
     type: list_default
-    weight: 9
+    weight: 7
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dc_language:
     type: list_default
-    weight: 10
+    weight: 8
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dc_modified:
     type: datetime_default
-    weight: 11
+    weight: 9
     label: above
     settings:
       format_type: medium
@@ -100,25 +100,25 @@ content:
     third_party_settings: {  }
   field_dc_publisher:
     type: list_default
-    weight: 12
+    weight: 10
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dc_rights:
     type: list_default
-    weight: 13
+    weight: 11
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dc_rightsholder:
     type: list_default
-    weight: 14
+    weight: 12
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dc_type:
     type: list_default
-    weight: 15
+    weight: 13
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -130,7 +130,7 @@ content:
     third_party_settings: {  }
   field_dwc_collectioncode:
     type: list_default
-    weight: 18
+    weight: 16
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -152,7 +152,7 @@ content:
     third_party_settings: {  }
     type: string
   field_dwc_countrycode:
-    weight: 19
+    weight: 17
     label: above
     settings:
       link_to_entity: false
@@ -167,12 +167,12 @@ content:
     type: string
   field_dwc_datageneralizations:
     type: list_default
-    weight: 7
+    weight: 6
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_decimallatitude:
-    weight: 16
+    weight: 14
     label: above
     settings:
       thousand_separator: ''
@@ -182,7 +182,7 @@ content:
     third_party_settings: {  }
     type: number_decimal
   field_dwc_decimallongitude:
-    weight: 17
+    weight: 15
     label: above
     settings:
       thousand_separator: ''
@@ -200,86 +200,86 @@ content:
       format_type: html_date
     third_party_settings: {  }
   field_dwc_eventremarks:
-    weight: 20
+    weight: 18
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
   field_dwc_georeferencedby:
-    weight: 21
+    weight: 19
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_dwc_habitat:
-    weight: 24
+    weight: 22
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
   field_dwc_informationwithheld:
     type: list_default
-    weight: 25
+    weight: 23
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_institutioncode:
     type: list_default
-    weight: 26
+    weight: 24
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_institutionid:
     type: list_default
-    weight: 27
+    weight: 25
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_occurrenceremarks:
-    weight: 29
+    weight: 26
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_dwc_othercatalognumbers:
-    weight: 30
+    weight: 27
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_dwc_record_number:
-    weight: 32
+    weight: 29
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_dwc_reproductivecondition:
-    weight: 34
+    weight: 31
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_dwc_stateprovince:
-    weight: 37
+    weight: 35
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_dwc_verbatimeventdate:
-    weight: 38
+    weight: 36
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_dwc_verbatimlocality:
-    weight: 39
+    weight: 37
     label: above
     settings:
       link_to_entity: false
@@ -287,13 +287,13 @@ content:
     type: string
   field_geoheritage:
     type: string
-    weight: 22
+    weight: 20
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
   field_gmap:
-    weight: 23
+    weight: 21
     label: hidden
     settings:
       include_map: '1'
@@ -312,7 +312,7 @@ content:
     type: simple_gmap
   field_large_sample_surrogate:
     type: colorbox
-    weight: 36
+    weight: 33
     label: hidden
     settings:
       colorbox_node_style: 220-wide
@@ -320,23 +320,35 @@ content:
       colorbox_image_style: ''
       colorbox_gallery: post
       colorbox_gallery_custom: ''
-      colorbox_caption: entity_title
+      colorbox_caption: auto
       colorbox_caption_custom: 'Click to enlarge'
     third_party_settings: {  }
+  field_large_sample_surrogate_msk:
+    type: colorbox
+    weight: 34
+    label: hidden
+    settings:
+      colorbox_node_style: 220-wide
+      colorbox_node_style_first: ''
+      colorbox_image_style: ''
+      colorbox_gallery: post
+      colorbox_gallery_custom: ''
+      colorbox_caption: auto
+      colorbox_caption_custom: ''
+    third_party_settings: {  }
   field_previous_identifications:
-    weight: 31
+    weight: 28
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
   field_taxonomy_tid:
     type: entity_reference_entity_view
-    weight: 35
+    weight: 32
     label: above
     settings:
       view_mode: default
       link: false
     third_party_settings: {  }
 hidden:
-  field_large_sample_surrogate_msk: true
   links: true
