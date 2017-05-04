@@ -6,3 +6,12 @@ herbarium_specimen.manage_archival_master:
   requirements:
     _permission: 'administer content'
     _custom_access: '\Drupal\herbarium_specimen\Controller\HerbariumSpecimenCheckController::checkAccess'
+
+herbarium_specimen.view_private_files:
+  path: '/system/files/{scheme}'
+  defaults:
+    _controller: 'Drupal\system\FileDownloadController::download'
+    scheme: private
+  requirements:
+    _permission: 'view private files'
+    _access: 'TRUE'
