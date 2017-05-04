@@ -42,7 +42,7 @@ class MigrateEvent implements EventSubscriberInterface {
     // Surrogate Image Handling For Caching.
     $file_unmasked = $images_path . 'u-' . $accNum . '.jpg';
     $file_masked = $images_path . $accNum . '.jpg';
-    $this->addFieldFile($row, 'image_file_unmasked', $file_unmasked);
+    $this->addFieldFile($row, 'image_file_unmasked', $file_unmasked, 'private');
     $this->addFieldFile($row, 'image_file_masked', $file_masked);
 
     $year = (trim($row->getSourceProperty('year')) != '') ? $row->getSourceProperty('year') : NULL;
@@ -437,18 +437,18 @@ function convertDMStoDecimal($deg,$min,$sec) {
    * @return  booleen
    *    Returns True if source file is found. False otherwise.
    */
-  public function addFieldFile(&$row, $field_map, $source) {
+  public function addFieldFile(&$row, $field_map, $source, $destination = 'public') {
     $file_basename = basename($source);
-    $file_destination = "public://$file_basename";
+    $file_destination = "$destination://$file_basename";
     if (file_exists($source)) {
       $file_uri = file_unmanaged_copy($source, $file_destination,
         FILE_EXISTS_REPLACE);
-      $public_file = File::Create([
+      $file = File::Create([
         'uri' => $file_uri,
       ]);
       $row->setSourceProperty(
         $field_map,
-        $public_file
+        $file
       );
       return TRUE;
     }
