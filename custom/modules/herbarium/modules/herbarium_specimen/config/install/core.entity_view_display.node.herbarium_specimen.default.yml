@@ -317,7 +317,7 @@ content:
     settings:
       colorbox_node_style: 220-wide
       colorbox_node_style_first: ''
-      colorbox_image_style: ''
+      colorbox_image_style: unmasked_specimen
       colorbox_gallery: post
       colorbox_gallery_custom: ''
       colorbox_caption: auto
