@@ -9,6 +9,7 @@ dependencies:
     - field.storage.node.field_large_sample_surrogate_msk
     - field.storage.taxonomy_term.field_cmh_full_specimen_name
     - image.style.thumbnail
+    - image.style.unmasked_specimen
     - node.type.herbarium_specimen
     - system.menu.tools
     - taxonomy.vocabulary.herbarium_specimen_collector
@@ -1698,7 +1699,7 @@ display:
           settings:
             colorbox_node_style: thumbnail
             colorbox_node_style_first: ''
-            colorbox_image_style: ''
+            colorbox_image_style: unmasked_specimen
             colorbox_gallery: post
             colorbox_gallery_custom: ''
             colorbox_caption: none
