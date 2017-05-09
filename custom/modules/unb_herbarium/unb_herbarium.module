@@ -228,10 +228,10 @@ function _unb_herbarium_unpublish_location_info(array &$variables) {
 /**
  * Returns whether or not a given species term id is considered endangered.
  *
- * @param integer $tid
+ * @param int $tid
  *   The species term id.
  *
- * @return boolean
+ * @return bool
  *   True if species is endangered, false otherwise.
  */
 function _unb_herbarium_endangered_species($tid) {
@@ -243,6 +243,21 @@ function _unb_herbarium_endangered_species($tid) {
   // Rarity values containing 'S1' or 'S2' are endangered.
   $endangered = "/[sS][12](?!\d)/";
   if (preg_match($endangered, $sRank)) {
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+/**
+ * Returns whether or not a user may access the private filesystem.
+ *
+ * @return bool
+ *   True if user has specimen private file permission, false otherwise.
+ */
+function _unb_herbarium_permit_private() {
+  $user = \Drupal::currentUser();
+  if ($user->hasPermission('view private files')) {
     return TRUE;
   }
 
