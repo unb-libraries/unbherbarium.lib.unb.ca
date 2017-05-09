@@ -8,6 +8,7 @@
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermInterface;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_help().
@@ -99,16 +100,8 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
     ->get('field_dwc_measurementtype')
     ->view();
 
-  $variables['specimen_measurement_value'] = $specific_epithet
-    ->get('field_dwc_measurementvalue')
-    ->view();
-  $endangered = "/[sS][12](?!\d)/";
-  $sRank = $specific_epithet
-    ->get('field_dwc_measurementvalue')
-    ->getString();
-  if (preg_match($endangered, $sRank)) {
-    $user = \Drupal::currentUser();
-    if ($user->hasPermission('view private files')) {
+  if (_unb_herbarium_endangered_species($tid)) {
+    if (_unb_herbarium_permit_private()) {
       $variables['view_endangered'] = TRUE;
     }
     else {
@@ -119,6 +112,9 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   else {
     $variables['view_endangered'] = TRUE;
   }
+  $variables['specimen_measurement_value'] = $specific_epithet
+    ->get('field_dwc_measurementvalue')
+    ->view();
 
   $specimen_measurement_id = $specific_epithet
     ->get('field_dwc_measurementid')
@@ -192,6 +188,56 @@ function unb_herbarium_form_alter(&$form, &$form_state, $form_id) {
   if ($form['#id'] == 'views-exposed-form-unb-search-page') {
     // Add HTML5 placeholder to Views|UNB Search|Exposed form.
     $form['query']['#attributes']['placeholder'] = t('Enter sample term');
+  }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function unb_herbarium_views_pre_render(ViewExecutable $view) {
+  if ($view->id() == "browse" && $view->current_display == 'page') {
+    foreach ($view->result as $value) {
+      $tid = $value
+        ->_relationship_entities['field_taxonomy_tid']
+        ->id();
+
+      $thumbnail = $value
+        ->_entity
+        ->get('field_large_sample_surrogate');
+
+      /*$sRank = $value
+      ->_relationship_entities['field_taxonomy_tid']
+      ->get('field_dwc_measurementvalue')
+      ->getString();
+       */
+
+      if (!$thumbnail->isEmpty() &&
+           _unb_herbarium_endangered_species($tid) &&
+           !_unb_herbarium_permit_private()
+      ) {
+        // Force unmasked image field to use 'No Results' value.
+        $thumbnail->setValue([]);
+      }
+    }
+  }
+  elseif ($view->id() == "unb_search" && $view->current_display == 'page') {
+    foreach ($view->result as $value) {
+      $tid = $value
+        ->_relationship_objects['field_taxonomy_tid']['0']
+        ->getString();
+
+      $thumbnail = $value
+        ->_object
+        ->get('field_large_sample_surrogate');
+
+      if (!$thumbnail->isEmpty() &&
+        _unb_herbarium_endangered_species($tid) &&
+        !_unb_herbarium_permit_private()
+      ) {
+        // Force unmasked image field to use 'No Results' value.
+        $thumbnail->setValue([]);
+      }
+    }
   }
 }
 
