@@ -205,12 +205,6 @@ function unb_herbarium_views_pre_render(ViewExecutable $view) {
         ->_entity
         ->get('field_large_sample_surrogate');
 
-      /*$sRank = $value
-      ->_relationship_entities['field_taxonomy_tid']
-      ->get('field_dwc_measurementvalue')
-      ->getString();
-       */
-
       if (!$thumbnail->isEmpty() &&
            _unb_herbarium_endangered_species($tid) &&
            !_unb_herbarium_permit_private()

@@ -23,6 +23,7 @@ dependencies:
   - taxonomy_manager
   - text
   - twig_field_value
+  - unb_herbarium
   - user
   - views
   - views_slideshow

@@ -10,8 +10,8 @@ third_party_settings:
     parent: 'main:'
 name: 'Banner image'
 type: banner_image
-description: ''
-help: ''
-new_revision: true
+description: 'Use <em>Banners</em> to upload decorative images that are usually displayed below navigation menu and above main content.'
+help: '<b>Note</b>: <i>Administrative title</i> is text used for backend content management while <i>alternative text</i> is used for image accessibility.'
+new_revision: false
 preview_mode: 1
-display_submitted: true
+display_submitted: false

@@ -2,24 +2,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.banner_image.body
     - field.field.node.banner_image.field_image
     - node.type.banner_image
   module:
     - image
-    - text
     - user
 id: node.banner_image.default
 targetEntityType: node
 bundle: banner_image
 mode: default
 content:
-  body:
-    label: hidden
-    type: text_default
-    weight: 101
-    settings: {  }
-    third_party_settings: {  }
   field_image:
     weight: 102
     label: above

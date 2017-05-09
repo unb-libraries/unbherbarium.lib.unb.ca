@@ -11,13 +11,13 @@ field_name: field_image
 entity_type: node
 bundle: banner_image
 label: Image
-description: ''
+description: '<b>Note</b>: <i>Administrative title</i> is text used for backend content management while <i>alternative text</i> is used for frontend image accessibility.'
 required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_directory: banners
   file_extensions: 'png gif jpg jpeg'
   max_filesize: ''
   max_resolution: ''

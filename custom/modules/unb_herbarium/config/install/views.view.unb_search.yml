@@ -21,7 +21,7 @@ dependencies:
 id: unb_search
 label: 'UNB Search'
 module: views
-description: ''
+description: 'A View with exposed filter that allows searching indexed, fulltext specimen fields.'
 tag: ''
 base_table: search_api_index_unb_herbarium
 base_field: search_api_id

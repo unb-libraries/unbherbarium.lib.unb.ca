@@ -23,7 +23,7 @@ dependencies:
 id: browse
 label: Browse
 module: views
-description: ''
+description: 'A View with exposed sort filters that allows browsing specimen records.'
 tag: ''
 base_table: node_field_data
 base_field: nid
@@ -1632,7 +1632,7 @@ display:
             colorbox_image_style: ''
             colorbox_gallery: post
             colorbox_gallery_custom: ''
-            colorbox_caption: auto
+            colorbox_caption: none
             colorbox_caption_custom: ''
           group_column: ''
           group_columns: {  }
@@ -1701,7 +1701,7 @@ display:
             colorbox_image_style: ''
             colorbox_gallery: post
             colorbox_gallery_custom: ''
-            colorbox_caption: auto
+            colorbox_caption: none
             colorbox_caption_custom: ''
           group_column: ''
           group_columns: {  }
