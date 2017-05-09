@@ -224,3 +224,27 @@ function _unb_herbarium_unpublish_location_info(array &$variables) {
   unset($variables['content']['field_dwc_verbatimlocality']);
   unset($variables['content']['field_gmap']);
 }
+
+/**
+ * Returns whether or not a given species term id is considered endangered.
+ *
+ * @param integer $tid
+ *   The species term id.
+ *
+ * @return boolean
+ *   True if species is endangered, false otherwise.
+ */
+function _unb_herbarium_endangered_species($tid) {
+  $term = Term::load($tid);
+  $sRank = $term
+    ->get('field_dwc_measurementvalue')
+    ->getString();
+
+  // Rarity values containing 'S1' or 'S2' are endangered.
+  $endangered = "/[sS][12](?!\d)/";
+  if (preg_match($endangered, $sRank)) {
+    return TRUE;
+  }
+
+  return FALSE;
+}
