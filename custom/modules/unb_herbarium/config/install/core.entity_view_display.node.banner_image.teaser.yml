@@ -4,6 +4,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.banner_image.body
+    - field.field.node.banner_image.field_image
     - node.type.banner_image
   module:
     - text
@@ -22,4 +23,5 @@ content:
     third_party_settings: {  }
   links:
     weight: 100
-hidden: {  }
+hidden:
+  field_image: true
