@@ -25,4 +25,5 @@ dependencies:
   - twig_field_value
   - user
   - views
+  - views_slideshow
   - views_slideshow_cycle
