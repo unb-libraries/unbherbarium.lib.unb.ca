@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_dwc_eventdate
     - field.storage.node.field_dwc_record_number
     - field.storage.node.field_large_sample_surrogate
+    - field.storage.node.field_large_sample_surrogate_msk
     - field.storage.taxonomy_term.field_cmh_full_specimen_name
     - image.style.thumbnail
     - node.type.herbarium_specimen
@@ -19,7 +20,7 @@ dependencies:
     - text
     - user
     - views_autocomplete_filters
-id: searches
+id: browse
 label: Browse
 module: views
 description: ''
@@ -99,6 +100,7 @@ display:
             field_dwc_county: field_dwc_county
             field_dwc_eventdate: field_dwc_eventdate
             field_large_sample_surrogate: field_large_sample_surrogate
+            field_large_sample_surrogate_msk: field_large_sample_surrogate_msk
           info:
             title:
               sortable: true
@@ -143,6 +145,13 @@ display:
               empty_column: false
               responsive: ''
             field_large_sample_surrogate:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_large_sample_surrogate_msk:
               sortable: true
               default_sort_order: asc
               align: ''
@@ -574,10 +583,10 @@ display:
         - 'config:field.storage.node.field_dwc_eventdate'
         - 'config:field.storage.node.field_dwc_record_number'
         - 'config:field.storage.node.field_large_sample_surrogate'
-  browse:
+  page:
     display_plugin: page
-    id: browse
-    display_title: 'Browse Page'
+    id: page
+    display_title: Page
     position: 2
     display_options:
       display_extenders: {  }
@@ -1567,6 +1576,75 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+        field_large_sample_surrogate_msk:
+          id: field_large_sample_surrogate_msk
+          table: node__field_large_sample_surrogate_msk
+          field: field_large_sample_surrogate_msk
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Image
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: '<span class="no-result">No Image</span>'
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: colorbox
+          settings:
+            colorbox_node_style: thumbnail
+            colorbox_node_style_first: ''
+            colorbox_image_style: ''
+            colorbox_gallery: post
+            colorbox_gallery_custom: ''
+            colorbox_caption: auto
+            colorbox_caption_custom: ''
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
         field_large_sample_surrogate:
           id: field_large_sample_surrogate
           table: node__field_large_sample_surrogate
@@ -1611,7 +1689,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: false
-          empty: '<span class="no-result">No Image</span>'
+          empty: '{{ field_large_sample_surrogate_msk }}'
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -1675,4 +1753,5 @@ display:
         - 'config:field.storage.node.field_dwc_eventdate'
         - 'config:field.storage.node.field_dwc_record_number'
         - 'config:field.storage.node.field_large_sample_surrogate'
+        - 'config:field.storage.node.field_large_sample_surrogate_msk'
         - 'config:field.storage.taxonomy_term.field_cmh_full_specimen_name'
