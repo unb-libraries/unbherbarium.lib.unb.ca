@@ -11,14 +11,14 @@ dependencies:
     - field.storage.taxonomy_term.field_cmh_english_common_names
     - field.storage.taxonomy_term.field_cmh_french_common_names
     - field.storage.node.field_dc_contributor_other
-    - field.storage.node.field_dwc_eventremarks
-    - field.storage.node.field_dwc_habitat
     - field.storage.node.field_dwc_verbatimlocality
     - field.storage.node.field_dwc_eventdate
     - field.storage.node.field_dwc_verbatimeventdate
     - field.storage.node.field_dwc_occurrenceremarks
     - field.storage.node.field_dwc_othercatalognumbers
     - field.storage.taxonomy_term.field_cmh_full_specimen_name
+    - field.storage.node.field_dwc_eventremarks
+    - field.storage.node.field_dwc_habitat
     - search_api.server.solr_lib_unb_ca
   module:
     - taxonomy
@@ -110,22 +110,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_dc_contributor_other
-  field_dwc_eventremarks:
-    label: Abundance
-    datasource_id: 'entity:node'
-    property_path: field_dwc_eventremarks
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.field_dwc_eventremarks
-  field_dwc_habitat:
-    label: Habitat
-    datasource_id: 'entity:node'
-    property_path: field_dwc_habitat
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.field_dwc_habitat
   field_dwc_verbatimlocality:
     label: 'Verbatim Locality'
     datasource_id: 'entity:node'
@@ -178,6 +162,22 @@ field_settings:
         - field.storage.taxonomy_term.field_cmh_full_specimen_name
       module:
         - taxonomy
+  field_dwc_eventremarks:
+    label: Abundance
+    datasource_id: 'entity:node'
+    property_path: field_dwc_eventremarks
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_eventremarks
+  field_dwc_habitat:
+    label: Habitat
+    datasource_id: 'entity:node'
+    property_path: field_dwc_habitat
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_habitat
 datasource_settings:
   'entity:node':
     bundles:
