@@ -161,14 +161,6 @@ class MigrateEvent implements EventSubscriberInterface {
       $row->setSourceProperty('one_line_gmap_address', $decLat . ',' . $decLong);
     }
 
-    // Temporary title => 255 chars of DetAnnList, aka Previous Identifications
-    $dwc_previousidents_raw = trim($row->getSourceProperty('previous_identifications'));
-    // DetAnnList field values are delimited by vertical tab character.
-    $dwc_previousidents = explode("\v", $dwc_previousidents_raw);
-    $row->setSourceProperty('previous_identifications', $dwc_previousidents);
-    $tmp_title = ($dwc_previousidents_raw != '') ? substr($dwc_previousidents_raw, 0, 255) : 'Temporary title';
-    $row->setSourceProperty('title_string', $tmp_title);
-
     // Record Number aka UNB Accession No.
     $row->setSourceProperty('record_number_string', $accNum);
 
@@ -195,7 +187,13 @@ class MigrateEvent implements EventSubscriberInterface {
     }
     $row->setSourceProperty('specimen_collector', $specimen_collector_ids);
 
+    $dwc_previousidents_raw = trim($row->getSourceProperty('previous_identifications'));
+    // DetAnnList field values are delimited by vertical tab character.
+    $dwc_previousidents = explode("\v", $dwc_previousidents_raw);
+    $row->setSourceProperty('previous_identifications', $dwc_previousidents);
+
     // Sample Taxonomy
+    $full_title = "Untitled";
     $fieldname = 'field_dwc_taxonid';
     $vocabulary = 'herbarium_specimen_taxonomy';
     $tax_id = trim($row->getSourceProperty('assigned_taxon'));
@@ -205,6 +203,13 @@ class MigrateEvent implements EventSubscriberInterface {
         $term = Term::load($term_tid);
         $assign_taxon_id = $term->id();
         $row->setSourceProperty('assigned_taxon', $assign_taxon_id);
+
+        $full_title = _herbarium_core_term_build_full_name(
+          $term,
+          HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANKS_TO_OMIT_PRINTING,
+          FALSE
+        );
+        $row->setSourceProperty('title_string', $full_title);
       } else {
         print "SPEC ID doesn't exist in vocabulary: " . $tax_id . "\n";
       }
