@@ -9,7 +9,7 @@ field_name: field_gmap
 entity_type: node
 bundle: herbarium_specimen
 label: GMap
-description: ''
+description: "Geographic coordinates in the format, <b>decimal latitude,decimal longitude</b> used to generate a Google Map.<br />\r\n<b>Note:</b> should be hidden from end user and populated by a hook."
 required: false
 translatable: false
 default_value: {  }

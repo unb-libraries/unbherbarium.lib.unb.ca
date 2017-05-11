@@ -48,15 +48,14 @@ dependencies:
     - field_group
     - image
     - path
-    - text
 third_party_settings:
   field_group:
     group_initially_hidden_details:
       children:
         - group_taxonomy
         - group_habitat_location
-        - group_date
         - group_previous_identifications
+        - group_date
         - group_details_license
       parent_name: ''
       weight: 6
@@ -86,16 +85,15 @@ third_party_settings:
       children:
         - field_dwc_decimallatitude
         - field_dwc_decimallongitude
-        - field_dwc_habitat
-        - field_dwc_eventremarks
-        - field_dwc_country
-        - field_dwc_county
-        - field_dwc_countrycode
-        - field_dwc_stateprovince
-        - field_dwc_georeferencedby
         - field_dwc_coordinateprecision
-        - field_dwc_occurrenceremarks
+        - field_dwc_country
+        - field_dwc_habitat
+        - field_dwc_countrycode
         - field_dwc_verbatimlocality
+        - field_dwc_stateprovince
+        - field_dwc_county
+        - field_dwc_eventremarks
+        - field_dwc_occurrenceremarks
       parent_name: group_initially_hidden_details
       weight: 49
       label: 'Specimen Habitat'
@@ -113,7 +111,7 @@ third_party_settings:
         - field_dc_created
         - field_dwc_verbatimeventdate
       parent_name: group_initially_hidden_details
-      weight: 50
+      weight: 51
       label: 'Date Information'
       format_type: tab
       format_settings:
@@ -124,9 +122,10 @@ third_party_settings:
         classes: 'group-date field-group-accordion-item'
         description: ''
     group_previous_identifications:
-      children: {  }
+      children:
+        - field_previous_identifications
       parent_name: group_initially_hidden_details
-      weight: 51
+      weight: 50
       label: 'Previous Identifications'
       format_type: tab
       format_settings:
@@ -153,7 +152,7 @@ third_party_settings:
         - field_dc_language
         - field_geoheritage
       parent_name: group_initially_hidden_details
-      weight: 52
+      weight: 53
       label: 'Details / License'
       format_type: tab
       format_settings:
@@ -169,7 +168,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 14
+    weight: 11
     settings: {  }
     third_party_settings: {  }
   field_collector_tid:
@@ -178,7 +177,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_dc_contributor_other:
-    weight: 54
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -194,17 +193,17 @@ content:
     type: datetime_datelist
   field_dc_format:
     type: options_select
-    weight: 17
+    weight: 28
     settings: {  }
     third_party_settings: {  }
   field_dc_language:
     type: options_select
-    weight: 23
+    weight: 34
     settings: {  }
     third_party_settings: {  }
   field_dc_modified:
     type: datetime_datelist
-    weight: 11
+    weight: 21
     settings:
       date_order: MDY
       time_type: none
@@ -212,49 +211,49 @@ content:
     third_party_settings: {  }
   field_dc_publisher:
     type: options_select
-    weight: 22
+    weight: 33
     settings: {  }
     third_party_settings: {  }
   field_dc_rights:
     type: options_select
-    weight: 15
+    weight: 25
     settings: {  }
     third_party_settings: {  }
   field_dc_rightsholder:
     type: options_select
-    weight: 13
+    weight: 23
     settings: {  }
     third_party_settings: {  }
   field_dc_type:
     type: options_select
-    weight: 12
+    weight: 22
     settings: {  }
     third_party_settings: {  }
   field_dwc_basisofrecord:
     type: options_select
-    weight: 19
+    weight: 30
     settings: {  }
     third_party_settings: {  }
   field_dwc_collectioncode:
     type: options_select
-    weight: 18
+    weight: 29
     settings: {  }
     third_party_settings: {  }
   field_dwc_coordinateprecision:
-    weight: 64
+    weight: 20
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
   field_dwc_country:
-    weight: 25
+    weight: 21
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
   field_dwc_countrycode:
-    weight: 27
+    weight: 23
     settings:
       size: 60
       placeholder: ''
@@ -269,7 +268,7 @@ content:
     type: string_textfield
   field_dwc_datageneralizations:
     type: options_select
-    weight: 20
+    weight: 31
     settings: {  }
     third_party_settings: {  }
   field_dwc_decimallatitude:
@@ -279,7 +278,7 @@ content:
     third_party_settings: {  }
     type: number
   field_dwc_decimallongitude:
-    weight: 18
+    weight: 19
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -293,71 +292,64 @@ content:
       increment: 15
     third_party_settings: {  }
   field_dwc_eventremarks:
-    weight: 23
+    weight: 27
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-  field_dwc_georeferencedby:
-    weight: 29
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
+    type: string_textarea
   field_dwc_habitat:
-    weight: 21
+    weight: 22
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
+    type: string_textarea
   field_dwc_informationwithheld:
     type: options_select
-    weight: 14
+    weight: 24
     settings: {  }
     third_party_settings: {  }
   field_dwc_institutioncode:
     type: options_select
-    weight: 16
+    weight: 27
     settings: {  }
     third_party_settings: {  }
   field_dwc_institutionid:
     type: options_select
-    weight: 21
+    weight: 32
     settings: {  }
     third_party_settings: {  }
   field_dwc_occurrenceremarks:
-    weight: 68
+    weight: 28
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
   field_dwc_othercatalognumbers:
-    weight: 63
+    weight: 4
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
   field_dwc_record_number:
-    weight: 58
+    weight: 1
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
   field_dwc_reproductivecondition:
-    weight: 69
+    weight: 5
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
   field_dwc_stateprovince:
-    weight: 28
+    weight: 25
     settings:
       size: 60
       placeholder: ''
@@ -371,21 +363,14 @@ content:
     third_party_settings: {  }
     type: string_textfield
   field_dwc_verbatimlocality:
-    weight: 70
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-  field_geoheritage:
     weight: 24
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-  field_gmap:
-    weight: 53
+  field_geoheritage:
+    weight: 35
     settings:
       size: 60
       placeholder: ''
@@ -393,46 +378,46 @@ content:
     type: string_textfield
   field_large_sample_surrogate:
     type: image_image
-    weight: 10
+    weight: 7
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
   field_large_sample_surrogate_msk:
     type: image_image
-    weight: 11
+    weight: 8
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
   field_previous_identifications:
-    weight: 71
+    weight: 27
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: text_textfield
+    type: string_textfield
   field_taxonomy_tid:
     type: options_select
-    weight: 49
+    weight: 27
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 12
+    weight: 9
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 15
+    weight: 12
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 16
+    weight: 13
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -443,10 +428,12 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 13
+    weight: 10
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_dwc_georeferencedby: true
+  field_gmap: true
