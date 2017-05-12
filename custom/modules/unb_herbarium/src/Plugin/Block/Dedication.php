@@ -18,14 +18,14 @@ class Dedication extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    return array(
+    $array = [
       '#markup' => $this->t('
         <div class="dedication">
             <p>This website is dedicated to the memory of Harold R. Hinds (1937 - 2001) for his vision and dedication to botany in N.B.</p>
-            <a href="http://corporate-agency.techsaran.com">http://corporate-agency.techsaran.com</a>
         </div>
       '),
-    );
+    ];
+    return $array;
   }
 
 }
