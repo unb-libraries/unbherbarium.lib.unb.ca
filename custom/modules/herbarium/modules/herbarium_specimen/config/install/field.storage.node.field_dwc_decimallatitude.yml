@@ -8,7 +8,7 @@ field_name: field_dwc_decimallatitude
 entity_type: node
 type: decimal
 settings:
-  precision: 11
+  precision: 10
   scale: 6
 module: core
 locked: false
