@@ -8,6 +8,7 @@
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 define('HERBARIUM_CORE_SPECIMEN_VOCABULARY_AUTH_FIELD', 'field_dwc_scientificnameauthor');
 define('HERBARIUM_CORE_SPECIMEN_VOCABULARY_FULL_NAME_FIELD', 'field_cmh_full_specimen_name');
@@ -95,6 +96,44 @@ function herbarium_core_taxonomy_term_presave(TermInterface $term) {
 
       batch_set($batch);
     }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function herbarium_core_form_node_herbarium_specimen_edit_form_alter(&$form, FormStateInterface $form_state) {
+  foreach (array_keys($form['actions']) as $action) {
+    if ($action != 'preview' &&
+      isset($form['actions'][$action]['#type']) &&
+      $form['actions'][$action]['#type'] === 'submit'
+    ) {
+      // Alter form values in custom submit handler BEFORE the save action.
+      array_unshift($form['actions'][$action]['#submit'], '_herbarium_core_specimen_form_submit');
+    }
+  }
+}
+
+/**
+ * Custom herbarium specimen node submit handler.
+ *
+ * @param object $form
+ *   The object containing the form elements.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The object containing the submitted form field values.
+ */
+function _herbarium_core_specimen_form_submit($form, FormStateInterface $form_state) {
+  // Auto-populate gmap field with lat/long field values for Google Map.
+  $latitude = $form_state->getValue('field_dwc_decimallatitude')[0]['value'];
+  $longitude = $form_state->getValue('field_dwc_decimallongitude')[0]['value'];
+
+  // Lat+Long values validation handled by content type field config.
+  if ($latitude && $longitude) {
+    $form_state->setValue(['field_gmap', 0, 'value'], "$latitude,$longitude");
+  }
+  else {
+    // Set gmap field array to empty if lat and/or long field empty.
+    $form_state->setValue('field_gmap', []);
   }
 }
 
