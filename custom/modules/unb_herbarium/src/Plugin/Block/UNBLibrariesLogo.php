@@ -18,13 +18,14 @@ class UNBLibrariesLogo extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    return array(
+    $array = [
       '#markup' => $this->t('
         <div>
             <a href="//lib.unb.ca"><img alt="UNB Libraries" class="unb-lib-logo" src="/modules/custom/unb_herbarium/images/UNB-Libraries-Red-Black.png" /></a>
         </div>
       '),
-    );
+    ];
+    return $array;
   }
 
 }
