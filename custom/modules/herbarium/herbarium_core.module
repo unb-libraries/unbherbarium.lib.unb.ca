@@ -128,7 +128,7 @@ function _herbarium_core_specimen_form_submit($form, FormStateInterface $form_st
   $longitude = $form_state->getValue('field_dwc_decimallongitude')[0]['value'];
 
   // Lat+Long values validation handled by content type field config.
-  if ($latitude && $longitude) {
+  if ($latitude != '' && $longitude != '') {
     $form_state->setValue(['field_gmap', 0, 'value'], "$latitude,$longitude");
   }
   else {
