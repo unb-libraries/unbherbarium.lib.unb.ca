@@ -6,6 +6,8 @@ label: 'CMH Database Administrator'
 weight: 5
 is_admin: null
 permissions:
+  - 'create herbarium_specimen content'
+  - 'edit any herbarium_specimen content'
   - 'delete any herbarium_specimen content'
   - 'administer users'
   - 'access user profiles'
