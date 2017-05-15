@@ -266,6 +266,14 @@ footer .unb-lib-logo {
   padding: 6px;
 }
 
+// Edit form.
+.field-group-fieldset {
+  margin: 1em auto;
+}
+.field-group-recorded-by select {
+  height: 15em;
+}
+
 // Responsive overrides.
 @media (max-width: 1199px) {
   #edit-submit-unb-search {
