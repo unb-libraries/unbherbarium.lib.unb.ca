@@ -77,7 +77,7 @@ third_party_settings:
         - field_dwc_eventremarks
         - field_dwc_occurrenceremarks
       parent_name: group_initially_hidden_details
-      weight: 63
+      weight: 60
       label: 'Specimen Habitat'
       format_type: accordion_item
       format_settings:
@@ -105,7 +105,7 @@ third_party_settings:
       children:
         - field_previous_identifications
       parent_name: group_initially_hidden_details
-      weight: 60
+      weight: 62
       label: 'Previous Identifications'
       format_type: accordion_item
       format_settings:
@@ -131,7 +131,7 @@ third_party_settings:
         - field_dc_language
         - field_geoheritage
       parent_name: group_initially_hidden_details
-      weight: 62
+      weight: 63
       label: 'Details / License'
       format_type: accordion_item
       format_settings:
@@ -157,10 +157,10 @@ third_party_settings:
       children:
         - group_collectors
         - group_taxonomy
-        - group_previous_identifications
-        - group_date
-        - group_details_license
         - group_habitat_location
+        - group_date
+        - group_previous_identifications
+        - group_details_license
       parent_name: ''
       weight: 10
       format_type: accordion
@@ -175,12 +175,13 @@ third_party_settings:
         - field_large_sample_surrogate_msk
       parent_name: ''
       weight: 20
-      format_type: fieldset
+      format_type: details
       format_settings:
-        description: ''
-        classes: ''
-        id: ''
+        label: Images
+        open: true
         required_fields: true
+        id: ''
+        classes: field-group-fieldset
       label: Images
 id: node.herbarium_specimen.default
 targetEntityType: node
