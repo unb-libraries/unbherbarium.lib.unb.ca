@@ -18,12 +18,12 @@ dependencies:
   - rest
   - search_api
   - search_api_solr
+  - simplify
   - system
   - taxonomy
   - taxonomy_manager
   - text
   - twig_field_value
-  - unb_herbarium
   - user
   - views
   - views_slideshow
