@@ -280,6 +280,11 @@ footer .unb-lib-logo {
 }
 
 // Responsive overrides.
+@media (max-width: 375px) {
+  .navbar-brand{
+    font-size: large;
+  }
+}
 @media (max-width: 1199px) {
   #edit-submit-unb-search {
     width: 100%;
