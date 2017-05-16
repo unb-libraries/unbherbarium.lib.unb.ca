@@ -9,7 +9,7 @@ field_name: field_previous_identifications
 entity_type: node
 bundle: herbarium_specimen
 label: 'Previous Identifications'
-description: 'DwC:previousIdentifications - A list (concatenated and separated) of previous assignments of names for this specimen.'
+description: 'DwC:previousIdentifications - Previous assignments of names for this specimen.'
 required: false
 translatable: false
 default_value: {  }
