@@ -11,24 +11,24 @@
  */=
 #}
 {% if q is not empty %}
-  {#
-    This ensures that, if clean URLs are off, the 'q' is added first,
-    as a hidden form element, so that it shows up first in the POST URL.
-  #}
-  {{ q }}
+    {#
+      This ensures that, if clean URLs are off, the 'q' is added first,
+      as a hidden form element, so that it shows up first in the POST URL.
+    #}
+    {{ q }}
 {% endif %}
 
 {% set filter_state = 'hide' %}
 
 <fieldset class="fieldset-toggle form--inline clearfix">
-  <legend>
-    <input id="show-filters" class="toggle-filters-display" type="checkbox" checked />
-    <label for="show-filters">{% trans %}Show filters{% endtrans %}</label>
-  </legend>
-  <div{{ attributes.addClass(filter_state) }}>
-    <p class="description">
-      {% trans %}Narrow your result list by applying one of more of the filters below.{% endtrans %}
-    </p>
-    {{ form }}
-  </div>
+    <legend>
+        <input id="show-filters" class="toggle-filters-display" type="checkbox" checked />
+        <label for="show-filters">{% trans %}Show filters{% endtrans %}</label>
+    </legend>
+    <div{{ attributes.addClass(filter_state) }}>
+        <p class="description">
+            {% trans %}Narrow your result list by applying one of more of the filters below.{% endtrans %}
+        </p>
+        {{ form }}
+    </div>
 </fieldset>
