@@ -10,7 +10,7 @@ third_party_settings:
     parent: 'main:'
 name: 'Herbarium Specimen'
 type: herbarium_specimen
-description: 'Record representing a herbarium specimen held by CMH'
+description: 'Record representing a herbarium specimen.'
 help: ''
 new_revision: false
 preview_mode: 1
