@@ -1,15 +1,30 @@
+uuid: 81395168-00f9-423f-94fa-4b5e6fb5ca6b
 langcode: en
 status: true
 dependencies: {  }
 id: cmh_database_administrator
 label: 'CMH Database Administrator'
-weight: 5
+weight: 8
 is_admin: null
 permissions:
+  - 'access files overview'
+  - 'use text format full_html'
+  - 'view private files'
+  - 'access content'
+  - 'create page content'
+  - 'delete any page content'
+  - 'edit any page content'
   - 'create herbarium_specimen content'
-  - 'edit any herbarium_specimen content'
   - 'delete any herbarium_specimen content'
-  - 'administer users'
-  - 'access user profiles'
+  - 'edit any herbarium_specimen content'
+  - 'administer menu'
+  - 'delete terms in herbarium_specimen_collector'
+  - 'edit terms in herbarium_specimen_collector'
+  - 'delete terms in herbarium_specimen_taxonomy'
+  - 'edit terms in herbarium_specimen_taxonomy'
+  - 'add terms in herbarium_specimen_collector'
+  - 'reorder terms in herbarium_specimen_collector'
   - 'add terms in herbarium_specimen_taxonomy'
   - 'reorder terms in herbarium_specimen_taxonomy'
+  - 'administer users'
+  - 'access user profiles'
