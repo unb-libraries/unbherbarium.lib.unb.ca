@@ -15,9 +15,14 @@ $color-header-bg: #f5f5f5;
 $color-header-bg-darker: #eee;
 $color-header-accent: #ddd;
 $color-table-even: #f9f9f9;
-$color-desc: #808080;
 $color-link: #337ab7;
 $color-hover: #23527c;
+
+// Bolded colorbox captions (specimen image title).
+#cboxTitle {
+  background: rgba(266, 255, 255, 0.9);
+  font-weight: bold;
+}
 
 // Animated checkbox toggle button.
 .toggle-switch,

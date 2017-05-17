@@ -319,7 +319,7 @@ content:
       colorbox_image_style: unmasked_specimen
       colorbox_gallery: post
       colorbox_gallery_custom: ''
-      colorbox_caption: none
+      colorbox_caption: entity_title
       colorbox_caption_custom: ''
     third_party_settings: {  }
   field_large_sample_surrogate_msk:
@@ -332,7 +332,7 @@ content:
       colorbox_image_style: ''
       colorbox_gallery: post
       colorbox_gallery_custom: ''
-      colorbox_caption: none
+      colorbox_caption: entity_title
       colorbox_caption_custom: ''
     third_party_settings: {  }
   field_previous_identifications:

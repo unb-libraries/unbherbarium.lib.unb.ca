@@ -1633,7 +1633,7 @@ display:
             colorbox_image_style: ''
             colorbox_gallery: post
             colorbox_gallery_custom: ''
-            colorbox_caption: none
+            colorbox_caption: entity_title
             colorbox_caption_custom: ''
           group_column: ''
           group_columns: {  }
@@ -1702,7 +1702,7 @@ display:
             colorbox_image_style: unmasked_specimen
             colorbox_gallery: post
             colorbox_gallery_custom: ''
-            colorbox_caption: none
+            colorbox_caption: entity_title
             colorbox_caption_custom: ''
           group_column: ''
           group_columns: {  }
