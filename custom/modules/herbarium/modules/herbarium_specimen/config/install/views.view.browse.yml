@@ -1194,7 +1194,7 @@ display:
         context: '0'
         menu_name: tools
       css_class: 'browse use-chosen'
-      use_ajax: true
+      use_ajax: false
       fields:
         title:
           id: title
