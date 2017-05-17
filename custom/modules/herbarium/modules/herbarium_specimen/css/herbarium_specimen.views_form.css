@@ -6,18 +6,21 @@
 }
 
 /* Respect image style in Views search results */
-.view td img {
-  border: 1px solid #ccc;
+td.specimen-image img {
   max-width: inherit;
 }
 
 .view td a {
   border: 0;
 }
+.view td.specimen-image a {
+  display: inline;
+}
 
-.view td a:focus img,
-.view td a:hover img {
-  border-color: #999;
-  transform: scale(1.05, 1.05);
-  transition: transform 0.1s ease;
+.view td.specimen-image a img {
+  box-shadow: 1px 1px 5px #cdc5b4;
+}
+.view td.specimen-image a:focus img,
+.view td.specimen-image a:hover img {
+  box-shadow: 1px 1px 5px #797979;
 }
