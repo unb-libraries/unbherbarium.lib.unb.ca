@@ -8,6 +8,8 @@
 @import 'overrides';
 
 $color-main: #337ab7;
+$color-understate: #888888;
+$color-desc: #808080;
 $color-accent: #2e6da4;
 $color-text: #333;
 $color-heading: #333;
@@ -283,7 +285,21 @@ footer .unb-lib-logo {
   padding: 6px;
 }
 
-// Edit form.
+// Search API Excerpt.
+.excerpt {
+  color: $color-understate;
+  font-size: small;
+  line-height: 1.2em;
+  margin: .5em 0;
+}
+.excerpt strong {
+  color: $color-desc;
+}
+.region-content form {
+  margin-bottom: 1em;
+}
+
+// Specimen edit form.
 .field-group-details {
   margin: 1em auto;
 }

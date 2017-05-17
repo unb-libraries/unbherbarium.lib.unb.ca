@@ -19,23 +19,22 @@ a.colorbox {
   overflow: hidden;
 }
 .specimen-details a:not(.colorbox) {
-	border-bottom: 1px dotted #96281B;
-	color: #96281B;
-	display: inline;
-	text-decoration: none;
+  border-bottom: 1px dotted #96281b;
+  color: #96281b;
+  display: inline;
+  text-decoration: none;
 }
 .specimen-details a:not(.colorbox):focus,
 .specimen-details a:not(.colorbox):hover {
-	border-bottom-style: solid;
-	color: #96281B;
+  border-bottom-style: solid;
+  color: #96281b;
 }
-.specimen-details figure a,
 .gmap iframe {
   border: 1px solid #ececec!important;
 }
 
 .toggle-default-off {
-   display: none;
+  display: none;
 }
 .toggle-default-on {
   display: block;
@@ -64,7 +63,7 @@ a.colorbox {
 .toggle-switch *::selection,
 .toggle-switch *:after::selection,
 .toggle-switch *:before::selection,
-.toggle-switch + .toggle-switch__label::selection{
+.toggle-switch + .toggle-switch__label::selection {
   background: none;
 }
 .toggle-switch + .toggle-switch__label {
@@ -95,7 +94,7 @@ a.colorbox {
   box-shadow: 0 5px 5px -2px rgb(77, 144, 254);3
 }
 .toggle-switch:checked + .toggle-switch__label:after {
-  right: 50%%
+  right: 50%;
 }
 .toggle-switch + .toggle-switch__label {
   overflow: hidden;
@@ -131,7 +130,7 @@ a.colorbox {
   right: -5%;
 }
 .toggle-switch:checked + .toggle-switch__label {
-  background: #96281B;
+  background: #96281b;
 }
 .toggle-switch:checked + .toggle-switch__label:before {
   right: -100%;
@@ -145,17 +144,18 @@ a.colorbox {
 
 /* dl default display */
 header dl {
-	display: none;
-	font-family: sans-serif;
-	font-size: 120%;
-	padding: .25em 0;
+  display: none;
+  font-family: sans-serif;
+  font-size: 120%;
+  padding: .25em 0;
 }
 section h3,
 dt {
-	color: #66573f;
+  color: #66573f;
   font-weight: bold;
   margin: 0;
   min-width: 205px;
+  padding: 0 .25em;
 }
 h3:after {
   content: ':';
@@ -164,7 +164,7 @@ section dl {
   margin: 0;
 }
 section h3 {
-	display: none;
+  display: none;
 }
 dd {
   margin-left: 0;
@@ -181,24 +181,27 @@ dd li {
 .specimen-details aside figure,
 .specimen-details aside > .map,
 .specimen-details aside iframe {
-	display: inline-block;
+  display: inline-block;
   max-width: 100%;
 }
 .specimen-details aside figure {
   margin: 0 1em 1em 0;
 }
+.specimen-details figure a {
+  border: 1px solid #ddd;
+}
 .specimen-details figure img {
   display: block;
-  -webkit-transition: all .3s ease;
-  -moz-transition: all .3s ease;
-  -o-transition: all .3s ease;
-  -ms-transition: all .3s ease;
-  transition: all .3s ease;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -ms-transition: all .4s ease;
+  transition: all .4s ease;
 }
 .specimen-details .field--type-image img {
   margin-bottom: 0;
 }
-.specimen-details figure img:hover {
+.specimen-details figure a:hover img {
   transform: scale(1.1,1.1);
 }
 .specimen-details figcaption {
@@ -244,7 +247,7 @@ dd li {
     background: #ececec;
     display: block;
     font-size: 115%;
-    padding: .25em 0;
+    padding: .25em;
   }
   .specimen-details dt {
     clear: left;
