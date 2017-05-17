@@ -181,7 +181,7 @@ third_party_settings:
         open: true
         required_fields: true
         id: ''
-        classes: field-group-fieldset
+        classes: ui-state-default
       label: Images
 id: node.herbarium_specimen.default
 targetEntityType: node
