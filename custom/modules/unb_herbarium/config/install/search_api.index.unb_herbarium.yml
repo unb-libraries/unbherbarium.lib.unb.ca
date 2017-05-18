@@ -202,7 +202,8 @@ processor_settings:
     highlight_partial: true
     excerpt: true
     excerpt_length: 256
-    exclude_fields: {  }
+    exclude_fields:
+      - field_dwc_verbatimeventdate
     prefix: '<strong>'
     suffix: '</strong>'
     weights:
