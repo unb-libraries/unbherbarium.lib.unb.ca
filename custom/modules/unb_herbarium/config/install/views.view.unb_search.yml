@@ -511,8 +511,8 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<div style=\"clear:both\">\n<h2>Sorry, your search returned no results</h2>\n<ul style=\"margin-left: 2em\">\n  <li>Check if your spelling is correct.</li>\n  <li>Try loosening your query by using partial matches:\n    <b><code>canad</code></b> will match <b><code>canadense</code></b> <i>and</i> <b><code>canadensis</code></b>.</li>\n</ul>\n</div>"
-            format: basic_html
+            value: "<div role=\"contentinfo\" aria-label=\"no results\" class=\"alert alert-warning\">\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\n  Your search did not match any records.\n</div>\n\n<p><b><span class=\"glyphicon glyphicon-info-sign\"></span> Suggestions:</b></p>\n<ul>\n  <li>Make sure that all words are spelled correctly.</li>\n  <li>Try different search terms.</li>\n  <li>Try using a partial word search: <kbd>card</kbd> will match <kbd>cardamine</kbd>.\n</ul>\n<p>You may also <span class=\"glyphicon glyphicon-remove-circle\"></span>\n  <a href=\"/search-samples\">remove all search filters</a>\n  to start over.\n</p>"
+            format: full_html
           plugin_id: text
       relationships:
         field_taxonomy_tid:
