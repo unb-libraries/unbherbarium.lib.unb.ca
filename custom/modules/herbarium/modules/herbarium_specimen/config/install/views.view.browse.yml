@@ -2,9 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.field_dwc_country
     - field.storage.node.field_dwc_county
     - field.storage.node.field_dwc_eventdate
+    - field.storage.node.field_dwc_habitat
     - field.storage.node.field_dwc_record_number
+    - field.storage.node.field_dwc_stateprovince
+    - field.storage.node.field_dwc_verbatimlocality
     - field.storage.node.field_large_sample_surrogate
     - field.storage.node.field_large_sample_surrogate_msk
     - field.storage.taxonomy_term.field_cmh_full_specimen_name
@@ -732,18 +736,13 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-              herbarium_specimen_add_edit_only: '0'
-              herbarium_specimen_add_edit_all: '0'
-              herbarium_specimen_administrator: '0'
-              cmh_database_administrator: '0'
               student: '0'
               researcher: '0'
-              public_user: '0'
-              herbarium_admin: '0'
+              cmh_database_administrator: '0'
             autocomplete_filter: 1
-            autocomplete_min_chars: '0'
+            autocomplete_min_chars: '2'
             autocomplete_items: '10'
-            autocomplete_field: ''
+            autocomplete_field: field_dwc_country
             autocomplete_raw_suggestion: 1
             autocomplete_raw_dropdown: 1
             autocomplete_dependent: 0
@@ -785,18 +784,13 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-              herbarium_specimen_add_edit_only: '0'
-              herbarium_specimen_add_edit_all: '0'
-              herbarium_specimen_administrator: '0'
-              cmh_database_administrator: '0'
               student: '0'
               researcher: '0'
-              public_user: '0'
-              herbarium_admin: '0'
-            autocomplete_filter: 0
+              cmh_database_administrator: '0'
+            autocomplete_filter: 1
             autocomplete_min_chars: '2'
             autocomplete_items: '10'
-            autocomplete_field: ''
+            autocomplete_field: field_dwc_stateprovince
             autocomplete_raw_suggestion: 1
             autocomplete_raw_dropdown: 1
             autocomplete_dependent: 0
@@ -838,16 +832,11 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-              herbarium_specimen_add_edit_only: '0'
-              herbarium_specimen_add_edit_all: '0'
-              herbarium_specimen_administrator: '0'
-              cmh_database_administrator: '0'
               student: '0'
               researcher: '0'
-              public_user: '0'
-              herbarium_admin: '0'
-            autocomplete_filter: 0
-            autocomplete_min_chars: '0'
+              cmh_database_administrator: '0'
+            autocomplete_filter: 1
+            autocomplete_min_chars: '3'
             autocomplete_items: '10'
             autocomplete_field: field_dwc_county
             autocomplete_raw_suggestion: 1
@@ -891,18 +880,13 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-              herbarium_specimen_add_edit_only: '0'
-              herbarium_specimen_add_edit_all: '0'
-              herbarium_specimen_administrator: '0'
-              cmh_database_administrator: '0'
               student: '0'
               researcher: '0'
-              public_user: '0'
-              herbarium_admin: '0'
-            autocomplete_filter: 0
-            autocomplete_min_chars: '0'
+              cmh_database_administrator: '0'
+            autocomplete_filter: 1
+            autocomplete_min_chars: '3'
             autocomplete_items: '10'
-            autocomplete_field: ''
+            autocomplete_field: field_dwc_habitat
             autocomplete_raw_suggestion: 1
             autocomplete_raw_dropdown: 1
             autocomplete_dependent: 0
@@ -944,18 +928,13 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-              herbarium_specimen_add_edit_only: '0'
-              herbarium_specimen_add_edit_all: '0'
-              herbarium_specimen_administrator: '0'
-              cmh_database_administrator: '0'
               student: '0'
               researcher: '0'
-              public_user: '0'
-              herbarium_admin: '0'
+              cmh_database_administrator: '0'
             autocomplete_filter: 1
-            autocomplete_min_chars: '0'
+            autocomplete_min_chars: '3'
             autocomplete_items: '10'
-            autocomplete_field: ''
+            autocomplete_field: field_dwc_verbatimlocality
             autocomplete_raw_suggestion: 1
             autocomplete_raw_dropdown: 1
             autocomplete_dependent: 0
@@ -1715,6 +1694,257 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+        field_dwc_habitat:
+          id: field_dwc_habitat
+          table: node__field_dwc_habitat
+          field: field_dwc_habitat
+          relationship: none
+          group_type: group
+          admin_label: 'For autocomplete'
+          label: Habitat
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: basic_string
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_dwc_stateprovince:
+          id: field_dwc_stateprovince
+          table: node__field_dwc_stateprovince
+          field: field_dwc_stateprovince
+          relationship: none
+          group_type: group
+          admin_label: 'For autocomplete'
+          label: State/Province/Territory
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_dwc_verbatimlocality:
+          id: field_dwc_verbatimlocality
+          table: node__field_dwc_verbatimlocality
+          field: field_dwc_verbatimlocality
+          relationship: none
+          group_type: group
+          admin_label: 'For autocomplete'
+          label: 'Verbatim Locality'
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_dwc_country:
+          id: field_dwc_country
+          table: node__field_dwc_country
+          field: field_dwc_country
+          relationship: none
+          group_type: group
+          admin_label: 'For autocomplete'
+          label: Country
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
       relationships:
         field_taxonomy_tid:
           id: field_taxonomy_tid
@@ -1750,9 +1980,13 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.node.field_dwc_country'
         - 'config:field.storage.node.field_dwc_county'
         - 'config:field.storage.node.field_dwc_eventdate'
+        - 'config:field.storage.node.field_dwc_habitat'
         - 'config:field.storage.node.field_dwc_record_number'
+        - 'config:field.storage.node.field_dwc_stateprovince'
+        - 'config:field.storage.node.field_dwc_verbatimlocality'
         - 'config:field.storage.node.field_large_sample_surrogate'
         - 'config:field.storage.node.field_large_sample_surrogate_msk'
         - 'config:field.storage.taxonomy_term.field_cmh_full_specimen_name'
