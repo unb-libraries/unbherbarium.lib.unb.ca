@@ -7,6 +7,7 @@
 
 /* Respect image style in Views search results */
 td.specimen-image img {
+  display: inline;
   max-width: inherit;
 }
 

@@ -212,9 +212,6 @@ a:visited{
   color: $color-link;
   text-decoration: none;
 }
-.view .table a {
-  display: block;
-}
 a:focus,
 a:hover,
 th a:focus,
@@ -234,7 +231,7 @@ progress {
 }
 
 .view .table th a,
-.view .table td a {
+.view .table td:not(.specimen-image) a {
   display: block;
 }
 
