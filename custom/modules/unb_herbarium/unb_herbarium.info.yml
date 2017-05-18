@@ -17,7 +17,6 @@ dependencies:
   - path
   - rest
   - search_api
-  - search_api_autocomplete
   - search_api_solr
   - simplify
   - system
