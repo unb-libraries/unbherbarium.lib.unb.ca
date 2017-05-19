@@ -1,0 +1,23 @@
+uuid: e1bd82cf-5b8c-4581-8ef9-f8242d56545b
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: taxonlist
+label: Taxonlist
+type: 'canonical_entities:taxonomy_term'
+pattern: 'taxonlist/[term:name]'
+selection_criteria:
+  b9dec920-ecae-4baf-9d27-e0ededa479be:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      herbarium_specimen_taxonomy: herbarium_specimen_taxonomy
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: b9dec920-ecae-4baf-9d27-e0ededa479be
+selection_logic: and
+weight: -5
+relationships: {  }
