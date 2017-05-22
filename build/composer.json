@@ -84,6 +84,10 @@
                     "composer/installers": "^1.2.0"
                 }
             }
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/unb-libraries/drupal-dev-libs.git"
         }
     ],
     "require": {
