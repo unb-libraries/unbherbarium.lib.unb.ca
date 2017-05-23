@@ -205,7 +205,7 @@ function unb_herbarium_views_pre_render(ViewExecutable $view) {
       $thumbnail = $value
         ->_entity
         ->get('field_large_sample_surrogate');
-      dump($thumbnail);
+
       if (!$thumbnail->isEmpty() &&
            _unb_herbarium_endangered_species($tid) &&
            !_unb_herbarium_permit_private()
