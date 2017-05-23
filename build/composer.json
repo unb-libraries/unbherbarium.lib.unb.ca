@@ -123,6 +123,7 @@
         "drupal/taxonomy_access_fix": "2.1",
         "drupal/taxonomy_manager": "1.x-dev",
         "drupal/token": "1.0",
+        "drupal/tvi": "1.0-beta1",
         "drupal/twig_field_value": "1.1",
         "drupal/views_autocomplete_filters": "1.1",
         "drupal/views_slideshow": "4.4",
