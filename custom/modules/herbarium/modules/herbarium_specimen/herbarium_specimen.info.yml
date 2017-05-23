@@ -20,6 +20,7 @@ dependencies:
   - taxonomy
   - taxonomy_access_fix
   - text
+  - tvi
   - user
   - views
   - views_autocomplete_filters
