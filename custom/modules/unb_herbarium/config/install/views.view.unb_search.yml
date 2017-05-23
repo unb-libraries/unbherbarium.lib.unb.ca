@@ -50,7 +50,7 @@ display:
           bypass_access: false
           skip_access: false
       exposed_form:
-        type: basic
+        type: input_required
         options:
           submit_button: Search
           reset_button: true
