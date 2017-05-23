@@ -3,3 +3,8 @@ views-form:
   css:
     theme:
       css/herbarium_specimen.views_form.css: {}
+
+  js:
+    js/herbarium_specimen.views_form.js: {}
+  dependencies:
+     - core/jquery
