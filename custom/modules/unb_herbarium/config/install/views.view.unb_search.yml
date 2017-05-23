@@ -1,3 +1,4 @@
+uuid: 426faee5-8741-47c8-82ae-ec929899e9ae
 langcode: en
 status: true
 dependencies:
@@ -19,6 +20,8 @@ dependencies:
     - taxonomy
     - text
     - user
+_core:
+  default_config_hash: 5nnQ6SJQ4pWaeTPEZvcGCro1op9jEYq004u0F-wF4Lg
 id: unb_search
 label: 'UNB Search'
 module: views
@@ -50,12 +53,14 @@ display:
         type: basic
         options:
           submit_button: Search
-          reset_button: false
-          reset_button_label: Reset
+          reset_button: true
+          reset_button_label: Clear
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
+          text_input_required: "<div class=\"no-result\">\n<p>Submit a search query to find matching samples in the collection.</p>\n\n<p><b><span class=\"glyphicon glyphicon-info-sign\"></span></b>\nConsider using the <i>filter options</i> on the <a href=\"/browse-samples\"><span class=\"glyphicon glyphicon-eye-open\"></span>Browse page</a> for more targeted searching.</p>\n</div>"
+          text_input_required_format: full_html
       pager:
         type: full
         options:
