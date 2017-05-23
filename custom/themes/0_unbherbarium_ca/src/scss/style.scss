@@ -287,6 +287,10 @@ footer .unb-lib-logo {
   color: #777;
   opacity: 0.5;
 }
+// Linked glyphicons non-underlined whitespace.
+a .glyphicon {
+  margin-right: .25em;
+}
 
 // Search API Excerpt.
 .excerpt {
