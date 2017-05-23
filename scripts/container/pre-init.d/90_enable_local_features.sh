@@ -23,6 +23,6 @@ if [ "$DEPLOY_ENV" = "local" ]; then
   $DRUSH_COMMAND config-set system.theme default unbherbarium_ca
 
   echo 'Enabling UNB herbarium module'
-  $DRUSH_COMMAND en --yes unb_herbarium
+  $DRUSH_COMMAND en --yes --skip unb_herbarium
   $DRUSH_COMMAND cache-rebuild
 fi

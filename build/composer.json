@@ -68,6 +68,21 @@
             "type": "package"
         },
         {
+            "package": {
+                "dist": {
+                    "type": "file",
+                    "url": "https://malsup.github.io/jquery.cycle.all.js"
+                },
+                "name": "malsup/jquery.cycle",
+                "require": {
+                    "composer/installers": "^1.0.20"
+                },
+                "type": "drupal-library",
+                "version": "master"
+            },
+            "type": "package"
+        },
+        {
             "type": "package",
             "package": {
                 "name": "harvesthq/chosen",
@@ -115,7 +130,6 @@
         "webflo/drupal-finder": "^0.3.0",
         "webmozart/path-util": "^2.3",
         "harvesthq/chosen": "1.6.*",
-        "heykarthikwithu/cycle": "1.1",
         "jackmoore/colorbox": "master",
         "solarium/solarium": "~3.8"
     },
