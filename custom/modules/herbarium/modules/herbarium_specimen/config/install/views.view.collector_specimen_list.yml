@@ -141,10 +141,11 @@ display:
             type: 'entity:taxonomy_term'
             fail: 'not found'
           validate_options:
+            bundles:
+              herbarium_specimen_collector: herbarium_specimen_collector
             access: true
             operation: view
             multiple: 0
-            bundles: {  }
           break_phrase: false
           add_table: false
           require_value: false
@@ -227,49 +228,6 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: boolean
-        field_collector_tid_target_id:
-          id: field_collector_tid_target_id
-          table: node__field_collector_tid
-          field: field_collector_tid_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: 'not empty'
-          value: {  }
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: textfield
-          limit: true
-          vid: herbarium_specimen_collector
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
       style:
         type: table
         options:
@@ -336,19 +294,6 @@ display:
         options:
           view_mode: teaser
       header:
-        entity_taxonomy_term:
-          id: entity_taxonomy_term
-          table: views
-          field: entity_taxonomy_term
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: true
-          target: '{{ raw_arguments.tid }}'
-          view_mode: full
-          bypass_access: false
-          plugin_id: entity
         result:
           id: result
           table: views
@@ -360,7 +305,20 @@ display:
           content: 'Displaying @start - @end of @total'
           plugin_id: result
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: "<div role=\"contentinfo\" aria-label=\"no results\" class=\"alert alert-warning\">\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\n  Oops! Did not match any records.\n</div>"
+            format: full_html
+          plugin_id: text
       relationships:
         field_taxonomy_tid:
           id: field_taxonomy_tid
@@ -672,7 +630,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: ''
+          empty: '<span class="no-result">Unknown</span>'
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -839,7 +797,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
         - user.permissions
       max-age: 0
@@ -866,7 +823,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
         - user.permissions
       max-age: 0
