@@ -1,4 +1,3 @@
-uuid: 426faee5-8741-47c8-82ae-ec929899e9ae
 langcode: en
 status: true
 dependencies:
@@ -20,8 +19,6 @@ dependencies:
     - taxonomy
     - text
     - user
-_core:
-  default_config_hash: 5nnQ6SJQ4pWaeTPEZvcGCro1op9jEYq004u0F-wF4Lg
 id: unb_search
 label: 'UNB Search'
 module: views

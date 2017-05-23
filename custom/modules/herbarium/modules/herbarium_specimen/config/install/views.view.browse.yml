@@ -1,4 +1,3 @@
-uuid: 6ee20fd3-36d8-441d-ae55-067813526126
 langcode: en
 status: true
 dependencies:
@@ -26,8 +25,6 @@ dependencies:
     - text
     - user
     - views_autocomplete_filters
-_core:
-  default_config_hash: 8uDvGUVebHm2Z7SyQBcYgS08tle8vfwsT323NukI6Fs
 id: browse
 label: Browse
 module: views
