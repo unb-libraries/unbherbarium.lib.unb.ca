@@ -1,12 +1,9 @@
-uuid: e1bd82cf-5b8c-4581-8ef9-f8242d56545b
 langcode: en
 status: true
 dependencies:
   module:
     - ctools
     - taxonomy
-_core:
-  default_config_hash: T3v0dE-ZfQCJX5mIbf9lmTLmYz5KchrUD05kNkZFcqs
 id: taxonlist
 label: Taxonlist
 type: 'canonical_entities:taxonomy_term'
