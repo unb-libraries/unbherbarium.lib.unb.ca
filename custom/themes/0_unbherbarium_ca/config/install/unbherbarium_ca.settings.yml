@@ -18,6 +18,16 @@ logo:
   url: ''
   use_default: 0
 navbar_position: fixed-top
+region_wells:
+  navigation: ''
+  navigation_collapsible: ''
+  header: ''
+  highlighted: ''
+  help: ''
+  content: ''
+  sidebar_first: ''
+  sidebar_second: ''
+  footer: ''
 table_responsive: '-1'
 table: ''
 navbar_inverse: 1
