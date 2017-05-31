@@ -19,6 +19,7 @@ $color-header-accent: #ddd;
 $color-table-even: #f9f9f9;
 $color-link: #337ab7;
 $color-hover: #23527c;
+$color-container: #f7f7f7;
 
 // Bolded colorbox captions (specimen image title).
 #cboxTitle {
@@ -243,13 +244,22 @@ progress {
   opacity: .94;
 }
 
+.footer-wrapper {
+  background: $color-container;
+  border-top: 1px solid #e5e5e5;
+  margin-top: 1em;
+}
 .footer {
+  border: none;
   margin-top: 1em;
   padding-top: 2em;
   padding-bottom: 1em;
 }
 footer section {
   text-align: center;
+}
+footer .unb-lib-logo {
+  max-width: 350px;
 }
 .dedication {
   color: $color-desc;
@@ -258,13 +268,10 @@ footer section {
 .dedication a {
   color: $color-desc;
 }
-footer .unb-lib-logo {
-  max-width: 350px;
-}
 
 .block .form-actions {
   margin: 0;
-  width: 40%;
+  width: auto;
 }
 
 .hidden,
@@ -275,7 +282,7 @@ footer .unb-lib-logo {
   height: 1px;
 }
 #views-exposed-form-unb-search-page .form-item-query {
-  width: 100%;
+  width: 70%;
 }
 
 .form-control {
@@ -302,6 +309,9 @@ a .glyphicon {
 .excerpt strong {
   color: $color-desc;
 }
+.main-container {
+  min-height: 420px;
+}
 .region-content form {
   margin-bottom: 1em;
 }
@@ -314,15 +324,50 @@ a .glyphicon {
   height: 15em;
 }
 
+.inline-filter .form-inline .form-control,
+.inline-filter .form-inline .form-actions {
+  width: auto;
+}
+
+// No Reset button in sidebar search.
+.region-sidebar-second #edit-reset {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse {
+    padding-top: .5em;
+    padding-bottom: .5em;
+  }
+}
+
+.path-search-samples .region-sidebar-second .block-views-exposed-filter-blockunb-search-page {
+  display: none;
+}
+
+// Centered search icon.
+#edit-submit-unb-search .glyphicon-search {
+  margin: 0;
+}
 // Responsive overrides.
-@media (max-width: 375px) {
-  .navbar-brand{
+@media (max-width: 390px) {
+  .navbar-brand {
     font-size: large;
   }
 }
-@media (max-width: 1199px) {
-  #edit-submit-unb-search {
+@media (max-width: 990px) {
+  .region-sidebar-second #views-exposed-form-unb-search-page .form-item-query,
+  .region-sidebar-second #edit-actions {
     width: 100%;
+  }
+  .region-sidebar-second .form-actions .btn, .form-actions .btn-group {
+    margin-right: 0;
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  body.navbar-is-fixed-top {
+    padding-top: 1.5em;
   }
 }
 @media (min-width: 1200px) {
@@ -332,6 +377,6 @@ a .glyphicon {
     width: 32.25%;
   }
   #views-exposed-form-unb-search-page .form-item-query {
-    width: 58%;
+    width: 75%;
   }
 }
