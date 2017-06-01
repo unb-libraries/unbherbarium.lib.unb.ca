@@ -32,12 +32,12 @@ third_party_settings:
       weight: 6
       format_type: details
       format_settings:
-        label: Miscellaneous
+        label: 'Legacy Fields'
         required_fields: true
         id: ''
         classes: ''
         open: false
-      label: Miscellaneous
+      label: 'Legacy Fields'
     group_measurement_of_fact:
       children:
         - field_dwc_measurementtype
