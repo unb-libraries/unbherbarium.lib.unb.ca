@@ -114,12 +114,13 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $variables['specimen_measurement_value'] = $specific_epithet
     ->get('field_dwc_measurementvalue')
     ->view();
-
   $specimen_measurement_id = $specific_epithet
     ->get('field_dwc_measurementid')
     ->view();
   $variables['specimen_measurement_id'] = $specimen_measurement_id;
-  $measurement_id_text_value = $specimen_measurement_id['0']['#text'];
+  $measurement_id_text_value = $specific_epithet
+    ->get('field_dwc_measurementid')
+    ->getString();
   if (filter_var($measurement_id_text_value, FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED)) {
     $variables['specimen_measurement_id_url'] = '<a href="' . $measurement_id_text_value . '">' . $measurement_id_text_value . '</a>';
   }
