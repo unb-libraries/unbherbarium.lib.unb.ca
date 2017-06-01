@@ -1,4 +1,4 @@
-simplify_admin: false
+simplify_admin: true
 simplify_nodes_global:
   author: author
   format: format
