@@ -10,7 +10,7 @@ field_name: field_collector_tid
 entity_type: node
 bundle: herbarium_specimen
 label: Collector(s)
-description: 'Collectors - Person(s) that collected the specimen'
+description: "Collectors - Person(s) that collected the specimen.<br>\r\n<b>Note:</b> Please do not add a name more than once / specimen."
 required: false
 translatable: true
 default_value: {  }
@@ -22,6 +22,6 @@ settings:
       herbarium_specimen_collector: herbarium_specimen_collector
     sort:
       field: _none
-    auto_create: false
+    auto_create: true
     auto_create_bundle: ''
 field_type: entity_reference
