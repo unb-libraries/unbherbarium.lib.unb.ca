@@ -151,7 +151,7 @@ third_party_settings:
         formatter: closed
         required_fields: true
         id: ''
-        classes: field-group-recorded-by
+        classes: ''
       label: 'Recorded By'
     group_initially_hidden_details:
       children:
