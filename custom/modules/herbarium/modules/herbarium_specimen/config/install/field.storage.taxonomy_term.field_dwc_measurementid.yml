@@ -1,19 +1,20 @@
-langcode: und
+langcode: en
 status: true
 dependencies:
   module:
     - taxonomy
-    - text
 id: taxonomy_term.field_dwc_measurementid
 field_name: field_dwc_measurementid
 entity_type: taxonomy_term
-type: text
+type: string
 settings:
   max_length: 255
-module: text
+  is_ascii: false
+  case_sensitive: false
+module: core
 locked: false
 cardinality: 1
-translatable: false
+translatable: true
 indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

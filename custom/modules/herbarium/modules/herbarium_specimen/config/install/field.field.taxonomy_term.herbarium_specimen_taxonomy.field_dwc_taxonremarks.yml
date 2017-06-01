@@ -4,8 +4,6 @@ dependencies:
   config:
     - field.storage.taxonomy_term.field_dwc_taxonremarks
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
-  module:
-    - text
 id: taxonomy_term.herbarium_specimen_taxonomy.field_dwc_taxonremarks
 field_name: field_dwc_taxonremarks
 entity_type: taxonomy_term
@@ -13,11 +11,10 @@ bundle: herbarium_specimen_taxonomy
 label: 'Taxon Remarks'
 description: 'DwC:taxonRemarks - Comments or notes about the taxon or name. Typically ''Native'' for the CMH samples.'
 required: false
-translatable: true
+translatable: false
 default_value:
   -
     value: Native
-    format: basic_html
 default_value_callback: ''
 settings: {  }
-field_type: text
+field_type: string

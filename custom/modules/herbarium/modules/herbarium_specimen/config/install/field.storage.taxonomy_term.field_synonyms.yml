@@ -3,14 +3,15 @@ status: true
 dependencies:
   module:
     - taxonomy
-    - text
 id: taxonomy_term.field_synonyms
 field_name: field_synonyms
 entity_type: taxonomy_term
-type: text
+type: string
 settings:
-  max_length: 512
-module: text
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
 locked: false
 cardinality: -1
 translatable: true

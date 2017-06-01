@@ -31,88 +31,113 @@ content:
     weight: 1
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_cmh_english_common_names:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_cmh_french_common_names:
     weight: 3
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-  field_cmh_french_common_names:
-    weight: 4
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
+    region: content
   field_cmh_full_specimen_name:
-    weight: 9
+    weight: 8
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_cmh_infraspecific_specimen:
-    weight: 5
+    weight: 4
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_dc_replaces:
+    weight: 15
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_dwc_class:
     type: text_default
-    weight: 0
+    weight: 13
+    region: content
     label: above
     settings: {  }
     third_party_settings: {  }
   field_dwc_measurementid:
-    type: text_default
+    weight: 16
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_dwc_measurementtype:
+    type: list_default
     weight: 6
     label: above
     settings: {  }
     third_party_settings: {  }
-  field_dwc_measurementtype:
-    type: list_default
+    region: content
+  field_dwc_measurementvalue:
     weight: 7
     label: above
-    settings: {  }
-    third_party_settings: {  }
-  field_dwc_measurementvalue:
-    weight: 8
-    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_dwc_scientificnameauthor:
-    weight: 10
+    weight: 9
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_dwc_taxonid:
-    type: text_default
-    weight: 2
+    type: string
+    weight: 14
+    region: content
     label: above
-    settings: {  }
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
   field_dwc_taxonrank:
-    weight: 12
+    weight: 10
     label: above
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
   field_dwc_taxonremarks:
-    type: text_default
-    weight: 13
+    weight: 17
     label: above
-    settings: {  }
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
+    type: string
+    region: content
   field_synonyms:
-    weight: 11
+    weight: 12
     label: above
-    settings: {  }
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
-    type: text_default
-hidden:
-  field_dwc_class: true
+    type: string
+    region: content
+hidden: {  }

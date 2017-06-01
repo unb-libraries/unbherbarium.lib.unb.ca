@@ -18,8 +18,54 @@ dependencies:
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_synonyms
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
   module:
+    - field_group
     - path
     - text
+third_party_settings:
+  field_group:
+    group_misc:
+      children:
+        - field_dwc_taxonid
+        - field_dc_replaces
+        - description
+      parent_name: ''
+      weight: 6
+      format_type: details
+      format_settings:
+        label: Miscellaneous
+        required_fields: true
+        id: ''
+        classes: ''
+        open: false
+      label: Miscellaneous
+    group_measurement_of_fact:
+      children:
+        - field_dwc_measurementtype
+        - field_dwc_measurementid
+        - field_dwc_measurementvalue
+      parent_name: ''
+      weight: 5
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: 'Measurement or Fact'
+    group_alternate_names:
+      children:
+        - field_cmh_english_common_names
+        - field_cmh_french_common_names
+        - field_synonyms
+      parent_name: ''
+      weight: 3
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: 'Alternate Names'
 id: taxonomy_term.herbarium_specimen_taxonomy.default
 targetEntityType: taxonomy_term
 bundle: herbarium_specimen_taxonomy
@@ -27,87 +73,99 @@ mode: default
 content:
   description:
     type: text_textarea
-    weight: 1
+    weight: 15
     settings:
       placeholder: ''
       rows: 5
     third_party_settings: {  }
+    region: content
   field_cmh_english_common_names:
-    weight: 9
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-  field_cmh_french_common_names:
-    weight: 10
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-  field_dc_replaces:
-    type: text_textfield
-    weight: 2
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_dwc_measurementid:
-    type: text_textfield
-    weight: 5
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_dwc_measurementtype:
-    type: options_select
-    weight: 3
-    settings: {  }
-    third_party_settings: {  }
-  field_dwc_measurementvalue:
     weight: 4
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-  field_dwc_scientificnameauthor:
-    weight: 13
+    region: content
+  field_cmh_french_common_names:
+    weight: 5
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_dc_replaces:
+    weight: 14
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_dwc_measurementid:
+    weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_dwc_measurementtype:
+    type: options_select
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_dwc_measurementvalue:
+    weight: 9
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_dwc_scientificnameauthor:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_dwc_taxonid:
-    type: text_textfield
-    weight: 6
+    type: string_textfield
+    weight: 13
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
   field_dwc_taxonrank:
-    weight: 12
+    weight: 2
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
   field_dwc_taxonremarks:
-    type: text_textfield
-    weight: 7
+    weight: 4
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_synonyms:
-    weight: 11
+    weight: 6
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: text_textfield
+    type: string_textfield
+    region: content
   name:
     type: string_textfield
     weight: 0
@@ -115,9 +173,11 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
   path:
     type: path
-    weight: 8
+    weight: 7
+    region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
