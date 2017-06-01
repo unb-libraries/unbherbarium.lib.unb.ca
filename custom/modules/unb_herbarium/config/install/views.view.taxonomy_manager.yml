@@ -211,7 +211,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: '<b><span class="glyphicon glyphicon-hand-right"></span> {{ name_1 }}</b> <small>({{ field_dwc_taxonrank_1 }})</small>'
+            text: '<big><b><span class="glyphicon glyphicon-hand-right"></span> {{ name_1 }}</b></big> <small class="dedication">({{ field_dwc_taxonrank_1 }})</small>'
             make_link: false
             path: ''
             absolute: false
