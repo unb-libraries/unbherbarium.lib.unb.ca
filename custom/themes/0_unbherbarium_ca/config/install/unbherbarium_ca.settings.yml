@@ -31,3 +31,9 @@ region_wells:
 table_responsive: '-1'
 table: ''
 navbar_inverse: 1
+breadcrumb: '0'
+favicon:
+  mimetype: image/png
+  path: ../modules/custom/unb_herbarium/images/favicon.png
+  url: /app/html/modules/custom/unb_herbarium/images/favicon.png
+  use_default: 0
