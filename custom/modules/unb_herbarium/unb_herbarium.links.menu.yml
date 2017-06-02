@@ -5,3 +5,10 @@ unb_herbarium.database:
   menu_name: main
   route_name: database.content
   expanded: TRUE
+unb_herbarium.taxmanage:
+  title: Manage Taxonomy Terms
+  description: Manage Taxonomy Terms parent item in Tools menu
+  parent: tools
+  menu_name: tools
+  route_name: taxonomy.manage
+  expanded: TRUE
