@@ -9,7 +9,7 @@ dependencies:
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
     - taxonomy.vocabulary.taxon_rank
   content:
-    - 'taxonomy_term:taxon_rank:02582ce1-9285-4a7a-a29c-29c3d8f3a407'
+    - 'taxonomy_term:taxon_rank:0caf00ac-d887-4b8b-b20f-7e9230a7d351'
   module:
     - taxonomy
     - text
@@ -18,7 +18,7 @@ dependencies:
 id: taxonomy_manager
 label: 'Manage Taxonomy Terms'
 module: views
-description: ''
+description: 'A View to quickly add/edit/delete Collector and Specimen taxonomy terms.'
 tag: ''
 base_table: taxonomy_term_field_data
 base_field: tid
@@ -1216,9 +1216,9 @@ display:
           empty_zero: false
           hide_alter_empty: false
           plugin_id: custom
-      path: manage-taxonomy/collectors
+      path: manage-taxonomy/collector
       display_description: ''
-      title: Collector
+      title: 'Manage Collector taxonomy terms'
       sorts:
         name_1:
           id: name_1
@@ -1256,7 +1256,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<div class=\"clearfix pull-right\">\n<a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_collector/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add a new term</a>\n</div>"
+            value: "<div class=\"clearfix pull-right\">\n<a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_collector/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add new collector term</a>\n</div>"
             format: full_html
           plugin_id: text
       menu:
@@ -1284,7 +1284,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: manage-taxonomy/species
+      path: manage-taxonomy/specimen
       menu:
         type: normal
         title: Specimen
@@ -1316,11 +1316,13 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<div class=\"clearfix pull-right\">\n<a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_taxonomy/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add a new term</a>\n</div>"
+            value: "<div class=\"clearfix pull-right\">\n<a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_taxonomy/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add new specimen term</a>\n</div>"
             format: full_html
           plugin_id: text
       defaults:
         header: false
+        title: false
+      title: 'Manage Specimen taxonomy terms'
     cache_metadata:
       max-age: 0
       contexts:
