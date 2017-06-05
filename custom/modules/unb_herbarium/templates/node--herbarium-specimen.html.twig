@@ -49,8 +49,10 @@
                         <dd>{{ content.field_dwc_record_number|field_value }}</dd>
                     </div>
                     {% if content.field_collector_tid|field_label %}
-                        <div>{# Collector(s) #}
-                            <dt>{{ content.field_collector_tid|field_label }}</dt>
+                        <div>{# Collector #}
+                            <dt>
+                                {{ content.field_collector_tid|field_label }}{% if content.field_collector_tid|field_value|length > 1 %}s{% endif %}
+                            </dt>
                             <dd>{{ content.field_collector_tid|field_value }}</dd>
                         </div>
                     {% endif %}
