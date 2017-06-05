@@ -155,7 +155,7 @@ dt {
   font-weight: bold;
   margin: 0;
   min-width: 205px;
-  padding: 0 .25em;
+  padding: 0;
 }
 h3:after {
   content: ':';
@@ -233,6 +233,8 @@ dd li {
     border: 1px solid #e9e9e9;
     margin-top: 0;
   }
+  header > dl,
+  section h3,
   dl > div {
     border-bottom: 1px solid #ddd;
   }
@@ -243,11 +245,17 @@ dd li {
   header dd {
     font-weight: bold;
   }
+  section h3,
+  dt {
+    padding-left: .25em;
+    padding-right: .25em;
+  }
   section h3 {
     background: #ececec;
     display: block;
     font-size: 115%;
-    padding: .25em;
+    padding-bottom: .25em;
+    padding-top: .25em;
   }
   .specimen-details dt {
     clear: left;
