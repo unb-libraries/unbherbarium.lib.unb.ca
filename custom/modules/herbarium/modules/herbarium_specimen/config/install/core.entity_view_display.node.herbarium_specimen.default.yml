@@ -336,7 +336,7 @@ content:
       static_scale: 2
       include_link: true
       link_text: 'View larger map'
-      zoom_level: 7
+      zoom_level: 9
       map_type: k
       langcode: page
       include_static_map: false
