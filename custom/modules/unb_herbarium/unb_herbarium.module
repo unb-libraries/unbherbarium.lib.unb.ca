@@ -63,32 +63,31 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $assigned_tax_term_list = $node->get('field_taxonomy_tid');
   $variables['specimen_assigned_taxon'] = $assigned_tax_term_list->view();
 
-  $specific_epithet = $assigned_tax_term_list
+  $assigned_taxon = $assigned_tax_term_list
     ->get(0)
     ->entity;
 
-  $tid = $specific_epithet->id();
-  $genus_term = _herbarium_core_term_get_ancestor_rank(Term::load($tid), 'Genus');
+  $tid = $assigned_taxon->id();
   $family_term = _herbarium_core_term_get_ancestor_rank(Term::load($tid), 'Family');
-  $specific_epithet_term = _herbarium_core_term_get_ancestor_rank(Term::load($tid), 'Species');
+  $genus_term = _herbarium_core_term_get_ancestor_rank(Term::load($tid), 'Genus');
+  $specific_epithet = _herbarium_core_term_get_ancestor_rank(Term::load($tid), 'Species');
 
-  $variables['specimen_full_name'] = $specific_epithet
+  $variables['specimen_full_name'] = $assigned_taxon
     ->get('field_cmh_full_specimen_name')
     ->view();
 
   $variables['specimen_family'] = _unb_herbarium_get_tax_term_link($family_term);
   $variables['specimen_genus'] = _unb_herbarium_get_tax_term_link($genus_term);
-  $variables['specimen_specific_epithet'] = _unb_herbarium_get_tax_term_link($specific_epithet_term);
 
   $variables['specimen_authority'] = $specific_epithet
     ->get('field_dwc_scientificnameauthor')
     ->view();
 
-  $variables['specimen_taxon_rank'] = $specific_epithet
+  $variables['specimen_taxon_rank'] = $assigned_taxon
     ->get('field_dwc_taxonrank')
     ->view();
 
-  $variables['specimen_measurement_type'] = $specific_epithet
+  $variables['specimen_measurement_type'] = $assigned_taxon
     ->get('field_dwc_measurementtype')
     ->view();
 
@@ -115,14 +114,14 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   else {
     $variables['view_endangered'] = TRUE;
   }
-  $variables['specimen_measurement_value'] = $specific_epithet
+  $variables['specimen_measurement_value'] = $assigned_taxon
     ->get('field_dwc_measurementvalue')
     ->view();
-  $specimen_measurement_id = $specific_epithet
+  $specimen_measurement_id = $assigned_taxon
     ->get('field_dwc_measurementid')
     ->view();
   $variables['specimen_measurement_id'] = $specimen_measurement_id;
-  $measurement_id_text_value = $specific_epithet
+  $measurement_id_text_value = $assigned_taxon
     ->get('field_dwc_measurementid')
     ->getString();
   if (filter_var($measurement_id_text_value, FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED)) {
@@ -132,23 +131,23 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
     $variables['specimen_measurement_id_url'] = NULL;
   }
 
-  $variables['specimen_en_common_names'] = $specific_epithet
+  $variables['specimen_en_common_names'] = $assigned_taxon
     ->get('field_cmh_english_common_names')
     ->view();
 
-  $variables['specimen_fr_common_names'] = $specific_epithet
+  $variables['specimen_fr_common_names'] = $assigned_taxon
     ->get('field_cmh_french_common_names')
     ->view();
 
-  $variables['specimen_synonyms'] = $specific_epithet
+  $variables['specimen_synonyms'] = $assigned_taxon
     ->get('field_synonyms')
     ->view();
 
-  $variables['specimen_taxon_remarks'] = $specific_epithet
+  $variables['specimen_taxon_remarks'] = $assigned_taxon
     ->get('field_dwc_taxonremarks')
     ->view();
 
-  $variables['specimen_infraspecific_epithet'] = $specific_epithet
+  $variables['specimen_infraspecific_epithet'] = $assigned_taxon
     ->get('field_cmh_infraspecific_specimen')
     ->view();
 
