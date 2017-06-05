@@ -220,9 +220,9 @@
                         <dt>{% trans %}Genus{% endtrans %}</dt>
                         <dd>{{ specimen_genus|raw }}</dd>
                     </div>
-                    <div>{# Provide default if empty example #}
-                        <dt>{{ specimen_assigned_taxon|field_label }}</dt>
-                        <dd>{{ specimen_assigned_taxon|field_value }}</dd>
+                    <div>
+                        <dt>{% trans %}Specific Epithet{% endtrans %}</dt>
+                        <dd>{{ specimen_specific_epithet|raw }}</dd>
                     </div>
                     {% if specimen_authority|field_label %}
                         <div>{# Authority #}
@@ -236,7 +236,7 @@
                         <dd>{{ specimen_taxon_rank|field_value|render|striptags }}</dd>
                     </div>
                     {% if specimen_infraspecific_epithet|field_label %}
-                        <div>{# Authority #}
+                        <div>
                             <dt>{{ specimen_infraspecific_epithet|field_label }}</dt>
                             <dd>{{ specimen_infraspecific_epithet|field_value }}</dd>
                         </div>

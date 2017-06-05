@@ -70,15 +70,7 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $tid = $specific_epithet->id();
   $genus_term = _herbarium_core_term_get_ancestor_rank(Term::load($tid), 'Genus');
   $family_term = _herbarium_core_term_get_ancestor_rank(Term::load($tid), 'Family');
-
-  // Split date into separate year/month/day fields for full details mode.
-  $collection_date = $node->get('field_dwc_eventdate')->getString();
-  if ($collection_date) {
-    $date = new DateTime($collection_date);
-    $variables['collection_date_year'] = $date->format('Y');
-    $variables['collection_date_month'] = $date->format('m');
-    $variables['collection_date_day'] = $date->format('d');
-  }
+  $specific_epithet_term = _herbarium_core_term_get_ancestor_rank(Term::load($tid), 'Species');
 
   $variables['specimen_full_name'] = $specific_epithet
     ->get('field_cmh_full_specimen_name')
@@ -86,6 +78,7 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
 
   $variables['specimen_family'] = _unb_herbarium_get_tax_term_link($family_term);
   $variables['specimen_genus'] = _unb_herbarium_get_tax_term_link($genus_term);
+  $variables['specimen_specific_epithet'] = _unb_herbarium_get_tax_term_link($specific_epithet_term);
 
   $variables['specimen_authority'] = $specific_epithet
     ->get('field_dwc_scientificnameauthor')
@@ -98,6 +91,17 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $variables['specimen_measurement_type'] = $specific_epithet
     ->get('field_dwc_measurementtype')
     ->view();
+
+  // Split date into separate year/month/day fields for full details mode.
+  $collection_date = $node
+    ->get('field_dwc_eventdate')
+    ->getString();
+  if ($collection_date) {
+    $date = new DateTime($collection_date);
+    $variables['collection_date_year'] = $date->format('Y');
+    $variables['collection_date_month'] = $date->format('m');
+    $variables['collection_date_day'] = $date->format('d');
+  }
 
   if (_unb_herbarium_endangered_species($tid)) {
     if (_unb_herbarium_permit_private()) {
