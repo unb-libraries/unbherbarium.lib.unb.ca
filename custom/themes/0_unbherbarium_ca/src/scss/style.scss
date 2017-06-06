@@ -293,8 +293,9 @@ footer .unb-lib-logo {
   color: #777;
   opacity: 0.5;
 }
-// Linked glyphicons non-underlined whitespace.
-a .glyphicon {
+// Linked glyphicons non-underlined whitespace.\
+a .glyphicon,
+.nowrap .glyphicon {
   margin-right: .25em;
 }
 
@@ -356,6 +357,11 @@ a .glyphicon {
 #edit-submit-unb-search .glyphicon-search {
   margin: 0;
 }
+
+.nowrap {
+  white-space: nowrap;
+}
+
 // Responsive overrides.
 @media (max-width: 390px) {
   .navbar-brand {
