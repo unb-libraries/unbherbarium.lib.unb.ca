@@ -11,7 +11,7 @@ field_name: field_image
 entity_type: node
 bundle: banner_image
 label: Image
-description: '<b>Note</b>: <i>Administrative title</i> is text used for backend content management while <i>alternative text</i> is used for frontend image accessibility.'
+description: '<b>Note</b>: Minimum width = 848px'
 required: false
 translatable: true
 default_value: {  }
@@ -21,9 +21,9 @@ settings:
   file_extensions: 'png gif jpg jpeg'
   max_filesize: ''
   max_resolution: ''
-  min_resolution: ''
-  alt_field: true
-  alt_field_required: true
+  min_resolution: 848x200
+  alt_field: false
+  alt_field_required: false
   title_field: false
   title_field_required: false
   default_image:
