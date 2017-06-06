@@ -7,7 +7,7 @@ id: node.banner_image.title
 field_name: title
 entity_type: node
 bundle: banner_image
-label: 'Administrative title'
+label: Caption
 description: ''
 required: true
 translatable: true
