@@ -330,6 +330,17 @@ a .glyphicon {
   display: none;
 }
 
+// Banner image.
+.banner {
+  margin-bottom: .75em;
+}
+.banner figcaption {
+  color: $color-desc;
+  font-size: small;
+  font-style: italic;
+  margin-top: .2em;
+}
+
 @media (min-width: 768px) {
   .container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse {
     padding-top: .35em;
