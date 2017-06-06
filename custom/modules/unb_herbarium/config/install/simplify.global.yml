@@ -1,10 +1,10 @@
 simplify_admin: true
 simplify_nodes_global:
   author: author
-  format: format
   options: options
   revision_information: revision_information
   comment: comment
+  format: '0'
   menu: '0'
   path_settings: '0'
 simplify_users_global:
