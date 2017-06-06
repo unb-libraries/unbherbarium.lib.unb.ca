@@ -260,15 +260,15 @@ dd li {
   .specimen-details dt {
     clear: left;
     float: left;
-    width: 37%;
+    width: 39%;
   }
   h3:after {
     content: '';
   }
   .specimen-details dd {
-    margin: 0 0 0 37%;
+    margin: 0 0 0 40%;
     min-height: 1.5em;
-    width: 63%;
+    width: 60%;
   }
   .specimen-details dd > p:first-child,
   .specimen-details dd > p:last-child,
