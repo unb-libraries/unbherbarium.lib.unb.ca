@@ -18,3 +18,9 @@ unb_herbarium.content:
   route_name: system.admin_content
   parent: unb_herbarium.manage
   weight: -2
+unb_herbarium.people:
+  title: Users
+  description: Manage users custom menu item
+  route_name: entity.user.collection
+  parent: unb_herbarium.manage
+  weight: -1
