@@ -7,11 +7,11 @@ weight: 8
 is_admin: null
 permissions:
   - 'access content'
+  - 'access content overview'
   - 'access user profiles'
   - 'add terms in herbarium_specimen_collector'
   - 'add terms in herbarium_specimen_taxonomy'
   - 'administer menu'
-  - 'administer nodes'
   - 'administer taxonomy'
   - 'administer users'
   - 'create banner_image content'
