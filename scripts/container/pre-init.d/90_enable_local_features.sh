@@ -22,6 +22,8 @@ if [ "$DEPLOY_ENV" = "local" ]; then
   $DRUSH_COMMAND en unbherbarium_ca
   $DRUSH_COMMAND config-set system.theme default unbherbarium_ca
 
+  $DRUSH_COMMAND pmu migrate_plus unb_herbarium_migrate_csv migrate_source_csv migrate_tools migrate_upgrade
+
   echo 'Enabling UNB herbarium module'
   $DRUSH_COMMAND en --yes --skip unb_herbarium
   $DRUSH_COMMAND cache-rebuild
