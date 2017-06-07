@@ -29,7 +29,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'administer nodes'
+          perm: 'create banner_image content'
       cache:
         type: tag
         options: {  }
