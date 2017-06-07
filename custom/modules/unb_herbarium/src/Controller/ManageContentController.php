@@ -15,7 +15,7 @@ class ManageContentController extends ControllerBase {
   public function content() {
     return array(
       '#type' => 'markup',
-      '#markup' => t('Placeholder path for Tools > Manage menu item'),
+      '#markup' => t('Placeholder path for Tools|Manage menu item'),
     );
   }
 

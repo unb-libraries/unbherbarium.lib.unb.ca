@@ -11,4 +11,4 @@ manage.content:
     _controller: 'Drupal\unb_herbarium\Controller\ManageContentController::content'
     _title: 'Manage Content'
   requirements:
-    _permission: 'administer content'
+    _permission: 'access content overview'
