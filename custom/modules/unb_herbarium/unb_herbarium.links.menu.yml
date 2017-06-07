@@ -7,8 +7,14 @@ unb_herbarium.database:
   expanded: TRUE
 unb_herbarium.manage:
   title: Manage
-  description: Manage content parent item in Tools menu
+  description: Manage parent item in Tools menu
   parent: tools
   menu_name: tools
   route_name: manage.content
   expanded: TRUE
+unb_herbarium.content:
+  title: Content
+  description: Manage content custom menu item
+  route_name: system.admin_content
+  parent: unb_herbarium.manage
+  weight: -2
