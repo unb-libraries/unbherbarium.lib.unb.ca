@@ -1,9 +1,6 @@
-uuid: 7148fcfb-f710-4973-b196-b510626b3a2b
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: d2PjHsJX41QafBCToeGisviDa1AqJxTkLiQjZFQW37Y
 id: student
 label: Student
 weight: 6
@@ -12,8 +9,3 @@ permissions:
   - 'access site-wide contact form'
   - 'use text format full_html'
   - 'view private files'
-  - 'create herbarium_specimen content'
-  - 'delete own herbarium_specimen content'
-  - 'edit own herbarium_specimen content'
-  - 'edit terms in herbarium_specimen_collector'
-  - 'edit terms in herbarium_specimen_taxonomy'

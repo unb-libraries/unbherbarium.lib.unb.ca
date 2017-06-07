@@ -1,9 +1,6 @@
-uuid: 96656c19-3a6a-4e5e-bd91-6f6d5431b7cc
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: WFENuGB0jTWZF9rZu3plKKvWpWAGTOWGdzBCYXUjwvE
 id: researcher
 label: Researcher
 weight: 7
@@ -12,13 +9,3 @@ permissions:
   - 'access site-wide contact form'
   - 'use text format full_html'
   - 'view private files'
-  - 'create herbarium_specimen content'
-  - 'delete own herbarium_specimen content'
-  - 'edit own herbarium_specimen content'
-  - 'delete terms in herbarium_specimen_collector'
-  - 'edit terms in herbarium_specimen_collector'
-  - 'edit terms in herbarium_specimen_taxonomy'
-  - 'add terms in herbarium_specimen_collector'
-  - 'reorder terms in herbarium_specimen_collector'
-  - 'add terms in herbarium_specimen_taxonomy'
-  - 'reorder terms in herbarium_specimen_taxonomy'
