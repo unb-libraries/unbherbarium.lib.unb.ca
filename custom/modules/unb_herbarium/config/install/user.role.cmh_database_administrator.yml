@@ -12,6 +12,8 @@ permissions:
   - 'add terms in herbarium_specimen_collector'
   - 'add terms in herbarium_specimen_taxonomy'
   - 'administer menu'
+  - 'administer nodes'
+  - 'administer taxonomy'
   - 'administer users'
   - 'create banner_image content'
   - 'create herbarium_specimen content'
