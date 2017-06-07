@@ -1,4 +1,3 @@
-uuid: 5cc401e1-65b4-46f6-bbd2-58763adcec21
 langcode: en
 status: true
 dependencies:
@@ -9,15 +8,11 @@ dependencies:
     - taxonomy.vocabulary.herbarium_specimen_collector
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
     - taxonomy.vocabulary.taxon_rank
-  content:
-    - 'taxonomy_term:taxon_rank:b2fe92ee-0bfe-4ce8-8ae5-5279e9f9a082'
   module:
     - taxonomy
     - text
     - user
     - views_autocomplete_filters
-_core:
-  default_config_hash: q5HysMk6c0z3qiTeKUzxZcH_iipS6VIseTfAukaohCo
 id: manage_taxonomy_terms
 label: 'Manage taxonomy terms'
 module: views
@@ -1354,11 +1349,11 @@ display:
           field: area
           relationship: none
           group_type: group
-          admin_label: 'Add new collector'
+          admin_label: 'Add collector'
           empty: true
           tokenize: false
           content:
-            value: "<div class=\"clearfix pull-right\">\n<a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_collector/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add new collector term</a>\n</div>"
+            value: "<div class=\"clearfix pull-right\">\n<a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_collector/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add collector term</a>\n</div>"
             format: full_html
           plugin_id: text
       menu:
@@ -1408,17 +1403,30 @@ display:
           empty: false
           content: 'Displaying @start - @end of @total'
           plugin_id: result
+        area_1:
+          id: area_1
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: 'Taxonomy Manager'
+          empty: false
+          tokenize: false
+          content:
+            value: "<div class=\"clearfix pull-right\">\n  <a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy_manager/voc/herbarium_specimen_taxonomy\" role=\"button\"><span class=\"glyphicon glyphicon-th-list\"></span>Tree view</a>\n</div>\n"
+            format: full_html
+          plugin_id: text
         area:
           id: area
           table: views
           field: area
           relationship: none
           group_type: group
-          admin_label: 'Add new specimen'
+          admin_label: 'Add specimen'
           empty: true
           tokenize: false
           content:
-            value: "<div class=\"clearfix pull-right\">\n<a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_taxonomy/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add new specimen term</a>\n</div>"
+            value: "<div class=\"clearfix pull-right\">\n  <a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_taxonomy/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add specimen term</a>\n  &nbsp;\n</div>"
             format: full_html
           plugin_id: text
       defaults:
