@@ -5,10 +5,10 @@ database.content:
     _title: 'Database'
   requirements:
     _permission: 'access content'
-taxonomy.manage:
-  path: '/manage-taxonomy'
+manage.content:
+  path: '/manage/content'
   defaults:
-    _controller: 'Drupal\unb_herbarium\Controller\ManageTaxonomyController::content'
-    _title: 'Manage Taxonomy'
+    _controller: 'Drupal\unb_herbarium\Controller\ManageContentController::content'
+    _title: 'Manage Content'
   requirements:
-    _permission: 'administer taxonomy'
+    _permission: 'administer content'

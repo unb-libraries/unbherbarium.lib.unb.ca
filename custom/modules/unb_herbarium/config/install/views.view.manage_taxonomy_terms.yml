@@ -1,3 +1,4 @@
+uuid: 5cc401e1-65b4-46f6-bbd2-58763adcec21
 langcode: en
 status: true
 dependencies:
@@ -8,13 +9,17 @@ dependencies:
     - taxonomy.vocabulary.herbarium_specimen_collector
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
     - taxonomy.vocabulary.taxon_rank
+  content:
+    - 'taxonomy_term:taxon_rank:b2fe92ee-0bfe-4ce8-8ae5-5279e9f9a082'
   module:
     - taxonomy
     - text
     - user
     - views_autocomplete_filters
-id: taxonomy_manager
-label: 'Manage Taxonomy Terms'
+_core:
+  default_config_hash: q5HysMk6c0z3qiTeKUzxZcH_iipS6VIseTfAukaohCo
+id: manage_taxonomy_terms
+label: 'Manage taxonomy terms'
 module: views
 description: 'A View to quickly add/edit/delete Collector and Specimen taxonomy terms.'
 tag: ''
@@ -1313,7 +1318,7 @@ display:
           empty_zero: false
           hide_alter_empty: false
           plugin_id: custom
-      path: manage-taxonomy/collector
+      path: manage/taxonomy/collector
       display_description: ''
       title: 'Manage Collector taxonomy terms'
       sorts:
@@ -1358,10 +1363,10 @@ display:
           plugin_id: text
       menu:
         type: normal
-        title: Collector
+        title: 'Collector Taxonomy'
         description: ''
         expanded: false
-        parent: unb_herbarium.taxmanage
+        parent: unb_herbarium.manage
         weight: -50
         context: '0'
         menu_name: tools
@@ -1381,13 +1386,13 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: manage-taxonomy/specimen
+      path: manage/taxonomy/specimen
       menu:
         type: normal
-        title: Specimen
+        title: 'Specimen Taxonomy'
         description: ''
         expanded: false
-        parent: unb_herbarium.taxmanage
+        parent: unb_herbarium.manage
         weight: -49
         context: '0'
         menu_name: tools

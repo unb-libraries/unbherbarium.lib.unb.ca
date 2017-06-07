@@ -5,9 +5,9 @@ namespace Drupal\unb_herbarium\Controller;
 use Drupal\Core\Controller\ControllerBase;
 
 /**
- * Taxonomy Manager controller.
+ * Content/Taxonomy Manager controller.
  */
-class ManageTaxonomyController extends ControllerBase {
+class ManageContentController extends ControllerBase {
 
   /**
    * {@inheritdoc}
@@ -15,7 +15,7 @@ class ManageTaxonomyController extends ControllerBase {
   public function content() {
     return array(
       '#type' => 'markup',
-      '#markup' => t('Placeholder path for Manage Taxonomy Tools menu item'),
+      '#markup' => t('Placeholder path for Tools > Manage menu item'),
     );
   }
 
