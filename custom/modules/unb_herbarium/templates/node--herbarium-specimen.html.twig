@@ -45,8 +45,13 @@
                 <h3 class="toggle-default-off">{% trans %}Occurence{% endtrans %}</h3>
                 <dl>
                     <div>{# UNB Accession No.#}
-                        <dt>{{ content.field_dwc_record_number|field_label }}</dt>
-                        <dd>{{ content.field_dwc_record_number|field_value }}</dd>
+                        {% if content.field_dwc_record_number|field_label %}
+                            <dt>{{ content.field_dwc_record_number|field_label }}</dt>
+                            <dd>{{ content.field_dwc_record_number|field_value }}</dd>
+                        {% else %}
+                            <dt>{% trans %}UNB Accession No.{% endtrans %}</dt>
+                            <dd>NA</dd>
+                        {% endif %}
                     </div>
                     {% if content.field_collector_tid|field_label %}
                         <div>{# Collector #}
