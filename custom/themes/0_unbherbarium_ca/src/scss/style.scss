@@ -348,6 +348,23 @@ a .glyphicon,
   color: $color-desc;
 }
 
+// Admin form overrides.
+.panel-heading a.panel-title[aria-expanded="true"]::before  {
+  content:"\e252";
+  float: left;
+  font-family: 'Glyphicons Halflings';
+  margin-right: .5em;
+}
+.panel-heading a.panel-title[aria-expanded="false"]::before  {
+  content:"\e250";
+  float: left;
+  font-family: 'Glyphicons Halflings';
+  margin-right: .5em;
+}
+.field-group-details {
+  margin: 1em auto;
+}
+
 // Utility classes.
 .nowrap {
   white-space: nowrap;
