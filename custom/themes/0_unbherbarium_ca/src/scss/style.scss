@@ -281,7 +281,7 @@ footer .unb-lib-logo {
   height: 1px;
 }
 #views-exposed-form-unb-search-page .form-item-query {
-  width: 70%;
+  width: 80%;
 }
 
 .form-control {
@@ -299,19 +299,6 @@ a .glyphicon,
   margin-right: .25em;
 }
 
-// Search API Excerpt.
-.excerpt {
-  color: $color-understate;
-  font-size: small;
-  line-height: 1.2em;
-  margin: .5em 0;
-}
-.excerpt strong {
-  color: $color-desc;
-}
-.main-container {
-  min-height: 420px;
-}
 .region-content form {
   margin-bottom: 1em;
 }
@@ -326,11 +313,6 @@ a .glyphicon,
   width: auto;
 }
 
-// No Reset button in sidebar search.
-.region-sidebar-second #edit-reset {
-  display: none;
-}
-
 // Banner image.
 .banner {
   margin-bottom: .75em;
@@ -342,22 +324,31 @@ a .glyphicon,
   margin-top: .2em;
 }
 
-@media (min-width: 768px) {
-  .container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse {
-    padding-top: .35em;
-    padding-bottom: .35em;
-  }
-}
-
+// Search layout.
+// Hide sidebar search form on Search page.
 .path-search-samples .region-sidebar-second .block-views-exposed-filter-blockunb-search-page {
   display: none;
 }
-
 // Centered search icon.
 #edit-submit-unb-search .glyphicon-search {
   margin: 0;
 }
+// No Reset button in sidebar search.
+.region-sidebar-second #edit-reset {
+  display: none;
+}
+// Search API Excerpt.
+.excerpt {
+  color: $color-understate;
+  font-size: small;
+  line-height: 1.2em;
+  margin: .5em 0;
+}
+.excerpt strong {
+  color: $color-desc;
+}
 
+// Utility classes.
 .nowrap {
   white-space: nowrap;
 }
@@ -379,6 +370,14 @@ a .glyphicon,
   }
 }
 @media (min-width: 768px) {
+  .container > .navbar-header,
+  .container-fluid > .navbar-header,
+  .container > .navbar-collapse,
+  .container-fluid > .navbar-collapse {
+    padding-top: .35em;
+    padding-bottom: .35em;
+  }
+
   body.navbar-is-fixed-top {
     padding-top: 1.5em;
   }
