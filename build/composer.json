@@ -127,7 +127,7 @@
         "drupal/tvi": "1.0-beta1",
         "drupal/twig_field_value": "1.1",
         "drupal/views_autocomplete_filters": "1.1",
-        "drupal/views_slideshow": "4.4",
+        "drupal/views_slideshow": "4.5",
         "drush/drush": "~8.1",
         "harvesthq/chosen": "1.6.*",
         "jackmoore/colorbox": "master",
