@@ -150,10 +150,6 @@ input[type="checkbox"].toggle-switch {
 .form-control {
   padding: 6px;
 }
-.block .form-actions {
-  margin: 0;
-  width: auto;
-}
 label {
   display: block;
 }
@@ -348,6 +344,11 @@ dd li:last-child {
 }
 .field-group-details {
   margin: 1em auto;
+}
+
+.block .form-actions {
+  margin: 0;
+  width: auto;
 }
 
 // Utility classes.
