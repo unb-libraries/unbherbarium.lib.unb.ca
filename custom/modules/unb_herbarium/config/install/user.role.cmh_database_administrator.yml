@@ -12,6 +12,7 @@ permissions:
   - 'add terms in herbarium_specimen_collector'
   - 'add terms in herbarium_specimen_taxonomy'
   - 'administer menu'
+  - 'administer nodes'
   - 'administer taxonomy'
   - 'administer users'
   - 'create banner_image content'
@@ -30,4 +31,5 @@ permissions:
   - 'reorder terms in herbarium_specimen_collector'
   - 'reorder terms in herbarium_specimen_taxonomy'
   - 'use text format full_html'
+  - 'view own unpublished content'
   - 'view private files'
