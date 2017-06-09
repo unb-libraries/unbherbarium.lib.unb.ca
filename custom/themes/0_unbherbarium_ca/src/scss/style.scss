@@ -287,6 +287,17 @@ a .glyphicon,
   width: auto;
 }
 
+// Clear separation of multi-line multiple value list items.
+dd li {
+  line-height: 1.3em;
+}
+dd li:nth-child(even) {
+  margin: .3em auto;
+}
+dd li:last-child {
+  margin-bottom: 0;
+}
+
 // Banner image.
 .banner {
   margin-bottom: .75em;
