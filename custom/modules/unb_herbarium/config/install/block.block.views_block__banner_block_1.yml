@@ -10,8 +10,8 @@ dependencies:
     - unbherbarium_ca
 id: views_block__banner_block_1
 theme: unbherbarium_ca
-region: header
-weight: -9
+region: content
+weight: -5
 provider: null
 plugin: 'views_block:banner-block_1'
 settings:
