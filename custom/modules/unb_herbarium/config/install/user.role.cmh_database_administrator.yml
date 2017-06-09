@@ -13,6 +13,7 @@ permissions:
   - 'add terms in herbarium_specimen_taxonomy'
   - 'administer menu'
   - 'administer nodes'
+  - 'administer permissions'
   - 'administer taxonomy'
   - 'administer users'
   - 'create banner_image content'
