@@ -18,6 +18,7 @@ dependencies:
   - rest
   - search_api
   - search_api_solr
+  - serialization
   - simplify
   - system
   - taxonomy
@@ -26,5 +27,7 @@ dependencies:
   - twig_field_value
   - user
   - views
+  - views_autocomplete_filters
+  - views_rest_feed
   - views_slideshow
   - views_slideshow_cycle

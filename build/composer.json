@@ -133,7 +133,8 @@
         "jackmoore/colorbox": "master",
         "solarium/solarium": "~3.8",
         "webflo/drupal-finder": "^0.3.0",
-        "webmozart/path-util": "^2.3"
+        "webmozart/path-util": "^2.3",
+        "drupal/views_rest_feed": "1.0-alpha1"
     },
     "require-dev": {
         "unblibraries/drupal-dev-libs": "master"
