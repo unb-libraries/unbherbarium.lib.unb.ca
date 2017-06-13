@@ -711,13 +711,13 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          operator: contains
+          operator: starts
           value: ''
           group: 1
           exposed: true
           expose:
             operator_id: name_op
-            label: 'Specimen name'
+            label: Taxon
             description: 'Enter specimen name (partial match support)'
             use_operator: false
             operator: name_op
@@ -1426,7 +1426,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<div class=\"clearfix pull-right\">\n  <a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_taxonomy/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add specimen term</a>\n  &nbsp;\n</div>"
+            value: "<div class=\"clearfix pull-right\">\n  <a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_taxonomy/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add taxon</a>\n  &nbsp;\n</div>"
             format: full_html
           plugin_id: text
       defaults:
