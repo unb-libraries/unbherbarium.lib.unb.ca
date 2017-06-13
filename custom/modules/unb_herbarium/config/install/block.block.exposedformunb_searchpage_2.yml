@@ -11,7 +11,7 @@ dependencies:
 id: exposedformunb_searchpage_2
 theme: unbherbarium_ca
 region: content
-weight: 0
+weight: -1
 provider: null
 plugin: 'views_exposed_filter_block:unb_search-page'
 settings:
