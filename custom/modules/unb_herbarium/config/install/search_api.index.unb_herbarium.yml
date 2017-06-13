@@ -200,7 +200,7 @@ datasource_settings:
       default: true
       selected: {  }
 processor_settings:
-  aggregated_field: {  }
+  rendered_item: {  }
   add_url: {  }
   ignorecase:
     fields:
@@ -208,7 +208,6 @@ processor_settings:
     weights:
       preprocess_index: -10
       preprocess_query: -10
-  rendered_item: {  }
   highlight:
     highlight: always
     highlight_partial: true
@@ -220,6 +219,7 @@ processor_settings:
     suffix: '</strong>'
     weights:
       postprocess_query: 0
+  aggregated_field: {  }
 tracker_settings:
   default: {  }
 options:
