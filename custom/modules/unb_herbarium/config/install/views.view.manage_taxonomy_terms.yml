@@ -1571,7 +1571,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Name
+          label: Taxon
           exclude: false
           alter:
             alter_text: false
