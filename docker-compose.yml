@@ -10,13 +10,13 @@ services:
     expose:
      - "3306"
 
-  unbherbarium.ca:
+  unbherbarium.lib.unb.ca:
     build:
       context: .
       args:
         - COMPOSER_DEPLOY_DEV=dev
     restart: always
-    container_name: unbherbarium.ca
+    container_name: unbherbarium.lib.unb.ca
     expose:
       - "80"
     ports:
