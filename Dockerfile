@@ -20,12 +20,13 @@ ENV DRUPAL_PRIVATE_FILE_PATH /app/private_filesystem
 ENV NEWRELIC_PHP_VERSION 7.2.0.191
 ENV NEWRELIC_PHP_ARCH musl
 
-# Add Mail Sending and ImageMagick/MagickSlicer
-RUN apk --update add tiff-dev tiff postfix imagemagick bash && \
+# Add Mail Sending, Rsyslog and ImageMagick/MagickSlicer
+RUN apk --update add tiff-dev tiff postfix imagemagick bash rsyslog && \
   rm -f /var/cache/apk/* && \
   curl -O https://raw.githubusercontent.com/VoidVolker/MagickSlicer/master/magick-slicer.sh && \
   mv magick-slicer.sh /usr/local/bin/magick-slicer && \
-  chmod +x /usr/local/bin/magick-slicer
+  chmod +x /usr/local/bin/magick-slicer && \
+  touch /var/log/nginx/access.log && touch /var/log/nginx/error.log
 
 COPY package-conf/postfix/main.cf /etc/postfix/main.cf
 
@@ -33,6 +34,7 @@ COPY package-conf/postfix/main.cf /etc/postfix/main.cf
 COPY package-conf/nginx/app.conf /etc/nginx/conf.d/app.conf
 COPY package-conf/php/app-php.ini /etc/php7/conf.d/zz_app.ini
 COPY package-conf/php/app-php-fpm.conf /etc/php7/php-fpm.d/zz_app.conf
+COPY package-conf/rsyslog/21-logzio-nginx.conf /etc/rsyslog.d/21-logzio-nginx.conf
 
 # Scripts.
 COPY ./scripts/container /scripts
