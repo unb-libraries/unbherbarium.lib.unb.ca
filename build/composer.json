@@ -13,7 +13,7 @@
     "conflict": {
         "drupal/drupal": "*"
     },
-    "description": "Project definition for unbherbarium.ca",
+    "description": "Project definition for unbherbarium.lib.unb.ca",
     "extra": {
         "enable-patching": true,
         "installer-paths": {
@@ -45,7 +45,7 @@
     },
     "license": "MIT",
     "minimum-stability": "dev",
-    "name": "unblibraries/unbherbarium.ca",
+    "name": "unblibraries/unbherbarium.lib.unb.ca",
     "prefer-stable": true,
     "repositories": [
         {

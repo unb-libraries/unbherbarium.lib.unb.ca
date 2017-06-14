@@ -1,6 +1,6 @@
-name: unbherbarium.ca Profile
+name: unbherbarium.lib.unb.ca Profile
 type: profile
-description: 'Install unbherbarium.ca.'
+description: 'Install unbherbarium.lib.unb.ca.'
 version: 8.x-1.0
 core: 8.x
 

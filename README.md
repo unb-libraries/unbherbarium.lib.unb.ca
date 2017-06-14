@@ -1,7 +1,7 @@
-# unbherbarium.ca
+# unbherbarium.lib.unb.ca
 ## Site repository.
 
-unbherbarium.ca site build repository.
+unbherbarium.lib.unb.ca site build repository.
 
 ## Getting Started
 ### Requirements

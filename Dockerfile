@@ -1,9 +1,9 @@
 FROM unblibraries/drupal:alpine-nginx-php7-8.x-composer
 MAINTAINER UNB Libraries <libsupport@unb.ca>
 
-LABEL name="unbherbarium.ca"
+LABEL name="unbherbarium.lib.unb.ca"
 LABEL vcs-ref=""
-LABEL vcs-url="https://github.com/unb-libraries/unbherbarium.ca"
+LABEL vcs-url="https://github.com/unb-libraries/unbherbarium.lib.unb.ca"
 
 ARG COMPOSER_DEPLOY_DEV=no-dev
 
@@ -11,7 +11,7 @@ ARG COMPOSER_DEPLOY_DEV=no-dev
 ENV DEPLOY_ENV prod
 ENV DRUPAL_DEPLOY_CONFIGURATION TRUE
 ENV DRUPAL_SITE_ID unbherb
-ENV DRUPAL_SITE_URI unbherbarium.ca
+ENV DRUPAL_SITE_URI unbherbarium.lib.unb.ca
 ENV DRUPAL_SITE_UUID 85c96bf2-f1b6-4612-8305-d3d3769d5255
 ENV DRUPAL_CONFIGURATION_EXPORT_SKIP devel
 ENV DRUPAL_PRIVATE_FILE_PATH /app/private_filesystem
