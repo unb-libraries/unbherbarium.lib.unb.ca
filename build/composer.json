@@ -10,6 +10,9 @@
             "scripts/composer/ScriptHandler.php"
         ]
     },
+    "config": {
+        "preferred-install": "source"
+    },
     "conflict": {
         "drupal/drupal": "*"
     },
