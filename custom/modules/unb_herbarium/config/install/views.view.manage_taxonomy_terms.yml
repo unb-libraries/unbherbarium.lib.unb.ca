@@ -1433,7 +1433,7 @@ display:
         header: false
         title: false
         fields: false
-      title: 'Manage Specimen taxonomy terms'
+      title: 'Manage specimen taxonomy terms'
       fields:
         field_dwc_taxonrank_1:
           id: field_dwc_taxonrank_1

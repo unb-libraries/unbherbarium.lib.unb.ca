@@ -114,13 +114,13 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          default_action: ignore
+          default_action: 'not found'
           exception:
             value: all
             title_enable: false
             title: All
           title_enable: true
-          title: 'Specimen identified as {{ arguments.term_node_tid_depth }}'
+          title: 'Specimens identified as taxon {{ arguments.term_node_tid_depth }}:'
           default_argument_type: fixed
           default_argument_options:
             argument: ''
@@ -137,7 +137,7 @@ display:
           specify_validation: true
           validate:
             type: 'entity:taxonomy_term'
-            fail: 'not found'
+            fail: empty
           validate_options:
             bundles:
               herbarium_specimen_taxonomy: herbarium_specimen_taxonomy
@@ -362,9 +362,9 @@ display:
           group_type: group
           admin_label: ''
           empty: true
-          tokenize: false
+          tokenize: true
           content:
-            value: "<div role=\"contentinfo\" aria-label=\"no results\" class=\"alert alert-warning\">\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\n  Oops! Did not match any records.\n</div>"
+            value: "<div role=\"contentinfo\" aria-label=\"no results\" class=\"alert alert-warning\">\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\n  No specimen has yet been identified as taxon <b>{{ arguments.term_node_tid_depth }}</b>.\n</div>"
             format: full_html
           plugin_id: text
       relationships:
@@ -615,7 +615,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: ''
+          empty: '<span class="no-result">Unknown</span>'
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
