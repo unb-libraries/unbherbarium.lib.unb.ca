@@ -733,7 +733,7 @@ display:
               researcher: '0'
               cmh_database_administrator: '0'
             autocomplete_filter: 1
-            autocomplete_min_chars: '0'
+            autocomplete_min_chars: '2'
             autocomplete_items: '10'
             autocomplete_field: name
             autocomplete_raw_suggestion: 1
@@ -994,8 +994,8 @@ display:
               student: '0'
               researcher: '0'
               cmh_database_administrator: '0'
-            autocomplete_filter: 0
-            autocomplete_min_chars: '0'
+            autocomplete_filter: 1
+            autocomplete_min_chars: '2'
             autocomplete_items: '10'
             autocomplete_field: name
             autocomplete_raw_suggestion: 1
@@ -1433,6 +1433,8 @@ display:
         header: false
         title: false
         fields: false
+        filters: false
+        filter_groups: false
       title: 'Manage specimen taxonomy terms'
       fields:
         field_dwc_taxonrank_1:
@@ -1973,6 +1975,178 @@ display:
           empty_zero: false
           hide_alter_empty: false
           plugin_id: custom
+      filters:
+        vid:
+          id: vid
+          table: taxonomy_term_field_data
+          field: vid
+          value:
+            herbarium_specimen_taxonomy: herbarium_specimen_taxonomy
+          entity_type: taxonomy_term
+          entity_field: vid
+          plugin_id: bundle
+          group: 1
+        field_dwc_taxonrank_target_id_1:
+          id: field_dwc_taxonrank_target_id_1
+          table: taxonomy_term__field_dwc_taxonrank
+          field: field_dwc_taxonrank_target_id
+          relationship: parent
+          group_type: group
+          admin_label: ''
+          operator: or
+          value:
+            3: 3
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_taxonrank_target_id_1_op
+            label: 'Parent taxon rank'
+            description: ''
+            use_operator: false
+            operator: field_dwc_taxonrank_target_id_1_op
+            identifier: field_dwc_taxonrank_target_id_1
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              cmh_database_administrator: '0'
+              student: '0'
+              researcher: '0'
+              public_user: '0'
+              herbarium_admin: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: taxon_rank
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: starts
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: name_op
+            label: Taxon
+            description: 'Enter specimen name (''starts with'' autocomplete support)'
+            use_operator: false
+            operator: name_op
+            identifier: name
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              student: '0'
+              researcher: '0'
+              cmh_database_administrator: '0'
+            autocomplete_filter: 1
+            autocomplete_min_chars: '2'
+            autocomplete_items: '10'
+            autocomplete_field: name
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: views_autocomplete_filters_string
+        field_dwc_taxonid_value:
+          id: field_dwc_taxonid_value
+          table: taxonomy_term__field_dwc_taxonid
+          field: field_dwc_taxonid_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: word
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_taxonid_value_op
+            label: 'Specimen ID'
+            description: 'Enter one of more spec ids'
+            use_operator: false
+            operator: field_dwc_taxonid_value_op
+            identifier: field_dwc_taxonid_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              cmh_database_administrator: '0'
+              student: '0'
+              researcher: '0'
+              public_user: '0'
+              herbarium_admin: '0'
+            autocomplete_filter: 0
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_field: field_dwc_taxonid
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: views_autocomplete_filters_string
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: 0
       contexts:
