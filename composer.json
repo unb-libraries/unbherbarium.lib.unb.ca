@@ -3,6 +3,11 @@
   "minimum-stability": "dev",
   "name": "unblibraries/unbherbarium.ca",
   "description": "Provision/scaffolding for developing drupal instance.",
+  "config": {
+    "preferred-install": {
+      "*": "dist"
+    }
+  },
   "repositories": [
     {
       "type": "git",
