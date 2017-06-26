@@ -328,6 +328,9 @@ dd li:last-child {
 .excerpt strong {
   color: $color-desc;
 }
+.browse .form-inline .form-group {
+  margin-bottom: .5em;
+}
 
 // Admin form overrides.
 .panel-heading a.panel-title[aria-expanded="true"]::before  {
@@ -403,10 +406,13 @@ dd li:last-child {
   body.navbar-is-fixed-top {
     padding-top: 1.5em;
   }
+
+  .browse .form-inline .form-group {
+    width: 49.25%;
+  }
 }
 @media (min-width: 1200px) {
   .browse .form-inline .form-group {
-    margin-bottom: .5em;
     margin-right: .75%;
     width: 32.25%;
   }
