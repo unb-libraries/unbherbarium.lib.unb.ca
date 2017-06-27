@@ -190,10 +190,12 @@ label {
 .chosen-container-single .chosen-single div b {
   background: none;
 }
-select[data-drupal-selector="edit-collector"] + .form-control {
+select[data-drupal-selector="edit-collector"] + .form-control,
+select[data-drupal-selector="edit-field-taxonomy-tid"] + .form-control{
   padding: 2px 0;
 }
-.browse .chosen-container-single .chosen-single {
+.browse .chosen-container-single .chosen-single,
+.select-wrapper .chosen-container-single .chosen-single {
   border: none;
   box-shadow: none;
 }
@@ -201,6 +203,10 @@ select[data-drupal-selector="edit-collector"] + .form-control {
 .select-wrapper .chosen-container {
   width: 100%!important;
 }
+.chosen-container .chosen-results {
+  max-height: 400px;
+}
+
 .form-inline .form-actions,
 .form-inline .form-control,
 .form-inline .input-group {
@@ -328,9 +334,6 @@ dd li:last-child {
 .excerpt strong {
   color: $color-desc;
 }
-.browse .form-inline .form-group {
-  margin-bottom: .5em;
-}
 
 // Admin form overrides.
 .panel-heading a.panel-title[aria-expanded="true"]::before  {
@@ -406,13 +409,10 @@ dd li:last-child {
   body.navbar-is-fixed-top {
     padding-top: 1.5em;
   }
-
-  .browse .form-inline .form-group {
-    width: 49.25%;
-  }
 }
 @media (min-width: 1200px) {
   .browse .form-inline .form-group {
+    margin-bottom: .5em;
     margin-right: .75%;
     width: 32.25%;
   }
