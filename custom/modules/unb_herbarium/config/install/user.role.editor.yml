@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+id: editor
+label: Editor
+weight: 9
+is_admin: null
+permissions:
+  - 'create herbarium_specimen content'
+  - 'delete own herbarium_specimen content'
+  - 'edit any herbarium_specimen content'
+  - 'edit terms in herbarium_specimen_collector'
+  - 'edit terms in herbarium_specimen_taxonomy'
+  - 'view private files'
