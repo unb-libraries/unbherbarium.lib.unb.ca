@@ -426,6 +426,12 @@ dd li:last-child {
     margin-right: .75%;
     width: 32.25%;
   }
+}
+@media (max-width: 767px) {
+  .table-responsive > .table > tbody > tr > td[headers="view-field-cmh-full-specimen-name-table-column"] {
+    white-space: normal;
+  }
+
   #views-exposed-form-unb-search-page .form-item-query {
     width: 80%;
   }
