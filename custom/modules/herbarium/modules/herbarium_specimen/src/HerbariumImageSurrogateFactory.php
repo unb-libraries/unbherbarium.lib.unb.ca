@@ -295,10 +295,13 @@ class HerbariumImageSurrogateFactory {
     $unmasked_filename = "{$this->filePathParts['dirname']}/$nid.jpg";
     $masked_filename = "{$this->filePathParts['dirname']}/{$nid}_masked.jpg";
 
+    // Generate a per-session uniqid for filenames to avoid caching.
+    $uniqid = uniqid(rand(), TRUE);
+
     // Create unmasked file object.
     $target_path_u = 'private://specimen_images';
     file_prepare_directory($target_path_u, FILE_CREATE_DIRECTORY);
-    $file_destination_u = "$target_path_u/$nid.jpg";
+    $file_destination_u = "$target_path_u/$nid-$uniqid.jpg";
     $uri_u = file_unmanaged_copy($unmasked_filename, $file_destination_u, FILE_EXISTS_REPLACE);
     $file_u = File::Create([
       'uri' => $uri_u,
@@ -309,7 +312,7 @@ class HerbariumImageSurrogateFactory {
     // Create unmasked file object.
     $target_path_m = 'public://specimen_images';
     file_prepare_directory($target_path_m, FILE_CREATE_DIRECTORY);
-    $file_destination_m = "$target_path_m/{$nid}_masked.jpg";
+    $file_destination_m = "$target_path_m/{$nid}-{$uniqid}_masked.jpg";
     $uri_m = file_unmanaged_copy($masked_filename, $file_destination_m, FILE_EXISTS_REPLACE);
     $file_m = File::Create([
       'uri' => $uri_m,
