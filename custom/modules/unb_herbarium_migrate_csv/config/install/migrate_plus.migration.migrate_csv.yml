@@ -136,8 +136,6 @@ process:
   field_dwc_verbatimlocality: verbatimlocality
   field_geoheritage: geo_heritage
   field_gmap: one_line_gmap_address
-  field_large_sample_surrogate: image_file_unmasked
-  field_large_sample_surrogate_msk: image_file_masked
   field_previous_identifications: previous_identifications
   field_spmnkey: spmnid
   field_taxonomy_tid: assigned_taxon

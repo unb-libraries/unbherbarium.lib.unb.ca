@@ -39,12 +39,6 @@ class MigrateEvent implements EventSubscriberInterface {
     // Accession Number, aka ID
     $accNum = trim($row->getSourceProperty('record_number'));
 
-    // Surrogate Image Handling For Caching.
-    $file_unmasked = $images_path . 'u-' . $accNum . '.jpg';
-    $file_masked = $images_path . $accNum . '.jpg';
-    $this->addFieldFile($row, 'image_file_unmasked', $file_unmasked, 'private');
-    $this->addFieldFile($row, 'image_file_masked', $file_masked);
-
     $year = (trim($row->getSourceProperty('year')) != '') ? $row->getSourceProperty('year') : NULL;
     $month = (trim($row->getSourceProperty('month')) != '') ? $row->getSourceProperty('month') : NULL;
     $day = (trim($row->getSourceProperty('day')) != '') ? $row->getSourceProperty('day') : NULL;
