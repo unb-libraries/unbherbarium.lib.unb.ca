@@ -143,7 +143,7 @@ class HerbariumImageSurrogateFactory {
    */
   public static function cleanupFiles($fid, $nid, array &$context) {
     $obj = new static($fid, $nid);
-    // $obj->deleteTempFiles($context);
+    $obj->deleteTempFiles($context);
   }
 
   /**
