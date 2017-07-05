@@ -46,6 +46,13 @@ class HerbariumImageSurrogateFactory {
   protected $maskedWidthFactor = 0.45;
 
   /**
+   * The path to write the DZI tiles and index.
+   *
+   * @var string
+   */
+  protected $nodeDziPath = NULL;
+
+  /**
    * Constructor.
    *
    * @param object $fid
@@ -59,6 +66,9 @@ class HerbariumImageSurrogateFactory {
 
     $file_path = drupal_realpath($this->file->getFileUri());
     $this->filePathParts = pathinfo($file_path);
+
+    $public_dzi_path = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") . '/dzi';
+    $this->nodeDziPath = "$public_dzi_path/$nid";
   }
 
   /**
@@ -166,17 +176,27 @@ class HerbariumImageSurrogateFactory {
   protected function generateDziTiles(array &$context) {
     $nid = $this->node->id();
 
+    // Generate tiles from masked image.
+    $cmd = "
+      cd {$this->filePathParts['dirname']} &&
+      mv {$nid}_masked.jpg $nid.jpg &&
+      /usr/local/bin/magick-slicer {$nid}.jpg &&
+      mkdir -p {$this->nodeDziPath} &&
+      mv $nid.dzi {$this->nodeDziPath}/ &&
+      mv {$nid}_files {$this->nodeDziPath}/
+    ";
+
     exec(
-      "cd {$this->filePathParts['dirname']} && /usr/local/bin/magick-slicer $nid.jpg",
+      $cmd,
       $output,
       $return
     );
 
     $context['message'] = t(
       'Generated DZI and tiled images for specimen image [@fid]',
-      array(
+      [
         '@fid' => $this->file->id(),
-      )
+      ]
     );
   }
 
@@ -197,9 +217,9 @@ class HerbariumImageSurrogateFactory {
 
     $context['message'] = t(
       'Generated JPG specimen surrogate image for archival master [@fid]',
-      array(
+      [
         '@fid' => $this->file->id(),
-      )
+      ]
     );
   }
 
@@ -223,9 +243,9 @@ class HerbariumImageSurrogateFactory {
 
     $context['message'] = t(
       'Generated Masked JPG specimen surrogate image for archival master [@fid]',
-      array(
+      [
         '@fid' => $this->file->id(),
-      )
+      ]
     );
   }
 
@@ -256,7 +276,7 @@ class HerbariumImageSurrogateFactory {
    */
   protected function deleteGeneratedAssets(array &$context) {
     exec(
-      "cd {$this->filePathParts['dirname']} && rm -rf *.jpg *.dzi *_files",
+      "cd {$this->filePathParts['dirname']} && rm -rf *.jpg *.dzi *_files && cd {$this->nodeDziPath} && rm -rf *.jpg *.dzi *_files",
       $output,
       $return
     );

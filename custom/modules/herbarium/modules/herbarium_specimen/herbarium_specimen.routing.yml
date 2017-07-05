@@ -7,6 +7,15 @@ herbarium_specimen.manage_archival_master:
     _permission: 'administer content'
     _custom_access: '\Drupal\herbarium_specimen\Controller\HerbariumSpecimenCheckController::checkAccess'
 
+herbarium_specimen.inspect_specimen:
+  path: '/node/{node}/herbarium/inspect_specimen'
+  defaults:
+    _title: 'Inspect Specimen'
+    _form: '\Drupal\herbarium_specimen\Form\InspectSpecimenForm'
+  requirements:
+    _permission: 'view content'
+    _custom_access: '\Drupal\herbarium_specimen\Controller\HerbariumSpecimenCheckController::checkInspectAccess'
+
 herbarium_specimen.view_private_files:
   path: '/system/files/{scheme}'
   defaults:
