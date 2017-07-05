@@ -163,7 +163,7 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
 function unb_herbarium_preprocess_page_title(&$variables) {
   // Load the node entity from current route.
   if ($node = \Drupal::routeMatch()->getParameter('node')) {
-    if ($node->bundle() === 'herbarium_specimen') {
+    if (is_object($node) && $node->bundle() === 'herbarium_specimen') {
       $full_title = $node
         ->get('field_taxonomy_tid')
         ->get(0)
