@@ -275,8 +275,9 @@ class HerbariumImageSurrogateFactory {
    *   The Batch API context array.
    */
   protected function deleteGeneratedAssets(array &$context) {
+    // Delete DZI assets, surrogates will be deleted by attachNodeSurrogates().
     exec(
-      "cd {$this->filePathParts['dirname']} && rm -rf *.jpg *.dzi *_files && cd {$this->nodeDziPath} && rm -rf *.jpg *.dzi *_files",
+      "rm -rf  {$this->nodeDziPath}",
       $output,
       $return
     );
