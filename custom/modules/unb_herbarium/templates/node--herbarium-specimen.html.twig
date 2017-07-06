@@ -319,7 +319,7 @@
                     <div class="toggle-default-off">
                         <dt>{{ specimen_measurement_id|field_label }}</dt>
                         {% if specimen_measurement_id_url %}
-                            <dd>{{ specimen_measurement_id_url|raw }}</dd>
+                            <dd class="measurement-id">{{ specimen_measurement_id_url|raw }}</dd>
                         {% else %}
                             <dd>{{ specimen_measurement_id|field_value }}</dd>
                         {% endif %}

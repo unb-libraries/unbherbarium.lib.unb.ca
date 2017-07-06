@@ -493,6 +493,9 @@ button.btn-primary {
   background: rgba(266, 255, 255, 0.9);
   font-weight: bold;
 }
+.measurement-id {
+  word-break: break-all;
+}
 .pagination {
   margin: 0;
 }
