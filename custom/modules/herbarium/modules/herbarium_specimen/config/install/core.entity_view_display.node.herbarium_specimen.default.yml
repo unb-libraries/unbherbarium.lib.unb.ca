@@ -41,7 +41,7 @@ dependencies:
     - field.field.node.herbarium_specimen.field_large_sample_surrogate_msk
     - field.field.node.herbarium_specimen.field_previous_identifications
     - field.field.node.herbarium_specimen.field_taxonomy_tid
-    - image.style.220-wide
+    - image.style.220_wide
     - node.type.herbarium_specimen
   module:
     - colorbox
@@ -332,7 +332,7 @@ content:
       include_map: true
       apikey: ''
       iframe_width: 220
-      iframe_height: 320
+      iframe_height: 315
       static_scale: 2
       include_link: true
       link_text: 'View larger map'
@@ -349,7 +349,7 @@ content:
     weight: 33
     label: hidden
     settings:
-      colorbox_node_style: 220-wide
+      colorbox_node_style: 220_wide
       colorbox_node_style_first: ''
       colorbox_image_style: unmasked_specimen
       colorbox_gallery: post
@@ -363,7 +363,7 @@ content:
     weight: 34
     label: hidden
     settings:
-      colorbox_node_style: 220-wide
+      colorbox_node_style: 220_wide
       colorbox_node_style_first: ''
       colorbox_image_style: ''
       colorbox_gallery: post
