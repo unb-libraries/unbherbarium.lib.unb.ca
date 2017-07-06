@@ -202,8 +202,8 @@ input[type="checkbox"].toggle-switch {
   transition: all .3s ease, box-shadow .01s linear;
   background: #f5f5f5;
   font-family: sans-serif;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  border-top: 1px solid $color-border-light;
+  border-bottom: 1px solid $color-border-light;
 }
 .toggle-switch + .toggle-switch__label:after,
 .toggle-switch + .toggle-switch__label:before {
@@ -336,8 +336,8 @@ h1 {
 
 .footer-wrapper {
   background: $color-container;
-  border-top: 1px solid #e5e5e5;
-  margin-top: 1em;
+  border-top: 1px solid $color-border-light;
+  margin-top: 2em;
 }
 .footer {
   border: none;
