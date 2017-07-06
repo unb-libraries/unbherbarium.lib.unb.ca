@@ -20,13 +20,23 @@ ENV DRUPAL_PRIVATE_FILE_PATH /app/private_filesystem
 ENV NEWRELIC_PHP_VERSION 7.4.0.198
 ENV NEWRELIC_PHP_ARCH musl
 
-# Add Mail Sending, Rsyslog and ImageMagick/MagickSlicer
+# git-lfs
+ENV GIT_LFS_VERSION 2.2.0
+
+# Add Mail Sending, Rsyslog and ImageMagick/MagickSlicer, git-lfs
 RUN apk --update add tiff-dev tiff postfix imagemagick bash rsyslog && \
   rm -f /var/cache/apk/* && \
   curl -O https://raw.githubusercontent.com/VoidVolker/MagickSlicer/master/magick-slicer.sh && \
   mv magick-slicer.sh /usr/local/bin/magick-slicer && \
   chmod +x /usr/local/bin/magick-slicer && \
-  touch /var/log/nginx/access.log && touch /var/log/nginx/error.log
+  touch /var/log/nginx/access.log && touch /var/log/nginx/error.log && \
+  curl -LO https://github.com/git-lfs/git-lfs/releases/download/v${GIT_LFS_VERSION}/git-lfs-linux-amd64-${GIT_LFS_VERSION}.tar.gz && \
+  tar xvzpf git-lfs-linux-amd64-${GIT_LFS_VERSION}.tar.gz && \
+  rm -rf git-lfs-linux-amd64-${GIT_LFS_VERSION}.tar.gz && \
+  cd git-lfs-${GIT_LFS_VERSION} && \
+  ./install.sh && \
+  cd .. && \
+  rm -rf git-lfs-${GIT_LFS_VERSION}
 
 # Add package conf.
 COPY ./package-conf /package-conf
