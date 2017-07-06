@@ -17,7 +17,7 @@ ENV DRUPAL_CONFIGURATION_EXPORT_SKIP devel
 ENV DRUPAL_PRIVATE_FILE_PATH /app/private_filesystem
 
 # Newrelic.
-ENV NEWRELIC_PHP_VERSION 7.3.0.193
+ENV NEWRELIC_PHP_VERSION 7.4.0.198
 ENV NEWRELIC_PHP_ARCH musl
 
 # Add Mail Sending, Rsyslog and ImageMagick/MagickSlicer
