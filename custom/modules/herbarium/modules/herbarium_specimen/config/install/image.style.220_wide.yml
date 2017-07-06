@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-name: 220-wide
-label: 220-wide
+name: 220_wide
+label: '220px width'
 effects:
   ce8df89a-4437-49c2-85c8-56fc9a87f64d:
     uuid: ce8df89a-4437-49c2-85c8-56fc9a87f64d

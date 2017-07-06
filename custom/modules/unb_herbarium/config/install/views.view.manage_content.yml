@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_image
-    - image.style.220-wide
+    - image.style.220_wide
     - node.type.banner_image
     - system.menu.tools
   module:
@@ -205,7 +205,7 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: 220-wide
+            image_style: 220_wide
             image_link: ''
           group_column: ''
           group_columns: {  }
