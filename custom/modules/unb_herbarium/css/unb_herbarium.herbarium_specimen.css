@@ -18,17 +18,6 @@ a.colorbox {
   display: block;
   overflow: hidden;
 }
-.specimen-details a:not(.colorbox) {
-  border-bottom: 1px dotted #96281b;
-  color: #96281b;
-  display: inline;
-  text-decoration: none;
-}
-.specimen-details a:not(.colorbox):focus,
-.specimen-details a:not(.colorbox):hover {
-  border-bottom-style: solid;
-  color: #96281b;
-}
 .gmap iframe {
   border: 1px solid #ececec!important;
 }
@@ -177,7 +166,9 @@ dd ul {
 dd li {
   list-style-type: none;
 }
-
+.specimen-details main {
+  margin-bottom: .5em;
+}
 .specimen-details aside figure,
 .specimen-details aside > .map,
 .specimen-details aside iframe {
