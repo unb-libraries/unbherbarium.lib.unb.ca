@@ -10,6 +10,13 @@ dependencies:
     - taxonomy.vocabulary.herbarium_specimen_collector
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
     - taxonomy.vocabulary.taxon_rank
+  content:
+    - 'taxonomy_term:taxon_rank:107a1174-7d55-4167-bd27-3f304afb7d87'
+    - 'taxonomy_term:taxon_rank:156ef1dc-ad78-41f2-a0da-3d2cea9f2fb8'
+    - 'taxonomy_term:taxon_rank:1a29c396-ba20-4509-9975-31ef5a6dae8e'
+    - 'taxonomy_term:taxon_rank:7d26ad1f-e5d4-45e3-ad5c-f5aef7b5099e'
+    - 'taxonomy_term:taxon_rank:c00c9b23-b68a-48b5-bc70-6298b75014fe'
+    - 'taxonomy_term:taxon_rank:e428e61b-6bbd-49c1-b676-c71a9dc04d3d'
   module:
     - taxonomy
     - text
@@ -1335,6 +1342,19 @@ display:
           plugin_id: standard
       relationships: {  }
       header:
+        area_1:
+          id: area_1
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: '<hr />'
+            format: full_html
+          plugin_id: text
         result:
           id: result
           table: views
@@ -1355,7 +1375,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<div class=\"clearfix pull-right\">\n<a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_collector/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add collector term</a>\n</div>"
+            value: "<div class=\"pull-right\">\n<a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_collector/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add collector term</a>\n</div>\n<div class=\"clearfix\"></div>"
             format: full_html
           plugin_id: text
       menu:
@@ -1395,6 +1415,19 @@ display:
         menu_name: tools
       display_description: ''
       header:
+        area_2:
+          id: area_2
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: '<hr />'
+            format: full_html
+          plugin_id: text
         result:
           id: result
           table: views
@@ -1428,7 +1461,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<div class=\"clearfix pull-right\">\n  <a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_taxonomy/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add taxon</a>\n  &nbsp;\n</div>"
+            value: "<div class=\"pull-right\">\n  <a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_taxonomy/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add taxon</a>\n</div>\n<div class=\"clearfix\"></div>"
             format: full_html
           plugin_id: text
       defaults:
