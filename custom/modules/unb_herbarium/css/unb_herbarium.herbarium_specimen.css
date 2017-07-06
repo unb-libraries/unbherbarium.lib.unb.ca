@@ -251,15 +251,15 @@ dd li {
   .specimen-details dt {
     clear: left;
     float: left;
-    width: 39%;
+    width: 42%;
   }
   h3:after {
     content: '';
   }
   .specimen-details dd {
-    margin: 0 0 0 40%;
+    margin: 0 0 0 42%;
     min-height: 1.5em;
-    width: 60%;
+    width: 57%;
   }
   .specimen-details dd > p:first-child,
   .specimen-details dd > p:last-child,

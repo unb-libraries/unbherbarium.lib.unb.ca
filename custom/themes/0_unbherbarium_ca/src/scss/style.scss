@@ -40,15 +40,17 @@ h1 {
 // Hyperlink styles.
 a:link,
 a:visited,
+.nav > li > a:focus,
+.nav > li > a:hover,
+.nav > li > a:hover,
 .pagination > li > a,
 .pagination > li > span {
   color: $color-link;
+  display: inline-block;
   text-decoration: none;
 }
 a:focus,
 a:hover,
-.nav > li > a:focus,
-.nav > li > a:hover,
 th a:focus,
 th a:hover {
   color: $color-hover;
@@ -78,7 +80,7 @@ p a:visited {
 }
 p a:focus,
 p a:hover,
-.simple-gmap-link a{
+.simple-gmap-link a {
   text-decoration: none;
 }
 .simple-gmap-link a:link,
@@ -97,6 +99,11 @@ p a:hover,
 .pagination > .active > span:focus {
   background: $color-link;
   border-color: buttonface;
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:focus,
+.dropdown-menu > .active > a:hover {
+  background: $color-hover;
 }
 th a {
   color: $color-text;
@@ -522,33 +529,18 @@ button.btn-primary {
     padding: 1em 1.2em;
   }
 }
-@media (min-width:768px) and (max-width: 990px) {
-  .region-sidebar-second #views-exposed-form-unb-search-page .form-item-query,
-  .region-sidebar-second #edit-actions {
-    max-width: 100%;
-    width: 100%;
-  }
-  .region-sidebar-second .form-actions .btn,
-  .form-actions .btn-group {
-    margin-right: 0;
-    width: 100%;
-  }
-}
 @media (min-width: 768px) {
   body.navbar-is-fixed-top {
     padding-top: 1.5em;
   }
-
   aside .form-inline .form-item {
     max-width: 80%;
     width: 14vw;
   }
-}
-@media (min-width: 1200px) {
   .browse .form-inline .form-group {
     margin-bottom: .5em;
-    margin-right: .75%;
-    width: 32.25%;
+    margin-right: .5%;
+    width: 48%;
   }
 }
 @media (max-width: 767px) {
@@ -563,5 +555,22 @@ button.btn-primary {
   }
   .region-sidebar-second {
     margin-top: 2em;
+  }
+}
+@media (min-width:768px) and (max-width: 990px) {
+  .region-sidebar-second #views-exposed-form-unb-search-page .form-item-query,
+  .region-sidebar-second #edit-actions {
+    max-width: 100%;
+    width: 100%;
+  }
+  .region-sidebar-second .form-actions .btn,
+  .form-actions .btn-group {
+    margin-right: 0;
+    width: 100%;
+  }
+}
+@media (min-width: 1200px) {
+  .browse .form-inline .form-group {
+    width: 32%;
   }
 }
