@@ -269,7 +269,7 @@ label {
   width: 100%;
 }
 .browse .btn {
-  padding: 3px 6px;
+  padding: .5em;
 }
 .table>thead:first-child>tr:first-child>th {
   border-top: 2px solid $color-header-accent;
@@ -307,6 +307,11 @@ select[data-drupal-selector="edit-field-taxonomy-tid"] + .form-control{
 .select-wrapper .chosen-container-single .chosen-single {
   border: none;
   box-shadow: none;
+  height: inherit;
+  max-height: 30px;
+}
+.chosen-container-single .chosen-single span {
+  margin-top: 2px;
 }
 .select-wrapper,
 .select-wrapper .chosen-container {
@@ -373,24 +378,13 @@ a .glyphicon,
   width: auto;
 }
 
-// Clear separation of multi-line multiple value list items.
-dd li {
-  line-height: 1.3em;
-}
-dd li:nth-child(even) {
-  margin: .3em auto;
-}
-dd li:last-child {
-  margin-bottom: 0;
-}
-
 // Banner image.
 .banner {
   margin-bottom: .75em;
 }
 .banner figcaption {
   color: $color-desc;
-  font-size: small;
+  font-size: smaller;
   font-style: italic;
   margin-top: .2em;
 }
@@ -414,10 +408,17 @@ dd li:last-child {
 #views-exposed-form-unb-search-page .form-inline .form-group {
   display: inline-block;
 }
+// Sidebar search button adjustments.
+.region-sidebar-second .form-actions .btn {
+  margin-right: 0;
+}
+button.btn-primary {
+  min-height: 35px;
+}
 // Search API Excerpt.
 .excerpt {
   color: $color-understate;
-  font-size: small;
+  font-size: smaller;
   line-height: 1.2em;
   margin: .5em 0;
 }
@@ -482,13 +483,28 @@ dd li:last-child {
 .dedication a {
   color: $color-desc;
 }
-
-// CSV Export.
-.csv-feed .feed-icon {
-  overflow: hidden;
-  text-indent: 100%;
+.flora-nb-block-thumb {
   display: block;
-  height: 14px;
+  margin: 0 auto;
+  max-width: 100px;
+}
+// Bolded colorbox captions (specimen image title).
+#cboxTitle {
+  background: rgba(266, 255, 255, 0.9);
+  font-weight: bold;
+}
+.pagination {
+  margin: 0;
+}
+.pagination a {
+  margin-top: 2px;
+}
+.simple-gmap-link a:before {
+  content:"\e062";
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  margin-right: .25em;
+  vertical-align: top;
 }
 
 // Responsive overrides.
@@ -497,33 +513,32 @@ dd li:last-child {
     font-size: large;
   }
 }
+@media (max-width: 414px) {
+  .pagination > li > a,
+  .pagination > li > span {
+    padding: 1em 1.2em;
+  }
+}
 @media (min-width:768px) and (max-width: 990px) {
   .region-sidebar-second #views-exposed-form-unb-search-page .form-item-query,
   .region-sidebar-second #edit-actions {
     max-width: 100%;
     width: 100%;
   }
-  .region-sidebar-second .form-actions .btn, .form-actions .btn-group {
+  .region-sidebar-second .form-actions .btn,
+  .form-actions .btn-group {
     margin-right: 0;
     width: 100%;
   }
 }
 @media (min-width: 768px) {
-  .container > .navbar-header,
-  .container-fluid > .navbar-header,
-  .container > .navbar-collapse,
-  .container-fluid > .navbar-collapse {
-    padding-top: .35em;
-    padding-bottom: .35em;
-  }
-
   body.navbar-is-fixed-top {
     padding-top: 1.5em;
   }
 
   aside .form-inline .form-item {
-    max-width: 79%;
-    width: 13vw;
+    max-width: 80%;
+    width: 14vw;
   }
 }
 @media (min-width: 1200px) {
@@ -537,11 +552,13 @@ dd li:last-child {
   .table-responsive > .table > tbody > tr > td[headers="view-field-cmh-full-specimen-name-table-column"] {
     white-space: normal;
   }
-
   #views-exposed-form-unb-search-page .form-item-query {
     width: 80%;
   }
   #views-exposed-form-unb-search-page .form-control {
     height: 35px;
+  }
+  .region-sidebar-second {
+    margin-top: 2em;
   }
 }
