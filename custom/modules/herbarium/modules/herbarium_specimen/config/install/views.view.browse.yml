@@ -59,8 +59,8 @@ display:
         type: basic
         options:
           submit_button: 'Apply filters'
-          reset_button: false
-          reset_button_label: 'Reset filters'
+          reset_button: true
+          reset_button_label: Clear
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
           sort_asc_label: Asc
@@ -1169,7 +1169,7 @@ display:
         description: ''
         expanded: false
         parent: ''
-        weight: 0
+        weight: -45
         context: '0'
         menu_name: tools
       css_class: 'browse use-chosen'
