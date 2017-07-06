@@ -259,14 +259,6 @@ footer .unb-lib-logo {
   width: 350px;
 }
 
-.hidden,
-#views-exposed-form-unb-search-page label {
-  overflow: hidden;
-  text-indent: 100%;
-  width: 1px;
-  height: 1px;
-}
-
 // Make :after glyphicons same style as :before.
 .select-wrapper:after {
   color: #777;
@@ -361,7 +353,27 @@ dd li:last-child {
   width: auto;
 }
 
-// Utility classes.
+// Webaim recommended accessible visually hidden content method.
+.hidden,
+.path-frontpage h1,
+#views-exposed-form-unb-search-page label {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+// CSV Export.
+.csv-feed .feed-icon {
+  overflow: hidden;
+  text-indent: 100%;
+  display: block;
+  height: 14px;
+}
+
+// Misc.
 .nowrap {
   white-space: nowrap;
 }
