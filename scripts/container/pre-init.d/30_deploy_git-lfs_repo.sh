@@ -13,7 +13,7 @@ mkdir -p cd ${LTS_DEPLOY_PATH}
 chown ${NGINX_RUN_USER}:${NGINX_RUN_GROUP} ${LTS_DEPLOY_PATH}
 su - ${NGINX_RUN_USER} -s /bin/bash -c "GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ${NGINX_USER_HOME}/.ssh/id_rsa \" /usr/bin/git clone ${LTS_DEPLOY_REPO} ${LTS_DEPLOY_PATH}"
 cd ${LTS_DEPLOY_PATH}
-echo -e "[lfs]\n    url = 'http://${LTS_LFS_SERVER_USER}:${LTS_LFS_SERVER_PASS}@${LTS_LFS_SERVER_HOST}:${LTS_LFS_SERVER_PORT}/'\n" > .lfsconfig
+echo -e "[lfs]\n    url = \"http://${LTS_LFS_SERVER_USER}:${LTS_LFS_SERVER_PASS}@${LTS_LFS_SERVER_HOST}:${LTS_LFS_SERVER_PORT}/\"\n" > .lfsconfig
 chown ${NGINX_RUN_USER}:${NGINX_RUN_GROUP} .lfsconfig
 
 #  Setup local LFS and track tif without smudge on clone, saving space.
