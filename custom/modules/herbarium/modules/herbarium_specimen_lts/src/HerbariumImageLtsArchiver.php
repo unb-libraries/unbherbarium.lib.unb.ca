@@ -138,14 +138,14 @@ class HerbariumImageLtsArchiver {
 
     // Stage the file for commit.
     exec(
-      "cd {$this->filePathParts['dirname']} && git add {$this->node->id()}.tif",
+      "cd {$this->ltsRepoPath} && git lfs track \"*.tif\" && git add {$this->node->id()}.tif",
       $output,
       $return
     );
 
     // Commit and push.
     exec(
-      "cd {$this->filePathParts['dirname']} && git commit -c user.name='$name' -c user.email=$email -m 'Update LTS file for NID#{$this->node->id()}' && git push origin master",
+      "cd {$this->ltsRepoPath} && git config --global user.email \"$email\" && git config --global user.name \"$name\" && git commit -m 'Update archival file for NID#{$this->node->id()}' && GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /var/lib/nginx/.ssh/id_rsa\" git push origin master",
       $output,
       $return
     );

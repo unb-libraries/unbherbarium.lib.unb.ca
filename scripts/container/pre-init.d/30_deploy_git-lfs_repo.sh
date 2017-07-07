@@ -15,3 +15,6 @@ su - ${NGINX_RUN_USER} -s /bin/bash -c "GIT_SSH_COMMAND=\"ssh -o UserKnownHostsF
 cd ${LTS_DEPLOY_PATH}
 echo -e "[lfs]\n    url = 'http://${LTS_LFS_SERVER_USER}:${LTS_LFS_SERVER_PASS}@${LTS_LFS_SERVER_HOST}:${LTS_LFS_SERVER_PORT}/'\n" > .lfsconfig
 chown ${NGINX_RUN_USER}:${NGINX_RUN_GROUP} .lfsconfig
+
+#  Setup local LFS and track tif without smudge on clone, saving space.
+su - ${NGINX_RUN_USER} -s /bin/sh -c "git lfs install --skip-smudge"
