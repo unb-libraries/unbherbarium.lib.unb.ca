@@ -23,6 +23,9 @@ ENV NEWRELIC_PHP_ARCH musl
 # git-lfs
 ENV GIT_LFS_VERSION 2.2.0
 
+# Add scripts.
+COPY ./scripts/container /scripts
+
 # Add Mail Sending, Rsyslog and ImageMagick/MagickSlicer, git-lfs
 RUN apk --update add tiff-dev tiff postfix imagemagick bash rsyslog && \
   rm -f /var/cache/apk/* && \
@@ -30,13 +33,7 @@ RUN apk --update add tiff-dev tiff postfix imagemagick bash rsyslog && \
   mv magick-slicer.sh /usr/local/bin/magick-slicer && \
   chmod +x /usr/local/bin/magick-slicer && \
   touch /var/log/nginx/access.log && touch /var/log/nginx/error.log && \
-  curl -LO https://github.com/git-lfs/git-lfs/releases/download/v${GIT_LFS_VERSION}/git-lfs-linux-amd64-${GIT_LFS_VERSION}.tar.gz && \
-  tar xvzpf git-lfs-linux-amd64-${GIT_LFS_VERSION}.tar.gz && \
-  rm -rf git-lfs-linux-amd64-${GIT_LFS_VERSION}.tar.gz && \
-  cd git-lfs-${GIT_LFS_VERSION} && \
-  ./install.sh && \
-  cd .. && \
-  rm -rf git-lfs-${GIT_LFS_VERSION}
+  /scripts/InstallGitLFS.sh
 
 # Add package conf.
 COPY ./package-conf /package-conf
@@ -48,12 +45,9 @@ RUN mv /package-conf/postfix/main.cf /etc/postfix/main.cf && \
   mv /package-conf/php/app-php-fpm.conf /etc/php7/php-fpm.d/zz_app.conf && \
   rm -rf /package-conf
 
-# Add scripts.
-COPY ./scripts/container /scripts
-RUN /scripts/DeployUpstreamContainerScripts.sh
-
 # Remove upstream build and replace it with ours.
-RUN /scripts/deleteUpstreamTree.sh
+RUN /scripts/DeployUpstreamContainerScripts.sh && \
+  /scripts/deleteUpstreamTree.sh
 COPY build/ ${TMP_DRUPAL_BUILD_DIR}
 ENV DRUPAL_BUILD_TMPROOT ${TMP_DRUPAL_BUILD_DIR}/webroot
 
