@@ -132,21 +132,6 @@ class HerbariumImageSurrogateFactory {
   }
 
   /**
-   * Remove local files after processing.
-   *
-   * @param object $fid
-   *   The file ID of the archival TIFF File object.
-   * @param object $nid
-   *   The node id of the parent herbarium specimen.
-   * @param array $context
-   *   The Batch API context array.
-   */
-  public static function cleanupFiles($fid, $nid, array &$context) {
-    $obj = new static($fid, $nid);
-    $obj->deleteTempFiles($context);
-  }
-
-  /**
    * Delete any existing assets from the DZI/Tile directory.
    *
    * @param object $fid
@@ -246,25 +231,6 @@ class HerbariumImageSurrogateFactory {
       [
         '@fid' => $this->file->id(),
       ]
-    );
-  }
-
-  /**
-   * Delete the uploaded archival tiff from local.
-   *
-   * @param array $context
-   *   The Batch API context array.
-   */
-  protected function deleteTempFiles(array &$context) {
-    $this->file->delete();
-    exec(
-      "cd {$this->filePathParts['dirname']} && rm -rf *.jpg *.tif *.tiff",
-      $output,
-      $return
-    );
-
-    $context['message'] = t(
-      'Deleted temporary processing files'
     );
   }
 

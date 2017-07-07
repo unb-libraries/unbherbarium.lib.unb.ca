@@ -1,0 +1,9 @@
+name: 'Herbarium Specimen Archival Master LTS'
+description: 'Herbarium Specimen Archival Master LTS'
+type: module
+core: 8.x
+dependencies:
+  - herbarium_core
+  - herbarium_specimen
+version: 8.x-1.0
+package: Herbarium

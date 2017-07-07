@@ -62,6 +62,10 @@ class ManageArchivalMasterForm extends FormBase {
     batch_set(
       _herbarium_specimen_generate_specimen_surrogates_batch($nid, $fid)
     );
+
+    batch_set(
+      _herbarium_specimen_lts_store_new_image($nid, $fid)
+    );
   }
 
 }

@@ -27,7 +27,7 @@ ENV GIT_LFS_VERSION 2.2.0
 COPY ./scripts/container /scripts
 
 # Add Mail Sending, Rsyslog and ImageMagick/MagickSlicer, git-lfs
-RUN apk --update add tiff-dev tiff postfix imagemagick bash rsyslog && \
+RUN apk --update add tiff-dev tiff postfix imagemagick bash rsyslog openssh-client && \
   rm -f /var/cache/apk/* && \
   curl -O https://raw.githubusercontent.com/VoidVolker/MagickSlicer/master/magick-slicer.sh && \
   mv magick-slicer.sh /usr/local/bin/magick-slicer && \

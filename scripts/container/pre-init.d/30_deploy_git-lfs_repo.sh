@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+NGINX_USER_HOME='/var/lib/nginx'
+
+# Setup SSH credentials.
+mkdir -p "${NGINX_USER_HOME}/.ssh"
+chmod 700 "${NGINX_USER_HOME}/.ssh"
+echo "$LTS_DEPLOY_KEY" > "${NGINX_USER_HOME}/.ssh/id_rsa"
+chmod 600 "${NGINX_USER_HOME}/.ssh/id_rsa"
+chown ${NGINX_RUN_USER}:${NGINX_RUN_GROUP} -R "${NGINX_USER_HOME}/.ssh"
+
+# Clone LFS repo.
+mkdir -p cd ${LTS_DEPLOY_PATH}
+chown ${NGINX_RUN_USER}:${NGINX_RUN_GROUP} ${LTS_DEPLOY_PATH}
+su - ${NGINX_RUN_USER} -s /bin/bash -c "GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ${NGINX_USER_HOME}/.ssh/id_rsa \" /usr/bin/git clone ${LTS_DEPLOY_REPO} ${LTS_DEPLOY_PATH}"
+cd ${LTS_DEPLOY_PATH}
+echo -e "[lfs]\n    url = 'http://${LTS_LFS_SERVER_USER}:${LTS_LFS_SERVER_PASS}@${LTS_LFS_SERVER_HOST}:${LTS_LFS_SERVER_PORT}/'\n" > .lfsconfig
+chown ${NGINX_RUN_USER}:${NGINX_RUN_GROUP} .lfsconfig
