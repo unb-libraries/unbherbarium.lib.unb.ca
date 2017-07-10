@@ -238,8 +238,8 @@ dd li {
   }
   section h3,
   dt {
-    padding-left: .25em;
-    padding-right: .25em;
+    padding-left: .5%;
+    padding-right: .5%;
   }
   section h3 {
     background: #ececec;
@@ -248,18 +248,8 @@ dd li {
     padding-bottom: .25em;
     padding-top: .25em;
   }
-  .specimen-details dt {
-    clear: left;
-    float: left;
-    width: 42%;
-  }
   h3:after {
     content: '';
-  }
-  .specimen-details dd {
-    margin: 0 0 0 42%;
-    min-height: 1.5em;
-    width: 57%;
   }
   .specimen-details dd > p:first-child,
   .specimen-details dd > p:last-child,
