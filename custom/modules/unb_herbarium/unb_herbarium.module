@@ -194,7 +194,7 @@ function unb_herbarium_preprocess_page_title(&$variables) {
 function unb_herbarium_form_alter(&$form, &$form_state, $form_id) {
   if ($form['#id'] == 'views-exposed-form-unb-search-page') {
     // Add HTML5 placeholder to Views|UNB Search|Exposed form.
-    $form['query']['#attributes']['placeholder'] = t('Enter sample term');
+    $form['query']['#attributes']['placeholder'] = t('Search') . ' ...';
   }
 }
 
