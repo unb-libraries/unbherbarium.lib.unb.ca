@@ -20,6 +20,6 @@ chown ${NGINX_RUN_USER}:${NGINX_RUN_GROUP} .lfsconfig
 su - ${NGINX_RUN_USER} -s /bin/sh -c "git lfs install --skip-smudge"
 
 # Ignore .lfsconfig file by default
-echo ".lfsconfig" > "${NGINX_USER_HOME}/.gitignore"
+echo -e ".lfsconfig\n.gitattributes" > "${NGINX_USER_HOME}/.gitignore"
 chown ${NGINX_RUN_USER}:${NGINX_RUN_GROUP} "${NGINX_USER_HOME}/.gitignore"
 su - ${NGINX_RUN_USER} -s /bin/sh -c "git config --global core.excludesfile ~/.gitignore"

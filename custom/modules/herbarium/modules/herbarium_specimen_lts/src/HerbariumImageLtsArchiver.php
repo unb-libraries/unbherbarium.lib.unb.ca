@@ -83,7 +83,7 @@ class HerbariumImageLtsArchiver {
    * @param array $context
    *   The Batch API context array.
    */
-  public static function archiveFileToLts($fid, $nid, $uid, array &$context) {
+  public static function archiveFileToLts($fid, $nid, $uid, &$context) {
     $obj = new static($fid, $nid, $uid);
     $obj->archiveTiff($context);
   }
@@ -94,7 +94,7 @@ class HerbariumImageLtsArchiver {
    * @param array $context
    *   The Batch API context array.
    */
-  protected function archiveTiff(array &$context) {
+  protected function archiveTiff(&$context) {
     $email = $this->user->get('mail')->value;
     $name = $this->user->get('name')->value;
 
@@ -119,7 +119,12 @@ class HerbariumImageLtsArchiver {
       $return
     );
 
-    $context['message'] = t('Updated long term storage file for specimen.');
+    $context['message'] = t(
+      '[NID#@nid] Updated long term storage file for specimen.',
+      [
+        '@nid' => $this->node->id(),
+      ]
+    );
   }
 
   /**
@@ -158,7 +163,7 @@ class HerbariumImageLtsArchiver {
    * @param array $context
    *   The Batch API context array.
    */
-  public static function cleanupFiles($fid, $nid, array &$context) {
+  public static function cleanupFiles($fid, $nid,$context) {
     $obj = new static($fid, $nid);
     $obj->deleteTempFiles($context);
   }
@@ -169,7 +174,7 @@ class HerbariumImageLtsArchiver {
    * @param array $context
    *   The Batch API context array.
    */
-  protected function deleteTempFiles(array &$context) {
+  protected function deleteTempFiles($context) {
     $this->file->delete();
     exec(
       "cd {$this->filePathParts['dirname']} && rm -rf *.jpg *.tif *.tiff",
@@ -178,7 +183,10 @@ class HerbariumImageLtsArchiver {
     );
 
     $context['message'] = t(
-      'Deleted temporary processing files'
+      '[NID#@nid] Deleted temporary processing files',
+      [
+        '@nid' => $this->node->id(),
+      ]
     );
   }
 

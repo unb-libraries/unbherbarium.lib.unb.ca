@@ -81,7 +81,7 @@ class HerbariumImageSurrogateFactory {
    * @param array $context
    *   The Batch API context array.
    */
-  public static function attachSurrogatesToNode($fid, $nid, array &$context) {
+  public static function attachSurrogatesToNode($fid, $nid, &$context) {
     $obj = new static($fid, $nid);
     $obj->attachNodeSurrogates($context);
   }
@@ -96,7 +96,7 @@ class HerbariumImageSurrogateFactory {
    * @param array $context
    *   The Batch API context array.
    */
-  public static function buildDziTiles($fid, $nid, array &$context) {
+  public static function buildDziTiles($fid, $nid, &$context) {
     $obj = new static($fid, $nid);
     $obj->generateDziTiles($context);
   }
@@ -111,7 +111,7 @@ class HerbariumImageSurrogateFactory {
    * @param array $context
    *   The Batch API context array.
    */
-  public static function buildJpgSurrogate($fid, $nid, array &$context) {
+  public static function buildJpgSurrogate($fid, $nid, &$context) {
     $obj = new static($fid, $nid);
     $obj->generateJpgSurrogate($context);
   }
@@ -126,7 +126,7 @@ class HerbariumImageSurrogateFactory {
    * @param array $context
    *   The Batch API context array.
    */
-  public static function buildMaskedJpgSurrogate($fid, $nid, array &$context) {
+  public static function buildMaskedJpgSurrogate($fid, $nid, &$context) {
     $obj = new static($fid, $nid);
     $obj->generateMaskedJpgSurrogate($context);
   }
@@ -141,7 +141,7 @@ class HerbariumImageSurrogateFactory {
    * @param array $context
    *   The Batch API context array.
    */
-  public static function deleteExistingAssets($fid, $nid, array &$context) {
+  public static function deleteExistingAssets($fid, $nid, &$context) {
     $obj = new static($fid, $nid);
     $obj->deleteGeneratedAssets($context);
   }
@@ -158,7 +158,7 @@ class HerbariumImageSurrogateFactory {
    * @param array $context
    *   The Batch API context array.
    */
-  protected function generateDziTiles(array &$context) {
+  protected function generateDziTiles(&$context) {
     $nid = $this->node->id();
 
     // Generate tiles from masked image.
@@ -178,9 +178,9 @@ class HerbariumImageSurrogateFactory {
     );
 
     $context['message'] = t(
-      'Generated DZI and tiled images for specimen image [@fid]',
+      '[NID#@nid] Generated DZI and tiled images for specimen image',
       [
-        '@fid' => $this->file->id(),
+        '@nid' => $this->node->id(),
       ]
     );
   }
@@ -191,7 +191,7 @@ class HerbariumImageSurrogateFactory {
    * @param array $context
    *   The Batch API context array.
    */
-  protected function generateJpgSurrogate(array &$context) {
+  protected function generateJpgSurrogate(&$context) {
     $nid = $this->node->id();
 
     exec(
@@ -201,9 +201,9 @@ class HerbariumImageSurrogateFactory {
     );
 
     $context['message'] = t(
-      'Generated JPG specimen surrogate image for archival master [@fid]',
+      '[NID#@nid] Generated JPG specimen surrogate image for archival master',
       [
-        '@fid' => $this->file->id(),
+        '@nid' => $this->node->id(),
       ]
     );
   }
@@ -214,7 +214,7 @@ class HerbariumImageSurrogateFactory {
    * @param array $context
    *   The Batch API context array.
    */
-  protected function generateMaskedJpgSurrogate(array &$context) {
+  protected function generateMaskedJpgSurrogate(&$context) {
     $nid = $this->node->id();
     list($width, $height, $type, $attr) = getimagesize("{$this->filePathParts['dirname']}/$nid.jpg");
     $mask_start_x = $width * (1 - $this->maskedWidthFactor);
@@ -227,9 +227,9 @@ class HerbariumImageSurrogateFactory {
     );
 
     $context['message'] = t(
-      'Generated Masked JPG specimen surrogate image for archival master [@fid]',
+      '[NID#@nid] Generated Masked JPG specimen surrogate image for archival master',
       [
-        '@fid' => $this->file->id(),
+        '@nid' => $this->node->id(),
       ]
     );
   }
@@ -240,7 +240,7 @@ class HerbariumImageSurrogateFactory {
    * @param array $context
    *   The Batch API context array.
    */
-  protected function deleteGeneratedAssets(array &$context) {
+  protected function deleteGeneratedAssets(&$context) {
     // Delete DZI assets, surrogates will be deleted by attachNodeSurrogates().
     exec(
       "rm -rf  {$this->nodeDziPath}",
@@ -248,7 +248,12 @@ class HerbariumImageSurrogateFactory {
       $return
     );
 
-    $context['message'] = t('Deleted previously generated assets for specimen.');
+    $context['message'] = t(
+      '[NID#@nid] Deleted previously generated assets for specimen',
+      [
+        '@nid' => $this->node->id(),
+      ]
+    );
   }
 
   /**
@@ -257,7 +262,7 @@ class HerbariumImageSurrogateFactory {
    * @param array $context
    *   The Batch API context array.
    */
-  protected function attachNodeSurrogates(array &$context) {
+  protected function attachNodeSurrogates(&$context) {
     $nid = $this->node->id();
     $unmasked_filename = "{$this->filePathParts['dirname']}/$nid.jpg";
     $masked_filename = "{$this->filePathParts['dirname']}/{$nid}_masked.jpg";
@@ -300,7 +305,12 @@ class HerbariumImageSurrogateFactory {
     $this->node->get('field_large_sample_surrogate_msk')->setValue($file_m);
     $this->node->save();
 
-    $context['message'] = t('Attached unmasked image to specimen.');
+    $context['message'] = t(
+      '[NID#@nid] Attached unmasked image to specimen.',
+      [
+        '@nid' => $this->node->id(),
+      ]
+    );
   }
 
 }
