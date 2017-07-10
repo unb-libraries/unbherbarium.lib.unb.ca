@@ -596,8 +596,8 @@ display:
     display_options:
       display_extenders: {  }
       display_description: ''
-      path: browse-samples
-      title: 'Browse Samples'
+      path: browse-specimens
+      title: 'Browse Specimens'
       defaults:
         title: false
         filters: false
@@ -1165,7 +1165,7 @@ display:
           1: AND
       menu:
         type: normal
-        title: 'Browse Samples'
+        title: 'Browse Specimens'
         description: ''
         expanded: false
         parent: ''
@@ -1600,7 +1600,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: false
-          empty: '<span class="no-result">No Image</span>'
+          empty: '<small class="no-result">No Image</small>'
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
