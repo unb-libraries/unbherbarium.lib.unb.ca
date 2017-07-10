@@ -33,27 +33,28 @@ class ManageArchivalMasterForm extends FormBase {
       '#markup' => 'The archival master serves as the canonical version of the digital specimen scan.',
     ];
 
-    $form['tiff_file'] = array(
+    $form['tiff_file'] = [
       '#disabled' => !$storage_status,
       '#title' => t('TIF File'),
       '#type' => 'managed_file',
       '#description' => t('Upload a archival master file, allowed extensions: TIF TIFF'),
       '#upload_location' => "private://dzi/$node/",
       '#required' => TRUE,
-      '#upload_validators' => array(
-        'file_validate_extensions' => array('tif', 'tiff'),
-      ),
-    );
+      '#upload_validators' => [
+        'file_validate_extensions' => ['tif', 'tiff'],
+      ],
+    ];
 
-    $form['nid'] = array(
+    $form['nid'] = [
       '#type' => 'hidden',
       '#value' => isset($node) && is_numeric($node) ? $node : -1,
-    );
-    $form['submit'] = array(
+    ];
+
+    $form['submit'] = [
       '#type' => 'submit',
       '#disabled' => !$storage_status,
       '#value' => t('Upload Archival Master'),
-    );
+    ];
 
     return $form;
   }

@@ -98,10 +98,15 @@ class HerbariumImageLtsArchiver {
     }
 
     $git = Repository::open($obj->ltsRepoPath, '/usr/bin/git');
-
     // Check if the archive is dirty. This means something went wrong before.
     if ($git->isDirty()) {
       return [FALSE, t('ERROR: The long-term storage repository appears desynced.')];
+    }
+
+    // Can we contact the LFS server?
+    $fp = @fsockopen("tcp://hilstorage.hil.unb.ca:6983");
+    if (!$fp) {
+      return [FALSE, t('ERROR: A connection cannot be made to the LTS server.')];
     }
 
     return [TRUE, NULL];
