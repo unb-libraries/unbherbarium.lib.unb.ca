@@ -72,66 +72,6 @@ class HerbariumImageLtsArchiver {
   }
 
   /**
-   * Remove local files after processing.
-   *
-   * @param object $fid
-   *   The file ID of the archival TIFF File object.
-   * @param object $nid
-   *   The node id of the parent herbarium specimen.
-   * @param array $context
-   *   The Batch API context array.
-   */
-  public static function cleanupFiles($fid, $nid, array &$context) {
-    $obj = new static($fid, $nid);
-    $obj->deleteTempFiles($context);
-  }
-
-  /**
-   * Check the storage status of the LTS archiver.
-   */
-  public static function checkStorageStatus() {
-    $obj = new static();
-
-    // Check if the LTS archive path exists.
-    if (!file_exists($obj->ltsRepoPath . '/.git')) {
-      return [FALSE, t('ERROR: The long-term storage repository path does not exist.')];
-    }
-
-    $git = Repository::open($obj->ltsRepoPath, '/usr/bin/git');
-    // Check if the archive is dirty. This means something went wrong before.
-    if ($git->isDirty()) {
-      return [FALSE, t('ERROR: The long-term storage repository appears desynced.')];
-    }
-
-    // Can we contact the LFS server?
-    $fp = @fsockopen("tcp://hilstorage.hil.unb.ca:6983");
-    if (!$fp) {
-      return [FALSE, t('ERROR: A connection cannot be made to the LTS server.')];
-    }
-
-    return [TRUE, NULL];
-  }
-
-  /**
-   * Delete the uploaded archival tiff from local.
-   *
-   * @param array $context
-   *   The Batch API context array.
-   */
-  protected function deleteTempFiles(array &$context) {
-    $this->file->delete();
-    exec(
-      "cd {$this->filePathParts['dirname']} && rm -rf *.jpg *.tif *.tiff",
-      $output,
-      $return
-    );
-
-    $context['message'] = t(
-      'Deleted temporary processing files'
-    );
-  }
-
-  /**
    * Archive the TIF file to LTS.
    *
    * @param int $fid
@@ -180,6 +120,66 @@ class HerbariumImageLtsArchiver {
     );
 
     $context['message'] = t('Updated long term storage file for specimen.');
+  }
+
+  /**
+   * Check the storage status of the LTS archiver.
+   */
+  public static function checkStorageStatus() {
+    $obj = new static();
+
+    // Check if the LTS archive path exists.
+    if (!file_exists($obj->ltsRepoPath . '/.git')) {
+      return [FALSE, t('ERROR: The long-term storage repository path does not exist. Please contact an administrator.')];
+    }
+
+    $git = Repository::open($obj->ltsRepoPath, '/usr/bin/git');
+    // Check if the archive is dirty. This means something went wrong before.
+    if ($git->isDirty()) {
+      return [FALSE, t('ERROR: The long-term storage repository appears desynced. Please contact an administrator.')];
+    }
+
+    // Can we contact the LFS server?
+    $fp = @fsockopen("tcp://hilstorage.hil.unb.ca:6983");
+    if (!$fp) {
+      return [FALSE, t('ERROR: A connection cannot be made to the long-term storage server. Please contact an administrator.')];
+    }
+
+    return [TRUE, NULL];
+  }
+
+  /**
+   * Remove local files after processing.
+   *
+   * @param object $fid
+   *   The file ID of the archival TIFF File object.
+   * @param object $nid
+   *   The node id of the parent herbarium specimen.
+   * @param array $context
+   *   The Batch API context array.
+   */
+  public static function cleanupFiles($fid, $nid, array &$context) {
+    $obj = new static($fid, $nid);
+    $obj->deleteTempFiles($context);
+  }
+
+  /**
+   * Delete the uploaded archival tiff from local.
+   *
+   * @param array $context
+   *   The Batch API context array.
+   */
+  protected function deleteTempFiles(array &$context) {
+    $this->file->delete();
+    exec(
+      "cd {$this->filePathParts['dirname']} && rm -rf *.jpg *.tif *.tiff",
+      $output,
+      $return
+    );
+
+    $context['message'] = t(
+      'Deleted temporary processing files'
+    );
   }
 
 }
