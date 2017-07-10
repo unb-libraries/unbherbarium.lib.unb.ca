@@ -11,12 +11,12 @@ dependencies:
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
     - taxonomy.vocabulary.taxon_rank
   content:
-    - 'taxonomy_term:taxon_rank:107a1174-7d55-4167-bd27-3f304afb7d87'
-    - 'taxonomy_term:taxon_rank:156ef1dc-ad78-41f2-a0da-3d2cea9f2fb8'
-    - 'taxonomy_term:taxon_rank:1a29c396-ba20-4509-9975-31ef5a6dae8e'
-    - 'taxonomy_term:taxon_rank:7d26ad1f-e5d4-45e3-ad5c-f5aef7b5099e'
-    - 'taxonomy_term:taxon_rank:c00c9b23-b68a-48b5-bc70-6298b75014fe'
-    - 'taxonomy_term:taxon_rank:e428e61b-6bbd-49c1-b676-c71a9dc04d3d'
+    - 'taxonomy_term:taxon_rank:1d6648b8-152d-495d-b5f8-c10d4ea1be1c'
+    - 'taxonomy_term:taxon_rank:25d71fb2-f147-4a8c-803a-6c1fd9d2a686'
+    - 'taxonomy_term:taxon_rank:9c185f9f-8ce6-4bd1-9068-5a947a1a586b'
+    - 'taxonomy_term:taxon_rank:a42b1b59-b067-4a58-bec6-cfb4958b4879'
+    - 'taxonomy_term:taxon_rank:c4ead379-5260-47b5-aa9b-d5e4e4ee47b0'
+    - 'taxonomy_term:taxon_rank:c7b4294d-38ec-4737-82cf-c40dde9d1268'
   module:
     - taxonomy
     - text
