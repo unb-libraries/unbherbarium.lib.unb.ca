@@ -4,6 +4,7 @@ namespace Drupal\herbarium_specimen_lts\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver;
 
 /**
  * ManageArchivalMasterForm object.
@@ -21,9 +22,19 @@ class ManageArchivalMasterForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $node = NULL) {
-    $form = array();
+    $form = [];
+
+    list($storage_status, $error_message) = HerbariumImageLtsArchiver::checkStorageStatus();
+    if ($error_message) {
+      drupal_set_message($error_message, 'error');
+    }
+
+    $form['description'] = [
+      '#markup' => 'The archival master serves as the canonical version of the digital specimen scan.',
+    ];
 
     $form['tiff_file'] = array(
+      '#disabled' => !$storage_status,
       '#title' => t('TIF File'),
       '#type' => 'managed_file',
       '#description' => t('Upload a archival master file, allowed extensions: TIF TIFF'),
@@ -40,6 +51,7 @@ class ManageArchivalMasterForm extends FormBase {
     );
     $form['submit'] = array(
       '#type' => 'submit',
+      '#disabled' => !$storage_status,
       '#value' => t('Upload Archival Master'),
     );
 

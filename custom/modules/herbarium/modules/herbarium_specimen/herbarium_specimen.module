@@ -72,8 +72,6 @@ function _herbarium_specimen_generate_specimen_surrogates_batch($nid, $fid) {
         ),
         array($fid, $nid),
       ),
-
-
     ),
   );
 }

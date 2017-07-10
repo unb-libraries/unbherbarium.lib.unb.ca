@@ -18,3 +18,8 @@ chown ${NGINX_RUN_USER}:${NGINX_RUN_GROUP} .lfsconfig
 
 #  Setup local LFS and track tif without smudge on clone, saving space.
 su - ${NGINX_RUN_USER} -s /bin/sh -c "git lfs install --skip-smudge"
+
+# Ignore .lfsconfig file by default
+echo ".lfsconfig" > "${NGINX_USER_HOME}/.gitignore"
+chown ${NGINX_RUN_USER}:${NGINX_RUN_GROUP} "${NGINX_USER_HOME}/.gitignore"
+su - ${NGINX_RUN_USER} -s /bin/sh -c "git config --global core.excludesfile ~/.gitignore"

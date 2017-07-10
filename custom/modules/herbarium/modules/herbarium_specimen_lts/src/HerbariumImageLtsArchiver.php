@@ -5,6 +5,7 @@ namespace Drupal\herbarium_specimen_lts;
 use Drupal\file\Entity\File;
 use Drupal\node\Entity\Node;
 use Drupal\user\Entity\User;
+use TQ\Git\Repository\Repository;
 
 /**
  * HerbariumImageSurrogateFactory caption set object.
@@ -56,16 +57,18 @@ class HerbariumImageLtsArchiver {
    * @param int $uid
    *   The user requesting the update.
    */
-  protected function __construct($fid, $nid, $uid = 0) {
-    $this->file = File::load($fid);
-    $this->node = Node::load($nid);
+  protected function __construct($fid = 0, $nid = 0, $uid = 0) {
+    if ($fid) {
+      $this->file = File::load($fid);
+      $this->node = Node::load($nid);
 
-    if ($uid) {
-      $this->user = User::load($uid);
+      if ($uid) {
+        $this->user = User::load($uid);
+      }
+
+      $file_path = drupal_realpath($this->file->getFileUri());
+      $this->filePathParts = pathinfo($file_path);
     }
-
-    $file_path = drupal_realpath($this->file->getFileUri());
-    $this->filePathParts = pathinfo($file_path);
   }
 
   /**
@@ -81,6 +84,27 @@ class HerbariumImageLtsArchiver {
   public static function cleanupFiles($fid, $nid, array &$context) {
     $obj = new static($fid, $nid);
     $obj->deleteTempFiles($context);
+  }
+
+  /**
+   * Check the storage status of the LTS archiver.
+   */
+  public static function checkStorageStatus() {
+    $obj = new static();
+
+    // Check if the LTS archive path exists.
+    if (!file_exists($obj->ltsRepoPath . '/.git')) {
+      return [FALSE, t('ERROR: The long-term storage repository path does not exist.')];
+    }
+
+    $git = Repository::open($obj->ltsRepoPath, '/usr/bin/git');
+
+    // Check if the archive is dirty. This means something went wrong before.
+    if ($git->isDirty()) {
+      return [FALSE, t('ERROR: The long-term storage repository appears desynced.')];
+    }
+
+    return [TRUE, NULL];
   }
 
   /**
