@@ -176,11 +176,6 @@ class HerbariumImageLtsArchiver {
    */
   protected function deleteTempFiles($context) {
     $this->file->delete();
-    exec(
-      "cd {$this->filePathParts['dirname']} && rm -rf *.jpg *.tif *.tiff",
-      $output,
-      $return
-    );
 
     $context['message'] = t(
       '[NID#@nid] Deleted temporary processing files',

@@ -168,7 +168,8 @@ class HerbariumImageSurrogateFactory {
       /usr/local/bin/magick-slicer {$nid}.jpg &&
       mkdir -p {$this->nodeDziPath} &&
       mv $nid.dzi {$this->nodeDziPath}/ &&
-      mv {$nid}_files {$this->nodeDziPath}/
+      mv {$nid}_files {$this->nodeDziPath}/ &&
+      rm -f $nid.jpg
     ";
 
     exec(
@@ -201,7 +202,7 @@ class HerbariumImageSurrogateFactory {
     );
 
     $context['message'] = t(
-      '[NID#@nid] Generated JPG specimen surrogate image for archival master',
+      '[NID#@nid] Generated Unmasked JPG specimen surrogate image for archival master',
       [
         '@nid' => $this->node->id(),
       ]
@@ -275,17 +276,19 @@ class HerbariumImageSurrogateFactory {
     file_prepare_directory($target_path_u, FILE_CREATE_DIRECTORY);
     $file_destination_u = "$target_path_u/$nid-$uniqid.jpg";
     $uri_u = file_unmanaged_copy($unmasked_filename, $file_destination_u, FILE_EXISTS_REPLACE);
+    print_r($uri_u);
     $file_u = File::Create([
       'uri' => $uri_u,
     ]);
     $file_u->setPermanent();
     $file_u->save();
 
-    // Create unmasked file object.
+    // Create masked file object.
     $target_path_m = 'public://specimen_images';
     file_prepare_directory($target_path_m, FILE_CREATE_DIRECTORY);
     $file_destination_m = "$target_path_m/{$nid}-{$uniqid}_masked.jpg";
     $uri_m = file_unmanaged_copy($masked_filename, $file_destination_m, FILE_EXISTS_REPLACE);
+    print_r($uri_m);
     $file_m = File::Create([
       'uri' => $uri_m,
     ]);
@@ -304,9 +307,10 @@ class HerbariumImageSurrogateFactory {
     $this->node->get('field_large_sample_surrogate')->setValue($file_u);
     $this->node->get('field_large_sample_surrogate_msk')->setValue($file_m);
     $this->node->save();
+    unlink($unmasked_filename);
 
     $context['message'] = t(
-      '[NID#@nid] Attached unmasked image to specimen.',
+      '[NID#@nid] Attached unmasked and masked images to specimen image fields.',
       [
         '@nid' => $this->node->id(),
       ]
