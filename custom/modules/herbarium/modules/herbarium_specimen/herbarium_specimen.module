@@ -26,6 +26,8 @@ function herbarium_specimen_preprocess_views_exposed_form(&$variables) {
  *   A batch API operations array to generate the required surrogates.
  */
 function _herbarium_specimen_generate_specimen_surrogates_batch($nid, $fid) {
+
+
   return array(
     'title' => t('Generating Herbarium Specimen Surrogate Images'),
     'init_message' => t('Generating Herbarium Specimen Surrogate Images'),
