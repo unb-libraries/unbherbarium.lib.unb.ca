@@ -5,6 +5,8 @@ namespace Drupal\herbarium_specimen_lts\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver;
+use Drupal\Core\Site\Settings;
+
 
 /**
  * ManageArchivalMasterForm object.
@@ -24,9 +26,20 @@ class ManageArchivalMasterForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state, $node = NULL) {
     $form = [];
 
-    list($storage_status, $error_message) = HerbariumImageLtsArchiver::checkStorageStatus();
-    if ($error_message) {
-      drupal_set_message($error_message, 'error');
+    if (trim(Settings::get('specimen_lts_archive') == '')) {
+      drupal_set_message(
+        t('WARNING: Settings for a LFS storage server have not been detected. Any changes to the archival master for this specimen will not be stored in the permanent archive.'),
+        'warning'
+      );
+
+      // Allow the form to be submitted, but LFS storage will be skipped.
+      $storage_status = TRUE;
+    }
+    else {
+      list($storage_status, $error_message) = HerbariumImageLtsArchiver::checkStorageStatus();
+      if ($error_message) {
+        drupal_set_message($error_message, 'error');
+      }
     }
 
     $form['description'] = [
@@ -76,9 +89,12 @@ class ManageArchivalMasterForm extends FormBase {
       _herbarium_specimen_generate_specimen_surrogates_batch($nid, $fid)
     );
 
-    batch_set(
-      _herbarium_specimen_lts_store_new_image($nid, $fid)
-    );
+    if (trim(Settings::get('specimen_lts_archive') != '')) {
+      batch_set(
+        _herbarium_specimen_lts_store_new_image($nid, $fid)
+      );
+    }
+
   }
 
 }
