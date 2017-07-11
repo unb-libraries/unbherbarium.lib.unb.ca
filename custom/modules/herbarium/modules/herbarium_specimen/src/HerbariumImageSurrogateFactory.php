@@ -276,7 +276,6 @@ class HerbariumImageSurrogateFactory {
     file_prepare_directory($target_path_u, FILE_CREATE_DIRECTORY);
     $file_destination_u = "$target_path_u/$nid-$uniqid.jpg";
     $uri_u = file_unmanaged_copy($unmasked_filename, $file_destination_u, FILE_EXISTS_REPLACE);
-    print_r($uri_u);
     $file_u = File::Create([
       'uri' => $uri_u,
     ]);
@@ -288,7 +287,6 @@ class HerbariumImageSurrogateFactory {
     file_prepare_directory($target_path_m, FILE_CREATE_DIRECTORY);
     $file_destination_m = "$target_path_m/{$nid}-{$uniqid}_masked.jpg";
     $uri_m = file_unmanaged_copy($masked_filename, $file_destination_m, FILE_EXISTS_REPLACE);
-    print_r($uri_m);
     $file_m = File::Create([
       'uri' => $uri_m,
     ]);
