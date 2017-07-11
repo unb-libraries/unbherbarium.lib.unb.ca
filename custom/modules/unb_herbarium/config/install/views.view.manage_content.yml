@@ -7,7 +7,7 @@ dependencies:
     - node.type.banner_image
     - system.menu.tools
   module:
-    - image
+    - colorbox
     - node
     - user
     - views_autocomplete_filters
@@ -161,7 +161,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Image
+          label: Preview
           exclude: false
           alter:
             alter_text: false
@@ -203,10 +203,15 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: image
+          type: colorbox
           settings:
-            image_style: 220_wide
-            image_link: ''
+            colorbox_node_style: 220_wide
+            colorbox_node_style_first: ''
+            colorbox_image_style: ''
+            colorbox_gallery: post
+            colorbox_gallery_custom: ''
+            colorbox_caption: auto
+            colorbox_caption_custom: ''
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -269,7 +274,7 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: true
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -664,7 +669,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<div class=\"pull-right\">\n  <a class=\"btn btn-primary\" href=\"/node/add/banner_image\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add new banner image</a>\n</div>\n<div class=\"clearfix\"></div>"
+            value: "<div class=\"pull-right\">\n  <a class=\"btn btn-primary\" href=\"/node/add/banner_image\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add banner image</a>\n</div>\n<div class=\"clearfix\"></div>"
             format: full_html
           plugin_id: text
       defaults:
