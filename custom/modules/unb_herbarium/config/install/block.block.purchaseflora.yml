@@ -13,7 +13,7 @@ provider: null
 plugin: purchaseflora
 settings:
   id: purchaseflora
-  label: 'Purchase NB Flora'
+  label: 'Flora of NB'
   provider: unb_herbarium
   label_display: visible
 visibility: {  }

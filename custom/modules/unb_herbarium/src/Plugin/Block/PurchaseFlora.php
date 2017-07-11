@@ -9,7 +9,7 @@ use Drupal\Core\Block\BlockBase;
  *
  * @Block(
  *   id = "purchaseflora",
- *   admin_label = @Translation("Purchase Floar of NB"),
+ *   admin_label = @Translation("Purchase Flora of NB"),
  * )
  */
 class PurchaseFlora extends BlockBase {
