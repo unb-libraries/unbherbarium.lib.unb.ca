@@ -37,6 +37,7 @@ dependencies:
     - field.field.node.herbarium_specimen.field_dwc_verbatimlocality
     - field.field.node.herbarium_specimen.field_geoheritage
     - field.field.node.herbarium_specimen.field_gmap
+    - field.field.node.herbarium_specimen.field_herbarium_spec_master_impo
     - field.field.node.herbarium_specimen.field_large_sample_surrogate
     - field.field.node.herbarium_specimen.field_large_sample_surrogate_msk
     - field.field.node.herbarium_specimen.field_previous_identifications
@@ -343,6 +344,16 @@ content:
       include_text: false
     third_party_settings: {  }
     type: simple_gmap
+    region: content
+  field_herbarium_spec_master_impo:
+    weight: 39
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   field_large_sample_surrogate:
     type: colorbox
