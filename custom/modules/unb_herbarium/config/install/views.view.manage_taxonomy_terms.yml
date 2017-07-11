@@ -11,12 +11,12 @@ dependencies:
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
     - taxonomy.vocabulary.taxon_rank
   content:
-    - 'taxonomy_term:taxon_rank:1d6648b8-152d-495d-b5f8-c10d4ea1be1c'
-    - 'taxonomy_term:taxon_rank:25d71fb2-f147-4a8c-803a-6c1fd9d2a686'
-    - 'taxonomy_term:taxon_rank:9c185f9f-8ce6-4bd1-9068-5a947a1a586b'
-    - 'taxonomy_term:taxon_rank:a42b1b59-b067-4a58-bec6-cfb4958b4879'
-    - 'taxonomy_term:taxon_rank:c4ead379-5260-47b5-aa9b-d5e4e4ee47b0'
-    - 'taxonomy_term:taxon_rank:c7b4294d-38ec-4737-82cf-c40dde9d1268'
+    - 'taxonomy_term:taxon_rank:0f60ee6e-1dea-4ca1-90ba-033c53ed0162'
+    - 'taxonomy_term:taxon_rank:51c48191-e5a0-4709-881c-bf34d665b6ba'
+    - 'taxonomy_term:taxon_rank:85d93170-89da-4ffd-a613-45d8e62e5668'
+    - 'taxonomy_term:taxon_rank:962dbe02-1a25-4a49-b94c-f4aee8cf94ec'
+    - 'taxonomy_term:taxon_rank:e57b2930-5a71-4384-af42-36c228aed245'
+    - 'taxonomy_term:taxon_rank:f7811f87-7c81-4216-99e8-145a4abf8e77'
   module:
     - taxonomy
     - text
@@ -1711,7 +1711,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: '<span class="no-result">N/A<span>'
+          empty: '<small class="no-result">N/A<small>'
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -1774,7 +1774,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: '<span class="no-result">N/A</span>'
+          empty: '<small class="no-result">N/A</small>'
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
