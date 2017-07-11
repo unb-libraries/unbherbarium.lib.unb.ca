@@ -153,7 +153,7 @@ function _herbarium_specimen_lts_get_nid_from_accession($accession_id) {
  */
 function _herbarium_specimen_lts_get_if_already_imported($nid) {
   $query = \Drupal::entityQuery('node');
-  $query->condition('id', $nid);
+  $query->condition('nid', $nid);
   $query->condition('field_herbarium_spec_master_impo', TRUE);
   $nids = $query->execute();
   if (!empty($nids)) {
