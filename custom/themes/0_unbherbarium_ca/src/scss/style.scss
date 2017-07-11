@@ -118,7 +118,8 @@ dd {
 }
 // Clear separation of multi-line multiple value list items.
 dd li {
-  line-height: 1.3em;
+  line-height: 1.2em;
+  margin-bottom: .5em;
 }
 dd li:nth-child(even) {
   margin: .3em auto;
@@ -441,6 +442,7 @@ button.btn-primary {
   margin: .5em 0;
 }
 .excerpt strong {
+  color: $color-heading;
   color: $color-heading;
 }
 
