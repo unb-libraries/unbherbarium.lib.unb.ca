@@ -36,6 +36,7 @@ function herbarium_specimen_lts_drush_command() {
  *   If archival masters exist for this file, should we replace them?
  */
 function drush_herbarium_specimen_lts_import_lts_images($path = NULL, $overwrite_existing = FALSE) {
+  $batch_needed = FALSE;
 
   // User root should almost never be running this, rather the web daemon user.
   $processUser = posix_getpwuid(posix_geteuid());
@@ -98,6 +99,7 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL, $overwrite
 
           // If upload was successful, start with surrogates.
           if ($temp_fid) {
+            $batch_needed = TRUE;
             batch_set(
               _herbarium_specimen_generate_specimen_surrogates_batch($nid,
                 $temp_fid)
@@ -116,7 +118,9 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL, $overwrite
   }
 
   // Start the batch.
-  drush_backend_batch_process();
+  if ($batch_needed) {
+    drush_backend_batch_process();
+  }
 }
 
 /**
