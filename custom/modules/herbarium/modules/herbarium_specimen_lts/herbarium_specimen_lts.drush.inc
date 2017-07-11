@@ -92,20 +92,23 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL, $overwrite
         die();
       }
       else {
-        // Upload the file into a temporary FS.
-        $temp_fid = _herbarium_specimen_lts_add_temp_file_filesystem($file_path);
+        if ($overwrite_existing || !_herbarium_specimen_lts_get_if_already_imported($nid)) {
+          // Upload the file into a temporary FS.
+          $temp_fid = _herbarium_specimen_lts_add_temp_file_filesystem($file_path);
 
-        // If upload was successful, start with surrogates.
-        if ($temp_fid) {
-          batch_set(
-            _herbarium_specimen_generate_specimen_surrogates_batch($nid, $temp_fid)
-          );
-
-          // Only process file for LTS if we have a server set.
-          if (trim(Settings::get('specimen_lts_archive') != '')) {
+          // If upload was successful, start with surrogates.
+          if ($temp_fid) {
             batch_set(
-              _herbarium_specimen_lts_store_new_image($nid, $temp_fid)
+              _herbarium_specimen_generate_specimen_surrogates_batch($nid,
+                $temp_fid)
             );
+
+            // Only process file for LTS if we have a server set.
+            if (trim(Settings::get('specimen_lts_archive') != '')) {
+              batch_set(
+                _herbarium_specimen_lts_store_new_image($nid, $temp_fid)
+              );
+            }
           }
         }
       }
@@ -133,6 +136,28 @@ function _herbarium_specimen_lts_get_nid_from_accession($accession_id) {
     foreach ($nids as $nid) {
       return $nid;
     }
+  }
+  else {
+    return FALSE;
+  }
+}
+
+/**
+ * Get a specimen NID from an UNB Herbarium accession ID.
+ *
+ * @param int $nid
+ *   The node ID to query.
+ *
+ * @return bool
+ *   TRUE if the archive has already been imported, FALSE otherwise.
+ */
+function _herbarium_specimen_lts_get_if_already_imported($nid) {
+  $query = \Drupal::entityQuery('node');
+  $query->condition('id', $nid);
+  $query->condition('field_herbarium_spec_master_impo', TRUE);
+  $nids = $query->execute();
+  if (!empty($nids)) {
+    return TRUE;
   }
   else {
     return FALSE;

@@ -296,15 +296,19 @@ class HerbariumImageSurrogateFactory {
     // Remove existing JPG surrogates.
     if (!empty($this->node->get('field_large_sample_surrogate')->entity)) {
       $this->node->get('field_large_sample_surrogate')->entity->delete();
+      $this->node->get('field_large_sample_surrogate')->value = [];
     }
     if (!empty($this->node->get('field_large_sample_surrogate_msk')->entity)) {
       $this->node->get('field_large_sample_surrogate_msk')->entity->delete();
+      $this->node->get('field_large_sample_surrogate_msk')->value = [];
     }
 
     // Attach new existing JPG surrogates.
     $this->node->get('field_large_sample_surrogate')->setValue($file_u);
     $this->node->get('field_large_sample_surrogate_msk')->setValue($file_m);
     $this->node->save();
+
+    // Remove the masked file, it isn't needed further.
     unlink($unmasked_filename);
 
     $context['message'] = t(

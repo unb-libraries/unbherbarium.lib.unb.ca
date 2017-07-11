@@ -119,6 +119,12 @@ class HerbariumImageLtsArchiver {
       $return
     );
 
+    // Update the node to ensure that we don't double batch import.
+    if ($this->node->get('field_herbarium_spec_master_impo')->value == FALSE) {
+      $this->node->get('field_herbarium_spec_master_impo')->setValue(TRUE);
+      $this->node->save();
+    }
+
     $context['message'] = t(
       '[NID#@nid] Updated long term storage file for specimen.',
       [
