@@ -11,12 +11,12 @@ dependencies:
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
     - taxonomy.vocabulary.taxon_rank
   content:
-    - 'taxonomy_term:taxon_rank:0f60ee6e-1dea-4ca1-90ba-033c53ed0162'
-    - 'taxonomy_term:taxon_rank:51c48191-e5a0-4709-881c-bf34d665b6ba'
-    - 'taxonomy_term:taxon_rank:85d93170-89da-4ffd-a613-45d8e62e5668'
-    - 'taxonomy_term:taxon_rank:962dbe02-1a25-4a49-b94c-f4aee8cf94ec'
-    - 'taxonomy_term:taxon_rank:e57b2930-5a71-4384-af42-36c228aed245'
-    - 'taxonomy_term:taxon_rank:f7811f87-7c81-4216-99e8-145a4abf8e77'
+    - 'taxonomy_term:taxon_rank:209bf1fd-32f7-428c-9160-08f57679e6da'
+    - 'taxonomy_term:taxon_rank:3bf10216-93ab-4245-81d3-c8da4ce87dee'
+    - 'taxonomy_term:taxon_rank:6f49e162-ba4f-4d7c-be20-f3760fe909eb'
+    - 'taxonomy_term:taxon_rank:cdc70e81-e345-429c-af01-c113e13d3734'
+    - 'taxonomy_term:taxon_rank:d3605571-7867-41ea-9a9e-5ab3715941ad'
+    - 'taxonomy_term:taxon_rank:e6b51aa8-7d1b-4736-9f7e-c44f32656d0a'
   module:
     - taxonomy
     - text
@@ -1800,7 +1800,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Taxon
+          label: 'Taxon Rank'
           exclude: false
           alter:
             alter_text: false
