@@ -25,6 +25,13 @@ class HerbariumImageSurrogateFactory {
   protected $node;
 
   /**
+   * The parent node of the file object.
+   *
+   * @var object
+   */
+  protected $nid;
+
+  /**
    * An associative array : file path information as returned by pathinfo().
    *
    * @var array
@@ -60,15 +67,19 @@ class HerbariumImageSurrogateFactory {
    * @param object $nid
    *   The node id of the parent herbarium specimen.
    */
-  protected function __construct($fid = NULL, $nid = NULL) {
-    if ($fid) {
-      $this->file = File::load($fid);
-      $file_path = drupal_realpath($this->file->getFileUri());
-      $this->filePathParts = pathinfo($file_path);
-    }
+  protected function __construct($fid = NULL, $nid = NULL, $load_entities = TRUE) {
+    $this->nid = $nid;
 
-    if ($nid) {
-      $this->node = Node::load($nid);
+    if ($load_entities) {
+      if ($fid) {
+        $this->file = File::load($fid);
+        $file_path = drupal_realpath($this->file->getFileUri());
+        $this->filePathParts = pathinfo($file_path);
+      }
+
+      if ($nid) {
+        $this->node = Node::load($nid);
+      }
     }
 
     $public_dzi_path = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") . '/dzi';
@@ -145,8 +156,8 @@ class HerbariumImageSurrogateFactory {
    * @param array $context
    *   The Batch API context array.
    */
-  public static function deleteExistingAssets($fid, $nid, &$context) {
-    $obj = new static($fid, $nid);
+  public static function deleteExistingAssets($fid, $nid, $load_entities = TRUE, &$context) {
+    $obj = new static($fid, $nid, $load_entities);
     $obj->deleteGeneratedAssets($context);
   }
 
@@ -179,7 +190,7 @@ class HerbariumImageSurrogateFactory {
     $context['message'] = t(
       '[NID#@nid] Generated DZI and tiled images for specimen image',
       [
-        '@nid' => $this->node->id(),
+        '@nid' => $this->nid,
       ]
     );
   }
@@ -202,7 +213,7 @@ class HerbariumImageSurrogateFactory {
     $context['message'] = t(
       '[NID#@nid] Generated Unmasked JPG specimen surrogate image for archival master',
       [
-        '@nid' => $this->node->id(),
+        '@nid' => $this->nid,
       ]
     );
   }
@@ -228,7 +239,7 @@ class HerbariumImageSurrogateFactory {
     $context['message'] = t(
       '[NID#@nid] Generated Masked JPG specimen surrogate image for archival master',
       [
-        '@nid' => $this->node->id(),
+        '@nid' => $this->nid,
       ]
     );
   }
@@ -250,7 +261,7 @@ class HerbariumImageSurrogateFactory {
     $context['message'] = t(
       '[NID#@nid] Deleted previously generated assets for specimen',
       [
-        '@nid' => $this->node->id(),
+        '@nid' => $this->nid,
       ]
     );
   }
@@ -312,7 +323,7 @@ class HerbariumImageSurrogateFactory {
     $context['message'] = t(
       '[NID#@nid] Attached unmasked and masked images to specimen image fields.',
       [
-        '@nid' => $this->node->id(),
+        '@nid' => $this->nid,
       ]
     );
   }

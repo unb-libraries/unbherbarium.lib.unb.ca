@@ -25,7 +25,8 @@ function herbarium_specimen_node_delete(EntityInterface $node) {
             ],
             [
               NULL,
-              $node->id(),
+              $node->nid->value,
+              FALSE,
             ],
           ],
         ],
