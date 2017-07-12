@@ -346,8 +346,8 @@ function convertDMStoDecimal($deg,$min,$sec) {
       \z
     /x';
 
-    if (preg_match($latPatternValidator, $longitudeValue) &&
-      preg_match($longPatternValidator, $latitudeValue)) {
+    if (preg_match($longPatternValidator, $longitudeValue) &&
+      preg_match($latPatternValidator, $latitudeValue)) {
       return TRUE;
     }
     return FALSE;
