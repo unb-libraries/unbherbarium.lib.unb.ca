@@ -8,6 +8,33 @@
 use Drupal\Core\Entity\EntityInterface;
 
 /**
+ * Implements hook_node_delete().
+ */
+function herbarium_specimen_node_delete(EntityInterface $node) {
+  if ($node->getType() == 'herbarium_specimen') {
+    // Remove DZI tiles for this image.
+    batch_set(
+      [
+        'title' => t('Removing Surrogate Images'),
+        'init_message' => t('Removing Herbarium Specimen Surrogate Images'),
+        'operations' => [
+          [
+            [
+              'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
+              'deleteExistingAssets',
+            ],
+            [
+              NULL,
+              $node->id(),
+            ],
+          ],
+        ],
+      ]
+    );
+  }
+}
+
+/**
  * Implements hook_preprocess_views_exposed_form().
  */
 function herbarium_specimen_preprocess_views_exposed_form(&$variables) {
@@ -26,7 +53,6 @@ function herbarium_specimen_preprocess_views_exposed_form(&$variables) {
  *   A batch API operations array to generate the required surrogates.
  */
 function _herbarium_specimen_generate_specimen_surrogates_batch($nid, $fid) {
-
 
   return array(
     'title' => t('Generating Herbarium Specimen Surrogate Images'),

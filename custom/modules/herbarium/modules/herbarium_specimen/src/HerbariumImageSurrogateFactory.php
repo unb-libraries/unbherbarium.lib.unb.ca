@@ -60,12 +60,16 @@ class HerbariumImageSurrogateFactory {
    * @param object $nid
    *   The node id of the parent herbarium specimen.
    */
-  protected function __construct($fid, $nid) {
-    $this->file = File::load($fid);
-    $this->node = Node::load($nid);
+  protected function __construct($fid = NULL, $nid = NULL) {
+    if ($fid) {
+      $this->file = File::load($fid);
+      $file_path = drupal_realpath($this->file->getFileUri());
+      $this->filePathParts = pathinfo($file_path);
+    }
 
-    $file_path = drupal_realpath($this->file->getFileUri());
-    $this->filePathParts = pathinfo($file_path);
+    if ($nid) {
+      $this->node = Node::load($nid);
+    }
 
     $public_dzi_path = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") . '/dzi';
     $this->nodeDziPath = "$public_dzi_path/$nid";
@@ -144,12 +148,6 @@ class HerbariumImageSurrogateFactory {
   public static function deleteExistingAssets($fid, $nid, &$context) {
     $obj = new static($fid, $nid);
     $obj->deleteGeneratedAssets($context);
-  }
-
-  /**
-   * Delete the existing tiles and DZI for this file, if they exist.
-   */
-  protected function deleteExistingTiles() {
   }
 
   /**
