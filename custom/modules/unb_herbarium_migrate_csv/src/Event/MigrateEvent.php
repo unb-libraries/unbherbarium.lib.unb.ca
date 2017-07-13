@@ -304,7 +304,8 @@ class MigrateEvent implements EventSubscriberInterface {
  * RETURNS : STR of decimal degrees.
  */
 function convertDMStoDecimal($deg, $min, $sec) {
-  return number_format(floatval($deg) + floatval((($min * 60) + ($sec)) / 3600), 6);
+  $num = (float)$deg + ((float)$min * 60 + (float)$sec) / 3600;
+  return number_format($num, 6);
 }
 
   /*
