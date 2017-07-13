@@ -205,7 +205,8 @@ class MigrateEvent implements EventSubscriberInterface {
           HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANKS_TO_OMIT_PRINTING,
           FALSE
         );
-        $row->setSourceProperty('title_string', $full_title);
+        $title = (is_empty($full_title)) ? 'Unavailable' : $full_title;
+        $row->setSourceProperty('title_string', $title);
       } else {
         print "SPEC ID doesn't exist in vocabulary: " . $tax_id . "\n";
       }
@@ -266,7 +267,10 @@ class MigrateEvent implements EventSubscriberInterface {
         $latVal = $this->convertDMStoDecimal($latDeg, $latMin, $latSec);
     } elseif (is_numeric($geoUtmz) &&
       is_numeric($geoUtme) &&
-      is_numeric($geoUtmn)) {
+      is_numeric($geoUtmn) &&
+      (strlen($geoUtmn) < 10) &&
+      (strlen($geoUtme) < 10)
+    ) {
       $thisPoint = new GpointConverter;
       //print "\n"."Easting=".$geoUtme.", Northing=".$geoUtmn.", Zone=".$geoUtmz;
       list($latVal, $longVal) = $thisPoint->convertUtmToLatLng($geoUtme, $geoUtmn, $geoUtmz.'N');
