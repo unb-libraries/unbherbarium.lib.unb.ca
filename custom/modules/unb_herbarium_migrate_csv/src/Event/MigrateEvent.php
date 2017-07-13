@@ -205,7 +205,7 @@ class MigrateEvent implements EventSubscriberInterface {
           HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANKS_TO_OMIT_PRINTING,
           FALSE
         );
-        $title = (is_empty($full_title)) ? 'Unavailable' : $full_title;
+        $title = (empty($full_title)) ? 'Unavailable' : $full_title;
         $row->setSourceProperty('title_string', $title);
       } else {
         print "SPEC ID doesn't exist in vocabulary: " . $tax_id . "\n";
@@ -303,8 +303,8 @@ class MigrateEvent implements EventSubscriberInterface {
  *
  * RETURNS : STR of decimal degrees.
  */
-function convertDMStoDecimal($deg,$min,$sec) {
-  return number_format($deg+((($min*60)+($sec))/3600),6);
+function convertDMStoDecimal($deg, $min, $sec) {
+  return number_format(floatval($deg) + floatval((($min * 60) + ($sec)) / 3600), 6);
 }
 
   /*
