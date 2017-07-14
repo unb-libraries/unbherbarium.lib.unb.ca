@@ -19,7 +19,8 @@ function herbarium_specimen_lts_drush_command() {
     'description' => 'Import LTS images to samples.',
     'arguments' => [
       'path' => 'The path to import the LTS images from.',
-      'overwrite_existing' => 'Should the import overwrite existing LTS images in the git repo?',
+      'overwrite_existing' => 'Should the import skip existing LTS images that exist in the git repo?',
+      'limit' => 'Limit the number of TIF files to import. (Default is 100).',
     ],
     'drupal dependencies' => ['herbarium_specimen_lts'],
     'aliases' => ['herbarium:import-lts-images'],
@@ -35,7 +36,7 @@ function herbarium_specimen_lts_drush_command() {
  * @param bool $overwrite_existing
  *   If archival masters exist for this file, should we replace them?
  */
-function drush_herbarium_specimen_lts_import_lts_images($path = NULL, $overwrite_existing = FALSE) {
+function drush_herbarium_specimen_lts_import_lts_images($path = NULL, $overwrite_existing = FALSE, $limit = 100) {
   $batch_needed = FALSE;
 
   // User root should almost never be running this, rather the web daemon user.
@@ -73,8 +74,14 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL, $overwrite
   $regex = new RegexIterator($iterator, '/^.+\/[0-9]+\.tif$/i', RecursiveRegexIterator::GET_MATCH);
 
   foreach ($regex as $tif_files) {
+    $import_counter = 0;
     // Loop over files here.
     foreach ($tif_files as $file_path) {
+      if ($import_counter > $limit) {
+        drush_print("Limit of $limit files reached. Stopping import.");
+        exit(DRUSH_SUCCESS);
+      }
+
       $path_parts = pathinfo($file_path);
 
       // Check if a node with the accession ID exists.
@@ -100,6 +107,8 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL, $overwrite
           // If upload was successful, start with surrogates.
           if ($temp_fid) {
             $batch_needed = TRUE;
+            $import_counter++;
+
             batch_set(
               _herbarium_specimen_generate_specimen_surrogates_batch($nid,
                 $temp_fid)
