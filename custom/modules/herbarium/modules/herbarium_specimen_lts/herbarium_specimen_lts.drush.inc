@@ -70,7 +70,7 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL, $overwrite
   // Find files in source directory.
   $directory = new RecursiveDirectoryIterator("$path/");
   $iterator = new RecursiveIteratorIterator($directory);
-  $regex = new RegexIterator($iterator, '/^[0-9]+\.tif$/i', RecursiveRegexIterator::GET_MATCH);
+  $regex = new RegexIterator($iterator, '/^.+\/[0-9]+\.tif$/i', RecursiveRegexIterator::GET_MATCH);
 
   foreach ($regex as $tif_files) {
     // Loop over files here.
