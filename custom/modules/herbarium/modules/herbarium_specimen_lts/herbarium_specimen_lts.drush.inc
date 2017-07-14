@@ -80,8 +80,8 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
     // Loop over files here.
     foreach ($tif_files as $file_path) {
       if ($import_counter > $limit) {
-        drush_print("Limit of $limit files reached. Stopping import.");
-        exit(DRUSH_SUCCESS);
+        drush_print("Limit of $limit files reached. Stopping batch loading.");
+        break;
       }
 
       $path_parts = pathinfo($file_path);
