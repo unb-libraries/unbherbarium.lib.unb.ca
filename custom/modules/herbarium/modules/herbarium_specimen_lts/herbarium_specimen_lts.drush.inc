@@ -76,14 +76,14 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
   $ignore_existing = drush_get_option('ignore-existing');
   $import_counter = 0;
 
-  foreach ($regex as $tif_files) {
+  foreach ($regex as $tif_file) {
     // Loop over files here.
-    foreach ($tif_files as $file_path) {
-      if ($import_counter > $limit) {
-        drush_print("Limit of $limit files reached. Stopping batch loading.");
-        break;
-      }
+    if ($import_counter > $limit) {
+      drush_print("Limit of $limit files reached. Stopping batch loading.");
+      break;
+    }
 
+    foreach ($tif_file as $file_path) {
       $path_parts = pathinfo($file_path);
 
       // Check if a node with the accession ID exists.
