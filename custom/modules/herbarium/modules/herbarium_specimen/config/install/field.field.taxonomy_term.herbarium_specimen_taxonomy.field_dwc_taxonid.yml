@@ -9,7 +9,7 @@ field_name: field_dwc_taxonid
 entity_type: taxonomy_term
 bundle: herbarium_specimen_taxonomy
 label: 'DwC:taxonID'
-description: 'An identifier for the set of taxon information. For CMH this is the ID from the old Filemaker Database. This is a legacy field and probably not necessary for new specimens.'
+description: 'An identifier for the set of taxon information. For CMH this is the ''SPECID'' field from the old Filemaker Database. This is a legacy field and probably not necessary for new specimens.'
 required: false
 translatable: false
 default_value: {  }
