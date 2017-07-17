@@ -65,7 +65,7 @@ function _herbarium_specimen_generate_specimen_surrogates_batch($nid, $fid) {
           'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
           'deleteExistingAssets',
         ),
-        array($fid, $nid),
+        array($fid, $nid, FALSE),
       ),
 
       array(
