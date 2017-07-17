@@ -200,6 +200,7 @@ function _herbarium_specimen_lts_add_temp_file_filesystem($source, $destination 
     $file = File::Create([
       'uri' => $file_uri,
     ]);
+    $file->setPermanent();
     $file->save();
 
     return $file->id();
