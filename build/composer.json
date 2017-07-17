@@ -45,9 +45,6 @@
             "drupal/taxonomy_manager": {
                 "Taxonomy Manager Invalid Placeholder": "https://www.drupal.org/files/issues/invalid_place_holder_issue-2681969-2.patch",
                 "Taxonomy Manager JSON Load Error": "https://www.drupal.org/files/issues/2673054-load-error-11.patch"
-            },
-            "drupal/views_autocomplete_filters": {
-                "UncaughtType error": "https://www.drupal.org/files/issues/uncaught_typeerror-2824023-4.patch"
             }
         }
     },
