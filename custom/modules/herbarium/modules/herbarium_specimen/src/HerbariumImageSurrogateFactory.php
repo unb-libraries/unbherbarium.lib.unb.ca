@@ -153,17 +153,9 @@ class HerbariumImageSurrogateFactory {
   protected function generateDziTiles(&$context) {
     $nid = $this->nid;
 
-    // Generate Surrogate.
-    $temp_image_file = tempnam(sys_get_temp_dir(), "$nid-unmasked-") . '.jpg';
-    exec(
-      "convert {$this->file} -unsharp 0x1.0+0.5+0 $temp_image_file ",
-      $output,
-      $return
-    );
-
     // Generate DZI tiles.
     exec(
-      "/usr/local/bin/magick-slicer $temp_image_file {$this->nodeDziPath}",
+      "/usr/local/bin/magick-slicer -e jpg -i {$this->file} -o {$this->nodeDziPath}",
       $output,
       $return
     );
