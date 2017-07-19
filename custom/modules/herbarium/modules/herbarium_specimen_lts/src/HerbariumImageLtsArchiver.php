@@ -151,7 +151,10 @@ class HerbariumImageLtsArchiver {
     }
 
     // Can we contact the LFS server?
-    $fp = @fsockopen("tcp://hilstorage.hil.unb.ca:6983");
+    $lts_server_ip = $_SERVER['LTS_LFS_SERVER_HOST'];
+    $lts_server_port = $_SERVER['LTS_LFS_SERVER_PORT'];
+
+    $fp = @fsockopen("tcp://$lts_server_ip:$lts_server_port");
     if (!$fp) {
       return [FALSE, t('ERROR: A connection cannot be made to the long-term storage server. Please contact an administrator.')];
     }

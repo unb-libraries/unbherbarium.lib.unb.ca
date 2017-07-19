@@ -24,4 +24,8 @@ if [ "$LTS_DEPLOY_KEY" != "" ] && [ "$LTS_DEPLOY_PATH" != "" ]; then
   echo -e ".lfsconfig\n.gitattributes" > "${NGINX_USER_HOME}/.gitignore"
   chown ${NGINX_RUN_USER}:${NGINX_RUN_GROUP} "${NGINX_USER_HOME}/.gitignore"
   su - ${NGINX_RUN_USER} -s /bin/sh -c "git config --global core.excludesfile ~/.gitignore"
+
+  # Ensure PHP has access to these variables for testing.
+  sed -i "s|LTS_SERVER_HOST|$LTS_LFS_SERVER_HOST|g" /etc/php5/fpm.d/zz_app.conf
+  sed -i "s|LTS_SERVER_PORT|$LTS_LFS_SERVER_PORT|g" /etc/php5/fpm.d/zz_app.conf
 fi

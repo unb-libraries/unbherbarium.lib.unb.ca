@@ -23,6 +23,7 @@ function herbarium_specimen_lts_drush_command() {
     'options' => array(
       'ignore-existing' => 'Should the import skip existing LTS images that exist in the git repo?',
       'limit' => 'Limit the number of TIF files to import. (Default is 10).',
+      'start-processing' => 'TRUE if the import start processing immediately, FALSE to wait until drush batch-run is invoked?',
     ),
     'drupal dependencies' => ['herbarium_specimen_lts'],
     'aliases' => ['herbarium:import-lts-images'],
@@ -37,7 +38,6 @@ function herbarium_specimen_lts_drush_command() {
  *   The path containing the archival master files.
  */
 function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
-  $batch_needed = FALSE;
 
   // User root should almost never be running this, rather the web daemon user.
   $processUser = posix_getpwuid(posix_geteuid());
@@ -74,7 +74,14 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
   $regex = new RegexIterator($iterator, '/^.+\/[0-9]+\.tif$/i', RecursiveRegexIterator::GET_MATCH);
   $limit = drush_get_option('limit', 10);
   $ignore_existing = drush_get_option('ignore-existing');
+  $start_processing = drush_get_option('start-processing', FALSE);
   $import_counter = 0;
+
+  $batch = [
+    'title' => t('Updating Archive Images'),
+    'init_message' => t('Updating Archive Images'),
+    'operations' => [],
+  ];
 
   foreach ($regex as $tif_file) {
     // Loop over files here.
@@ -108,19 +115,16 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
 
           // If upload was successful, start with surrogates.
           if ($temp_fid) {
-            $batch_needed = TRUE;
             $import_counter++;
 
-            batch_set(
-              _herbarium_specimen_generate_specimen_surrogates_batch($nid,
-                $temp_fid)
-            );
+            // Image surrogates.
+            $surrogates_batch = _herbarium_specimen_generate_specimen_surrogates_batch($nid, $temp_fid);
+            $batch['operations'] = array_merge($batch['operations'], $surrogates_batch['operations']);
 
             // Only process file for LTS if we have a server set.
             if (trim(Settings::get('specimen_lts_archive') != '')) {
-              batch_set(
-                _herbarium_specimen_lts_store_new_image($nid, $temp_fid)
-              );
+              $lts_batch = _herbarium_specimen_lts_store_new_image($nid, $temp_fid);
+              $batch['operations'] = array_merge($batch['operations'], $lts_batch['operations']);
             }
           }
         }
@@ -128,9 +132,14 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
     }
   }
 
-  // Start the batch.
-  if ($batch_needed) {
-    drush_backend_batch_process();
+  if (!empty($batch['operations'])) {
+    batch_set($batch);
+    $batch = & batch_get();
+    drush_print("$import_counter files added to {$batch['id']}.");
+
+    if ($start_processing) {
+      drush_backend_batch_process();
+    }
   }
 }
 
