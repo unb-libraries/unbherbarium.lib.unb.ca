@@ -47,7 +47,7 @@ class InspectSpecimenForm extends FormBase {
       ],
       'drupalSettings' => [
         'herbarium_specimen' => [
-          'dzi_filepath' => "/sites/default/files/dzi/$nid/$nid.dzi",
+          'dzi_filepath' => "/sites/default/files/dzi/$nid.dzi",
         ],
       ],
     ];

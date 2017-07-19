@@ -26,7 +26,7 @@ class HerbariumSpecimenCheckController extends ControllerBase {
     $actualNode = Node::load($node);
 
     $dzi_path = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") .
-      "/dzi/$node/$node.dzi";
+      "/dzi/$node.dzi";
 
     return AccessResult::allowedIf(
       $actualNode->bundle() === 'herbarium_specimen' &&
