@@ -10,13 +10,13 @@
  *
  * @param object $nid
  *   The node id of the parent herbarium_specimen node.
- * @param object $fid
- *   The file ID of the archival master TIFF File object.
+ * @param object $file_path
+ *   The file path of the archival master TIFF File object.
  *
  * @return array
  *   A batch API operations array to generate the required surrogates.
  */
-function _herbarium_specimen_lts_store_new_image($nid, $fid) {
+function _herbarium_specimen_lts_store_new_image($nid, $file_path) {
   return [
     'title' => t('Updating Archive Image'),
     'init_message' => t('Updating Archive Image'),
@@ -26,15 +26,7 @@ function _herbarium_specimen_lts_store_new_image($nid, $fid) {
           'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
           'archiveFileToLts',
         ],
-        [$fid, $nid, \Drupal::currentUser()->id()],
-      ],
-
-      [
-        [
-          'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
-          'cleanupFiles',
-        ],
-        [$fid, $nid],
+        [$nid, $file_path, \Drupal::currentUser()->id()],
       ],
     ],
   ];

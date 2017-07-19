@@ -47,25 +47,24 @@ function herbarium_specimen_preprocess_views_exposed_form(&$variables) {
  *
  * @param object $nid
  *   The node id of the parent herbarium_specimen node.
- * @param object $fid
- *   The file ID of the archival master TIFF File object.
+ * @param string $file_path
+ *   The file path of the archival master TIFF File object.
  *
  * @return array
  *   A batch API operations array to generate the required surrogates.
  */
-function _herbarium_specimen_generate_specimen_surrogates_batch($nid, $fid) {
+function _herbarium_specimen_generate_specimen_surrogates_batch($nid, $file_path) {
 
   return array(
     'title' => t('Generating Herbarium Specimen Surrogate Images'),
     'init_message' => t('Generating Herbarium Specimen Surrogate Images'),
     'operations' => array(
-
       array(
         array(
           'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
           'deleteExistingAssets',
         ),
-        array($fid, $nid, FALSE),
+        array($nid),
       ),
 
       array(
@@ -73,7 +72,7 @@ function _herbarium_specimen_generate_specimen_surrogates_batch($nid, $fid) {
           'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
           'buildJpgSurrogate',
         ),
-        array($fid, $nid),
+        array($nid, $file_path),
       ),
 
       array(
@@ -81,15 +80,7 @@ function _herbarium_specimen_generate_specimen_surrogates_batch($nid, $fid) {
           'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
           'buildMaskedJpgSurrogate',
         ),
-        array($fid, $nid),
-      ),
-
-      array(
-        array(
-          'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
-          'attachSurrogatesToNode',
-        ),
-        array($fid, $nid),
+        array($nid, $file_path),
       ),
 
       array(
@@ -97,7 +88,7 @@ function _herbarium_specimen_generate_specimen_surrogates_batch($nid, $fid) {
           'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
           'buildDziTiles',
         ),
-        array($fid, $nid),
+        array($nid, $file_path),
       ),
     ),
   );

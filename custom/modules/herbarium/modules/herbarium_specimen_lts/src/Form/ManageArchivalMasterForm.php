@@ -6,6 +6,7 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver;
 use Drupal\Core\Site\Settings;
+use Drupal\file\Entity\File;
 
 
 /**
@@ -85,16 +86,27 @@ class ManageArchivalMasterForm extends FormBase {
     $fid = $form_state->getValue('tiff_file')[0];
     $nid = $form_state->getValue('nid');
 
-    batch_set(
-      _herbarium_specimen_generate_specimen_surrogates_batch($nid, $fid)
-    );
+    $file = File::Load($fid);
+    $file_path = drupal_realpath($file->getFileUri());
 
+    $batch = [
+      'title' => t('Updating Archive Images'),
+      'init_message' => t('Updating Archive Images'),
+      'operations' => [],
+    ];
+
+    // Image surrogates.
+    $surrogates_batch = _herbarium_specimen_generate_specimen_surrogates_batch($nid, $file_path);
+    $batch['operations'] = array_merge($batch['operations'], $surrogates_batch['operations']);
+
+    // Only process file for LTS if we have a server set.
     if (trim(Settings::get('specimen_lts_archive') != '')) {
-      batch_set(
-        _herbarium_specimen_lts_store_new_image($nid, $fid)
-      );
+      $lts_batch = _herbarium_specimen_lts_store_new_image($nid, $file_path);
+      $batch['operations'] = array_merge($batch['operations'], $lts_batch['operations']);
     }
 
+    // Start the batch.
+    batch_set($batch);
   }
 
 }

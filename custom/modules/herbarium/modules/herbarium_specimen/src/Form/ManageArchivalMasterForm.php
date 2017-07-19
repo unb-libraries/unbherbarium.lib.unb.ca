@@ -4,6 +4,7 @@ namespace Drupal\herbarium_specimen\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\file\Entity\File;
 
 /**
  * ManageArchivalMasterForm object.
@@ -59,12 +60,15 @@ class ManageArchivalMasterForm extends FormBase {
     $fid = $form_state->getValue('tiff_file')[0];
     $nid = $form_state->getValue('nid');
 
+    $file = File::load($fid);
+    $file_path = drupal_realpath($file->getFileUri());
+
     batch_set(
-      _herbarium_specimen_generate_specimen_surrogates_batch($nid, $fid)
+      _herbarium_specimen_generate_specimen_surrogates_batch($nid, $file_path)
     );
 
     batch_set(
-      _herbarium_specimen_lts_store_new_image($nid, $fid)
+      _herbarium_specimen_lts_store_new_image($nid, $file_path)
     );
   }
 

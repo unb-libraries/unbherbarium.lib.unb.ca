@@ -110,21 +110,19 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
       }
       else {
         if ($ignore_existing || !_herbarium_specimen_lts_get_if_already_imported($nid)) {
-          // Upload the file into a temporary FS.
-          $temp_fid = _herbarium_specimen_lts_add_temp_file_filesystem($file_path);
-
-          // If upload was successful, start with surrogates.
-          if ($temp_fid) {
+          if (file_exists($file_path)) {
             $import_counter++;
 
             // Image surrogates.
-            $surrogates_batch = _herbarium_specimen_generate_specimen_surrogates_batch($nid, $temp_fid);
-            $batch['operations'] = array_merge($batch['operations'], $surrogates_batch['operations']);
+            $surrogates_batch = _herbarium_specimen_generate_specimen_surrogates_batch($nid, $file_path);
+            $batch['operations'] = array_merge($batch['operations'],
+              $surrogates_batch['operations']);
 
             // Only process file for LTS if we have a server set.
             if (trim(Settings::get('specimen_lts_archive') != '')) {
-              $lts_batch = _herbarium_specimen_lts_store_new_image($nid, $temp_fid);
-              $batch['operations'] = array_merge($batch['operations'], $lts_batch['operations']);
+              $lts_batch = _herbarium_specimen_lts_store_new_image($nid, $file_path);
+              $batch['operations'] = array_merge($batch['operations'],
+                $lts_batch['operations']);
             }
           }
         }

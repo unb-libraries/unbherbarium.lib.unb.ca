@@ -11,9 +11,9 @@ use Drupal\node\Entity\Node;
 class HerbariumImageSurrogateFactory {
 
   /**
-   * The Drupal File object to generate the DZI and tiles for.
+   * The path to the file.
    *
-   * @var object
+   * @var string
    */
   protected $file;
 
@@ -62,21 +62,21 @@ class HerbariumImageSurrogateFactory {
   /**
    * Constructor.
    *
-   * @param object $fid
-   *   The file ID of the archival TIFF File object.
    * @param object $nid
    *   The node id of the parent herbarium specimen.
+   * @param string $file_path
+   *   The file ID of the archival TIFF File object.
+   * @param bool $load_entities
+   *   True if the $node entity should  be loaded on construction.
    */
-  protected function __construct($fid = NULL, $nid = NULL, $load_entities = TRUE) {
+  protected function __construct($nid, $file_path = NULL, $load_entities = TRUE) {
+    if ($file_path) {
+      $this->file = $file_path;
+      $this->filePathParts = pathinfo($file_path);
+    }
+
     $this->nid = $nid;
-
     if ($load_entities) {
-      if ($fid) {
-        $this->file = File::load($fid);
-        $file_path = drupal_realpath($this->file->getFileUri());
-        $this->filePathParts = pathinfo($file_path);
-      }
-
       if ($nid) {
         $this->node = Node::load($nid);
       }
@@ -87,77 +87,60 @@ class HerbariumImageSurrogateFactory {
   }
 
   /**
-   * Attach the image surrogates to the node image fields.
-   *
-   * @param object $fid
-   *   The file ID of the archival TIFF File object.
-   * @param object $nid
-   *   The node id of the parent herbarium specimen.
-   * @param array $context
-   *   The Batch API context array.
-   */
-  public static function attachSurrogatesToNode($fid, $nid, &$context) {
-    $obj = new static($fid, $nid);
-    $obj->attachNodeSurrogates($context);
-  }
-
-  /**
    * Build the DZI and tile files for the archival image.
    *
-   * @param object $fid
-   *   The file ID of the archival TIFF File object.
    * @param object $nid
    *   The node id of the parent herbarium specimen.
+   * @param string $file_path
+   *   The file ID of the archival TIFF File object.
    * @param array $context
    *   The Batch API context array.
    */
-  public static function buildDziTiles($fid, $nid, &$context) {
-    $obj = new static($fid, $nid);
+  public static function buildDziTiles($nid, $file_path, &$context) {
+    $obj = new static($nid, $file_path, FALSE);
     $obj->generateDziTiles($context);
   }
 
   /**
    * Create the master JPG surrogate from the archival image.
    *
-   * @param object $fid
-   *   The file ID of the archival TIFF File object.
    * @param object $nid
    *   The node id of the parent herbarium specimen.
+   * @param string $file_path
+   *   The file ID of the archival TIFF File object.
    * @param array $context
    *   The Batch API context array.
    */
-  public static function buildJpgSurrogate($fid, $nid, &$context) {
-    $obj = new static($fid, $nid);
+  public static function buildJpgSurrogate($nid, $file_path, &$context) {
+    $obj = new static($nid, $file_path);
     $obj->generateJpgSurrogate($context);
   }
 
   /**
    * Create the maked JPG surrogate from the archival image.
    *
-   * @param object $fid
-   *   The file ID of the archival TIFF File object.
    * @param object $nid
    *   The node id of the parent herbarium specimen.
+   * @param string $file_path
+   *   The file ID of the archival TIFF File object.
    * @param array $context
    *   The Batch API context array.
    */
-  public static function buildMaskedJpgSurrogate($fid, $nid, &$context) {
-    $obj = new static($fid, $nid);
+  public static function buildMaskedJpgSurrogate($nid, $file_path, &$context) {
+    $obj = new static($nid, $file_path);
     $obj->generateMaskedJpgSurrogate($context);
   }
 
   /**
    * Delete any existing assets from the DZI/Tile directory.
    *
-   * @param object $fid
-   *   The file ID of the archival TIFF File object.
    * @param object $nid
    *   The node id of the parent herbarium specimen.
    * @param array $context
    *   The Batch API context array.
    */
-  public static function deleteExistingAssets($fid, $nid, $load_entities = TRUE, &$context) {
-    $obj = new static($fid, $nid, $load_entities);
+  public static function deleteExistingAssets($nid, &$context) {
+    $obj = new static($nid, NULL, FALSE);
     $obj->deleteGeneratedAssets($context);
   }
 
@@ -168,21 +151,19 @@ class HerbariumImageSurrogateFactory {
    *   The Batch API context array.
    */
   protected function generateDziTiles(&$context) {
-    $nid = $this->node->id();
+    $nid = $this->nid;
 
-    // Generate tiles from masked image.
-    $cmd = "
-      cd {$this->filePathParts['dirname']} &&
-      mv {$nid}_masked.jpg $nid.jpg &&
-      /usr/local/bin/magick-slicer {$nid}.jpg &&
-      mkdir -p {$this->nodeDziPath} &&
-      mv $nid.dzi {$this->nodeDziPath}/ &&
-      mv {$nid}_files {$this->nodeDziPath}/ &&
-      rm -f $nid.jpg
-    ";
-
+    // Generate Surrogate.
+    $temp_image_file = tempnam(sys_get_temp_dir(), "$nid-unmasked-") . '.jpg';
     exec(
-      $cmd,
+      "convert {$this->file} -unsharp 0x1.0+0.5+0 $temp_image_file ",
+      $output,
+      $return
+    );
+
+    // Generate DZI tiles.
+    exec(
+      "/usr/local/bin/magick-slicer $temp_image_file {$this->nodeDziPath}",
       $output,
       $return
     );
@@ -203,15 +184,37 @@ class HerbariumImageSurrogateFactory {
    */
   protected function generateJpgSurrogate(&$context) {
     $nid = $this->node->id();
+    $temp_image_file = tempnam(sys_get_temp_dir(), "$nid-unmasked-") . '.jpg';
 
     exec(
-      "cd {$this->filePathParts['dirname']} && convert {$this->filePathParts['basename']} -unsharp 0x1.0+0.5+0 $nid.jpg",
+      "convert {$this->file} -unsharp 0x1.0+0.5+0 $temp_image_file ",
       $output,
       $return
     );
 
+    // Create unmasked file object.
+    $uniqid = uniqid(rand(), TRUE);
+    $target_path_u = 'private://specimen_images';
+    file_prepare_directory($target_path_u, FILE_CREATE_DIRECTORY);
+    $file_destination_u = "$target_path_u/$nid-$uniqid.jpg";
+    $uri_u = file_unmanaged_copy($temp_image_file, $file_destination_u, FILE_EXISTS_REPLACE);
+    $file_u = File::Create([
+      'uri' => $uri_u,
+    ]);
+    $file_u->setPermanent();
+    $file_u->save();
+
+    // Remove existing JPG surrogates.
+    if (!empty($this->node->get('field_large_sample_surrogate')->entity)) {
+      $this->node->get('field_large_sample_surrogate')->entity->delete();
+    }
+
+    // Assign file to node.
+    $this->node->get('field_large_sample_surrogate')->setValue($file_u);
+    $this->node->save();
+
     $context['message'] = t(
-      '[NID#@nid] Generated Unmasked JPG specimen surrogate image for archival master',
+      '[NID#@nid] Generated and Attached Unmasked JPG specimen surrogate image.',
       [
         '@nid' => $this->nid,
       ]
@@ -226,15 +229,39 @@ class HerbariumImageSurrogateFactory {
    */
   protected function generateMaskedJpgSurrogate(&$context) {
     $nid = $this->node->id();
-    list($width, $height, $type, $attr) = getimagesize("{$this->filePathParts['dirname']}/$nid.jpg");
+    list($width, $height, $type, $attr) = getimagesize($this->file);
     $mask_start_x = $width * (1 - $this->maskedWidthFactor);
     $mask_start_y = $height * (1 - $this->maskedHeightFactor);
 
+    $temp_image_file = tempnam(sys_get_temp_dir(), "$nid-masked-") . '.jpg';
+
     exec(
-      "cd {$this->filePathParts['dirname']} && convert $nid.jpg -strokewidth 0 -fill \"rgba(255,255,255,1)\" -draw \"rectangle $mask_start_x,$mask_start_y $width,$height\" {$nid}_masked.jpg",
+      "convert {$this->file} -strokewidth 0 -fill \"rgba(255,255,255,1)\" -draw \"rectangle $mask_start_x,$mask_start_y $width,$height\" $temp_image_file",
       $output,
       $return
     );
+
+    // Create unmasked file object.
+    $uniqid = uniqid(rand(), TRUE);
+    // Create masked file object.
+    $target_path_m = 'public://specimen_images';
+    file_prepare_directory($target_path_m, FILE_CREATE_DIRECTORY);
+    $file_destination_m = "$target_path_m/{$nid}-{$uniqid}_masked.jpg";
+    $uri_m = file_unmanaged_copy($temp_image_file, $file_destination_m, FILE_EXISTS_REPLACE);
+    $file_m = File::Create([
+      'uri' => $uri_m,
+    ]);
+    $file_m->setPermanent();
+    $file_m->save();
+
+    if (!empty($this->node->get('field_large_sample_surrogate_msk')->entity)) {
+      $this->node->get('field_large_sample_surrogate_msk')->entity->delete();
+      $this->node->get('field_large_sample_surrogate_msk')->value = [];
+    }
+
+    // Attach new existing JPG surrogates.
+    $this->node->get('field_large_sample_surrogate_msk')->setValue($file_m);
+    $this->node->save();
 
     $context['message'] = t(
       '[NID#@nid] Generated Masked JPG specimen surrogate image for archival master',
@@ -245,7 +272,7 @@ class HerbariumImageSurrogateFactory {
   }
 
   /**
-   * Delete any previous generated assets for this node.
+   * Delete any previous generated DZI assets for this node.
    *
    * @param array $context
    *   The Batch API context array.
@@ -260,68 +287,6 @@ class HerbariumImageSurrogateFactory {
 
     $context['message'] = t(
       '[NID#@nid] Deleted previously generated assets for specimen',
-      [
-        '@nid' => $this->nid,
-      ]
-    );
-  }
-
-  /**
-   * Attach the generated JPG images to the specimen node.
-   *
-   * @param array $context
-   *   The Batch API context array.
-   */
-  protected function attachNodeSurrogates(&$context) {
-    $nid = $this->node->id();
-    $unmasked_filename = "{$this->filePathParts['dirname']}/$nid.jpg";
-    $masked_filename = "{$this->filePathParts['dirname']}/{$nid}_masked.jpg";
-
-    // Generate a per-session uniqid for filenames to avoid caching.
-    $uniqid = uniqid(rand(), TRUE);
-
-    // Create unmasked file object.
-    $target_path_u = 'private://specimen_images';
-    file_prepare_directory($target_path_u, FILE_CREATE_DIRECTORY);
-    $file_destination_u = "$target_path_u/$nid-$uniqid.jpg";
-    $uri_u = file_unmanaged_copy($unmasked_filename, $file_destination_u, FILE_EXISTS_REPLACE);
-    $file_u = File::Create([
-      'uri' => $uri_u,
-    ]);
-    $file_u->setPermanent();
-    $file_u->save();
-
-    // Create masked file object.
-    $target_path_m = 'public://specimen_images';
-    file_prepare_directory($target_path_m, FILE_CREATE_DIRECTORY);
-    $file_destination_m = "$target_path_m/{$nid}-{$uniqid}_masked.jpg";
-    $uri_m = file_unmanaged_copy($masked_filename, $file_destination_m, FILE_EXISTS_REPLACE);
-    $file_m = File::Create([
-      'uri' => $uri_m,
-    ]);
-    $file_m->setPermanent();
-    $file_m->save();
-
-    // Remove existing JPG surrogates.
-    if (!empty($this->node->get('field_large_sample_surrogate')->entity)) {
-      $this->node->get('field_large_sample_surrogate')->entity->delete();
-      $this->node->get('field_large_sample_surrogate')->value = [];
-    }
-    if (!empty($this->node->get('field_large_sample_surrogate_msk')->entity)) {
-      $this->node->get('field_large_sample_surrogate_msk')->entity->delete();
-      $this->node->get('field_large_sample_surrogate_msk')->value = [];
-    }
-
-    // Attach new existing JPG surrogates.
-    $this->node->get('field_large_sample_surrogate')->setValue($file_u);
-    $this->node->get('field_large_sample_surrogate_msk')->setValue($file_m);
-    $this->node->save();
-
-    // Remove the masked file, it isn't needed further.
-    unlink($unmasked_filename);
-
-    $context['message'] = t(
-      '[NID#@nid] Attached unmasked and masked images to specimen image fields.',
       [
         '@nid' => $this->nid,
       ]

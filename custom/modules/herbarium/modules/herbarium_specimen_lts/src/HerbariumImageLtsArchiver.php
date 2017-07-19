@@ -50,41 +50,42 @@ class HerbariumImageLtsArchiver {
   /**
    * Constructor.
    *
-   * @param int $fid
-   *   The file ID of the archival TIFF File object.
    * @param int $nid
    *   The node id of the parent herbarium specimen.
+   * @param int $file_path
+   *   The file path of the archival TIFF File object.
    * @param int $uid
    *   The user requesting the update.
    */
-  protected function __construct($fid = 0, $nid = 0, $uid = 0) {
-    if ($fid) {
-      $this->file = File::load($fid);
-      $this->node = Node::load($nid);
+  protected function __construct($nid, $file_path = NULL, $uid = 0) {
+    if ($nid) {
+      $this->node = Node::load($uid);
+    }
 
-      if ($uid) {
-        $this->user = User::load($uid);
-      }
+    if ($file_path) {
+      $this->file = $file_path;
+      $this->filePathParts = pathinfo($this->file);
+    }
 
-      $file_path = drupal_realpath($this->file->getFileUri());
-      $this->filePathParts = pathinfo($file_path);
+    if ($uid) {
+      $this->user = User::load($uid);
     }
   }
 
   /**
    * Archive the TIF file to LTS.
    *
-   * @param int $fid
-   *   The file ID of the archival TIFF File object.
    * @param int $nid
    *   The node id of the parent herbarium specimen.
+   * @param string $file_path
+   *   The file path of the archival TIFF File object.
    * @param int $uid
    *   The user requesting the update.
    * @param array $context
    *   The Batch API context array.
    */
-  public static function archiveFileToLts($fid, $nid, $uid, &$context) {
-    $obj = new static($fid, $nid, $uid);
+  public static function archiveFileToLts($nid, $file_path, $uid, &$context) {
+    $obj = new static($file_path, $nid, $uid);
     $obj->archiveTiff($context);
   }
 
@@ -160,38 +161,6 @@ class HerbariumImageLtsArchiver {
     }
 
     return [TRUE, NULL];
-  }
-
-  /**
-   * Remove local files after processing.
-   *
-   * @param object $fid
-   *   The file ID of the archival TIFF File object.
-   * @param object $nid
-   *   The node id of the parent herbarium specimen.
-   * @param array $context
-   *   The Batch API context array.
-   */
-  public static function cleanupFiles($fid, $nid,$context) {
-    $obj = new static($fid, $nid);
-    $obj->deleteTempFiles($context);
-  }
-
-  /**
-   * Delete the uploaded archival tiff from local.
-   *
-   * @param array $context
-   *   The Batch API context array.
-   */
-  protected function deleteTempFiles($context) {
-    $this->file->delete();
-
-    $context['message'] = t(
-      '[NID#@nid] Deleted temporary processing files',
-      [
-        '@nid' => $this->node->id(),
-      ]
-    );
   }
 
 }
