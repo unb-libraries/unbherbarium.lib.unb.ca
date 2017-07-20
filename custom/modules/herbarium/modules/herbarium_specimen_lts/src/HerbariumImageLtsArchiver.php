@@ -138,7 +138,7 @@ class HerbariumImageLtsArchiver {
    * Check the storage status of the LTS archiver.
    */
   public static function checkStorageStatus() {
-    $obj = new static();
+    $obj = new static(FALSE);
 
     // Check if the LTS archive path exists.
     if (!file_exists($obj->ltsRepoPath . '/.git')) {
