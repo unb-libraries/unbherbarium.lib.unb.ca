@@ -132,7 +132,6 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
 
   if (!empty($batch['operations'])) {
     batch_set($batch);
-    $batch = & batch_get();
     drush_print("$import_counter files added to {$batch['id']}.");
 
     if ($start_processing) {

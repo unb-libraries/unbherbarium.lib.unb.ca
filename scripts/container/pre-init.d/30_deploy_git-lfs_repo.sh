@@ -26,6 +26,6 @@ if [ "$LTS_DEPLOY_KEY" != "" ] && [ "$LTS_DEPLOY_PATH" != "" ]; then
   su - ${NGINX_RUN_USER} -s /bin/sh -c "git config --global core.excludesfile ~/.gitignore"
 
   # Ensure PHP has access to these variables for testing.
-  sed -i "s|LTS_SERVER_HOST|$LTS_LFS_SERVER_HOST|g" /etc/nginx/conf.d/zz_app.conf
-  sed -i "s|LTS_SERVER_PORT|$LTS_LFS_SERVER_PORT|g" /etc/nginx/conf.d/zz_app.conf
+  sed -i "s|LTS_SERVER_HOST|$LTS_LFS_SERVER_HOST|g" /etc/nginx/conf.d/app.conf
+  sed -i "s|LTS_SERVER_PORT|$LTS_LFS_SERVER_PORT|g" /etc/nginx/conf.d/app.conf
 fi
