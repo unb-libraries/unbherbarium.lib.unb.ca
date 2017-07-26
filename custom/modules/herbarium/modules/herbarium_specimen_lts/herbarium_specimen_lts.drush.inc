@@ -124,7 +124,7 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
     $transaction = db_transaction();
 
     // Lock the table when selecting to avoid race conditions.
-    $sql = 'SELECT file FROM ' . HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE . " LIMIT 1 OFFSET $import_counter FOR UPDATE";
+    $sql = 'SELECT file FROM ' . HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE . " WHERE status=" . HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED . " LIMIT 1 OFFSET $import_counter FOR UPDATE";
 
     foreach (db_query($sql) as $result) {
       $file_path = $result->file;
