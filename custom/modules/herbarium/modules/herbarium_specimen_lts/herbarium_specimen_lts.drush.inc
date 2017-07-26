@@ -14,17 +14,17 @@ use Drupal\user\Entity\User;
  * Implements hook_drush_command().
  */
 function herbarium_specimen_lts_drush_command() {
-  $items = array();
+  $items = [];
   $items['import-lts-images'] = [
     'description' => 'Import LTS images to samples.',
     'arguments' => [
       'path' => 'The path to import the LTS images from.',
     ],
-    'options' => array(
+    'options' => [
       'ignore-existing' => 'Should the import skip existing LTS images that exist in the git repo?',
       'limit' => 'Limit the number of TIF files to import. (Default is 10).',
       'start-processing' => 'TRUE if the import start processing immediately, FALSE to wait until drush batch-run is invoked?',
-    ),
+    ],
     'drupal dependencies' => ['herbarium_specimen_lts'],
     'aliases' => ['herbarium:import-lts-images'],
   ];
@@ -38,6 +38,7 @@ function herbarium_specimen_lts_drush_command() {
  *   The path containing the archival master files.
  */
 function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
+  ini_set('memory_limit', '4G');
 
   // User root should almost never be running this, rather the web daemon user.
   $processUser = posix_getpwuid(posix_geteuid());
@@ -77,13 +78,14 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
   $start_processing = drush_get_option('start-processing', FALSE);
   $import_counter = 0;
 
-  $batch = [
-    'title' => t('Updating Archive Images'),
-    'init_message' => t('Updating Archive Images'),
-    'operations' => [],
-  ];
-
   foreach ($regex as $tif_file) {
+    $batch = [
+      'title' => t('Updating Archive Images'),
+      'init_message' => t('Updating Archive Images'),
+      'progressive' => FALSE,
+      'operations' => [],
+    ];
+
     // Loop over files here.
     if ($import_counter >= $limit) {
       drush_print("Limit of $limit files reached. Stopping batch loading.");
@@ -128,16 +130,17 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
         }
       }
     }
-  }
+    if (!empty($batch['operations'])) {
+      batch_set($batch);
 
-  if (!empty($batch['operations'])) {
-    batch_set($batch);
-    drush_print("$import_counter files added to {$batch['id']}.");
-
-    if ($start_processing) {
-      drush_backend_batch_process();
+      // We need to manually set the progressive variable again.
+      // @todo Remove when http://drupal.org/node/638712 is fixed.
+      $batch =& batch_get();
+      $batch['progressive'] = FALSE;
     }
   }
+
+  drush_backend_batch_process();
 }
 
 /**
