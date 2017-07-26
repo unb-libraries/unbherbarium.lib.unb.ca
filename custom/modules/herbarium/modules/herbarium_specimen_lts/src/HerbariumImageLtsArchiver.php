@@ -5,7 +5,6 @@ namespace Drupal\herbarium_specimen_lts;
 use Drupal\file\Entity\File;
 use Drupal\node\Entity\Node;
 use Drupal\user\Entity\User;
-use TQ\Git\Repository\Repository;
 
 /**
  * HerbariumImageSurrogateFactory caption set object.
@@ -171,12 +170,6 @@ class HerbariumImageLtsArchiver {
     // Check if the LTS archive path exists.
     if (!file_exists($obj->ltsRepoPath . '/HEAD')) {
       return [FALSE, t('ERROR: The long-term storage repository path does not exist. Please contact an administrator.')];
-    }
-
-    $git = Repository::open($obj->ltsRepoPath, '/usr/bin/git');
-    // Check if the archive is dirty. This means something went wrong before.
-    if ($git->isDirty()) {
-      return [FALSE, t('ERROR: The long-term storage repository appears desynced. Please contact an administrator.')];
     }
 
     // Can we contact the LFS server?
