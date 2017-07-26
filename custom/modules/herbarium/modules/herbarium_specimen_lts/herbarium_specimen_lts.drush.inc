@@ -9,7 +9,6 @@ use Drupal\Core\Site\Settings;
 use Drupal\file\Entity\File;
 use Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver;
 use Drupal\user\Entity\User;
-use Drupal\Core\Database\Database;
 
 /**
  * Implements hook_drush_command().
@@ -22,23 +21,15 @@ function herbarium_specimen_lts_drush_command() {
     'arguments' => [
       'path' => 'The path to import the LTS images from.',
     ],
-    'options' => [
-      'ignore-existing' => 'Should the import skip existing LTS images that exist in the git repo?',
-      'limit' => 'Limit the number of TIF files to import. (Default is 10).',
-    ],
     'drupal dependencies' => ['herbarium_specimen_lts'],
-    'aliases' => ['herbarium:import-lts-images'],
+    'aliases' => ['herbarium:queue-lts-images'],
   ];
 
   $items['import-lts-images'] = [
     'description' => 'Import LTS images that have been pre-populated in the queue.',
-    'arguments' => [
-      'path' => 'The path to import the LTS images from.',
-    ],
     'options' => [
       'ignore-existing' => 'Should the import skip existing LTS images that exist in the git repo?',
       'limit' => 'Limit the number of TIF files to import. (Default is 10).',
-      'start-processing' => 'TRUE if the import start processing immediately, FALSE to wait until drush batch-run is invoked?',
     ],
     'drupal dependencies' => ['herbarium_specimen_lts'],
     'aliases' => ['herbarium:import-lts-images'],
@@ -79,10 +70,8 @@ function drush_herbarium_specimen_lts_queue_lts_images($path = NULL) {
   foreach ($regex as $tif_file) {
     foreach ($tif_file as $file_path) {
       db_merge(HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE)
-        ->key(array('file' => $file_path))
-        ->fields(array(
-          'status' => HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED,
-        ))
+        ->key(['file' => $file_path])
+        ->fields(['status' => HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED])
         ->execute();
     }
   }
@@ -147,10 +136,6 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
 
     // Release the select lock on the table.
     unset($transaction);
-
-
-    $db = Drupal::database();
-    $result = $db->query("SHOW TABLES");
 
     $batch = [
       'title' => t('Updating Archive Images'),
