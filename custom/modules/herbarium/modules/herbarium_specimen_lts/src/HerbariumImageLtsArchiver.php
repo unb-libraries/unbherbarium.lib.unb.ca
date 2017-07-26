@@ -85,7 +85,7 @@ class HerbariumImageLtsArchiver {
    *   The Batch API context array.
    */
   public static function archiveFileToLts($nid, $file_path, $uid, &$context) {
-    $obj = new static($file_path, $nid, $uid);
+    $obj = new static($nid, $file_path, $uid);
     $obj->archiveTiff($context);
   }
 
