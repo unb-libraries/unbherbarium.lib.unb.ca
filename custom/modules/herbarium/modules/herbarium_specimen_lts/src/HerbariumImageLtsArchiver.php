@@ -101,7 +101,7 @@ class HerbariumImageLtsArchiver {
     $target_nid = $this->node->id();
 
     // Clone local repo to temp folder, avoiding problems with concurrent use.
-    $temp_clone_directory = sys_get_temp_dir();
+    $temp_clone_directory = tempnam(sys_get_temp_dir(), 'LTSGitRepo');
     exec(
       "git clone {$this->ltsRepoPath} {$temp_clone_directory} && cp {$this->ltsRepoPath}/.lfsconfig {$temp_clone_directory}/.lfsconfig",
       $output,
