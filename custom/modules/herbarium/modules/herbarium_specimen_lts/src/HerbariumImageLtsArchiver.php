@@ -100,26 +100,45 @@ class HerbariumImageLtsArchiver {
     $name = $this->user->get('name')->value;
     $target_nid = $this->node->id();
 
+    // Clone local repo to temp folder, avoiding problems with concurrent use.
+    $temp_clone_directory = sys_get_temp_dir();
+    exec(
+      "git clone {$this->ltsRepoPath} {$temp_clone_directory} && cp {$this->ltsRepoPath}/.lfsconfig {$temp_clone_directory}/.lfsconfig",
+      $output,
+      $return
+    );
+
     // Copy file to LTS folder.
     exec(
-      "cp {$this->file} {$this->ltsRepoPath}/{$target_nid}.tif",
+      "cp {$this->file} {$temp_clone_directory}/{$target_nid}.tif",
       $output,
       $return
     );
 
     // Stage the file for commit.
     exec(
-      "cd {$this->ltsRepoPath} && git lfs track \"*.tif\" && git add {$target_nid}.tif",
+      "cd {$temp_clone_directory} && git lfs track \"*.tif\" && git add {$target_nid}.tif",
       $output,
       $return
     );
 
-    // Commit and push.
+    // Commit.
     exec(
-      "cd {$this->ltsRepoPath} && git config --global user.email \"$email\" && git config --global user.name \"$name\" && git commit -m 'Update archival file for NID#{$target_nid}' && GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /var/lib/nginx/.ssh/id_rsa\" git push origin master",
+      "cd {$temp_clone_directory} && git config --global user.email \"$email\" && git config --global user.name \"$name\" && git commit -m 'Update archival file for NID#{$target_nid}'",
       $output,
       $return
     );
+
+    // Push back to origin. Check for errors indicating concurrent use / retry.
+    $return = 1;
+    while ($return != 0) {
+      exec(
+        "cd {$temp_clone_directory} && git pull --rebase origin master && git push origin master",
+        $output,
+        $return
+      );
+      sleep(3);
+    }
 
     // Update the node to ensure that we don't double batch import.
     if ($this->node->get('field_herbarium_spec_master_impo')->value == FALSE) {
