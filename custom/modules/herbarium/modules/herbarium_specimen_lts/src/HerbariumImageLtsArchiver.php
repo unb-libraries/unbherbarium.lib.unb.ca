@@ -59,7 +59,7 @@ class HerbariumImageLtsArchiver {
    */
   protected function __construct($nid, $file_path = NULL, $uid = 0) {
     if ($nid) {
-      $this->node = Node::load($uid);
+      $this->node = Node::load($nid);
     }
 
     if ($file_path) {
