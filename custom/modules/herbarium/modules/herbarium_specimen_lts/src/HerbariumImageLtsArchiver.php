@@ -102,6 +102,11 @@ class HerbariumImageLtsArchiver {
 
     // Clone local repo to temp folder, avoiding problems with concurrent use.
     $temp_clone_directory = tempnam(sys_get_temp_dir(), 'LTSGitRepo');
+    if (file_exists($temp_clone_directory)) {
+      unlink($temp_clone_directory);
+    }
+    mkdir($temp_clone_directory);
+
     exec(
       "git clone {$this->ltsRepoPath} {$temp_clone_directory} && cp {$this->ltsRepoPath}/.lfsconfig {$temp_clone_directory}/.lfsconfig",
       $output,
@@ -145,6 +150,9 @@ class HerbariumImageLtsArchiver {
       $this->node->get('field_herbarium_spec_master_impo')->setValue(TRUE);
       $this->node->save();
     }
+
+    // Remove the temporary dir.
+    unlink($temp_clone_directory);
 
     $context['message'] = t(
       '[NID#@nid] Updated long term storage file for specimen.',
