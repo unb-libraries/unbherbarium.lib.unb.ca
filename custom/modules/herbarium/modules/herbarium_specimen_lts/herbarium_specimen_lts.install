@@ -1,0 +1,27 @@
+<?php
+
+function herbarium_specimen_lts_schema(){
+  $schema[HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE] = array(
+    'description' => 'Create the import queue table.',
+    'fields' => array(
+      'file' => array(
+        'description' => "The filepath.",
+        'type' => 'varchar',
+        'length' => 511,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'status' => array(
+        'description' => 'File status.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'size' => 'normal',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array('file'),
+  );
+
+  return $schema;
+}
