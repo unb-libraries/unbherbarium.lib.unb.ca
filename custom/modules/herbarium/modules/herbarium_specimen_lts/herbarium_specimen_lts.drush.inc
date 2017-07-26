@@ -148,8 +148,15 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
 
     // Check if a node with the accession ID exists.
     $nid = _herbarium_specimen_lts_get_nid_from_accession($path_parts['filename']);
+
+    // No NID found, check to see if leading zeroes were added.
     if (!$nid) {
-      // We cannot proceed here - no node to attach surrogates to. Critical.
+      $trimmed_nid = ltrim($path_parts['filename'], '0');
+      $nid = _herbarium_specimen_lts_get_nid_from_accession($trimmed_nid);
+    }
+
+    // We cannot proceed here - no node to attach surrogates to. Critical.
+    if (!$nid) {
       drush_set_error(
         t(
           'No node found for accession ID @acc_id in file @file_path',
