@@ -98,24 +98,25 @@ class HerbariumImageLtsArchiver {
   protected function archiveTiff(&$context) {
     $email = $this->user->get('mail')->value;
     $name = $this->user->get('name')->value;
+    $target_nid = $this->node->id();
 
     // Copy file to LTS folder.
     exec(
-      "cd {$this->filePathParts['dirname']} && cp {$this->filePathParts['basename']} {$this->ltsRepoPath}/{$this->node->id()}.tif",
+      "cp {$this->file} {$this->ltsRepoPath}/{$target_nid}.tif",
       $output,
       $return
     );
 
     // Stage the file for commit.
     exec(
-      "cd {$this->ltsRepoPath} && git lfs track \"*.tif\" && git add {$this->node->id()}.tif",
+      "cd {$this->ltsRepoPath} && git lfs track \"*.tif\" && git add {$target_nid}.tif",
       $output,
       $return
     );
 
     // Commit and push.
     exec(
-      "cd {$this->ltsRepoPath} && git config --global user.email \"$email\" && git config --global user.name \"$name\" && git commit -m 'Update archival file for NID#{$this->node->id()}' && GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /var/lib/nginx/.ssh/id_rsa\" git push origin master",
+      "cd {$this->ltsRepoPath} && git config --global user.email \"$email\" && git config --global user.name \"$name\" && git commit -m 'Update archival file for NID#{$target_nid}' && GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /var/lib/nginx/.ssh/id_rsa\" git push origin master",
       $output,
       $return
     );
@@ -129,7 +130,7 @@ class HerbariumImageLtsArchiver {
     $context['message'] = t(
       '[NID#@nid] Updated long term storage file for specimen.',
       [
-        '@nid' => $this->node->id(),
+        '@nid' => $target_nid,
       ]
     );
   }
