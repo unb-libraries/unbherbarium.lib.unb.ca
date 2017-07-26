@@ -119,7 +119,7 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
   $limit = drush_get_option('limit', 10);
   $import_counter = 0;
 
-  while ($import_counter = $limit) {
+  while ($import_counter < $limit) {
     // Start a transaction.
     $transaction = db_transaction();
 
