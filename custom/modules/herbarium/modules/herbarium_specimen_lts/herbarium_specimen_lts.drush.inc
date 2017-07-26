@@ -9,14 +9,29 @@ use Drupal\Core\Site\Settings;
 use Drupal\file\Entity\File;
 use Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver;
 use Drupal\user\Entity\User;
+use Drupal\Core\Database\Database;
 
 /**
  * Implements hook_drush_command().
  */
 function herbarium_specimen_lts_drush_command() {
   $items = [];
+
+  $items['queue-lts-images'] = [
+    'description' => 'Queue the images in a path for an LTS import.',
+    'arguments' => [
+      'path' => 'The path to import the LTS images from.',
+    ],
+    'options' => [
+      'ignore-existing' => 'Should the import skip existing LTS images that exist in the git repo?',
+      'limit' => 'Limit the number of TIF files to import. (Default is 10).',
+    ],
+    'drupal dependencies' => ['herbarium_specimen_lts'],
+    'aliases' => ['herbarium:import-lts-images'],
+  ];
+
   $items['import-lts-images'] = [
-    'description' => 'Import LTS images to samples.',
+    'description' => 'Import LTS images that have been pre-populated in the queue.',
     'arguments' => [
       'path' => 'The path to import the LTS images from.',
     ],
@@ -28,7 +43,49 @@ function herbarium_specimen_lts_drush_command() {
     'drupal dependencies' => ['herbarium_specimen_lts'],
     'aliases' => ['herbarium:import-lts-images'],
   ];
+
   return $items;
+}
+
+/**
+ * Generate surrogates for a TIF, attach to node and send image to LTS server.
+ *
+ * @param string $path
+ *   The path containing the archival master files.
+ */
+function drush_herbarium_specimen_lts_queue_lts_images($path = NULL) {
+  ini_set('memory_limit', '4G');
+
+  // User root should almost never be running this, rather the web daemon user.
+  $processUser = posix_getpwuid(posix_geteuid());
+  if ($processUser['name'] == 'root') {
+    drush_set_error(t('This command should almost never be run as root. Try su.'));
+    die();
+  }
+
+  // Make sure this isn't being run as anonymous.
+  $user = User::load(\Drupal::currentUser()->id());
+  if ($user->id() == 0) {
+    drush_set_error(t('This command must be run in Drush with the -u (UID) argument.'));
+    die();
+  }
+
+  // Find files in source directory.
+  $directory = new RecursiveDirectoryIterator("$path/");
+  $iterator = new RecursiveIteratorIterator($directory);
+  $regex = new RegexIterator($iterator, '/^.+\/[0-9]+\.tif$/i', RecursiveRegexIterator::GET_MATCH);
+  $limit = drush_get_option('limit', 10);
+
+  foreach ($regex as $tif_file) {
+    foreach ($tif_file as $file_path) {
+      db_merge(HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE)
+        ->key(array('file' => $file_path))
+        ->fields(array(
+          'status' => HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED,
+        ))
+        ->execute();
+    }
+  }
 }
 
 /**
@@ -70,15 +127,31 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
   }
 
   // Find files in source directory.
-  $directory = new RecursiveDirectoryIterator("$path/");
-  $iterator = new RecursiveIteratorIterator($directory);
-  $regex = new RegexIterator($iterator, '/^.+\/[0-9]+\.tif$/i', RecursiveRegexIterator::GET_MATCH);
   $limit = drush_get_option('limit', 10);
-  $ignore_existing = drush_get_option('ignore-existing');
-  $start_processing = drush_get_option('start-processing', FALSE);
   $import_counter = 0;
 
-  foreach ($regex as $tif_file) {
+  while ($import_counter <= $limit) {
+    // Start a transaction.
+    $transaction = db_transaction();
+
+    // Lock the table when selecting to avoid race conditions.
+    $sql = 'SELECT file FROM ' . HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE . " LIMIT 1 OFFSET $import_counter FOR UPDATE";
+
+    foreach (db_query($sql) as $result) {
+      $file_path = $result->file;
+    }
+
+    // Update the status as 'in process'.
+    $sql = 'UPDATE ' . HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE . " SET status=" . HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_PROCESSING . " WHERE file='$file_path'";
+    db_query($sql);
+
+    // Release the select lock on the table.
+    unset($transaction);
+
+
+    $db = Drupal::database();
+    $result = $db->query("SHOW TABLES");
+
     $batch = [
       'title' => t('Updating Archive Images'),
       'init_message' => t('Updating Archive Images'),
@@ -86,60 +159,51 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
       'operations' => [],
     ];
 
-    // Loop over files here.
-    if ($import_counter >= $limit) {
-      drush_print("Limit of $limit files reached. Stopping batch loading.");
-      break;
+    $path_parts = pathinfo($file_path);
+
+    // Check if a node with the accession ID exists.
+    $nid = _herbarium_specimen_lts_get_nid_from_accession($path_parts['filename']);
+    if (!$nid) {
+      // We cannot proceed here - no node to attach surrogates to. Critical.
+      drush_set_error(
+        t(
+          'No node found for accession ID @acc_id in file @file_path',
+          [
+            '@acc_id' => $path_parts['filename'],
+            '@file_path' => $file_path,
+          ]
+        )
+      );
+      die();
     }
+    else {
+      if (!_herbarium_specimen_lts_get_if_already_imported($nid)) {
+        if (file_exists($file_path)) {
+          $import_counter++;
 
-    foreach ($tif_file as $file_path) {
-      $path_parts = pathinfo($file_path);
+          // Image surrogates.
+          $surrogates_batch = _herbarium_specimen_generate_specimen_surrogates_batch($nid, $file_path);
+          $batch['operations'] = array_merge($batch['operations'],
+            $surrogates_batch['operations']);
 
-      // Check if a node with the accession ID exists.
-      $nid = _herbarium_specimen_lts_get_nid_from_accession($path_parts['filename']);
-      if (!$nid) {
-        // We cannot proceed here - no node to attach surrogates to. Critical.
-        drush_set_error(
-          t(
-            'No node found for accession ID @acc_id in file @file_path',
-            [
-              '@acc_id' => $path_parts['filename'],
-              '@file_path' => $file_path,
-            ]
-          )
-        );
-        die();
-      }
-      else {
-        if ($ignore_existing || !_herbarium_specimen_lts_get_if_already_imported($nid)) {
-          if (file_exists($file_path)) {
-            $import_counter++;
-
-            // Image surrogates.
-            $surrogates_batch = _herbarium_specimen_generate_specimen_surrogates_batch($nid, $file_path);
+          // Only process file for LTS if we have a server set.
+          if (trim(Settings::get('specimen_lts_archive') != '')) {
+            $lts_batch = _herbarium_specimen_lts_store_new_image($nid, $file_path);
             $batch['operations'] = array_merge($batch['operations'],
-              $surrogates_batch['operations']);
-
-            // Only process file for LTS if we have a server set.
-            if (trim(Settings::get('specimen_lts_archive') != '')) {
-              $lts_batch = _herbarium_specimen_lts_store_new_image($nid, $file_path);
-              $batch['operations'] = array_merge($batch['operations'],
-                $lts_batch['operations']);
-            }
+              $lts_batch['operations']);
           }
         }
       }
     }
+
     if (!empty($batch['operations'])) {
       batch_set($batch);
-
-      // We need to manually set the progressive variable again.
-      // @todo Remove when http://drupal.org/node/638712 is fixed.
-      $batch =& batch_get();
-      $batch['progressive'] = FALSE;
     }
   }
 
+  drush_print("Limit of $limit files reached. Stopping batch loading.");
+
+  // Process the batches we've created.
   drush_backend_batch_process();
 }
 

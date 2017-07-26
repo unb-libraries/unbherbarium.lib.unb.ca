@@ -5,6 +5,12 @@
  * Features related to herbarium_specimen_lts.
  */
 
+define('HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE', 'herbarium_specimen_lts_lts_image_queue');
+define('HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED', 0);
+define('HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_PROCESSING', 1);
+define('HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_FAILED', 2);
+define('HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_COMPLETE', 3);
+
 /**
  * Build batch operations array for specimen surrogates from an archival master.
  *
