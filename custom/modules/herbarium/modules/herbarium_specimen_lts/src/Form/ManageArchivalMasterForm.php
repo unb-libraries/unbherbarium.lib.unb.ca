@@ -43,42 +43,55 @@ class ManageArchivalMasterForm extends FormBase {
     }
 
     $form['description'] = [
-      '#markup' => 'The archival master serves as the canonical version of the digital specimen scan.',
+      '#markup' => 'The archival master serves as the digital preservation record for the herbarium specimen.',
+    ];
+
+    $form['master_history'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Audit History'),
     ];
 
     $history_rows = HerbariumImageLtsArchiver::getFileHistory($node);
     if (!empty($history_rows)) {
+      // Construct header.
       $header = [
         t('Date'),
         t('Author'),
         t('Email'),
       ];
 
+      // Build the rows.
       $rows = [];
       foreach ($history_rows as $row) {
         $rows[] = ['data' => (array) $row];
       }
 
-      $form = [
-        '#markup' => t('List of All locations'),
-      ];
-
-      $form['history_table'] = [
+      $form['master_history']['history_table'] = [
         '#theme' => 'table',
         '#header' => $header,
         '#rows' => $rows,
       ];
 
-      $form['pager'] = [
+      $form['master_history']['pager'] = [
         '#type' => 'pager',
       ];
     }
+    else {
+      $form['master_history']['none_found'] = [
+        '#markup' => t('No archival master images have been attached to this specimen yet.'),
+      ];
+    }
 
-    $form['tiff_file'] = [
+    $form['upload_new'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Upload'),
+    ];
+
+    $form['upload_new']['tiff_file'] = [
       '#disabled' => !$storage_status,
       '#title' => t('TIF File'),
       '#type' => 'managed_file',
-      '#description' => t('Upload a archival master file, allowed extensions: TIF TIFF'),
+      '#description' => t('Upload an archival master file, allowed extensions: TIF TIFF'),
       '#upload_location' => "private://dzi/$node/",
       '#required' => TRUE,
       '#upload_validators' => [
@@ -91,10 +104,10 @@ class ManageArchivalMasterForm extends FormBase {
       '#value' => isset($node) && is_numeric($node) ? $node : -1,
     ];
 
-    $form['submit'] = [
+    $form['upload_new']['submit'] = [
       '#type' => 'submit',
       '#disabled' => !$storage_status,
-      '#value' => t('Upload Archival Master'),
+      '#value' => t('Upload New Archival Master'),
     ];
 
     return $form;
