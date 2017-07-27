@@ -43,6 +43,11 @@ class ManageArchivalMasterForm extends FormBase {
     }
 
     $form['description'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Information'),
+    ];
+
+    $form['description']['description'] = [
       '#markup' => 'The archival master serves as the digital preservation record for the herbarium specimen.',
     ];
 
