@@ -58,6 +58,7 @@ class ManageArchivalMasterForm extends FormBase {
         t('Date'),
         t('Author'),
         t('Email'),
+        t('Details'),
       ];
 
       // Build the rows.
