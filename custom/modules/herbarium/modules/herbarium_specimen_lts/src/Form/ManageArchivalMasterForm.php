@@ -61,7 +61,6 @@ class ManageArchivalMasterForm extends FormBase {
       // Construct header.
       $header = [
         t('Date'),
-        t('Author'),
         t('Email'),
         t('Details'),
       ];

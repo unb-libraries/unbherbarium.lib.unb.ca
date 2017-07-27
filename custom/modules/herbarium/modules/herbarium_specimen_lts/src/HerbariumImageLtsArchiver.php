@@ -273,7 +273,7 @@ class HerbariumImageLtsArchiver {
 
     // Stage the file for commit.
     exec(
-      "cd {$this->ltsRepoPath} && git log --pretty=format:\"%ai||%aN||%aE||%s\" -- {$this->node->id()}.tif",
+      "cd {$this->ltsRepoPath} && git log --pretty=format:\"%ai||%aE||%s\" -- {$this->node->id()}.tif",
       $output,
       $return
     );
