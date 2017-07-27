@@ -191,7 +191,7 @@ class HerbariumImageLtsArchiver {
    *
    * @see http://php.net/manual/fr/function.rmdir.php#98622
    */
-  private static function delTree($dir) {
+  private function delTree($dir) {
     $files = array_diff(scandir($dir), ['.', '..']);
     foreach ($files as $file) {
       (is_dir("$dir/$file") && !is_link($dir)) ? delTree("$dir/$file") : unlink("$dir/$file");
