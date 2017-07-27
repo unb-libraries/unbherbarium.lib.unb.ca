@@ -143,7 +143,7 @@ class HerbariumImageLtsArchiver {
       );
       if ($return != 0) {
         $sleep_seconds = 3;
-        echo("Busy repo : pausing for $sleep_seconds before trying push again.");
+        echo("Busy repo : pausing for $sleep_seconds before trying push again.\n");
         sleep($sleep_seconds);
       }
     }
