@@ -8,7 +8,6 @@ use Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver;
 use Drupal\Core\Site\Settings;
 use Drupal\file\Entity\File;
 
-
 /**
  * ManageArchivalMasterForm object.
  */
@@ -46,6 +45,34 @@ class ManageArchivalMasterForm extends FormBase {
     $form['description'] = [
       '#markup' => 'The archival master serves as the canonical version of the digital specimen scan.',
     ];
+
+    $history_rows = HerbariumImageLtsArchiver::getFileHistory($node);
+    if (!empty($history_rows)) {
+      $header = [
+        t('Date'),
+        t('Author'),
+        t('Email'),
+      ];
+
+      $rows = [];
+      foreach ($history_rows as $row) {
+        $rows[] = ['data' => (array) $row];
+      }
+
+      $form = [
+        '#markup' => t('List of All locations'),
+      ];
+
+      $form['history_table'] = [
+        '#theme' => 'table',
+        '#header' => $header,
+        '#rows' => $rows,
+      ];
+
+      $form['pager'] = [
+        '#type' => 'pager',
+      ];
+    }
 
     $form['tiff_file'] = [
       '#disabled' => !$storage_status,
