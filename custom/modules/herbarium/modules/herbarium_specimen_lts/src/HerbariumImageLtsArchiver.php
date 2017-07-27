@@ -153,7 +153,7 @@ class HerbariumImageLtsArchiver {
     }
 
     // Remove the temporary dir.
-    unlink($temp_clone_directory);
+    $this->delTree($temp_clone_directory);
 
     $context['message'] = t(
       '[NID#@nid] Updated long term storage file for specimen.',
@@ -184,6 +184,19 @@ class HerbariumImageLtsArchiver {
     }
 
     return [TRUE, NULL];
+  }
+
+  /**
+   * Delete a filesystem tree recursively.
+   *
+   * @see http://php.net/manual/fr/function.rmdir.php#98622
+   */
+  private static function delTree($dir) {
+    $files = array_diff(scandir($dir), ['.', '..']);
+    foreach ($files as $file) {
+      (is_dir("$dir/$file") && !is_link($dir)) ? delTree("$dir/$file") : unlink("$dir/$file");
+    }
+    return rmdir($dir);
   }
 
 }
