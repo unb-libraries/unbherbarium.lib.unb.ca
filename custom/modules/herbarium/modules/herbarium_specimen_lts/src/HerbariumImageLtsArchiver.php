@@ -141,9 +141,11 @@ class HerbariumImageLtsArchiver {
         $output,
         $return
       );
-      $sleep_seconds = 3;
-      echo('Busy repo : pausing for $sleep_seconds before trying push again.');
-      sleep($sleep_seconds);
+      if ($return != 0) {
+        $sleep_seconds = 3;
+        echo("Busy repo : pausing for $sleep_seconds before trying push again.");
+        sleep($sleep_seconds);
+      }
     }
 
     // Update the node to ensure that we don't double batch import.
