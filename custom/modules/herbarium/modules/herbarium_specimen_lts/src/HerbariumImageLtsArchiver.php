@@ -228,10 +228,26 @@ class HerbariumImageLtsArchiver {
     // Check repo for file.
     if (empty($this->getNodeHistory())) {
       _herbarium_specimen_lts_set_file_status($this->file, HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_FAIL_NOT_ARCHIVED);
+
+      $context['message'] = t(
+        '[NID#@nid] Import Audit Failed!.',
+        [
+          '@nid' => $this->node->id(),
+        ]
+      );
+
       return;
     }
 
     _herbarium_specimen_lts_set_file_status($this->file, HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_COMPLETE);
+
+    $context['message'] = t(
+      '[NID#@nid] Import Audit Pass.',
+      [
+        '@nid' => $this->node->id(),
+      ]
+    );
+
   }
 
   /**
