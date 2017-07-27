@@ -205,6 +205,9 @@ class HerbariumImageSurrogateFactory {
     $this->node->get('field_large_sample_surrogate')->setValue($file_u);
     $this->node->save();
 
+    // Unlink temporary file.
+    unlink($temp_image_file);
+
     $context['message'] = t(
       '[NID#@nid] Generated and Attached Unmasked JPG specimen surrogate image.',
       [
@@ -254,6 +257,9 @@ class HerbariumImageSurrogateFactory {
     // Attach new existing JPG surrogates.
     $this->node->get('field_large_sample_surrogate_msk')->setValue($file_m);
     $this->node->save();
+
+    // Unlink temporary file.
+    unlink($temp_image_file);
 
     $context['message'] = t(
       '[NID#@nid] Generated Masked JPG specimen surrogate image for archival master',
