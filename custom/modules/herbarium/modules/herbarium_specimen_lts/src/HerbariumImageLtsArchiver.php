@@ -199,4 +199,74 @@ class HerbariumImageLtsArchiver {
     return rmdir($dir);
   }
 
+  /**
+   * Archive the TIF file to LTS.
+   *
+   * @param int $nid
+   *   The node id of the parent herbarium specimen.
+   * @param string $file_path
+   *   The file path of the archival TIFF File object.
+   * @param array $context
+   *   The Batch API context array.
+   */
+  public static function auditDrushBatch($nid, $file_path, &$context) {
+    $obj = new static($nid, $file_path);
+    $obj->auditFile($context);
+  }
+
+  /**
+   * Push the new TIF file up to the LTS archive.
+   *
+   * @param array $context
+   *   The Batch API context array.
+   */
+  protected function auditFile(&$context) {
+    // Check node image attachments.
+    // Check DZI Tiles
+    // Check repo for file.
+    if (empty(getNodeHistory())) {
+      _herbarium_specimen_lts_set_file_status($this->file, HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_FAIL_NOT_ARCHIVED);
+      return;
+    }
+
+    _herbarium_specimen_lts_set_file_status($this->file, HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_COMPLETE);
+  }
+
+  /**
+   * Archive the TIF file to LTS.
+   *
+   * @param int $nid
+   *   The node id of the parent herbarium specimen.
+   */
+  public static function getFileHistory($nid) {
+    $obj = new static($nid);
+    return $obj->getNodeHistory();
+  }
+
+  /**
+   * Get the history of an archival file in the LTS repo.
+   */
+  protected function getNodeHistory() {
+    $history = [];
+
+    // Stage the file for commit.
+    exec(
+      "cd {$this->ltsRepoPath} && git log --pretty=format:\"%ai||%aN||%aE||\" -- {$this->node->id()}.tif",
+      $output,
+      $return
+    );
+
+    if ($return == 0) {
+      $output = trim($output);
+      if (!empty($output)) {
+        $lines = explode("\n", $output);
+        foreach ($lines as $line) {
+          $history[] = explode('||', $line);
+        }
+      }
+    }
+
+    return $history;
+  }
+
 }

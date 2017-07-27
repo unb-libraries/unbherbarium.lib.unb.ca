@@ -9,7 +9,9 @@ define('HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE', 'herbarium_specimen_lts_lts_image_q
 define('HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED', 0);
 define('HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_PROCESSING', 1);
 define('HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_FAIL_NO_NODE_ACCID', 2);
-define('HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_FAIL_BAD_VERIFICATION', 3);
+define('HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_FAIL_NO_SURROGATES', 3);
+define('HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_FAIL_NO_DZI', 4);
+define('HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_FAIL_NOT_ARCHIVED', 5);
 define('HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_COMPLETE', 10);
 
 /**
@@ -34,6 +36,14 @@ function _herbarium_specimen_lts_store_new_image($nid, $file_path) {
           'archiveFileToLts',
         ],
         [$nid, $file_path, \Drupal::currentUser()->id()],
+
+      ],
+      [
+        [
+          'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
+          'auditDrushBatch',
+        ],
+        [$nid, $file_path],
       ],
     ],
   ];
