@@ -98,7 +98,7 @@ class ManageArchivalMasterForm extends FormBase {
       '#title' => t('TIF File'),
       '#type' => 'managed_file',
       '#description' => t('Upload an archival master file, allowed extensions: TIF TIFF'),
-      '#upload_location' => "private://dzi/$node/",
+      '#upload_location' => "temporary://arc-tif/$node/",
       '#required' => TRUE,
       '#upload_validators' => [
         'file_validate_extensions' => ['tif', 'tiff'],
