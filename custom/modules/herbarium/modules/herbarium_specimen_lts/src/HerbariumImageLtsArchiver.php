@@ -226,7 +226,7 @@ class HerbariumImageLtsArchiver {
     // Check node image attachments.
     // Check DZI Tiles
     // Check repo for file.
-    if (empty(getNodeHistory())) {
+    if (empty($this->getNodeHistory())) {
       _herbarium_specimen_lts_set_file_status($this->file, HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_FAIL_NOT_ARCHIVED);
       return;
     }
