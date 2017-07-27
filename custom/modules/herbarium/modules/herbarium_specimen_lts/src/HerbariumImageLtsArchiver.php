@@ -258,8 +258,8 @@ class HerbariumImageLtsArchiver {
       $return
     );
 
-    if ($return == 0) {
-      $output = trim($output);
+    if ($return == 0 && !empty($output[0])) {
+      $output = trim($output[0]);
       if (!empty($output)) {
         $lines = explode("\n", $output);
         foreach ($lines as $line) {
