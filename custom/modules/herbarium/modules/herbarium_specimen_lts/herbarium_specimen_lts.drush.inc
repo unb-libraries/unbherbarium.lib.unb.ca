@@ -131,8 +131,7 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
     }
 
     // Update the status as 'in process'.
-    $sql = 'UPDATE ' . HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE . " SET status=" . HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_PROCESSING . " WHERE file='$file_path'";
-    db_query($sql);
+    _herbarium_specimen_lts_set_file_status($file_path, HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_PROCESSING);
 
     // Release the select lock on the table.
     unset($transaction);
@@ -166,7 +165,9 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
           ]
         )
       );
-      die();
+
+      // Set status in DB.
+      _herbarium_specimen_lts_set_file_status($file_path, HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_FAIL_NO_NODE_ACCID);
     }
     else {
       if (!_herbarium_specimen_lts_get_if_already_imported($nid)) {
