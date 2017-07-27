@@ -25,7 +25,7 @@ define('HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_COMPLETE', 10);
  * @return array
  *   A batch API operations array to generate the required surrogates.
  */
-function _herbarium_specimen_lts_store_new_image($nid, $file_path) {
+function _herbarium_specimen_lts_store_new_image($nid, $file_path, $commit_message) {
   return [
     'title' => t('Updating Archive Image'),
     'init_message' => t('Updating Archive Image'),
@@ -35,7 +35,7 @@ function _herbarium_specimen_lts_store_new_image($nid, $file_path) {
           'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
           'archiveFileToLts',
         ],
-        [$nid, $file_path, \Drupal::currentUser()->id()],
+        [$nid, $file_path, \Drupal::currentUser()->id(), $commit_message],
 
       ],
       [

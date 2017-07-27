@@ -80,21 +80,25 @@ class HerbariumImageLtsArchiver {
    *   The file path of the archival TIFF File object.
    * @param int $uid
    *   The user requesting the update.
+   * @param string $commit_msg
+   *   The commit message to use when archiving the file.
    * @param array $context
    *   The Batch API context array.
    */
-  public static function archiveFileToLts($nid, $file_path, $uid, &$context) {
+  public static function archiveFileToLts($nid, $file_path, $uid, $commit_msg, &$context) {
     $obj = new static($nid, $file_path, $uid);
-    $obj->archiveTiff($context);
+    $obj->archiveTiff($commit_msg, $context);
   }
 
   /**
    * Push the new TIF file up to the LTS archive.
    *
+   * @param string $commit_msg
+   *   The commit message to use when archiving the file.
    * @param array $context
    *   The Batch API context array.
    */
-  protected function archiveTiff(&$context) {
+  protected function archiveTiff($commit_msg, &$context) {
     $email = $this->user->get('mail')->value;
     $name = $this->user->get('name')->value;
     $target_nid = $this->node->id();
@@ -128,7 +132,7 @@ class HerbariumImageLtsArchiver {
 
     // Commit.
     exec(
-      "cd {$temp_clone_directory} && git config --global user.email \"$email\" && git config --global user.name \"$name\" && git commit -m 'Update archival file for NID#{$target_nid}'",
+      "cd {$temp_clone_directory} && git config --global user.email \"$email\" && git config --global user.name \"$name\" && git commit -m '$commit_msg''",
       $output,
       $return
     );
