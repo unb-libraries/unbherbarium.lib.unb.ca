@@ -49,6 +49,17 @@ function _herbarium_specimen_lts_store_new_image($nid, $file_path, $commit_messa
   ];
 }
 
+/**
+ * Set the file status for a previously loaded herbarium batch specimen.
+ *
+ * @param object $file_path
+ *   The file path of the archival master TIFF File object.
+ * @param string $status
+ *   The status to set.
+ *
+ * @return \Drupal\Core\Database\StatementInterface
+ *   The db_query interface.
+ */
 function _herbarium_specimen_lts_set_file_status($file_path, $status) {
   $sql = 'UPDATE ' . HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE . " SET status=$status WHERE file='$file_path'";
   return db_query($sql);
