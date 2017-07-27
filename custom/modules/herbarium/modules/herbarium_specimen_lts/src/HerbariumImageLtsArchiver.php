@@ -132,7 +132,7 @@ class HerbariumImageLtsArchiver {
 
     // Commit.
     exec(
-      "cd {$temp_clone_directory} && git config --global user.email \"$email\" && git config --global user.name \"$name\" && git commit -m '$commit_msg''",
+      "cd {$temp_clone_directory} && git config --global user.email \"$email\" && git config --global user.name \"$name\" && git commit -m '$commit_msg'",
       $output,
       $return
     );
