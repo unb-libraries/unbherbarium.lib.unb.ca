@@ -16,6 +16,12 @@ use Drupal\user\Entity\User;
 function herbarium_specimen_lts_drush_command() {
   $items = [];
 
+  $items['push-lts-repo'] = [
+    'description' => 'Push the LTS repo to the remote.',
+    'drupal dependencies' => ['herbarium_specimen_lts'],
+    'aliases' => ['herbarium:push-lts-repo'],
+  ];
+
   $items['queue-lts-images'] = [
     'description' => 'Queue the images in a path for an LTS import.',
     'arguments' => [
@@ -36,6 +42,34 @@ function herbarium_specimen_lts_drush_command() {
   ];
 
   return $items;
+}
+
+/**
+ * Push the LTS repo to the remote master.
+ */
+function drush_herbarium_specimen_lts_push_lts_repo() {
+  // User root should almost never be running this, rather the web daemon user.
+  $processUser = posix_getpwuid(posix_geteuid());
+  if ($processUser['name'] == 'root') {
+    drush_set_error(t('This command should almost never be run as root. Try su.'));
+    die();
+  }
+
+  $batch = [
+    'title' => t('Pushing LFS Repository'),
+    'init_message' => t('Pushing LFS Repository'),
+    'progressive' => FALSE,
+    'operations' => [
+      [
+        'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
+        'pushLfs',
+      ],
+      [],
+    ],
+  ];
+
+  batch_set($batch);
+  drush_backend_batch_process();
 }
 
 /**

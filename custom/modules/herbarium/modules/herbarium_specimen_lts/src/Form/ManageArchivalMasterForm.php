@@ -148,6 +148,15 @@ class ManageArchivalMasterForm extends FormBase {
     if (trim(Settings::get('specimen_lts_archive') != '')) {
       $lts_batch = _herbarium_specimen_lts_store_new_image($nid, $file_path, "[NID:$nid] Interface upload of new archival file.");
       $batch['operations'] = array_merge($batch['operations'], $lts_batch['operations']);
+
+      // After updating the LFS repo, push it.
+      $batch['operations'][] = [
+        [
+          'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
+          'pushLfs',
+        ],
+        [],
+      ];
     }
 
     // Start the batch.
