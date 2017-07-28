@@ -291,4 +291,43 @@ class HerbariumImageLtsArchiver {
     return $history;
   }
 
+  /**
+   * Push the repository to the remote LFS server.
+   *
+   * @param array $context
+   *   The Batch API context array.
+   */
+  public static function pushLfs(&$context) {
+    $obj = new static();
+    return $obj->pushLfsRepo($context);
+  }
+
+  /**
+   * Push the repository to the remote LFS server.
+   *
+   * @param array $context
+   *   The Batch API context array.
+   */
+  protected function pushLfsRepo(&$context) {
+    $history = [];
+
+    // Stage the file for commit.
+    exec(
+      "cd /lts-archive/ && GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/NULL -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa\" /usr/bin/git push origin master",
+      $output,
+      $return
+    );
+
+    if ($return == 0) {
+      $context['message'] = t(
+        '[NID#@nid] Push successfully to remote LFS.'
+      );
+    }
+    else {
+      $context['message'] = t(
+        '[NID#@nid] Remote LFS push failed!.'
+      );
+    }
+  }
+
 }
