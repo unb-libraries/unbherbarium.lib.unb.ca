@@ -146,7 +146,7 @@ class ManageArchivalMasterForm extends FormBase {
 
     // Only process file for LTS if we have a server set.
     if (trim(Settings::get('specimen_lts_archive') != '')) {
-      $lts_batch = _herbarium_specimen_lts_store_new_image($nid, $file_path, "[NID:$nid] Interface upload of new archival file.");
+      $lts_batch = _herbarium_specimen_lts_store_new_image($nid, $file_path, "[$nid] Upload of new archival file.");
       $batch['operations'] = array_merge($batch['operations'], $lts_batch['operations']);
 
       // After updating the LFS repo, push it.
