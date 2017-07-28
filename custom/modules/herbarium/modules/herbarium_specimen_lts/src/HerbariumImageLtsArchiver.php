@@ -56,7 +56,7 @@ class HerbariumImageLtsArchiver {
    * @param int $uid
    *   The user requesting the update.
    */
-  protected function __construct($nid, $file_path = NULL, $uid = 0) {
+  protected function __construct($nid = NULL, $file_path = NULL, $uid = 0) {
     if ($nid) {
       $this->node = Node::load($nid);
     }

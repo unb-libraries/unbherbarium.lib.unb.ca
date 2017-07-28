@@ -61,10 +61,13 @@ function drush_herbarium_specimen_lts_push_lts_repo() {
     'progressive' => FALSE,
     'operations' => [
       [
-        'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
-        'pushLfs',
+        [
+          'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
+          'pushLfs',
+        ],
+        [],
+
       ],
-      [],
     ],
   ];
 
