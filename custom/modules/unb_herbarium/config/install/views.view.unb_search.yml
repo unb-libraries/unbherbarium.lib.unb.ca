@@ -19,6 +19,7 @@ dependencies:
     - taxonomy
     - text
     - user
+    - views_autocomplete_filters
 id: unb_search
 label: 'UNB Search'
 module: views
@@ -513,7 +514,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<div role=\"contentinfo\" aria-label=\"no results\" class=\"alert alert-warning\">\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\n  Your search did not match any records.\n</div>\n\n<p><b><span class=\"glyphicon glyphicon-info-sign\"></span> Suggestions:</b></p>\n<ul>\n  <li>Make sure that all words are spelled correctly.</li>\n  <li>Try different search terms.</li>\n  <li>Try using a partial word search: <kbd>card</kbd> will match <kbd>cardamine</kbd>.\n</ul>\n\n<p><b class=\"nowrap\"><span class=\"glyphicon glyphicon-question-sign\"></span>Did you know:</b></p>\n<ul>\n  <li>The <a href=\"/browse-samples\">Browse Samples</a> page features term autocomplete as well as searchable list of collectors <b>filter options</b>.</li>\n</ul>"
+            value: "<div role=\"contentinfo\" aria-label=\"no results\" class=\"alert alert-warning\">\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\n  Your search did not match any records.\n</div>\n\n<p><b><span class=\"glyphicon glyphicon-info-sign\"></span> Suggestions:</b></p>\n<ul>\n  <li>Make sure that all words are spelled correctly.</li>\n  <li>Try different search terms.</li>\n  <li>Try using a partial word search: <kbd>card</kbd> will match <kbd>cardamine</kbd>.\n</ul>\n\n<p><b class=\"glyphicon glyphicon-hand-right\"></b> Also consider using <b>term autocomplete</b> filter options available on the <a href=\"/browse-specimens\">Browse Specimens</a> page.</p>"
             format: full_html
           plugin_id: text
       relationships:
