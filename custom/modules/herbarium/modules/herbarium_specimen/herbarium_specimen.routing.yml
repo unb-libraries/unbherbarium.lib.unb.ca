@@ -4,7 +4,7 @@ herbarium_specimen.inspect_specimen:
     _title: 'Inspect Specimen'
     _form: '\Drupal\herbarium_specimen\Form\InspectSpecimenForm'
   requirements:
-    _permission: 'view content'
+    _permission: 'view detailed herbarium specimens'
     _custom_access: '\Drupal\herbarium_specimen\Controller\HerbariumSpecimenCheckController::checkInspectAccess'
 
 herbarium_specimen.view_private_files:

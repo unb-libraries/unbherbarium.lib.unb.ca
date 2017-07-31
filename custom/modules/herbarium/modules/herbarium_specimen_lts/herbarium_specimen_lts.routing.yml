@@ -4,5 +4,5 @@ herbarium_specimen_lts.manage_archival_master:
     _title: 'Archival Master'
     _form: '\Drupal\herbarium_specimen_lts\Form\ManageArchivalMasterForm'
   requirements:
-    _permission: 'administer content'
+    _permission: 'manage herbarium lts master images'
     _custom_access: '\Drupal\herbarium_specimen\Controller\HerbariumSpecimenCheckController::checkAccess'
