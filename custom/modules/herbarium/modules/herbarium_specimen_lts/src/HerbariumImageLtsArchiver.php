@@ -11,6 +11,8 @@ use Drupal\user\Entity\User;
  */
 class HerbariumImageLtsArchiver {
 
+  const PUSH_FAILURE_RETRIES = 30;
+
   /**
    * The Drupal File object to generate the DZI and tiles for.
    *
@@ -139,6 +141,8 @@ class HerbariumImageLtsArchiver {
 
     // Push back to origin. Check for errors indicating concurrent use / retry.
     $return = 1;
+    $push_failures = 0;
+
     while ($return != 0) {
       exec(
         "cd {$temp_clone_directory} && git pull --rebase origin master && git push origin master",
@@ -146,6 +150,19 @@ class HerbariumImageLtsArchiver {
         $return
       );
       if ($return != 0) {
+
+        // Some files were getting caught in an 'Unstaged Changes' issue.
+        $push_failures++;
+        if ($push_failures >= self::PUSH_FAILURE_RETRIES) {
+          $context['message'] = t(
+            '[NID#@nid] Could not push commits upstream. Skipping.',
+            [
+              '@nid' => $target_nid,
+            ]
+          );
+          return;
+        }
+
         $sleep_seconds = 3;
         echo("Busy repo : pausing for $sleep_seconds before trying push again.\n");
         sleep($sleep_seconds);
