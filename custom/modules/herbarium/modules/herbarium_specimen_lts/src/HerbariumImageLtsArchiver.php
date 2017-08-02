@@ -271,7 +271,7 @@ class HerbariumImageLtsArchiver {
   protected function getNodeHistory() {
     $history = [];
 
-    // Stage the file for commit.
+    // Get the LTS history.
     exec(
       "cd {$this->ltsRepoPath} && git log --pretty=format:\"%ai||%aE||%s\" -- {$this->node->id()}.tif",
       $output,
@@ -311,7 +311,7 @@ class HerbariumImageLtsArchiver {
   protected function pushLfsRepo(&$context) {
     $history = [];
 
-    // Stage the file for commit.
+    // Push the local repo upstream.
     exec(
       "cd /lts-archive/ && GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/NULL -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa\" /usr/bin/git push origin master",
       $output,
