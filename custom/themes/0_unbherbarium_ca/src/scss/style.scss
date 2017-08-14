@@ -514,6 +514,15 @@ button.btn-primary {
 .nowrap {
   white-space: nowrap;
 }
+// Add whitespace between floated images and adjacent content.
+figure.align-left,
+img.align-left {
+  margin-right: 8px;
+}
+figure.align-right,
+img.align-right {
+  margin-left: 8px;
+}
 
 // Bolded colorbox captions (specimen image title).
 #cboxTitle {
