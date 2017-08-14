@@ -37,3 +37,4 @@ favicon:
   path: ../modules/custom/unb_herbarium/images/favicon.png
   url: /app/html/modules/custom/unb_herbarium/images/favicon.png
   use_default: 0
+modal_enabled: 0
