@@ -198,8 +198,9 @@ dd li {
 .specimen-details figcaption {
   margin-top: 6px;
 }
-.gmap { /* add loading indicator for gmap */
-  background: url(../images/loading.gif) no-repeat 60px center;
+.gmap,
+.specimen-image a { /* add loading indicator for gmap */
+  background: url(../images/ajax-loader.gif) no-repeat center center;
   display: inline-block;
 }
 

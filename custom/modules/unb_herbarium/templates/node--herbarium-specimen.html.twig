@@ -345,9 +345,9 @@
             {# If view_endangered is TRUE then use unmasked image field else use masked version #}
             {% set specimen_image = view_endangered ? content.field_large_sample_surrogate : content.field_large_sample_surrogate_msk %}
             {% if specimen_image|field_value %}
-              <figure>
+              <figure class="specimen-image">
                   {{ specimen_image }}
-                  <figcaption>{% trans %}Click specimen image to enlarge{% endtrans %}</figcaption>
+                  <figcaption class=""description">{% trans %}Click image to enlarge{% endtrans %}</figcaption>
               </figure>
             {% endif %}
 

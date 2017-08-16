@@ -546,6 +546,18 @@ img.align-right {
   margin-right: .25em;
   vertical-align: top;
 }
+.specimen-image figcaption:before {
+  color: $color-desc;
+  content:"\e140";
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-size: smaller;
+  margin-right: .3em;
+  vertical-align: top;
+}
+.view-content .specimen-image a {
+  background: url(/modules/custom/unb_herbarium/images/ajax-loader-sm.gif) no-repeat center center;
+}
 
 // Responsive overrides.
 @media (max-width: 390px) {
