@@ -48,7 +48,7 @@ class ManageArchivalMasterForm extends FormBase {
     ];
 
     $form['description']['description'] = [
-      '#markup' => 'The archival master serves as the digital preservation record for the herbarium specimen.',
+      '#markup' => '<p>' . t('The specimen archival image serves as the digital preservation copy for the herbarium specimen. The images are stored in a separate repository and version controlled to ensure integrity. Additionally, all images used in the site are derived from this master file.') . '</p>',
     ];
 
     $form['master_history'] = [
@@ -83,13 +83,21 @@ class ManageArchivalMasterForm extends FormBase {
     }
     else {
       $form['master_history']['none_found'] = [
-        '#markup' => t('No archival master images have been attached to this specimen yet.'),
+        '#markup' => t('No archival images have been attached to this specimen yet.'),
       ];
     }
 
     $form['upload_new'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Upload'),
+    ];
+
+    $form['upload_new']['details'] = [
+      '#markup' => '<p>' . t('If you wish to add a new or replace an existing archival image, upload one below. Adding a new archival master will trigger several tasks and can take upwards of several minutes.') . '</p>',
+    ];
+
+    $form['upload_new']['requirements'] = [
+      '#markup' => '<p>' . t('The archival master file should be the original TIF file from the scanner, unmodified.') . '</p>',
     ];
 
     $form['upload_new']['tiff_file'] = [
