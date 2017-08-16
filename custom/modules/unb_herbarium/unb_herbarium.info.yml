@@ -6,8 +6,10 @@ core: 8.x
 dependencies:
   - block
   - colorbox
+  - contact
   - csv_serialization
   - datetime
+  - editor_file
   - field
   - herbarium_core
   - herbarium_specimen

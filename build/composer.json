@@ -118,6 +118,7 @@
         "drupal/console": "~1.0",
         "drupal/core": "8.3.6",
         "drupal/csv_serialization": "1.0",
+        "drupal/editor_file": "1.2",
         "drupal/features": "3.5",
         "drupal/field_group": "1.0-rc6",
         "drupal/google_analytics": "2.1",
