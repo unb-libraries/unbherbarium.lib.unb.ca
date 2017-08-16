@@ -180,6 +180,8 @@ dd li {
 }
 .specimen-details figure a {
   border: 1px solid #ddd;
+  width: 210px;
+  min-height: 300px;
 }
 .specimen-details figure img {
   display: block;
@@ -193,10 +195,7 @@ dd li {
   margin-bottom: 0;
 }
 .specimen-details figure a:hover img {
-  transform: scale(1.1,1.1);
-}
-.specimen-details figcaption {
-  margin-top: 6px;
+  transform: scale(1.05,1.05);
 }
 .gmap,
 .specimen-image a { /* add loading indicator for gmap */

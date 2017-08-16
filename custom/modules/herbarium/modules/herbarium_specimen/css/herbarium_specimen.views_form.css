@@ -7,9 +7,6 @@ td.specimen-image img {
 .view td a {
   border: 0;
 }
-.view td.specimen-image a {
-  display: inline;
-}
 
 .view td.specimen-image a img {
   box-shadow: 1px 1px 5px #cdc5b4;
