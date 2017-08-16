@@ -1,0 +1,22 @@
+uuid: 2ab49388-c0b1-48ba-934f-50c65788f15e
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - unbherbarium_ca
+_core:
+  default_config_hash: 6eZ6nSiIyzSZJiXJbJ6cWKSj6kqpj9R2YX5QcJKn0xc
+id: unbherbarium_ca_breadcrumbs
+theme: unbherbarium_ca
+region: header
+weight: -7
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility: {  }

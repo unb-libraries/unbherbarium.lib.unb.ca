@@ -1,0 +1,26 @@
+uuid: 77d95dda-ede9-4d71-9451-4282bbd3a932
+langcode: und
+status: true
+dependencies:
+  module:
+    - node
+    - options
+_core:
+  default_config_hash: DmUAAWgO0usBV0bqNQrYdodkuap2oZsCG3tJlqnNYcc
+id: node.field_dc_type
+field_name: field_dc_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'Still Image'
+      label: 'Still Image'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

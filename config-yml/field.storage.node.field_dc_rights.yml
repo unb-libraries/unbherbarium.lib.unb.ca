@@ -1,0 +1,26 @@
+uuid: cdb9c047-509e-4621-932d-27ea8df6d8de
+langcode: und
+status: true
+dependencies:
+  module:
+    - node
+    - options
+_core:
+  default_config_hash: XNcsXCkHEndq8dfmklkFWpEwVfIQDjh_i10RTZTkuGI
+id: node.field_dc_rights
+field_name: field_dc_rights
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)'
+      label: 'Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

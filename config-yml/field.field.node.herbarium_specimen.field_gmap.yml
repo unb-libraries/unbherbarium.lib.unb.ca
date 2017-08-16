@@ -1,0 +1,21 @@
+uuid: 157dea02-2c30-480c-81ec-f2ae7ab6227e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gmap
+    - node.type.herbarium_specimen
+_core:
+  default_config_hash: DOfA5DvbQhqHFlkZ5o4DTV3kWAbFQ-KIi-5Zlr14fx0
+id: node.herbarium_specimen.field_gmap
+field_name: field_gmap
+entity_type: node
+bundle: herbarium_specimen
+label: GMap
+description: "Geographic coordinates in the format, <b>decimal latitude,decimal longitude</b> used to generate a Google Map.<br />\r\n<b>Note:</b> should be hidden from end user and populated by a hook."
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

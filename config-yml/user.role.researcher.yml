@@ -1,0 +1,14 @@
+uuid: 05347a5e-b75b-4cc8-81b8-02c7128e39ec
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: HjlNTaPcYqem3vAXoLEiMYJX2DdaZKJ3WrZLffxowAg
+id: researcher
+label: Researcher
+weight: 7
+is_admin: null
+permissions:
+  - 'access site-wide contact form'
+  - 'use text format full_html'
+  - 'view private files'

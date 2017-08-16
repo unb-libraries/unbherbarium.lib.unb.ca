@@ -1,0 +1,23 @@
+uuid: d369924c-4638-436b-9260-95f2e2755634
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+_core:
+  default_config_hash: IDf612Rbu1xBnK1fdM41g4Fq8XUmWUC4DP5k7X_EbgM
+id: taxonomy_term.field_dwc_measurementvalue
+field_name: field_dwc_measurementvalue
+entity_type: taxonomy_term
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

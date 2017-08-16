@@ -1,0 +1,22 @@
+uuid: d766c632-2348-42b4-b769-6c6ae6c17602
+langcode: en
+status: true
+dependencies:
+  module:
+    - unb_herbarium
+  theme:
+    - unbherbarium_ca
+_core:
+  default_config_hash: OaL5hGYz0dd3UVxbGH2NEsKIyj_mJNTNr3HVKz4bQIw
+id: unblibrarieslogo
+theme: unbherbarium_ca
+region: footer
+weight: -6
+provider: null
+plugin: unblibrarieslogo
+settings:
+  id: unblibrarieslogo
+  label: 'UNB Libraries Logo'
+  provider: unb_herbarium
+  label_display: '0'
+visibility: {  }

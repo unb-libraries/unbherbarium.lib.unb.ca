@@ -1,0 +1,14 @@
+uuid: af24c641-98f8-4ab5-ae84-29d35aa56a91
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.cmh_database_administrator
+  module:
+    - user
+id: user_remove_role_action.cmh_database_administrator
+label: 'Remove the CMH Database Administrator role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: cmh_database_administrator

@@ -1,0 +1,21 @@
+uuid: b9ec98ca-601a-4839-b6f7-289d842a7dbf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_cmh_english_common_names
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
+_core:
+  default_config_hash: 79PH3lrmfd_ZzuUhiQAqAAJCLjdAkwYc30GvjsE-egY
+id: taxonomy_term.herbarium_specimen_taxonomy.field_cmh_english_common_names
+field_name: field_cmh_english_common_names
+entity_type: taxonomy_term
+bundle: herbarium_specimen_taxonomy
+label: 'English Common Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

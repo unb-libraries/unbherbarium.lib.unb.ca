@@ -1,0 +1,25 @@
+uuid: 3bed24f4-27e6-4db5-996c-fbd7bd52b1a6
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+_core:
+  default_config_hash: aPUNBc9ZqMsl_DclWW5NNA72qnwp-hfjLqUbb8CK9RI
+id: collectors
+label: Collectors
+type: 'canonical_entities:taxonomy_term'
+pattern: '/collectorlist/[term:name]'
+selection_criteria:
+  9668175c-02bc-493d-b847-948c83c1627c:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      herbarium_specimen_collector: herbarium_specimen_collector
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: 9668175c-02bc-493d-b847-948c83c1627c
+selection_logic: and
+weight: -5
+relationships: {  }

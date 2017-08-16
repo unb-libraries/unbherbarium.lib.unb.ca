@@ -1,0 +1,17 @@
+uuid: d0311a95-e1e2-43ea-8585-0aab48e9ad48
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 6TaeHG2s5vw2QmrJM_DrePj9ks2FnFETEK-ApnX3k6w
+name: 220_wide
+label: '220px width'
+effects:
+  ce8df89a-4437-49c2-85c8-56fc9a87f64d:
+    uuid: ce8df89a-4437-49c2-85c8-56fc9a87f64d
+    id: image_scale
+    weight: 1
+    data:
+      width: 220
+      height: null
+      upscale: true

@@ -1,0 +1,31 @@
+uuid: 8aefd51f-0279-4ff4-a0b6-2d1c8fd5c8bc
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:8cdc6994-5e67-4b5b-8e24-ed7e369a3f46'
+  module:
+    - block_content
+    - system
+  theme:
+    - unbherbarium_ca
+id: purchasefloraofnb
+theme: unbherbarium_ca
+region: sidebar_second
+weight: 0
+provider: null
+plugin: 'block_content:8cdc6994-5e67-4b5b-8e24-ed7e369a3f46'
+settings:
+  id: 'block_content:8cdc6994-5e67-4b5b-8e24-ed7e369a3f46'
+  label: 'Purchase Flora of NB'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

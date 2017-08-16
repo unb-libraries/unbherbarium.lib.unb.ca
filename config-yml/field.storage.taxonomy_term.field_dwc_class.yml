@@ -1,0 +1,22 @@
+uuid: 3be1ab92-91f6-47c9-b66a-4d870b7b4b1a
+langcode: und
+status: true
+dependencies:
+  module:
+    - taxonomy
+    - text
+_core:
+  default_config_hash: z5XFzqT0g8dheSxSzv3uStWzV4CpOKp9LC_YLP5rJHw
+id: taxonomy_term.field_dwc_class
+field_name: field_dwc_class
+entity_type: taxonomy_term
+type: text
+settings:
+  max_length: 255
+module: text
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

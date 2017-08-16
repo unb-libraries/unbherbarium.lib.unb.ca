@@ -1,0 +1,21 @@
+uuid: db87d9fc-a0d2-4e39-90c5-f89fc4b608b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_geoheritage
+    - node.type.herbarium_specimen
+_core:
+  default_config_hash: HQmxmVLTBQRzAl_ZuQ67fmu1toGzUaAWKPtF75_ZOrA
+id: node.herbarium_specimen.field_geoheritage
+field_name: field_geoheritage
+entity_type: node
+bundle: herbarium_specimen
+label: 'Georeferenced Remarks'
+description: 'Geo Heritage'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

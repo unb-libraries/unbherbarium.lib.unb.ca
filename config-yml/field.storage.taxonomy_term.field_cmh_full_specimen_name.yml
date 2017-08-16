@@ -1,0 +1,22 @@
+uuid: e1038cfc-d8ce-4d1d-b02a-5256680953b1
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+    - text
+_core:
+  default_config_hash: QpowV560MDfmeLUp6wAASjK47nm0SK3Br5_2n2Gsg0M
+id: taxonomy_term.field_cmh_full_specimen_name
+field_name: field_cmh_full_specimen_name
+entity_type: taxonomy_term
+type: text
+settings:
+  max_length: 512
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

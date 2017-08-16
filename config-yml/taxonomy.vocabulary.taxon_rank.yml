@@ -1,0 +1,11 @@
+uuid: 3907bc82-f2cb-4c72-885e-38debabf4c06
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: PUqisIu_JIuiO9mSValg6GSmia-0gUom371Tf7K9d1A
+name: 'Taxon Rank'
+vid: taxon_rank
+description: ''
+hierarchy: 0
+weight: 0

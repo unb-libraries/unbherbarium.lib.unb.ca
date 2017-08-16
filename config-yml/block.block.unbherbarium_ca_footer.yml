@@ -1,0 +1,26 @@
+uuid: 8fa2e821-77b1-4ada-a3ac-344ab51b96ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer
+  module:
+    - system
+  theme:
+    - unbherbarium_ca
+_core:
+  default_config_hash: umvRceoe_zUeTS2i51dPnw9D0CWRlzRU_Cnm8JDF0Lo
+id: unbherbarium_ca_footer
+theme: unbherbarium_ca
+region: footer
+weight: -7
+provider: null
+plugin: 'system_menu_block:footer'
+settings:
+  id: 'system_menu_block:footer'
+  label: 'Footer menu'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+visibility: {  }

@@ -1,0 +1,23 @@
+uuid: 4d99fbbe-23e8-4c42-8b22-d6b329af3ab6
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+_core:
+  default_config_hash: Ka8w93grVxiDrla668xVXUmyBWUL089Tw0UvqMnXlrw
+id: taxonomy_term.field_dwc_scientificnameauthor
+field_name: field_dwc_scientificnameauthor
+entity_type: taxonomy_term
+type: string
+settings:
+  max_length: 512
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

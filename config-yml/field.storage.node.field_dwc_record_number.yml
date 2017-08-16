@@ -1,0 +1,23 @@
+uuid: db7bacdf-ad8b-4e83-a1bc-7d627dffa4c7
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: X2XgWCEaT32aZn9KfK44NP0-n9wQvay-raZM8TP7hfk
+id: node.field_dwc_record_number
+field_name: field_dwc_record_number
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

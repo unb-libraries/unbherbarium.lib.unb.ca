@@ -1,0 +1,26 @@
+uuid: 8b00ede5-7d69-4e51-a3cd-e47e4a3cb08d
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - unbherbarium_ca
+_core:
+  default_config_hash: O96hbvT7e5tV7ZmbF0T1oHvcm0OlsvLps5jWFUisaVI
+id: unbherbarium_ca_account_menu
+theme: unbherbarium_ca
+region: footer
+weight: -6
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 1
+visibility: {  }

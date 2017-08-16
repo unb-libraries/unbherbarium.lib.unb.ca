@@ -1,0 +1,25 @@
+uuid: 045c5334-913a-4c9f-9b30-8ba1f016315e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_decimallatitude
+    - node.type.herbarium_specimen
+_core:
+  default_config_hash: c_EAOYyMlwS3XJqXWZFpLn2IvTcu-yBGvTS_2LnzDm4
+id: node.herbarium_specimen.field_dwc_decimallatitude
+field_name: field_dwc_decimallatitude
+entity_type: node
+bundle: herbarium_specimen
+label: 'Decimal Latitude'
+description: 'DwC:decimalLatitude'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float -90
+  max: !!float 90
+  prefix: ''
+  suffix: ''
+field_type: decimal

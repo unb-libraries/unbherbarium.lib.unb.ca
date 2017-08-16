@@ -1,0 +1,25 @@
+uuid: a21cd28c-a3f0-4d7a-b4a4-f7c3197d0aca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_institutionid
+    - node.type.herbarium_specimen
+  module:
+    - options
+_core:
+  default_config_hash: SPC0hSMrQ_NgrvFRBWods1vs32tI8sLtqo-zoTHrfkQ
+id: node.herbarium_specimen.field_dwc_institutionid
+field_name: field_dwc_institutionid
+entity_type: node
+bundle: herbarium_specimen
+label: 'Institution ID'
+description: 'DwC:institutionID - An identifier for the institution having custody of the specimen. Almost certainly ''urn:lsid:biocol.org:col:15300'''
+required: true
+translatable: true
+default_value:
+  -
+    value: 'urn:lsid:biocol.org:col:15300'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

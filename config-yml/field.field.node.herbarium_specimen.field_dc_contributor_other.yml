@@ -1,0 +1,21 @@
+uuid: 743800d2-3e2c-43c6-a20b-744f649d10b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dc_contributor_other
+    - node.type.herbarium_specimen
+_core:
+  default_config_hash: 71rJynq-88jiFBUrbBPaEAkXymzVnRsfZBTbjsKiMaE
+id: node.herbarium_specimen.field_dc_contributor_other
+field_name: field_dc_contributor_other
+entity_type: node
+bundle: herbarium_specimen
+label: 'Contributor Other'
+description: 'DC:contributor.other'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

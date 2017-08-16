@@ -1,0 +1,23 @@
+uuid: 9959a047-ee0d-40f7-8db6-db5d600bb3d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_dwc_class
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
+  module:
+    - text
+_core:
+  default_config_hash: QFspmhWCRJ6tqxr9sgiCNLUzn2hiiU8XF7u9E4HocPw
+id: taxonomy_term.herbarium_specimen_taxonomy.field_dwc_class
+field_name: field_dwc_class
+entity_type: taxonomy_term
+bundle: herbarium_specimen_taxonomy
+label: 'DwC:class'
+description: 'The full scientific name of the class in which the taxon is classified.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

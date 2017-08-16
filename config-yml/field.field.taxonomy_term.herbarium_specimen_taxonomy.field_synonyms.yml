@@ -1,0 +1,21 @@
+uuid: d85cbf8b-5275-4b33-8f76-6d63c779e475
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_synonyms
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
+_core:
+  default_config_hash: 0lpN_HafBuNhGqYp7_g4hOeMB8KHeYuyzZDzYWUSFCQ
+id: taxonomy_term.herbarium_specimen_taxonomy.field_synonyms
+field_name: field_synonyms
+entity_type: taxonomy_term
+bundle: herbarium_specimen_taxonomy
+label: Synonym
+description: 'For CMH this is the ''Synonym'' field from the old Filemaker Database.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

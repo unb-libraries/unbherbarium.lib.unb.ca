@@ -1,0 +1,23 @@
+uuid: dd487477-bee7-400f-964f-678773261a02
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+_core:
+  default_config_hash: _D1lyxLipXTG1fdC9ajmPRGtg-McYV7qDGrGgsmz3KM
+id: taxonomy_term.field_cmh_french_common_names
+field_name: field_cmh_french_common_names
+entity_type: taxonomy_term
+type: string
+settings:
+  max_length: 512
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

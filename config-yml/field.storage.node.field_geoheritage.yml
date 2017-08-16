@@ -1,0 +1,23 @@
+uuid: 69e9af4e-24b7-4386-bc78-3ce41af6c7f6
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: PrKpakDs92g_YbTjCKkAfJXf_yHy1OOtiJ07bF6JSn4
+id: node.field_geoheritage
+field_name: field_geoheritage
+entity_type: node
+type: string
+settings:
+  max_length: 512
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

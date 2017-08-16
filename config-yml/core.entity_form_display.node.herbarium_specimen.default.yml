@@ -1,0 +1,504 @@
+uuid: 1b833bd3-018f-43cd-b168-6195dbbcfa64
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.herbarium_specimen.field_collector_tid
+    - field.field.node.herbarium_specimen.field_dc_contributor_other
+    - field.field.node.herbarium_specimen.field_dc_created
+    - field.field.node.herbarium_specimen.field_dc_format
+    - field.field.node.herbarium_specimen.field_dc_language
+    - field.field.node.herbarium_specimen.field_dc_modified
+    - field.field.node.herbarium_specimen.field_dc_publisher
+    - field.field.node.herbarium_specimen.field_dc_rights
+    - field.field.node.herbarium_specimen.field_dc_rightsholder
+    - field.field.node.herbarium_specimen.field_dc_type
+    - field.field.node.herbarium_specimen.field_dwc_basisofrecord
+    - field.field.node.herbarium_specimen.field_dwc_collectioncode
+    - field.field.node.herbarium_specimen.field_dwc_coordinateprecision
+    - field.field.node.herbarium_specimen.field_dwc_country
+    - field.field.node.herbarium_specimen.field_dwc_countrycode
+    - field.field.node.herbarium_specimen.field_dwc_county
+    - field.field.node.herbarium_specimen.field_dwc_datageneralizations
+    - field.field.node.herbarium_specimen.field_dwc_decimallatitude
+    - field.field.node.herbarium_specimen.field_dwc_decimallongitude
+    - field.field.node.herbarium_specimen.field_dwc_eventdate
+    - field.field.node.herbarium_specimen.field_dwc_eventremarks
+    - field.field.node.herbarium_specimen.field_dwc_georeferencedby
+    - field.field.node.herbarium_specimen.field_dwc_habitat
+    - field.field.node.herbarium_specimen.field_dwc_informationwithheld
+    - field.field.node.herbarium_specimen.field_dwc_institutioncode
+    - field.field.node.herbarium_specimen.field_dwc_institutionid
+    - field.field.node.herbarium_specimen.field_dwc_occurrenceremarks
+    - field.field.node.herbarium_specimen.field_dwc_othercatalognumbers
+    - field.field.node.herbarium_specimen.field_dwc_record_number
+    - field.field.node.herbarium_specimen.field_dwc_reproductivecondition
+    - field.field.node.herbarium_specimen.field_dwc_stateprovince
+    - field.field.node.herbarium_specimen.field_dwc_verbatimeventdate
+    - field.field.node.herbarium_specimen.field_dwc_verbatimlocality
+    - field.field.node.herbarium_specimen.field_geoheritage
+    - field.field.node.herbarium_specimen.field_gmap
+    - field.field.node.herbarium_specimen.field_herbarium_spec_master_impo
+    - field.field.node.herbarium_specimen.field_large_sample_surrogate
+    - field.field.node.herbarium_specimen.field_large_sample_surrogate_msk
+    - field.field.node.herbarium_specimen.field_previous_identifications
+    - field.field.node.herbarium_specimen.field_taxonomy_tid
+    - image.style.thumbnail
+    - node.type.herbarium_specimen
+  module:
+    - datetime
+    - field_group
+    - image
+    - path
+third_party_settings:
+  field_group:
+    group_habitat_location:
+      children:
+        - field_dwc_decimallatitude
+        - field_dwc_decimallongitude
+        - field_dwc_coordinateprecision
+        - field_dwc_country
+        - field_dwc_habitat
+        - field_dwc_countrycode
+        - field_dwc_verbatimlocality
+        - field_dwc_stateprovince
+        - field_dwc_county
+        - field_dwc_eventremarks
+        - field_dwc_occurrenceremarks
+      parent_name: group_initially_hidden_details
+      weight: 60
+      label: 'Specimen Habitat'
+      format_type: accordion_item
+      format_settings:
+        formatter: closed
+        description: ''
+        classes: ''
+        id: ''
+        required_fields: true
+    group_date:
+      children:
+        - field_dwc_eventdate
+        - field_dc_created
+        - field_dwc_verbatimeventdate
+      parent_name: group_initially_hidden_details
+      weight: 61
+      label: 'Date Information'
+      format_type: accordion_item
+      format_settings:
+        formatter: closed
+        description: ''
+        classes: ''
+        id: ''
+        required_fields: true
+    group_previous_identifications:
+      children:
+        - field_previous_identifications
+      parent_name: group_initially_hidden_details
+      weight: 62
+      label: 'Previous Identifications'
+      format_type: accordion_item
+      format_settings:
+        formatter: closed
+        description: ''
+        classes: ''
+        id: ''
+        required_fields: true
+    group_details_license:
+      children:
+        - field_dc_type
+        - field_dc_rightsholder
+        - field_dwc_informationwithheld
+        - field_dc_rights
+        - field_dwc_institutioncode
+        - field_dc_format
+        - field_dwc_collectioncode
+        - field_dwc_basisofrecord
+        - field_dwc_datageneralizations
+        - field_dwc_institutionid
+        - field_dc_publisher
+        - field_dc_language
+        - field_geoheritage
+        - field_dc_modified
+      parent_name: group_initially_hidden_details
+      weight: 63
+      label: 'Details / License'
+      format_type: accordion_item
+      format_settings:
+        formatter: closed
+        description: ''
+        classes: ''
+        id: ''
+        required_fields: true
+    group_collectors:
+      children:
+        - field_collector_tid
+      parent_name: group_initially_hidden_details
+      weight: 58
+      format_type: accordion_item
+      format_settings:
+        label: 'Recorded By'
+        formatter: closed
+        required_fields: true
+        id: ''
+        classes: ''
+      label: 'Recorded By'
+    group_initially_hidden_details:
+      children:
+        - group_collectors
+        - group_habitat_location
+        - group_date
+        - group_previous_identifications
+        - group_details_license
+      parent_name: ''
+      weight: 5
+      format_type: accordion
+      format_settings:
+        id: ''
+        classes: ''
+        effect: none
+      label: 'Initially Hidden Details'
+    group_images:
+      children:
+        - field_large_sample_surrogate
+        - field_large_sample_surrogate_msk
+      parent_name: ''
+      weight: 6
+      format_type: details
+      format_settings:
+        label: Images
+        open: true
+        required_fields: true
+        id: ''
+        classes: ui-state-default
+      label: Images
+_core:
+  default_config_hash: WMosJkr0GxG7D1yaPL0251VhKWECtZxowQpvjDsXJhw
+id: node.herbarium_specimen.default
+targetEntityType: node
+bundle: herbarium_specimen
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 12
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_collector_tid:
+    type: entity_reference_autocomplete
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: 'Find a name that contains'
+    third_party_settings: {  }
+    region: content
+  field_dc_contributor_other:
+    weight: 7
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_dc_created:
+    weight: 5
+    settings:
+      date_order: MDY
+      time_type: none
+      increment: 15
+    third_party_settings: {  }
+    type: datetime_datelist
+    region: content
+  field_dc_format:
+    type: options_select
+    weight: 27
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_dc_language:
+    type: options_select
+    weight: 33
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_dc_modified:
+    type: datetime_datelist
+    weight: 35
+    settings:
+      date_order: MDY
+      time_type: none
+      increment: 15
+    third_party_settings: {  }
+    region: content
+  field_dc_publisher:
+    type: options_select
+    weight: 32
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_dc_rights:
+    type: options_select
+    weight: 25
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_dc_rightsholder:
+    type: options_select
+    weight: 23
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_dc_type:
+    type: options_select
+    weight: 22
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_dwc_basisofrecord:
+    type: options_select
+    weight: 29
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_dwc_collectioncode:
+    type: options_select
+    weight: 28
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_dwc_coordinateprecision:
+    weight: 59
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_dwc_country:
+    weight: 60
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_dwc_countrycode:
+    weight: 62
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_dwc_county:
+    weight: 65
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_dwc_datageneralizations:
+    type: options_select
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_dwc_decimallatitude:
+    weight: 56
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_dwc_decimallongitude:
+    weight: 57
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_dwc_eventdate:
+    type: datetime_datelist
+    weight: 4
+    settings:
+      date_order: MDY
+      time_type: none
+      increment: 15
+    third_party_settings: {  }
+    region: content
+  field_dwc_eventremarks:
+    weight: 66
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_dwc_habitat:
+    weight: 61
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_dwc_informationwithheld:
+    type: options_select
+    weight: 24
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_dwc_institutioncode:
+    type: options_select
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_dwc_institutionid:
+    type: options_select
+    weight: 31
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_dwc_occurrenceremarks:
+    weight: 67
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_dwc_othercatalognumbers:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_dwc_record_number:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_dwc_reproductivecondition:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_dwc_stateprovince:
+    weight: 64
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_dwc_verbatimeventdate:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_dwc_verbatimlocality:
+    weight: 63
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_geoheritage:
+    weight: 34
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_herbarium_spec_master_impo:
+    weight: 68
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_large_sample_surrogate:
+    type: image_image
+    weight: 64
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    region: content
+  field_large_sample_surrogate_msk:
+    type: image_image
+    weight: 65
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    region: content
+  field_previous_identifications:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_taxonomy_tid:
+    type: options_select
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  path:
+    type: path
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 9
+    third_party_settings: {  }
+    region: content
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 10
+    third_party_settings: {  }
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  uid:
+    type: entity_reference_autocomplete
+    weight: 11
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_dwc_georeferencedby: true
+  field_gmap: true

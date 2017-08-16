@@ -1,0 +1,23 @@
+uuid: 0847d618-5e3a-43ac-b466-16c6d13236a6
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: brSf5t5EFIABInJOlg3xLGQvnzLM3y1g8v8l7otPcWk
+id: node.field_dwc_verbatimeventdate
+field_name: field_dwc_verbatimeventdate
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

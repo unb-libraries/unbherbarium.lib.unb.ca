@@ -1,0 +1,22 @@
+uuid: 1c5885f0-3fca-4a50-a4a3-302777cff491
+langcode: und
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+_core:
+  default_config_hash: 5XHLKU5cv7iSpjREM15ys2U3CWWaq_RueMLdgYnCO7I
+id: node.field_dc_modified
+field_name: field_dc_modified
+entity_type: node
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

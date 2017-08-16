@@ -1,0 +1,21 @@
+uuid: 0805c485-b088-43b0-9653-fe08750dd822
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_georeferencedby
+    - node.type.herbarium_specimen
+_core:
+  default_config_hash: S5DTnOKIsdcgWfeK_L_ejrOalrWtfBi0EXNj-Bjz2vI
+id: node.herbarium_specimen.field_dwc_georeferencedby
+field_name: field_dwc_georeferencedby
+entity_type: node
+bundle: herbarium_specimen
+label: 'Georeferenced By'
+description: 'DwC:georeferencedBy'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

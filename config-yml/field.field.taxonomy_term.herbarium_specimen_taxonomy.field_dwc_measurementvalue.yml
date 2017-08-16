@@ -1,0 +1,21 @@
+uuid: 670bf4d0-87ab-4901-a86a-527ab8979d52
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_dwc_measurementvalue
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
+_core:
+  default_config_hash: AgOk489C0t4T6S5fiJARZ-ugBSOmoOF5NSzSFPOXBXU
+id: taxonomy_term.herbarium_specimen_taxonomy.field_dwc_measurementvalue
+field_name: field_dwc_measurementvalue
+entity_type: taxonomy_term
+bundle: herbarium_specimen_taxonomy
+label: 'Rarity Rank'
+description: 'DwC:measurementValue - The Rarity Ranking Value : The geography location of samples with taxonomy a rarity ranking value of less than 2 are hidden from public view and require logging in.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,40 @@
+uuid: aaf49060-a629-472f-9e91-8d718b5694cd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_large_sample_surrogate
+    - node.type.herbarium_specimen
+  module:
+    - image
+_core:
+  default_config_hash: 8ojFAh922J8BeToacjfAKXB32WAqrkzW-mYWWJSThi0
+id: node.herbarium_specimen.field_large_sample_surrogate
+field_name: field_large_sample_surrogate
+entity_type: node
+bundle: herbarium_specimen
+label: 'Specimen Image'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: ''
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: false
+  title_field: false
+  default_image:
+    alt: ''
+    title: ''
+    width: null
+    height: null
+    uuid: ''
+  alt_field_required: true
+  title_field_required: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image

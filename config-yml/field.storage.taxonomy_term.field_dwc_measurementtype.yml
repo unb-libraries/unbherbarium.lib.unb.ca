@@ -1,0 +1,26 @@
+uuid: 8a63befb-a798-49c8-9d9e-a5cb473fff09
+langcode: und
+status: true
+dependencies:
+  module:
+    - options
+    - taxonomy
+_core:
+  default_config_hash: 5w1jAF_02IdvLgTnIewK1XNO7G2uphu_vxCJWbm7w10
+id: taxonomy_term.field_dwc_measurementtype
+field_name: field_dwc_measurementtype
+entity_type: taxonomy_term
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'Rarity Rank'
+      label: 'Rarity Rank'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

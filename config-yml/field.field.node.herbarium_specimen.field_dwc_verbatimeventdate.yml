@@ -1,0 +1,21 @@
+uuid: 30da98c2-0054-4110-ba41-e349f4f8e19b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_verbatimeventdate
+    - node.type.herbarium_specimen
+_core:
+  default_config_hash: IKQglySDICBYvHSrhVGOuEpq6qmqggle9WHX2z4sk1Y
+id: node.herbarium_specimen.field_dwc_verbatimeventdate
+field_name: field_dwc_verbatimeventdate
+entity_type: node
+bundle: herbarium_specimen
+label: 'Verbatim Event Date'
+description: 'DwC:verbatimEventDate - The verbatim (freetext) date transcription from the original database.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,23 @@
+uuid: 1a2c02fe-c9c0-49f5-9833-fb3eece21e26
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_cmh_full_specimen_name
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
+  module:
+    - text
+_core:
+  default_config_hash: Rh4SuOpND9mkAtq-vHPZWRIAd2iz5zSUdoCQTPrw0Mk
+id: taxonomy_term.herbarium_specimen_taxonomy.field_cmh_full_specimen_name
+field_name: field_cmh_full_specimen_name
+entity_type: taxonomy_term
+bundle: herbarium_specimen_taxonomy
+label: 'Scientific Name'
+description: 'The full name of this specimen.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

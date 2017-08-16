@@ -1,0 +1,11 @@
+uuid: 4ccdf8cc-964b-4469-ab72-3d2d2c00f39a
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: cBVUOyYFWSAWQuul0L6llMb8HkRYvEMxv5Wz8poZZuY
+name: 'Herbarium Specimen Collector'
+vid: herbarium_specimen_collector
+description: ''
+hierarchy: 0
+weight: 0

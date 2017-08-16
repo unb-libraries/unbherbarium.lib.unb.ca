@@ -1,0 +1,21 @@
+uuid: 8e88b9d2-a7e4-4ff0-9d4e-7c73bc80fe8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_cmh_french_common_names
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
+_core:
+  default_config_hash: 14JzGprPkrf-LyBRj4F8letFHPm-5RS9Kp9C1GgOSPI
+id: taxonomy_term.herbarium_specimen_taxonomy.field_cmh_french_common_names
+field_name: field_cmh_french_common_names
+entity_type: taxonomy_term
+bundle: herbarium_specimen_taxonomy
+label: 'French Common Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

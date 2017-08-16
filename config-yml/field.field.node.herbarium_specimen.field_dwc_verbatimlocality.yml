@@ -1,0 +1,21 @@
+uuid: 0a76298a-8aab-4669-b53a-d49ff43f4be0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_verbatimlocality
+    - node.type.herbarium_specimen
+_core:
+  default_config_hash: '-OLKB6Qc-YiCF2EHeheirk_o05c4K1EarZFruPYForU'
+id: node.herbarium_specimen.field_dwc_verbatimlocality
+field_name: field_dwc_verbatimlocality
+entity_type: node
+bundle: herbarium_specimen
+label: 'Verbatim Locality'
+description: 'DwC:verbatimLocality - The original textual description of the specimen''s habitat.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

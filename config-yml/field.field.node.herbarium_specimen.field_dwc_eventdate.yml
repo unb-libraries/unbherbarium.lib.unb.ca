@@ -1,0 +1,23 @@
+uuid: 12c2fc21-e67b-42a5-9360-6b0d7a088780
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_eventdate
+    - node.type.herbarium_specimen
+  module:
+    - datetime
+_core:
+  default_config_hash: N72Q83WnRpPmynl3ppKoO5J1VostpMJTWohyoegyD-M
+id: node.herbarium_specimen.field_dwc_eventdate
+field_name: field_dwc_eventdate
+entity_type: node
+bundle: herbarium_specimen
+label: 'Collection Date'
+description: 'The date the specimen was collected from its habitat'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

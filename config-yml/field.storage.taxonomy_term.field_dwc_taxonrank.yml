@@ -1,0 +1,21 @@
+uuid: 8e303b34-71d5-41ed-9654-6e1b40928bae
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+_core:
+  default_config_hash: PtKXTXbWcjBfI3XH_S769ZMDgBb2wD-8Va6z5djXkGs
+id: taxonomy_term.field_dwc_taxonrank
+field_name: field_dwc_taxonrank
+entity_type: taxonomy_term
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

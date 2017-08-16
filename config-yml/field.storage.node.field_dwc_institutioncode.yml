@@ -1,0 +1,26 @@
+uuid: 44c5256a-f13d-4167-b8cb-5e27910cfa5b
+langcode: und
+status: true
+dependencies:
+  module:
+    - node
+    - options
+_core:
+  default_config_hash: 4ZJBAAVJjltyICuIi3Ql31r7X5Ut7VCcfdYjlXaii7E
+id: node.field_dwc_institutioncode
+field_name: field_dwc_institutioncode
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: UNB
+      label: UNB
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

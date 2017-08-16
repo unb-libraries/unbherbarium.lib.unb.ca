@@ -1,0 +1,30 @@
+uuid: 603668a8-428a-4437-984d-e96f8c44950e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.banner_image.field_image
+    - node.type.banner_image
+  module:
+    - image
+    - user
+_core:
+  default_config_hash: PQC8QZd0EUhJzlAe4WHRFB9-yYWIQsiX_nrp8tItE40
+id: node.banner_image.default
+targetEntityType: node
+bundle: banner_image
+mode: default
+content:
+  field_image:
+    weight: 102
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden: {  }

@@ -1,0 +1,15 @@
+uuid: 49f583f1-8537-4705-b802-d89aa9c80509
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access content'
+  - 'access site-wide contact form'
+  - 'use text format basic_html'
+  - 'view detailed herbarium specimens'

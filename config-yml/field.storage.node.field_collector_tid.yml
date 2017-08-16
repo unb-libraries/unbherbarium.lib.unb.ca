@@ -1,0 +1,22 @@
+uuid: 8de9f54a-66fa-438d-bc03-83887ffb88e4
+langcode: und
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+_core:
+  default_config_hash: Jvt7ta1bKmA4rJsKOqbWSZVq9cWVislrLgC7U4yMRjk
+id: node.field_collector_tid
+field_name: field_collector_tid
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

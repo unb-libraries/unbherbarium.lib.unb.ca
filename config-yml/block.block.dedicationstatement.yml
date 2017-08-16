@@ -1,0 +1,22 @@
+uuid: 4ba763b5-4823-4e27-a6d5-632242edf495
+langcode: en
+status: true
+dependencies:
+  module:
+    - unb_herbarium
+  theme:
+    - unbherbarium_ca
+_core:
+  default_config_hash: skymCcA6_pflkHUiJKleYfKdGzXEVfjjs9gzWMCH318
+id: dedicationstatement
+theme: unbherbarium_ca
+region: footer
+weight: -7
+provider: null
+plugin: dedication
+settings:
+  id: dedication
+  label: 'Dedication Statement'
+  provider: unb_herbarium
+  label_display: '0'
+visibility: {  }

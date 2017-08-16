@@ -1,0 +1,26 @@
+uuid: d5c894f6-d2a8-491a-bf44-8678a71bdf4c
+langcode: und
+status: true
+dependencies:
+  module:
+    - node
+    - options
+_core:
+  default_config_hash: x6qKdz-sg0LSDrQXpk83pzX7UmW0ANgopEladO8OX80
+id: node.field_dwc_basisofrecord
+field_name: field_dwc_basisofrecord
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'Preserved Specimen'
+      label: 'Preserved Specimen'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

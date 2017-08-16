@@ -1,0 +1,23 @@
+uuid: 9967a36b-4f5f-4932-a30f-7d28e21ec194
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_dwc_measurementid
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
+_core:
+  default_config_hash: H1CWKekkoaa0FydaOKZYLxtKB7-eVyaVP2IrrLwVsec
+id: taxonomy_term.herbarium_specimen_taxonomy.field_dwc_measurementid
+field_name: field_dwc_measurementid
+entity_type: taxonomy_term
+bundle: herbarium_specimen_taxonomy
+label: 'Measurement ID'
+description: 'DwC:measurementID - The rarity ranking authority, generally http://www.accdc.com/webranks/NBVASC.HTM'
+required: false
+translatable: false
+default_value:
+  -
+    value: 'http://www.accdc.com/webranks/NBVASC.HTM'
+default_value_callback: ''
+settings: {  }
+field_type: string

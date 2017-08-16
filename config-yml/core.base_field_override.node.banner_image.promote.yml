@@ -1,0 +1,24 @@
+uuid: 3abdc846-8833-40f0-9e92-4a3f4ae97944
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.banner_image
+_core:
+  default_config_hash: SksRqU8E-HGgM7dw23RvyUexW0kpCHsT2oX_65cZDd0
+id: node.banner_image.promote
+field_name: promote
+entity_type: node
+bundle: banner_image
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

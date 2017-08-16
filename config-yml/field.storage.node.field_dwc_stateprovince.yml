@@ -1,0 +1,23 @@
+uuid: 7074b73b-886e-4ec4-b662-03d35a92ab2e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: s-NwUknTlXJjyG1P01jMm0sigWlcHfYZdcSCgQScofw
+id: node.field_dwc_stateprovince
+field_name: field_dwc_stateprovince
+entity_type: node
+type: string
+settings:
+  max_length: 64
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

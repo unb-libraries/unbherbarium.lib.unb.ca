@@ -1,0 +1,14 @@
+uuid: 683a8be7-80f9-4e2c-9359-da36144c452b
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.cmh_database_administrator
+  module:
+    - user
+id: user_add_role_action.cmh_database_administrator
+label: 'Add the CMH Database Administrator role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: cmh_database_administrator

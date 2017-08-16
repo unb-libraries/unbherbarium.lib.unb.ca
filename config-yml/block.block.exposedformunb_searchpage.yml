@@ -1,0 +1,25 @@
+uuid: 55bc8e9c-5ffe-4a6d-8d2c-ae46e6cbf134
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.unb_search
+  module:
+    - views
+  theme:
+    - unbherbarium_ca
+_core:
+  default_config_hash: 2s_uvB1hQJvaR1tIRiPXxKF1qQ1gRCcX6vIg509EBfo
+id: exposedformunb_searchpage
+theme: unbherbarium_ca
+region: sidebar_second
+weight: -10
+provider: null
+plugin: 'views_exposed_filter_block:unb_search-page'
+settings:
+  id: 'views_exposed_filter_block:unb_search-page'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+visibility: {  }

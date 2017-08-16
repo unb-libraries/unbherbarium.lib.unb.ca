@@ -1,0 +1,24 @@
+uuid: d08ce62b-f3d7-48dd-afed-c96dcb9e6ff4
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: ExaAb_c5hD7CRCdDgPEUhAb5SCc5fw6FRlZfpirUdGQ
+id: herbarium_specimen_specimen
+label: 'Sample Specimen'
+type: 'canonical_entities:node'
+pattern: 'specimen/[node:title]'
+selection_criteria:
+  b1f912d6-809d-4092-9021-dd65d9fd6493:
+    id: node_type
+    bundles:
+      herbarium_specimen: herbarium_specimen
+    negate: false
+    context_mapping:
+      node: node
+    uuid: b1f912d6-809d-4092-9021-dd65d9fd6493
+selection_logic: and
+weight: -5
+relationships: {  }

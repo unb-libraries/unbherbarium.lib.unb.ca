@@ -1,0 +1,26 @@
+uuid: 47d08217-72b5-4219-ac64-30c6b7e3b17f
+langcode: und
+status: true
+dependencies:
+  module:
+    - node
+    - options
+_core:
+  default_config_hash: NtgB95XUQGKlBf15Nf5da0kAtVDvLM0v54Vuoh1OmhU
+id: node.field_dc_format
+field_name: field_dc_format
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: image/TIFF
+      label: image/TIFF
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

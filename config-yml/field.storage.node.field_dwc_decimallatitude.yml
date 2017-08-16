@@ -1,0 +1,22 @@
+uuid: 6bc05d35-aa2e-438e-a136-eb99a094d452
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: bNbk_ahTROAqtw2QdN7uDj3s_9HyxHc_Y4rx-Ei0Ufk
+id: node.field_dwc_decimallatitude
+field_name: field_dwc_decimallatitude
+entity_type: node
+type: decimal
+settings:
+  precision: 10
+  scale: 6
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

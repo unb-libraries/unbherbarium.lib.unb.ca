@@ -1,0 +1,25 @@
+uuid: 182bcfc6-e11e-4aa6-9d0d-4ee7f60f5db2
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+_core:
+  default_config_hash: KPUr38e_APYPVKIE9VxElfwFBPHyoRQQ4AxYajELwtY
+id: taxonlist
+label: Taxonlist
+type: 'canonical_entities:taxonomy_term'
+pattern: 'taxonlist/[term:parents]/[term:name]'
+selection_criteria:
+  1d1e68cd-5c69-4143-9717-429196c427dc:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      herbarium_specimen_taxonomy: herbarium_specimen_taxonomy
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: 1d1e68cd-5c69-4143-9717-429196c427dc
+selection_logic: and
+weight: -5
+relationships: {  }

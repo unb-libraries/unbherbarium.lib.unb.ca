@@ -1,0 +1,21 @@
+uuid: 904ed57c-f828-411e-ac71-633c284e4e92
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: pyzClJGEFCiV58gyLBCU-9s012OSTzNIEH3jR9fEpmg
+id: node.field_dwc_habitat
+field_name: field_dwc_habitat
+entity_type: node
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,21 @@
+uuid: 87c816cf-cc6f-4167-af7a-ca25f14abfae
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: 9Qnf7dOu-rRHPC1tXHfWPkzn-hoh0VXRwq3MSUyccWM
+id: node.field_dwc_eventremarks
+field_name: field_dwc_eventremarks
+entity_type: node
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

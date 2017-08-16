@@ -1,0 +1,25 @@
+uuid: 1787b034-d3f2-4a47-9fa5-19790db50ce1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_coordinateprecision
+    - node.type.herbarium_specimen
+_core:
+  default_config_hash: Rgi5KmIdL0uHqBWyD3Wpa6cSmjRrr86hlTnHj8inz60
+id: node.herbarium_specimen.field_dwc_coordinateprecision
+field_name: field_dwc_coordinateprecision
+entity_type: node
+bundle: herbarium_specimen
+label: 'Coordinate Precision'
+description: 'DwC:coordinatePrecision Decimal degrees, range typically from <b>0.1</b> <i>(large city or district)</i> to <b>0.00001</b> <i>(individual trees)</i>'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: !!float 1
+  prefix: ''
+  suffix: ''
+field_type: float

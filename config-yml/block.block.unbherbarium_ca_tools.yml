@@ -1,0 +1,26 @@
+uuid: 616e8c56-8e0e-43af-a330-81d45756ff53
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.tools
+  module:
+    - system
+  theme:
+    - unbherbarium_ca
+_core:
+  default_config_hash: ZLUeGNFPmq6CWE4jcLuBST22DtX96YGHPOyEW84qaoE
+id: unbherbarium_ca_tools
+theme: unbherbarium_ca
+region: sidebar_second
+weight: -6
+provider: null
+plugin: 'system_menu_block:tools'
+settings:
+  id: 'system_menu_block:tools'
+  label: Navigation
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+visibility: {  }

@@ -1,0 +1,21 @@
+uuid: 83fc2242-f404-49e9-a096-e86ea3d76d8a
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: pYkFwCKirgNaEK-3t1PlX1QTTMQenNDnkfu12vNNK0M
+id: node.field_dwc_occurrenceremarks
+field_name: field_dwc_occurrenceremarks
+entity_type: node
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

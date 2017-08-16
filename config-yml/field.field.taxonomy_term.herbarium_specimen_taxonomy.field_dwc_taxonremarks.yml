@@ -1,0 +1,23 @@
+uuid: 05de65a7-aadf-4691-aef7-85f2435e7dd0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_dwc_taxonremarks
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
+_core:
+  default_config_hash: gcl8P31JCN3N_rBoZgve6aaLcP47YdBHh6NYCS8STiI
+id: taxonomy_term.herbarium_specimen_taxonomy.field_dwc_taxonremarks
+field_name: field_dwc_taxonremarks
+entity_type: taxonomy_term
+bundle: herbarium_specimen_taxonomy
+label: 'Taxon Remarks'
+description: 'DwC:taxonRemarks - Comments or notes about the taxon or name. Typically ''Native'' for the CMH samples.'
+required: false
+translatable: false
+default_value:
+  -
+    value: Native
+default_value_callback: ''
+settings: {  }
+field_type: string

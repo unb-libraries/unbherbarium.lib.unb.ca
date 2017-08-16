@@ -1,0 +1,20 @@
+uuid: 584c964f-11d0-44b2-aac7-54aea5eb7def
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: z1lWw3lmK9nLKDP3AJBxQ_rxSz61yOyNPpoUzpxHzgo
+id: node.field_dwc_coordinateprecision
+field_name: field_dwc_coordinateprecision
+entity_type: node
+type: float
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

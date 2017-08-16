@@ -1,0 +1,23 @@
+uuid: db63596f-48d7-4bc0-8198-cc48dde8c86f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: 3rJueeTbVCarCuVVCBe6A2MepKhybYh8CQSEdrVVr_I
+id: node.field_dc_contributor_other
+field_name: field_dc_contributor_other
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

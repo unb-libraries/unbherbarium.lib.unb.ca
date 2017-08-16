@@ -1,0 +1,26 @@
+uuid: f2352aca-0087-40b9-8acb-13d42062a9b4
+langcode: und
+status: true
+dependencies:
+  module:
+    - node
+    - options
+_core:
+  default_config_hash: K26R4QhGWd4Vtgnog5K3cFrNGHEx1XVJEUiSmzUrSUE
+id: node.field_dwc_collectioncode
+field_name: field_dwc_collectioncode
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: CMH
+      label: CMH
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

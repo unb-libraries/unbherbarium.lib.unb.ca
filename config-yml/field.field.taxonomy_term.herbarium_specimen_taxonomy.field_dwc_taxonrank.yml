@@ -1,0 +1,30 @@
+uuid: 2e312232-f507-4cbf-b3af-0528e5880e8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_dwc_taxonrank
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
+    - taxonomy.vocabulary.taxon_rank
+_core:
+  default_config_hash: 792ZUJAia2JZCMhjImHKUAnIYEm5SX7OMEejNv_4WGM
+id: taxonomy_term.herbarium_specimen_taxonomy.field_dwc_taxonrank
+field_name: field_dwc_taxonrank
+entity_type: taxonomy_term
+bundle: herbarium_specimen_taxonomy
+label: 'Taxon Rank'
+description: 'DwC:taxonRank - The taxonomic rank of the most specific name in the scientific name : Family, Genus, Species, var., ssp., x'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      taxon_rank: taxon_rank
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

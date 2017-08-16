@@ -1,0 +1,30 @@
+uuid: 700e7ef8-9283-4e90-a66d-322a76a83ced
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_taxonomy_tid
+    - node.type.herbarium_specimen
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
+_core:
+  default_config_hash: fioRsVRidssV2BH8SHI1b1YZ6JcbiMdn8IXfYNKeFBQ
+id: node.herbarium_specimen.field_taxonomy_tid
+field_name: field_taxonomy_tid
+entity_type: node
+bundle: herbarium_specimen
+label: 'Assigned Taxon'
+description: 'Typically the specific epithet.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      herbarium_specimen_taxonomy: herbarium_specimen_taxonomy
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

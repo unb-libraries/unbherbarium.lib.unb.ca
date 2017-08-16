@@ -1,0 +1,25 @@
+uuid: e8cb3113-3dd2-4ffc-a819-0975dfbd6cd9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dc_rights
+    - node.type.herbarium_specimen
+  module:
+    - options
+_core:
+  default_config_hash: MiQucMnfkMuiiXhMCZAJqy-1z8b_mjYK-mtApkPsIC4
+id: node.herbarium_specimen.field_dc_rights
+field_name: field_dc_rights
+entity_type: node
+bundle: herbarium_specimen
+label: 'DC:rights'
+description: 'License for rights held in and over the resource'
+required: true
+translatable: true
+default_value:
+  -
+    value: 'Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

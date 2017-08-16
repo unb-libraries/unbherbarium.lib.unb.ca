@@ -1,0 +1,11 @@
+uuid: e06ca636-f051-40d0-adfc-520405b2ea0a
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: irpxUZobiOxXef8DnqsUuK7Av25I_Baj-FmxiCZAGgo
+name: 'Herbarium Specimen Taxonomy'
+vid: herbarium_specimen_taxonomy
+description: ''
+hierarchy: 0
+weight: 0

@@ -1,0 +1,19 @@
+uuid: b08295be-275e-4e5f-b0e6-d9ed327d353c
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+_core:
+  default_config_hash: SRwN8GNszrrHWo85OHINbCrVUc5rY17bVP0lkt7dmmQ
+name: 'Herbarium Specimen'
+type: herbarium_specimen
+description: 'Record representing a herbarium specimen.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

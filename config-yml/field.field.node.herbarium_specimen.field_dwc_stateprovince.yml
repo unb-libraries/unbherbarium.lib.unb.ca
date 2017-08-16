@@ -1,0 +1,21 @@
+uuid: 02c7fbe1-c64e-481a-8dfe-d3d2786425fb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_stateprovince
+    - node.type.herbarium_specimen
+_core:
+  default_config_hash: 5BJ2bo8MfymEIYXO5KWq3utNkNRaRACDsYOwnL9gNg4
+id: node.herbarium_specimen.field_dwc_stateprovince
+field_name: field_dwc_stateprovince
+entity_type: node
+bundle: herbarium_specimen
+label: State/Province/Territory
+description: 'DwC:stateProvince - The state or province the specimen habitat exists in.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

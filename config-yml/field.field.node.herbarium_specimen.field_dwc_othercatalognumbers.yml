@@ -1,0 +1,21 @@
+uuid: 40097a46-31c6-4a58-aade-320e2bc10e55
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_othercatalognumbers
+    - node.type.herbarium_specimen
+_core:
+  default_config_hash: 7NuZURYgSdr46o_UGg6K3q_DglzIGQjeCftZ2AYFKY4
+id: node.herbarium_specimen.field_dwc_othercatalognumbers
+field_name: field_dwc_othercatalognumbers
+entity_type: node
+bundle: herbarium_specimen
+label: 'Other Catalogue No.'
+description: 'DwC:otherCatalogNumbers - Other catalogue / Set numbers identifying this specimen.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

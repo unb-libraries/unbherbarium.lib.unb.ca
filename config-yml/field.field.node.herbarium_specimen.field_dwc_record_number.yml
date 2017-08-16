@@ -1,0 +1,21 @@
+uuid: 4395715b-bf68-4d4e-bc07-e0836d567982
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_record_number
+    - node.type.herbarium_specimen
+_core:
+  default_config_hash: t5k8ffLi6RG6xx9QqBe0A3v627agqkuKtj8U_29qmz4
+id: node.herbarium_specimen.field_dwc_record_number
+field_name: field_dwc_record_number
+entity_type: node
+bundle: herbarium_specimen
+label: 'UNB Accession No.'
+description: 'DwC:recordnumber - The CMH Accession ID for this specimen.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

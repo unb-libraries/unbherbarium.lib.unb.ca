@@ -1,0 +1,25 @@
+uuid: a1994109-bd4d-41f3-a158-932e5a83dab6
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: nODcsf2sg5WMQljgtOaWbHt2WvT-dbLiMbdNMN5dmN0
+name: banner
+label: Banner
+effects:
+  b9a0299c-b96a-4d0f-a56d-084aff843915:
+    uuid: b9a0299c-b96a-4d0f-a56d-084aff843915
+    id: image_scale
+    weight: 1
+    data:
+      width: 1140
+      height: null
+      upscale: true
+  b9e52ef8-a663-4440-bd98-8cdca43f3207:
+    uuid: b9e52ef8-a663-4440-bd98-8cdca43f3207
+    id: image_crop
+    weight: 2
+    data:
+      width: 1140
+      height: 450
+      anchor: center-center
