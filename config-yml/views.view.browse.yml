@@ -1175,7 +1175,7 @@ display:
         weight: -45
         context: '0'
         menu_name: tools
-      css_class: 'browse use-chosen'
+      css_class: 'browse browse-specimens use-chosen'
       use_ajax: false
       fields:
         title:

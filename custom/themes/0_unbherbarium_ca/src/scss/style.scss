@@ -555,6 +555,10 @@ img.align-right {
   margin-right: .3em;
   vertical-align: top;
 }
+.browse-specimens tr th:last-child,
+.browse-specimens tr td:last-child {
+  text-align: right;
+}
 .view-content .specimen-image a {
   background: url(/modules/custom/unb_herbarium/images/ajax-loader-sm.gif) no-repeat center center;
   width: 100px;
