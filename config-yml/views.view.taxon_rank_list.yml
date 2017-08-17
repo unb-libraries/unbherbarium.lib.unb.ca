@@ -842,7 +842,7 @@ display:
       display_extenders: {  }
       link_url: ''
       link_display: page_1
-      css_class: inline-filter
+      css_class: 'inline-filter browse-specimens'
     cache_metadata:
       contexts:
         - 'languages:language_content'
