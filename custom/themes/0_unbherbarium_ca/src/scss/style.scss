@@ -563,22 +563,26 @@ img.align-right {
 .browse-specimens tr td:last-child {
   text-align: right;
 }
-.view-content .specimen-image a {
+.browse-specimens .specimen-image a {
   background: url(/modules/custom/unb_herbarium/images/ajax-loader-sm.gif) no-repeat center center;
-  width: 100px;
+  min-width: 69px;
   min-height: 100px;
 }
 
 // Responsive overrides.
-@media (max-width: 390px) {
-  .navbar-brand {
-    font-size: large;
-  }
-}
 @media (max-width: 414px) {
+  .navbar-brand {
+    font-size: 17px;
+  }
+
   .pagination > li > a,
   .pagination > li > span {
     padding: 1em 1.2em;
+  }
+
+  .specimen-details dt,
+  .specimen-details dd {
+    width: 100%;
   }
 }
 @media (min-width: 768px) {
