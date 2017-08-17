@@ -44,7 +44,6 @@ a:visited,
 .pagination > li > a,
 .pagination > li > span {
   color: $color-link;
-  display: inline-block;
   text-decoration: none;
 }
 a:focus,
@@ -53,6 +52,13 @@ th a:focus,
 th a:hover {
   color: $color-hover;
   text-decoration: underline;
+}
+.nav > li > a:focus,
+.nav > li > a:hover,
+.nav > li > a:hover,
+.pagination > li > a,
+.pagination > li > span {
+  display: inline-block;
 }
 .btn-primary,
 a.btn-primary {
