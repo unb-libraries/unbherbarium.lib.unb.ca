@@ -31,6 +31,7 @@ module:
   herbarium_specimen: 0
   herbarium_specimen_lts: 0
   history: 0
+  honeypot: 0
   image: 0
   link: 0
   menu_ui: 0
