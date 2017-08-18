@@ -591,6 +591,17 @@ img.align-right {
     width: 100%;
   }
 }
+@media (max-width: 567px) {
+  .specimen-details dt,
+  .specimen-details dd {
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 100%;
+  }
+  .specimen-details dd {
+    margin-bottom: 1em;
+  }
+}
 @media (min-width: 768px) {
   body.navbar-is-fixed-top {
     padding-top: 1.5em;

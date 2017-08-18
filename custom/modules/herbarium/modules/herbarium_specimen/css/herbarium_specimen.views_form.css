@@ -8,10 +8,13 @@ td.specimen-image img {
   border: 0;
 }
 
-.view td.specimen-image a img {
+.view td.specimen-image a img,
+.specimen-details a.colorbox {
   box-shadow: 1px 1px 5px #cdc5b4;
 }
 .view td.specimen-image a:focus img,
-.view td.specimen-image a:hover img {
+.view td.specimen-image a:hover img,
+.specimen-details a.colorbox:focus,
+.specimen-details a.colorbox:hover {
   box-shadow: 1px 1px 5px #797979;
 }
