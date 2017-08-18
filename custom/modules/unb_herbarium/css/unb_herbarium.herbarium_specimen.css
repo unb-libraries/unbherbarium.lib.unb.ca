@@ -180,7 +180,7 @@ dd li {
 }
 .specimen-details figure a {
   max-width: 205px;
-  min-height: 299px;
+  min-height: 285px;
 }
 .specimen-details figure img {
   display: block;
@@ -280,6 +280,6 @@ dd li {
 @media (min-width:1024px) and (max-width: 1200px) {
   .specimen-details figure a {
     width: 169px;
-    min-height: 246px;
+    min-height: 235px;
   }
 }
