@@ -23,23 +23,38 @@ h1 {
 // Hyperlink styles.
 a:link,
 a:visited,
-.nav > li > a:focus,
-.nav > li > a:hover,
-.nav > li > a:hover,
+aside a:link,
+aside a:visited,
 .pagination > li > a,
 .pagination > li > span {
   color: $color-link;
   text-decoration: none;
 }
+article a:link,
+article a:visited,
+main a:link,
+main a:visited {
+  text-decoration: underline;
+}
 a:focus,
 a:hover,
 th a:focus,
-th a:hover {
+th a:hover,
+aside a:focus,
+aside a:hover,
+aside .nav > li > a:focus,
+aside .nav > li > a:hover {
   color: $color-hover;
   text-decoration: underline;
 }
+article a:focus,
+article a:hover,
+main a:focus,
+main a:hover {
+  text-decoration: none;
+}
+
 .nav > li > a:focus,
-.nav > li > a:hover,
 .nav > li > a:hover,
 .pagination > li > a,
 .pagination > li > span {
@@ -62,27 +77,6 @@ a.btn-primary {
 .menu.nav > li > a:focus,
 .menu.nav > li > a:hover {
   background: none;
-}
-article a:link,
-article a:visited,
-main a:link,
-main a:visited {
-  text-decoration: underline;
-}
-article a:focus,
-article a:hover,
-main a:focus,
-main a:hover,
-.simple-gmap-link a {
-  text-decoration: none;
-}
-.simple-gmap-link a:link,
-.simple-gmap-link a:visited {
- text-decoration: none;
-}
-.simple-gmap-link a:focus,
-.simple-gmap-link a:hover {
-  text-decoration: underline;
 }
 .pagination > .active > a,
 .pagination > .active > span,
@@ -556,6 +550,7 @@ img.align-right {
 }
 .browse-specimens .specimen-image a {
   background: url(/modules/custom/unb_herbarium/images/ajax-loader-sm.gif) no-repeat center center;
+  display: inline-block;
   min-width: 69px;
   min-height: 100px;
 }
