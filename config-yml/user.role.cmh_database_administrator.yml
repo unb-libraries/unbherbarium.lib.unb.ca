@@ -30,6 +30,7 @@ permissions:
   - 'edit any page content'
   - 'edit terms in herbarium_specimen_collector'
   - 'edit terms in herbarium_specimen_taxonomy'
+  - 'manage herbarium lts master images'
   - 'reorder terms in herbarium_specimen_collector'
   - 'reorder terms in herbarium_specimen_taxonomy'
   - 'use text format full_html'
