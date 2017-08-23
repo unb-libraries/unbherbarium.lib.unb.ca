@@ -178,9 +178,12 @@ dd li {
 .specimen-details aside figure {
   margin: 0 1em 1em 0;
 }
-.specimen-details figure a {
-  max-width: 205px;
-  min-height: 285px;
+.specimen-details figure > div {
+  background: url(../images/ajax-loader.gif) no-repeat center center;
+  min-height: 256px;
+  padding-bottom: .5em;
+  vertical-align: top;
+  width: 100%;
 }
 .specimen-details figure img {
   display: block;
@@ -194,9 +197,14 @@ dd li {
   margin-bottom: 0;
 }
 .gmap,
-.specimen-image a { /* add loading indicator for gmap */
-  background: url(../images/ajax-loader.gif) no-repeat center center;
+.specimen-image { /* add loading indicator for gmap */
   display: inline-block;
+  width: 210px;
+  max-width: 100%;
+}
+.gmap,
+.specimen-details figure > div {
+  background: url(../images/ajax-loader.gif) no-repeat center center;
 }
 
 .fieldset-toggle legend input,
@@ -275,11 +283,5 @@ dd li {
   }
   .specimen-details aside figure {
     margin-right: 0;
-  }
-}
-@media (min-width:1024px) and (max-width: 1200px) {
-  .specimen-details figure a {
-    width: 169px;
-    min-height: 235px;
   }
 }
