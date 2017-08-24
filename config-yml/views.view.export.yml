@@ -1080,6 +1080,7 @@ display:
         weight: 5
         context: '0'
         menu_name: tools
+        enabled: false
       header:
         area:
           id: area
