@@ -120,7 +120,7 @@ class HerbariumImageLtsArchiver {
 
     // Copy file to LTS folder.
     exec(
-      "cp {$this->file} {$temp_clone_directory}/{$target_nid}.tif",
+      "cp \"{$this->file}\" {$temp_clone_directory}/{$target_nid}.tif",
       $output,
       $return
     );
