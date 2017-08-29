@@ -115,7 +115,7 @@ function herbarium_core_form_node_herbarium_specimen_edit_form_alter(&$form, For
 }
 
 /**
- * Implements hook_ENTITY_TYPE_presave.
+ * Implements hook_ENTITY_TYPE_presave().
  */
 function herbarium_specimen_node_presave($node) {
   switch ($node->getType()) {
