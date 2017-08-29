@@ -425,13 +425,6 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_herbarium_spec_master_impo:
-    type: boolean_checkbox
-    weight: 15
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   field_large_sample_surrogate:
     type: image_image
     weight: 64
@@ -502,3 +495,4 @@ content:
 hidden:
   field_dwc_georeferencedby: true
   field_gmap: true
+  field_herbarium_spec_master_impo: true
