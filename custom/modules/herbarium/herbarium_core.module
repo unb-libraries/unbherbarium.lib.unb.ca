@@ -115,6 +115,32 @@ function herbarium_core_form_node_herbarium_specimen_edit_form_alter(&$form, For
 }
 
 /**
+ * Implements hook_ENTITY_TYPE_presave.
+ */
+function herbarium_specimen_node_presave($node) {
+  switch ($node->getType()) {
+    case 'herbarium_specimen':
+      $target_id = $node
+        ->get('field_taxonomy_tid')
+        ->get(0)
+        ->get('target_id')
+        ->getString();
+      if (!empty($target_id)) {
+        $term = Term::load($target_id);
+        $full_title = _herbarium_core_term_build_full_name(
+          $term,
+          HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANKS_TO_OMIT_PRINTING,
+          FALSE
+        );
+      }
+
+      // Populate the title field.
+      $node->title = (empty($full_title)) ? 'Error creating title' : $full_title;
+      break;
+  }
+}
+
+/**
  * Custom herbarium specimen node submit handler.
  *
  * @param object $form
