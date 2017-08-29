@@ -66,7 +66,7 @@ third_party_settings:
         - field_dwc_eventremarks
         - field_dwc_occurrenceremarks
       parent_name: group_initially_hidden_details
-      weight: 60
+      weight: 59
       label: 'Specimen Habitat'
       format_type: accordion_item
       format_settings:
@@ -81,7 +81,7 @@ third_party_settings:
         - field_dc_created
         - field_dwc_verbatimeventdate
       parent_name: group_initially_hidden_details
-      weight: 61
+      weight: 60
       label: 'Date Information'
       format_type: accordion_item
       format_settings:
@@ -94,7 +94,7 @@ third_party_settings:
       children:
         - field_previous_identifications
       parent_name: group_initially_hidden_details
-      weight: 62
+      weight: 61
       label: 'Previous Identifications'
       format_type: accordion_item
       format_settings:
@@ -150,7 +150,7 @@ third_party_settings:
         - group_previous_identifications
         - group_details_license
       parent_name: ''
-      weight: 5
+      weight: 4
       format_type: accordion
       format_settings:
         id: ''
@@ -162,7 +162,7 @@ third_party_settings:
         - field_large_sample_surrogate
         - field_large_sample_surrogate_msk
       parent_name: ''
-      weight: 6
+      weight: 5
       format_type: details
       format_settings:
         label: 'Generated Display Images'
@@ -180,7 +180,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 12
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -194,7 +194,7 @@ content:
     third_party_settings: {  }
     region: content
   field_dc_contributor_other:
-    weight: 7
+    weight: 6
     settings:
       size: 60
       placeholder: ''
@@ -268,14 +268,14 @@ content:
     third_party_settings: {  }
     region: content
   field_dwc_coordinateprecision:
-    weight: 59
+    weight: 58
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_dwc_country:
-    weight: 60
+    weight: 59
     settings:
       size: 60
       placeholder: ''
@@ -336,7 +336,7 @@ content:
     type: string_textarea
     region: content
   field_dwc_habitat:
-    weight: 61
+    weight: 60
     settings:
       rows: 5
       placeholder: ''
@@ -370,14 +370,6 @@ content:
     type: string_textarea
     region: content
   field_dwc_othercatalognumbers:
-    weight: 3
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_dwc_record_number:
     weight: 2
     settings:
       size: 60
@@ -385,8 +377,16 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_dwc_record_number:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_dwc_reproductivecondition:
-    weight: 4
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -451,13 +451,13 @@ content:
     region: content
   field_taxonomy_tid:
     type: options_select
-    weight: 1
+    weight: 0
     settings: {  }
     third_party_settings: {  }
     region: content
   path:
     type: path
-    weight: 8
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -465,27 +465,19 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 9
+    weight: 8
     third_party_settings: {  }
     region: content
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 10
-    third_party_settings: {  }
-    region: content
-  title:
-    type: string_textfield
-    weight: 0
-    settings:
-      size: 60
-      placeholder: ''
+    weight: 9
     third_party_settings: {  }
     region: content
   uid:
     type: entity_reference_autocomplete
-    weight: 11
+    weight: 10
     settings:
       match_operator: CONTAINS
       size: 60
@@ -496,3 +488,4 @@ hidden:
   field_dwc_georeferencedby: true
   field_gmap: true
   field_herbarium_spec_master_impo: true
+  title: true
