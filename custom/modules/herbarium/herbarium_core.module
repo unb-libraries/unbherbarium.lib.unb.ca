@@ -135,7 +135,7 @@ function herbarium_specimen_node_presave($node) {
       }
 
       // Populate the title field.
-      $node->title = (empty($full_title)) ? 'Error creating title' : $full_title;
+      $node->title = (empty($full_title)) ? 'Unknown' : $full_title;
       break;
   }
 }
