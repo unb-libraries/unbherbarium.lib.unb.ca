@@ -170,7 +170,7 @@ class ManageArchivalMasterForm extends FormBase {
 
     // Smudge out file.
     exec(
-      "cd {$this->ltsRepoPath} && GIT_WORK_TREE='/tmp' git lfs pull --include \"$nid.tif\"",
+      "cd '/lts-archive' && GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/NULL -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa\" GIT_WORK_TREE='/tmp' git lfs pull --include \"$nid.tif\"",
       $output,
       $return
     );
