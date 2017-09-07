@@ -141,6 +141,9 @@ class ManageArchivalMasterForm extends FormBase {
       '#submit' => [
         [$this, 'regenerateSurrogatesSubmitForm'],
       ],
+      '#limit_validation_errors' => [
+        ['nid'],
+      ],
     ];
 
     return $form;
