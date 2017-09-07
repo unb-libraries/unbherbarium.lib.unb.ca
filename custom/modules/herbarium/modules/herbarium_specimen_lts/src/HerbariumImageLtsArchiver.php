@@ -290,7 +290,7 @@ class HerbariumImageLtsArchiver {
 
     // Get the LTS history.
     exec(
-      "cd {$this->ltsRepoPath} && git log --pretty=format:\"%ai||%aE||%s\" -- {$this->node->id()}.tif",
+      "cd {$this->ltsRepoPath} && git log --pretty=format:\"%ai||%aE||%s\" | grep '\[{$this->node->id()}\]'",
       $output,
       $return
     );
