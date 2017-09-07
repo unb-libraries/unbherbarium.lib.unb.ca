@@ -155,6 +155,13 @@ class ManageArchivalMasterForm extends FormBase {
   /**
    * {@inheritdoc}
    */
+  public function submitForm(array &$form, FormStateInterface $form_state) {
+    parent::submitForm($form, $form_state);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function regenerateSurrogatesSubmitForm(array &$form, FormStateInterface $form_state) {
     $nid = $form_state->getValue('nid');
 
