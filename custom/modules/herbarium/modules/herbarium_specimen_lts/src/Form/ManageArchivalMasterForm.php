@@ -121,6 +121,26 @@ class ManageArchivalMasterForm extends FormBase {
       '#type' => 'submit',
       '#disabled' => !$storage_status,
       '#value' => t('Upload New Archival Master'),
+      '#submit' => [
+        [$this, 'uploadArchivalMasterSubmitForm'],
+      ],
+    ];
+
+    $form['regenerate_assets'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Regenerate Sample Images'),
+    ];
+
+    $form['regenerate_assets']['info'] = [
+      '#markup' => '<p>' . t('The specimen archival image serves as the source of all images presented to users for the specimen. To regenerate those images from the archival master, click below') . '</p>',
+    ];
+    $form['regenerate_assets']['submit'] = [
+      '#type' => 'submit',
+      '#disabled' => !$storage_status,
+      '#value' => t('Regenerate Surrogate Images'),
+      '#submit' => [
+        [$this, 'regenerateSurrogatesSubmitForm'],
+      ],
     ];
 
     return $form;
@@ -135,7 +155,35 @@ class ManageArchivalMasterForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state) {
+  public function regenerateSurrogatesSubmitForm(array &$form, FormStateInterface $form_state) {
+    $nid = $form_state->getValue('nid');
+
+    // Smudge out file.
+    exec(
+      "cd {$this->ltsRepoPath} && GIT_WORK_TREE='/tmp' git lfs pull --include \"$nid.tif\"",
+      $output,
+      $return
+    );
+    $file_path = "/tmp/$nid.tif";
+
+    $batch = [
+      'title' => t('Regenerating Specimen Images'),
+      'init_message' => t('Regenerating Specimen Images'),
+      'operations' => [],
+    ];
+
+    // Image surrogates.
+    $surrogates_batch = _herbarium_specimen_generate_specimen_surrogates_batch($nid, $file_path);
+    $batch['operations'] = array_merge($batch['operations'], $surrogates_batch['operations']);
+
+    // Start the batch.
+    batch_set($batch);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function uploadArchivalMasterSubmitForm(array &$form, FormStateInterface $form_state) {
     $fid = $form_state->getValue('tiff_file')[0];
     $nid = $form_state->getValue('nid');
 
