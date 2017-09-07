@@ -151,11 +151,21 @@ class HerbariumImageSurrogateFactory {
    *   The Batch API context array.
    */
   protected function generateDziTiles(&$context) {
+    // First, generate the masked image.
     $nid = $this->nid;
+    list($width, $height, $type, $attr) = getimagesize($this->file);
+    $mask_start_x = $width * (1 - $this->maskedWidthFactor);
+    $mask_start_y = $height * (1 - $this->maskedHeightFactor);
+    $temp_image_file = tempnam(sys_get_temp_dir(), "$nid-masked-") . '.jpg';
+    exec(
+      "convert \"{$this->file}\" -strokewidth 0 -fill \"rgba(255,255,255,1)\" -draw \"rectangle $mask_start_x,$mask_start_y $width,$height\" $temp_image_file",
+      $output,
+      $return
+    );
 
     // Generate DZI tiles.
     exec(
-      "/usr/local/bin/magick-slicer -e jpg -i {$this->file} -o {$this->nodeDziPath}",
+      "/usr/local/bin/magick-slicer -e jpg -i \"$temp_image_file\" -o \"{$this->nodeDziPath}\"",
       $output,
       $return
     );
@@ -179,7 +189,7 @@ class HerbariumImageSurrogateFactory {
     $temp_image_file = tempnam(sys_get_temp_dir(), "$nid-unmasked-") . '.jpg';
 
     exec(
-      "convert {$this->file} -unsharp 0x1.0+0.5+0 $temp_image_file ",
+      "convert \"{$this->file}\" -unsharp 0x1.0+0.5+0 $temp_image_file ",
       $output,
       $return
     );
@@ -231,7 +241,7 @@ class HerbariumImageSurrogateFactory {
     $temp_image_file = tempnam(sys_get_temp_dir(), "$nid-masked-") . '.jpg';
 
     exec(
-      "convert {$this->file} -strokewidth 0 -fill \"rgba(255,255,255,1)\" -draw \"rectangle $mask_start_x,$mask_start_y $width,$height\" $temp_image_file",
+      "convert \"{$this->file}\" -strokewidth 0 -fill \"rgba(255,255,255,1)\" -draw \"rectangle $mask_start_x,$mask_start_y $width,$height\" $temp_image_file",
       $output,
       $return
     );
