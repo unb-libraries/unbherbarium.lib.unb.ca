@@ -206,11 +206,6 @@ class HerbariumImageSurrogateFactory {
     $file_u->setPermanent();
     $file_u->save();
 
-    // Remove existing JPG surrogates.
-    if (!empty($this->node->get('field_large_sample_surrogate')->entity)) {
-      $this->node->get('field_large_sample_surrogate')->entity->delete();
-    }
-
     // Assign file to node.
     $this->node->get('field_large_sample_surrogate')->setValue($file_u);
     $this->node->save();
@@ -259,11 +254,6 @@ class HerbariumImageSurrogateFactory {
     $file_m->setPermanent();
     $file_m->save();
 
-    if (!empty($this->node->get('field_large_sample_surrogate_msk')->entity)) {
-      $this->node->get('field_large_sample_surrogate_msk')->entity->delete();
-      $this->node->get('field_large_sample_surrogate_msk')->value = [];
-    }
-
     // Attach new existing JPG surrogates.
     $this->node->get('field_large_sample_surrogate_msk')->setValue($file_m);
     $this->node->save();
@@ -293,6 +283,24 @@ class HerbariumImageSurrogateFactory {
       $return
     );
 
+    // Remove images attached to node.
+    $surrogate_fields = [
+      'field_large_sample_surrogate',
+      'field_large_sample_surrogate_msk',
+      'test',
+    ];
+
+    foreach ($surrogate_fields as $surrogate_field) {
+      if (!empty($this->node->get($surrogate_field)->entity)) {
+        $this->node->get($surrogate_field)->value = [];
+        $fid = $this->node->get($surrogate_field)->entity->id();
+        $file_obj = File::Load($fid);
+        $file_obj->delete();
+      }
+    }
+    $this->node->save();
+
+    // Set message.
     $context['message'] = t(
       '[NID#@nid] Deleted previously generated assets for specimen',
       [
