@@ -287,7 +287,6 @@ class HerbariumImageSurrogateFactory {
     $surrogate_fields = [
       'field_large_sample_surrogate',
       'field_large_sample_surrogate_msk',
-      'test',
     ];
 
     foreach ($surrogate_fields as $surrogate_field) {
