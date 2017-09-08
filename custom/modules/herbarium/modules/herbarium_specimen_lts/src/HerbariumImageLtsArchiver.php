@@ -323,31 +323,37 @@ class HerbariumImageLtsArchiver {
    *   The Batch API context array.
    */
   protected function pushLfsRepo(&$context) {
-    $history = [];
+    // Push back to origin. Check for errors indicating concurrent use / retry.
+    $return = 1;
+    $push_failures = 0;
+    $push_failure_retries = 10;
 
-    // Push the local repo upstream.
-    exec(
-      "cd /lts-archive/ && GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/NULL -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa\" /usr/bin/git push origin master",
-      $output,
-      $return
+    while ($return != 0) {
+      exec(
+        "cd /lts-archive/ && GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/NULL -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa\" git pull --rebase origin master && GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/NULL -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa\" git push origin master",
+        $output,
+        $return
+      );
+      if ($return != 0) {
+
+        // Some files were getting caught in an 'Unstaged Changes' issue.
+        $push_failures++;
+        if ($push_failures >= $push_failure_retries) {
+          $context['message'] = t(
+            'Remote LFS push failed!'
+          );
+          return;
+        }
+
+        $sleep_seconds = 15;
+        echo("Busy repo : pausing for $sleep_seconds before trying push again.\n");
+        sleep($sleep_seconds);
+      }
+    }
+
+    $context['message'] = t(
+      '[NID#@nid] Pushed successfully to remote LFS.'
     );
-
-    if ($return == 0) {
-      $context['message'] = t(
-        '[NID#@nid] Push successfully to remote LFS.',
-        [
-          '@nid' => $this->node->id(),
-        ]
-      );
-    }
-    else {
-      $context['message'] = t(
-        '[NID#@nid] Remote LFS push failed!',
-        [
-          '@nid' => $this->node->id(),
-        ]
-      );
-    }
   }
 
   /**
