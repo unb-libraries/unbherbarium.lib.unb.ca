@@ -334,12 +334,18 @@ class HerbariumImageLtsArchiver {
 
     if ($return == 0) {
       $context['message'] = t(
-        '[NID#@nid] Push successfully to remote LFS.'
+        '[NID#@nid] Push successfully to remote LFS.',
+        [
+          '@nid' => $this->node->id(),
+        ]
       );
     }
     else {
       $context['message'] = t(
-        '[NID#@nid] Remote LFS push failed!.'
+        '[NID#@nid] Remote LFS push failed!',
+        [
+          '@nid' => $this->node->id(),
+        ]
       );
     }
   }
@@ -375,12 +381,18 @@ class HerbariumImageLtsArchiver {
 
     if ($return == 0) {
       $context['message'] = t(
-        '[NID#@nid] Pulled from remote LFS.'
+        '[NID#@nid] Pulled from remote LFS.',
+        [
+          '@nid' => $this->node->id(),
+        ]
       );
     }
     else {
       $context['message'] = t(
-        '[NID#@nid] Remote LFS pull failed!'
+        '[NID#@nid] Remote LFS pull failed!',
+        [
+          '@nid' => $this->node->id(),
+        ]
       );
     }
   }
@@ -415,12 +427,18 @@ class HerbariumImageLtsArchiver {
 
     if ($return == 0) {
       $context['message'] = t(
-        '[NID#@nid] Removed local copy of LTS master.'
+        '[NID#@nid] Removed local copy of LTS master.',
+        [
+          '@nid' => $this->node->id(),
+        ]
       );
     }
     else {
       $context['message'] = t(
-        '[NID#@nid] Removal of local copy of LTS master failed!'
+        '[NID#@nid] Removal of local copy of LTS master failed!',
+        [
+          '@nid' => $this->node->id(),
+        ]
       );
     }
   }
