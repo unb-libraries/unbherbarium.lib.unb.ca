@@ -15,7 +15,7 @@ entity_type: node
 bundle: herbarium_specimen
 label: 'DwC:collectionCode'
 description: 'The name, acronym, coden, or initialism identifying the collection or data set. Almost certainly ''CMH''.'
-required: true
+required: false
 translatable: true
 default_value:
   -

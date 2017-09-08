@@ -15,7 +15,7 @@ entity_type: node
 bundle: herbarium_specimen
 label: 'DC:rightsHolder'
 description: 'The person or organization owning or managing rights over the resource. CMH specimen are typically ''Connell Memorial Herbarium, University of New Brunswick'''
-required: true
+required: false
 translatable: true
 default_value:
   -

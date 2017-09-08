@@ -15,7 +15,7 @@ entity_type: node
 bundle: herbarium_specimen
 label: 'DC:language'
 description: ''
-required: true
+required: false
 translatable: true
 default_value:
   -

@@ -15,7 +15,7 @@ entity_type: node
 bundle: herbarium_specimen
 label: 'Information Withheld'
 description: 'DwC:informationWithheld - Detail any additional information that exists, but that has not been shared in the record'
-required: true
+required: false
 translatable: true
 default_value:
   -

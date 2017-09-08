@@ -15,7 +15,7 @@ entity_type: node
 bundle: herbarium_specimen
 label: 'DC:format'
 description: 'The file format, physical medium, or dimensions of the resource. Most certainly image/TIFF for CMH samples.'
-required: true
+required: false
 translatable: true
 default_value:
   -

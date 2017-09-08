@@ -15,7 +15,7 @@ entity_type: node
 bundle: herbarium_specimen
 label: 'Basis of Record'
 description: 'DwC:basisOfRecord - The specific nature of the data record. For CMH specimens, we use ''Preserved Specimen'''
-required: true
+required: false
 translatable: true
 default_value:
   -

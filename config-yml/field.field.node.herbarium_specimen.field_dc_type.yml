@@ -15,7 +15,7 @@ entity_type: node
 bundle: herbarium_specimen
 label: 'DC:type'
 description: 'The nature or genre of the resource. Most certainly ''Still Image'' for digitized CMH samples.'
-required: true
+required: false
 translatable: true
 default_value:
   -

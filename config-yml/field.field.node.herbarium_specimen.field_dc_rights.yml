@@ -15,7 +15,7 @@ entity_type: node
 bundle: herbarium_specimen
 label: 'DC:rights'
 description: 'License for rights held in and over the resource'
-required: true
+required: false
 translatable: true
 default_value:
   -
