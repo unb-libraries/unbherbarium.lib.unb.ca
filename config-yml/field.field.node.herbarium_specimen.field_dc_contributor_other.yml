@@ -12,7 +12,7 @@ field_name: field_dc_contributor_other
 entity_type: node
 bundle: herbarium_specimen
 label: 'Contributor Other'
-description: 'DC:contributor.other'
+description: "DC:contributor.other<br />\r\n<i>Databaser</i> in Filemaker DB"
 required: false
 translatable: false
 default_value: {  }
