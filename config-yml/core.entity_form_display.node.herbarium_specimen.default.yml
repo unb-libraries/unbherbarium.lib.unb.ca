@@ -66,7 +66,7 @@ third_party_settings:
         - field_dwc_eventremarks
         - field_dwc_occurrenceremarks
       parent_name: group_initially_hidden_details
-      weight: 59
+      weight: 60
       label: 'Specimen Habitat'
       format_type: accordion_item
       format_settings:
@@ -81,7 +81,7 @@ third_party_settings:
         - field_dc_created
         - field_dwc_verbatimeventdate
       parent_name: group_initially_hidden_details
-      weight: 60
+      weight: 61
       label: 'Date Information'
       format_type: accordion_item
       format_settings:
@@ -94,7 +94,7 @@ third_party_settings:
       children:
         - field_previous_identifications
       parent_name: group_initially_hidden_details
-      weight: 61
+      weight: 62
       label: 'Previous Identifications'
       format_type: accordion_item
       format_settings:
@@ -132,6 +132,7 @@ third_party_settings:
     group_collectors:
       children:
         - field_collector_tid
+        - field_dc_contributor_other
       parent_name: group_initially_hidden_details
       weight: 58
       format_type: accordion_item
@@ -194,7 +195,7 @@ content:
     third_party_settings: {  }
     region: content
   field_dc_contributor_other:
-    weight: 6
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -202,7 +203,7 @@ content:
     type: string_textfield
     region: content
   field_dc_created:
-    weight: 5
+    weight: 6
     settings:
       date_order: MDY
       time_type: none
@@ -212,19 +213,19 @@ content:
     region: content
   field_dc_format:
     type: options_select
-    weight: 27
+    weight: 28
     settings: {  }
     third_party_settings: {  }
     region: content
   field_dc_language:
     type: options_select
-    weight: 33
+    weight: 34
     settings: {  }
     third_party_settings: {  }
     region: content
   field_dc_modified:
     type: datetime_datelist
-    weight: 35
+    weight: 36
     settings:
       date_order: MDY
       time_type: none
@@ -233,7 +234,7 @@ content:
     region: content
   field_dc_publisher:
     type: options_select
-    weight: 32
+    weight: 33
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -257,13 +258,13 @@ content:
     region: content
   field_dwc_basisofrecord:
     type: options_select
-    weight: 29
+    weight: 30
     settings: {  }
     third_party_settings: {  }
     region: content
   field_dwc_collectioncode:
     type: options_select
-    weight: 28
+    weight: 29
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -300,7 +301,7 @@ content:
     region: content
   field_dwc_datageneralizations:
     type: options_select
-    weight: 30
+    weight: 31
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -336,7 +337,7 @@ content:
     type: string_textarea
     region: content
   field_dwc_habitat:
-    weight: 60
+    weight: 61
     settings:
       rows: 5
       placeholder: ''
@@ -351,13 +352,13 @@ content:
     region: content
   field_dwc_institutioncode:
     type: options_select
-    weight: 26
+    weight: 27
     settings: {  }
     third_party_settings: {  }
     region: content
   field_dwc_institutionid:
     type: options_select
-    weight: 31
+    weight: 32
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -402,7 +403,7 @@ content:
     type: string_textfield
     region: content
   field_dwc_verbatimeventdate:
-    weight: 6
+    weight: 7
     settings:
       size: 60
       placeholder: ''
@@ -418,7 +419,7 @@ content:
     type: string_textfield
     region: content
   field_geoheritage:
-    weight: 34
+    weight: 35
     settings:
       size: 60
       placeholder: ''
