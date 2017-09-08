@@ -140,7 +140,7 @@ class HerbariumImageSurrogateFactory {
    *   The Batch API context array.
    */
   public static function deleteExistingAssets($nid, &$context) {
-    $obj = new static($nid, NULL, FALSE);
+    $obj = new static($nid, NULL, TRUE);
     $obj->deleteGeneratedAssets($context);
   }
 
