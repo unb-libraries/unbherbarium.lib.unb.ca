@@ -36,7 +36,6 @@ function _herbarium_specimen_lts_store_new_image($nid, $file_path, $commit_messa
           'archiveFileToLts',
         ],
         [$nid, $file_path, \Drupal::currentUser()->id(), $commit_message],
-
       ],
       [
         [

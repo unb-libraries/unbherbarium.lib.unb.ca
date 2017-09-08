@@ -167,13 +167,6 @@ class ManageArchivalMasterForm extends FormBase {
    */
   public function regenerateSurrogatesSubmitForm(array &$form, FormStateInterface $form_state) {
     $nid = $form_state->getValue('nid');
-
-    // Smudge out file.
-    exec(
-      "cd '/lts-archive' && git lfs pull --include \"$nid.tif\"",
-      $output,
-      $return
-    );
     $file_path = "/lts-archive/$nid.tif";
 
     $batch = [
@@ -182,9 +175,27 @@ class ManageArchivalMasterForm extends FormBase {
       'operations' => [],
     ];
 
-    // Image surrogates.
+    // Pull down the LTS master locally.
+    $batch['operations'][] = [
+      [
+        'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
+        'pullMasterFromLts',
+      ],
+      [$nid],
+    ];
+
+    // Generate Image surrogates.
     $surrogates_batch = _herbarium_specimen_generate_specimen_surrogates_batch($nid, $file_path);
     $batch['operations'] = array_merge($batch['operations'], $surrogates_batch['operations']);
+
+    // Remove LTS master.
+    $batch['operations'][] = [
+      [
+        'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
+        'removeMasterFromLocalLts',
+      ],
+      [$nid],
+    ];
 
     // Start the batch.
     batch_set($batch);

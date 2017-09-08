@@ -344,4 +344,85 @@ class HerbariumImageLtsArchiver {
     }
   }
 
+  /**
+   * Pull a file from LTS to repo.
+   *
+   * @param int $nid
+   *   The node id of the parent herbarium specimen.
+   * @param array $context
+   *   The Batch API context array.
+   */
+  public static function pullMasterFromLts($nid, &$context) {
+    $obj = new static($nid);
+    return $obj->smudgeFromLts($context);
+  }
+
+  /**
+   * Push the repository to the remote LFS server.
+   *
+   * @param array $context
+   *   The Batch API context array.
+   */
+  protected function smudgeFromLts(&$context) {
+    $nid = $this->node->id();
+
+    // Smudge out file.
+    exec(
+      "cd '/lts-archive' && git lfs pull --include \"$nid.tif\"",
+      $output,
+      $return
+    );
+
+    if ($return == 0) {
+      $context['message'] = t(
+        '[NID#@nid] Pulled from remote LFS.'
+      );
+    }
+    else {
+      $context['message'] = t(
+        '[NID#@nid] Remote LFS pull failed!'
+      );
+    }
+  }
+
+  /**
+   * Remove a smudged file from local LTS.
+   *
+   * @param int $nid
+   *   The node id of the parent herbarium specimen.
+   * @param array $context
+   *   The Batch API context array.
+   */
+  public static function removeMasterFromLocalLts($nid, &$context) {
+    $obj = new static($nid);
+    return $obj->removeMasterFromLts($context);
+  }
+
+  /**
+   * Remove a locally smudged file.
+   *
+   * @param array $context
+   *   The Batch API context array.
+   */
+  protected function removeMasterFromLts(&$context) {
+    $nid = $this->node->id();
+
+    exec(
+      "rm '/lts-archive/$nid.tif'",
+      $output,
+      $return
+    );
+
+    if ($return == 0) {
+      $context['message'] = t(
+        '[NID#@nid] Removed local copy of LTS master.'
+      );
+    }
+    else {
+      $context['message'] = t(
+        '[NID#@nid] Removal of local copy of LTS master failed!'
+      );
+    }
+  }
+
 }
