@@ -306,24 +306,24 @@
             <section>
                 <h3 class="toggle-default-off">{% trans %}Measurement Or Fact{% endtrans %}</h3>
                 <dl>
-                    <div class="toggle-default-off">
-                        <dt>{{ specimen_measurement_type|field_label }}</dt>
-                        <dd>{{ specimen_measurement_type|field_value }}</dd>
-                    </div>
                     {% if specimen_measurement_value|field_label %}
+                        <div class="toggle-default-off">
+                            <dt>{{ specimen_measurement_type|field_label }}</dt>
+                            <dd>{{ specimen_measurement_type|field_value }}</dd>
+                        </div>
                         <div>{# Rarity Ranking #}
                             <dt>{{ specimen_measurement_value|field_label }}</dt>
                             <dd>{{ specimen_measurement_value|field_value }}</dd>
                         </div>
+                        <div class="toggle-default-off">
+                            <dt>{{ specimen_measurement_id|field_label }}</dt>
+                            {% if specimen_measurement_id_url %}
+                                <dd class="measurement-id">{{ specimen_measurement_id_url|raw }}</dd>
+                            {% else %}
+                                <dd>{{ specimen_measurement_id|field_value }}</dd>
+                            {% endif %}
+                        </div>
                     {% endif %}
-                    <div class="toggle-default-off">
-                        <dt>{{ specimen_measurement_id|field_label }}</dt>
-                        {% if specimen_measurement_id_url %}
-                            <dd class="measurement-id">{{ specimen_measurement_id_url|raw }}</dd>
-                        {% else %}
-                            <dd>{{ specimen_measurement_id|field_value }}</dd>
-                        {% endif %}
-                    </div>
                     {% if content.field_dc_contributor_other|field_label %}
                         <div class="toggle-default-off">
                             <dt>{{ content.field_dc_contributor_other|field_label }}</dt>
