@@ -330,7 +330,7 @@ class HerbariumImageLtsArchiver {
 
     while ($return != 0) {
       exec(
-        "cd /lts-archive/ && GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/NULL -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa\" git pull --rebase origin master && GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/NULL -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa\" git push origin master",
+        "cd {$this->ltsRepoPath} && GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/NULL -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa\" git pull --rebase origin master && GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/NULL -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa\" git push origin master",
         $output,
         $return
       );
