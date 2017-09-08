@@ -334,8 +334,8 @@ content:
     settings:
       include_map: true
       apikey: ''
-      iframe_width: 220
-      iframe_height: 300
+      iframe_width: '220'
+      iframe_height: '300'
       static_scale: 2
       include_link: true
       link_text: 'View larger map'
