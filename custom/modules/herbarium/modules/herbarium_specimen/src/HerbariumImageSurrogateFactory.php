@@ -289,23 +289,41 @@ class HerbariumImageSurrogateFactory {
       'field_large_sample_surrogate_msk',
     ];
 
+    $fids_to_remove = [];
     foreach ($surrogate_fields as $surrogate_field) {
       if (!empty($this->node->get($surrogate_field)->entity)) {
         $this->node->get($surrogate_field)->value = [];
         $fid = $this->node->get($surrogate_field)->entity->id();
-        $file_obj = File::Load($fid);
-        $file_obj->delete();
+        $fids_to_remove[] = $fid;
       }
     }
     $this->node->save();
 
-    // Set message.
-    $context['message'] = t(
-      '[NID#@nid] Deleted previously generated assets for specimen',
-      [
-        '@nid' => $this->nid,
-      ]
-    );
+    // Remove entites, catching exceptions.
+    try {
+      foreach ($fids_to_remove as $fid) {
+        $file_obj = File::Load($fid);
+        $file_obj->delete();
+      }
+      // Set message.
+      $context['message'] = t(
+        '[NID#@nid] Deleted previously generated assets for specimen',
+        [
+          '@nid' => $this->nid,
+        ]
+      );
+    }
+    catch (Exception $e) {
+      echo 'Caught exception: ', $e->getMessage(), "\n";
+      // Set message.
+      $context['message'] = t(
+        '[NID#@nid] Error deleting entities from specimen',
+        [
+          '@nid' => $this->nid,
+        ]
+      );
+    }
+
   }
 
 }
