@@ -156,7 +156,7 @@ class HerbariumImageSurrogateFactory {
     list($width, $height, $type, $attr) = getimagesize($this->file);
     $mask_start_x = $width * (1 - $this->maskedWidthFactor);
     $mask_start_y = $height * (1 - $this->maskedHeightFactor);
-    $temp_image_file = tempnam(sys_get_temp_dir(), "$nid-masked-") . '.jpg';
+    $temp_image_file = tempnam(sys_get_temp_dir(), "$nid-masked-") . '.tif';
     exec(
       "convert \"{$this->file}\" -strokewidth 0 -fill \"rgba(255,255,255,1)\" -draw \"rectangle $mask_start_x,$mask_start_y $width,$height\" $temp_image_file",
       $output,
