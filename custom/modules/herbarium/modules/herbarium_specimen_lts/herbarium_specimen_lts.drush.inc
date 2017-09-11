@@ -31,6 +31,15 @@ function herbarium_specimen_lts_drush_command() {
     'aliases' => ['herbarium:queue-lts-images'],
   ];
 
+  $items['regenerate-surrogates'] = [
+    'description' => 'Regenerate the surrogate images for a specimen.',
+    'arguments' => [
+      'nid' => 'The NID of the specimen to generate.',
+    ],
+    'drupal dependencies' => ['herbarium_specimen_lts'],
+    'aliases' => ['herbarium:regenerate-surrogates'],
+  ];
+
   $items['import-lts-images'] = [
     'description' => 'Import LTS images that have been pre-populated in the queue.',
     'options' => [
@@ -311,4 +320,24 @@ function _herbarium_specimen_lts_add_temp_file_filesystem($source, $destination 
   else {
     return FALSE;
   }
+}
+
+/**
+ * Regenerate surrogates for an existing specimen with LTS attached.
+ *
+ * @param int $nid
+ *   The node ID to regenerate.
+ */
+function drush_herbarium_specimen_lts_regenerate_surrogates($nid) {
+  // User root should almost never be running this, rather the web daemon user.
+  $processUser = posix_getpwuid(posix_geteuid());
+  if ($processUser['name'] == 'root') {
+    drush_set_error(t('This command should almost never be run as root. Try su.'));
+    die();
+  }
+
+  $batch = _herbarium_specimen_lts_regenerate_specimen_derivatives_batch($nid);
+
+  batch_set($batch);
+  drush_backend_batch_process();
 }
