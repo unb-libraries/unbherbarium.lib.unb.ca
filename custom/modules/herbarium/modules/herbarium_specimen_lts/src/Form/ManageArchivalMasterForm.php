@@ -167,37 +167,9 @@ class ManageArchivalMasterForm extends FormBase {
    */
   public function regenerateSurrogatesSubmitForm(array &$form, FormStateInterface $form_state) {
     $nid = $form_state->getValue('nid');
-    $file_path = "/lts-archive/$nid.tif";
 
-    $batch = [
-      'title' => t('Regenerating Specimen Images'),
-      'init_message' => t('Regenerating Specimen Images'),
-      'operations' => [],
-    ];
+    $batch = _herbarium_specimen_lts_regenerate_specimen_derivatives_batch($nid);
 
-    // Pull down the LTS master locally.
-    $batch['operations'][] = [
-      [
-        'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
-        'pullMasterFromLts',
-      ],
-      [$nid],
-    ];
-
-    // Generate Image surrogates.
-    $surrogates_batch = _herbarium_specimen_generate_specimen_surrogates_batch($nid, $file_path);
-    $batch['operations'] = array_merge($batch['operations'], $surrogates_batch['operations']);
-
-    // Remove LTS master.
-    $batch['operations'][] = [
-      [
-        'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
-        'removeMasterFromLocalLts',
-      ],
-      [$nid],
-    ];
-
-    // Start the batch.
     batch_set($batch);
   }
 
@@ -206,35 +178,11 @@ class ManageArchivalMasterForm extends FormBase {
    */
   public function uploadArchivalMasterSubmitForm(array &$form, FormStateInterface $form_state) {
     $fid = $form_state->getValue('tiff_file')[0];
-    $nid = $form_state->getValue('nid');
-
     $file = File::Load($fid);
     $file_path = drupal_realpath($file->getFileUri());
+    $nid = $form_state->getValue('nid');
 
-    $batch = [
-      'title' => t('Updating Archive Images'),
-      'init_message' => t('Updating Archive Images'),
-      'operations' => [],
-    ];
-
-    // Image surrogates.
-    $surrogates_batch = _herbarium_specimen_generate_specimen_surrogates_batch($nid, $file_path);
-    $batch['operations'] = array_merge($batch['operations'], $surrogates_batch['operations']);
-
-    // Only process file for LTS if we have a server set.
-    if (trim(Settings::get('specimen_lts_archive') != '')) {
-      $lts_batch = _herbarium_specimen_lts_store_new_image($nid, $file_path, "[$nid] Upload of new archival file.");
-      $batch['operations'] = array_merge($batch['operations'], $lts_batch['operations']);
-
-      // After updating the LFS repo, push it.
-      $batch['operations'][] = [
-        [
-          'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
-          'pushLfs',
-        ],
-        [],
-      ];
-    }
+    _herbarium_specimen_lts_add_archival_master($nid, $file_path);
 
     // Start the batch.
     batch_set($batch);
