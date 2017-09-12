@@ -61,8 +61,8 @@ class ManageArchivalMasterForm extends FormBase {
       // Construct header.
       $header = [
         t('Date'),
-        t('Email'),
-        t('Details'),
+        t('User'),
+        t('Change'),
       ];
 
       // Build the rows.
