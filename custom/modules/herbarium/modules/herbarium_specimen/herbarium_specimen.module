@@ -93,3 +93,42 @@ function _herbarium_specimen_generate_specimen_surrogates_batch($nid, $file_path
     ),
   );
 }
+
+/**
+ * Manually remove the broken surrogate images from a herbarium specimen.
+ *
+ * @param object $nid
+ *   The node id of the parent herbarium_specimen node.
+ * @param string $field_name
+ *   The field to remove the surrogates from. Fields:
+ *    - field_large_sample_surrogate_msk
+ *    - field_large_sample_surrogate
+ *   are possible values.
+ */
+function _herbarium_specimen_manually_remove_broken_surrogates($nid, $field_name) {
+  $query = db_select("node__$field_name", 'n');
+  $query->fields('n', ["{$field_name}_target_id"]);
+  $query->condition('n.entity_id', $nid);
+
+  if ($result) {
+    while ($row = $result->fetchAssoc()) {
+      $fid = ["{$field_name}_target_id"];
+
+      $deleted = db_delete("node__$field_name")
+        ->condition('entity_id', $nid)
+        ->execute();
+
+      $deleted = db_delete("node_revision__$field_name")
+        ->condition('entity_id', $nid)
+        ->execute();
+
+      $deleted = db_delete('file_managed')
+        ->condition('fid', $fid)
+        ->execute();
+
+      $deleted = db_delete('file_usage')
+        ->condition('fid', $fid)
+        ->execute();
+    }
+  }
+}
