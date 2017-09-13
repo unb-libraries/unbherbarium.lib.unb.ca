@@ -105,14 +105,15 @@ function _herbarium_specimen_generate_specimen_surrogates_batch($nid, $file_path
  *    - field_large_sample_surrogate
  *   are possible values.
  */
-function _herbarium_specimen_manually_remove_broken_surrogates($nid, $field_name) {
+function _herbarium_specimen_manually_remove_broken_file_reference($nid, $field_name) {
   $query = db_select("node__$field_name", 'n');
   $query->fields('n', ["{$field_name}_target_id"]);
   $query->condition('n.entity_id', $nid);
+  $result = $query->execute();
 
   if ($result) {
     while ($row = $result->fetchAssoc()) {
-      $fid = ["{$field_name}_target_id"];
+      $fid = $row["{$field_name}_target_id"];
 
       $deleted = db_delete("node__$field_name")
         ->condition('entity_id', $nid)
