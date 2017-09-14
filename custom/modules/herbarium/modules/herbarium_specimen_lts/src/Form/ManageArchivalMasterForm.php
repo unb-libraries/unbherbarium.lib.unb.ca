@@ -134,9 +134,10 @@ class ManageArchivalMasterForm extends FormBase {
     $form['regenerate_assets']['info'] = [
       '#markup' => '<p>' . t('The specimen archival image serves as the source of all images presented to users for the specimen. To regenerate those images from the archival master, click below') . '</p>',
     ];
+
     $form['regenerate_assets']['submit'] = [
       '#type' => 'submit',
-      '#disabled' => !$storage_status,
+      '#disabled' => !$storage_status && !empty($history_rows),
       '#value' => t('Regenerate Surrogate Images'),
       '#submit' => [
         [$this, 'regenerateSurrogatesSubmitForm'],
