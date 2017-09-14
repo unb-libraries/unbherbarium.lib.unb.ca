@@ -171,7 +171,7 @@ class HerbariumImageSurrogateFactory {
     );
 
     $context['message'] = t(
-      '[NID#@nid] Generated DZI and tiled images for specimen image',
+      '[NID#@nid] Removing temporary files created for specimen image',
       [
         '@nid' => $this->nid,
       ]
@@ -214,7 +214,7 @@ class HerbariumImageSurrogateFactory {
     unlink($temp_image_file);
 
     $context['message'] = t(
-      '[NID#@nid] Generated and Attached Unmasked JPG specimen surrogate image.',
+      '[NID#@nid] Generating masked JPG specimen surrogate image.',
       [
         '@nid' => $this->nid,
       ]
@@ -262,7 +262,7 @@ class HerbariumImageSurrogateFactory {
     unlink($temp_image_file);
 
     $context['message'] = t(
-      '[NID#@nid] Generated Masked JPG specimen surrogate image for archival master',
+      '[NID#@nid] Generating "Inspect Specimen" assets. This could take several minutes.',
       [
         '@nid' => $this->nid,
       ]
@@ -313,7 +313,7 @@ class HerbariumImageSurrogateFactory {
 
     // Set message.
     $context['message'] = t(
-      '[NID#@nid] Deleted previously generated assets for specimen',
+      '[NID#@nid] Generating unmasked image for specimen',
       [
         '@nid' => $this->nid,
       ]

@@ -78,7 +78,7 @@ function _herbarium_specimen_lts_regenerate_specimen_derivatives_batch($nid) {
 
   $batch = [
     'title' => t('Regenerating Specimen Images'),
-    'init_message' => t('Regenerating Specimen Images'),
+    'init_message' => t('Removing existing assets'),
     'operations' => [],
   ];
 

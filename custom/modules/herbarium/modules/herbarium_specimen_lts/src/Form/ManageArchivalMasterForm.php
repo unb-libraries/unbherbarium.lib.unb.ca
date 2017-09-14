@@ -182,7 +182,7 @@ class ManageArchivalMasterForm extends FormBase {
     $file_path = drupal_realpath($file->getFileUri());
     $nid = $form_state->getValue('nid');
 
-    _herbarium_specimen_lts_add_archival_master($nid, $file_path);
+    $batch = _herbarium_specimen_lts_add_archival_master($nid, $file_path);
 
     // Start the batch.
     batch_set($batch);
