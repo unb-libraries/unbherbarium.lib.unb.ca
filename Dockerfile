@@ -15,7 +15,6 @@ ENV DRUPAL_SITE_URI unbherbarium.lib.unb.ca
 ENV DRUPAL_SITE_UUID 85c96bf2-f1b6-4612-8305-d3d3769d5255
 ENV DRUPAL_CONFIGURATION_EXPORT_SKIP devel
 ENV DRUPAL_PRIVATE_FILE_PATH /app/private_filesystem
-ENV DRUPAL_BUILD_TMPROOT ${TMP_DRUPAL_BUILD_DIR}/webroot
 
 # git-lfs
 ENV GIT_LFS_VERSION 2.2.0
@@ -36,17 +35,21 @@ RUN apk --update add tiff-dev tiff postfix imagemagick bash rsyslog openssh-clie
 
 # Add package conf.
 COPY ./package-conf /package-conf
-COPY build/ ${TMP_DRUPAL_BUILD_DIR}
-
 RUN mv /package-conf/postfix/main.cf /etc/postfix/main.cf && \
   mkdir -p /etc/rsyslog.d && \
   mv /package-conf/rsyslog/21-logzio-nginx.conf /etc/rsyslog.d/21-logzio-nginx.conf && \
   mv /package-conf/nginx/app.conf /etc/nginx/conf.d/app.conf && \
   mv /package-conf/php/app-php.ini /etc/php7/conf.d/zz_app.ini && \
   mv /package-conf/php/app-php-fpm.conf /etc/php7/php-fpm.d/zz_app.conf && \
-  rm -rf /package-conf && \
-  /scripts/deployGeneralizedProfile.sh && \
+  rm -rf /package-conf
+
+# Deploy the generalized profile and makefile into our specific one.
+COPY build/ ${TMP_DRUPAL_BUILD_DIR}
+ENV DRUPAL_BUILD_TMPROOT ${TMP_DRUPAL_BUILD_DIR}/webroot
+RUN /scripts/deployGeneralizedProfile.sh && \
+  # Build Drupal tree.
   /scripts/buildDrupalTree.sh ${COMPOSER_DEPLOY_DEV} && \
+  # Install NewRelic.
   /scripts/installNewRelic.sh
 
 # Copy configuration.
