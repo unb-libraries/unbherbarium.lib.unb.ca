@@ -1,7 +1,7 @@
 herbarium_specimen_lts.manage_archival_master:
   path: '/node/{node}/herbarium/archival_master'
   defaults:
-    _title: 'Archival Master'
+    _title: 'Master Image'
     _form: '\Drupal\herbarium_specimen_lts\Form\ManageArchivalMasterForm'
   requirements:
     _permission: 'manage herbarium lts master images'

@@ -28,7 +28,7 @@ class ManageArchivalMasterForm extends FormBase {
 
     if (trim(Settings::get('specimen_lts_archive') == '')) {
       drupal_set_message(
-        t('WARNING: Settings for a LFS storage server have not been detected. Any changes to the archival master for this specimen will not be stored in the permanent archive.'),
+        t('WARNING: Settings for a LFS storage server have not been detected. Any changes to the master image for this specimen will not be stored in the permanent archive.'),
         'warning'
       );
 
@@ -48,12 +48,12 @@ class ManageArchivalMasterForm extends FormBase {
     ];
 
     $form['description']['description'] = [
-      '#markup' => '<p>' . t('The specimen archival image serves as the digital preservation copy for the herbarium specimen. The images are stored in a separate repository and version controlled to ensure integrity. Additionally, all images used in the site are derived from this master file.') . '</p>',
+      '#markup' => '<p>' . t('The specimen master image serves as the digital preservation copy for the herbarium specimen. The images are stored in a separate repository and version controlled to ensure integrity. Additionally, all local images used in the site are derived from this master image.') . '</p>',
     ];
 
     $form['master_history'] = [
       '#type' => 'fieldset',
-      '#title' => $this->t('Audit History'),
+      '#title' => $this->t('Master Image Audit History'),
     ];
 
     $history_rows = HerbariumImageLtsArchiver::getFileHistory($node);
@@ -83,28 +83,28 @@ class ManageArchivalMasterForm extends FormBase {
     }
     else {
       $form['master_history']['none_found'] = [
-        '#markup' => t('No archival images have been attached to this specimen yet.'),
+        '#markup' => t('No master images have been attached to this specimen yet.'),
       ];
     }
 
     $form['upload_new'] = [
       '#type' => 'fieldset',
-      '#title' => $this->t('Upload New Archival Master'),
+      '#title' => $this->t('Upload New Master Image'),
     ];
 
     $form['upload_new']['details'] = [
-      '#markup' => '<p>' . t('If you wish to add a new or replace an existing archival image, upload one below. Adding a new archival master will trigger several tasks and can take upwards of several minutes.') . '</p>',
+      '#markup' => '<p>' . t('If you wish to add a new or replace an existing master image, upload one below. Adding a new master will trigger several tasks and can take upwards of several minutes.') . '</p>',
     ];
 
     $form['upload_new']['requirements'] = [
-      '#markup' => '<p>' . t('The archival master file should be the original TIF file from the scanner, unmodified.') . '</p>',
+      '#markup' => '<p>' . t('The master image file should be the original TIF file from the scanner, unmodified.') . '</p>',
     ];
 
     $form['upload_new']['tiff_file'] = [
       '#disabled' => !$storage_status,
       '#title' => t('TIF File'),
       '#type' => 'managed_file',
-      '#description' => t('Upload an archival master file, allowed extensions: TIF TIFF'),
+      '#description' => t('Upload an master image, allowed extensions: TIF TIFF'),
       '#upload_location' => "temporary://arc-tif/$node/",
       '#required' => TRUE,
       '#upload_validators' => [
@@ -114,19 +114,19 @@ class ManageArchivalMasterForm extends FormBase {
 
     $form['reassign'] = [
       '#type' => 'fieldset',
-      '#title' => $this->t('Update Archival Master'),
+      '#title' => $this->t('Update Master Image'),
     ];
 
     $form['reassign']['info'] = [
-      '#markup' => '<p>' . t('If the archival master (and corresponding images) is not correct for this sample, this may be corrected below.') . '</p>',
+      '#markup' => '<p>' . t('If the master image (and corresponding local images) are not correct for this sample, this may be corrected below.') . '</p>',
     ];
 
     $form['reassign']['reassign_action'] = [
       '#type' => 'select',
       '#title' => $this->t('Actions'),
       '#options' => [
-        'delete' => $this->t('Delete the archival master associated with this specimen'),
-        'switch' => $this->t('Switch the archival master with another specimen'),
+        'delete' => $this->t('Delete the master image associated with this specimen'),
+        'switch' => $this->t('Switch the master image with another specimen'),
       ],
     ];
 
@@ -155,7 +155,7 @@ class ManageArchivalMasterForm extends FormBase {
     $form['reassign']['submit'] = [
       '#type' => 'submit',
       '#disabled' => TRUE,
-      '#value' => t('Update Archival Master'),
+      '#value' => t('Update Master Image'),
       '#submit' => [
         [$this, 'reassignArchivalMaster'],
       ],
@@ -172,7 +172,7 @@ class ManageArchivalMasterForm extends FormBase {
     $form['upload_new']['submit'] = [
       '#type' => 'submit',
       '#disabled' => !$storage_status,
-      '#value' => t('Upload New Archival Master'),
+      '#value' => t('Upload New Master Image'),
       '#submit' => [
         [$this, 'uploadArchivalMasterSubmitForm'],
       ],
@@ -180,17 +180,17 @@ class ManageArchivalMasterForm extends FormBase {
 
     $form['regenerate_assets'] = [
       '#type' => 'fieldset',
-      '#title' => $this->t('Regenerate Sample Images'),
+      '#title' => $this->t('Regenerate Local Images'),
     ];
 
     $form['regenerate_assets']['info'] = [
-      '#markup' => '<p>' . t('The specimen archival image serves as the source of all images presented to users for the specimen. To regenerate those images from the archival master, click below') . '</p>',
+      '#markup' => '<p>' . t('The specimen master image serves as the source for the local images - those presented to users for this specimen. To regenerate the local images from the master image, click below') . '</p>',
     ];
 
     $form['regenerate_assets']['submit'] = [
       '#type' => 'submit',
       '#disabled' => (bool) empty($history_rows) && $storage_status,
-      '#value' => t('Regenerate Surrogate Images'),
+      '#value' => t('Regenerate Local Images'),
       '#submit' => [
         [$this, 'regenerateSurrogatesSubmitForm'],
       ],
@@ -205,7 +205,7 @@ class ManageArchivalMasterForm extends FormBase {
     ];
 
     $form['delete_local']['info'] = [
-      '#markup' => '<p>' . t('To delete the local surrogate images attached to the record, click below. The archival master will not be affected.') . '</p>',
+      '#markup' => '<p>' . t('To delete the local images attached to the specimen, click below. The master image will not be affected.') . '</p>',
     ];
 
     $form['delete_local']['submit'] = [
