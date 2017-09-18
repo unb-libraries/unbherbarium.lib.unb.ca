@@ -172,6 +172,7 @@ class HerbariumImageLtsArchiver {
     // Update the node to ensure that we don't double batch import.
     if ($this->node->get('field_herbarium_spec_master_impo')->value == FALSE) {
       $this->node->get('field_herbarium_spec_master_impo')->setValue(TRUE);
+      $this->node->setNewRevision(FALSE);
       $this->node->save();
     }
 

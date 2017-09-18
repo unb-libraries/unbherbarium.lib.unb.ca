@@ -208,6 +208,7 @@ class HerbariumImageSurrogateFactory {
 
     // Assign file to node.
     $this->node->get('field_large_sample_surrogate')->setValue($file_u);
+    $this->node->setNewRevision(FALSE);
     $this->node->save();
 
     // Unlink temporary file.
@@ -256,6 +257,7 @@ class HerbariumImageSurrogateFactory {
 
     // Attach new existing JPG surrogates.
     $this->node->get('field_large_sample_surrogate_msk')->setValue($file_m);
+    $this->node->setNewRevision(FALSE);
     $this->node->save();
 
     // Unlink temporary file.
@@ -309,6 +311,7 @@ class HerbariumImageSurrogateFactory {
         }
       }
     }
+    $this->node->setNewRevision(FALSE);
     $this->node->save();
 
     // Set message.
