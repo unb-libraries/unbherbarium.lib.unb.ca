@@ -32,6 +32,7 @@ function herbarium_specimen_node_delete(EntityInterface $node) {
         ],
       ]
     );
+    batch_process();
   }
 }
 
