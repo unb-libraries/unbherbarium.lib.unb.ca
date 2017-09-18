@@ -279,7 +279,7 @@ class ManageArchivalMasterForm extends FormBase {
         'deleteExistingAssets',
       ],
       [
-        array($nid),
+        $nid,
       ],
     ];
 
