@@ -199,6 +199,26 @@ class ManageArchivalMasterForm extends FormBase {
       ],
     ];
 
+    $form['delete_local'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Remove Local Images'),
+    ];
+
+    $form['delete_local']['info'] = [
+      '#markup' => '<p>' . t('To delete the local surrogate images attached to the record, click below. The archival master will not be affected.') . '</p>',
+    ];
+
+    $form['delete_local']['submit'] = [
+      '#type' => 'submit',
+      '#value' => t('Delete Local Images'),
+      '#submit' => [
+        [$this, 'deleteSurrogatesSubmitForm'],
+      ],
+      '#limit_validation_errors' => [
+        ['nid'],
+      ],
+    ];
+
     return $form;
   }
 
@@ -236,6 +256,32 @@ class ManageArchivalMasterForm extends FormBase {
     $nid = $form_state->getValue('nid');
 
     $batch = _herbarium_specimen_lts_add_archival_master($nid, $file_path);
+
+    // Start the batch.
+    batch_set($batch);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function deleteSurrogatesSubmitForm(array &$form, FormStateInterface $form_state) {
+    $nid = $form_state->getValue('nid');
+
+    $batch = [
+      'title' => t('Deleting Local Images'),
+      'init_message' => t('Deleting Local Images'),
+      'operations' => [],
+    ];
+
+    $batch['operations'][] = [
+      [
+        'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
+        'deleteExistingAssets',
+      ],
+      [
+        array($nid),
+      ],
+    ];
 
     // Start the batch.
     batch_set($batch);
