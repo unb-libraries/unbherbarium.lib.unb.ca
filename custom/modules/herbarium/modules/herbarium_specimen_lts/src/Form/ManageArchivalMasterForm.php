@@ -89,7 +89,7 @@ class ManageArchivalMasterForm extends FormBase {
 
     $form['upload_new'] = [
       '#type' => 'fieldset',
-      '#title' => $this->t('Upload'),
+      '#title' => $this->t('Upload New Archival Master'),
     ];
 
     $form['upload_new']['details'] = [
@@ -109,6 +109,58 @@ class ManageArchivalMasterForm extends FormBase {
       '#required' => TRUE,
       '#upload_validators' => [
         'file_validate_extensions' => ['tif', 'tiff'],
+      ],
+    ];
+
+    $form['reassign'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Update Archival Master'),
+    ];
+
+    $form['reassign']['info'] = [
+      '#markup' => '<p>' . t('If the archival master (and corresponding images) is not correct for this sample, this may be corrected below.') . '</p>',
+    ];
+
+    $form['reassign']['reassign_action'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Actions'),
+      '#options' => [
+        'delete' => $this->t('Delete the archival master associated with this specimen'),
+        'switch' => $this->t('Switch the archival master with another specimen'),
+      ],
+    ];
+
+    $form['reassign']['action_target'] = [
+      '#title' => t('Target Specimen Accession ID'),
+      '#type' => 'entity_autocomplete',
+      '#target_type' => 'node',
+      '#selection_handler' => 'views',
+      '#selection_settings' => [
+        'view' => [
+          'view_name' => 'autocomplete_node_by_accessionid',
+          'display_name' => 'entity_reference_1',
+          'arguments' => [0],
+        ],
+        'match_operator' => 'CONTAINS',
+      ],
+      '#states' => [
+        'visible' => [
+          'select[name="reassign_action"]' => [
+            'value' => 'switch',
+          ],
+        ],
+      ],
+    ];
+
+    $form['reassign']['submit'] = [
+      '#type' => 'submit',
+      '#disabled' => TRUE,
+      '#value' => t('Update Archival Master'),
+      '#submit' => [
+        [$this, 'reassignArchivalMaster'],
+      ],
+      '#limit_validation_errors' => [
+        ['nid'],
       ],
     ];
 
