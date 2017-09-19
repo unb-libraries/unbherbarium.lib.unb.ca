@@ -58,10 +58,10 @@ third_party_settings:
         - field_dwc_decimallongitude
         - field_dwc_coordinateprecision
         - field_dwc_country
-        - field_dwc_habitat
-        - field_dwc_verbatimlocality
         - field_dwc_stateprovince
         - field_dwc_county
+        - field_dwc_verbatimlocality
+        - field_dwc_habitat
         - field_dwc_eventremarks
         - field_dwc_occurrenceremarks
       parent_name: group_initially_hidden_details
@@ -77,8 +77,8 @@ third_party_settings:
     group_date:
       children:
         - field_dwc_eventdate
-        - field_dc_created
         - field_dwc_verbatimeventdate
+        - field_dc_created
       parent_name: group_initially_hidden_details
       weight: 61
       label: 'Date Information'
@@ -283,7 +283,7 @@ content:
     type: string_textfield
     region: content
   field_dwc_county:
-    weight: 65
+    weight: 61
     settings:
       size: 60
       placeholder: ''
@@ -320,7 +320,7 @@ content:
     third_party_settings: {  }
     region: content
   field_dwc_eventremarks:
-    weight: 66
+    weight: 64
     settings:
       rows: 5
       placeholder: ''
@@ -328,7 +328,7 @@ content:
     type: string_textarea
     region: content
   field_dwc_habitat:
-    weight: 61
+    weight: 63
     settings:
       rows: 5
       placeholder: ''
@@ -354,7 +354,7 @@ content:
     third_party_settings: {  }
     region: content
   field_dwc_occurrenceremarks:
-    weight: 67
+    weight: 65
     settings:
       placeholder: ''
       rows: 5
@@ -386,7 +386,7 @@ content:
     type: string_textfield
     region: content
   field_dwc_stateprovince:
-    weight: 64
+    weight: 60
     settings:
       size: 60
       placeholder: ''
@@ -394,7 +394,7 @@ content:
     type: string_textfield
     region: content
   field_dwc_verbatimeventdate:
-    weight: 7
+    weight: 5
     settings:
       size: 60
       placeholder: ''
@@ -402,7 +402,7 @@ content:
     type: string_textfield
     region: content
   field_dwc_verbatimlocality:
-    weight: 63
+    weight: 62
     settings:
       size: 60
       placeholder: ''
