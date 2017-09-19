@@ -12,7 +12,7 @@ field_name: field_previous_identifications
 entity_type: node
 bundle: herbarium_specimen
 label: 'Previous Identifications'
-description: 'DwC:previousIdentifications - Previous assignments of names for this specimen.'
+description: 'Format is: Species Name by Person Name, Year'
 required: false
 translatable: false
 default_value: {  }

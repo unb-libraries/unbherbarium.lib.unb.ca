@@ -12,7 +12,7 @@ field_name: field_dwc_verbatimeventdate
 entity_type: node
 bundle: herbarium_specimen
 label: 'Verbatim Event Date'
-description: 'DwC:verbatimEventDate - The verbatim (freetext) date transcription from the original database.'
+description: 'The verbatim (freetext) date transcription from the original database.'
 required: false
 translatable: false
 default_value: {  }

@@ -59,7 +59,6 @@ third_party_settings:
         - field_dwc_coordinateprecision
         - field_dwc_country
         - field_dwc_habitat
-        - field_dwc_countrycode
         - field_dwc_verbatimlocality
         - field_dwc_stateprovince
         - field_dwc_county
@@ -67,14 +66,14 @@ third_party_settings:
         - field_dwc_occurrenceremarks
       parent_name: group_initially_hidden_details
       weight: 60
-      label: 'Specimen Habitat'
+      label: 'Specimen Details'
       format_type: accordion_item
       format_settings:
+        label: 'Specimen Details'
         formatter: closed
-        description: ''
-        classes: ''
-        id: ''
         required_fields: true
+        id: ''
+        classes: ''
     group_date:
       children:
         - field_dwc_eventdate
@@ -137,12 +136,12 @@ third_party_settings:
       weight: 58
       format_type: accordion_item
       format_settings:
-        label: 'Recorded By'
+        label: 'Collected By'
         formatter: closed
         required_fields: true
         id: ''
         classes: ''
-      label: 'Recorded By'
+      label: 'Collected By'
     group_initially_hidden_details:
       children:
         - group_collectors
@@ -166,12 +165,12 @@ third_party_settings:
       weight: 5
       format_type: details
       format_settings:
-        label: 'Generated Display Images'
+        label: 'Display Images'
         required_fields: true
         id: ''
         classes: ui-state-default
         open: false
-      label: 'Generated Display Images'
+      label: 'Display Images'
 _core:
   default_config_hash: WMosJkr0GxG7D1yaPL0251VhKWECtZxowQpvjDsXJhw
 id: node.herbarium_specimen.default
@@ -181,7 +180,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 11
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -277,14 +276,6 @@ content:
     region: content
   field_dwc_country:
     weight: 59
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_dwc_countrycode:
-    weight: 62
     settings:
       size: 60
       placeholder: ''
@@ -458,7 +449,7 @@ content:
     region: content
   path:
     type: path
-    weight: 7
+    weight: 6
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -466,19 +457,19 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 8
+    weight: 7
     third_party_settings: {  }
     region: content
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 9
+    weight: 8
     third_party_settings: {  }
     region: content
   uid:
     type: entity_reference_autocomplete
-    weight: 10
+    weight: 9
     settings:
       match_operator: CONTAINS
       size: 60
@@ -486,6 +477,7 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_dwc_countrycode: true
   field_dwc_georeferencedby: true
   field_gmap: true
   field_herbarium_spec_master_impo: true

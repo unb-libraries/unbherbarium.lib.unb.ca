@@ -11,8 +11,8 @@ id: node.herbarium_specimen.field_dc_contributor_other
 field_name: field_dc_contributor_other
 entity_type: node
 bundle: herbarium_specimen
-label: 'Contributor Other'
-description: "DC:contributor.other<br />\r\n<i>Databaser</i> in Filemaker DB"
+label: 'Data Entry By'
+description: 'Format is Last Name, First Initial'
 required: false
 translatable: false
 default_value: {  }

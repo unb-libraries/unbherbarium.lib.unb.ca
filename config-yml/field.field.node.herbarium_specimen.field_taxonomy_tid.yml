@@ -13,7 +13,7 @@ field_name: field_taxonomy_tid
 entity_type: node
 bundle: herbarium_specimen
 label: 'Assigned Taxon'
-description: 'Typically the specific epithet.'
+description: 'Typically the specific epithet'
 required: true
 translatable: true
 default_value: {  }

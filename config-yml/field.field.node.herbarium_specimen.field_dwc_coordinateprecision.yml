@@ -12,7 +12,7 @@ field_name: field_dwc_coordinateprecision
 entity_type: node
 bundle: herbarium_specimen
 label: 'Coordinate Precision'
-description: 'DwC:coordinatePrecision Decimal degrees, range typically from <b>0.1</b> <i>(large city or district)</i> to <b>0.00001</b> <i>(individual trees)</i>'
+description: 'Decimal degrees, range typically from <b>0.1</b> <i>(large city or district)</i> to <b>0.00001</b> <i>(individual trees)</i>'
 required: false
 translatable: false
 default_value: {  }

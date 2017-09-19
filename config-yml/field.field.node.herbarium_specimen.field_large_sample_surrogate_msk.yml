@@ -14,7 +14,7 @@ field_name: field_large_sample_surrogate_msk
 entity_type: node
 bundle: herbarium_specimen
 label: 'Specimen Image : Masked'
-description: "<b>Note:</b> <i>Specimen Image</i> &amp; <i>Specimen Image: Masked</i> are automatically derived from the tif image uploaded via the <i>Archival Master</i> tab above.<br />\r\nYou should <b>not</b> need edit these fields under normal circumstances."
+description: 'To add an image file for this specimen, use the Master Image tab'
 required: false
 translatable: true
 default_value: {  }

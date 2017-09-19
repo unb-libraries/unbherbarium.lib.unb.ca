@@ -14,7 +14,7 @@ field_name: field_dwc_institutionid
 entity_type: node
 bundle: herbarium_specimen
 label: 'Institution ID'
-description: 'DwC:institutionID - An identifier for the institution having custody of the specimen. Almost certainly ''urn:lsid:biocol.org:col:15300'''
+description: 'An identifier for the institution having custody of the specimen. Almost certainly ''urn:lsid:biocol.org:col:15300'''
 required: false
 translatable: true
 default_value:

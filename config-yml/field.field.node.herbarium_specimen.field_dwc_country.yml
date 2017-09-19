@@ -12,7 +12,7 @@ field_name: field_dwc_country
 entity_type: node
 bundle: herbarium_specimen
 label: Country
-description: 'DwC:country - The name of the country the specimen habitat exists in.'
+description: 'The country the specimen was collected in'
 required: false
 translatable: false
 default_value:

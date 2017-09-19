@@ -11,8 +11,8 @@ id: node.herbarium_specimen.field_dwc_decimallongitude
 field_name: field_dwc_decimallongitude
 entity_type: node
 bundle: herbarium_specimen
-label: 'Decimal Longitude'
-description: 'DwC:decimalLongitude'
+label: 'Decimal Longitude (°W)'
+description: 'Minimum -180, maximum 180, maximum 6 digits to the right of the decimal'
 required: false
 translatable: false
 default_value: {  }
