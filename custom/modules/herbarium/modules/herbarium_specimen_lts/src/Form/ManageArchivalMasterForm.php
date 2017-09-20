@@ -314,6 +314,7 @@ class ManageArchivalMasterForm extends FormBase {
         break;
 
       case 'swap':
+        $batch = _herbarium_specimen_lts_swap_item_batch($nid, $action_target);
         break;
     }
 

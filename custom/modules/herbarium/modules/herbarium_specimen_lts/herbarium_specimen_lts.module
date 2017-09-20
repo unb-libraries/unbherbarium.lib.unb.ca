@@ -118,7 +118,7 @@ function _herbarium_specimen_lts_regenerate_specimen_derivatives_batch($nid) {
  * @return array
  *   The batch operation array.
  */
-function _herbarium_specimen_lts_add_archival_master($nid, $file_path) {
+function _herbarium_specimen_lts_add_archival_master($nid, $file_path, $commit_message = "Upload of new archival file") {
   $batch = [
     'title' => t('Updating Master Image'),
     'init_message' => t('Updating Master Image'),
@@ -131,7 +131,7 @@ function _herbarium_specimen_lts_add_archival_master($nid, $file_path) {
 
   // Only process file for LTS if we have a server set.
   if (trim(Settings::get('specimen_lts_archive') != '')) {
-    $lts_batch = _herbarium_specimen_lts_store_new_image($nid, $file_path, "[$nid] Upload of new archival file.");
+    $lts_batch = _herbarium_specimen_lts_store_new_image($nid, $file_path, "[$nid] $commit_message.");
     $batch['operations'] = array_merge($batch['operations'], $lts_batch['operations']);
 
     // After updating the LFS repo, push it.
@@ -148,10 +148,10 @@ function _herbarium_specimen_lts_add_archival_master($nid, $file_path) {
 }
 
 /**
- * Regenerate the derivatives for a file that has an existing archival tiff.
+ * Construct a batch operations array to remove an archival master.
  *
  * @param int $nid
- *   The status to set.
+ *   The node to update.
  *
  * @return array
  *   The batch operation array.
@@ -170,6 +170,71 @@ function _herbarium_specimen_lts_remove_item_batch($nid) {
       'removeFileFromLts',
     ],
     [$nid],
+  ];
+
+  return $batch;
+}
+
+/**
+ * Construct a batch operations array to swap archival masters.
+ *
+ * @param int $nid
+ *   The node to update.
+ * @param int $target_nid
+ *   The node to swap with.
+ *
+ * @return array
+ *   The batch operation array.
+ */
+function _herbarium_specimen_lts_swap_item_batch($nid, $target_nid) {
+  $batch = [
+    'title' => t('Swapping Archival Masters in LTS'),
+    'init_message' => t('Swapping Archival Masters in LTS'),
+    'operations' => [],
+  ];
+
+  // Pull down the nid LTS master locally.
+  $batch['operations'][] = [
+    [
+      'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
+      'pullMasterFromLts',
+    ],
+    [$nid],
+  ];
+
+  // Pull down the target_nid LTS master locally.
+  $batch['operations'][] = [
+    [
+      'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
+      'pullMasterFromLts',
+    ],
+    [$target_nid],
+  ];
+
+  // Update nid.
+  $file_path = "/lts-archive/$nid.tif";
+  $batch_tmp = _herbarium_specimen_lts_add_archival_master($nid, $file_path, "Swap of archival master with NID $target_nid");
+  $batch['operations'] = array_merge($batch['operations'], $batch_tmp['operations']);
+
+  // Update target_nid.
+  $file_path = "/lts-archive/$target_nid.tif";
+  $batch_tmp = _herbarium_specimen_lts_add_archival_master($target_nid, $file_path, "Swap of archival master with NID $nid");
+  $batch['operations'] = array_merge($batch['operations'], $batch_tmp['operations']);
+
+  // Remove two smudged files.
+  $batch['operations'][] = [
+    [
+      'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
+      'removeMasterFromLocalLts',
+    ],
+    [$nid],
+  ];
+  $batch['operations'][] = [
+    [
+      'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
+      'removeMasterFromLocalLts',
+    ],
+    [$target_nid],
   ];
 
   return $batch;
