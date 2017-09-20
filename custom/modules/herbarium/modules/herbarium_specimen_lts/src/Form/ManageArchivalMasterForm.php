@@ -187,16 +187,16 @@ class ManageArchivalMasterForm extends FormBase {
     ];
 
     if ($has_master) {
-      $form['regenerate_assets'] = [
+      $form['local_images'] = [
         '#type' => 'fieldset',
-        '#title' => $this->t('Regenerate Local Images'),
+        '#title' => $this->t('Local Images'),
       ];
 
-      $form['regenerate_assets']['info'] = [
+      $form['local_images']['regenerate_info'] = [
         '#markup' => '<p>' . t('The specimen master image serves as the source for the local images - those presented to users for this specimen. To regenerate the local images from the master image, click below') . '</p>',
       ];
 
-      $form['regenerate_assets']['submit'] = [
+      $form['local_images']['submit_regenerate'] = [
         '#type' => 'submit',
         '#disabled' => (bool) empty($history_rows) && $storage_status,
         '#value' => t('Regenerate Local Images'),
@@ -207,28 +207,24 @@ class ManageArchivalMasterForm extends FormBase {
           ['nid'],
         ],
       ];
-    }
 
-    if (_herbarium_specimen_has_local_images($node_obj)) {
-      $form['delete_local'] = [
-        '#type' => 'fieldset',
-        '#title' => $this->t('Remove Local Images'),
-      ];
+      if (_herbarium_specimen_has_local_images($node_obj)) {
+        $form['local_images']['delete_info'] = [
+          '#markup' => '<p>' . t('To delete the local images attached to the specimen, click below. The master image will not be affected.') . '</p>',
+        ];
 
-      $form['delete_local']['info'] = [
-        '#markup' => '<p>' . t('To delete the local images attached to the specimen, click below. The master image will not be affected.') . '</p>',
-      ];
+        $form['local_images']['submit_delete'] = [
+          '#type' => 'submit',
+          '#value' => t('Delete Local Images'),
+          '#submit' => [
+            [$this, 'deleteSurrogatesSubmitForm'],
+          ],
+          '#limit_validation_errors' => [
+            ['nid'],
+          ],
+        ];
+      }
 
-      $form['delete_local']['submit'] = [
-        '#type' => 'submit',
-        '#value' => t('Delete Local Images'),
-        '#submit' => [
-          [$this, 'deleteSurrogatesSubmitForm'],
-        ],
-        '#limit_validation_errors' => [
-          ['nid'],
-        ],
-      ];
     }
 
     return $form;
