@@ -163,7 +163,18 @@ function _herbarium_specimen_lts_remove_item_batch($nid) {
     'operations' => [],
   ];
 
-  // Pull down the LTS master locally.
+  // Remove local images.
+  $batch['operations'][] = [
+    [
+      'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
+      'deleteExistingAssets',
+    ],
+    [
+      $nid,
+    ],
+  ];
+
+  // Delete file from LTS.
   $batch['operations'][] = [
     [
       'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
