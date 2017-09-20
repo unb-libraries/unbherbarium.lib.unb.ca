@@ -135,3 +135,19 @@ function _herbarium_specimen_manually_remove_broken_file_reference($nid, $field_
     }
   }
 }
+
+function _herbarium_specimen_has_local_images($node) {
+  $surrogate_fields = [
+    'field_large_sample_surrogate',
+    'field_large_sample_surrogate_msk',
+  ];
+
+  foreach ($surrogate_fields as $surrogate_field) {
+    if (!empty($this->node->get($surrogate_field)->entity)) {
+      // Set field value as empty.
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}

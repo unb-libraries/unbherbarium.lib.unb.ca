@@ -7,6 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver;
 use Drupal\Core\Site\Settings;
 use Drupal\file\Entity\File;
+use Drupal\node\Entity\Node;
 
 /**
  * ManageArchivalMasterForm object.
@@ -25,6 +26,7 @@ class ManageArchivalMasterForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state, $node = NULL) {
     $form = [];
+    $node_obj = Node::load($node);
 
     if (trim(Settings::get('specimen_lts_archive') == '')) {
       drupal_set_message(
@@ -199,25 +201,27 @@ class ManageArchivalMasterForm extends FormBase {
       ],
     ];
 
-    $form['delete_local'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Remove Local Images'),
-    ];
+    if (_herbarium_specimen_has_local_images($node_obj)) {
+      $form['delete_local'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Remove Local Images'),
+      ];
 
-    $form['delete_local']['info'] = [
-      '#markup' => '<p>' . t('To delete the local images attached to the specimen, click below. The master image will not be affected.') . '</p>',
-    ];
+      $form['delete_local']['info'] = [
+        '#markup' => '<p>' . t('To delete the local images attached to the specimen, click below. The master image will not be affected.') . '</p>',
+      ];
 
-    $form['delete_local']['submit'] = [
-      '#type' => 'submit',
-      '#value' => t('Delete Local Images'),
-      '#submit' => [
-        [$this, 'deleteSurrogatesSubmitForm'],
-      ],
-      '#limit_validation_errors' => [
-        ['nid'],
-      ],
-    ];
+      $form['delete_local']['submit'] = [
+        '#type' => 'submit',
+        '#value' => t('Delete Local Images'),
+        '#submit' => [
+          [$this, 'deleteSurrogatesSubmitForm'],
+        ],
+        '#limit_validation_errors' => [
+          ['nid'],
+        ],
+      ];
+    }
 
     return $form;
   }
