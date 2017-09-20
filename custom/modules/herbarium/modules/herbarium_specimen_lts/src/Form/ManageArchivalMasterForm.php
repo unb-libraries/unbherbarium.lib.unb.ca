@@ -59,6 +59,8 @@ class ManageArchivalMasterForm extends FormBase {
     ];
 
     $history_rows = HerbariumImageLtsArchiver::getFileHistory($node);
+    $has_master = HerbariumImageLtsArchiver::specimenHasMaster($node);
+
     if (!empty($history_rows)) {
       // Construct header.
       $header = [
@@ -114,57 +116,59 @@ class ManageArchivalMasterForm extends FormBase {
       ],
     ];
 
-    $form['reassign'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Update Master Image'),
-    ];
+    if ($has_master) {
+      $form['reassign'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Update Master Image'),
+      ];
 
-    $form['reassign']['info'] = [
-      '#markup' => '<p>' . t('If the master image (and corresponding local images) are not correct for this sample, this may be corrected below.') . '</p>',
-    ];
+      $form['reassign']['info'] = [
+        '#markup' => '<p>' . t('If the master image (and corresponding local images) are not correct for this sample, this may be corrected below.') . '</p>',
+      ];
 
-    $form['reassign']['reassign_action'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Actions'),
-      '#options' => [
-        'delete' => $this->t('Delete the master image associated with this specimen'),
-        'switch' => $this->t('Switch the master image with another specimen'),
-      ],
-    ];
-
-    $form['reassign']['action_target'] = [
-      '#title' => t('Target Specimen Accession ID'),
-      '#type' => 'entity_autocomplete',
-      '#target_type' => 'node',
-      '#selection_handler' => 'views',
-      '#selection_settings' => [
-        'view' => [
-          'view_name' => 'autocomplete_node_by_accessionid',
-          'display_name' => 'entity_reference_1',
-          'arguments' => [0],
+      $form['reassign']['reassign_action'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Actions'),
+        '#options' => [
+          'delete' => $this->t('Delete the master image associated with this specimen'),
+          'switch' => $this->t('Switch the master image with another specimen'),
         ],
-        'match_operator' => 'CONTAINS',
-      ],
-      '#states' => [
-        'visible' => [
-          'select[name="reassign_action"]' => [
-            'value' => 'switch',
+      ];
+
+      $form['reassign']['action_target'] = [
+        '#title' => t('Target Specimen Accession ID'),
+        '#type' => 'entity_autocomplete',
+        '#target_type' => 'node',
+        '#selection_handler' => 'views',
+        '#selection_settings' => [
+          'view' => [
+            'view_name' => 'autocomplete_node_by_accessionid',
+            'display_name' => 'entity_reference_1',
+            'arguments' => [0],
+          ],
+          'match_operator' => 'CONTAINS',
+        ],
+        '#states' => [
+          'visible' => [
+            'select[name="reassign_action"]' => [
+              'value' => 'switch',
+            ],
           ],
         ],
-      ],
-    ];
+      ];
 
-    $form['reassign']['submit'] = [
-      '#type' => 'submit',
-      '#disabled' => TRUE,
-      '#value' => t('Update Master Image'),
-      '#submit' => [
-        [$this, 'reassignArchivalMaster'],
-      ],
-      '#limit_validation_errors' => [
-        ['nid'],
-      ],
-    ];
+      $form['reassign']['submit'] = [
+        '#type' => 'submit',
+        '#disabled' => TRUE,
+        '#value' => t('Update Master Image'),
+        '#submit' => [
+          [$this, 'reassignArchivalMaster'],
+        ],
+        '#limit_validation_errors' => [
+          ['nid'],
+        ],
+      ];
+    }
 
     $form['nid'] = [
       '#type' => 'hidden',
@@ -180,26 +184,28 @@ class ManageArchivalMasterForm extends FormBase {
       ],
     ];
 
-    $form['regenerate_assets'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Regenerate Local Images'),
-    ];
+    if ($has_master) {
+      $form['regenerate_assets'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Regenerate Local Images'),
+      ];
 
-    $form['regenerate_assets']['info'] = [
-      '#markup' => '<p>' . t('The specimen master image serves as the source for the local images - those presented to users for this specimen. To regenerate the local images from the master image, click below') . '</p>',
-    ];
+      $form['regenerate_assets']['info'] = [
+        '#markup' => '<p>' . t('The specimen master image serves as the source for the local images - those presented to users for this specimen. To regenerate the local images from the master image, click below') . '</p>',
+      ];
 
-    $form['regenerate_assets']['submit'] = [
-      '#type' => 'submit',
-      '#disabled' => (bool) empty($history_rows) && $storage_status,
-      '#value' => t('Regenerate Local Images'),
-      '#submit' => [
-        [$this, 'regenerateSurrogatesSubmitForm'],
-      ],
-      '#limit_validation_errors' => [
-        ['nid'],
-      ],
-    ];
+      $form['regenerate_assets']['submit'] = [
+        '#type' => 'submit',
+        '#disabled' => (bool) empty($history_rows) && $storage_status,
+        '#value' => t('Regenerate Local Images'),
+        '#submit' => [
+          [$this, 'regenerateSurrogatesSubmitForm'],
+        ],
+        '#limit_validation_errors' => [
+          ['nid'],
+        ],
+      ];
+    }
 
     if (_herbarium_specimen_has_local_images($node_obj)) {
       $form['delete_local'] = [

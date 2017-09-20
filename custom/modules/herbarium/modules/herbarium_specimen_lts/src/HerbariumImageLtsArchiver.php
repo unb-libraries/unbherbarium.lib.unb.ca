@@ -281,6 +281,37 @@ class HerbariumImageLtsArchiver {
   }
 
   /**
+   * Determine if a NID has a specimen master in the archive.
+   *
+   * @param int $nid
+   *   The node id of the parent herbarium specimen.
+   */
+  public static function specimenHasMaster($nid) {
+    $obj = new static($nid);
+    return $obj->getIfSpecimenHasMaster();
+  }
+
+  /**
+   * Get if the specimen has a master image in HEAD.
+   */
+  protected function getIfSpecimenHasMaster() {
+    $history = [];
+
+    // Get the LTS history.
+    exec(
+      "cd {$this->ltsRepoPath} && git cat-file -e HEAD:{$this->node->id()}.tif",
+      $output,
+      $return
+    );
+
+    if ($return == 0) {
+      return TRUE;
+    }
+
+    return FALSE;
+  }
+
+  /**
    * Get the history of an archival file in the LTS repo.
    */
   protected function getNodeHistory() {
