@@ -166,6 +166,8 @@ class ManageArchivalMasterForm extends FormBase {
         ],
         '#limit_validation_errors' => [
           ['nid'],
+          ['action_target'],
+          ['reassign_action'],
         ],
       ];
     }
@@ -294,6 +296,27 @@ class ManageArchivalMasterForm extends FormBase {
     ];
 
     // Start the batch.
+    batch_set($batch);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function reassignArchivalMaster(array &$form, FormStateInterface $form_state) {
+    $nid = $form_state->getValue('nid');
+    $reassign_action = $form_state->getValue('reassign_action');
+    $action_target = $form_state->getValue('action_target');
+    $batch = [];
+
+    switch ($reassign_action) {
+      case 'delete':
+        $batch = _herbarium_specimen_lts_remove_item_batch($nid);
+        break;
+
+      case 'swap':
+        break;
+    }
+
     batch_set($batch);
   }
 

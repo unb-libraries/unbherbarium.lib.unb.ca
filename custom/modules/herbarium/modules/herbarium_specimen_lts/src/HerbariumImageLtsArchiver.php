@@ -93,6 +93,21 @@ class HerbariumImageLtsArchiver {
   }
 
   /**
+   * Remove the TIF file to LTS.
+   *
+   * @param int $nid
+   *   The node id of the parent herbarium specimen.
+   * @param int $uid
+   *   The user requesting the update.
+   * @param array $context
+   *   The Batch API context array.
+   */
+  public static function removeFileFromLts($nid, $uid, &$context) {
+    $obj = new static($nid, NULL, $uid);
+    $obj->deleteTiff($context);
+  }
+
+  /**
    * Push the new TIF file up to the LTS archive.
    *
    * @param string $commit_msg
@@ -140,6 +155,91 @@ class HerbariumImageLtsArchiver {
     );
 
     // Push back to origin. Check for errors indicating concurrent use / retry.
+    $return = 1;
+    $push_failures = 0;
+
+    while ($return != 0) {
+      exec(
+        "cd {$temp_clone_directory} && git pull --rebase origin master && git push origin master",
+        $output,
+        $return
+      );
+      if ($return != 0) {
+
+        // Some files were getting caught in an 'Unstaged Changes' issue.
+        $push_failures++;
+        if ($push_failures >= self::PUSH_FAILURE_RETRIES) {
+          $context['message'] = t(
+            '[NID#@nid] Could not push commits upstream. Skipping.',
+            [
+              '@nid' => $target_nid,
+            ]
+          );
+          return;
+        }
+
+        $sleep_seconds = 3;
+        echo("Busy repo : pausing for $sleep_seconds before trying push again.\n");
+        sleep($sleep_seconds);
+      }
+    }
+
+    // Update the node to ensure that we don't double batch import.
+    if ($this->node->get('field_herbarium_spec_master_impo')->value == FALSE) {
+      $this->node->get('field_herbarium_spec_master_impo')->setValue(TRUE);
+      $this->node->setNewRevision(FALSE);
+      $this->node->save();
+    }
+
+    // Remove the temporary dir.
+    $this->delTree($temp_clone_directory);
+
+    $context['message'] = t(
+      '[NID#@nid] Updated long term storage file for specimen.',
+      [
+        '@nid' => $target_nid,
+      ]
+    );
+  }
+
+  /**
+   * Remove the TIF from the LTS archive.
+   *
+   * @param array $context
+   *   The Batch API context array.
+   */
+  protected function deleteTiff(&$context) {
+    $email = $this->user->get('mail')->value;
+    $name = $this->user->get('name')->value;
+    $target_nid = $this->node->id();
+
+    // Clone local repo to temp folder, avoiding problems with concurrent use.
+    $temp_clone_directory = tempnam(sys_get_temp_dir(), 'LTSGitRepo');
+    if (file_exists($temp_clone_directory)) {
+      unlink($temp_clone_directory);
+    }
+    mkdir($temp_clone_directory);
+
+    exec(
+      "git clone {$this->ltsRepoPath} {$temp_clone_directory} && cp {$this->ltsRepoPath}/.lfsconfig {$temp_clone_directory}/.lfsconfig",
+      $output,
+      $return
+    );
+
+    // Stage the file for commit.
+    exec(
+      "cd {$temp_clone_directory} && git lfs track \"*.tif\" && git rm {$target_nid}.tif",
+      $output,
+      $return
+    );
+
+    // Commit.
+    exec(
+      "cd {$temp_clone_directory} && git config --global user.email \"libsystems@unb.ca\" && git config --global user.name \"Mr. Robot.\" && git commit --author \"$name <$email>\" -m '[$target_nid] Deletion of archival file.'",
+      $output,
+      $return
+    );
+
     $return = 1;
     $push_failures = 0;
 

@@ -146,3 +146,31 @@ function _herbarium_specimen_lts_add_archival_master($nid, $file_path) {
 
   return $batch;
 }
+
+/**
+ * Regenerate the derivatives for a file that has an existing archival tiff.
+ *
+ * @param int $nid
+ *   The status to set.
+ *
+ * @return array
+ *   The batch operation array.
+ */
+function _herbarium_specimen_lts_remove_item_batch($nid) {
+  $batch = [
+    'title' => t('Removal Archival Master from LTS'),
+    'init_message' => t('Removal Archival Master from LTS'),
+    'operations' => [],
+  ];
+
+  // Pull down the LTS master locally.
+  $batch['operations'][] = [
+    [
+      'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
+      'removeFileFromLts',
+    ],
+    [$nid],
+  ];
+
+  return $batch;
+}
