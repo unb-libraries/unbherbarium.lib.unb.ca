@@ -143,7 +143,7 @@ function _herbarium_specimen_has_local_images($node) {
   ];
 
   foreach ($surrogate_fields as $surrogate_field) {
-    if (!empty($this->node->get($surrogate_field)->entity)) {
+    if (!empty($node->get($surrogate_field)->entity)) {
       // Set field value as empty.
       return TRUE;
     }
