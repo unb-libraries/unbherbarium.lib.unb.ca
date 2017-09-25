@@ -109,6 +109,10 @@ display:
             field_dwc_eventdate: field_dwc_eventdate
             field_large_sample_surrogate_msk: field_large_sample_surrogate_msk
             field_large_sample_surrogate: field_large_sample_surrogate
+            field_dwc_habitat: field_dwc_habitat
+            field_dwc_stateprovince: field_dwc_stateprovince
+            field_dwc_verbatimlocality: field_dwc_verbatimlocality
+            field_dwc_country: field_dwc_country
           info:
             title:
               sortable: true
@@ -161,6 +165,32 @@ display:
               responsive: ''
             field_large_sample_surrogate:
               sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_dwc_habitat:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_dwc_stateprovince:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_dwc_verbatimlocality:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_dwc_country:
+              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
