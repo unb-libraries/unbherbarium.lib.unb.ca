@@ -136,7 +136,6 @@
         "drupal/views_autocomplete_filters": "1.2",
         "drupal/views_rest_feed": "1.0-alpha1",
         "drupal/views_slideshow": "4.5",
-        "drush/drush": "~8.1",
         "harvesthq/chosen": "~1.7",
         "jackmoore/colorbox": "master",
         "solarium/solarium": "~3.8",
