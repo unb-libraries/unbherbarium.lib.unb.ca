@@ -33,6 +33,9 @@ RUN apk --update add tiff-dev tiff postfix imagemagick bash rsyslog openssh-clie
   touch /var/log/nginx/access.log && touch /var/log/nginx/error.log && \
   /scripts/InstallGitLFS.sh
 
+# Tests.
+COPY ./tests ${DRUPAL_TESTING_ROOT}
+
 # Add package conf.
 COPY ./package-conf /package-conf
 RUN mv /package-conf/postfix/main.cf /etc/postfix/main.cf && \
@@ -47,9 +50,7 @@ RUN mv /package-conf/postfix/main.cf /etc/postfix/main.cf && \
 COPY build/ ${TMP_DRUPAL_BUILD_DIR}
 ENV DRUPAL_BUILD_TMPROOT ${TMP_DRUPAL_BUILD_DIR}/webroot
 RUN /scripts/deployGeneralizedProfile.sh && \
-  # Build Drupal tree.
   /scripts/buildDrupalTree.sh ${COMPOSER_DEPLOY_DEV} && \
-  # Install NewRelic.
   /scripts/installNewRelic.sh
 
 # Copy configuration.
@@ -58,7 +59,3 @@ COPY ./config-yml ${TMP_DRUPAL_BUILD_DIR}/config-yml
 # Custom modules not tracked in github.
 COPY ./custom/modules ${TMP_DRUPAL_BUILD_DIR}/custom_modules
 COPY ./custom/themes ${TMP_DRUPAL_BUILD_DIR}/custom_themes
-
-# Tests
-COPY ./tests/behat.yml ${TMP_DRUPAL_BUILD_DIR}/behat.yml
-COPY ./tests/features ${TMP_DRUPAL_BUILD_DIR}/features
