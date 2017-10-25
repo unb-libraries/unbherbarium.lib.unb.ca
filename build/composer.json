@@ -138,6 +138,7 @@
         "drupal/views_slideshow": "4.5",
         "harvesthq/chosen": "~1.7",
         "jackmoore/colorbox": "master",
+        "malsup/jquery.cycle": "master",
         "solarium/solarium": "~3.8",
         "teqneers/php-stream-wrapper-for-git": "1.0.1",
         "webflo/drupal-finder": "^0.3.0",
