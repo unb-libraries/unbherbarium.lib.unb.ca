@@ -47,7 +47,7 @@
                 "Taxonomy Manager JSON Load Error": "https://www.drupal.org/files/issues/2673054-load-error-11.patch"
             },
             "drupal/bootstrap": {
-                "include libraries on install": "/tmp/drupal_build/patches/fix-bootstrap-menus.patch"
+                "Fix Bootstrap Menus": "https://www.drupal.org/files/issues/updating_to_drupal_core-2903656-3.patch"
             }
         }
     },
