@@ -1,0 +1,38 @@
+sudo: required
+
+services:
+  - docker
+
+env:
+  global:
+    - SERVICE_NAME=unbherbarium.lib.unb.ca
+    - DOCKER_UPSTREAM_IMAGE=unblibraries/drupal:alpine-nginx-php7-8.x-composer
+    - DEPLOY_BRANCHES=dev,prod
+    - OLD_IMAGES_TO_KEEP=2
+    - AMAZON_ECR_REGION=us-east-1
+
+before_install:
+  - git clone -b 8.x-1.x git://github.com/unb-libraries/travis-kube-deploy-drupal.git travis
+  - travis/installDockerCompose.sh
+
+before_script:
+  - travis/setComposePort.sh
+  - travis/setDockerComposeEnv.sh
+  - travis/buildInstanceForTesting.sh
+  - travis/waitForDeploy.sh
+  - travis/checkStartupForErrors.sh
+
+script:
+  - travis/testInstance.sh
+
+after_success:
+  - travis/installAuthAws.sh
+  - travis/buildImagePushToRepo.sh
+  - travis/cleanupOldImages.sh
+  - travis/triggerKubeDeploy.sh
+
+notifications:
+  slack:
+    secure: ZewGSorKPp1pcHyp9aOjf43NK4of+d/jXGG+Yqnmqb8afPLoHJXqn0qfqPAToOVzjyPSIR4JEnxAu3RJ4BAeZ1y5MfkCIXsBkvBbOsUQas3uuKBgYDzpgAzhrkfueRdi+pcwWcmmAwGr+CWVXkoT+8dH77p+P3nvtapK+rw+tZM0K+HkRvEn6EnfiaeSpRlmhhgVYRErQq2zDzM3TFxYlamIjActiaf7JsJAJa3TxS1x7ej5NqJgqKTbZnCm24wCpNkryT32rHDoZgiQIZKn3/C5+sUNLo3UtaZ41DpggLwnuqO1y3xLcDvi+Z0bJ/VDYhCMhlJSnk9624bIKONlRZ4Rr9YE4TzGC98s/60NMo3f1WleH+imo9Ou0D2kSpjxKVR8+n5fJm7LpzlxGiAslmxG5YO+AXXoAYFeqdDg1Z/MZBJVK0s8/BUPXxT+9G/2KbxrFBxaefVXyo8qfTwe1FKNTK2J+iXTfiuiQ8gUimu+ZJYuw4wcGfUqGi3CmH2HakGaWnHZIOTbnHO67tdkqTZfyMGhw4BbvmX0zlySjwCFAH7G9eYxJ+7/UHN5w4T+EU4BbvT2nxffMaeCkvoRIw67SrcH+kyOUfxc66fJTlWvK5Jd/vjkSlCp2ThtcV72BXOGC0nZM5cPAyYj8aCzMz9DSDIgc47ZmpRKsMR1il0=
+    on_start: always
+    on_success: always
