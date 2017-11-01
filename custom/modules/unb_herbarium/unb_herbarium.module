@@ -227,9 +227,14 @@ function unb_herbarium_views_pre_render(ViewExecutable $view) {
   }
   elseif ($view->id() == 'unb_search' && $view->current_display == 'page') {
     foreach ($view->result as $value) {
-      $tid = $value
-        ->_relationship_objects['field_taxonomy_tid']['0']
-        ->getString();
+
+      if (
+        !empty($value->relationship_objects['field_taxonomy_tid']['0'])
+      ) {
+        $tid = $value
+          ->_relationship_objects['field_taxonomy_tid']['0']
+          ->getString();
+      }
 
       $thumbnail = $value
         ->_object
@@ -287,6 +292,11 @@ function _unb_herbarium_unpublish_location_info(array &$variables) {
  */
 function _unb_herbarium_endangered_species($tid) {
   $term = Term::load($tid);
+
+  if (empty($term)) {
+    return FALSE;
+  }
+
   $sRank = $term
     ->get('field_dwc_measurementvalue')
     ->getString();
