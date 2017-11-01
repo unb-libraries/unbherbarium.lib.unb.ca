@@ -4,7 +4,8 @@
 unbherbarium.lib.unb.ca site build repository.
 
 ## Build Status
-| Deployed Branch | Status |
+| Branch | Status |
+|--------|--------|
 | prod | [![Build Status](https://travis-ci.org/unb-libraries/unbherbarium.lib.unb.ca.svg?branch=prod)](https://travis-ci.org/unb-libraries/unbherbarium.lib.unb.ca) |
 | dev | [![Build Status](https://travis-ci.org/unb-libraries/unbherbarium.lib.unb.ca.svg?branch=dev)](https://travis-ci.org/unb-libraries/unbherbarium.lib.unb.ca) |
 
