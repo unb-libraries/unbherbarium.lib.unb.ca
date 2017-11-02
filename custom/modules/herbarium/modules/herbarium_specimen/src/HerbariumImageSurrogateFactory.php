@@ -170,6 +170,9 @@ class HerbariumImageSurrogateFactory {
       $return
     );
 
+    // Unlink temporary file.
+    unlink($temp_image_file);
+
     $context['message'] = t(
       '[NID#@nid] Removing temporary files created for specimen image',
       [
