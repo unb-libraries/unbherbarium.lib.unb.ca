@@ -15,7 +15,7 @@
     }
   ],
   "require-dev": {
-    "unblibraries/dockworker": "dev-drupal8",
+    "unblibraries/dockworker": "dev-drupal-8.x-1.x",
     "twbs/bootstrap-sass": "^3.3.7"
   },
   "scripts": {
