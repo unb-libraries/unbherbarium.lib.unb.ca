@@ -119,7 +119,7 @@
         "drupal/colorbox": "1.4",
         "drupal/config_update": "1.4",
         "drupal/console": "~1.0",
-        "drupal/core": "8.4.0",
+        "drupal/core": "8.4.1",
         "drupal/csv_serialization": "1.0",
         "drupal/editor_file": "1.2",
         "drupal/features": "3.5",
