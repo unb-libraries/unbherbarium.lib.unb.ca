@@ -18,7 +18,7 @@ echo "$GIT_FILE_LIST" | while read -r a; do
     fi
   fi
 
-  if [[ "$OUTPUT_COUNT" -gt "$NUM_TO_OUTPUT" ]]; then
+  if [[ "$OUTPUT_COUNT" -ge "$NUM_TO_OUTPUT" ]]; then
     exit 0
   fi
 done
