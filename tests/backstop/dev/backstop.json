@@ -23,7 +23,7 @@
     {
       "label": "unbherbarium.lib.unb.ca Homepage",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
-      "url": "https://unbherbarium.lib.unb.ca/",
+      "url": "https://dev-unbherbarium.lib.unb.ca/",
       "referenceUrl": "",
       "readyEvent": "",
       "readySelector": "",
