@@ -31,6 +31,21 @@ function herbarium_specimen_lts_drush_command() {
     'aliases' => ['herbarium:queue-lts-images'],
   ];
 
+  $items['regen-queue-images'] = [
+    'description' => 'Queue the images for bulk surrogate regen.',
+    'drupal dependencies' => ['herbarium_specimen_lts'],
+    'aliases' => ['herbarium:queue-lts-images'],
+  ];
+
+  $items['regen-lts-images'] = [
+    'description' => 'Generate surrogate images for LTS items that have been pre-populated in the queue.',
+    'options' => [
+      'limit' => 'Limit the number of TIF files to import. (Default is 10).',
+    ],
+    'drupal dependencies' => ['herbarium_specimen_lts'],
+    'aliases' => ['herbarium:import-lts-images'],
+  ];
+
   $items['regenerate-surrogates'] = [
     'description' => 'Regenerate the surrogate images for a specimen.',
     'arguments' => [
@@ -81,6 +96,102 @@ function drush_herbarium_specimen_lts_push_lts_repo() {
   ];
 
   batch_set($batch);
+  drush_backend_batch_process();
+}
+
+/**
+ * Queue up all images in LTS for surrogate regeneration.
+ *
+ * @see drush_herbarium_specimen_regen_lts_images()
+ */
+function drush_herbarium_specimen_regen_queue_images() {
+  ini_set('memory_limit', '4G');
+
+  // User root should almost never be running this, rather the web daemon user.
+  $processUser = posix_getpwuid(posix_geteuid());
+  if ($processUser['name'] == 'root') {
+    drush_set_error(t('This command should almost never be run as root. Try su.'));
+    die();
+  }
+
+  // Make sure this isn't being run as anonymous.
+  $user = User::load(\Drupal::currentUser()->id());
+  if ($user->id() == 0) {
+    drush_set_error(t('This command must be run in Drush with the -u (UID) argument.'));
+    die();
+  }
+
+  // Remove previous data.
+  db_truncate(HERBARIUM_SPECIMEN_LTS_REGEN_TABLE)->execute();
+
+  $file_extension = 'tif';
+  $dzi_path = '/app/html/sites/default/files/dzi';
+  $repo_path = '/lts-archive';
+
+  $file_list = shell_exec("cd $repo_path; git ls-tree -r master --name-only");
+
+  foreach (explode("\n", $file_list) as $file) {
+    if (strstr($file, '.tif')) {
+      $nid = (int) str_replace('.tif', '', $file);
+      db_merge(HERBARIUM_SPECIMEN_LTS_REGEN_TABLE)
+        ->key(['nid' => $nid])
+        ->fields(['status' => HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED])
+        ->execute();
+    }
+  }
+}
+
+/**
+ * Regenerate surrogate images for LTS items from queue.
+ *
+ * @see drush_herbarium_specimen_regen_queue_images()
+ */
+function drush_herbarium_specimen_regen_lts_images() {
+  ini_set('memory_limit', '4G');
+
+  // User root should almost never be running this, rather the web daemon user.
+  $processUser = posix_getpwuid(posix_geteuid());
+  if ($processUser['name'] == 'root') {
+    drush_set_error(t('This command should almost never be run as root. Try su.'));
+    die();
+  }
+
+  // Make sure this isn't being run as anonymous.
+  $user = User::load(\Drupal::currentUser()->id());
+  if ($user->id() == 0) {
+    drush_set_error(t('This command must be run in Drush with the -u (UID) argument.'));
+    die();
+  }
+
+  // Find files in source directory.
+  $limit = drush_get_option('limit', 10);
+  $import_counter = 0;
+
+  while ($import_counter < $limit) {
+    // Start a transaction.
+    $transaction = db_transaction();
+
+    // Lock the table when selecting to avoid race conditions.
+    $sql = 'SELECT nid FROM ' . HERBARIUM_SPECIMEN_LTS_REGEN_TABLE . " WHERE status=" . HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED . " LIMIT 1 OFFSET $import_counter FOR UPDATE";
+
+    foreach (db_query($sql) as $result) {
+      $nid = $result->nid;
+    }
+
+    // Update the status as 'in process'.
+    _herbarium_specimen_lts_regen_set_file_status($nid, HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_PROCESSING);
+
+    // Release the select lock on the table.
+    unset($transaction);
+
+    $batch = _herbarium_specimen_lts_regenerate_specimen_derivatives_batch($nid);
+    batch_set($batch);
+    $import_counter++;
+  }
+
+  drush_print("Limit of $limit files reached. Stopping batch loading.");
+
+  // Process the batches we've created.
   drush_backend_batch_process();
 }
 

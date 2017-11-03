@@ -6,6 +6,7 @@
  */
 
 define('HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE', 'herbarium_specimen_lts_lts_image_queue');
+define('HERBARIUM_SPECIMEN_LTS_REGEN_TABLE', 'herbarium_lts_regen_queue');
 define('HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED', 0);
 define('HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_PROCESSING', 1);
 define('HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_FAIL_NO_NODE_ACCID', 2);
@@ -61,6 +62,11 @@ function _herbarium_specimen_lts_store_new_image($nid, $file_path, $commit_messa
  */
 function _herbarium_specimen_lts_set_file_status($file_path, $status) {
   $sql = 'UPDATE ' . HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE . " SET status=$status WHERE file='$file_path'";
+  return db_query($sql);
+}
+
+function _herbarium_specimen_lts_regen_set_file_status($file_path, $status) {
+  $sql = 'UPDATE ' . HERBARIUM_SPECIMEN_LTS_REGEN_TABLEE . " SET status=$status WHERE file='$file_path'";
   return db_query($sql);
 }
 

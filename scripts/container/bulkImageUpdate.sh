@@ -12,7 +12,7 @@ echo "$GIT_FILE_LIST" | while read -r a; do
     NODE_ID=$(echo $a | cut -f 1 -d '.')
     if [[ ! -f "$DZI_PATH/$NODE_ID.dzi" ]]; then
       echo "$NODE_ID"
-      su -l -s /bin/sh nginx -c "drush --root=/app/html -u 1 regenerate-surrogates $NODE_ID" &
+      su -l -s /bin/sh nginx -c "drush --root=/app/html -u 1 regenerate-surrogates $NODE_ID"
       sleep 2
       OUTPUT_COUNT=$((OUTPUT_COUNT+1))
     fi
