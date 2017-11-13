@@ -104,7 +104,7 @@ function drush_herbarium_specimen_lts_push_lts_repo() {
  *
  * @see drush_herbarium_specimen_regen_lts_images()
  */
-function drush_herbarium_specimen_regen_queue_images() {
+function drush_herbarium_specimen_lts_regen_queue_images() {
   ini_set('memory_limit', '4G');
 
   // User root should almost never be running this, rather the web daemon user.
@@ -146,7 +146,7 @@ function drush_herbarium_specimen_regen_queue_images() {
  *
  * @see drush_herbarium_specimen_regen_queue_images()
  */
-function drush_herbarium_specimen_regen_lts_images() {
+function drush_herbarium_specimen_lts_regen_lts_images() {
   ini_set('memory_limit', '4G');
 
   // User root should almost never be running this, rather the web daemon user.
