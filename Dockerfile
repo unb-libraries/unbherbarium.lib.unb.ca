@@ -62,5 +62,3 @@ COPY ./config-yml ${TMP_DRUPAL_BUILD_DIR}/config-yml
 # Custom modules not tracked in github.
 COPY ./custom/modules ${TMP_DRUPAL_BUILD_DIR}/custom_modules
 COPY ./custom/themes ${TMP_DRUPAL_BUILD_DIR}/custom_themes
-
-ENV DEBUG_CONTAINER_START TRUE
