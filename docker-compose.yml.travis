@@ -23,6 +23,6 @@ services:
     expose:
       - "80"
     ports:
-      - "3081:80"
+      - "80:80"
     env_file:
       - ./env/drupal.env
