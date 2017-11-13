@@ -28,10 +28,11 @@ env:
 before_install:
   - git clone git://github.com/unb-libraries/CargoDock.git CargoDock
   - CargoDock/travis/installDockerCompose.sh
-
-before_script:
+  - CargoDock/aws/installAuthAws.sh
   - cp docker-compose.yml.travis docker-compose.yml
   - CargoDock/travis/setDockerComposeEnv.sh
+
+before_script:
   - CargoDock/travis/buildInstanceTheme.sh
   - CargoDock/travis/buildInstanceForTesting.sh
   - CargoDock/travis/waitForDeploy.sh
@@ -41,7 +42,6 @@ script:
   - CargoDock/travis/testInstance.sh
 
 after_success:
-  - CargoDock/aws/installAuthAws.sh
   - CargoDock/travis/buildImagePushToRepo.sh
   - CargoDock/travis/cleanupOldImages.sh
   - CargoDock/travis/triggerKubeDeploy.sh
