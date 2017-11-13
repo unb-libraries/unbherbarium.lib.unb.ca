@@ -203,12 +203,9 @@ content:
     region: content
   field_dc_created:
     weight: 6
-    settings:
-      date_order: MDY
-      time_type: none
-      increment: 15
+    settings: {  }
     third_party_settings: {  }
-    type: datetime_datelist
+    type: datetime_default
     region: content
   field_dc_format:
     type: options_select
@@ -311,12 +308,9 @@ content:
     type: number
     region: content
   field_dwc_eventdate:
-    type: datetime_datelist
+    type: datetime_default
     weight: 4
-    settings:
-      date_order: MDY
-      time_type: none
-      increment: 15
+    settings: {  }
     third_party_settings: {  }
     region: content
   field_dwc_eventremarks:
@@ -460,6 +454,13 @@ content:
     weight: 7
     third_party_settings: {  }
     region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 120
+    region: content
+    third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
