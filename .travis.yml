@@ -7,40 +7,48 @@ services:
 php:
   - '7.1'
 
+cache:
+  directories:
+        - $HOME/.composer/cache
+
+git:
+  depth: 1
+
 env:
   global:
     - SERVICE_NAME=unbherbarium.lib.unb.ca
-    - DOCKER_UPSTREAM_IMAGE=unblibraries/drupal:alpine-nginx-php7-8.x-composer
-    - DEPLOY_BRANCHES=dev,prod
-    - OLD_IMAGES_TO_KEEP=2
     - AMAZON_ECR_REGION=us-east-1
+    - DEPLOY_BRANCHES=dev,prod
+    - DEPLOYMENT_FINISHED_MARKER=99_report_as_complete
+    - DOCKER_UPSTREAM_IMAGE=unblibraries/drupal:alpine-nginx-php7-8.x-composer
+    - OLD_IMAGES_TO_KEEP=2
+    - SERVICE_DEPLOY_PORT=80
+    - SERVICE_TEST_UP_PATH=/user
 
 before_install:
-  - git clone -b 8.x-1.x git://github.com/unb-libraries/travis-kube-deploy-drupal.git travis
-  - travis/installDockerCompose.sh
+  - git clone git://github.com/unb-libraries/CargoDock.git CargoDock
+  - CargoDock/travis/installDockerCompose.sh
 
 before_script:
-  - travis/setComposePort.sh
-  - travis/setDockerComposeEnv.sh
-  - travis/buildInstanceForTesting.sh
-  - travis/waitForDeploy.sh
-  - travis/checkStartupForErrors.sh
+  - cp docker-compose.yml.travis docker-compose.yml
+  - CargoDock/travis/setDockerComposeEnv.sh
+  - CargoDock/travis/buildInstanceTheme.sh
+  - CargoDock/travis/buildInstanceForTesting.sh
+  - CargoDock/travis/waitForDeploy.sh
+  - CargoDock/travis/checkStartupForErrors.sh
 
 script:
-  - travis/testInstance.sh
+  - CargoDock/travis/testInstance.sh
 
 after_success:
-  - travis/installAuthAws.sh
-  - travis/buildInstanceTheme.sh
-  - travis/buildImagePushToRepo.sh
-  - travis/cleanupOldImages.sh
-  - travis/triggerKubeDeploy.sh
+  - CargoDock/aws/installAuthAws.sh
+  - CargoDock/travis/buildImagePushToRepo.sh
+  - CargoDock/travis/cleanupOldImages.sh
+  - CargoDock/travis/triggerKubeDeploy.sh
 
 notifications:
   slack:
     rooms:
-      secure: TuP1sv8DmqtZxz7C4u2Me6Iql5kdRajZnc0p1eR0O8OgOi3HBMztpq0U7nuF8HqJHgrsHzQdZpz6gFJM96V0J27hiVYZvQc6QiFxYqxs69+CcrBXnaDL1TUsCnI1riqCWkiZBvs19TPMF6S7ujipPmIn4FEAH/7w0Pw5AaXdOkBGr1yqZkX5x6b/F/Iydifz7gxFAXpoo6zXn+UUx+8z5HGO8LULk3wwpy4lf3WOw/vAOeMfCCAcvw5ZX8sJ9bX/4W/nYFt6b8HCdZyiZRSwEvgsKatwPeHx9j0rxhYwmKiIhnyiSScHDqLO/b3nAR4qZETgLxaUJaAqiIhJCdiHTt99wLWGXBLnqn97BvipgmEgXouYycqwpX1A+sNfJh/q6qrcitchkTiI3yORgl9DogFQijnNzu+MbH5nXti8TYrCz65ZQtPoNzKvyO7dBQmkKYLWbwcFiUAh/c0AhHQZWqZ7tQeZNNjH8TEk+oPOALAbu8F8TQ+TCL5piIsA+ZJa2/BuGZJwNzrooeY7ukB9MqRPoMw5gSBNZB5CB10fsh1YvpXc0vsax/MRi20oYG09eUi4hHCTe9OaYoODkSqPLs21BVA8mo/sFyDW/oWF6OCIF9bv6tKxfNvgZBs9v4nOj4Bgj5UyCDR/LtryJqZwd3OSvWzkQ90z0RDhfZdrHr0=
+      secure: po7aCnHKpTzDgqhkRFzF4zfZvQBSt8aIsEqDozuX8BqF9BxGD/VEgOUoXhp4bH/ulqLFeNnnEt2nNhG5oKumRotrrCpRLgP69m5gwIKstZaqd7yZGa9388LD2e41hQJS6OBfPjb2Wa+WSqSB5RSJFi40u9dfxtCFTCtOdSotCzVa0rGHnHUuJUkX2OiMOA053fO3/9sV4H/Z1zeYcfCmP4gxFIfvFnuiR4etMnmDz63pzXKnlAWM3sx6Bd1qTa3xSAcCustNm0kMAV6p+oPJ3fv0Sbo113/bL7PQSMfTOGdaPINxTECx7NnhEOn1HD/LtlDEY7zft8HQysIYq6tjOQxzBN14UOvQF1D0o+DJr6yQ6WfWJ1UVUw02YI92V5zIxwrMewXxLZ/u6NT9rjGZ3a66NR7LGfOHYU4JYbJpZI5lDFv3lAXwElTUZBrjb/luXjTmfbbZeenMTpEcs7v7rlGAPufQFQWarevm9i5mDw39BcvNsFBo8a/rfWt12+ScCJTNxTp1r4JmKTKOLf6c+LY5lyWEFXFuk9l8Mo5UFvF4aYyAKeFqeHbCJGQQ356gYwLEVduJh4L3CyIlABPr+nEiKhLaOwNi+cZcW3q2hW56F6/dOMqwZBZ9Aur93urwnhgCsUh2tFQlLJBRczsIT2AYm4FGdSgKeDPVPlZFWQI=
     on_start: always
     on_success: always
-    on_failure: always
-    on_error: always
