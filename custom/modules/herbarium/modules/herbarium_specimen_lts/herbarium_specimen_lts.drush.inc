@@ -172,7 +172,7 @@ function drush_herbarium_specimen_lts_regen_lts_images() {
     $transaction = db_transaction();
 
     // Lock the table when selecting to avoid race conditions.
-    $sql = 'SELECT nid FROM ' . HERBARIUM_SPECIMEN_LTS_REGEN_TABLE . " WHERE status=" . HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED . " LIMIT 1 OFFSET $import_counter FOR UPDATE";
+    $sql = 'SELECT nid FROM ' . HERBARIUM_SPECIMEN_LTS_REGEN_TABLE . " WHERE status=" . HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED . " ORDER BY nid DESC LIMIT 1 OFFSET $import_counter FOR UPDATE";
 
     foreach (db_query($sql) as $result) {
       $nid = $result->nid;
