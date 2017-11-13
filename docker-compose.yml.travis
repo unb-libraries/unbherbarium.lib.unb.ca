@@ -17,10 +17,7 @@ services:
       - ./env/redis.env
 
   unbherbarium.lib.unb.ca:
-    build:
-      context: .
-      args:
-        - COMPOSER_DEPLOY_DEV=dev
+    image: unbherbarium.lib.unb.ca:latest
     restart: always
     container_name: unbherbarium.lib.unb.ca
     expose:
@@ -29,8 +26,3 @@ services:
       - "3081:80"
     env_file:
       - ./env/drupal.env
-    volumes:
-      - ./config-yml:/app/configuration
-      - ./custom/modules:/app/modules/custom
-      - ./custom/themes:/app/themes/custom
-      - ./tests:/app/tests
