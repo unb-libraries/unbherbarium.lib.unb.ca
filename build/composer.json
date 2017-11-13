@@ -127,6 +127,7 @@
         "drupal/google_analytics": "2.2",
         "drupal/honeypot": "1.27",
         "drupal/pathauto": "1.0",
+        "drupal/redis": "1.0-rc2",
         "drupal/search_api": "1.5",
         "drupal/search_api_solr": "1.2",
         "drupal/simple_gmap": "1.4",
