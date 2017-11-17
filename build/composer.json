@@ -122,7 +122,7 @@
         "drupal/csv_serialization": "1.0",
         "drupal/editor_file": "1.2",
         "drupal/features": "3.5",
-        "drupal/field_group": "1.0-rc6",
+        "drupal/field_group": "1.0",
         "drupal/google_analytics": "2.2",
         "drupal/honeypot": "1.27",
         "drupal/pathauto": "1.0",
