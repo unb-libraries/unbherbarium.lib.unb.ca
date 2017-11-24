@@ -1,0 +1,6 @@
+herbarium_specimen_bulk_import.admin.import:
+  title: 'Herbarium Bulk Import'
+  parent: herbarium_core.admin
+  description: 'Bulk Import Herbarium Specimen(s).'
+  route_name: herbarium_specimen_bulk_import.admin.import
+  weight: -10

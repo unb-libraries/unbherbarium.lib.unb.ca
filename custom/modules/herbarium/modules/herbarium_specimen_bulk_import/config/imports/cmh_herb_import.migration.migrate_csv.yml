@@ -1,0 +1,30 @@
+# The source data is in CSV files, so we use the 'csv' source plugin.
+id: cmh_herb_import_HERBIMPORTID
+label: Herbarium Sample Import from HERBIMPORTDATE
+
+migration_tags:
+  - CSV
+  - Herbarium Samples
+
+source:
+  plugin: csv
+  path: 'HERBIMPORTFILEPATH'
+  header_row_count: 1
+  keys:
+    - cmh_accid
+  column_names:
+    0:
+      cmh_accid: CMH Accession ID
+    1:
+      cmh_specid: Species Taxonomy ID
+
+destination:
+  plugin: entity:node
+
+process:
+  type:
+    plugin: default_value
+    default_value: herbarium_specimen
+
+  field_dwc_record_number: cmh_accid
+  field_taxonomy_tid: cmh_specid

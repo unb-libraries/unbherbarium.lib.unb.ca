@@ -1,0 +1,7 @@
+herbarium_specimen_bulk_import.admin.import:
+  path: '/admin/config/herbarium_core/bulk_import'
+  defaults:
+    _form: 'Drupal\herbarium_specimen_bulk_import\Form\HerbariumSpecimenBulkImportForm'
+    _title: 'Bulk Import Herbarium Specimen(s)'
+  requirements:
+    _permission: 'access content'
