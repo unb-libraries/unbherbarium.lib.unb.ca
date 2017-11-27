@@ -4,8 +4,7 @@
     {{ content }}
 {% else %}
     <div class="specimen-details">
-        <input id="toggle-widget" class="toggle-switch" type="checkbox"/>
-        <label class="toggle-switch__label" data-tg-off="{% trans %}Toggle details{% endtrans %}&nbsp;&raquo;" data-tg-on="&laquo;&nbsp;{% trans %}Toggle details{% endtrans %}" for="toggle-widget"></label>
+        <label id="toggle-widget" class="btn btn-default"><input type="checkbox" />{% trans %}Full Record View{% endtrans %}</label>
 
         <main {{ content_attributes }}>
             <header>
