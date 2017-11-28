@@ -3,6 +3,10 @@ jQuery(document).ready(function () {
     jQuery("#edit-mindate").prop("type", "date");
     jQuery("#edit-maxdate").prop("type", "date");
 
+    jQuery("#toggle-widget input").click(function () {
+        jQuery(".toggle-default-off").slideToggle(300);
+    });
+
     // Browser back button checkbox state fix.
     if (jQuery("#toggle-widget input").is(":checked")) {
         jQuery(".toggle-default-off").show();
