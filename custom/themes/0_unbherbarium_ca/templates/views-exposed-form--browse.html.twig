@@ -20,10 +20,10 @@
 {% endif %}
 
 <div class="form--inline form-inline clearfix">
-    <input id="toggle-widget" class="toggle-switch" data-toggle="collapse" data-target="#toggleFilters" type="checkbox"/>
-    <label class="toggle-switch__label" data-tg-off="{% trans %}Toggle filter options{% endtrans %} &raquo;" data-tg-on="&laquo; {% trans %}Toggle filter options{% endtrans %}" for="toggle-widget"></label>
+    {# Note checked="checked" overrides "default-toggle-off" via JS "back button fix" #}
+    <label id="toggle-widget" class="btn btn-default"><input type="checkbox" checked="checked" />{% trans %}Show advanced search options{% endtrans %}</label>
 
-    <div id="toggleFilters" class="collapse">
+    <div class="toggle-default-off">
         <p class="description">
             {% trans %}Narrow your result list by applying one of more of the filters below.{% endtrans %}
             <a class="accordion-toggle" data-toggle="collapse"  href="#search-guide">
