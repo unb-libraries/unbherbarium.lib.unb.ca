@@ -19,23 +19,26 @@
     {{ q }}
 {% endif %}
 
-<div class="form--inline form-inline clearfix">
-    {# Note checked="checked" overrides "default-toggle-off" via JS "back button fix" #}
-    <label id="toggle-widget" class="btn btn-default"><input type="checkbox" checked="checked" />{% trans %}Show advanced search options{% endtrans %}</label>
+{# Note checked="checked" overrides "default-toggle-off" via JS "back button fix" #}
+<div class="toggle-wrapper input-group btn btn-default">
+    <label for="toggle-widget">
+        <input id="toggle-widget" type="checkbox" checked="checked" />
+        {% trans %}Show Search Filters{% endtrans %}
+    </label>
+</div>
 
-    <div class="toggle-default-off">
-        <p class="description">
-            {% trans %}Narrow your result list by applying one of more of the filters below.{% endtrans %}
-            <a class="accordion-toggle" data-toggle="collapse"  href="#search-guide">
-                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-            </a>
-        </p>
-        <div id="search-guide" class="collapse">
-            <div class="alert alert-info" role="alert">
-                <h3>{% trans %}Using the CMH Database{% endtrans %}</h3>
-                <p>{% trans %}This section of the page can contain information on the use of the database, including a simply key to fields.{% endtrans %}</p>
-            </div>
+<div class="toggle-default-off form--inline form-inline clearfix">
+    <p class="description">
+        {% trans %}Narrow your result list by applying one of more of the filters below.{% endtrans %}
+        <a class="accordion-toggle" data-toggle="collapse"  href="#search-guide">
+            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+        </a>
+    </p>
+    <div id="search-guide" class="collapse">
+        <div class="alert alert-info" role="alert">
+            <h3>{% trans %}Using the CMH Database{% endtrans %}</h3>
+            <p>{% trans %}This section of the page can contain information on the use of the database, including a simply key to fields.{% endtrans %}</p>
         </div>
-        {{ form }}
     </div>
+    {{ form }}
 </div>

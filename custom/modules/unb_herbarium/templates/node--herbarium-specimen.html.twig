@@ -4,7 +4,12 @@
     {{ content }}
 {% else %}
     <div class="specimen-details">
-        <label id="toggle-widget" class="btn btn-default"><input type="checkbox" />{% trans %}Full Record View{% endtrans %}</label>
+        <div class="toggle-wrapper input-group btn btn-default">
+            <label for="toggle-widget">
+                <input id="toggle-widget" type="checkbox" checked="checked" />
+                {% trans %}Show Full Record{% endtrans %}
+            </label>
+        </div>
 
         <main {{ content_attributes }}>
             <header>
