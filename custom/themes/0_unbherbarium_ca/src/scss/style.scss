@@ -20,24 +20,6 @@ h1 {
   font-weight: 400;
 }
 
-label#toggle-widget {
-  display: block;
-  margin: .5em 0;
-  text-decoration: none;
-}
-label#toggle-widget:focus,
-label#toggle-widget:hover {
-  cursor: pointer;
-}
-label#toggle-widget input {
-  margin-right: .25em;
-  position: relative;
-  top: -1px;
-}
-label#toggle-widget input:hover {
-  cursor: pointer;
-}
-
 // Hyperlink styles.
 a:link,
 a:visited,
@@ -176,6 +158,7 @@ p {
 }
 label {
   display: block;
+  margin: 0;
 }
 
 // Browse views results table.
@@ -183,8 +166,35 @@ label {
   display: block;
   width: 100%;
 }
-.browse .btn {
+button.btn  {
   padding: .5em;
+}
+.toggle-wrapper:active,
+.toggle-wrapper {
+  background-color: #f8f8f8;
+  box-shadow: 0 8px 6px -6px #bbb;
+  margin: 1em 0;
+  padding: 0;
+  width: 100%;
+}
+.toggle-wrapper .btn {
+  padding: 0;
+}
+.toggle-wrapper span.input-group-addon {
+  border-right-color: inherit;
+  border-right-style: solid;
+  border-width: 0 1px 0 0;
+}
+.toggle-wrapper label {
+  display: block;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: .5em;
+  text-decoration: none;
+}
+#toggle-widget:hover,
+.toggle-wrapper label:hover {
+  cursor: pointer;
 }
 .table>thead:first-child>tr:first-child>th {
   border-top: 2px solid $color-header-accent;
@@ -194,7 +204,15 @@ label {
 }
 .view .table>thead>tr>th {
   background-color: $color-header-bg;
+  padding: 0;
   white-space: nowrap;
+}
+.view .table>thead>tr>th>a {
+  padding: 8px;
+}
+.view .table>thead>tr>th>a:hover {
+  background-color: #d4f093;
+  color: $text-color;
 }
 .view .table-striped>tbody>tr:nth-of-type(even) {
   background-color: $color-table-even;
