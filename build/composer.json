@@ -40,11 +40,6 @@
             "themes/contrib/{$name}": [
                 "type:drupal-theme"
             ]
-        },
-        "patches": {
-            "drupal/taxonomy_manager": {
-                "Taxonomy Manager Invalid Placeholder": "https://www.drupal.org/files/issues/invalid_place_holder_issue-2681969-26.patch"
-            }
         }
     },
     "license": "MIT",
