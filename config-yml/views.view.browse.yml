@@ -61,7 +61,7 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: 'Apply filters'
+          submit_button: 'Apply search filters'
           reset_button: true
           reset_button_label: Clear
           exposed_sorts_label: 'Sort by'
