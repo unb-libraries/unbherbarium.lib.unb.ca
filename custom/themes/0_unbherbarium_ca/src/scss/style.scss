@@ -212,8 +212,9 @@ button.btn  {
 .browse thead a {
   padding: 8px;
 }
-.view .table>thead>tr>th>a:hover {
-  background-color: #d4f093;
+.browse thead a:focus,
+.browse thead a:hover {
+  background-color: #dbf2a4;
   color: $text-color;
 }
 .view .table-striped>tbody>tr:nth-of-type(even) {
