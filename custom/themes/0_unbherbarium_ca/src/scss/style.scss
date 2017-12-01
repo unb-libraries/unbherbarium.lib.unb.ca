@@ -204,7 +204,7 @@ label {
   background-color: $color-header-bg;
   white-space: nowrap;
 }
-.browse thead th {
+.browse .table > thead > tr > th {
   padding: 0;
 }
 .browse thead a {
