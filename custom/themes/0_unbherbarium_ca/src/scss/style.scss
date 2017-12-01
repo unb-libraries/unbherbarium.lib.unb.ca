@@ -204,10 +204,12 @@ button.btn  {
 }
 .view .table>thead>tr>th {
   background-color: $color-header-bg;
-  padding: 0;
   white-space: nowrap;
 }
-.view .table>thead>tr>th>a {
+.browse thead th {
+  padding: 0;
+}
+.browse thead a {
   padding: 8px;
 }
 .view .table>thead>tr>th>a:hover {
