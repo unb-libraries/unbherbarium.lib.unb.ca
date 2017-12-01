@@ -166,9 +166,7 @@ label {
   display: block;
   width: 100%;
 }
-button.btn  {
-  padding: .5em;
-}
+
 .toggle-wrapper:active,
 .toggle-wrapper {
   background-color: #f8f8f8;
@@ -351,6 +349,7 @@ a .glyphicon,
 button.btn-primary {
   min-height: 35px;
 }
+
 // Search API Excerpt.
 .excerpt {
   color: $color-understate;
