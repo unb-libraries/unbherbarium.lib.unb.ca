@@ -10,11 +10,11 @@ dependencies:
     - field.storage.node.field_large_sample_surrogate_msk
     - field.storage.taxonomy_term.field_cmh_full_specimen_name
     - image.style.thumbnail
-    - image.style.unmasked_specimen
     - search_api.index.unb_herbarium
   module:
     - colorbox
     - datetime
+    - image
     - search_api
     - taxonomy
     - text
@@ -1234,15 +1234,10 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: colorbox
+          type: image
           settings:
-            colorbox_node_style: thumbnail
-            colorbox_node_style_first: ''
-            colorbox_image_style: unmasked_specimen
-            colorbox_gallery: post
-            colorbox_gallery_custom: ''
-            colorbox_caption: entity_title
-            colorbox_caption_custom: ''
+            image_style: thumbnail
+            image_link: content
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -1257,6 +1252,7 @@ display:
           fallback_handler: search_api
           fallback_options:
             link_to_item: false
+            multi_type: separator
             multi_separator: ', '
           entity_type: node
           plugin_id: search_api_field
