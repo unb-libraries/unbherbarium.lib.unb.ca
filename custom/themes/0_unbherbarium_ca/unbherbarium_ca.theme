@@ -5,3 +5,15 @@
  *
  * Place your custom PHP code in this file.
  */
+
+/**
+ * Implements hook_preprocess_menu_local_task().
+ */
+function unbherbarium_ca_preprocess_menu_local_task(&$variables) {
+  if (isset($variables['element']['#link']['title']) && $variables['element']['#link']['title'] == 'View') {
+    $node = \Drupal::request()->attributes->get('node');
+    if ($node && $node->getType() == 'herbarium_specimen') {
+      $variables['link']['#title'] = t('Specimen Data');
+    }
+  }
+}
