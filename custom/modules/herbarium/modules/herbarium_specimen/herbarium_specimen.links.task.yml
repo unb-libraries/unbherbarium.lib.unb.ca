@@ -1,5 +1,5 @@
 herbarium_specimen.inspect_specimen:
   route_name: herbarium_specimen.inspect_specimen
-  title: 'Inspect Specimen'
+  title: 'High Resolution Image'
   base_route: entity.node.canonical
   weight: 100
