@@ -60,15 +60,17 @@ display:
           query_comment: ''
           query_tags: {  }
       exposed_form:
-        type: basic
+        type: input_required
         options:
-          submit_button: 'Apply search filters'
+          submit_button: 'Apply Filters'
           reset_button: true
           reset_button_label: Clear
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
+          text_input_required: 'Click on "Apply Filters" to see matching specimens'
+          text_input_required_format: basic_html
       pager:
         type: full
         options:
@@ -2069,7 +2071,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<div role=\"contentinfo\" aria-label=\"no results\" class=\"alert alert-warning\">\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\n  Your search did not match any records.\n</div>\n\n<p><b><span class=\"glyphicon glyphicon-info-sign\"></span> Suggestions:</b></p>\n<ul>\n  <li>Make sure that all words are spelled correctly.</li>\n  <li>Make sure all words are in their appropriate field.</li>\n  <li>Try using a partial word search: <kbd>card</kbd> will match <kbd>cardamine</kbd>.</li>\n  <li>Try <a href=\"/browse-samples\">removing your filter options</a> and starting over.</li>\n</ul>\n\n<p><span class=\"glyphicon glyphicon-hand-right\"></span> Alternatively, you may use the <a href=\"/search-samples\">Database Search</a> page for more open-ended searching.</p>\n"
+            value: "<div role=\"contentinfo\" aria-label=\"no results\" class=\"alert alert-warning\">\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\n  Your combination of filters did not match any records.\n</div>\n\n<p><b><span class=\"glyphicon glyphicon-info-sign\"></span> Suggestions:</b></p>\n<ul>\n  <li>Make sure that all words are spelled correctly.</li>\n  <li>Make sure all words are in their appropriate field.</li>\n  <li>Try using a partial word search: <kbd>card</kbd> will match <kbd>cardamine</kbd>.</li>\n  <li>Try <a href=\"/browse-samples\">removing your filter options</a> and starting over.</li>\n</ul>\n"
             format: full_html
           plugin_id: text
     cache_metadata:
