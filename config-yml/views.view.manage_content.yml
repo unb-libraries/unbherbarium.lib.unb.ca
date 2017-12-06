@@ -625,7 +625,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: 'No banner image content has been uploaded. Create new content!'
+            value: 'No banner image content has been uploaded. <a href="/node/add/banner_image">Create new content</a>!'
             format: full_html
           plugin_id: text
       relationships: {  }
