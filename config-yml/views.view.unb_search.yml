@@ -12,7 +12,6 @@ dependencies:
     - image.style.thumbnail
     - image.style.unmasked_specimen
     - search_api.index.unb_herbarium
-    - system.menu.main
   module:
     - colorbox
     - datetime
@@ -556,7 +555,7 @@ display:
       display_extenders: {  }
       path: specimen-search
       menu:
-        type: normal
+        type: none
         title: 'Specimen Search'
         description: ''
         expanded: false

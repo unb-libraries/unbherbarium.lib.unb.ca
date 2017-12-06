@@ -16,7 +16,7 @@ dependencies:
     - image.style.thumbnail
     - image.style.unmasked_specimen
     - node.type.herbarium_specimen
-    - system.menu.tools
+    - system.menu.main
     - taxonomy.vocabulary.herbarium_specimen_collector
   module:
     - colorbox
@@ -1198,13 +1198,13 @@ display:
           1: AND
       menu:
         type: normal
-        title: 'Browse Specimens'
+        title: 'Specimen Search'
         description: ''
         expanded: false
         parent: ''
         weight: -45
         context: '0'
-        menu_name: tools
+        menu_name: main
       css_class: 'browse browse-specimens use-chosen'
       use_ajax: false
       fields:
