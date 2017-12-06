@@ -7,17 +7,17 @@ dependencies:
     - field.storage.taxonomy_term.field_dwc_scientificnameauthor
     - field.storage.taxonomy_term.field_dwc_taxonid
     - field.storage.taxonomy_term.field_dwc_taxonrank
-    - system.menu.tools
+    - system.menu.main
     - taxonomy.vocabulary.herbarium_specimen_collector
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
     - taxonomy.vocabulary.taxon_rank
   content:
-    - 'taxonomy_term:taxon_rank:3832f4fa-63eb-49d4-9d63-c182fca8b69b'
-    - 'taxonomy_term:taxon_rank:578a40ad-845f-40cb-a9eb-83c0f4199869'
-    - 'taxonomy_term:taxon_rank:98ba5180-a97c-4aff-bb32-287911e56eaa'
-    - 'taxonomy_term:taxon_rank:cf917ca3-1c98-499f-8dcb-37c2626d2115'
-    - 'taxonomy_term:taxon_rank:d3132823-ecfa-4566-bf0d-f5392d465de2'
-    - 'taxonomy_term:taxon_rank:ed20d6e5-8403-4801-b41a-72b7b7248cbf'
+    - 'taxonomy_term:taxon_rank:23cc12c4-b027-4ddb-bf3d-754eace518f9'
+    - 'taxonomy_term:taxon_rank:575678af-d059-49a6-b0d5-4491e71c6242'
+    - 'taxonomy_term:taxon_rank:a9dd7e28-3280-41f6-9ea7-81865ab7d7ed'
+    - 'taxonomy_term:taxon_rank:c0fe7dc2-8bc7-4393-a020-abdc9c983f5c'
+    - 'taxonomy_term:taxon_rank:c7ed640e-0dd8-4338-ac3d-bfa63cb83995'
+    - 'taxonomy_term:taxon_rank:e39a8986-426e-416d-856c-7311831be081'
   module:
     - taxonomy
     - text
@@ -1386,10 +1386,10 @@ display:
         title: 'Collector Taxonomy'
         description: ''
         expanded: false
-        parent: unb_herbarium.manage
-        weight: -50
+        parent: 'menu_link_content:48db79cc-0c03-410d-8eef-13dfcbf72b77'
+        weight: -48
         context: '0'
-        menu_name: tools
+        menu_name: main
     cache_metadata:
       max-age: 0
       contexts:
@@ -1412,10 +1412,10 @@ display:
         title: 'Specimen Taxonomy'
         description: ''
         expanded: false
-        parent: unb_herbarium.manage
+        parent: 'menu_link_content:48db79cc-0c03-410d-8eef-13dfcbf72b77'
         weight: -49
         context: '0'
-        menu_name: tools
+        menu_name: main
       display_description: ''
       header:
         area_2:

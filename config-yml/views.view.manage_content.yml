@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_image
     - image.style.220_wide
     - node.type.banner_image
+    - system.menu.main
     - system.menu.tools
   module:
     - colorbox
@@ -682,10 +683,10 @@ display:
         title: 'Banner images'
         description: ''
         expanded: false
-        parent: unb_herbarium.manage
+        parent: 'menu_link_content:48db79cc-0c03-410d-8eef-13dfcbf72b77'
         weight: -47
         context: '0'
-        menu_name: tools
+        menu_name: main
     cache_metadata:
       max-age: 0
       contexts:
