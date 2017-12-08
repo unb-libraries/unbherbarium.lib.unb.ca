@@ -166,7 +166,12 @@ label {
   display: block;
   width: 100%;
 }
-
+.views-field-field-collector-tid ul {
+  padding-left: 0;
+}
+.views-field-field-collector-tid li {
+  list-style-type: none;
+}
 .toggle-wrapper:active,
 .toggle-wrapper {
   background-color: #f8f8f8;
