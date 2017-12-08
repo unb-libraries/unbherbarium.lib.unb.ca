@@ -683,8 +683,8 @@ display:
         title: 'Banner images'
         description: ''
         expanded: false
-        parent: 'menu_link_content:48db79cc-0c03-410d-8eef-13dfcbf72b77'
-        weight: -47
+        parent: 'menu_link_content:e4fe0d07-3396-4ac5-9e0e-f687b0336183'
+        weight: -46
         context: '0'
         menu_name: main
     cache_metadata:

@@ -6,16 +6,16 @@ definitions:
     expanded: true
     enabled: true
   unb_herbarium__people:
-    weight: -46
+    weight: -45
     menu_name: main
-    parent: 'menu_link_content:48db79cc-0c03-410d-8eef-13dfcbf72b77'
+    parent: ''
     expanded: false
     enabled: true
   unb_herbarium__content:
-    weight: -50
+    weight: -49
     menu_name: main
-    parent: 'menu_link_content:48db79cc-0c03-410d-8eef-13dfcbf72b77'
-    expanded: false
+    parent: ''
     enabled: true
+    expanded: false
 _core:
   default_config_hash: jdY7AU0tU-QsjmiOw3W8vwpYMb-By--_MSFgbqKUTYM
