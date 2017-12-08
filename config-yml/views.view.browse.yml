@@ -639,7 +639,7 @@ display:
       display_extenders: {  }
       display_description: ''
       path: browse-specimens
-      title: 'Browse Specimens'
+      title: 'Specimen Search'
       defaults:
         title: false
         filters: false
@@ -1211,7 +1211,7 @@ display:
         description: ''
         expanded: false
         parent: ''
-        weight: -45
+        weight: -50
         context: '0'
         menu_name: main
       css_class: 'browse browse-specimens use-chosen'
