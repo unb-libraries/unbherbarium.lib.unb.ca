@@ -20,9 +20,9 @@ navbar_inverse: 1
 breadcrumb: '0'
 favicon:
   mimetype: image/png
-  path: ../modules/custom/unb_herbarium/images/favicon.png
-  url: 'http://unbherbarium.lib.unb.ca/../modules/custom/unb_herbarium/images/favicon.png'
-  use_default: 0
+  path: ''
+  url: 'http://unbherbarium.lib.unb.ca/themes/custom/0_unbherbarium_ca/favicon.ico'
+  use_default: 1
 _core:
   default_config_hash: bRFagEWOnJOtglJnv0ALb3R7xf4n9wT7J4-1AJ8RNnc
 schemas:
@@ -31,6 +31,6 @@ schemas:
 features:
   comment_user_picture: 1
   comment_user_verification: 1
-  favicon: 1
+  favicon: 0
   node_user_picture: 1
 modal_enabled: 0
