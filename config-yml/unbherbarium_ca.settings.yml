@@ -34,3 +34,4 @@ features:
   favicon: 0
   node_user_picture: 1
 modal_enabled: 0
+button_size: ''
