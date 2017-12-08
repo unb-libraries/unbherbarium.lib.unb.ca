@@ -164,11 +164,11 @@ dd li {
 @media (min-width: 1024px) {
   .specimen-details main {
     float: left;
-    width: 74%;
+    width: 76%;
   }
   .specimen-details aside {
     float: right;
-    max-width: 25%;
+    max-width: 24%;
     padding-right: 3px;
     text-align: right;
   }
@@ -178,5 +178,13 @@ dd li {
   }
   .specimen-details aside figure {
     margin-right: 0;
+  }
+}
+@media (min-width: 1200px) {
+  .specimen-details main {
+    width: 80%;
+  }
+  .specimen-details aside {
+    max-width: 20%;
   }
 }
