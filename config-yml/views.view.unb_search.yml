@@ -1,6 +1,6 @@
 uuid: ea9f10de-1141-48d6-b9cb-e20b10dffa9c
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - field.storage.node.field_dwc_county
