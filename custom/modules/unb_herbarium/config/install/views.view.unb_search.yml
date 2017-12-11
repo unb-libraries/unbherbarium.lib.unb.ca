@@ -9,7 +9,6 @@ dependencies:
     - field.storage.node.field_large_sample_surrogate_msk
     - field.storage.taxonomy_term.field_cmh_full_specimen_name
     - image.style.thumbnail
-    - image.style.unmasked_specimen
     - search_api.index.unb_herbarium
     - system.menu.main
   module:
