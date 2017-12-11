@@ -81,19 +81,19 @@
             "type": "package"
         },
         {
-            "type": "package",
             "package": {
-                "name": "harvesthq/chosen",
-                "type": "drupal-library",
-                "version": "1.8.2",
                 "dist": {
                     "type": "zip",
                     "url": "https://github.com/harvesthq/chosen/releases/download/v1.8.2/chosen_v1.8.2.zip"
                 },
+                "name": "harvesthq/chosen",
                 "require": {
                     "composer/installers": "^1.2.0"
-                }
-            }
+                },
+                "type": "drupal-library",
+                "version": "1.8.2"
+            },
+            "type": "package"
         },
         {
             "type": "git",
@@ -107,7 +107,7 @@
         "drupal/bootstrap": "3.7",
         "drupal/chosen": "2.4",
         "drupal/colorbox": "1.4",
-        "drupal/config_update": "1.4",
+        "drupal/config_update": "1.5",
         "drupal/console": "~1.0",
         "drupal/core": "8.4.3",
         "drupal/csv_serialization": "1.0",
