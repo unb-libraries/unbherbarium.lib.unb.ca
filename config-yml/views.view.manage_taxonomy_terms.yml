@@ -12,12 +12,12 @@ dependencies:
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
     - taxonomy.vocabulary.taxon_rank
   content:
-    - 'taxonomy_term:taxon_rank:49e01d74-30d4-4dd9-82cc-c937925ab812'
-    - 'taxonomy_term:taxon_rank:a06ca7c3-2b90-47a2-8418-ff31d1790780'
-    - 'taxonomy_term:taxon_rank:aa61aefe-73a2-4839-8585-17f202b1ec62'
-    - 'taxonomy_term:taxon_rank:c616c9f2-4faf-4b43-a1a6-4dccdc2683e7'
-    - 'taxonomy_term:taxon_rank:dc17c1d1-94e4-4db0-9caa-84ca81376572'
-    - 'taxonomy_term:taxon_rank:ef61b8c5-5885-4713-8925-e5420ef39c67'
+    - 'taxonomy_term:taxon_rank:0098155b-5d7a-4f83-ac80-1de98ac31b4d'
+    - 'taxonomy_term:taxon_rank:259a6702-80e6-41ca-92d5-b13b806917ac'
+    - 'taxonomy_term:taxon_rank:2b451e39-637f-4d78-8e25-244af55aa18c'
+    - 'taxonomy_term:taxon_rank:93ed525c-87a1-4c08-a124-9123440363d7'
+    - 'taxonomy_term:taxon_rank:d080beb6-b230-4b1f-a4c3-408356afbacd'
+    - 'taxonomy_term:taxon_rank:fda54ee1-442a-4bac-8760-ae82210748dc'
   module:
     - taxonomy
     - text
@@ -1386,7 +1386,7 @@ display:
         title: 'Collector Taxonomy'
         description: ''
         expanded: false
-        parent: 'menu_link_content:e4fe0d07-3396-4ac5-9e0e-f687b0336183'
+        parent: unb_herbarium.manage
         weight: -47
         context: '0'
         menu_name: main
@@ -1412,7 +1412,7 @@ display:
         title: 'Specimen Taxonomy'
         description: ''
         expanded: false
-        parent: 'menu_link_content:e4fe0d07-3396-4ac5-9e0e-f687b0336183'
+        parent: unb_herbarium.manage
         weight: -48
         context: '0'
         menu_name: main

@@ -683,7 +683,7 @@ display:
         title: 'Banner images'
         description: ''
         expanded: false
-        parent: 'menu_link_content:e4fe0d07-3396-4ac5-9e0e-f687b0336183'
+        parent: unb_herbarium.manage
         weight: -46
         context: '0'
         menu_name: main
