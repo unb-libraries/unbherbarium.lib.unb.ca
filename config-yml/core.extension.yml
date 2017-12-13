@@ -47,8 +47,6 @@ module:
   rdf: 0
   rest: 0
   search: 0
-  search_api: 0
-  search_api_solr: 0
   serialization: 0
   simple_gmap: 0
   simplify: 0
