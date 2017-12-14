@@ -62,15 +62,15 @@ display:
       exposed_form:
         type: input_required
         options:
-          submit_button: 'Apply Filters'
+          submit_button: 'Apply search'
           reset_button: true
           reset_button_label: Clear
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
-          text_input_required: ''
-          text_input_required_format: basic_html
+          text_input_required: '<small class="text-muted">Submit values in one or more fields of the form to filter specimens based on your criteria.<small>'
+          text_input_required_format: full_html
       pager:
         type: full
         options:
