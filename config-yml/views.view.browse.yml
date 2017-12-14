@@ -638,7 +638,7 @@ display:
     display_options:
       display_extenders: {  }
       display_description: ''
-      path: browse-specimens
+      path: specimen/search
       title: 'Specimen Search'
       defaults:
         title: false
