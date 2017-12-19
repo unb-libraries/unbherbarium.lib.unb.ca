@@ -11,8 +11,16 @@
  */
 function unbherbarium_ca_preprocess_menu_local_task(&$variables) {
   if (isset($variables['element']['#link']['title']) && $variables['element']['#link']['title'] == 'View') {
-    $node = \Drupal::request()->attributes->get('node');
-    if ($node && $node->getType() == 'herbarium_specimen') {
+    $node_id = \Drupal::routeMatch()->getRawParameter('node');
+
+    // Override the tab label ('View') for nodes of type 'herbarium_specimen'.
+    $content_type = 'herbarium_specimen';
+    $query = \Drupal::entityQuery('node')
+      ->condition('nid', $node_id)
+      ->condition('type', $content_type)
+      ->execute();
+
+    if (!empty($query)) {
       $variables['link']['#title'] = t('Specimen Data');
     }
   }
