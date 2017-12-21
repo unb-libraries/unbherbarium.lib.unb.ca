@@ -1,7 +1,3 @@
-view private files:
-  title: 'View private filesystem files'
-  description: '<i>View sensitive member files like specimen <b>masked</b> images.</i>'
-
 view detailed herbarium specimens:
   title: 'View detailed herbarium specimens'
   description: '<i>View a zoomable detailed view of herbarium specimens.</i>'

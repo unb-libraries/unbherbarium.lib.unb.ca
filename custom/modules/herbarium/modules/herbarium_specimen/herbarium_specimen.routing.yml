@@ -6,12 +6,3 @@ herbarium_specimen.inspect_specimen:
   requirements:
     _permission: 'view detailed herbarium specimens'
     _custom_access: '\Drupal\herbarium_specimen\Controller\HerbariumSpecimenCheckController::checkInspectAccess'
-
-herbarium_specimen.view_private_files:
-  path: '/system/files/{scheme}'
-  defaults:
-    _controller: 'Drupal\system\FileDownloadController::download'
-    scheme: private
-  requirements:
-    _permission: 'view private files'
-    _access: 'TRUE'
