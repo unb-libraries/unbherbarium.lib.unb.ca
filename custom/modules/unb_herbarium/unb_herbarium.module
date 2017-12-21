@@ -170,6 +170,13 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
     else {
       $specimen_image['#suffix'] .= '<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span> ' . t('Click image to enlarge');
     }
+    // Add 'download' text link to figure caption.
+    $specimen_image['#suffix'] .=
+      '<div class="download-link"><a href="' .
+      $specimen_image['#url']->toString() .
+      '" download="download">' .
+      t('Download fullsize image') .
+      '</a></div>';
     $specimen_image['#suffix'] .= '</figcaption></figure>';
     $variables['specimen_image'] = $specimen_image;
   }
