@@ -81,6 +81,7 @@ dd li {
   width: 100%;
 }
 .specimen-details figure a {
+  display: block;
   min-height: 256px;
 }
 .specimen-details .field--type-image img {
