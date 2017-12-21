@@ -65,10 +65,10 @@ dd li {
   margin-bottom: .5em;
 }
 .specimen-details aside figure,
-.specimen-details aside > .map,
-.specimen-details aside iframe {
+.specimen-details aside .gmap {
   display: inline-block;
   max-width: 100%;
+  vertical-align: top;
 }
 .specimen-details aside figure {
   margin: 0 1em 1em 0;
@@ -80,13 +80,8 @@ dd li {
   vertical-align: top;
   width: 100%;
 }
-.specimen-details figure img {
-  display: block;
-  -webkit-transition: all .4s ease;
-  -moz-transition: all .4s ease;
-  -o-transition: all .4s ease;
-  -ms-transition: all .4s ease;
-  transition: all .4s ease;
+.specimen-details figure a {
+  min-height: 256px;
 }
 .specimen-details .field--type-image img {
   margin-bottom: 0;

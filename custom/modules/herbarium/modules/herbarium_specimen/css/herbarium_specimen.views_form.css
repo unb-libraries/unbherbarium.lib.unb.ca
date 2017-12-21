@@ -12,9 +12,9 @@ td.specimen-image img {
 .specimen-details a.colorbox {
   box-shadow: 1px 1px 5px #cdc5b4;
 }
-.view td.specimen-image a:focus img,
-.view td.specimen-image a:hover img,
-.specimen-details a.colorbox:focus,
-.specimen-details a.colorbox:hover {
+.view td a:focus img,
+.view td a:hover img,
+.specimen-image a:focus img,
+.specimen-image a:hover img {
   box-shadow: 1px 1px 5px #797979;
 }
