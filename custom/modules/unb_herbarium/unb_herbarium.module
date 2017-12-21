@@ -215,16 +215,6 @@ function unb_herbarium_preprocess_page_title(&$variables) {
 }
 
 /**
- * Implements hook_form_alter().
- */
-function unb_herbarium_form_alter(&$form, &$form_state, $form_id) {
-  if ($form['#id'] == 'views-exposed-form-unb-search-page') {
-    // Add HTML5 placeholder to Views|UNB Search|Exposed form.
-    $form['query']['#attributes']['placeholder'] = t('Search') . ' ...';
-  }
-}
-
-/**
  * Implements hook_views_pre_render().
  */
 function unb_herbarium_views_pre_render(ViewExecutable $view) {
