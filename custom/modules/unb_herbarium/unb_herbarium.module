@@ -109,18 +109,6 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
     $variables['collection_date_day'] = $date->format('d');
   }
 
-  if (_unb_herbarium_endangered_species($tid)) {
-    if (_unb_herbarium_permit_private()) {
-      $variables['view_endangered'] = TRUE;
-    }
-    else {
-      $variables['view_endangered'] = FALSE;
-      _unb_herbarium_unpublish_location_info($variables);
-    }
-  }
-  else {
-    $variables['view_endangered'] = TRUE;
-  }
   $variables['specimen_measurement_value'] = $assigned_taxon
     ->get('field_dwc_measurementvalue')
     ->view();
