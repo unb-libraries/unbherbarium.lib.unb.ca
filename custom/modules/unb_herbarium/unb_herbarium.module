@@ -158,6 +158,34 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
     ->get('field_cmh_infraspecific_specimen')
     ->view();
 
+  // Link specimen image to original size or, if available, high res tiles.
+  $specimen_image = NULL;
+  $access_manager = \Drupal::service('access_manager');
+  $access_hires = $access_manager->checkNamedRoute('herbarium_specimen.inspect_specimen', ['node' => $node->id()], \Drupal::currentUser());
+
+  if (isset($variables['elements']['field_large_sample_surrogate'][0])) {
+    $specimen_image = $variables['elements']['field_large_sample_surrogate'][0];
+  }
+
+  if ($specimen_image) {
+    $specimen_image['#prefix'] = '<figure class="specimen-image">';
+    $specimen_image['#suffix'] = '<figcaption class="description">';
+    if ($access_hires) {
+      $specimen_image['#suffix'] .= '<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>' . t('Click image to inspect');
+      // Override image link destination: High Resolution Image route.
+      $specimen_image['#url'] = Url::fromRoute(
+        'herbarium_specimen.inspect_specimen', [
+          'node' => $node->id(),
+        ]
+      );
+    }
+    else {
+      $specimen_image['#suffix'] .= '<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span> ' . t('Click image to enlarge');
+    }
+    $specimen_image['#suffix'] .= '</figcaption></figure>';
+    $variables['specimen_image'] = $specimen_image;
+  }
+
 }
 
 /**

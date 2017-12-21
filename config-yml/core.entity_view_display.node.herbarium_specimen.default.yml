@@ -46,8 +46,8 @@ dependencies:
     - image.style.220_wide
     - node.type.herbarium_specimen
   module:
-    - colorbox
     - datetime
+    - image
     - options
     - simple_gmap
     - user
@@ -281,7 +281,7 @@ content:
     type: string
     region: content
   field_dwc_record_number:
-    weight: 36
+    weight: 35
     label: above
     settings:
       link_to_entity: false
@@ -297,7 +297,7 @@ content:
     type: string
     region: content
   field_dwc_stateprovince:
-    weight: 35
+    weight: 34
     label: above
     settings:
       link_to_entity: false
@@ -305,7 +305,7 @@ content:
     type: string
     region: content
   field_dwc_verbatimeventdate:
-    weight: 37
+    weight: 36
     label: above
     settings:
       link_to_entity: false
@@ -313,7 +313,7 @@ content:
     type: string
     region: content
   field_dwc_verbatimlocality:
-    weight: 38
+    weight: 37
     label: above
     settings:
       link_to_entity: false
@@ -335,7 +335,7 @@ content:
       include_map: true
       apikey: ''
       iframe_width: '220'
-      iframe_height: '300'
+      iframe_height: '308'
       static_scale: 2
       include_link: true
       link_text: 'View larger map'
@@ -348,31 +348,12 @@ content:
     type: simple_gmap
     region: content
   field_large_sample_surrogate:
-    type: colorbox
+    type: image
     weight: 33
     label: hidden
     settings:
-      colorbox_node_style: 220_wide
-      colorbox_node_style_first: ''
-      colorbox_image_style: ''
-      colorbox_gallery: post
-      colorbox_gallery_custom: ''
-      colorbox_caption: entity_title
-      colorbox_caption_custom: ''
-    third_party_settings: {  }
-    region: content
-  field_large_sample_surrogate_msk:
-    type: colorbox
-    weight: 34
-    label: hidden
-    settings:
-      colorbox_node_style: 220_wide
-      colorbox_node_style_first: ''
-      colorbox_image_style: ''
-      colorbox_gallery: post
-      colorbox_gallery_custom: ''
-      colorbox_caption: entity_title
-      colorbox_caption_custom: ''
+      image_style: 220_wide
+      image_link: file
     third_party_settings: {  }
     region: content
   field_previous_identifications:
