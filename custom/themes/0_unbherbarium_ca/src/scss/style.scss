@@ -464,19 +464,16 @@ img.align-right {
 .pagination a {
   margin-top: 2px;
 }
-.simple-gmap-link a:before,
-.download-link a:before {
+.simple-gmap-link a:before {
   content:"\e062";
   display: inline-block;
   font-family: 'Glyphicons Halflings';
   margin-right: .25em;
   vertical-align: top;
 }
-.download-link a:before {
-  content: "\e025";
-}
-span.glyphicon {
-  margin-right: .2em;
+
+.glyphicon {
+  margin-right: .25em;
 }
 .browse-specimens tr th:last-child,
 .browse-specimens tr td:last-child {
@@ -488,8 +485,9 @@ span.glyphicon {
   min-width: 69px;
   min-height: 100px;
 }
-.download-link {
-  text-align: left;
+
+figure a {
+  display: block;
 }
 
 // Responsive overrides.

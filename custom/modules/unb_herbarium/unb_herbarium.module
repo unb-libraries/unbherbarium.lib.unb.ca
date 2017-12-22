@@ -160,28 +160,38 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
     $specimen_image['#suffix'] = '<figcaption class="description">';
     $download_url = $specimen_image['#url']->toString();
     if ($access_hires) {
-      $specimen_image['#suffix'] .= '<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>' . t('Click image to inspect');
       // Override image link destination: High Resolution Image route.
       $specimen_image['#url'] = Url::fromRoute(
         'herbarium_specimen.inspect_specimen', [
           'node' => $node->id(),
         ]
       );
+      $inspect_url = $specimen_image['#url']->toString();
+      $specimen_image['#suffix'] .= '<a href="' .
+        $inspect_url .
+        '"><i class="glyphicon glyphicon-eye-open"></i>' .
+        t('View high resolution image') .
+        '</a>';
     }
     else {
-      $specimen_image['#suffix'] .= '<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span> ' . t('Click image to enlarge');
+      $specimen_image['#suffix'] .= '<a href="' .
+        $download_url .
+        '"><i class="glyphicon glyphicon-fullscreen"></i>' .
+        t('View full size image') .
+        '</a>';
     }
     // Add 'download' text link to figure caption.
     $specimen_image['#suffix'] .=
-      '<div class="download-link"><a href="' .
+      '<a class="download-link" href="' .
       $download_url .
       '" download="unbherbarium-' .
       $node
         ->get('field_dwc_record_number')
         ->getString() .
-      '">' .
-      t('Download full-size image') .
-      '</a></div>';
+      '"><i class="glyphicon glyphicon-download-alt"></i>' .
+      t('Download full size image') .
+      '</a>';
+
     $specimen_image['#suffix'] .= '</figcaption></figure>';
     $variables['specimen_image'] = $specimen_image;
   }
