@@ -158,6 +158,7 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   if ($specimen_image) {
     $specimen_image['#prefix'] = '<figure class="specimen-image">';
     $specimen_image['#suffix'] = '<figcaption class="description">';
+    $download_url = $specimen_image['#url']->toString();
     if ($access_hires) {
       $specimen_image['#suffix'] .= '<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>' . t('Click image to inspect');
       // Override image link destination: High Resolution Image route.
@@ -173,8 +174,10 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
     // Add 'download' text link to figure caption.
     $specimen_image['#suffix'] .=
       '<div class="download-link"><a href="' .
-      $specimen_image['#url']->toString() .
-      '" download>' .
+      $download_url .
+      '" download="unbherbarium-' .
+      $node->get('field_dwc_record_number')->getString() .
+      '">' .
       t('Download fullsize image') .
       '</a></div>';
     $specimen_image['#suffix'] .= '</figcaption></figure>';
