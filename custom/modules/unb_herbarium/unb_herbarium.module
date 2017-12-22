@@ -357,18 +357,3 @@ function _unb_herbarium_endangered_species($tid) {
 
   return FALSE;
 }
-
-/**
- * Returns whether or not a user may access the private filesystem.
- *
- * @return bool
- *   True if user has specimen private file permission, false otherwise.
- */
-function _unb_herbarium_permit_private() {
-  $user = \Drupal::currentUser();
-  if ($user->hasPermission('view private files')) {
-    return TRUE;
-  }
-
-  return FALSE;
-}
