@@ -80,7 +80,7 @@ dd li {
   vertical-align: top;
   width: 100%;
 }
-.specimen-details figure a {
+.specimen-details figure > a {
   display: block;
   min-height: 256px;
 }
