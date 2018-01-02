@@ -1,7 +1,7 @@
 herbarium_specimen.inspect_specimen:
   path: '/node/{node}/herbarium/inspect_specimen'
   defaults:
-    _title: 'High Resolution Image'
+    _title_callback: '\Drupal\herbarium_specimen\Controller\HerbariumSpecimenTitleController::getSpecimenTitle'
     _form: '\Drupal\herbarium_specimen\Form\InspectSpecimenForm'
   requirements:
     _permission: 'view detailed herbarium specimens'
