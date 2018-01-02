@@ -26,11 +26,12 @@ class InspectSpecimenForm extends FormBase {
     $nid = $node;
     $node = Node::load($nid);
 
-    $title = $node
-      ->get('field_taxonomy_tid')
-      ->get(0)
-      ->entity
-      ->get('field_cmh_full_specimen_name')->first()->view();
+    $title = [
+      "#type" => "processed_text",
+      "#text" => t("High Resolution Image"),
+      "#format" => "full_html",
+      "#langcode" => "en",
+    ];
 
     $form['sample_view']['title'] = $title;
     $form['sample_view']['title']['#prefix'] = '<h2>';
