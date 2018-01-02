@@ -301,7 +301,7 @@ function unb_herbarium_preprocess_views_view_field__field_collector_tid(&$variab
       $render_item = [
         '#markup' => Link::fromTextAndUrl(
           $collector->entity->getName(),
-          Url::fromUri("internal:/browse-specimens?&collector=$collectors_id")
+          Url::fromUri("internal:/specimen/search?&collector=$collectors_id")
         )->toString(),
       ];
       $render_array['#items'][] = $render_item;
