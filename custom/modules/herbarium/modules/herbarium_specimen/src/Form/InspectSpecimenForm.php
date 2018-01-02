@@ -34,7 +34,7 @@ class InspectSpecimenForm extends FormBase {
     ];
 
     $form['sample_view']['title'] = $title;
-    $form['sample_view']['title']['#prefix'] = '<h2>';
+    $form['sample_view']['title']['#prefix'] = '<h2 class="viewer-title">';
     $form['sample_view']['title']['#suffix'] = '</h2>';
 
     $form['sample_view']['zoom'] = [

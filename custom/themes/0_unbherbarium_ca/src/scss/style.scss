@@ -439,6 +439,10 @@ select#edit-parent {
 .nowrap {
   white-space: nowrap;
 }
+.viewer-title {
+  font-size: 1.2em;
+  margin-left: .25em;
+}
 // Add whitespace between floated images and adjacent content.
 figure.align-left,
 img.align-left {
