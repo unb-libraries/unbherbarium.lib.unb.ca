@@ -30,7 +30,7 @@ dependencies:
 _core:
   default_config_hash: zrTCx-esreJNLIRWPAPJ3nF0HVnhRM2tOvcUAvlWLLE
 id: browse
-label: Browse
+label: 'Specimen Search'
 module: views
 description: 'A View with exposed sort filters that allows browsing specimen records.'
 tag: ''
@@ -105,18 +105,19 @@ display:
           description: ''
           columns:
             title: title
-            nid: nid
             field_dwc_record_number: field_dwc_record_number
+            nid: nid
             field_cmh_full_specimen_name: field_cmh_full_specimen_name
             field_dwc_county: field_dwc_county
             field_collector_tid: field_collector_tid
             field_dwc_eventdate: field_dwc_eventdate
-            field_large_sample_surrogate_msk: field_large_sample_surrogate_msk
-            field_large_sample_surrogate: field_large_sample_surrogate
             field_dwc_habitat: field_dwc_habitat
             field_dwc_stateprovince: field_dwc_stateprovince
             field_dwc_verbatimlocality: field_dwc_verbatimlocality
             field_dwc_country: field_dwc_country
+            field_large_sample_surrogate_msk: field_large_sample_surrogate_msk
+            field_large_sample_surrogate: field_large_sample_surrogate
+            name: name
           info:
             title:
               sortable: true
@@ -125,15 +126,15 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            nid:
-              sortable: false
+            field_dwc_record_number:
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            field_dwc_record_number:
-              sortable: true
+            nid:
+              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
@@ -165,20 +166,6 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            field_large_sample_surrogate_msk:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_large_sample_surrogate:
-              sortable: true
-              default_sort_order: desc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
             field_dwc_habitat:
               align: ''
               separator: ''
@@ -199,6 +186,27 @@ display:
               empty_column: false
               responsive: ''
             field_dwc_country:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_large_sample_surrogate_msk:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_large_sample_surrogate:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            name:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -1273,6 +1281,132 @@ display:
       css_class: 'browse browse-specimens use-chosen'
       use_ajax: false
       fields:
+        nid:
+          id: nid
+          table: node_field_data
+          field: nid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ID
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_unformatted
+          settings: {  }
+          group_column: entity_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: node
+          entity_field: nid
+          plugin_id: field
+        field_cmh_full_specimen_name:
+          id: field_cmh_full_specimen_name
+          table: taxonomy_term__field_cmh_full_specimen_name
+          field: field_cmh_full_specimen_name
+          relationship: field_taxonomy_tid
+          group_type: group
+          admin_label: ''
+          label: 'Scientific Name'
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: true
+            path: '/node/{{ nid }}'
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: '{{ title }}'
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: text_default
+          settings: {  }
+          group_column: entity_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
         title:
           id: title
           table: node_field_data
@@ -1281,10 +1415,10 @@ display:
           group_type: group
           admin_label: ''
           label: 'Scientific Name'
-          exclude: true
+          exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '{{ field_cmh_full_specimen_name }}'
             make_link: false
             path: ''
             absolute: false
@@ -1391,132 +1525,6 @@ display:
           settings:
             link_to_entity: false
           group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        nid:
-          id: nid
-          table: node_field_data
-          field: nid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ID
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: number_unformatted
-          settings: {  }
-          group_column: entity_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: node
-          entity_field: nid
-          plugin_id: field
-        field_cmh_full_specimen_name:
-          id: field_cmh_full_specimen_name
-          table: taxonomy_term__field_cmh_full_specimen_name
-          field: field_cmh_full_specimen_name
-          relationship: field_taxonomy_tid
-          group_type: group
-          admin_label: ''
-          label: 'Scientific Name'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: true
-            path: '/node/{{ nid }}'
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: '{{ title }}'
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: text_default
-          settings: {  }
-          group_column: entity_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
