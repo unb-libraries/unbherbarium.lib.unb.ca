@@ -483,13 +483,20 @@ img.align-right {
 .browse-specimens tr td:last-child {
   text-align: right;
 }
+.browse-specimens tr td:last-child a,
+.browse-specimens tr td:last-child img {
+  display: inline-block;
+}
 .browse-specimens .specimen-image a {
   background: url(/modules/custom/unb_herbarium/images/ajax-loader-sm.gif) no-repeat center center;
   display: inline-block;
   min-width: 69px;
   min-height: 100px;
 }
-
+.browse-specimens tr td:last-child img,
+.specimen-image img {
+  border: 1px solid #ddd;
+}
 figure a {
   display: block;
 }
