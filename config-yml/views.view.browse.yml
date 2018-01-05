@@ -707,6 +707,73 @@ display:
           entity_field: type
           plugin_id: bundle
           group: 1
+        combine:
+          id: combine
+          table: views
+          field: combine
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: word
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: combine_op
+            label: Keyword
+            description: 'Enter 1 or more search terms'
+            use_operator: false
+            operator: combine_op
+            identifier: query
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              researcher: '0'
+              cmh_database_administrator: '0'
+              editor: '0'
+            autocomplete_filter: 1
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: 'Combine fields filter'
+            description: ''
+            identifier: combine
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: '1'
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: ''
+                operator: allwords
+                value: ''
+              2:
+                title: ''
+                operator: allwords
+                value: ''
+              3:
+                title: ''
+                operator: allwords
+                value: ''
+          fields:
+            title: title
+            field_dwc_record_number: field_dwc_record_number
+            field_dwc_county: field_dwc_county
+            field_dwc_stateprovince: field_dwc_stateprovince
+            field_dwc_verbatimlocality: field_dwc_verbatimlocality
+            field_dwc_country: field_dwc_country
+            name: name
+          plugin_id: views_autocomplete_filters_combine
         title:
           id: title
           table: node_field_data
@@ -1210,61 +1277,6 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: views_autocomplete_filters_string
-        combine:
-          id: combine
-          table: views
-          field: combine
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: allwords
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: combine_op
-            label: 'Combine fields filter'
-            description: ''
-            use_operator: false
-            operator: combine_op
-            identifier: query
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
-            autocomplete_filter: 1
-            autocomplete_min_chars: '0'
-            autocomplete_items: '10'
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          fields:
-            title: title
-            field_dwc_record_number: field_dwc_record_number
-            field_dwc_county: field_dwc_county
-            field_dwc_stateprovince: field_dwc_stateprovince
-            field_dwc_verbatimlocality: field_dwc_verbatimlocality
-            field_dwc_country: field_dwc_country
-            name: name
-          plugin_id: views_autocomplete_filters_combine
       filter_groups:
         operator: AND
         groups:
