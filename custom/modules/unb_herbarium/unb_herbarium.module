@@ -230,59 +230,6 @@ function unb_herbarium_preprocess_page_title(&$variables) {
 }
 
 /**
- * Implements hook_views_pre_render().
- */
-function unb_herbarium_views_pre_render(ViewExecutable $view) {
-  if (($view->id() == 'browse' ||
-      $view->id() == 'collector_specimen_list' ||
-      $view->id() == 'taxon_rank_list'
-    ) && $view->current_display == 'page'
-  ) {
-    foreach ($view->result as $value) {
-      $tid = $value
-        ->_relationship_entities['field_taxonomy_tid']
-        ->id();
-
-      $thumbnail = $value
-        ->_entity
-        ->get('field_large_sample_surrogate');
-
-      if (!$thumbnail->isEmpty() &&
-           _unb_herbarium_endangered_species($tid) &&
-           !_unb_herbarium_permit_private()
-      ) {
-        // Force unmasked image field to use 'No Results' value.
-        $thumbnail->setValue([]);
-      }
-    }
-  }
-  elseif ($view->id() == 'unb_search' && $view->current_display == 'page') {
-    foreach ($view->result as $value) {
-
-      if (
-        !empty($value->relationship_objects['field_taxonomy_tid']['0'])
-      ) {
-        $tid = $value
-          ->_relationship_objects['field_taxonomy_tid']['0']
-          ->getString();
-      }
-
-      $thumbnail = $value
-        ->_object
-        ->get('field_large_sample_surrogate');
-
-      if (!$thumbnail->isEmpty() &&
-        _unb_herbarium_endangered_species($tid) &&
-        !_unb_herbarium_permit_private()
-      ) {
-        // Force unmasked image field to use 'No Results' value.
-        $thumbnail->setValue([]);
-      }
-    }
-  }
-}
-
-/**
  * Implements hook_preprocess_views_hook().
  */
 function unb_herbarium_preprocess_views_view_field__field_collector_tid(&$variables) {
@@ -324,48 +271,4 @@ function _unb_herbarium_get_tax_term_link(TermInterface $term) {
   $name = $term->getName();
   $href = $term->url();
   return "<a href=\"$href\">$name</a>";
-}
-
-/**
- * Unsets herbarium specimen content fields with geo location information.
- *
- * @param array $variables
- *   The variables array containing the sensitive fields to hide.
- */
-function _unb_herbarium_unpublish_location_info(array &$variables) {
-  // Hide sensitive location information for endangered species.
-  unset($variables['content']['field_dwc_decimallatitude']);
-  unset($variables['content']['field_dwc_decimallongitude']);
-  unset($variables['content']['field_geoheritage']);
-  unset($variables['content']['field_dwc_verbatimlocality']);
-  unset($variables['content']['field_gmap']);
-}
-
-/**
- * Returns whether or not a given species term id is considered endangered.
- *
- * @param int $tid
- *   The species term id.
- *
- * @return bool
- *   True if species is endangered, false otherwise.
- */
-function _unb_herbarium_endangered_species($tid) {
-  $term = Term::load($tid);
-
-  if (empty($term)) {
-    return FALSE;
-  }
-
-  $sRank = $term
-    ->get('field_dwc_measurementvalue')
-    ->getString();
-
-  // Rarity values containing 'S1' or 'S2' are endangered.
-  $endangered = "/[sS][12](?!\d)/";
-  if (preg_match($endangered, $sRank)) {
-    return TRUE;
-  }
-
-  return FALSE;
 }
