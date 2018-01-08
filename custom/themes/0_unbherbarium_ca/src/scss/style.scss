@@ -227,6 +227,7 @@ label {
 .view .table-striped>tbody>tr:nth-of-type(odd) {
   background-color: inherit;
 }
+
 .tablesort {
   vertical-align: text-bottom;
 }
@@ -490,8 +491,13 @@ img.align-right {
 .browse-specimens .specimen-image a {
   background: url(/modules/custom/unb_herbarium/images/ajax-loader-sm.gif) no-repeat center center;
   display: inline-block;
+}
+.browse-specimens .specimen-image img {
   min-width: 69px;
   min-height: 100px;
+}
+.specimen-image img {
+  min-height: 256px;
 }
 .browse-specimens tr td:last-child img,
 .specimen-image img {
