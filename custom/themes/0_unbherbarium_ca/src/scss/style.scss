@@ -514,6 +514,13 @@ figure a {
   display: block;
 }
 
+// Match whitespace for non-sortable column header.
+#view-nothing-table-column,
+#view-field-collector-tid-table-column,
+#view-field-dwc-scientificnameauthor-table-column {
+  padding: 8px;
+}
+
 // Responsive overrides.
 @media (max-width: 414px) {
   .navbar-brand {
@@ -585,8 +592,4 @@ figure a {
   .browse .form-inline .form-group {
     width: 32%;
   }
-}
-
-#view-field-collector-tid-table-column {
-  padding: 8px;
 }
