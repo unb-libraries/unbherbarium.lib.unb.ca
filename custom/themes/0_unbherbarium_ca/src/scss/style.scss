@@ -232,7 +232,7 @@ label {
   vertical-align: text-bottom;
 }
 .view .table th a,
-.view .table td:not(.specimen-image) a {
+.view .table td:not(:last-child) a {
   display: block;
 }
 
@@ -488,7 +488,7 @@ img.align-right {
 .browse-specimens tr td:last-child img {
   display: inline-block;
 }
-.browse-specimens .specimen-image a {
+.browse-specimens tr td:last-child a {
   background: url(/modules/custom/unb_herbarium/images/ajax-loader-sm.gif) no-repeat center center;
   display: inline-block;
 }

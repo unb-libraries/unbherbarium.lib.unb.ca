@@ -73,13 +73,7 @@ dd li {
 .specimen-details aside figure {
   margin: 0 1em 1em 0;
 }
-.specimen-details figure > div {
-  background: url(../images/ajax-loader.gif) no-repeat center center;
-  min-height: 256px;
-  padding-bottom: .5em;
-  vertical-align: top;
-  width: 100%;
-}
+
 .specimen-details figure > a {
   display: block;
 }
@@ -93,7 +87,7 @@ dd li {
   max-width: 100%;
 }
 .gmap,
-.specimen-details figure > div {
+.specimen-details figure > a {
   background: url(../images/ajax-loader.gif) no-repeat center center;
 }
 
