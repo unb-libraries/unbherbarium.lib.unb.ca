@@ -80,14 +80,6 @@ function _herbarium_specimen_generate_specimen_surrogates_batch($nid, $file_path
       array(
         array(
           'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
-          'buildMaskedJpgSurrogate',
-        ),
-        array($nid, $file_path),
-      ),
-
-      array(
-        array(
-          'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
           'buildDziTiles',
         ),
         array($nid, $file_path),
@@ -103,7 +95,6 @@ function _herbarium_specimen_generate_specimen_surrogates_batch($nid, $file_path
  *   The node id of the parent herbarium_specimen node.
  * @param string $field_name
  *   The field to remove the surrogates from. Fields:
- *    - field_large_sample_surrogate_msk
  *    - field_large_sample_surrogate
  *   are possible values.
  */
@@ -139,7 +130,6 @@ function _herbarium_specimen_manually_remove_broken_file_reference($nid, $field_
 function _herbarium_specimen_has_local_images($node) {
   $surrogate_fields = [
     'field_large_sample_surrogate',
-    'field_large_sample_surrogate_msk',
   ];
 
   foreach ($surrogate_fields as $surrogate_field) {

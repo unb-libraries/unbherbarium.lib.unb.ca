@@ -39,20 +39,6 @@ class HerbariumImageSurrogateFactory {
   protected $filePathParts;
 
   /**
-   * The amount of the original image height to mask, to cover label.
-   *
-   * @var float
-   */
-  protected $maskedHeightFactor = 0.23;
-
-  /**
-   * The amount of the original image width to mask, to cover label.
-   *
-   * @var float
-   */
-  protected $maskedWidthFactor = 0.45;
-
-  /**
    * The path to write the DZI tiles and index.
    *
    * @var string
@@ -117,21 +103,6 @@ class HerbariumImageSurrogateFactory {
   }
 
   /**
-   * Create the maked JPG surrogate from the archival image.
-   *
-   * @param object $nid
-   *   The node id of the parent herbarium specimen.
-   * @param string $file_path
-   *   The file ID of the archival TIFF File object.
-   * @param array $context
-   *   The Batch API context array.
-   */
-  public static function buildMaskedJpgSurrogate($nid, $file_path, &$context) {
-    $obj = new static($nid, $file_path);
-    $obj->generateMaskedJpgSurrogate($context);
-  }
-
-  /**
    * Delete any existing assets from the DZI/Tile directory.
    *
    * @param object $nid
@@ -151,21 +122,9 @@ class HerbariumImageSurrogateFactory {
    *   The Batch API context array.
    */
   protected function generateDziTiles(&$context) {
-    // First, generate the masked image.
-    $nid = $this->nid;
-    list($width, $height, $type, $attr) = getimagesize($this->file);
-    $mask_start_x = $width * (1 - $this->maskedWidthFactor);
-    $mask_start_y = $height * (1 - $this->maskedHeightFactor);
-    $temp_image_file = tempnam(sys_get_temp_dir(), "$nid-masked-") . '.tif';
-    exec(
-      "convert \"{$this->file}\" -strokewidth 0 -fill \"rgba(255,255,255,1)\" -draw \"rectangle $mask_start_x,$mask_start_y $width,$height\" -unsharp 8x6+1+0 $temp_image_file",
-      $output,
-      $return
-    );
-
     // Generate DZI tiles.
     exec(
-      "/usr/local/bin/magick-slicer -e jpg -i \"$temp_image_file\" -o \"{$this->nodeDziPath}\"",
+      "/usr/local/bin/magick-slicer -e jpg -i \"{$this->file}\" -o \"{$this->nodeDziPath}\"",
       $output,
       $return
     );
@@ -218,56 +177,7 @@ class HerbariumImageSurrogateFactory {
     unlink($temp_image_file);
 
     $context['message'] = t(
-      '[NID#@nid] Generating masked JPG specimen surrogate image.',
-      [
-        '@nid' => $this->nid,
-      ]
-    );
-  }
-
-  /**
-   * Generate the masked JPG surrogate to be used for this file.
-   *
-   * @param array $context
-   *   The Batch API context array.
-   */
-  protected function generateMaskedJpgSurrogate(&$context) {
-    $nid = $this->node->id();
-    list($width, $height, $type, $attr) = getimagesize($this->file);
-    $mask_start_x = $width * (1 - $this->maskedWidthFactor);
-    $mask_start_y = $height * (1 - $this->maskedHeightFactor);
-
-    $temp_image_file = tempnam(sys_get_temp_dir(), "$nid-masked-") . '.jpg';
-
-    exec(
-      "convert \"{$this->file}\" -strokewidth 0 -fill \"rgba(255,255,255,1)\" -draw \"rectangle $mask_start_x,$mask_start_y $width,$height\" $temp_image_file",
-      $output,
-      $return
-    );
-
-    // Create unmasked file object.
-    $uniqid = uniqid(rand(), TRUE);
-    // Create masked file object.
-    $target_path_m = 'public://specimen_images';
-    file_prepare_directory($target_path_m, FILE_CREATE_DIRECTORY);
-    $file_destination_m = "$target_path_m/{$nid}-{$uniqid}_masked.jpg";
-    $uri_m = file_unmanaged_copy($temp_image_file, $file_destination_m, FILE_EXISTS_REPLACE);
-    $file_m = File::Create([
-      'uri' => $uri_m,
-    ]);
-    $file_m->setPermanent();
-    $file_m->save();
-
-    // Attach new existing JPG surrogates.
-    $this->node->get('field_large_sample_surrogate_msk')->setValue($file_m);
-    $this->node->setNewRevision(FALSE);
-    $this->node->save();
-
-    // Unlink temporary file.
-    unlink($temp_image_file);
-
-    $context['message'] = t(
-      '[NID#@nid] Generating "Inspect Specimen" assets. This could take several minutes.',
+      '[NID#@nid] Generating JPG specimen surrogate image.',
       [
         '@nid' => $this->nid,
       ]
@@ -291,7 +201,6 @@ class HerbariumImageSurrogateFactory {
     // Remove images attached to node.
     $surrogate_fields = [
       'field_large_sample_surrogate',
-      'field_large_sample_surrogate_msk',
     ];
 
     // Clean up the entities currently referenced.
@@ -319,7 +228,7 @@ class HerbariumImageSurrogateFactory {
 
     // Set message.
     $context['message'] = t(
-      '[NID#@nid] Generating unmasked image for specimen',
+      '[NID#@nid] Deleted generated DZI assets',
       [
         '@nid' => $this->nid,
       ]
