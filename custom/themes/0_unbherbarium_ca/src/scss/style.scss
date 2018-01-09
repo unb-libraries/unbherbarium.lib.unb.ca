@@ -498,6 +498,8 @@ img.align-right {
 .browse-specimens tr td:last-child a {
   background: url(/modules/custom/unb_herbarium/images/ajax-loader-sm.gif) no-repeat center center;
   display: inline-block;
+  min-width: 70px;
+  min-height: 100px;
 }
 .browse-specimens .specimen-image img {
   min-width: 69px;

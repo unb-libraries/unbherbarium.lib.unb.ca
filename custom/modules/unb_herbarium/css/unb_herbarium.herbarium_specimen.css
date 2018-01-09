@@ -89,6 +89,7 @@ dd li {
 .gmap,
 .specimen-details figure > a {
   background: url(../images/ajax-loader.gif) no-repeat center center;
+  min-height: 305px;
 }
 
 .fieldset-toggle legend input,
