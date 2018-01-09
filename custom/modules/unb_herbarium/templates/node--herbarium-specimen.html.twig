@@ -351,7 +351,7 @@
                 {{ specimen_image }}
             {% endif %}
 
-            {% if content.field_gmap %}
+            {% if content.field_gmap|field_value %}
                 <div class="gmap">
                     {{ content.field_gmap|field_value }}
                 </div>
