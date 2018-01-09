@@ -221,6 +221,13 @@ label {
   background-color: #dbf2a4;
   color: $text-color;
 }
+.browse thead a::before {
+  content:"\e150";
+  font-family: 'Glyphicons Halflings';
+  font-size: small;
+  margin-right: .3em;
+  vertical-align: text-bottom;
+}
 .view .table-striped>tbody>tr:nth-of-type(even) {
   background-color: $color-table-even;
 }
