@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-name: 'Herbarium Specimen Taxonomy'
-vid: herbarium_specimen_taxonomy
-description: ''
-hierarchy: 0
-weight: 0

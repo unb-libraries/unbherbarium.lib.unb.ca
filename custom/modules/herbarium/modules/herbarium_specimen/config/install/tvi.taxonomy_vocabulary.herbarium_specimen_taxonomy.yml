@@ -1,6 +1,0 @@
-enable_override: 1
-view: taxon_rank_list
-view_display: page
-inherit_settings: 1
-pass_arguments: 1
-uuid: 3204a5f1-eeba-46f5-b2f2-6e91de381255

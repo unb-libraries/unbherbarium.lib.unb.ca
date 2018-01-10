@@ -18,7 +18,6 @@ dependencies:
     - system.menu.main
     - taxonomy.vocabulary.herbarium_specimen_collector
   module:
-    - colorbox
     - datetime
     - image
     - node

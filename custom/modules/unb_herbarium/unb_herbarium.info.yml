@@ -5,7 +5,6 @@ type: module
 core: 8.x
 dependencies:
   - block
-  - colorbox
   - contact
   - csv_serialization
   - datetime

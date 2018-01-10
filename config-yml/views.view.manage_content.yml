@@ -9,7 +9,6 @@ dependencies:
     - system.menu.main
     - system.menu.tools
   module:
-    - colorbox
     - node
     - user
     - views_autocomplete_filters

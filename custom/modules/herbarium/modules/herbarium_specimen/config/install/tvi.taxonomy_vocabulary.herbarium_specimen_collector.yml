@@ -1,6 +1,0 @@
-enable_override: 1
-view: collector_specimen_list
-view_display: page
-inherit_settings: 1
-pass_arguments: 1
-uuid: b30258e9-f9af-4bb0-8103-f0b1678bc6e6

@@ -14,10 +14,7 @@
 .specimen-details a div {
   display: inline;
 }
-a.colorbox {
-  display: block;
-  overflow: hidden;
-}
+
 .gmap iframe {
   border: 1px solid #ececec!important;
 }
