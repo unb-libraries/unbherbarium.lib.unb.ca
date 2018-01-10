@@ -210,9 +210,14 @@ label {
   background-color: $color-header-bg;
   white-space: nowrap;
 }
-.browse .table > thead > tr > th {
+.browse thead tr th {
   padding: 0;
 }
+// Match whitespace for non-sortable column header.
+.browse th[id^="view-nothing-table-column"],
+.browse th[id^="view-field-image-table-column"],
+.browse th[id^="view-field-collector-tid-table-column"],
+.browse th[id^="view-field-dwc-scientificnameauthor-table-column"],
 .browse thead a {
   padding: 8px;
 }
@@ -224,9 +229,8 @@ label {
 .browse thead a::before {
   content:"\e150";
   font-family: 'Glyphicons Halflings';
-  font-size: small;
-  margin-right: .3em;
-  vertical-align: text-bottom;
+  font-size: x-small;
+  margin-right: .4em;
 }
 .view .table-striped>tbody>tr:nth-of-type(even) {
   background-color: $color-table-even;
@@ -461,11 +465,6 @@ img.align-right {
   margin-left: 8px;
 }
 
-// Bolded colorbox captions (specimen image title).
-#cboxTitle {
-  background: rgba(266, 255, 255, 0.9);
-  font-weight: bold;
-}
 .measurement-id {
   letter-spacing: -0.3px;
   word-break: break-all;
@@ -514,13 +513,6 @@ img.align-right {
 }
 figure a {
   display: block;
-}
-
-// Match whitespace for non-sortable column header.
-#view-nothing-table-column,
-#view-field-collector-tid-table-column,
-#view-field-dwc-scientificnameauthor-table-column {
-  padding: 8px;
 }
 
 // Responsive overrides.
