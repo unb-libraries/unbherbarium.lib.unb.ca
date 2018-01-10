@@ -519,15 +519,6 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: colorbox
-          settings:
-            colorbox_node_style: thumbnail
-            colorbox_node_style_first: ''
-            colorbox_image_style: ''
-            colorbox_gallery: post
-            colorbox_gallery_custom: ''
-            colorbox_caption: auto
-            colorbox_caption_custom: ''
           group_column: ''
           group_columns: {  }
           group_rows: true

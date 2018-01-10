@@ -8,8 +8,7 @@ td.specimen-image img {
   border: 0;
 }
 
-.view td.specimen-image a img,
-.specimen-details a.colorbox {
+.view td.specimen-image a img {
   box-shadow: 1px 1px 5px #cdc5b4;
 }
 .view td a:focus img,

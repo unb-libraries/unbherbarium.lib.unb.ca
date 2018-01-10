@@ -53,21 +53,6 @@
         {
             "package": {
                 "dist": {
-                    "type": "zip",
-                    "url": "https://github.com/jackmoore/colorbox/archive/master.zip"
-                },
-                "name": "jackmoore/colorbox",
-                "require": {
-                    "composer/installers": "~1.0"
-                },
-                "type": "drupal-library",
-                "version": "1.0"
-            },
-            "type": "package"
-        },
-        {
-            "package": {
-                "dist": {
                     "type": "file",
                     "url": "https://malsup.github.io/jquery.cycle.all.js"
                 },
@@ -131,7 +116,6 @@
         "drupal/views_slideshow": "4.6",
         "drush/drush": "^8.1.15",
         "harvesthq/chosen": "~1.8",
-        "jackmoore/colorbox": "1.0",
         "malsup/jquery.cycle": "1.0",
         "solarium/solarium": "~3.8",
         "teqneers/php-stream-wrapper-for-git": "1.0.1",
