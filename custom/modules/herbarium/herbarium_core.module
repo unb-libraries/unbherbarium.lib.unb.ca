@@ -60,6 +60,7 @@ function herbarium_core_help($route_name, RouteMatchInterface $route_match) {
  */
 function herbarium_core_taxonomy_term_presave(TermInterface $term) {
   if ($term->getVocabularyId() == HERBARIUM_CORE_SPECIMEN_VOCABULARY_ID) {
+
     // Populate the full name field.
     $term->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_FULL_NAME_FIELD)->setValue(
       _herbarium_core_term_build_full_name($term, HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANKS_TO_OMIT_PRINTING)
@@ -96,6 +97,21 @@ function herbarium_core_taxonomy_term_presave(TermInterface $term) {
 
       batch_set($batch);
     }
+
+    // Populate the Additional Search Metadata from multi-valued fields.
+    $metadata = '';
+    $combine_fields = [
+      'field_cmh_english_common_names',
+      'field_cmh_french_common_names',
+      'field_synonyms',
+    ];
+    foreach ($combine_fields as $field) {
+      if ($term->hasField($field)) {
+        $metadata .= _herbarium_core_taxonomy_flatten_field($term->get($field));
+      }
+    }
+    $term->get('field_additional_search_metadata')->setValue(trim($metadata));
+
   }
 }
 
@@ -334,4 +350,23 @@ function _herbarium_core_term_get_ancestor_rank(TermInterface $term, $rank_to_re
   }
 
   return FALSE;
+}
+
+/**
+ * Returns a space-delimited string of all values from a given multi-item field.
+ *
+ * @param array $multi_field
+ *   The multi-valued field to convert to string.
+ *
+ * @return string
+ *   The flattened string, empty if no value.
+ */
+function _herbarium_core_taxonomy_flatten_field(array $multi_field) {
+  $flattened_field = '';
+
+  foreach ($multi_field as $value) {
+    $flattened_field .= trim($value->getString()) . ' ';
+  }
+
+  return $flattened_field;
 }

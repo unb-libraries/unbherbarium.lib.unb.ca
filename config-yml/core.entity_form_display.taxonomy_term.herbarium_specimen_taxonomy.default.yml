@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_additional_search_metadata
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_cmh_english_common_names
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_cmh_french_common_names
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_cmh_full_specimen_name
@@ -181,6 +182,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_additional_search_metadata: true
   field_cmh_full_specimen_name: true
   field_cmh_infraspecific_specimen: true
   field_dwc_class: true

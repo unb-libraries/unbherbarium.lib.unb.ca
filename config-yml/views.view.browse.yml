@@ -12,6 +12,7 @@ dependencies:
     - field.storage.node.field_dwc_stateprovince
     - field.storage.node.field_dwc_verbatimlocality
     - field.storage.node.field_large_sample_surrogate
+    - field.storage.taxonomy_term.field_additional_search_metadata
     - field.storage.taxonomy_term.field_cmh_full_specimen_name
     - image.style.thumbnail
     - node.type.herbarium_specimen
@@ -755,13 +756,14 @@ display:
                 operator: allwords
                 value: ''
           fields:
-            title: title
             field_dwc_record_number: field_dwc_record_number
+            title: title
             field_dwc_county: field_dwc_county
             field_dwc_stateprovince: field_dwc_stateprovince
             field_dwc_verbatimlocality: field_dwc_verbatimlocality
             field_dwc_country: field_dwc_country
             name: name
+            field_additional_search_metadata: field_additional_search_metadata
           plugin_id: views_autocomplete_filters_combine
         title:
           id: title
@@ -2107,6 +2109,69 @@ display:
           entity_type: taxonomy_term
           entity_field: name
           plugin_id: term_name
+        field_additional_search_metadata:
+          id: field_additional_search_metadata
+          table: taxonomy_term__field_additional_search_metadata
+          field: field_additional_search_metadata
+          relationship: field_taxonomy_tid
+          group_type: group
+          admin_label: ''
+          label: 'Additional Search Metadata'
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
       relationships:
         field_taxonomy_tid:
           id: field_taxonomy_tid
@@ -2160,4 +2225,5 @@ display:
         - 'config:field.storage.node.field_dwc_stateprovince'
         - 'config:field.storage.node.field_dwc_verbatimlocality'
         - 'config:field.storage.node.field_large_sample_surrogate'
+        - 'config:field.storage.taxonomy_term.field_additional_search_metadata'
         - 'config:field.storage.taxonomy_term.field_cmh_full_specimen_name'

@@ -1,0 +1,19 @@
+uuid: d5ca3355-cc0f-4a67-8f59-7832e8eddc0d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_additional_search_metadata
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
+id: taxonomy_term.herbarium_specimen_taxonomy.field_additional_search_metadata
+field_name: field_additional_search_metadata
+entity_type: taxonomy_term
+bundle: herbarium_specimen_taxonomy
+label: 'Additional Search Metadata'
+description: 'This is a hidden field used to flatten multi-valued field data for use by the <b>Keywords</b> <i>Combined field filter</i> in the <b>Specimen Search</b<> view.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

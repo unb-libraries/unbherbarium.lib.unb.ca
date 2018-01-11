@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_additional_search_metadata
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_cmh_english_common_names
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_cmh_french_common_names
     - field.field.taxonomy_term.herbarium_specimen_taxonomy.field_cmh_full_specimen_name
@@ -34,6 +35,14 @@ content:
     weight: 1
     settings: {  }
     third_party_settings: {  }
+    region: content
+  field_additional_search_metadata:
+    weight: 18
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
   field_cmh_english_common_names:
     weight: 2
