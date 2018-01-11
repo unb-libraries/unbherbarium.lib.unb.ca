@@ -5,10 +5,11 @@
  * Contains herbarium_core.module.
  */
 
+use Drupal\Core\Field\FieldItemList;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermInterface;
-use Drupal\Core\Form\FormStateInterface;
 
 define('HERBARIUM_CORE_SPECIMEN_VOCABULARY_AUTH_FIELD', 'field_dwc_scientificnameauthor');
 define('HERBARIUM_CORE_SPECIMEN_VOCABULARY_FULL_NAME_FIELD', 'field_cmh_full_specimen_name');
@@ -355,16 +356,16 @@ function _herbarium_core_term_get_ancestor_rank(TermInterface $term, $rank_to_re
 /**
  * Returns a space-delimited string of all values from a given multi-item field.
  *
- * @param array $multi_field
- *   The multi-valued field to convert to string.
+ * @param \Drupal\Core\Field\FieldItemList $field
+ *   The FieldItemList to convert to string.
  *
  * @return string
  *   The flattened string, empty if no value.
  */
-function _herbarium_core_taxonomy_flatten_field(array $multi_field) {
+function _herbarium_core_taxonomy_flatten_field(FieldItemList $field) {
   $flattened_field = '';
 
-  foreach ($multi_field as $value) {
+  foreach ($field as $value) {
     $flattened_field .= trim($value->getString()) . ' ';
   }
 
