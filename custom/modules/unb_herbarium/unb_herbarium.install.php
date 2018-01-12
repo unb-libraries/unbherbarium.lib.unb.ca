@@ -5,12 +5,10 @@
  * Contains unb_herbarium.install.
  */
 
-use Drupal\taxonomy\Entity\Term;
-
 /**
  * HERB-110 Flatten multi-value fields into new hidden field for Views search.
  */
-function unb_herbarium_update_8101() {
+function unb_herbarium_update_8001() {
   $vocabulary = 'herbarium_specimen_taxonomy';
 
   $parent_terms = \Drupal::entityTypeManager()
@@ -28,5 +26,4 @@ function unb_herbarium_update_8101() {
 
   return t('The paremt taxonomy terms were resaved.');
 
-  throw new UpdateException('Something went wrong!');
 }
