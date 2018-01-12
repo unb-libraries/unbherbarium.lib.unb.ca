@@ -271,3 +271,23 @@ function _unb_herbarium_get_tax_term_link(TermInterface $term) {
   $href = $term->url();
   return "<a href=\"$href\">$name</a>";
 }
+
+/**
+ * Batch operation callback : resave a taxonomy term.
+ *
+ * @param int $tid
+ *   The tid of the term to resave.
+ * @param array $context
+ *   The batch context array.
+ */
+function _unb_herbarium_resave_tax_term($tid, $context) {
+  $term_obj = Term::Load($tid);
+  $term_obj->save();
+
+  $context['message'] = t(
+    '[TID#@tid] Term Saved.',
+    [
+      '@tid' => $tid,
+    ]
+  );
+}

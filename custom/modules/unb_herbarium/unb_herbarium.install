@@ -27,3 +27,34 @@ function unb_herbarium_update_8001() {
   return t('The paremt taxonomy terms were resaved.');
 
 }
+
+/**
+ * HERB-110 Really Flatten multi-value fields into new hidden field for Views search.
+ */
+function unb_herbarium_update_8002() {
+  $vocabulary = 'herbarium_specimen_taxonomy';
+
+  $parent_terms = \Drupal::entityTypeManager()
+    ->getStorage('taxonomy_term')
+    ->loadTree(
+      $vocabulary,
+      $parent = 0,
+      $max_depth = 1,
+      $load_entities = FALSE
+    );
+
+  $batch = [
+    'title' => t('Resaving taxonomy terms'),
+    'init_message' => t('Resaving taxonomy terms'),
+    'operations' => [],
+  ];
+
+  foreach ($parent_terms as $term) {
+    $batch['operations'][] = [
+      '_unb_herbarium_resave_tax_term',
+      [$term->tid],
+    ];
+  }
+
+  batch_set($batch);
+}
