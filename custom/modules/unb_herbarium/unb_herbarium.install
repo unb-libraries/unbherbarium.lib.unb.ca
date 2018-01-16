@@ -29,9 +29,10 @@ function unb_herbarium_update_8001() {
 }
 
 /**
- * HERB-110 Really Flatten multi-value fields into new hidden field for Views search.
+ * HERB-110 Flatten multi-value fields into new hidden field for Views search.
+ * Increment to 8003 because prod updated before adding required term field.
  */
-function unb_herbarium_update_8002() {
+function unb_herbarium_update_8003() {
   $vocabulary = 'herbarium_specimen_taxonomy';
 
   $parent_terms = \Drupal::entityTypeManager()
