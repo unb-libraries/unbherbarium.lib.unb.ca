@@ -153,6 +153,35 @@ function herbarium_specimen_node_presave($node) {
 
       // Populate the title field.
       $node->title = (empty($full_title)) ? 'Unknown' : $full_title;
+
+      // Populate Additional Search Metadata from 'Text (plain, long)' fields.
+      $metadata = '';
+      $combine_fields = [
+        'field_dwc_habitat',
+        'field_dwc_eventremarks',
+        'field_dwc_occurrenceremarks',
+      ];
+      foreach ($combine_fields as $field) {
+        if ($node->hasField($field)) {
+          $metadata .= trim(
+            $node
+              ->get($field)
+              ->getString()
+            ) .
+            ' ';
+        }
+      }
+      if (strlen($metadata) > 2048) {
+        $metadata = substr($metadata, 0, 2048);
+        drupal_set_message(
+          'Search metadata field truncated. Some text may not be searchable!',
+          'warning'
+        );
+      }
+      $node
+        ->get('field_additional_search_metadata')
+        ->setValue(trim($metadata));
+
       break;
   }
 }
