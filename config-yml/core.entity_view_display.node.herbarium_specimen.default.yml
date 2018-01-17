@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.herbarium_specimen.field_additional_search_metadata
     - field.field.node.herbarium_specimen.field_collector_tid
     - field.field.node.herbarium_specimen.field_dc_contributor_other
     - field.field.node.herbarium_specimen.field_dc_created
@@ -58,6 +59,14 @@ targetEntityType: node
 bundle: herbarium_specimen
 mode: default
 content:
+  field_additional_search_metadata:
+    weight: 38
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
   field_collector_tid:
     type: entity_reference_entity_view
     weight: 4

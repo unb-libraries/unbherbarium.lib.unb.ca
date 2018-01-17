@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.herbarium_specimen.field_additional_search_metadata
     - field.field.node.herbarium_specimen.field_collector_tid
     - field.field.node.herbarium_specimen.field_dc_contributor_other
     - field.field.node.herbarium_specimen.field_dc_created
@@ -469,6 +470,7 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_additional_search_metadata: true
   field_dwc_countrycode: true
   field_dwc_georeferencedby: true
   field_gmap: true
