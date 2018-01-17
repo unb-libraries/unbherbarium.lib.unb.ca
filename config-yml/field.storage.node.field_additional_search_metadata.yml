@@ -1,0 +1,21 @@
+uuid: 46c44d9a-d427-46ac-8288-545e92afed66
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_additional_search_metadata
+field_name: field_additional_search_metadata
+entity_type: node
+type: string
+settings:
+  max_length: 2048
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
