@@ -5,6 +5,8 @@
  * Contains unb_herbarium.install.
  */
 
+use Drupal\node\Entity\Node;
+
 /**
  * HERB-110 Flatten multi-value fields into new hidden field for Views search.
  */
@@ -58,4 +60,35 @@ function unb_herbarium_update_8003() {
   }
 
   batch_set($batch);
+}
+
+/**
+ * HERB-113 Copy type Text(plain,long) fields to hidden field for Views search.
+ */
+function unb_herbarium_update_8004(&$sandbox) {
+  if (!isset($sandbox['total'])) {
+    $nids = \Drupal::entityQuery('node')
+      ->condition('type', 'herbarium_specimen')
+      ->execute();
+    $sandbox['total'] = count($nids);
+    $sandbox['current'] = 0;
+  }
+
+  $nodes_per_batch = 50;
+
+  // Handle one pass through.
+  $nids = \Drupal::entityQuery('node')
+    ->condition('type', 'herbarium_specimen')
+    ->range($sandbox['current'], $sandbox['current'] + $nodes_per_batch)
+    ->execute();
+
+  foreach($nids as $nid) {
+    $node = Node::load($nid);
+    $node->save();
+    $sandbox['current']++;
+  }
+
+  drupal_set_message($sandbox['current'] . ' specimens processed.');
+
+  $sandbox['#finished'] = ($sandbox['current'] / $sandbox['total']);
 }
