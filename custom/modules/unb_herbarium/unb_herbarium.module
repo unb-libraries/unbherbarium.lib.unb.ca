@@ -5,6 +5,7 @@
  * Contains unb_herbarium.module.
  */
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
@@ -290,4 +291,37 @@ function _unb_herbarium_resave_tax_term($tid, $context) {
       '@tid' => $tid,
     ]
   );
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function unb_herbarium_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $user = \Drupal::currentUser();
+
+  // Show all vertical tabs for root user.
+  if ($user->id() != 1) {
+    switch ($form_id) {
+      case "node_herbarium_specimen_edit_form":
+        $hide_vtabs = [
+          'Promotion options' => 'options',
+          'Menu settings' => 'menu',
+          'Revision information' => 'revision_information',
+          'URL path settings' => 'path_settings',
+          'Authoring information' => 'author',
+        ];
+        break;
+
+      default:
+        // Allow url alias & menu title.
+        $hide_vtabs = [
+          'Promotion options' => 'options',
+          'Revision information' => 'revision_information',
+          'Authoring information' => 'author',
+        ];
+    }
+    foreach ($hide_vtabs as $vt_human_name => $vt_machine_name) {
+      hide($form["$vt_machine_name"]);
+    }
+  }
 }
