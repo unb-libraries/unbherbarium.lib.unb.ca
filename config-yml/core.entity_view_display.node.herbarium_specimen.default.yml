@@ -18,8 +18,10 @@ dependencies:
     - field.field.node.herbarium_specimen.field_dwc_collectioncode
     - field.field.node.herbarium_specimen.field_dwc_coordinateprecision
     - field.field.node.herbarium_specimen.field_dwc_country
+    - field.field.node.herbarium_specimen.field_dwc_country_tax
     - field.field.node.herbarium_specimen.field_dwc_countrycode
     - field.field.node.herbarium_specimen.field_dwc_county
+    - field.field.node.herbarium_specimen.field_dwc_county_tax
     - field.field.node.herbarium_specimen.field_dwc_datageneralizations
     - field.field.node.herbarium_specimen.field_dwc_decimallatitude
     - field.field.node.herbarium_specimen.field_dwc_decimallongitude
@@ -32,6 +34,7 @@ dependencies:
     - field.field.node.herbarium_specimen.field_dwc_institutionid
     - field.field.node.herbarium_specimen.field_dwc_occurrenceremarks
     - field.field.node.herbarium_specimen.field_dwc_othercatalognumbers
+    - field.field.node.herbarium_specimen.field_dwc_province_tax
     - field.field.node.herbarium_specimen.field_dwc_record_number
     - field.field.node.herbarium_specimen.field_dwc_reproductivecondition
     - field.field.node.herbarium_specimen.field_dwc_stateprovince
@@ -177,6 +180,14 @@ content:
     third_party_settings: {  }
     type: string
     region: content
+  field_dwc_country_tax:
+    weight: 39
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
   field_dwc_countrycode:
     weight: 20
     label: above
@@ -192,6 +203,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_dwc_county_tax:
+    weight: 41
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   field_dwc_datageneralizations:
     type: list_default
@@ -288,6 +307,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_dwc_province_tax:
+    weight: 40
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   field_dwc_record_number:
     weight: 35

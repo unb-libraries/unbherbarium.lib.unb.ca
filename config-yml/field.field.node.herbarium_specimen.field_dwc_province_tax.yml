@@ -1,0 +1,29 @@
+uuid: b9ac10a1-e0b0-4c36-8771-210b39307249
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_province_tax
+    - node.type.herbarium_specimen
+    - taxonomy.vocabulary.specimen_location_province
+id: node.herbarium_specimen.field_dwc_province_tax
+field_name: field_dwc_province_tax
+entity_type: node
+bundle: herbarium_specimen
+label: State/Province/Territory
+description: 'The state or province the specimen was collected in'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      specimen_location_province: specimen_location_province
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

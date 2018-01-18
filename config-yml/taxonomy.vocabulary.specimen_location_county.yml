@@ -1,0 +1,9 @@
+uuid: ffc6ec2f-f19a-442e-9679-508ea8bf06b2
+langcode: en
+status: true
+dependencies: {  }
+name: 'Specimen Location County'
+vid: specimen_location_county
+description: 'Specimen Location County'
+hierarchy: 0
+weight: 0

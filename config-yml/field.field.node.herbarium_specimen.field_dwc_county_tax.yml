@@ -1,0 +1,29 @@
+uuid: 7c1e7bf9-68cc-4884-a602-ad0310f7b79a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_county_tax
+    - node.type.herbarium_specimen
+    - taxonomy.vocabulary.specimen_location_county
+id: node.herbarium_specimen.field_dwc_county_tax
+field_name: field_dwc_county_tax
+entity_type: node
+bundle: herbarium_specimen
+label: County
+description: 'The county the specimen was collected in'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      specimen_location_county: specimen_location_county
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

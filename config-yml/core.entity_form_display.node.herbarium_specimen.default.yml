@@ -18,8 +18,10 @@ dependencies:
     - field.field.node.herbarium_specimen.field_dwc_collectioncode
     - field.field.node.herbarium_specimen.field_dwc_coordinateprecision
     - field.field.node.herbarium_specimen.field_dwc_country
+    - field.field.node.herbarium_specimen.field_dwc_country_tax
     - field.field.node.herbarium_specimen.field_dwc_countrycode
     - field.field.node.herbarium_specimen.field_dwc_county
+    - field.field.node.herbarium_specimen.field_dwc_county_tax
     - field.field.node.herbarium_specimen.field_dwc_datageneralizations
     - field.field.node.herbarium_specimen.field_dwc_decimallatitude
     - field.field.node.herbarium_specimen.field_dwc_decimallongitude
@@ -32,6 +34,7 @@ dependencies:
     - field.field.node.herbarium_specimen.field_dwc_institutionid
     - field.field.node.herbarium_specimen.field_dwc_occurrenceremarks
     - field.field.node.herbarium_specimen.field_dwc_othercatalognumbers
+    - field.field.node.herbarium_specimen.field_dwc_province_tax
     - field.field.node.herbarium_specimen.field_dwc_record_number
     - field.field.node.herbarium_specimen.field_dwc_reproductivecondition
     - field.field.node.herbarium_specimen.field_dwc_stateprovince
@@ -59,8 +62,11 @@ third_party_settings:
         - field_dwc_decimallongitude
         - field_dwc_coordinateprecision
         - field_dwc_country
+        - field_dwc_country_tax
         - field_dwc_stateprovince
+        - field_dwc_province_tax
         - field_dwc_county
+        - field_dwc_county_tax
         - field_dwc_verbatimlocality
         - field_dwc_habitat
         - field_dwc_eventremarks
@@ -279,13 +285,31 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_dwc_country_tax:
+    weight: 60
+    settings:
+      match_operator: STARTS_WITH
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
+    region: content
   field_dwc_county:
-    weight: 61
+    weight: 63
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_dwc_county_tax:
+    weight: 64
+    settings:
+      match_operator: STARTS_WITH
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
     region: content
   field_dwc_datageneralizations:
     type: options_select
@@ -314,7 +338,7 @@ content:
     third_party_settings: {  }
     region: content
   field_dwc_eventremarks:
-    weight: 64
+    weight: 67
     settings:
       rows: 5
       placeholder: ''
@@ -322,7 +346,7 @@ content:
     type: string_textarea
     region: content
   field_dwc_habitat:
-    weight: 63
+    weight: 66
     settings:
       rows: 5
       placeholder: ''
@@ -348,7 +372,7 @@ content:
     third_party_settings: {  }
     region: content
   field_dwc_occurrenceremarks:
-    weight: 65
+    weight: 68
     settings:
       placeholder: ''
       rows: 5
@@ -362,6 +386,15 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_dwc_province_tax:
+    weight: 62
+    settings:
+      match_operator: STARTS_WITH
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
     region: content
   field_dwc_record_number:
     weight: 1
@@ -380,7 +413,7 @@ content:
     type: string_textfield
     region: content
   field_dwc_stateprovince:
-    weight: 60
+    weight: 61
     settings:
       size: 60
       placeholder: ''
@@ -396,7 +429,7 @@ content:
     type: string_textfield
     region: content
   field_dwc_verbatimlocality:
-    weight: 62
+    weight: 65
     settings:
       size: 60
       placeholder: ''

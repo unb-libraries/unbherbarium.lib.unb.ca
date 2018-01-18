@@ -1,0 +1,9 @@
+uuid: 974ac382-40ba-4ffb-bbc0-c24f49c034ee
+langcode: en
+status: true
+dependencies: {  }
+name: 'Specimen Location Country'
+vid: specimen_location_country
+description: 'Specimen Location Country'
+hierarchy: 0
+weight: 0

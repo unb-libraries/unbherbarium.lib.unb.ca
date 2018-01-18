@@ -153,22 +153,22 @@
             <section>
                 <h3 class="toggle-default-off">{% trans %}Location{% endtrans %}</h3>
                 <dl>
-                    {% if content.field_dwc_country|field_label %}
+                    {% if content.field_dwc_country_tax|field_label %}
                         <div>
-                            <dt>{{ content.field_dwc_country|field_label }}</dt>
-                            <dd>{{ content.field_dwc_country|field_value }}</dd>
+                            <dt>{{ content.field_dwc_country_tax|field_label }}</dt>
+                            <dd>{{ content.field_dwc_country_tax|field_value }}</dd>
                         </div>
                     {% endif %}
-                    {% if content.field_dwc_stateprovince|field_label %}
+                    {% if content.field_dwc_stateprovince_tax|field_label %}
                         <div>
-                            <dt>{{ content.field_dwc_stateprovince|field_label }}</dt>
-                            <dd>{{ content.field_dwc_stateprovince|field_value }}</dd>
+                            <dt>{{ content.field_dwc_stateprovince_tax|field_label }}</dt>
+                            <dd>{{ content.field_dwc_stateprovince_tax|field_value }}</dd>
                         </div>
                     {% endif %}
-                    {% if content.field_dwc_county|field_label %}
+                    {% if content.field_dwc_county_tax|field_label %}
                         <div class="toggle-default-off">
-                            <dt>{{ content.field_dwc_county|field_label }}</dt>
-                            <dd>{{ content.field_dwc_county|field_value }}</dd>
+                            <dt>{{ content.field_dwc_county_tax|field_label }}</dt>
+                            <dd>{{ content.field_dwc_county_tax|field_value }}</dd>
                         </div>
                     {% endif %}
                     {% if content.field_dwc_verbatimlocality|field_label %}

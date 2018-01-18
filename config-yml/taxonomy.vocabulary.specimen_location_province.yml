@@ -1,0 +1,9 @@
+uuid: d2f672ea-8d6c-4690-82c9-22f05a784b11
+langcode: en
+status: true
+dependencies: {  }
+name: 'Specimen Location Province'
+vid: specimen_location_province
+description: 'Specimen Location Province'
+hierarchy: 0
+weight: 0

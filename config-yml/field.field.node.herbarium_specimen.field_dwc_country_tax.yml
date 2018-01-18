@@ -1,0 +1,29 @@
+uuid: 68901838-d0fa-4916-b4a7-eda27942e6fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dwc_country_tax
+    - node.type.herbarium_specimen
+    - taxonomy.vocabulary.specimen_location_country
+id: node.herbarium_specimen.field_dwc_country_tax
+field_name: field_dwc_country_tax
+entity_type: node
+bundle: herbarium_specimen
+label: Country
+description: 'The country the specimen was collected in'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      specimen_location_country: specimen_location_country
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference
