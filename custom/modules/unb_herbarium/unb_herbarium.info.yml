@@ -18,7 +18,6 @@ dependencies:
   - path
   - rest
   - serialization
-  - simplify
   - system
   - taxonomy
   - taxonomy_manager

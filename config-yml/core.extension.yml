@@ -48,7 +48,6 @@ module:
   search: 0
   serialization: 0
   simple_gmap: 0
-  simplify: 0
   system: 0
   taxonomy: 0
   taxonomy_access_fix: 0
