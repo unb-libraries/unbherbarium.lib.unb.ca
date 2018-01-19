@@ -121,8 +121,8 @@ process:
   created: created_timestamp
   changed: changed_timestamp
   field_dwc_coordinateprecision: mapped_coord_prec
-  field_dwc_country: country
-  field_dwc_county: county
+  field_dwc_country_tax: country_tid
+  field_dwc_county_tax: county_tid
   field_dwc_decimallatitude: dwc_latitude
   field_dwc_decimallongitude: dwc_longitude
   field_dwc_eventdate: date_iso
@@ -133,7 +133,7 @@ process:
   field_dwc_othercatalognumbers: othercatalognumbers
   field_dwc_record_number: record_number_string
   field_dwc_reproductivecondition: reproductivecondition
-  field_dwc_stateprovince: dwc_stateprovince
+  field_dwc_province_tax: dwc_stateprovince_tid
   field_dwc_verbatimeventdate: dwc_verbatimeventdate
   field_dwc_verbatimlocality: verbatimlocality
   field_geoheritage: geo_heritage

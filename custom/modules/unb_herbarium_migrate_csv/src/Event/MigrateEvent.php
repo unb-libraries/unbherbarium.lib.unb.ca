@@ -183,6 +183,45 @@ class MigrateEvent implements EventSubscriberInterface {
     }
     $row->setSourceProperty('specimen_collector', $specimen_collector_ids);
 
+    // Country.
+    $country_val = $row->getSourceProperty('country');
+    if (!empty($country_val)) {
+      $tid = _unb_herbarium_create_tax_term_if_not_exists(
+        $country_val,
+        'specimen_location_country'
+      );
+      $row->setSourceProperty('country_tid', $tid);
+    }
+    else {
+      $row->setSourceProperty('country_tid', NULL);
+    }
+
+    // Province.
+    $province_val = $row->getSourceProperty('dwc_stateprovince');
+    if (!empty($province_val)) {
+      $tid = _unb_herbarium_create_tax_term_if_not_exists(
+        $province_val,
+        'specimen_location_province'
+      );
+      $row->setSourceProperty('dwc_stateprovince_tid', $tid);
+    }
+    else {
+      $row->setSourceProperty('dwc_stateprovince_tid', NULL);
+    }
+
+    // County.
+    $county_val = $row->getSourceProperty('county');
+    if (!empty($county_val)) {
+      $tid = _unb_herbarium_create_tax_term_if_not_exists(
+        $county_val,
+        'specimen_location_county'
+      );
+      $row->setSourceProperty('county_tid', $tid);
+    }
+    else {
+      $row->setSourceProperty('county_tid', NULL);
+    }
+
     $dwc_previousidents_raw = trim($row->getSourceProperty('previous_identifications'));
     // DetAnnList field values are delimited by vertical tab character.
     $dwc_previousidents = explode("\v", $dwc_previousidents_raw);
