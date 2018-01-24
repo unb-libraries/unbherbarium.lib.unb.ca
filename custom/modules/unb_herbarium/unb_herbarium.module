@@ -79,8 +79,21 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
     ->get('field_cmh_full_specimen_name')
     ->view();
 
-  $variables['specimen_family'] = _unb_herbarium_get_tax_term_link($family_term);
-  $variables['specimen_genus'] = _unb_herbarium_get_tax_term_link($genus_term);
+  // Link family to prepopulated search.
+  $variables['specimen_family'] = [
+    '#markup' => Link::fromTextAndUrl(
+      $family_term->getName(),
+      Url::fromUri("internal:/specimen/search?&title={$family_term->getName()}")
+    )->toString(),
+  ];
+
+  // Link genus to prepopulated search.
+  $variables['specimen_genus'] = [
+    '#markup' => Link::fromTextAndUrl(
+      $genus_term->getName(),
+      Url::fromUri("internal:/specimen/search?&title={$genus_term->getName()}")
+    )->toString(),
+  ];
 
   // Only get link if specific epithet exists, eg. not 'sect'.
   if ($specific_epithet) {
@@ -125,6 +138,53 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   else {
     $variables['specimen_measurement_id_url'] = NULL;
   }
+
+  // Link collectors to prepopulated search.
+  $render_array = [
+    '#theme' => 'item_list',
+    '#list_type' => 'ul',
+    '#items' => [],
+  ];
+  if (!empty($node->get('field_collector_tid'))) {
+    foreach ($node->get('field_collector_tid') as $collector) {
+      $collectors_id = $collector->entity->id();
+      $render_item = [
+        '#markup' => Link::fromTextAndUrl(
+          $collector->entity->getName(),
+          Url::fromUri("internal:/specimen/search?&collector=$collectors_id")
+        )->toString(),
+      ];
+      $render_array['#items'][] = $render_item;
+    }
+  }
+  $variables['collector_html_list'] = $render_array;
+
+  // Link country to prepopulated search.
+  $country_term = $node->get('field_dwc_country_tax')->entity;
+  $variables['taxonomy_country_html'] = [
+    '#markup' => Link::fromTextAndUrl(
+      $country_term->getName(),
+      Url::fromUri("internal:/specimen/search?&collector={$country_term->id()}")
+    )->toString(),
+  ];
+
+  // Link province to prepopulated search.
+  $province_term = $node->get('field_dwc_province_tax')->entity;
+  $variables['taxonomy_province_html'] = [
+    '#markup' => Link::fromTextAndUrl(
+      $province_term->getName(),
+      Url::fromUri("internal:/specimen/search?&collector={$province_term->id()}")
+    )->toString(),
+  ];
+
+  // Link county to prepopulated search.
+  $county_term = $node->get('field_dwc_county_tax')->entity;
+  $variables['taxonomy_county_html'] = [
+    '#markup' => Link::fromTextAndUrl(
+      $county_term->getName(),
+      Url::fromUri("internal:/specimen/search?&collector={$county_term->id()}")
+    )->toString(),
+  ];
 
   $variables['specimen_en_common_names'] = $assigned_taxon
     ->get('field_cmh_english_common_names')

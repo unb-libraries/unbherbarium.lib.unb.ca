@@ -63,7 +63,7 @@
                             <dt>
                                 {{ content.field_collector_tid|field_label }}{% if content.field_collector_tid|field_value|length > 1 %}s{% endif %}
                             </dt>
-                            <dd>{{ content.field_collector_tid|field_value }}</dd>
+                            <dd>{{ collector_html_list }}</dd>
                         </div>
                     {% endif %}
                     {% if content.field_dwc_othercatalognumbers|field_label %}
@@ -156,19 +156,19 @@
                     {% if content.field_dwc_country_tax|field_label %}
                         <div>
                             <dt>{{ content.field_dwc_country_tax|field_label }}</dt>
-                            <dd>{{ content.field_dwc_country_tax|field_value }}</dd>
+                            <dd>{{ taxonomy_country_html }}</dd>
                         </div>
                     {% endif %}
                     {% if content.field_dwc_province_tax|field_label %}
                         <div>
                             <dt>{{ content.field_dwc_province_tax|field_label }}</dt>
-                            <dd>{{ content.field_dwc_province_tax|field_value }}</dd>
+                            <dd>{{ taxonomy_province_html }}</dd>
                         </div>
                     {% endif %}
                     {% if content.field_dwc_county_tax|field_label %}
                         <div class="toggle-default-off">
                             <dt>{{ content.field_dwc_county_tax|field_label }}</dt>
-                            <dd>{{ content.field_dwc_county_tax|field_value }}</dd>
+                            <dd>{{ taxonomy_county_html }}</dd>
                         </div>
                     {% endif %}
                     {% if content.field_dwc_verbatimlocality|field_label %}
