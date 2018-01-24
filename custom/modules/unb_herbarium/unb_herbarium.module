@@ -83,7 +83,7 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $variables['specimen_family'] = [
     '#markup' => Link::fromTextAndUrl(
       $family_term->getName(),
-      Url::fromUri("internal:/specimen/search?&title={$family_term->getName()}")
+      Url::fromUri("internal:/taxonomy/term/{$family_term->id()}")
     )->toString(),
   ];
 
@@ -91,7 +91,7 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $variables['specimen_genus'] = [
     '#markup' => Link::fromTextAndUrl(
       $genus_term->getName(),
-      Url::fromUri("internal:/specimen/search?&title={$genus_term->getName()}")
+      Url::fromUri("internal:/taxonomy/term/{$genus_term->id()}")
     )->toString(),
   ];
 
