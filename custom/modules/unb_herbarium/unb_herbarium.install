@@ -246,3 +246,51 @@ function unb_herbarium_update_8007(&$sandbox) {
   $sandbox['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
   return t('All fields were migrated to taxononmy terms');
 }
+
+/**
+ * HERB-88 Update precision to align with herbarium standards.
+ */
+function unb_herbarium_update_8008(&$sandbox) {
+  $content_type = 'herbarium_specimen';
+  $source_field = 'field_dwc_coordinateprecision';
+  $batch_size = 50;
+
+  // Is this the first time this has run?
+  if (empty($sandbox['max'])) {
+    // Get total number of items we will need to update.
+    $count_query = \Drupal::entityQuery('node')
+      ->condition('type', $content_type);
+    $count_nids = $count_query->execute();
+    $num_nodes = count($count_nids);
+
+    // Set up the sandbox with initial values.
+    $sandbox['progress'] = 0;
+    $sandbox['current_nid'] = 0;
+    $sandbox['max'] = $num_nodes;
+  }
+
+  // Get the entities we will operate on.
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', $content_type)
+    ->range($sandbox['progress'], $sandbox['progress'] + $batch_size);
+  $nids = $query->execute();
+
+  // Perform field update operation.
+  foreach ($nids as $nid) {
+    $node = Node::load($nid);
+    $field_value = $node->get($source_field)->value;
+
+    if (!empty($field_value)) {
+      $node->get($source_field)->setValue($field_value * 10);
+      $node->save();
+    }
+
+    $sandbox['progress']++;
+    $sandbox['current_nid'] = $node->id();
+    unset($node);
+  }
+
+  // Update finished value.
+  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return t('All fields have been updated with the new values.');
+}

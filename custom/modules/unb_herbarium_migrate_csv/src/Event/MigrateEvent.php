@@ -261,11 +261,11 @@ class MigrateEvent implements EventSubscriberInterface {
       $intPrec = floor ($prec);
       if ($intPrec >= 1 && $intPrec <= 5) {
         $precisionMap = array(
-          1 => '0.00001',
-          2 => '0.0001',
-          3 => '0.001',
-          4 => '0.01',
-          5 => '0.1',
+          1 => '0.0001',
+          2 => '0.001',
+          3 => '0.01',
+          4 => '0.1',
+          5 => '1.0',
         );
         $coordPrec = $precisionMap[$intPrec];
       }
