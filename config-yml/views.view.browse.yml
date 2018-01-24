@@ -24,7 +24,7 @@ dependencies:
     - taxonomy.vocabulary.specimen_location_county
     - taxonomy.vocabulary.specimen_location_province
   content:
-    - 'taxonomy_term:specimen_location_country:1e8031a0-dd98-4acc-a8ae-e125ebd8c44d'
+    - 'taxonomy_term:specimen_location_country:642e654e-d7a8-412e-b73b-05ebbe24e405'
   module:
     - datetime
     - image
@@ -2060,7 +2060,7 @@ display:
           group_type: group
           admin_label: 'Collector term name'
           label: 'Collector Name'
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -2318,7 +2318,7 @@ display:
           group_type: group
           admin_label: 'County term name'
           label: Name
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
