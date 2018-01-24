@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_additional_search_metadata
     - field.storage.node.field_collector_tid
-    - field.storage.node.field_dwc_country
     - field.storage.node.field_dwc_country_tax
     - field.storage.node.field_dwc_county
     - field.storage.node.field_dwc_county_tax
@@ -770,9 +769,9 @@ display:
             name: name
             field_additional_search_metadata: field_additional_search_metadata
             field_additional_search_metadata_1: field_additional_search_metadata_1
-            field_dwc_province_tax: field_dwc_province_tax
-            field_dwc_country_tax: field_dwc_country_tax
-            field_dwc_county_tax: field_dwc_county_tax
+            name_1: name_1
+            name_2: name_2
+            name_3: name_3
           plugin_id: views_autocomplete_filters_combine
         title:
           id: title
@@ -1548,69 +1547,6 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: field
-        field_dwc_county:
-          id: field_dwc_county
-          table: node__field_dwc_county
-          field: field_dwc_county
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: County
-          exclude: false
-          alter:
-            alter_text: true
-            text: '{{ field_dwc_county__value }}'
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: false
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: text_trimmed
-          settings:
-            trim_length: 600
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
         field_collector_tid:
           id: field_collector_tid
           table: node__field_collector_tid
@@ -1728,6 +1664,195 @@ display:
             timezone_override: ''
             date_format: Y/m/d
           group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_dwc_province_tax:
+          id: field_dwc_province_tax
+          table: node__field_dwc_province_tax
+          field: field_dwc_province_tax
+          relationship: none
+          group_type: group
+          admin_label: 'Province (Taxon)'
+          label: State/Province/Territory
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: entity_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_dwc_county_tax:
+          id: field_dwc_county_tax
+          table: node__field_dwc_county_tax
+          field: field_dwc_county_tax
+          relationship: none
+          group_type: group
+          admin_label: 'County (Taxon)'
+          label: County
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: entity_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_dwc_country_tax:
+          id: field_dwc_country_tax
+          table: node__field_dwc_country_tax
+          field: field_dwc_country_tax
+          relationship: none
+          group_type: group
+          admin_label: 'Country (Taxon)'
+          label: Country
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: entity_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -1863,69 +1988,6 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_dwc_country:
-          id: field_dwc_country
-          table: node__field_dwc_country
-          field: field_dwc_country
-          relationship: none
-          group_type: group
-          admin_label: 'Country autocomplete'
-          label: Country
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
         field_large_sample_surrogate:
           id: field_large_sample_surrogate
           table: node__field_large_sample_surrogate
@@ -1998,7 +2060,7 @@ display:
           group_type: group
           admin_label: 'Collector term name'
           label: 'Collector Name'
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -2182,14 +2244,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_dwc_province_tax:
-          id: field_dwc_province_tax
-          table: node__field_dwc_province_tax
-          field: field_dwc_province_tax
-          relationship: none
+        name_1:
+          id: name_1
+          table: taxonomy_term_field_data
+          field: name
+          relationship: field_dwc_province_tax
           group_type: group
-          admin_label: 'Province (Taxon)'
-          label: State/Province/Territory
+          admin_label: 'Province term name'
+          label: Name
           exclude: true
           alter:
             alter_text: false
@@ -2230,10 +2292,10 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
+          click_sort_column: value
+          type: string
           settings:
-            link: true
+            link_to_entity: false
           group_column: entity_id
           group_columns: {  }
           group_rows: true
@@ -2244,15 +2306,84 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
-        field_dwc_country_tax:
-          id: field_dwc_country_tax
-          table: node__field_dwc_country_tax
-          field: field_dwc_country_tax
-          relationship: none
+          convert_spaces: false
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
+        name_2:
+          id: name_2
+          table: taxonomy_term_field_data
+          field: name
+          relationship: field_dwc_county_tax
           group_type: group
-          admin_label: ''
-          label: Country
+          admin_label: 'County term name'
+          label: Name
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: entity_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          convert_spaces: false
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
+        name_3:
+          id: name_3
+          table: taxonomy_term_field_data
+          field: name
+          relationship: field_dwc_country_tax
+          group_type: group
+          admin_label: 'Country term name'
+          label: Name
           exclude: true
           alter:
             alter_text: false
@@ -2293,10 +2424,10 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
+          click_sort_column: value
+          type: string
           settings:
-            link: true
+            link_to_entity: false
           group_column: entity_id
           group_columns: {  }
           group_rows: true
@@ -2307,70 +2438,10 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
-        field_dwc_county_tax:
-          id: field_dwc_county_tax
-          table: node__field_dwc_county_tax
-          field: field_dwc_county_tax
-          relationship: none
-          group_type: group
-          admin_label: 'County (Taxon)'
-          label: County
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: true
-          group_column: entity_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
+          convert_spaces: false
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
       relationships:
         field_taxonomy_tid:
           id: field_taxonomy_tid
@@ -2444,9 +2515,7 @@ display:
       tags:
         - 'config:field.storage.node.field_additional_search_metadata'
         - 'config:field.storage.node.field_collector_tid'
-        - 'config:field.storage.node.field_dwc_country'
         - 'config:field.storage.node.field_dwc_country_tax'
-        - 'config:field.storage.node.field_dwc_county'
         - 'config:field.storage.node.field_dwc_county_tax'
         - 'config:field.storage.node.field_dwc_eventdate'
         - 'config:field.storage.node.field_dwc_habitat'
