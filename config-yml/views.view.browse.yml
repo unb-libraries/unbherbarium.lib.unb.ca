@@ -6,11 +6,13 @@ dependencies:
     - field.storage.node.field_additional_search_metadata
     - field.storage.node.field_collector_tid
     - field.storage.node.field_dwc_country
+    - field.storage.node.field_dwc_country_tax
     - field.storage.node.field_dwc_county
+    - field.storage.node.field_dwc_county_tax
     - field.storage.node.field_dwc_eventdate
     - field.storage.node.field_dwc_habitat
+    - field.storage.node.field_dwc_province_tax
     - field.storage.node.field_dwc_record_number
-    - field.storage.node.field_dwc_stateprovince
     - field.storage.node.field_dwc_verbatimlocality
     - field.storage.node.field_large_sample_surrogate
     - field.storage.taxonomy_term.field_additional_search_metadata
@@ -19,6 +21,11 @@ dependencies:
     - node.type.herbarium_specimen
     - system.menu.main
     - taxonomy.vocabulary.herbarium_specimen_collector
+    - taxonomy.vocabulary.specimen_location_country
+    - taxonomy.vocabulary.specimen_location_county
+    - taxonomy.vocabulary.specimen_location_province
+  content:
+    - 'taxonomy_term:specimen_location_country:1e8031a0-dd98-4acc-a8ae-e125ebd8c44d'
   module:
     - datetime
     - image
@@ -759,13 +766,13 @@ display:
           fields:
             field_dwc_record_number: field_dwc_record_number
             title: title
-            field_dwc_county: field_dwc_county
-            field_dwc_stateprovince: field_dwc_stateprovince
             field_dwc_verbatimlocality: field_dwc_verbatimlocality
-            field_dwc_country: field_dwc_country
             name: name
             field_additional_search_metadata: field_additional_search_metadata
             field_additional_search_metadata_1: field_additional_search_metadata_1
+            field_dwc_province_tax: field_dwc_province_tax
+            field_dwc_country_tax: field_dwc_country_tax
+            field_dwc_county_tax: field_dwc_county_tax
           plugin_id: views_autocomplete_filters_combine
         title:
           id: title
@@ -822,23 +829,24 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: views_autocomplete_filters_string
-        field_dwc_country_value:
-          id: field_dwc_country_value
-          table: node__field_dwc_country
-          field: field_dwc_country_value
+        field_dwc_country_tax_target_id:
+          id: field_dwc_country_tax_target_id
+          table: node__field_dwc_country_tax
+          field: field_dwc_country_tax_target_id
           relationship: none
           group_type: group
           admin_label: ''
-          operator: word
-          value: ''
+          operator: or
+          value:
+            5093: 5093
           group: 1
           exposed: true
           expose:
-            operator_id: field_dwc_country_value_op
+            operator_id: field_dwc_country_tax_target_id_op
             label: Country
             description: 'eg: Canada'
             use_operator: false
-            operator: field_dwc_country_value_op
+            operator: field_dwc_country_tax_target_id_op
             identifier: country
             required: false
             remember: false
@@ -847,16 +855,10 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-              student: '0'
               researcher: '0'
               cmh_database_administrator: '0'
-            autocomplete_filter: 1
-            autocomplete_min_chars: '2'
-            autocomplete_items: '10'
-            autocomplete_field: field_dwc_country
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
+              editor: '0'
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -869,25 +871,31 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: views_autocomplete_filters_string
-        field_dwc_stateprovince_value:
-          id: field_dwc_stateprovince_value
-          table: node__field_dwc_stateprovince
-          field: field_dwc_stateprovince_value
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: specimen_location_country
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+        field_dwc_province_tax_target_id:
+          id: field_dwc_province_tax_target_id
+          table: node__field_dwc_province_tax
+          field: field_dwc_province_tax_target_id
           relationship: none
           group_type: group
           admin_label: ''
-          operator: word
-          value: ''
+          operator: or
+          value: {  }
           group: 1
           exposed: true
           expose:
-            operator_id: field_dwc_stateprovince_value_op
+            operator_id: field_dwc_province_tax_target_id_op
             label: Province/Territory/State
             description: 'eg: New Brunswick'
             use_operator: false
-            operator: field_dwc_stateprovince_value_op
-            identifier: stateprovince
+            operator: field_dwc_province_tax_target_id_op
+            identifier: province
             required: false
             remember: false
             multiple: false
@@ -895,16 +903,10 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-              student: '0'
               researcher: '0'
               cmh_database_administrator: '0'
-            autocomplete_filter: 1
-            autocomplete_min_chars: '2'
-            autocomplete_items: '10'
-            autocomplete_field: field_dwc_stateprovince
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
+              editor: '0'
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -917,24 +919,30 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: views_autocomplete_filters_string
-        field_dwc_county_value:
-          id: field_dwc_county_value
-          table: node__field_dwc_county
-          field: field_dwc_county_value
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: specimen_location_province
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+        field_dwc_county_tax_target_id:
+          id: field_dwc_county_tax_target_id
+          table: node__field_dwc_county_tax
+          field: field_dwc_county_tax_target_id
           relationship: none
           group_type: group
           admin_label: ''
-          operator: allwords
-          value: ''
+          operator: or
+          value: {  }
           group: 1
           exposed: true
           expose:
-            operator_id: field_dwc_county_value_op
+            operator_id: field_dwc_county_tax_target_id_op
             label: County
-            description: 'eg: Sunbury'
+            description: 'eg: York'
             use_operator: false
-            operator: field_dwc_county_value_op
+            operator: field_dwc_county_tax_target_id_op
             identifier: county
             required: false
             remember: false
@@ -943,16 +951,10 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-              student: '0'
               researcher: '0'
               cmh_database_administrator: '0'
-            autocomplete_filter: 1
-            autocomplete_min_chars: '3'
-            autocomplete_items: '10'
-            autocomplete_field: field_dwc_county
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
+              editor: '0'
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -965,7 +967,13 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: views_autocomplete_filters_string
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: specimen_location_county
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
         field_dwc_habitat_value:
           id: field_dwc_habitat_value
           table: node__field_dwc_habitat
@@ -1792,69 +1800,6 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_dwc_stateprovince:
-          id: field_dwc_stateprovince
-          table: node__field_dwc_stateprovince
-          field: field_dwc_stateprovince
-          relationship: none
-          group_type: group
-          admin_label: 'Province autocomplete'
-          label: State/Province/Territory
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
         field_dwc_verbatimlocality:
           id: field_dwc_verbatimlocality
           table: node__field_dwc_verbatimlocality
@@ -2237,6 +2182,195 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+        field_dwc_province_tax:
+          id: field_dwc_province_tax
+          table: node__field_dwc_province_tax
+          field: field_dwc_province_tax
+          relationship: none
+          group_type: group
+          admin_label: 'Province (Taxon)'
+          label: State/Province/Territory
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: entity_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_dwc_country_tax:
+          id: field_dwc_country_tax
+          table: node__field_dwc_country_tax
+          field: field_dwc_country_tax
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Country
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: entity_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_dwc_county_tax:
+          id: field_dwc_county_tax
+          table: node__field_dwc_county_tax
+          field: field_dwc_county_tax
+          relationship: none
+          group_type: group
+          admin_label: 'County (Taxon)'
+          label: County
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: entity_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
       relationships:
         field_taxonomy_tid:
           id: field_taxonomy_tid
@@ -2254,6 +2388,33 @@ display:
           relationship: none
           group_type: group
           admin_label: 'field_collector_tid: Taxonomy term'
+          required: false
+          plugin_id: standard
+        field_dwc_province_tax:
+          id: field_dwc_province_tax
+          table: node__field_dwc_province_tax
+          field: field_dwc_province_tax
+          relationship: none
+          group_type: group
+          admin_label: 'field_dwc_province_tax: Taxonomy term'
+          required: false
+          plugin_id: standard
+        field_dwc_country_tax:
+          id: field_dwc_country_tax
+          table: node__field_dwc_country_tax
+          field: field_dwc_country_tax
+          relationship: none
+          group_type: group
+          admin_label: 'field_dwc_country_tax: Taxonomy term'
+          required: false
+          plugin_id: standard
+        field_dwc_county_tax:
+          id: field_dwc_county_tax
+          table: node__field_dwc_county_tax
+          field: field_dwc_county_tax
+          relationship: none
+          group_type: group
+          admin_label: 'field_dwc_county_tax: Taxonomy term'
           required: false
           plugin_id: standard
       empty:
@@ -2284,11 +2445,13 @@ display:
         - 'config:field.storage.node.field_additional_search_metadata'
         - 'config:field.storage.node.field_collector_tid'
         - 'config:field.storage.node.field_dwc_country'
+        - 'config:field.storage.node.field_dwc_country_tax'
         - 'config:field.storage.node.field_dwc_county'
+        - 'config:field.storage.node.field_dwc_county_tax'
         - 'config:field.storage.node.field_dwc_eventdate'
         - 'config:field.storage.node.field_dwc_habitat'
+        - 'config:field.storage.node.field_dwc_province_tax'
         - 'config:field.storage.node.field_dwc_record_number'
-        - 'config:field.storage.node.field_dwc_stateprovince'
         - 'config:field.storage.node.field_dwc_verbatimlocality'
         - 'config:field.storage.node.field_large_sample_surrogate'
         - 'config:field.storage.taxonomy_term.field_additional_search_metadata'

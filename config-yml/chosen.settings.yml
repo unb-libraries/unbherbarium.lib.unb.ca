@@ -1,8 +1,8 @@
-minimum_single: 10
+minimum_single: 0
 minimum_multiple: 20
 disable_search_threshold: 0
 minimum_width: 256
-jquery_selector: 'select[name="collector"],select[name="field_taxonomy_tid"]'
+jquery_selector: 'select[name="collector"],select[name="field_taxonomy_tid"],select[name="county"],select[name="province"],select[name="country"]'
 search_contains: true
 disable_search: false
 placeholder_text_multiple: 'Choose some options'
@@ -16,3 +16,4 @@ disabled_themes:
 chosen_include: 2
 _core:
   default_config_hash: m09-D9lEMh3sNiyny5OkBaqyKB7-A-zhUsFZ2Rbq7nQ
+allow_single_deselect: false

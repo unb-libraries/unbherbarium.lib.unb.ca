@@ -252,7 +252,10 @@ label {
   background: none;
 }
 select[data-drupal-selector="edit-collector"] + .form-control,
-select[data-drupal-selector="edit-field-taxonomy-tid"] + .form-control{
+select[data-drupal-selector="edit-field-taxonomy-tid"] + .form-control,
+select[data-drupal-selector="edit-province"] + .form-control,
+select[data-drupal-selector="edit-county"] + .form-control,
+select[data-drupal-selector="edit-country"] + .form-control {
   padding: 2px 0;
 }
 .browse .chosen-container-single .chosen-single,
@@ -272,7 +275,9 @@ select[data-drupal-selector="edit-field-taxonomy-tid"] + .form-control{
 .chosen-container .chosen-results {
   max-height: 400px;
 }
-
+.chosen-container-single .chosen-drop {
+  border-color: #ccc;
+}
 .form-inline .form-actions,
 .form-inline .form-control,
 .form-inline .input-group {
