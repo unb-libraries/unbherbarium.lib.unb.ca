@@ -834,8 +834,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value:
-            5093: 5093
+          value: {  }
           group: 1
           exposed: true
           expose:
