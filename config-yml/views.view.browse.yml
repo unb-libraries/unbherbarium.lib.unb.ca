@@ -23,8 +23,6 @@ dependencies:
     - taxonomy.vocabulary.specimen_location_country
     - taxonomy.vocabulary.specimen_location_county
     - taxonomy.vocabulary.specimen_location_province
-  content:
-    - 'taxonomy_term:specimen_location_country:642e654e-d7a8-412e-b73b-05ebbe24e405'
   module:
     - datetime
     - image
