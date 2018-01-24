@@ -195,3 +195,54 @@ function unb_herbarium_update_8006(&$sandbox) {
   $sandbox['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
   return t('All fields were migrated to taxononmy terms');
 }
+
+/**
+ * HERB-92 Migrate county field to taxonomy terms.
+ */
+function unb_herbarium_update_8007(&$sandbox) {
+  $vocabulary = 'specimen_location_county';
+  $content_type = 'herbarium_specimen';
+  $source_field = 'field_dwc_county';
+  $target_field = 'field_dwc_county_tax';
+  $batch_size = 50;
+
+  // Is this the first time this has run?
+  if (empty($sandbox['max'])) {
+    // Get total number of items we will need to update.
+    $count_query = \Drupal::entityQuery('node')
+      ->condition('type', $content_type);
+    $count_nids = $count_query->execute();
+    $num_nodes = count($count_nids);
+
+    // Set up the sandbox with initial values.
+    $sandbox['progress'] = 0;
+    $sandbox['current_nid'] = 0;
+    $sandbox['max'] = $num_nodes;
+  }
+
+  // Get the entities we will operate on.
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', $content_type)
+    ->range($sandbox['progress'], $sandbox['progress'] + $batch_size);
+  $nids = $query->execute();
+
+  // Perform field update operation.
+  foreach ($nids as $nid) {
+    $node = Node::load($nid);
+    $field_value = $node->get($source_field)->value;
+
+    if (!empty($field_value)) {
+      $new_tid = _unb_herbarium_create_tax_term_if_not_exists($field_value, $vocabulary);
+      $node->get($target_field)->setValue((int) $new_tid);
+      $node->save();
+    }
+
+    $sandbox['progress']++;
+    $sandbox['current_nid'] = $node->id();
+    unset($node);
+  }
+
+  // Update finished value.
+  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return t('All fields were migrated to taxononmy terms');
+}
