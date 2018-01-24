@@ -11,7 +11,7 @@ id: node.herbarium_specimen.field_dwc_county
 field_name: field_dwc_county
 entity_type: node
 bundle: herbarium_specimen
-label: County
+label: 'County (deprecated)'
 description: 'The county the specimen was collected in'
 required: false
 translatable: false
