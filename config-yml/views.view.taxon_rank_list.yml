@@ -119,7 +119,7 @@ display:
             title_enable: false
             title: All
           title_enable: true
-          title: 'Specimens identified as taxon {{ arguments.term_node_tid_depth }}:'
+          title: 'All specimens assigned to {{ arguments.term_node_tid_depth }}:'
           default_argument_type: fixed
           default_argument_options:
             argument: ''
