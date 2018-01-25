@@ -161,30 +161,36 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
 
   // Link country to prepopulated search.
   $country_term = $node->get('field_dwc_country_tax')->entity;
-  $variables['taxonomy_country_html'] = [
-    '#markup' => Link::fromTextAndUrl(
-      $country_term->getName(),
-      Url::fromUri("internal:/specimen/search?&country={$country_term->id()}")
-    )->toString(),
-  ];
+  if (!empty($country_term)) {
+    $variables['taxonomy_country_html'] = [
+      '#markup' => Link::fromTextAndUrl(
+        $country_term->getName(),
+        Url::fromUri("internal:/specimen/search?&country={$country_term->id()}")
+      )->toString(),
+    ];
+  }
 
   // Link province to prepopulated search.
   $province_term = $node->get('field_dwc_province_tax')->entity;
-  $variables['taxonomy_province_html'] = [
-    '#markup' => Link::fromTextAndUrl(
-      $province_term->getName(),
-      Url::fromUri("internal:/specimen/search?&province={$province_term->id()}")
-    )->toString(),
-  ];
+  if (!empty($province_term)) {
+    $variables['taxonomy_province_html'] = [
+      '#markup' => Link::fromTextAndUrl(
+        $province_term->getName(),
+        Url::fromUri("internal:/specimen/search?&province={$province_term->id()}")
+      )->toString(),
+    ];
+  }
 
   // Link county to prepopulated search.
   $county_term = $node->get('field_dwc_county_tax')->entity;
-  $variables['taxonomy_county_html'] = [
-    '#markup' => Link::fromTextAndUrl(
-      $county_term->getName(),
-      Url::fromUri("internal:/specimen/search?&county={$county_term->id()}")
-    )->toString(),
-  ];
+  if (!empty($county_term)) {
+    $variables['taxonomy_county_html'] = [
+      '#markup' => Link::fromTextAndUrl(
+        $county_term->getName(),
+        Url::fromUri("internal:/specimen/search?&county={$county_term->id()}")
+      )->toString(),
+    ];
+  }
 
   $variables['specimen_en_common_names'] = $assigned_taxon
     ->get('field_cmh_english_common_names')
