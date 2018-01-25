@@ -253,6 +253,9 @@ class TermCreatorRow {
 
   /**
    * Constructor.
+   *
+   * @param string $data
+   *   The row data to constuct with.
    */
   public function __construct($data) {
     $this->data = $data;
@@ -321,7 +324,7 @@ class TermCreatorRow {
    * @return mixed
    *   Returns the TID of the stub term, if it exists. False otherwise.
    */
-  public function checkStubTermExists($name, $parent = NULL) {
+  public function checkStubTermExists($name, array $parent = NULL) {
     $query = \Drupal::entityQuery('taxonomy_term');
     $query->condition('vid', 'herbarium_specimen_taxonomy');
     $query->condition('name', $name);
@@ -346,6 +349,8 @@ class TermCreatorRow {
    *
    * @param string $name
    *   The name of the term.
+   * @param string $taxon_rank
+   *   The taxon rank to apply.
    * @param int $parent
    *   The TID of the parent term.
    *

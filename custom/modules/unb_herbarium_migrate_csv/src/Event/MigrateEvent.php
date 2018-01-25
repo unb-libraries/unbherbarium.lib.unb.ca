@@ -1,27 +1,24 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\migrate\Event\MigrateMapDeleteEvent.
- */
-
 namespace Drupal\unb_herbarium_migrate_csv\Event;
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\file\Entity\File;
 use Drupal\migrate_plus\Event\MigrateEvents;
 use Drupal\migrate_plus\Event\MigratePrepareRowEvent;
-use Drupal\Core\Datetime\DrupalDateTime;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\unb_herbarium_migrate_csv\Gpoint\GpointConverter;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-
+/**
+ * Defines the migrate event CSV row.
+ */
 class MigrateEvent implements EventSubscriberInterface {
 
   /**
    * {@inheritdoc}
    */
-  static function getSubscribedEvents() {
+  public static function getSubscribedEvents() {
     $events[MigrateEvents::PREPARE_ROW][] = ['onPrepareRow', 0];
     return $events;
   }
@@ -36,7 +33,7 @@ class MigrateEvent implements EventSubscriberInterface {
     $images_path = UNB_HERBARIUM_MIGRATE_CSV_SPECIES_IMPORT_DATA_DIR;
     $row = $event->getRow();
 
-    // Accession Number, aka ID
+    // Accession Number, aka ID.
     $accNum = trim($row->getSourceProperty('record_number'));
 
     $year = (trim($row->getSourceProperty('year')) != '') ? $row->getSourceProperty('year') : NULL;
@@ -160,7 +157,7 @@ class MigrateEvent implements EventSubscriberInterface {
     // Record Number aka UNB Accession No.
     $row->setSourceProperty('record_number_string', $accNum);
 
-    // Sample Collectors
+    // Sample Collectors.
     $specimen_collector_ids = [];
     $fieldname = 'name';
     $vocabulary = 'herbarium_specimen_collector';
@@ -171,7 +168,8 @@ class MigrateEvent implements EventSubscriberInterface {
         $term_tid = $this->taxtermExists($term_value, $fieldname, $vocabulary);
         if (!empty($term_tid)) {
           $term = Term::load($term_tid);
-        } else {
+        }
+        else {
           $term = Term::create([
             'vid' => $vocabulary,
             $fieldname => $term_value,
@@ -227,7 +225,7 @@ class MigrateEvent implements EventSubscriberInterface {
     $dwc_previousidents = explode("\v", $dwc_previousidents_raw);
     $row->setSourceProperty('previous_identifications', $dwc_previousidents);
 
-    // Sample Taxonomy
+    // Sample Taxonomy.
     $full_title = "Untitled";
     $fieldname = 'field_dwc_taxonid';
     $vocabulary = 'herbarium_specimen_taxonomy';
@@ -246,19 +244,29 @@ class MigrateEvent implements EventSubscriberInterface {
         );
         $title = (empty($full_title)) ? 'Unavailable' : $full_title;
         $row->setSourceProperty('title_string', $title);
-      } else {
+      }
+      else {
         print "SPEC ID doesn't exist in vocabulary: " . $tax_id . "\n";
       }
-    } else {
-      print "\nAcc #=" . $accNum . ": SPECID NOT NUMERIC!" . "\n";
+    }
+    else {
+      print "\nAcc #=$accNum: SPECID NOT NUMERIC!\n";
     }
   }
 
-  // Determine and return Coordinate Precision.
+  /**
+   * Map the coordinate precision from internal to decimal amount.
+   *
+   * @param int $prec
+   *   The prepare-row event.
+   *
+   * @return float
+   *   The coordinate precision.
+   */
   public function precMap($prec) {
     $coordPrec = NULL;
     if (is_numeric($prec)) {
-      $intPrec = floor ($prec);
+      $intPrec = floor($prec);
       if ($intPrec >= 1 && $intPrec <= 5) {
         $precisionMap = [
           1 => '0.0001',
@@ -273,90 +281,94 @@ class MigrateEvent implements EventSubscriberInterface {
     return $coordPrec;
   }
 
-  /*
-   * _herbariumImportFormatLocalityData(&$itemArray)
+  /**
+   * Determine long/lat from given data.
    *
-   * &$itemArray : ARR of TSV imported line data.
+   * Tests locality relevant columns for a decimal longitude/latitude and
+   * attempts to determine a value to use.Logs hertiage of value in array.
    *
-   * Tests locality relevant columns for a decimal longitude/latitude and attempts to determine a value to use.
-   * Logs hertiage of value in array.
+   * @param array $longLatVals
+   *   The longitude and latitude value array.
    *
-   * RETURNS : none.
+   * @return array
+   *   The longitude and latitude values.
    */
-  public function determineLongitudeLatitude($longLatVals) {
+  public function determineLongitudeLatitude(array $longLatVals) {
     $longVal = $latVal = '';
     $srcMethod = "Unknown";
-    list($id, $prec, $longDec, $latDec, $longDig, $latDig, $longDeg, $longMin, $longSec, $latDeg, $latMin, $latSec, $geoUtmz, $geoUtme, $geoUtmn) = $longLatVals;
+    list($id, $prec, $longDec, $latDec, $longDig, $latDig, $longDeg, $longMin,
+      $longSec, $latDeg, $latMin, $latSec, $geoUtmz, $geoUtme,
+      $geoUtmn) = $longLatVals;
     if ($this->testLongitudeLatitudeFormat($longDec, $latDec)) {
       $srcMethod = "Direct From Spreadsheet";
       $longVal = $longDec;
       $latVal = $latDec;
-    } elseif ($this->testLongitudeLatitudeFormat($longDig, $latDig)) {
+    }
+    elseif ($this->testLongitudeLatitudeFormat($longDig, $latDig)) {
       $srcMethod = "Decimals Found in Degrees Portion of Spreadsheet";
       $longVal = $longDig;
       $latVal = $latDig;
-    } elseif (is_numeric($longDeg) &&
+    }
+    elseif (is_numeric($longDeg) &&
       is_numeric($longMin) &&
       is_numeric($longSec) &&
       is_numeric($latDeg) &&
       is_numeric($latMin) &&
-      is_numeric($latDeg)) {
-        $srcMethod = "Translated from DMS To Decimal";
-        $longVal = $this->convertDMStoDecimal($longDeg, $longMin, $longSec);
-        $latVal = $this->convertDMStoDecimal($latDeg, $latMin, $latSec);
-    } elseif (is_numeric($geoUtmz) &&
+      is_numeric($latDeg)
+    ) {
+      $srcMethod = "Translated from DMS To Decimal";
+      $longVal = $this->convertDmsToDecimal($longDeg, $longMin, $longSec);
+      $latVal = $this->convertDmsToDecimal($latDeg, $latMin, $latSec);
+    }
+    elseif (is_numeric($geoUtmz) &&
       is_numeric($geoUtme) &&
       is_numeric($geoUtmn) &&
       (strlen($geoUtmn) < 10) &&
       (strlen($geoUtme) < 10)
     ) {
-      $thisPoint = new GpointConverter;
-      //print "\n"."Easting=".$geoUtme.", Northing=".$geoUtmn.", Zone=".$geoUtmz;
-      list($latVal, $longVal) = $thisPoint->convertUtmToLatLng($geoUtme, $geoUtmn, $geoUtmz.'N');
+      $thisPoint = new GpointConverter();
+      list($latVal, $longVal) = $thisPoint->convertUtmToLatLng($geoUtme, $geoUtmn, $geoUtmz . 'N');
       if ($latVal && $longVal) {
-        $srcMethod='Translated from UTM To Decimal';
-        //print "\n" . $srcMethod . ": (" . $longVal . ", " . $latVal . "); ";
-      } else {
+        $srcMethod = 'Translated from UTM To Decimal';
+      }
+      else {
         print "Failure of Translation from UTM to Decimal - acc id " . $id . "\n";
       }
     }
 
-    $geoHeritage = $srcMethod . " - Raw Decimal : " . $longDec . '/' . $latDec . '|' .
-      'DMS : ' . $latDeg . '.' . $latMin . '.' . $latSec . '/' .
-      $longDeg . '.' . $longMin . '.' . $longSec . '|' .
-      'UTM : ' . $geoUtmz . '/' . $geoUtme . '/' . $geoUtmn . '|' .
-      'Precision : ' . $prec;
+    $geoHeritage = "$srcMethod - Raw Decimal : $longDec/$latDec|DMS : $latDeg.$latMin.$latSec/$longDeg.$longMin.$longSec|UTM : $geoUtmz/$geoUtme/$geoUtmn|Precision : $prec";
 
     return [$longVal, $latVal, $geoHeritage];
   }
 
-/*
- * convertDMStoDecimal($deg,$min,$sec)
- *
- * $deg : INT degrees value
- * $min : INT minutes value
- * $sec : INT seconds value
- *
- * Converts degrees minutes and seconds to Decimal Long/Lat.
- * TODO : Validation!
- *
- * RETURNS : STR of decimal degrees.
- */
-function convertDMStoDecimal($deg, $min, $sec) {
-  $num = (float)$deg + ((float)$min * 60 + (float)$sec) / 3600;
-  return number_format($num, 6);
-}
+  /**
+   * Convert degrees, minutes, seconds to a decimal value.
+   *
+   * @param int $deg
+   *   The degrees value.
+   * @param int $min
+   *   The minutes value.
+   * @param int $sec
+   *   The seconds value.
+   *
+   * @return string
+   *   String of decimal degrees.
+   */
+  public function convertDmsToDecimal($deg, $min, $sec) {
+    $num = (float) $deg + ((float) $min * 60 + (float) $sec) / 3600;
+    return number_format($num, 6);
+  }
 
-  /*
-   * testLongitudeLatitudeFormat($longitudeValue,$latitudeValue)
-   *
-   * $longitudeValue: STR of longitude representation.
-   * $latitudeValue: STR of latitude representation.
-   *
+  /**
    * Tests longitude/latitude pairs for format AND range on global scale.
-   * Localized testing can be handled downstream with _herbariumImportCheckLocalGeoRange().
    *
-   * RETURNS : TRUE on validation, FALSE on fail.
+   * @param string $longitudeValue
+   *   Longitude representation.
+   * @param string $latitudeValue
+   *   Latitude representation.
+   *
+   * @return bool
+   *   True if validates, false if not.
    */
   public function testLongitudeLatitudeFormat($longitudeValue, $latitudeValue) {
     $latPatternValidator = '/
@@ -406,6 +418,16 @@ function convertDMStoDecimal($deg, $min, $sec) {
    *
    * RETURNS : TRUE on validation, FALSE on fail.
    */
+
+  /**
+   * Validates day value intended for use in ISO date.
+   *
+   * @param string $dayValue
+   *   Day representation.
+   *
+   * @return bool
+   *   True if validates, false if not.
+   */
   public function isValidDayRange($dayValue) {
     if ($dayValue >= 1 && $dayValue <= 31) {
       return TRUE;
@@ -413,14 +435,14 @@ function convertDMStoDecimal($deg, $min, $sec) {
     return FALSE;
   }
 
-  /*
-   * checkMonthRange($monthValue)
-   *
-   * $monthValue : (hopefully) INT value reprenenting month.
-   *
+  /**
    * Validates month value intended for use in ISO date.
    *
-   * RETURNS : TRUE on validation, FALSE on fail.
+   * @param string $monthValue
+   *   Month representation.
+   *
+   * @return bool
+   *   True if validates, false if not.
    */
   public function isValidMonthRange($monthValue) {
     if ($monthValue >= 1 && $monthValue <= 12) {
@@ -429,14 +451,14 @@ function convertDMStoDecimal($deg, $min, $sec) {
     return FALSE;
   }
 
-  /*
-   * checkYearRange($monthValue)
+  /**
+   * Validates year value intended for use in ISO date.
    *
-   * $monthValue : (hopefully) INT value reprenenting month.
+   * @param string $yearValue
+   *   Year representation.
    *
-   * Validates month value intended for use in ISO date.
-   *
-   * RETURNS : TRUE on validation, FALSE on fail.
+   * @return bool
+   *   True if validates, false if not.
    */
   public function isValidYearRange($yearValue) {
     if ($yearValue >= 1800 && $yearValue <= date("Y")) {
@@ -446,16 +468,18 @@ function convertDMStoDecimal($deg, $min, $sec) {
   }
 
   /**
-  * Check if a taxonony term exists.
-  *
-  * @param string $value
-  *   The name of the term.
-  * @param array $parents
-  *   The parents of the term.
-  *
-  * @return mixed
-  *   Returns the TID of the term, if it exists. False otherwise.
-  */
+   * Check if a taxonomy term exists.
+   *
+   * @param string $value
+   *   The name of the term.
+   * @param string $field
+   *   The field to match when validating.
+   * @param string $vocabulary
+   *   The vid to match.
+   *
+   * @return mixed
+   *   Contains an INT of the tid if exists, FALSE otherwise.
+   */
   public function taxtermExists($value, $field, $vocabulary) {
     $query = \Drupal::entityQuery('taxonomy_term');
     $query->condition('vid', $vocabulary);
@@ -470,17 +494,19 @@ function convertDMStoDecimal($deg, $min, $sec) {
   }
 
   /**
-   * Add a file to the public filesystem
+   * Add a file to the filesystem.
    *
    * @param object $row
-   *    The current row from CSV being migrated.
+   *   The current row from CSV being migrated.
    * @param string $field_map
-   *    The destination mapping to the file field.
+   *   The destination mapping to the file field.
    * @param string $source
-   *    The full path & filename of the source file.
+   *   The full path & filename of the source file.
+   * @param string $destination
+   *   The file storage destination. Defaults to public.
    *
-   * @return  booleen
-   *    Returns True if source file is found. False otherwise.
+   * @return bool
+   *   Returns True if source file is found. False otherwise.
    */
   public function addFieldFile(&$row, $field_map, $source, $destination = 'public') {
     $file_basename = basename($source);
