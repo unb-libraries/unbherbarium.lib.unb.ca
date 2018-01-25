@@ -320,11 +320,7 @@ footer .unb-lib-logo {
   color: #777;
   opacity: 0.5;
 }
-// Linked glyphicons non-underlined whitespace.\
-a .glyphicon,
-.nowrap .glyphicon {
-  margin-right: .25em;
-}
+
 
 .region-content form {
   margin-bottom: 1em;
@@ -488,9 +484,14 @@ img.align-right {
   vertical-align: top;
 }
 
-.glyphicon {
-  margin-right: .25em;
+th .glyphicon-chevron-down,
+th .glyphicon-chevron-up {
+  font-size: small;
 }
+th .glyphicon-chevron-down {
+  top: 2px;
+}
+
 .browse-specimens tr th:last-child,
 .browse-specimens tr td:last-child {
   text-align: right;
