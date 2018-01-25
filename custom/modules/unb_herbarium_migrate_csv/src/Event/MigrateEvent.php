@@ -22,7 +22,7 @@ class MigrateEvent implements EventSubscriberInterface {
    * {@inheritdoc}
    */
   static function getSubscribedEvents() {
-    $events[MigrateEvents::PREPARE_ROW][] = array('onPrepareRow', 0);
+    $events[MigrateEvents::PREPARE_ROW][] = ['onPrepareRow', 0];
     return $events;
   }
 
@@ -48,11 +48,11 @@ class MigrateEvent implements EventSubscriberInterface {
     if ($this->isValidYearRange($year) &&
         $this->isValidMonthRange($month) &&
         $this->isValidDayRange($day)) {
-      $date_array = array(
+      $date_array = [
         'year' => $year,
         'month' => $month,
         'day' => $day,
-      );
+      ];
       $iso_date = DrupalDateTime::arrayToISO($date_array);
       $row->setSourceProperty('date_iso', $iso_date);
     }
@@ -121,7 +121,7 @@ class MigrateEvent implements EventSubscriberInterface {
     $geoUTME = trim($row->getSourceProperty('geoheritage_utme'));
     $geoUTMN = trim($row->getSourceProperty('geoheritage_utmn'));
 
-    $longLatItems = array(
+    $longLatItems = [
       $accNum,
       $precisionValue,
       $longDec,
@@ -137,7 +137,7 @@ class MigrateEvent implements EventSubscriberInterface {
       $geoUTMZ,
       $geoUTME,
       $geoUTMN,
-    );
+    ];
     list($decLong, $decLat, $geoRefRem) = $this->determineLongitudeLatitude($longLatItems);
     $row->setSourceProperty('geo_heritage', $geoRefRem);
 
@@ -161,7 +161,7 @@ class MigrateEvent implements EventSubscriberInterface {
     $row->setSourceProperty('record_number_string', $accNum);
 
     // Sample Collectors
-    $specimen_collector_ids = array();
+    $specimen_collector_ids = [];
     $fieldname = 'name';
     $vocabulary = 'herbarium_specimen_collector';
     $collectors = explode(";", $row->getSourceProperty('collectors'));
@@ -260,13 +260,13 @@ class MigrateEvent implements EventSubscriberInterface {
     if (is_numeric($prec)) {
       $intPrec = floor ($prec);
       if ($intPrec >= 1 && $intPrec <= 5) {
-        $precisionMap = array(
+        $precisionMap = [
           1 => '0.0001',
           2 => '0.001',
           3 => '0.01',
           4 => '0.1',
           5 => '1.0',
-        );
+        ];
         $coordPrec = $precisionMap[$intPrec];
       }
     }
@@ -327,7 +327,7 @@ class MigrateEvent implements EventSubscriberInterface {
       'UTM : ' . $geoUtmz . '/' . $geoUtme . '/' . $geoUtmn . '|' .
       'Precision : ' . $prec;
 
-    return array ($longVal, $latVal, $geoHeritage);
+    return [$longVal, $latVal, $geoHeritage];
   }
 
 /*

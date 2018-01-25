@@ -13,10 +13,10 @@ class DatabaseController extends ControllerBase {
    * {@inheritdoc}
    */
   public function content() {
-    return array(
+    return [
       '#type' => 'markup',
       '#markup' => t('Placeholder path for Database Main navigation menu item'),
-    );
+    ];
   }
 
 }

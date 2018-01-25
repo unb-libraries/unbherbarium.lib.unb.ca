@@ -111,7 +111,7 @@ class GpointConverter
     $UTMNorthing = (int) round($UTMNorthing);
     $UTMEasting = (int) round($UTMEasting);
 
-    return array($UTMEasting,$UTMNorthing,$UTMZone);
+    return [$UTMEasting,$UTMNorthing,$UTMZone];
   }
 
   /**
@@ -166,7 +166,7 @@ class GpointConverter
     $Long = ($D-(1+2*$T1+$C1)*$D*$D*$D/6+(5-2*$C1+28*$T1-3*$C1*$C1+8*$eccPrimeSquared+24*$T1*$T1)
             *$D*$D*$D*$D*$D/120)/cos($phi1Rad);
     $Long = $LongOrigin + rad2deg($Long);
-    return array($Lat,$Long);
+    return [$Lat,$Long];
   }
 
   /**

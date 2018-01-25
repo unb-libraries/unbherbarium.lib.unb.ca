@@ -359,7 +359,7 @@ class TermCreatorRow {
       $term = Term::create([
         'vid' => 'herbarium_specimen_taxonomy',
         'name' => $name,
-        'parent' => array($parent),
+        'parent' => [$parent],
       ]);
 
       // Populate DwC:taxonRank field.
@@ -398,14 +398,14 @@ class TermCreatorRow {
       if (!empty($stub_tid)) {
         $term = Term::load($stub_tid);
         $term->set('name', $spec_name);
-        $term->set('parent', array($variant_tid));
+        $term->set('parent', [$variant_tid]);
         $term->set('field_dwc_scientificnameauthor', $spec_auth);
       }
       else {
         $term = Term::create([
           'vid' => 'herbarium_specimen_taxonomy',
           'name' => $spec_name,
-          'parent' => array($variant_tid),
+          'parent' => [$variant_tid],
           'field_dwc_scientificnameauthor' => $spec_auth,
           'field_dwc_taxonrank' => $this->getTaxonRankId($this->xt),
         ]);
@@ -438,14 +438,14 @@ class TermCreatorRow {
       if (!empty($stub_tid)) {
         $term = Term::load($stub_tid);
         $term->set('name', $spec_name);
-        $term->set('parent', array($species_tid));
+        $term->set('parent', [$species_tid]);
         $term->set('field_dwc_scientificnameauthor', $spec_auth);
       }
       else {
         $term = Term::create([
           'vid' => 'herbarium_specimen_taxonomy',
           'name' => $spec_name,
-          'parent' => array($species_tid),
+          'parent' => [$species_tid],
           'field_dwc_scientificnameauthor' => $spec_auth,
           'field_dwc_taxonrank' => $this->getTaxonRankId($this->txt),
         ]);
@@ -477,14 +477,14 @@ class TermCreatorRow {
       if (!empty($stub_tid)) {
         $term = Term::load($stub_tid);
         $term->set('name', $spec_name);
-        $term->set('parent', array($genus_tid));
+        $term->set('parent', [$genus_tid]);
         $term->set('field_dwc_scientificnameauthor', $spec_auth);
       }
       else {
         $term = Term::create([
           'vid' => 'herbarium_specimen_taxonomy',
           'name' => $spec_name,
-          'parent' => array($genus_tid),
+          'parent' => [$genus_tid],
           'field_dwc_scientificnameauthor' => $spec_auth,
           'field_dwc_taxonrank' => $this->getTaxonRankId($this->txt),
         ]);
@@ -513,14 +513,14 @@ class TermCreatorRow {
       if (!empty($stub_tid)) {
         $term = Term::load($stub_tid);
         $term->set('name', $spec_name);
-        $term->set('parent', array($genus_tid));
+        $term->set('parent', [$genus_tid]);
         $term->set('field_dwc_scientificnameauthor', $spec_auth);
       }
       else {
         $term = Term::create([
           'vid' => 'herbarium_specimen_taxonomy',
           'name' => $spec_name,
-          'parent' => array($genus_tid),
+          'parent' => [$genus_tid],
           'field_dwc_scientificnameauthor' => $spec_auth,
           'field_dwc_taxonrank' => $this->getTaxonRankId('Species'),
         ]);
@@ -549,14 +549,14 @@ class TermCreatorRow {
       if (!empty($stub_tid)) {
         $term = Term::load($stub_tid);
         $term->set('name', $spec_name);
-        $term->set('parent', array($family_tid));
+        $term->set('parent', [$family_tid]);
         $term->set('field_dwc_scientificnameauthor', $spec_auth);
       }
       else {
         $term = Term::create([
           'vid' => 'herbarium_specimen_taxonomy',
           'name' => $spec_name,
-          'parent' => array($family_tid),
+          'parent' => [$family_tid],
           'field_dwc_scientificnameauthor' => $spec_auth,
         ]);
       }

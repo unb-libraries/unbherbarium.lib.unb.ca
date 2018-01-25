@@ -13,10 +13,10 @@ class ManageContentController extends ControllerBase {
    * {@inheritdoc}
    */
   public function content() {
-    return array(
+    return [
       '#type' => 'markup',
       '#markup' => t('Placeholder path for Tools|Manage menu item'),
-    );
+    ];
   }
 
 }

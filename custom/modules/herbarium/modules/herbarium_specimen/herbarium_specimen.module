@@ -57,35 +57,35 @@ function herbarium_specimen_preprocess_views_exposed_form(&$variables) {
  */
 function _herbarium_specimen_generate_specimen_surrogates_batch($nid, $file_path) {
 
-  return array(
+  return [
     'title' => t('Generating Herbarium Specimen Surrogate Images'),
     'init_message' => t('Generating Herbarium Specimen Surrogate Images'),
-    'operations' => array(
-      array(
-        array(
+    'operations' => [
+      [
+        [
           'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
           'deleteExistingAssets',
-        ),
-        array($nid),
-      ),
+        ],
+        [$nid],
+      ],
 
-      array(
-        array(
+      [
+        [
           'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
           'buildJpgSurrogate',
-        ),
-        array($nid, $file_path),
-      ),
+        ],
+        [$nid, $file_path],
+      ],
 
-      array(
-        array(
+      [
+        [
           'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
           'buildDziTiles',
-        ),
-        array($nid, $file_path),
-      ),
-    ),
-  );
+        ],
+        [$nid, $file_path],
+      ],
+    ],
+  ];
 }
 
 /**

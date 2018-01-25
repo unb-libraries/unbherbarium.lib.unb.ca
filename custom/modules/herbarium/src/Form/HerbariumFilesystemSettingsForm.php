@@ -63,26 +63,26 @@ class HerbariumFilesystemSettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('herbarium_core.filesystem');
 
-    $form['filepath'] = array(
+    $form['filepath'] = [
       '#type' => 'fieldset',
       '#title' => t('Path'),
       '#collapsible' => FALSE,
       '#collapsed' => FALSE,
-    );
+    ];
 
-    $form['filepath']['filepath_archival_masters'] = array(
+    $form['filepath']['filepath_archival_masters'] = [
       '#type' => 'textfield',
       '#title' => t('Path to Archival Masters'),
       '#default_value' => $config->get('filepath.archival_masters'),
       '#description' => t('The full, absolute path to the specimen archival master images, i.e. /data/images/archival'),
-    );
+    ];
 
-    $form['filepath']['filepath_jp2_surrogates'] = array(
+    $form['filepath']['filepath_jp2_surrogates'] = [
       '#type' => 'textfield',
       '#title' => t('Path to JP2 Surrogates'),
       '#default_value' => $config->get('filepath.jp2_surrogates'),
       '#description' => t('The full, absolute path to the JP2 surrogate files, i.e. /data/images/jp2'),
-    );
+    ];
 
     return parent::buildForm($form, $form_state);
   }

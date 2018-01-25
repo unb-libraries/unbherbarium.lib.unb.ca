@@ -63,19 +63,19 @@ class HerbariumImageSettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('herbarium_core.image');
 
-    $form['MagickSlicer'] = array(
+    $form['MagickSlicer'] = [
       '#type' => 'fieldset',
       '#title' => t('Path'),
       '#collapsible' => FALSE,
       '#collapsed' => FALSE,
-    );
+    ];
 
-    $form['MagickSlicer']['execution_options'] = array(
+    $form['MagickSlicer']['execution_options'] = [
       '#type' => 'textfield',
       '#title' => t('MagickSlicker CLI Options'),
       '#default_value' => $config->get('magickslicker.cli_options'),
       '#description' => t('All options to be passed to MagickSlicer when creating the DZI and tiled image'),
-    );
+    ];
 
     return parent::buildForm($form, $form_state);
   }
