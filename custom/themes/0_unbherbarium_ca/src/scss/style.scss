@@ -484,11 +484,12 @@ img.align-right {
   vertical-align: top;
 }
 
-th .glyphicon-chevron-down,
-th .glyphicon-chevron-up {
+th a .glyphicon-chevron-down,
+th a .glyphicon-chevron-up {
   font-size: small;
+  margin-left: .25em;
 }
-th .glyphicon-chevron-down {
+th a .glyphicon-chevron-down {
   top: 2px;
 }
 
