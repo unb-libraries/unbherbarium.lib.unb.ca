@@ -249,7 +249,7 @@ label {
 
 // Chosen + bootstrap fixes.
 .chosen-container-single .chosen-single div b {
-  background: none;
+  display: none;
 }
 select[data-drupal-selector="edit-collector"] + .form-control,
 select[data-drupal-selector="edit-field-taxonomy-tid"] + .form-control,
