@@ -318,13 +318,13 @@ class TermCreatorRow {
    *
    * @param string $name
    *   The name of the term.
-   * @param array $parent
+   * @param int $parent
    *   The TID of the parent term.
    *
    * @return mixed
    *   Returns the TID of the stub term, if it exists. False otherwise.
    */
-  public function checkStubTermExists($name, array $parent = NULL) {
+  public function checkStubTermExists($name, $parent = 0) {
     $query = \Drupal::entityQuery('taxonomy_term');
     $query->condition('vid', 'herbarium_specimen_taxonomy');
     $query->condition('name', $name);
