@@ -1,0 +1,23 @@
+uuid: 5b1f288e-a42e-4964-9dfc-088c3d4f5de1
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: province_list
+label: 'Province List'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/provincelist/[term:name]'
+selection_criteria:
+  c2543646-9f74-4832-bebb-738e24bf771c:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      specimen_location_province: specimen_location_province
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: c2543646-9f74-4832-bebb-738e24bf771c
+selection_logic: and
+weight: -5
+relationships: {  }

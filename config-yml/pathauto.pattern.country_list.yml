@@ -1,0 +1,23 @@
+uuid: 66dc75d9-ecc8-4075-a622-ce96199b02a9
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: country_list
+label: 'Country List'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/countrylist/[term:name]'
+selection_criteria:
+  f0193a97-df99-4cf2-a51d-3284077e85ee:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      specimen_location_country: specimen_location_country
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: f0193a97-df99-4cf2-a51d-3284077e85ee
+selection_logic: and
+weight: -5
+relationships: {  }
