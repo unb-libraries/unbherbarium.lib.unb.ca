@@ -6,12 +6,10 @@ dependencies:
     - field.storage.node.field_image
     - node.type.banner_image
     - system.menu.main
-    - system.menu.tools
   module:
     - image
     - node
     - user
-    - views_autocomplete_filters
 _core:
   default_config_hash: _IyswIIBEi6m0w9x8xfSBkVgjaCYqisqv8YqxnMRWII
 id: manage_content
@@ -674,7 +672,7 @@ display:
         description: ''
         expanded: false
         parent: unb_herbarium.manage
-        weight: -46
+        weight: -40
         context: '0'
         menu_name: main
     cache_metadata:
