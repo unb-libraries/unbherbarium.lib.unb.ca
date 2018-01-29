@@ -217,6 +217,8 @@ label {
 .browse th[id^="view-nothing-table-column"],
 .browse th[id^="view-field-image-table-column"],
 .browse th[id^="view-field-collector-tid-table-column"],
+.browse th[id^="view-field-dwc-taxonrank-table-column"],
+.browse th[id^="view-field-dwc-taxonid-table-column"],
 .browse th[id^="view-field-dwc-scientificnameauthor-table-column"],
 .browse thead a {
   padding: 8px;
@@ -477,7 +479,7 @@ img.align-right {
   margin-top: 2px;
 }
 
-.specimen-image .glyphicon {
+a .glyphicon {
   margin-right: .25em;
 }
 .simple-gmap-link a:before {
