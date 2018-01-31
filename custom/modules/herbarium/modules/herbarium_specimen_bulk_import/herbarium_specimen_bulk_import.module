@@ -1,0 +1,142 @@
+<?php
+
+/**
+ * @file
+ * Contains herbarium_core.module.
+ */
+
+use Drupal\Core\Link;
+
+/**
+ * Get migration destinations for a specific migration ID.
+ *
+ * @param string $id
+ *   The migration ID.
+ *
+ * @return object
+ *   The db query objects.
+ */
+function _herbarium_specimen_bulk_import_get_migration_destinations($id) {
+  $table_name = "migrate_map_$id";
+  return db_query("SELECT destid1 FROM $table_name}", [
+    ':migrate_id' => $table_name,
+  ]);
+}
+
+/**
+ * Get the CMH coded migrations.
+ *
+ * @param string $migration_id
+ *   The migration ID to match.
+ * @param string $prefix
+ *   The migration prefix to filter on.
+ *
+ * @return array
+ *   An array of migration objects, keyed by migration ID.
+ */
+function _herbarium_specimen_bulk_import_get_cmh_migrations($migration_id = NULL, $prefix = 'cmh_') {
+  $manager = \Drupal::service('plugin.manager.migration');
+  $plugins = $manager->createInstances([]);
+  $matched_migrations = [];
+
+  // Get the requested migrations.
+  foreach ($plugins as $id => $migration) {
+    if (substr($id, 0, strlen($prefix)) === $prefix) {
+      if (
+        (!empty($migration_id) && $migration_id == $id) ||
+        empty($migration_id)
+      ) {
+        $matched_migrations[$id] = $migration;
+      }
+    }
+  }
+
+  return $matched_migrations;
+}
+
+/**
+ * Get the form elements for a list of migrations.
+ *
+ * @param string $migration_id
+ *   The migration ID to match.
+ * @param string $prefix
+ *   The migration prefix to filter on.
+ *
+ * @return array
+ *   A form API render array of the migration details.
+ */
+function _herbarium_specimen_bulk_import_get_cmh_migration_table($migration_id = NULL, $prefix = 'cmh_') {
+  $previous_migrations = _herbarium_specimen_bulk_import_get_cmh_migrations($migration_id, $prefix);
+
+  if (!empty($previous_migrations)) {
+    // Construct header.
+    $header = [
+      t('ID'),
+      t('Status'),
+      t('Total'),
+      t('Imported'),
+      t('Errored'),
+      t('Date'),
+    ];
+    // Build the rows.
+    $rows = [];
+    foreach ($previous_migrations as $migration) {
+      $map = $migration->getIdMap();
+
+      $imported = $map->importedCount();
+      $source_plugin = $migration->getSourcePlugin();
+      $migrate_last_imported_store = \Drupal::keyValue('migrate_last_imported');
+      $last_imported = $migrate_last_imported_store->get($migration->id(), FALSE);
+
+      $source_rows = $source_plugin->count();
+      if ($source_rows == -1) {
+        $source_rows = t('N/A');
+        $unprocessed = t('N/A');
+      }
+      else {
+        $unprocessed = $source_rows - $map->processedCount();
+      }
+
+      $rows[] = [
+        'data' => [
+          Link::createFromRoute($migration->id(), 'herbarium_specimen_bulk_import.view', ['migration_id' => $migration->id()]),
+          $migration->getStatusLabel(),
+          $source_rows,
+          $imported,
+          $unprocessed,
+          $last_imported,
+        ],
+      ];
+    }
+    $form['history_table'] = [
+      '#theme' => 'table',
+      '#header' => $header,
+      '#rows' => $rows,
+    ];
+    $form['pager'] = [
+      '#type' => 'pager',
+    ];
+  }
+  else {
+    $form['none_found'] = [
+      '#markup' => t('No imports have been performed yet.'),
+    ];
+  }
+  return $form;
+}
+
+/**
+ * Get the list of import formats.
+ *
+ * @return array
+ *   An array of formats available to the user with details.
+ */
+function _herbarium_specimen_bulk_import_get_import_formats() {
+  return [
+    [
+      'id' => 'cmh_herb_import_standard',
+      'description' => 'Standard, All Columns',
+      'header' => '"ACCID", "SPECID"',
+    ],
+  ];
+}

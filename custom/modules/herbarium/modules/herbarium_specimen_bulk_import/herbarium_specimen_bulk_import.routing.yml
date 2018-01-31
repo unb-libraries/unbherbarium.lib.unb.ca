@@ -5,3 +5,11 @@ herbarium_specimen_bulk_import.admin.import:
     _title: 'Bulk Import Herbarium Specimen(s)'
   requirements:
     _permission: 'access content'
+
+herbarium_specimen_bulk_import.view:
+  path: '/admin/config/herbarium_core/bulk_import/{migration_id}'
+  defaults:
+    _form: 'Drupal\herbarium_specimen_bulk_import\Form\HerbariumSpecimenBulkMigrationView'
+    _title: 'Bulk Import Details'
+  requirements:
+    _permission: 'access content'

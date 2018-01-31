@@ -6,7 +6,7 @@ use Drupal\file\Entity\File;
 use Drupal\node\Entity\Node;
 use Drupal\user\Entity\User;
 use Symfony\Component\Yaml\Yaml;
-use \Datetime;
+use Datetime;
 use Drupal\migrate_plus\Entity\MigrationGroup;
 use Drupal\migrate_tools\MigrateExecutable;
 use Drupal\migrate\MigrateMessage;
@@ -44,12 +44,14 @@ class HerbariumCsvMigration {
    *   The import ID of the migration.
    * @param string $import_file
    *   The path to the csv import file.
+   * @param int $limit
+   *   The limit of items to import.
    */
   public function __construct($import_id = NULL, $import_file = NULL, $limit = 1) {
     $time_obj = new DateTime();
     $date_time_string = $time_obj->format('Y-m-d H:i:s');
     $date_time_stamp = $time_obj->getTimestamp();
-    $this->importId = "cmh_{$import_id}_{$date_time_stamp}";
+    $this->importId = "{$import_id}_{$date_time_stamp}";
 
     if (!file_exists($import_file)) {
       $this->addError(
@@ -80,10 +82,26 @@ class HerbariumCsvMigration {
     $config_storage->write('migrate_plus.migration.' . $this->importId, $config_array);
   }
 
+  /**
+   * Add an error to the migration.
+   *
+   * @param string $message
+   *   The message to add.
+   */
   private function addError($message) {
     $this->errors[] = $message;
   }
 
+  /**
+   * Run the CSV migration in from a batch.
+   *
+   * @param string $migration_id
+   *   The migration ID to run.
+   * @param int $item_limit
+   *   The item limit.
+   * @param array $context
+   *   The batch context array.
+   */
   public static function runCsvMigrationBatch($migration_id, $item_limit, &$context) {
     $migration = \Drupal::service('plugin.manager.migration')->createInstance($migration_id);
     $executable = new MigrateExecutable($migration, new MigrateMessage(), ['limit' => $item_limit]);
@@ -98,4 +116,3 @@ class HerbariumCsvMigration {
   }
 
 }
-

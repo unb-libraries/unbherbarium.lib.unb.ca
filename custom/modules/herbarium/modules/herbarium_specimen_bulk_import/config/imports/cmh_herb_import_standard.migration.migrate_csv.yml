@@ -1,5 +1,5 @@
 # The source data is in CSV files, so we use the 'csv' source plugin.
-id: cmh_herb_import_HERBIMPORTID
+id: cmh_herb_import_standard_HERBIMPORTID
 label: Herbarium Sample Import from HERBIMPORTDATE
 
 migration_tags:

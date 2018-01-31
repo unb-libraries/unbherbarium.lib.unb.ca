@@ -4,11 +4,11 @@ namespace Drupal\herbarium_specimen_bulk_import\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\node\Entity\Node;
+use Drupal\file\Entity\File;
 use Drupal\herbarium_specimen_bulk_import\HerbariumCsvMigration;
 
 /**
- * ManageArchivalMasterForm object.
+ * HerbariumSpecimenBulkImportForm object.
  */
 class HerbariumSpecimenBulkImportForm extends FormBase {
 
@@ -38,20 +38,49 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
         '<p style="margin:10px;">This tab allows you to bulk import specimens from a CSV file.</p>'
       ),
     );
-    $form['upload_import']['csv_file'] = array(
-      '#title' => t('CSV File'),
+
+    $import_formats = _herbarium_specimen_bulk_import_get_import_formats();
+    $select_options = [];
+    foreach ($import_formats as $import_format) {
+      $select_options[$import_format['id']] = $import_format['description'];
+    }
+
+    $form['upload_import']['import_format'] = array(
+      '#type' => 'select',
+      '#title' => t('Import Format:'),
+      '#required' => TRUE,
+      '#options' => $select_options,
+      '#default_value' => array_shift($import_formats)['id'],
+    );
+
+    $form['upload_import']['import_file'] = array(
+      '#title' => t('Import File'),
       '#type' => 'managed_file',
+      '#required' => TRUE,
       '#description' => t('Upload a file, allowed extensions: CSV'),
       '#upload_location' => 'public://specimen_csv_upload/',
       '#upload_validators' => array(
         'file_validate_extensions' => array('csv'),
       ),
     );
+
     $form['upload_import']['submit'] = array(
       '#type' => 'submit',
       '#prefix' => '<br>',
       '#value' => t('Import Specimens'),
     );
+
+    $form['import_history'] = [
+      '#type' => 'fieldset',
+    ];
+
+    $form['import_history']['header'] = array(
+      '#markup' => t(
+        '<h2><em>Previous Bulk Imports</em></h2>'
+      ),
+    );
+
+    $form['import_history']['table'] = _herbarium_specimen_bulk_import_get_cmh_migration_table();
 
     return $form;
   }
@@ -66,10 +95,15 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $import_id = 'cmh_herb_import';
+    $fid = $form_state->getValue('import_file')[0];
+    $file = File::Load($fid);
+    $file_path = drupal_realpath($file->getFileUri());
+
+    $import_id = $form_state->getValue('import_format');
+
     $migrateObject = new HerbariumCsvMigration(
       $import_id,
-      '/app/html/modules/custom/herbarium/modules/herbarium_specimen_bulk_import/test.csv'
+      $file_path
     );
     drupal_flush_all_caches();
 
