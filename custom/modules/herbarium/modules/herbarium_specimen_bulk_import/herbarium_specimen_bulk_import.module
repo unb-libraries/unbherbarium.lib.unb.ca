@@ -136,7 +136,38 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
     [
       'id' => 'cmh_herb_import_standard',
       'description' => 'Standard, All Columns',
-      'header' => '"ACCID", "SPECID"',
+      'columns' => [
+        [
+          'name' => 'Accession ID',
+          'validate' => [],
+        ],
+        [
+          'name' => 'Species ID',
+          'validate' => [
+            'type' => 'entityref',
+            'entity_type' => 'taxonomy_term',
+            'vid' => '',
+          ],
+        ],
+      ],
     ],
   ];
+}
+
+/**
+ * Get an import format.
+ *
+ * @param string $format_id
+ *   The format ID to return.
+ *
+ * @return array
+ *   An import format array with details.
+ */
+function _herbarium_specimen_bulk_import_get_import_format($format_id) {
+  foreach (_herbarium_specimen_bulk_import_get_import_formats() as $format) {
+    if ($format['id'] == $format_id) {
+      return $format;
+    }
+  }
+  return [];
 }
