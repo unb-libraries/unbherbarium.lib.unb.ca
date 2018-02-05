@@ -28,16 +28,15 @@ class HerbariumSpecimenBulkMigrationView extends FormBase {
     $form['import_details'] = [
       '#type' => 'fieldset',
     ];
-    $form['import_details']['header'] = array(
+    $form['import_details']['header'] = [
       '#markup' => t(
         '<h2>Details for @import_id:</h2>',
         [
           '@import_id' => $migration_id,
         ]
       ),
-    );
+    ];
     $form['import_details']['table'] = _herbarium_specimen_bulk_import_get_cmh_migration_table($migration_id);
-
 
     $migrate_targets = _herbarium_specimen_bulk_import_get_migration_destinations($migration_id);
     if (!empty($migrate_targets)) {
@@ -63,11 +62,11 @@ class HerbariumSpecimenBulkMigrationView extends FormBase {
         '#type' => 'fieldset',
       ];
 
-      $form['import_details']['specimen_list']['header'] = array(
+      $form['import_details']['specimen_list']['header'] = [
         '#markup' => t(
           '<h2><em>Specimens Imported:</em></h2>'
         ),
-      );
+      ];
 
       $form['import_details']['specimen_list']['message_table'] = [
         '#theme' => 'table',
