@@ -200,6 +200,18 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
     return TRUE;
   }
 
+  /**
+   * Validate a CSV import's row data to determine if any errors may exist.
+   *
+   * @param array $form
+   *   The form API array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   * @param string $file_path
+   *   The path the the CSV file.
+   * @param string $format_id
+   *   The name of the migration id to leverage.
+   */
   private function validateRowData(array &$form, FormStateInterface $form_state, $file_path, $format_id) {
     $errors = FALSE;
     $reader = Reader::createFromPath($file_path, 'r');
@@ -232,6 +244,17 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
     }
   }
 
+  /**
+   * Validate a CSV import format value.
+   *
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   * @param string $format_id
+   *   The name of the migration id to leverage.
+   *
+   * @return bool
+   *   TRUE if $format_id is a valid import format.
+   */
   private function validateImportFormat(FormStateInterface $form_state, $format_id) {
     if (empty(_herbarium_specimen_bulk_import_get_import_format($format_id))) {
       $form_state->setErrorByName('import_file', $this->t('The import format is invalid.'));
