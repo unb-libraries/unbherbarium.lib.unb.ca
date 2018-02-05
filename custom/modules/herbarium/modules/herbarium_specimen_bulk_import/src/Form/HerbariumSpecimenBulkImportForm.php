@@ -202,11 +202,11 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
 
   private function validateRowData(array &$form, FormStateInterface $form_state, $file_path, $format_id) {
     $errors = FALSE;
-
     $reader = Reader::createFromPath($file_path, 'r');
     $dataRows = $reader->setOffset(1)->fetchAll();
     $import_format = _herbarium_specimen_bulk_import_get_import_format($format_id);
 
+    // Iterate and validate data.
     foreach ($dataRows as $row_id => $row) {
       foreach ($row as $column_id => $column_data) {
         if (!empty($import_format['columns'][$column_id]['validate'])) {
@@ -217,7 +217,10 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
               $data_row_id = $row_id + 2;
               // Validation failed.
               $errors = TRUE;
-              drupal_set_message("{$import_format['columns'][$column_id]['name']} validation failed in row $data_row_id, column $column_id", 'error');
+              drupal_set_message(
+                "{$import_format['columns'][$column_id]['name']} validation failed in row $data_row_id, column $column_id : $column_data {$validator['error']}.",
+                'error'
+              );
             }
           }
         }
@@ -225,7 +228,7 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
     }
 
     if ($errors) {
-      $form_state->setErrorByName('import_file', 'Errors were found while validating the import file.');
+      $form_state->setErrorByName('import_file', 'One or more errors were found while validating the import file data. Please correct them and resubmit.');
     }
   }
 
