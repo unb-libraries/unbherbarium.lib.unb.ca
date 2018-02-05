@@ -140,7 +140,15 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
       'columns' => [
         [
           'name' => 'Accession ID',
-          'validate' => [],
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_string_length',
+              'args' => [
+                'length' => 255,
+              ],
+              'error' => t('exceeds the maximum length of 255 characters'),
+            ],
+          ],
         ],
         [
           'name' => 'Species ID',
@@ -191,6 +199,24 @@ function _herbarium_specimen_bulk_import_get_import_format($format_id) {
 function _herbarium_specimen_validate_term_reference($tid, $vid) {
   $term = Term::load(trim($tid));
   if (!empty($term) && $term->getVocabularyId() == $vid) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Validate a string to a maximum length.
+ *
+ * @param string $data
+ *   The string to validate.
+ * @param int $length
+ *   The maximum length.
+ *
+ * @return bool
+ *   TRUE if $data is a term in the $vid vocabulary. FALSE otherwise.
+ */
+function _herbarium_specimen_validate_string_length($data, $length) {
+  if (strlen($data) <= $length) {
     return TRUE;
   }
   return FALSE;
