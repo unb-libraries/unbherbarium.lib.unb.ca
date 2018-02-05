@@ -138,8 +138,9 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
       'id' => 'cmh_herb_import_standard',
       'description' => 'Standard, All Columns',
       'columns' => [
+
         [
-          'name' => 'Accession ID',
+          'name' => 'CMH Accession ID',
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_string_length',
@@ -150,6 +151,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
             ],
           ],
         ],
+
         [
           'name' => 'Species ID',
           'validate' => [
@@ -162,6 +164,59 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
             ],
           ],
         ],
+
+        [
+          'name' => 'Collector(s)',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_string_length',
+              'args' => [
+                'length' => 255,
+              ],
+              'error' => t('exceeds the maximum length of 255 characters'),
+            ],
+          ],
+        ],
+
+        [
+          'name' => 'Country',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_string_length',
+              'args' => [
+                'length' => 255,
+              ],
+              'error' => t('exceeds the maximum length of 255 characters'),
+            ],
+          ],
+        ],
+
+        [
+          'name' => 'Province/State',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_string_length',
+              'args' => [
+                'length' => 255,
+              ],
+              'error' => t('exceeds the maximum length of 255 characters'),
+            ],
+          ],
+        ],
+
+        [
+          'name' => 'County',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_string_length',
+              'args' => [
+                'length' => 255,
+              ],
+              'error' => t('exceeds the maximum length of 255 characters'),
+            ],
+          ],
+        ],
+
       ],
     ],
   ];
