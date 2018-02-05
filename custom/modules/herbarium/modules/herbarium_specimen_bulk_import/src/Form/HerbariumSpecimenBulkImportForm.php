@@ -92,11 +92,20 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
   public function validateForm(array &$form, FormStateInterface $form_state) {
     $user_input = $form_state->getUserInput();
     if (empty($user_input['_triggering_element_value']) || $user_input['_triggering_element_value'] != 'Remove') {
+      ini_set("auto_detect_line_endings", '1');
+
       $file = File::Load($form_state->getValue('import_file')[0]);
       $file_path = drupal_realpath($file->getFileUri());
       $format_id = $form_state->getValue('import_format');
 
-      $this->validateCSVStructure($form, $form_state, $file_path, $format_id);
+      if (
+        $this->validateImportFormat($form_state, $format_id) &&
+        $this->validateCSVStructure($form, $form_state, $file_path, $format_id) &&
+        $this->validateRowData($form, $form_state, $file_path, $format_id)
+      ) {
+        // No errors found. Do nothing, but process all validations sequentially.
+      };
+
     }
   }
 
@@ -151,7 +160,6 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
   private function validateCSVStructure(array &$form, FormStateInterface $form_state, $file_path, $format_id) {
     // Validate CSV structure.
     try {
-      ini_set("auto_detect_line_endings", '1');
       $reader = Reader::createFromPath($file_path, 'r');
       $nbColumns = $reader->fetchOne();
       $allColumns = $reader->fetchAll();
@@ -166,6 +174,7 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
             '@file_columns' => count($nbColumns),
           ]
         ));
+        return FALSE;
       }
 
       // Check Row Consistency.
@@ -179,14 +188,53 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
               '@header_columns' => count($nbColumns),
             ]
           ));
-          return;
+          return FALSE;
         }
       }
     }
     catch (Exception $e) {
       $form_state->setErrorByName('import_file', $this->t('Selected file is not in valid CSV format.'));
-      return;
+      return FALSE;
     }
+
+    return TRUE;
+  }
+
+  private function validateRowData(array &$form, FormStateInterface $form_state, $file_path, $format_id) {
+    $errors = FALSE;
+
+    $reader = Reader::createFromPath($file_path, 'r');
+    $dataRows = $reader->setOffset(1)->fetchAll();
+    $import_format = _herbarium_specimen_bulk_import_get_import_format($format_id);
+
+    foreach ($dataRows as $row_id => $row) {
+      foreach ($row as $column_id => $column_data) {
+        if (!empty($import_format['columns'][$column_id]['validate'])) {
+          foreach ($import_format['columns'][$column_id]['validate'] as $validator) {
+            // Pack data onto arguments.
+            $function_args = ['data' => $column_data] + $validator['args'];
+            if (!$validator['function'](...array_values($function_args))) {
+              $data_row_id = $row_id + 2;
+              // Validation failed.
+              $errors = TRUE;
+              drupal_set_message("{$import_format['columns'][$column_id]['name']} validation failed in row $data_row_id, column $column_id", 'error');
+            }
+          }
+        }
+      }
+    }
+
+    if ($errors) {
+      $form_state->setErrorByName('import_file', 'Errors were found while validating the import file.');
+    }
+  }
+
+  private function validateImportFormat(FormStateInterface $form_state, $format_id) {
+    if (empty(_herbarium_specimen_bulk_import_get_import_format($format_id))) {
+      $form_state->setErrorByName('import_file', $this->t('The import format is invalid.'));
+      return FALSE;
+    };
+    return TRUE;
   }
 
 }

@@ -144,9 +144,12 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
         [
           'name' => 'Species ID',
           'validate' => [
-            'type' => 'entityref',
-            'entity_type' => 'taxonomy_term',
-            'vid' => '',
+            [
+              'function' => '_herbarium_specimen_validate_term_reference',
+              'args' => [
+                'vid' => 'herbarium_specimen_taxonomy',
+              ],
+            ],
           ],
         ],
       ],
@@ -170,4 +173,8 @@ function _herbarium_specimen_bulk_import_get_import_format($format_id) {
     }
   }
   return [];
+}
+
+function _herbarium_specimen_validate_term_reference($data, $vid) {
+  return TRUE;
 }
