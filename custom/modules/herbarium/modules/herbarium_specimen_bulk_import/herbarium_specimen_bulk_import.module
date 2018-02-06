@@ -205,7 +205,85 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
         ],
 
         [
-          'name' => 'County',
+          'name' => 'Verbatim Locality',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_string_length',
+              'args' => [
+                'length' => 255,
+              ],
+              'error' => t('exceeds the maximum length of 255 characters'),
+            ],
+          ],
+        ],
+
+        [
+          'name' => 'Longitude',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_longitude',
+              'args' => [
+                'length' => 255,
+              ],
+              'error' => t('is not a valid value for longitude. Please use a value between -180 and 180.'),
+            ],
+          ],
+        ],
+
+        [
+          'name' => 'Latitude',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_latitude',
+              'args' => [
+                'length' => 255,
+              ],
+              'error' => t('is not a valid value for latitude. Please use a value between -90 and 90.'),
+            ],
+          ],
+        ],
+
+        [
+          'name' => 'Collection Year',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_year',
+              'args' => [
+                'length' => 255,
+              ],
+              'error' => t('is not a valid value for year. Please use a value between 0 and this year.'),
+            ],
+          ],
+        ],
+
+        [
+          'name' => 'Collection Month',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_month',
+              'args' => [
+                'length' => 255,
+              ],
+              'error' => t('is not a valid value for the month. Please use a value between 1 and 12.'),
+            ],
+          ],
+        ],
+
+        [
+          'name' => 'Collection Day',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_day',
+              'args' => [
+                'length' => 255,
+              ],
+              'error' => t('is not a valid value for the day. Please use a value between 1 and 31.'),
+            ],
+          ],
+        ],
+
+        [
+          'name' => 'Verbatim Event Date',
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_string_length',
@@ -268,11 +346,114 @@ function _herbarium_specimen_validate_term_reference($tid, $vid) {
  *   The maximum length.
  *
  * @return bool
- *   TRUE if $data is a term in the $vid vocabulary. FALSE otherwise.
+ *   TRUE if the string is less than $length.
  */
 function _herbarium_specimen_validate_string_length($data, $length) {
   if (strlen($data) <= $length) {
     return TRUE;
   }
   return FALSE;
+}
+
+/**
+ * Validate a string as latitude.
+ *
+ * Taken from:
+ * https://gist.github.com/arubacao/b5683b1dab4e4a47ee18fd55d9efbdd1
+ *
+ * @param string $data
+ *   The string to validate.
+ *
+ * @return bool
+ *   TRUE if $data is a valid latitude value.
+ */
+function _herbarium_specimen_validate_latitude($data) {
+  return preg_match('/^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/', $data);
+}
+
+/**
+ * Validate a string as longitude.
+ *
+ * Taken from:
+ * https://gist.github.com/arubacao/b5683b1dab4e4a47ee18fd55d9efbdd1
+ *
+ * @param string $data
+ *   The string to validate.
+ *
+ * @return bool
+ *   TRUE if $data is a valid longitude value.
+ */
+function _herbarium_specimen_validate_longitude($data) {
+  return preg_match('/^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$/', $long);
+}
+
+/**
+ * Validate a string as year.
+ *
+ * Taken from:
+ * https://stackoverflow.com/questions/1684100/php-form-validation-for-year .
+ *
+ * @param string $data
+ *   The string to validate.
+ *
+ * @return bool
+ *   TRUE if $data is a valid year.
+ */
+function _herbarium_specimen_validate_year($data) {
+  $start_year = strtotime(date('Y') - 500);
+  $end_year = strtotime(date('Y'));
+  $received_year = strtotime($data);
+
+  return (($received_year >= $start_year) && ($received_year <= $end_year));
+}
+
+/**
+ * Validate a string as month.
+ *
+ * @param string $data
+ *   The string to validate.
+ *
+ * @return bool
+ *   TRUE if $data is a valid month.
+ */
+function _herbarium_specimen_validate_month($data) {
+  $data = (int) $data;
+  if ($data >= 1 && $data <= 12) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Validate a string as day.
+ *
+ * @param string $data
+ *   The string to validate.
+ *
+ * @return bool
+ *   TRUE if $data is a valid day.
+ */
+function _herbarium_specimen_validate_day($data) {
+  $data = (int) $data;
+  if ($data >= 1 && $data <= 31) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Validate a date.
+ *
+ * @param int $year
+ *   The year to validate.
+ * @param int $month
+ *   The month to validate.
+ * @param int $day
+ *   The day to validate.
+ *
+ * @return bool
+ *   TRUE if $data is a valid day.
+ */
+function _herbarium_specimen_validate_date($year, $month, $day) {
+  return checkdate($month, $day, $year);
 }

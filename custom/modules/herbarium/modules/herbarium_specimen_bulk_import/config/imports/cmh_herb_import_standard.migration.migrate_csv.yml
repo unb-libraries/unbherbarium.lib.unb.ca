@@ -25,6 +25,21 @@ source:
       cmh_province: Province/State
     5:
       cmh_county: County
+    6:
+      cmh_verbatim_locality: Verbatim Locality
+    7:
+      cmh_geo_longitude: Longitude
+    8:
+      cmh_geo_latitude: Latitude
+    9:
+      cmh_year: Collection Year
+    10:
+      cmh_month: Collection Month
+    11:
+      cmh_day: Collection Day
+    12:
+      cmh_verbatim_date: Verbatim Event Date
+
 destination:
   plugin: entity:node
 
@@ -39,3 +54,8 @@ process:
   field_dwc_country_tax: specimen_country
   field_dwc_province_tax: specimen_province
   field_dwc_county_tax: specimen_county
+  field_dwc_verbatimlocality: cmh_verbatim_locality
+  field_dwc_decimal_longitude: longitude
+  field_dwc_decimal_latitude: latitude
+  field_dwc_eventdate: date
+  field_dwc_verbatimeventdate: cmh_verbatim_date
