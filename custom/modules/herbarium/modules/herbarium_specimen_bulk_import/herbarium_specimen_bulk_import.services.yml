@@ -1,0 +1,5 @@
+services:
+  herbarium_specimen_bulk_import.migrate_subscriber:
+    class: Drupal\herbarium_specimen_bulk_import\Event\MigrateEvent
+    tags:
+      - { name: event_subscriber }

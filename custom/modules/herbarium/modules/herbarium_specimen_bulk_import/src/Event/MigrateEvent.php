@@ -1,18 +1,17 @@
 <?php
 
-namespace Drupal\unb_herbarium_migrate_csv\Event;
+namespace Drupal\herbarium_specimen_bulk_import\Event;
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\file\Entity\File;
 use Drupal\migrate_plus\Event\MigrateEvents;
 use Drupal\migrate_plus\Event\MigratePrepareRowEvent;
 use Drupal\taxonomy\Entity\Term;
-use Drupal\unb_herbarium_migrate_csv\Gpoint\GpointConverter;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\migrate\Row;
 
 /**
- * Defines the migrate event CSV row.
+ * Defines the migrate event subscriber.
  */
 class MigrateEvent implements EventSubscriberInterface {
 
