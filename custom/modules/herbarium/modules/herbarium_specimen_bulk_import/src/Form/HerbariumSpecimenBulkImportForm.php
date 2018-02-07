@@ -4,6 +4,8 @@ namespace Drupal\herbarium_specimen_bulk_import\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\herbarium_specimen_bulk_import\HerbariumCsvMigration;
 use League\Csv\Reader;
@@ -45,13 +47,24 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
     foreach ($import_formats as $import_format) {
       $select_options[$import_format['id']] = $import_format['description'];
     }
-
+    $default_format = array_shift($import_formats);
     $form['upload_import']['import_format'] = [
       '#type' => 'select',
       '#title' => t('Import Format:'),
       '#required' => TRUE,
       '#options' => $select_options,
-      '#default_value' => array_shift($import_formats)['id'],
+      '#default_value' => $default_format['id'],
+      '#ajax' => [
+        'callback' => [$this, 'rebuildDownloadTemplateLink'],
+        'event' => 'change',
+        'wrapper' => 'download-template',
+      ],
+    ];
+
+    $form['upload_import']['download_template'] = [
+      '#markup' => $this->generateTemplateDownloadLink($default_format['id']),
+      '#prefix' => '<div id="download-template">',
+      '#suffix' => '</div>',
     ];
 
     $form['upload_import']['import_file'] = [
@@ -91,22 +104,25 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     $user_input = $form_state->getUserInput();
+
     if (empty($user_input['_triggering_element_value']) || $user_input['_triggering_element_value'] != 'Remove') {
       ini_set("auto_detect_line_endings", '1');
-
       $file = File::Load($form_state->getValue('import_file')[0]);
-      $file_path = drupal_realpath($file->getFileUri());
-      $format_id = $form_state->getValue('import_format');
+      if (!empty($file)) {
+        $file_path = drupal_realpath($file->getFileUri());
+        $format_id = $form_state->getValue('import_format');
 
-      if (
-        $this->validateImportFormat($form_state, $format_id) &&
-        $this->validateCSVStructure($form, $form_state, $file_path, $format_id) &&
-        $this->validateRowData($form, $form_state, $file_path, $format_id) &&
-        $this->validateData($form, $form_state, $file_path, $format_id)
+        if (
+          $this->validateImportFormat($form_state, $format_id) &&
+          $this->validateCSVStructure($form, $form_state, $file_path,
+            $format_id) &&
+          $this->validateRowData($form, $form_state, $file_path, $format_id) &&
+          $this->validateData($form, $form_state, $file_path, $format_id)
 
-      ) {
-        // No errors found. Do nothing, process all validations sequentially.
-      };
+        ) {
+          // No errors found. Do nothing, process all validations sequentially.
+        };
+      }
     }
   }
 
@@ -214,7 +230,7 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
    *   The name of the migration id to leverage.
    *
    * @return bool
-   *   TRUE if the row validates. False otherwise.
+   *   TRUE if the row validates.
    */
   private function validateRowData(array &$form, FormStateInterface $form_state, $file_path, $format_id) {
     $errors = FALSE;
@@ -313,6 +329,47 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
       return FALSE;
     };
     return TRUE;
+  }
+
+  /**
+   * Update the CSV template download link.
+   *
+   * @param array $form
+   *   The form API being rendered.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   *
+   * @return array
+   *   The new form API element.
+   */
+  public function rebuildDownloadTemplateLink(array &$form, FormStateInterface $form_state) {
+    $format_id = $form_state->getValue('import_format');
+    $import_format = _herbarium_specimen_bulk_import_get_import_format($format_id);
+
+    if (empty($import_format)) {
+      $form['upload_import']['download_template']['#markup'] = 'No template found for this import format.';
+    }
+    else {
+      $form['upload_import']['download_template']['#markup'] = $this->generateTemplateDownloadLink($format_id);
+    }
+
+    return $form['upload_import']['download_template'];
+  }
+
+  /**
+   * Generate a download link for the import format template.
+   *
+   * @param string $format_id
+   *   The name of the migration id to leverage.
+   *
+   * @return string
+   *   The markup value for the link.
+   */
+  public static function generateTemplateDownloadLink($format_id) {
+    return Link::fromTextAndUrl(
+      t('Download a blank template for this format'),
+      Url::fromUri("internal:/admin/config/herbarium_core/bulk_import/format/$format_id")
+    )->toString();
   }
 
 }
