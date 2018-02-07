@@ -28,9 +28,9 @@ source:
     6:
       cmh_verbatim_locality: Verbatim Locality
     7:
-      cmh_geo_longitude: Longitude
-    8:
       cmh_geo_latitude: Latitude
+    8:
+      cmh_geo_longitude: Longitude
     9:
       cmh_year: Collection Year
     10:
