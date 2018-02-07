@@ -212,6 +212,9 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
    *   The path the the CSV file.
    * @param string $format_id
    *   The name of the migration id to leverage.
+   *
+   * @return bool
+   *   TRUE if the row validates. False otherwise.
    */
   private function validateRowData(array &$form, FormStateInterface $form_state, $file_path, $format_id) {
     $errors = FALSE;
