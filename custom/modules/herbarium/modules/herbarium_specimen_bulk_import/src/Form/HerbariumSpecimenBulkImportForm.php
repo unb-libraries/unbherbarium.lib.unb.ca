@@ -103,10 +103,10 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
         $this->validateCSVStructure($form, $form_state, $file_path, $format_id) &&
         $this->validateRowData($form, $form_state, $file_path, $format_id) &&
         $this->validateData($form, $form_state, $file_path, $format_id)
+
       ) {
         // No errors found. Do nothing, but process all validations sequentially.
       };
-
     }
   }
 
@@ -243,6 +243,8 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
     if ($errors) {
       $form_state->setErrorByName('import_file', 'One or more errors were found while validating the import file data. Please correct them and resubmit.');
     }
+
+    return empty($errors);
   }
 
   /**
