@@ -105,7 +105,7 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
         $this->validateData($form, $form_state, $file_path, $format_id)
 
       ) {
-        // No errors found. Do nothing, but process all validations sequentially.
+        // No errors found. Do nothing, process all validations sequentially.
       };
     }
   }
