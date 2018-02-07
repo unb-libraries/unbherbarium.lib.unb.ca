@@ -94,6 +94,12 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
       ),
     ];
 
+    $form['import_history']['message'] = [
+      '#markup' => t(
+        '<p style="margin:10px;">Below is a listing of previous bulk imports performed within the last 30 days. After 30 days, the imports will be presumed to be complete and the reference to them will be removed from this display.</p>'
+      ),
+    ];
+
     $form['import_history']['table'] = _herbarium_specimen_bulk_import_get_cmh_migration_table();
 
     return $form;
