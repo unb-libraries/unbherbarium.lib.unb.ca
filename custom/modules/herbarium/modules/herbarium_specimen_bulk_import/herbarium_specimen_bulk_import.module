@@ -230,7 +230,6 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
           ],
         ],
 
-
         [
           'name' => 'Latitude',
           'validate' => [
