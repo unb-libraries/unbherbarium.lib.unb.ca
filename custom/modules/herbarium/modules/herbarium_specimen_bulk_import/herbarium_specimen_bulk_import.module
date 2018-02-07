@@ -134,6 +134,8 @@ function _herbarium_specimen_bulk_import_get_cmh_migration_table($migration_id =
 /**
  * Get the list of import formats.
  *
+ * @TODO This would be much cleaner as configuration.
+ *
  * @return array
  *   An array of formats available to the user with details.
  */
