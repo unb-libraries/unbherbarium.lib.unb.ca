@@ -139,25 +139,7 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
     $variables['specimen_measurement_id_url'] = NULL;
   }
 
-  // Link collectors to prepopulated search.
-  $render_array = [
-    '#theme' => 'item_list',
-    '#list_type' => 'ul',
-    '#items' => [],
-  ];
-  if (!empty($node->get('field_collector_tid'))) {
-    foreach ($node->get('field_collector_tid') as $collector) {
-      $collectors_id = $collector->entity->id();
-      $render_item = [
-        '#markup' => Link::fromTextAndUrl(
-          $collector->entity->getName(),
-          Url::fromUri("internal:/specimen/search?&collector=$collectors_id")
-        )->toString(),
-      ];
-      $render_array['#items'][] = $render_item;
-    }
-  }
-  $variables['collector_html_list'] = $render_array;
+  $variables['collector_html_list'] = _herbarium_specimen_get_collector_list($node);
 
   // Link country to prepopulated search.
   $country_term = $node->get('field_dwc_country_tax')->entity;

@@ -8,6 +8,8 @@
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\node\Entity\Node;
 use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_node_delete().
@@ -215,4 +217,35 @@ function _herbarium_specimen_has_local_images(Node $node) {
   }
 
   return FALSE;
+}
+
+/**
+ * Determine if a specimen has local images set.
+ *
+ * @param \Drupal\node\Entity\Node $node
+ *   The node of the herbarium specimen.
+ *
+ * @return array
+ *   The Form API render array of the collector list.
+ */
+function _herbarium_specimen_get_collector_list(Node $node) {
+  $render_array = [
+    '#theme' => 'item_list',
+    '#list_type' => 'ul',
+    '#items' => [],
+  ];
+
+  if (!empty($node->get('field_collector_tid'))) {
+    foreach ($node->get('field_collector_tid') as $collector) {
+      $collectors_id = $collector->entity->id();
+      $render_item = [
+        '#markup' => Link::fromTextAndUrl(
+          $collector->entity->getName(),
+          Url::fromUri("internal:/specimen/search?&collector=$collectors_id")
+        )->toString(),
+      ];
+      $render_array['#items'][] = $render_item;
+    }
+  }
+  return $render_array;
 }
