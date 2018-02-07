@@ -98,6 +98,11 @@ function _herbarium_specimen_bulk_import_get_cmh_migration_table($migration_id =
         $unprocessed = $source_rows - $map->processedCount();
       }
 
+      $imported_date = 'Never';
+      if ($last_imported != 0) {
+        $imported_date = date("Y-m-d H:i:s", (int) substr($last_imported, 0, 10));
+      }
+
       $rows[] = [
         'data' => [
           Link::createFromRoute($migration->id(), 'herbarium_specimen_bulk_import.view', ['migration_id' => $migration->id()]),
@@ -105,7 +110,7 @@ function _herbarium_specimen_bulk_import_get_cmh_migration_table($migration_id =
           $source_rows,
           $imported,
           $unprocessed,
-          $last_imported,
+          $imported_date,
         ],
       ];
     }
