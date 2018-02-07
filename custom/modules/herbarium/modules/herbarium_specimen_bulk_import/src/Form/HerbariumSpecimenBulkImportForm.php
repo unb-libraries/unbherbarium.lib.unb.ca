@@ -38,7 +38,7 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
     ];
     $form['upload_import']['message'] = [
       '#markup' => t(
-        '<p style="margin:10px;">This tab allows you to bulk import specimens from a CSV file.</p>'
+        '<p style="margin:10px;">This interface provides a bulk specimen creation format. By uploading a CSV file in the specified format, you may create multiple herbarium specimens at once. This interface does not support the uploading of Master Images, which may be done after import by clicking \'Master Image\' on the specimen\'s page, and following the directions in the \'Upload New Master Image\' section. For a sample CSV file matching the required format, click the \'Download a blank template for this format\' link below.</p>'
       ),
     ];
 
