@@ -29,6 +29,8 @@ module:
   help: 0
   herbarium_core: 0
   herbarium_specimen: 0
+  herbarium_specimen_bulk_import: 0
+  herbarium_specimen_csv_export: 0
   herbarium_specimen_lts: 0
   history: 0
   honeypot: 0
@@ -37,6 +39,9 @@ module:
   menu_ui: 0
   migrate: 0
   migrate_drupal: 0
+  migrate_plus: 0
+  migrate_source_csv: 0
+  migrate_tools: 0
   node: 0
   options: 0
   page_cache: 0
