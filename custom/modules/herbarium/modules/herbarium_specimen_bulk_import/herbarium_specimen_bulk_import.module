@@ -417,9 +417,6 @@ function _herbarium_specimen_validate_longitude($data) {
 /**
  * Validate a string as year.
  *
- * Taken from:
- * https://stackoverflow.com/questions/1684100/php-form-validation-for-year .
- *
  * @param string $data
  *   The string to validate.
  *
@@ -427,11 +424,11 @@ function _herbarium_specimen_validate_longitude($data) {
  *   TRUE if $data is a valid year.
  */
 function _herbarium_specimen_validate_year($data) {
-  $start_year = strtotime(date('Y') - 500);
-  $end_year = strtotime(date('Y'));
-  $received_year = strtotime($data);
-
-  return (($received_year >= $start_year) && ($received_year <= $end_year));
+  $data = (int) $data;
+  if ($data >= 0 && $data <= date("Y")) {
+    return TRUE;
+  }
+  return FALSE;
 }
 
 /**
