@@ -5,6 +5,7 @@ namespace Drupal\herbarium_specimen_bulk_import\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
+use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 
 /**
@@ -42,7 +43,11 @@ class HerbariumSpecimenBulkMigrationView extends FormBase {
     if (!empty($migrate_targets)) {
       // Construct header.
       $header = [
-        t('ID'),
+        t('Row'),
+        t('Accession ID'),
+        t('Scientific Name'),
+        t('Collectors'),
+        t('Date Collected'),
       ];
       // Build the rows.
       $rows = [];
@@ -50,9 +55,34 @@ class HerbariumSpecimenBulkMigrationView extends FormBase {
       foreach ($migrate_targets as $target) {
         if (!empty($target->destid1)) {
           $node = Node::load($target->destid1);
+
+          // Collectors.
+          $render_array = [
+            '#theme' => 'item_list',
+            '#list_type' => 'ul',
+            '#items' => [],
+          ];
+          if (!empty($node->get('field_collector_tid'))) {
+            foreach ($node->get('field_collector_tid') as $collector) {
+              $collectors_id = $collector->entity->id();
+              $render_item = [
+                '#markup' => Link::fromTextAndUrl(
+                  $collector->entity->getName(),
+                  Url::fromUri("internal:/specimen/search?&collector=$collectors_id")
+                )->toString(),
+              ];
+              $render_array['#items'][] = $render_item;
+            }
+          }
+          $variables['collector_html_list'] = $render_array;
+
           $rows[] = [
             'data' => [
+              count($rows) + 1,
+              $node->get('field_dwc_record_number')->value,
               Link::createFromRoute($node->getTitle(), 'entity.node.canonical', ['node' => $target->destid1]),
+              render($render_array),
+              $node->get('field_dwc_eventdate')->value,
             ],
           ];
         }
