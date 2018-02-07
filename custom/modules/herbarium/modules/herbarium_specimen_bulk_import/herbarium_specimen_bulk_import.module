@@ -315,11 +315,11 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
           'name' => 'Date',
           'function' => 'checkdate',
           'column_args' => [
-            11,
-            12,
             10,
+            11,
+            9,
           ],
-          'error' => t('is an invalid date'),
+          'error' => t('contains an invalid date in YMD columns'),
         ],
       ],
 

@@ -267,7 +267,14 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
     foreach ($dataRows as $row_id => $row) {
       if (!empty($import_format['validate'])) {
         foreach ($import_format['validate'] as $validator_id => $validator) {
-          if (!$validator['function'](...array_values($validator['column_args']))) {
+          // Pack key column args with values.
+          $validator_args = [];
+          foreach ($validator['column_args'] as $column_key) {
+            $validator_args[] = $row[$column_key];
+          }
+
+          // Validate.
+          if (!$validator['function'](...array_values($validator_args))) {
             $data_row_id = $row_id + 2;
             // Validation failed.
             $errors = TRUE;
