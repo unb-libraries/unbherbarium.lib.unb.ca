@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Implements hook_node_delete().
