@@ -55,7 +55,7 @@ process:
   field_dwc_province_tax: specimen_province
   field_dwc_county_tax: specimen_county
   field_dwc_verbatimlocality: cmh_verbatim_locality
-  field_dwc_decimal_longitude: longitude
-  field_dwc_decimal_latitude: latitude
+  field_dwc_decimal_longitude: cmh_geo_longitude
+  field_dwc_decimal_latitude: cmh_geo_latitude
   field_dwc_eventdate: date
   field_dwc_verbatimeventdate: cmh_verbatim_date

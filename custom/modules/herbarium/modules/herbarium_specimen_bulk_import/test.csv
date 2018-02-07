@@ -1,4 +1,4 @@
-"CMH Accession ID", "Species ID", "Collector(s)", "Country", "Province/State", "County"
-"34564", "1616", "Jake", "Canada", "New Brunswick", "York"
-"34565", "1619", "Jake", "Canada", "New Brunswick", "York"
-"34242", "1622", "Jake", "Canada", "New Brunswick", "York"
+"CMH Accession ID", "Species ID", "Collector(s)", "Country", "Province/State", "County", "Verbatim Locality", "Longitude", "Latitude", "Collection Year", "Collection Month", "Collection Day", "Verbatim Event Date"
+"34564", "1616", "Jake", "Canada", "New Brunswick", "York", "In a ditch.", "45.9636", "-66.6431", "1980", "03", "10", "Before March Break."
+"34565", "1619", "Jake", "Canada", "New Brunswick", "York", "In a ditch.", "45.9636", "-66.6431", "1980", "03", "10", "Before March Break."
+"34242", "1622", "Jake", "Canada", "New Brunswick", "York", "In a ditch.", "45.9636", "-66.6431", "1980", "03", "10", "Before March Break."

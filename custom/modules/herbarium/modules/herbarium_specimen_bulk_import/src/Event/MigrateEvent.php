@@ -60,6 +60,24 @@ class MigrateEvent implements EventSubscriberInterface {
       'specimen_county',
       'specimen_location_county'
     );
+
+    // Collection Date.
+    $year = $row->getSourceProperty('cmh_year');
+    $month = $row->getSourceProperty('cmh_month');
+    $day = $row->getSourceProperty('cmh_day');
+    $iso_date = NULL;
+    if (_herbarium_specimen_validate_year($year) &&
+      _herbarium_specimen_validate_month($month) &&
+      _herbarium_specimen_validate_day($day)) {
+      $date_array = [
+        'year' => $year,
+        'month' => $month,
+        'day' => $day,
+      ];
+      $iso_date = DrupalDateTime::arrayToISO($date_array);
+      $row->setSourceProperty('field_dwc_eventdate', $iso_date);
+    }
+
   }
 
   /**
