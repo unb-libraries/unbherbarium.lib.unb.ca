@@ -238,7 +238,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
               'args' => [
                 'length' => 255,
               ],
-              'error' => t('is not a valid value for latitude. Please use a value between -90 and 90.'),
+              'error' => t('is not a valid value for latitude. Please use a value between -90 and 90'),
             ],
           ],
         ],
@@ -251,7 +251,20 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
               'args' => [
                 'length' => 255,
               ],
-              'error' => t('is not a valid value for longitude. Please use a value between -180 and 180.'),
+              'error' => t('is not a valid value for longitude. Please use a value between -180 and 180'),
+            ],
+          ],
+        ],
+
+        [
+          'name' => 'Geo Precision',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_precision',
+              'args' => [
+                'length' => 255,
+              ],
+              'error' => t('is not a valid value for precision. Please use a value between 1 and 5'),
             ],
           ],
         ],
@@ -264,7 +277,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
               'args' => [
                 'length' => 255,
               ],
-              'error' => t('is not a valid value for year. Please use a value between 0 and this year.'),
+              'error' => t('is not a valid value for year. Please use a value between 0 and this year'),
             ],
           ],
         ],
@@ -277,7 +290,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
               'args' => [
                 'length' => 255,
               ],
-              'error' => t('is not a valid value for the month. Please use a value between 1 and 12.'),
+              'error' => t('is not a valid value for the month. Please use a value between 1 and 12'),
             ],
           ],
         ],
@@ -290,7 +303,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
               'args' => [
                 'length' => 255,
               ],
-              'error' => t('is not a valid value for the day. Please use a value between 1 and 31.'),
+              'error' => t('is not a valid value for the day. Please use a value between 1 and 31'),
             ],
           ],
         ],
@@ -315,9 +328,9 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
           'name' => 'Date',
           'function' => 'checkdate',
           'column_args' => [
-            10,
             11,
-            9,
+            12,
+            10,
           ],
           'error' => t('contains an invalid date in YMD columns'),
         ],
@@ -480,4 +493,26 @@ function _herbarium_specimen_validate_day($data) {
  */
 function _herbarium_specimen_validate_date($year, $month, $day) {
   return checkdate($month, $day, $year);
+}
+
+/**
+ * Validate a string as an internal precision value.
+ *
+ * @param string $data
+ *   The string to validate.
+ *
+ * @return bool
+ *   TRUE if $data is a valid precision value.
+ */
+function _herbarium_specimen_validate_precision($data) {
+  return filter_var(
+    (int) $data,
+    FILTER_VALIDATE_INT,
+    [
+      'options' => [
+        'min_range' => 1,
+        'max_range' => 5,
+      ],
+    ]
+  );
 }

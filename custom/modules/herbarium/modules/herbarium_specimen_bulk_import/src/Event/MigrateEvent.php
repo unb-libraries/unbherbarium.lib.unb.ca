@@ -3,7 +3,6 @@
 namespace Drupal\herbarium_specimen_bulk_import\Event;
 
 use Drupal\Core\Datetime\DrupalDateTime;
-use Drupal\file\Entity\File;
 use Drupal\migrate_plus\Event\MigrateEvents;
 use Drupal\migrate_plus\Event\MigratePrepareRowEvent;
 use Drupal\taxonomy\Entity\Term;
@@ -78,6 +77,27 @@ class MigrateEvent implements EventSubscriberInterface {
       $row->setSourceProperty('cmh_date', $iso_date);
     }
 
+    // Geo precision.
+    $row->setSourceProperty(
+      'geo_precision',
+      $this->precMap($row->getSourceProperty('cmh_precision'))
+    );
+
+    $row->setSourceProperty('geo_heritage', NULL);
+    if (
+      !empty($row->getSourceProperty('cmh_geo_latitude')) &&
+      !empty($row->getSourceProperty('cmh_geo_longitude'))
+    ) {
+      $heritage = t(
+        'Direct from spreadsheet import : @long/@lat/@precision',
+        [
+          '@long' => $row->getSourceProperty('cmh_geo_longitude'),
+          '@lat' => $row->getSourceProperty('cmh_geo_latitude'),
+          '@precision' => $row->getSourceProperty('cmh_precision'),
+        ]
+      );
+      $row->setSourceProperty('geo_heritage', $heritage);
+    }
   }
 
   /**
@@ -172,6 +192,33 @@ class MigrateEvent implements EventSubscriberInterface {
       }
     }
     return FALSE;
+  }
+
+  /**
+   * Map the coordinate precision from internal system to decimal amount.
+   *
+   * @param int $prec
+   *   The precision value between 1 and 5.
+   *
+   * @return float
+   *   The coordinate precision.
+   */
+  public function precMap($prec) {
+    $coordPrec = NULL;
+    if (is_numeric($prec)) {
+      $intPrec = floor($prec);
+      if ($intPrec >= 1 && $intPrec <= 5) {
+        $precisionMap = [
+          1 => '0.0001',
+          2 => '0.001',
+          3 => '0.01',
+          4 => '0.1',
+          5 => '1.0',
+        ];
+        $coordPrec = $precisionMap[$intPrec];
+      }
+    }
+    return $coordPrec;
   }
 
 }
