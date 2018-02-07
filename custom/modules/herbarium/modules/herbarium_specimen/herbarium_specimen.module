@@ -38,6 +38,61 @@ function herbarium_specimen_node_delete(EntityInterface $node) {
 }
 
 /**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function herbarium_specimen_node_presave($node) {
+  switch ($node->getType()) {
+    case 'herbarium_specimen':
+      $target_id = $node
+        ->get('field_taxonomy_tid')
+        ->get(0)
+        ->get('target_id')
+        ->getString();
+      if (!empty($target_id)) {
+        $term = Term::load($target_id);
+        $full_title = _herbarium_core_term_build_full_name(
+          $term,
+          HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANKS_TO_OMIT_PRINTING,
+          FALSE
+        );
+      }
+
+      // Populate the title field.
+      $node->title = (empty($full_title)) ? 'Unknown' : $full_title;
+
+      // Populate Additional Search Metadata from 'Text (plain, long)' fields.
+      $metadata = '';
+      $combine_fields = [
+        'field_dwc_habitat',
+        'field_dwc_eventremarks',
+        'field_dwc_occurrenceremarks',
+      ];
+      foreach ($combine_fields as $field) {
+        if ($node->hasField($field)) {
+          $metadata .= trim(
+              $node
+                ->get($field)
+                ->getString()
+            ) .
+            ' ';
+        }
+      }
+      if (strlen($metadata) > 2048) {
+        $metadata = substr($metadata, 0, 2048);
+        drupal_set_message(
+          'Search metadata field truncated. Some text may not be searchable!',
+          'warning'
+        );
+      }
+      $node
+        ->get('field_additional_search_metadata')
+        ->setValue(trim($metadata));
+
+      break;
+  }
+}
+
+/**
  * Implements hook_preprocess_views_exposed_form().
  */
 function herbarium_specimen_preprocess_views_exposed_form(&$variables) {
