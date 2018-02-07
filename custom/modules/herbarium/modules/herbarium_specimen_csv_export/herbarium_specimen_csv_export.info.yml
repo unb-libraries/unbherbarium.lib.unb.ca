@@ -1,0 +1,7 @@
+name: Herbarium Specimen CSV Export
+type: module
+description: Herbarium Specimen CSV Export
+core: 8.x
+package: Herbarium
+dependencies:
+  - herbarium_specimen_bulk_import

@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Contains herbarium_core.module.
+ */
+
+use Drupal\Core\Link;
+use Drupal\Core\Url;
+
+/**
+ * Generate the HTML link text for a CSV export link.
+ *
+ * @param array $nids
+ *   The NIDs to include in the export being linked to.
+ * @param string $link_text
+ *   The text to use in when rendering the link.
+ *
+ * @return string
+ *   The HTML for the link.
+ */
+function _herbarium_specimen_generate_csv_export_link(array $nids = [], $link_text = 'CSV Export') {
+  return Link::fromTextAndUrl(
+    $link_text,
+    Url::fromRoute(
+      'herbarium_specimen_csv_export.download',
+      [
+        'node_ids' => implode('|', $nids),
+      ]
+    )
+  )->toString();
+}
