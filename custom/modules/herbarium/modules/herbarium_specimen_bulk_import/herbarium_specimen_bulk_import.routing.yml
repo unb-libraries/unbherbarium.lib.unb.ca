@@ -13,3 +13,11 @@ herbarium_specimen_bulk_import.view:
     _title: 'Bulk Import Details'
   requirements:
     _permission: 'access content'
+
+herbarium_specimen_bulk_import.format.template:
+  path: '/admin/config/herbarium_core/bulk_import/format/{format_id}'
+  defaults:
+    _controller: '\Drupal\herbarium_specimen_bulk_import\Controller\DownloadCSVTemplateController::serveFile'
+    _title: 'Download CSV Template File'
+  requirements:
+    _permission: 'access content'
