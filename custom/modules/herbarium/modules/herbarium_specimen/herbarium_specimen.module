@@ -89,6 +89,16 @@ function herbarium_specimen_node_presave($node) {
         ->get('field_additional_search_metadata')
         ->setValue(trim($metadata));
 
+      // Populate google map field.
+      $lat = trim($node->get('field_dwc_decimallatitude')->getString());
+      $long = trim($node->get('field_dwc_decimallongitude')->getString());
+      if ($lat && $long) {
+        $gmap = $lat . ',' . $long;
+        $node
+          ->get('field_gmap')
+          ->setValue($gmap);
+      }
+
       break;
   }
 }
