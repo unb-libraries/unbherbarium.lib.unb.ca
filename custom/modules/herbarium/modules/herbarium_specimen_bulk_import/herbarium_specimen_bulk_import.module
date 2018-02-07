@@ -205,6 +205,19 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
         ],
 
         [
+          'name' => 'County',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_string_length',
+              'args' => [
+                'length' => 255,
+              ],
+              'error' => t('exceeds the maximum length of 255 characters'),
+            ],
+          ],
+        ],
+
+        [
           'name' => 'Verbatim Locality',
           'validate' => [
             [
