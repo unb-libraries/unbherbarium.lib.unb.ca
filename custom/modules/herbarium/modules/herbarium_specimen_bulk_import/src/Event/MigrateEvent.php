@@ -75,7 +75,7 @@ class MigrateEvent implements EventSubscriberInterface {
         'day' => $day,
       ];
       $iso_date = DrupalDateTime::arrayToISO($date_array);
-      $row->setSourceProperty('field_dwc_eventdate', $iso_date);
+      $row->setSourceProperty('cmh_date', $iso_date);
     }
 
   }
