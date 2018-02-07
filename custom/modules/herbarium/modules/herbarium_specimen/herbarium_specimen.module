@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\node\Entity\Node;
 use Drupal\taxonomy\Entity\Term;
 
 /**
@@ -157,7 +158,7 @@ function _herbarium_specimen_generate_specimen_surrogates_batch($nid, $file_path
 /**
  * Manually remove the broken surrogate images from a herbarium specimen.
  *
- * @param object $nid
+ * @param int $nid
  *   The node id of the parent herbarium_specimen node.
  * @param string $field_name
  *   The field to remove the surrogates from. Fields:
@@ -193,14 +194,22 @@ function _herbarium_specimen_manually_remove_broken_file_reference($nid, $field_
   }
 }
 
-function _herbarium_specimen_has_local_images($node) {
+/**
+ * Determine if a specimen has local images set.
+ *
+ * @param \Drupal\node\Entity\Node $node
+ *   The node of the herbarium specimen.
+ *
+ * @return bool
+ *   TRUE if the node has local images, FALSE otherwise.
+ */
+function _herbarium_specimen_has_local_images(Node $node) {
   $surrogate_fields = [
     'field_large_sample_surrogate',
   ];
 
   foreach ($surrogate_fields as $surrogate_field) {
     if (!empty($node->get($surrogate_field)->entity)) {
-      // Set field value as empty.
       return TRUE;
     }
   }
