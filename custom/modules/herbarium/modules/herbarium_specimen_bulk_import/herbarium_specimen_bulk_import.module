@@ -321,6 +321,97 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
           ],
         ],
 
+        [
+          'name' => 'Abundance',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_string_length',
+              'args' => [
+                'length' => 2048,
+              ],
+              'error' => t('exceeds the maximum length of 2048 characters'),
+            ],
+          ],
+        ],
+
+        [
+          'name' => 'Habitat',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_string_length',
+              'args' => [
+                'length' => 2048,
+              ],
+              'error' => t('exceeds the maximum length of 2048 characters'),
+            ],
+          ],
+        ],
+
+        [
+          'name' => 'Occurrence Remarks',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_string_length',
+              'args' => [
+                'length' => 2048,
+              ],
+              'error' => t('exceeds the maximum length of 2048 characters'),
+            ],
+          ],
+        ],
+
+        [
+          'name' => 'Other Catalogue No.',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_string_length',
+              'args' => [
+                'length' => 255,
+              ],
+              'error' => t('exceeds the maximum length of 255 characters'),
+            ],
+          ],
+        ],
+
+        [
+          'name' => 'Previous Identifications',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_string_length',
+              'args' => [
+                'length' => 255,
+              ],
+              'error' => t('exceeds the maximum length of 255 characters'),
+            ],
+          ],
+        ],
+
+        [
+          'name' => 'Reproductive Condition',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_string_length',
+              'args' => [
+                'length' => 255,
+              ],
+              'error' => t('exceeds the maximum length of 255 characters'),
+            ],
+          ],
+        ],
+
+        [
+          'name' => 'Data Entry By',
+          'validate' => [
+            [
+              'function' => '_herbarium_specimen_validate_string_length',
+              'args' => [
+                'length' => 255,
+              ],
+              'error' => t('exceeds the maximum length of 255 characters'),
+            ],
+          ],
+        ],
+
       ],
 
       'validate' => [

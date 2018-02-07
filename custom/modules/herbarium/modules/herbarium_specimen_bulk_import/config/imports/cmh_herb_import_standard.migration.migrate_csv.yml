@@ -41,6 +41,20 @@ source:
       cmh_day: Collection Day
     13:
       cmh_verbatim_date: Verbatim Event Date
+    14:
+      cmh_abundance: Abundance
+    15:
+      cmh_habitat: Habitat
+    16:
+      cmh_occurrence_remarks: Occurrence Remarks
+    17:
+      cmh_other_cat_no: Other Catalogue No.
+    18:
+      cmh_previous_identifications: Previous Identifications
+    19:
+      cmh_reproductive_condition: Reproductive Condition
+    20:
+      cmh_data_entry: Data Entered By
 
 destination:
   plugin: entity:node
@@ -63,4 +77,10 @@ process:
   field_geoheritage: geo_heritage
   field_dwc_eventdate: cmh_date
   field_dwc_verbatimeventdate: cmh_verbatim_date
-
+  field_dwc_eventremarks: cmh_abundance
+  field_dc_contributor_other: cmh_data_entry
+  field_dwc_habitat: cmh_habitat
+  field_dwc_occurrenceremarks: cmh_occurrence_remarks
+  field_dwc_othercatalognumbers: cmh_other_cat_no
+  field_previous_identifications: cmh_previous_identifications
+  field_dwc_reproductivecondition: cmh_reproductive_condition
