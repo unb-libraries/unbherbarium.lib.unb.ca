@@ -411,7 +411,7 @@ function _herbarium_specimen_validate_latitude($data) {
  *   TRUE if $data is a valid longitude value.
  */
 function _herbarium_specimen_validate_longitude($data) {
-  return preg_match('/^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$/', $long);
+  return preg_match('/^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$/', $data);
 }
 
 /**
