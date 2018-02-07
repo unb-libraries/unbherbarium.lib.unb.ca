@@ -101,7 +101,8 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
       if (
         $this->validateImportFormat($form_state, $format_id) &&
         $this->validateCSVStructure($form, $form_state, $file_path, $format_id) &&
-        $this->validateRowData($form, $form_state, $file_path, $format_id)
+        $this->validateRowData($form, $form_state, $file_path, $format_id) &&
+        $this->validateData($form, $form_state, $file_path, $format_id)
       ) {
         // No errors found. Do nothing, but process all validations sequentially.
       };
@@ -239,6 +240,45 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
       }
     }
 
+    if ($errors) {
+      $form_state->setErrorByName('import_file', 'One or more errors were found while validating the import file data. Please correct them and resubmit.');
+    }
+  }
+
+  /**
+   * Validate a CSV import's row entire data to determine if errors may exist.
+   *
+   * @param array $form
+   *   The form API array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   * @param string $file_path
+   *   The path the the CSV file.
+   * @param string $format_id
+   *   The name of the migration id to leverage.
+   */
+  private function validateData(array &$form, FormStateInterface $form_state, $file_path, $format_id) {
+    $errors = FALSE;
+    $reader = Reader::createFromPath($file_path, 'r');
+    $dataRows = $reader->setOffset(1)->fetchAll();
+    $import_format = _herbarium_specimen_bulk_import_get_import_format($format_id);
+
+    // Iterate and validate data.
+    foreach ($dataRows as $row_id => $row) {
+      if (!empty($import_format['validate'])) {
+        foreach ($import_format['validate'] as $validator_id => $validator) {
+          if (!$validator['function'](...array_values($validator['column_args']))) {
+            $data_row_id = $row_id + 2;
+            // Validation failed.
+            $errors = TRUE;
+            drupal_set_message(
+              "{$validator['name']} validation failed in row $data_row_id, {$validator['error']}.",
+              'error'
+            );
+          }
+        }
+      }
+    }
     if ($errors) {
       $form_state->setErrorByName('import_file', 'One or more errors were found while validating the import file data. Please correct them and resubmit.');
     }

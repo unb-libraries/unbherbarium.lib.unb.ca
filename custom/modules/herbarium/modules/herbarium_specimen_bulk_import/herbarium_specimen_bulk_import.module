@@ -309,6 +309,20 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
         ],
 
       ],
+
+      'validate' => [
+        [
+          'name' => 'Date',
+          'function' => 'checkdate',
+          'column_args' => [
+            11,
+            12,
+            10,
+          ],
+          'error' => t('is an invalid date'),
+        ],
+      ],
+
     ],
   ];
 }
