@@ -178,7 +178,19 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
   }
 
   /**
-   * {@inheritdoc}
+   * Validate a CSV file's general structure.
+   *
+   * @param array $form
+   *   The form API array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   * @param string $file_path
+   *   The path the the CSV file.
+   * @param string $format_id
+   *   The name of the migration id to leverage.
+   *
+   * @return bool
+   *   TRUE if the file validates.
    */
   private function validateCsvStructure(array &$form, FormStateInterface $form_state, $file_path, $format_id) {
     // Validate CSV structure.
