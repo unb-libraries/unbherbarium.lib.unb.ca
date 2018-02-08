@@ -120,7 +120,7 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
 
         if (
           $this->validateImportFormat($form_state, $format_id) &&
-          $this->validateCSVStructure($form, $form_state, $file_path,
+          $this->validateCsvStructure($form, $form_state, $file_path,
             $format_id) &&
           $this->validateRowData($form, $form_state, $file_path, $format_id) &&
           $this->validateData($form, $form_state, $file_path, $format_id)
@@ -180,7 +180,7 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  private function validateCSVStructure(array &$form, FormStateInterface $form_state, $file_path, $format_id) {
+  private function validateCsvStructure(array &$form, FormStateInterface $form_state, $file_path, $format_id) {
     // Validate CSV structure.
     try {
       $reader = Reader::createFromPath($file_path, 'r');
