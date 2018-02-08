@@ -34,3 +34,21 @@ Feature: Core
       When I go to "admin/structure/taxonomy/manage/tags/overview"
       Then I should see "Tag one"
       And I should see "Tag two"
+
+  Scenario: Herbarium Specimen Search
+    Given "herbarium_specimen_collector" terms:
+      | name           |
+      | Queen Anne     |
+    Given "herbarium_specimen_taxonomy" terms:
+      | name                | field_dwc_taxonrank    | parent   |
+      | Bumpusa             | Family                 |          |
+      | Biggusum            | Genus                  | Bumpusa  |
+      | Bimora              | Species                | Biggusum |
+      | Loscuma             | ssp.                   | Bimora   |
+    And  "herbarium_specimen" content:
+      | title        | field_taxonomy_tid     | field_collector_tid   |
+      | Test         | Loscuma                | Queen Anne            |
+    When I visit "/specimen/search"
+    And I fill in "Scientific Name" with "Loscuma"
+    Then I press "Apply search"
+    Then I should see "Queen Anne"
