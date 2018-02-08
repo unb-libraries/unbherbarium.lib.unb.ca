@@ -32,71 +32,78 @@ class MigrateEvent implements EventSubscriberInterface {
    */
   public function onPrepareRow(MigratePrepareRowEvent $event) {
     $row = $event->getRow();
+    $migration = $event->getMigration();
+    $id = $migration->id();
+    $query = 'cmh_herb_import_standard';
 
-    // Collectors.
-    $this->prepareCollectorData($row, 'specimen_collectors');
+    // Only act on rows for this migration.
+    if (substr($id, 0, strlen($query)) === $query) {
 
-    // Country.
-    $this->prepareTaxonomyData(
-      $row,
-      'cmh_country',
-      'specimen_country',
-      'specimen_location_country'
-    );
+      // Collectors.
+      $this->prepareCollectorData($row, 'specimen_collectors');
 
-    // Province.
-    $this->prepareTaxonomyData(
-      $row,
-      'cmh_province',
-      'specimen_province',
-      'specimen_location_province'
-    );
-
-    // County.
-    $this->prepareTaxonomyData(
-      $row,
-      'cmh_county',
-      'specimen_county',
-      'specimen_location_county'
-    );
-
-    // Collection Date.
-    $year = $row->getSourceProperty('cmh_year');
-    $month = $row->getSourceProperty('cmh_month');
-    $day = $row->getSourceProperty('cmh_day');
-    $iso_date = NULL;
-    if (_herbarium_specimen_validate_year($year) &&
-      _herbarium_specimen_validate_month($month) &&
-      _herbarium_specimen_validate_day($day)) {
-      $date_array = [
-        'year' => $year,
-        'month' => $month,
-        'day' => $day,
-      ];
-      $iso_date = DrupalDateTime::arrayToISO($date_array);
-      $row->setSourceProperty('cmh_date', $iso_date);
-    }
-
-    // Geo precision.
-    $row->setSourceProperty(
-      'geo_precision',
-      $this->precMap($row->getSourceProperty('cmh_precision'))
-    );
-
-    $row->setSourceProperty('geo_heritage', NULL);
-    if (
-      !empty($row->getSourceProperty('cmh_geo_latitude')) &&
-      !empty($row->getSourceProperty('cmh_geo_longitude'))
-    ) {
-      $heritage = t(
-        'Direct from spreadsheet import : @long/@lat/@precision',
-        [
-          '@long' => $row->getSourceProperty('cmh_geo_longitude'),
-          '@lat' => $row->getSourceProperty('cmh_geo_latitude'),
-          '@precision' => $row->getSourceProperty('cmh_precision'),
-        ]
+      // Country.
+      $this->prepareTaxonomyData(
+        $row,
+        'cmh_country',
+        'specimen_country',
+        'specimen_location_country'
       );
-      $row->setSourceProperty('geo_heritage', $heritage);
+
+      // Province.
+      $this->prepareTaxonomyData(
+        $row,
+        'cmh_province',
+        'specimen_province',
+        'specimen_location_province'
+      );
+
+      // County.
+      $this->prepareTaxonomyData(
+        $row,
+        'cmh_county',
+        'specimen_county',
+        'specimen_location_county'
+      );
+
+      // Collection Date.
+      $year = $row->getSourceProperty('cmh_year');
+      $month = $row->getSourceProperty('cmh_month');
+      $day = $row->getSourceProperty('cmh_day');
+      $iso_date = NULL;
+      if (_herbarium_specimen_validate_year($year) &&
+        _herbarium_specimen_validate_month($month) &&
+        _herbarium_specimen_validate_day($day)) {
+        $date_array = [
+          'year' => $year,
+          'month' => $month,
+          'day' => $day,
+        ];
+        $iso_date = DrupalDateTime::arrayToISO($date_array);
+        $row->setSourceProperty('cmh_date', $iso_date);
+      }
+
+      // Geo precision.
+      $row->setSourceProperty(
+        'geo_precision',
+        $this->precMap($row->getSourceProperty('cmh_precision'))
+      );
+
+      $row->setSourceProperty('geo_heritage', NULL);
+      if (
+        !empty($row->getSourceProperty('cmh_geo_latitude')) &&
+        !empty($row->getSourceProperty('cmh_geo_longitude'))
+      ) {
+        $heritage = t(
+          'Direct from spreadsheet import : @long/@lat/@precision',
+          [
+            '@long' => $row->getSourceProperty('cmh_geo_longitude'),
+            '@lat' => $row->getSourceProperty('cmh_geo_latitude'),
+            '@precision' => $row->getSourceProperty('cmh_precision'),
+          ]
+        );
+        $row->setSourceProperty('geo_heritage', $heritage);
+      }
     }
   }
 

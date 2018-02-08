@@ -32,225 +32,238 @@ class MigrateEvent implements EventSubscriberInterface {
   public function onPrepareRow(MigratePrepareRowEvent $event) {
     $images_path = UNB_HERBARIUM_MIGRATE_CSV_SPECIES_IMPORT_DATA_DIR;
     $row = $event->getRow();
+    $migration = $event->getMigration();
+    $id = $migration->id();
 
-    // Accession Number, aka ID.
-    $accNum = trim($row->getSourceProperty('record_number'));
+    // Only act on rows for this migration.
+    if ($id == 'herbarium_samples_csv') {
+      // Accession Number, aka ID.
+      $accNum = trim($row->getSourceProperty('record_number'));
 
-    $year = (trim($row->getSourceProperty('year')) != '') ? $row->getSourceProperty('year') : NULL;
-    $month = (trim($row->getSourceProperty('month')) != '') ? $row->getSourceProperty('month') : NULL;
-    $day = (trim($row->getSourceProperty('day')) != '') ? $row->getSourceProperty('day') : NULL;
+      $year = (trim($row->getSourceProperty('year')) != '') ? $row->getSourceProperty('year') : NULL;
+      $month = (trim($row->getSourceProperty('month')) != '') ? $row->getSourceProperty('month') : NULL;
+      $day = (trim($row->getSourceProperty('day')) != '') ? $row->getSourceProperty('day') : NULL;
 
-    // Collection Date.
-    $iso_date = NULL;
-    if ($this->isValidYearRange($year) &&
+      // Collection Date.
+      $iso_date = NULL;
+      if ($this->isValidYearRange($year) &&
         $this->isValidMonthRange($month) &&
         $this->isValidDayRange($day)) {
-      $date_array = [
-        'year' => $year,
-        'month' => $month,
-        'day' => $day,
-      ];
-      $iso_date = DrupalDateTime::arrayToISO($date_array);
-      $row->setSourceProperty('date_iso', $iso_date);
-    }
-
-    // Verbatim Event Date (compressed whitespace).
-    $date_str = 'Y: ' . $year . ' M: ' . $month . ' D: ' . $day;
-    $row->setSourceProperty('dwc_verbatimeventdate', preg_replace(
-      '/\s+/', ' ', $date_str)
-    );
-
-    // Record Creation Date.
-    $date_array = [];
-    $record_creation_date_valid = FALSE;
-    $date_str = str_replace("/", "-", trim($row->getSourceProperty('dc_created')));
-    if (!empty($date_str)) {
-      list($date_array['year'], $date_array['month'], $date_array['day']) = array_filter(explode("-", $date_str));
-      if ($this->isValidYearRange($date_array['year']) &&
-        $this->isValidMonthRange($date_array['month']) &&
-        $this->isValidDayRange($date_array['day'])
-      ) {
-        $record_creation_date_valid = TRUE;
+        $date_array = [
+          'year' => $year,
+          'month' => $month,
+          'day' => $day,
+        ];
         $iso_date = DrupalDateTime::arrayToISO($date_array);
-        $row->setSourceProperty('date_created_iso', $iso_date);
-        $timestamp = strtotime($date_str);
-        $row->setSourceProperty('created_timestamp', (int) $timestamp);
-        $row->setSourceProperty('changed_timestamp', (int) $timestamp);
+        $row->setSourceProperty('date_iso', $iso_date);
       }
-    }
 
-    // Modification Date.
-    $date_array = [];
-    $date_str = str_replace("/", "-", trim($row->getSourceProperty('dc_modified')));
-    if (!empty($date_str)) {
-      list($date_array['year'], $date_array['month'], $date_array['day']) = array_filter(explode("-", $date_str));
-      if ($this->isValidYearRange($date_array['year']) &&
-        $this->isValidMonthRange($date_array['month']) &&
-        $this->isValidDayRange($date_array['day'])
-      ) {
-        $iso_date = DrupalDateTime::arrayToISO($date_array);
-        $row->setSourceProperty('date_modified_iso', $iso_date);
-        $timestamp = strtotime($date_str);
-        $row->setSourceProperty('changed_timestamp', (int) $timestamp);
-        if (!$record_creation_date_valid) {
+      // Verbatim Event Date (compressed whitespace).
+      $date_str = 'Y: ' . $year . ' M: ' . $month . ' D: ' . $day;
+      $row->setSourceProperty('dwc_verbatimeventdate', preg_replace(
+          '/\s+/', ' ', $date_str)
+      );
+
+      // Record Creation Date.
+      $date_array = [];
+      $record_creation_date_valid = FALSE;
+      $date_str = str_replace("/", "-",
+        trim($row->getSourceProperty('dc_created')));
+      if (!empty($date_str)) {
+        list($date_array['year'], $date_array['month'], $date_array['day']) = array_filter(explode("-",
+          $date_str));
+        if ($this->isValidYearRange($date_array['year']) &&
+          $this->isValidMonthRange($date_array['month']) &&
+          $this->isValidDayRange($date_array['day'])
+        ) {
+          $record_creation_date_valid = TRUE;
+          $iso_date = DrupalDateTime::arrayToISO($date_array);
+          $row->setSourceProperty('date_created_iso', $iso_date);
+          $timestamp = strtotime($date_str);
           $row->setSourceProperty('created_timestamp', (int) $timestamp);
+          $row->setSourceProperty('changed_timestamp', (int) $timestamp);
         }
       }
-    }
 
-    // Province Value - trim whitespace+strip periods.
-    $dwc_province = trim($row->getSourceProperty('stateprovince'));
-    $row->setSourceProperty('dwc_stateprovince', str_replace('.', '', $dwc_province));
-
-    // Geo Heritage (Longitude/Latitude).
-    $precisionValue = trim($row->getSourceProperty('coordinateprecision'));
-    $longDec = trim($row->getSourceProperty('longitudedecimal'));
-    $latDec = trim($row->getSourceProperty('latitudedecimal'));
-    $longDig = trim($row->getSourceProperty('longitudedigital'));
-    $latDig = trim($row->getSourceProperty('latitudedigital'));
-    $longDeg = trim($row->getSourceProperty('longitudedegree'));
-    $longMin = trim($row->getSourceProperty('longitudeminute'));
-    $longSec = trim($row->getSourceProperty('longitudesecond'));
-    $latDeg = trim($row->getSourceProperty('latitudedegree'));
-    $latMin = trim($row->getSourceProperty('latitudeminute'));
-    $latSec = trim($row->getSourceProperty('latitudesecond'));
-    $geoUTMZ = trim($row->getSourceProperty('geoheritage_utmz'));
-    $geoUTME = trim($row->getSourceProperty('geoheritage_utme'));
-    $geoUTMN = trim($row->getSourceProperty('geoheritage_utmn'));
-
-    $longLatItems = [
-      $accNum,
-      $precisionValue,
-      $longDec,
-      $latDec,
-      $longDig,
-      $latDig,
-      $longDeg,
-      $longMin,
-      $longSec,
-      $latDeg,
-      $latMin,
-      $latSec,
-      $geoUTMZ,
-      $geoUTME,
-      $geoUTMN,
-    ];
-    list($decLong, $decLat, $geoRefRem) = $this->determineLongitudeLatitude($longLatItems);
-    $row->setSourceProperty('geo_heritage', $geoRefRem);
-
-    // Coordinate Precision.
-    $coordPrec = $this->precMap($precisionValue);
-    $row->setSourceProperty('mapped_coord_prec', $coordPrec);
-
-    if ($decLat != NULL && $decLong != NULL) {
-      $country = trim($row->getSourceProperty('country'));
-      $isCanada = (substr(strtolower($country), 0, 3) === "can") ? TRUE : FALSE;
-      if ($decLong > 0 && $isCanada) {
-        // Canadian Longitude should be negative.
-        $decLong = $decLong * (-1);
-      }
-      $row->setSourceProperty('dwc_longitude', $decLong);
-      $row->setSourceProperty('dwc_latitude', $decLat);
-      $row->setSourceProperty('one_line_gmap_address', $decLat . ',' . $decLong);
-    }
-
-    // Record Number aka UNB Accession No.
-    $row->setSourceProperty('record_number_string', $accNum);
-
-    // Sample Collectors.
-    $specimen_collector_ids = [];
-    $fieldname = 'name';
-    $vocabulary = 'herbarium_specimen_collector';
-    $collectors = explode(";", $row->getSourceProperty('collectors'));
-    foreach ($collectors as $value) {
-      $term_value = trim($value);
-      if (!empty($term_value)) {
-        $term_tid = $this->taxtermExists($term_value, $fieldname, $vocabulary);
-        if (!empty($term_tid)) {
-          $term = Term::load($term_tid);
+      // Modification Date.
+      $date_array = [];
+      $date_str = str_replace("/", "-",
+        trim($row->getSourceProperty('dc_modified')));
+      if (!empty($date_str)) {
+        list($date_array['year'], $date_array['month'], $date_array['day']) = array_filter(explode("-",
+          $date_str));
+        if ($this->isValidYearRange($date_array['year']) &&
+          $this->isValidMonthRange($date_array['month']) &&
+          $this->isValidDayRange($date_array['day'])
+        ) {
+          $iso_date = DrupalDateTime::arrayToISO($date_array);
+          $row->setSourceProperty('date_modified_iso', $iso_date);
+          $timestamp = strtotime($date_str);
+          $row->setSourceProperty('changed_timestamp', (int) $timestamp);
+          if (!$record_creation_date_valid) {
+            $row->setSourceProperty('created_timestamp', (int) $timestamp);
+          }
         }
-        else {
-          $term = Term::create([
-            'vid' => $vocabulary,
-            $fieldname => $term_value,
-          ]);
-          $term->save();
-        }
-        $specimen_collector_ids[] = $term->id();
       }
-    }
-    $row->setSourceProperty('specimen_collector', $specimen_collector_ids);
 
-    // Country.
-    $country_val = $row->getSourceProperty('country');
-    if (!empty($country_val)) {
-      $tid = _unb_herbarium_create_tax_term_if_not_exists(
-        $country_val,
-        'specimen_location_country'
-      );
-      $row->setSourceProperty('country_tid', $tid);
-    }
-    else {
-      $row->setSourceProperty('country_tid', NULL);
-    }
+      // Province Value - trim whitespace+strip periods.
+      $dwc_province = trim($row->getSourceProperty('stateprovince'));
+      $row->setSourceProperty('dwc_stateprovince',
+        str_replace('.', '', $dwc_province));
 
-    // Province.
-    $province_val = $row->getSourceProperty('dwc_stateprovince');
-    if (!empty($province_val)) {
-      $tid = _unb_herbarium_create_tax_term_if_not_exists(
-        $province_val,
-        'specimen_location_province'
-      );
-      $row->setSourceProperty('dwc_stateprovince_tid', $tid);
-    }
-    else {
-      $row->setSourceProperty('dwc_stateprovince_tid', NULL);
-    }
+      // Geo Heritage (Longitude/Latitude).
+      $precisionValue = trim($row->getSourceProperty('coordinateprecision'));
+      $longDec = trim($row->getSourceProperty('longitudedecimal'));
+      $latDec = trim($row->getSourceProperty('latitudedecimal'));
+      $longDig = trim($row->getSourceProperty('longitudedigital'));
+      $latDig = trim($row->getSourceProperty('latitudedigital'));
+      $longDeg = trim($row->getSourceProperty('longitudedegree'));
+      $longMin = trim($row->getSourceProperty('longitudeminute'));
+      $longSec = trim($row->getSourceProperty('longitudesecond'));
+      $latDeg = trim($row->getSourceProperty('latitudedegree'));
+      $latMin = trim($row->getSourceProperty('latitudeminute'));
+      $latSec = trim($row->getSourceProperty('latitudesecond'));
+      $geoUTMZ = trim($row->getSourceProperty('geoheritage_utmz'));
+      $geoUTME = trim($row->getSourceProperty('geoheritage_utme'));
+      $geoUTMN = trim($row->getSourceProperty('geoheritage_utmn'));
 
-    // County.
-    $county_val = $row->getSourceProperty('county');
-    if (!empty($county_val)) {
-      $tid = _unb_herbarium_create_tax_term_if_not_exists(
-        $county_val,
-        'specimen_location_county'
-      );
-      $row->setSourceProperty('county_tid', $tid);
-    }
-    else {
-      $row->setSourceProperty('county_tid', NULL);
-    }
+      $longLatItems = [
+        $accNum,
+        $precisionValue,
+        $longDec,
+        $latDec,
+        $longDig,
+        $latDig,
+        $longDeg,
+        $longMin,
+        $longSec,
+        $latDeg,
+        $latMin,
+        $latSec,
+        $geoUTMZ,
+        $geoUTME,
+        $geoUTMN,
+      ];
+      list($decLong, $decLat, $geoRefRem) = $this->determineLongitudeLatitude($longLatItems);
+      $row->setSourceProperty('geo_heritage', $geoRefRem);
 
-    $dwc_previousidents_raw = trim($row->getSourceProperty('previous_identifications'));
-    // DetAnnList field values are delimited by vertical tab character.
-    $dwc_previousidents = explode("\v", $dwc_previousidents_raw);
-    $row->setSourceProperty('previous_identifications', $dwc_previousidents);
+      // Coordinate Precision.
+      $coordPrec = $this->precMap($precisionValue);
+      $row->setSourceProperty('mapped_coord_prec', $coordPrec);
 
-    // Sample Taxonomy.
-    $full_title = "Untitled";
-    $fieldname = 'field_dwc_taxonid';
-    $vocabulary = 'herbarium_specimen_taxonomy';
-    $tax_id = trim($row->getSourceProperty('assigned_taxon'));
-    if (is_numeric($tax_id)) {
-      $term_tid = $this->taxtermExists($tax_id, $fieldname, $vocabulary);
-      if (!empty($term_tid)) {
-        $term = Term::load($term_tid);
-        $assign_taxon_id = $term->id();
-        $row->setSourceProperty('assigned_taxon', $assign_taxon_id);
+      if ($decLat != NULL && $decLong != NULL) {
+        $country = trim($row->getSourceProperty('country'));
+        $isCanada = (substr(strtolower($country), 0,
+            3) === "can") ? TRUE : FALSE;
+        if ($decLong > 0 && $isCanada) {
+          // Canadian Longitude should be negative.
+          $decLong = $decLong * (-1);
+        }
+        $row->setSourceProperty('dwc_longitude', $decLong);
+        $row->setSourceProperty('dwc_latitude', $decLat);
+        $row->setSourceProperty('one_line_gmap_address',
+          $decLat . ',' . $decLong);
+      }
 
-        $full_title = _herbarium_core_term_build_full_name(
-          $term,
-          HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANKS_TO_OMIT_PRINTING,
-          FALSE
+      // Record Number aka UNB Accession No.
+      $row->setSourceProperty('record_number_string', $accNum);
+
+      // Sample Collectors.
+      $specimen_collector_ids = [];
+      $fieldname = 'name';
+      $vocabulary = 'herbarium_specimen_collector';
+      $collectors = explode(";", $row->getSourceProperty('collectors'));
+      foreach ($collectors as $value) {
+        $term_value = trim($value);
+        if (!empty($term_value)) {
+          $term_tid = $this->taxtermExists($term_value, $fieldname,
+            $vocabulary);
+          if (!empty($term_tid)) {
+            $term = Term::load($term_tid);
+          }
+          else {
+            $term = Term::create([
+              'vid' => $vocabulary,
+              $fieldname => $term_value,
+            ]);
+            $term->save();
+          }
+          $specimen_collector_ids[] = $term->id();
+        }
+      }
+      $row->setSourceProperty('specimen_collector', $specimen_collector_ids);
+
+      // Country.
+      $country_val = $row->getSourceProperty('country');
+      if (!empty($country_val)) {
+        $tid = _unb_herbarium_create_tax_term_if_not_exists(
+          $country_val,
+          'specimen_location_country'
         );
-        $title = (empty($full_title)) ? 'Unavailable' : $full_title;
-        $row->setSourceProperty('title_string', $title);
+        $row->setSourceProperty('country_tid', $tid);
       }
       else {
-        print "SPEC ID doesn't exist in vocabulary: " . $tax_id . "\n";
+        $row->setSourceProperty('country_tid', NULL);
       }
-    }
-    else {
-      print "\nAcc #=$accNum: SPECID NOT NUMERIC!\n";
+
+      // Province.
+      $province_val = $row->getSourceProperty('dwc_stateprovince');
+      if (!empty($province_val)) {
+        $tid = _unb_herbarium_create_tax_term_if_not_exists(
+          $province_val,
+          'specimen_location_province'
+        );
+        $row->setSourceProperty('dwc_stateprovince_tid', $tid);
+      }
+      else {
+        $row->setSourceProperty('dwc_stateprovince_tid', NULL);
+      }
+
+      // County.
+      $county_val = $row->getSourceProperty('county');
+      if (!empty($county_val)) {
+        $tid = _unb_herbarium_create_tax_term_if_not_exists(
+          $county_val,
+          'specimen_location_county'
+        );
+        $row->setSourceProperty('county_tid', $tid);
+      }
+      else {
+        $row->setSourceProperty('county_tid', NULL);
+      }
+
+      $dwc_previousidents_raw = trim($row->getSourceProperty('previous_identifications'));
+      // DetAnnList field values are delimited by vertical tab character.
+      $dwc_previousidents = explode("\v", $dwc_previousidents_raw);
+      $row->setSourceProperty('previous_identifications', $dwc_previousidents);
+
+      // Sample Taxonomy.
+      $full_title = "Untitled";
+      $fieldname = 'field_dwc_taxonid';
+      $vocabulary = 'herbarium_specimen_taxonomy';
+      $tax_id = trim($row->getSourceProperty('assigned_taxon'));
+      if (is_numeric($tax_id)) {
+        $term_tid = $this->taxtermExists($tax_id, $fieldname, $vocabulary);
+        if (!empty($term_tid)) {
+          $term = Term::load($term_tid);
+          $assign_taxon_id = $term->id();
+          $row->setSourceProperty('assigned_taxon', $assign_taxon_id);
+
+          $full_title = _herbarium_core_term_build_full_name(
+            $term,
+            HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANKS_TO_OMIT_PRINTING,
+            FALSE
+          );
+          $title = (empty($full_title)) ? 'Unavailable' : $full_title;
+          $row->setSourceProperty('title_string', $title);
+        }
+        else {
+          print "SPEC ID doesn't exist in vocabulary: " . $tax_id . "\n";
+        }
+      }
+      else {
+        print "\nAcc #=$accNum: SPECID NOT NUMERIC!\n";
+      }
     }
   }
 
