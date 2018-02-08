@@ -552,11 +552,16 @@ function _herbarium_specimen_validate_year($data) {
  *   TRUE if $data is a valid month.
  */
 function _herbarium_specimen_validate_month($data) {
-  $data = (int) $data;
-  if ($data >= 1 && $data <= 12) {
-    return TRUE;
-  }
-  return FALSE;
+  return filter_var(
+    (int) $data,
+    FILTER_VALIDATE_INT,
+    [
+      'options' => [
+        'min_range' => 1,
+        'max_range' => 12,
+      ],
+    ]
+  );
 }
 
 /**
@@ -569,11 +574,16 @@ function _herbarium_specimen_validate_month($data) {
  *   TRUE if $data is a valid day.
  */
 function _herbarium_specimen_validate_day($data) {
-  $data = (int) $data;
-  if ($data >= 1 && $data <= 31) {
-    return TRUE;
-  }
-  return FALSE;
+  return filter_var(
+    (int) $data,
+    FILTER_VALIDATE_INT,
+    [
+      'options' => [
+        'min_range' => 1,
+        'max_range' => 31,
+      ],
+    ]
+  );
 }
 
 /**
