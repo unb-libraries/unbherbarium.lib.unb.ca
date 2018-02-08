@@ -36,7 +36,13 @@ Feature: Core
       And I should see "Tag two"
 
   Scenario: Herbarium specimen name builder
-    Given "herbarium_specimen_taxonomy" terms:
+    Given "taxon_rank" terms:
+      | name       |
+      | Family     |
+      | Genus      |
+      | Species    |
+      | ssp.       |
+    And "herbarium_specimen_taxonomy" terms:
       | name                | field_dwc_taxonrank    | parent   | field_dwc_scientificnameauthor   |
       | Abampusa            | Family                 |          |                                  |
       | Biggusum            | Genus                  | Bumpusa  | Goofy                            |
@@ -49,8 +55,14 @@ Feature: Core
     When I go to "admin/content"
     And I should see "Biggusum Goofy Bimora Daisy ssp. Loscuma Carter"
 
-  Scenario: Herbarium Specimen Search
-    Given "herbarium_specimen_collector" terms:
+  Scenario: Herbarium specimen search
+    Given "taxon_rank" terms:
+      | name       |
+      | Family     |
+      | Genus      |
+      | Species    |
+      | ssp.       |
+    And "herbarium_specimen_collector" terms:
       | name           |
       | Queen Anne     |
     Given "herbarium_specimen_taxonomy" terms:
