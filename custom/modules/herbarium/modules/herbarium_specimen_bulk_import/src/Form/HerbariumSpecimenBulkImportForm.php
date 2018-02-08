@@ -278,7 +278,10 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
     }
 
     if ($errors) {
-      $form_state->setErrorByName('import_file', 'One or more errors were found while validating the import file data. Please correct them and resubmit.');
+      $form_state->setErrorByName(
+        'import_file',
+        t('One or more errors were found while validating the import file data. Please correct them and resubmit.')
+      );
     }
 
     return empty($errors);
@@ -326,7 +329,10 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
       }
     }
     if ($errors) {
-      $form_state->setErrorByName('import_file', 'One or more errors were found while validating the import file data. Please correct them and resubmit.');
+      $form_state->setErrorByName(
+        'import_file',
+        t('One or more errors were found while validating the import file data. Please correct them and resubmit.')
+      );
     }
   }
 
@@ -365,7 +371,7 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
     $import_format = _herbarium_specimen_bulk_import_get_import_format($format_id);
 
     if (empty($import_format)) {
-      $form['upload_import']['download_template']['#markup'] = 'No template found for this import format.';
+      $form['upload_import']['download_template']['#markup'] = t('No template found for this import format.');
     }
     else {
       $form['upload_import']['download_template']['#markup'] = $this->generateTemplateDownloadLink($format_id);
