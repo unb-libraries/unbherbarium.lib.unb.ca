@@ -44,6 +44,7 @@ Feature: Herbarium Specimen
     And  "herbarium_specimen" content:
       | title        | field_taxonomy_tid     | field_collector_tid   |
       | Jerfer       | Loscuma                | Queen Anne            |
+    And I am an anonymous user
     When I visit "/specimen/search"
     And I fill in "Scientific Name" with "Loscuma"
     Then I press "Apply search"
