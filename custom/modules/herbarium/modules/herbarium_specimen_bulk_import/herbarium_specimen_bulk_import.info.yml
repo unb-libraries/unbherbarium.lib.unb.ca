@@ -7,3 +7,4 @@ dependencies:
   - migrate_source_csv
   - migrate_plus
   - migrate_tools
+  - csv_serialization
