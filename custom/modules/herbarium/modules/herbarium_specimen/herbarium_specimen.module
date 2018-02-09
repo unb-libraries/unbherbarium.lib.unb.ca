@@ -16,27 +16,29 @@ use Drupal\Core\Url;
  */
 function herbarium_specimen_node_delete(EntityInterface $node) {
   if ($node->getType() == 'herbarium_specimen') {
-    // Remove DZI tiles for this image.
-    batch_set(
-      [
-        'title' => t('Removing Surrogate Images'),
-        'init_message' => t('Removing Herbarium Specimen Surrogate Images'),
-        'operations' => [
-          [
+    if (_herbarium_specimen_has_local_images($node)) {
+      // Remove DZI tiles for this image.
+      batch_set(
+        [
+          'title' => t('Removing Surrogate Images'),
+          'init_message' => t('Removing Herbarium Specimen Surrogate Images'),
+          'operations' => [
             [
-              'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
-              'deleteExistingAssets',
-            ],
-            [
-              NULL,
-              $node->nid->value,
-              FALSE,
+              [
+                'Drupal\herbarium_specimen\HerbariumImageSurrogateFactory',
+                'deleteExistingAssets',
+              ],
+              [
+                NULL,
+                $node->nid->value,
+                FALSE,
+              ],
             ],
           ],
-        ],
-      ]
-    );
-    batch_process();
+        ]
+      );
+      batch_process();
+    }
     \Drupal::service('request_stack')->getCurrentRequest()->query->set('destination', \Drupal::url('view.browse.page'));
   }
 }
