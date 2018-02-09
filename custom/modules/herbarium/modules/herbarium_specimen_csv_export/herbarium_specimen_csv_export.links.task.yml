@@ -1,0 +1,5 @@
+herbarium_specimen_csv_export.download:
+  route_name: herbarium_specimen_csv_export.download
+  title: 'Export to CSV'
+  base_route: entity.node.canonical
+  weight: 101

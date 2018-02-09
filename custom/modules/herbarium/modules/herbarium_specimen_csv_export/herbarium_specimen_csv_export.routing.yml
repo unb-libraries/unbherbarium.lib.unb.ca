@@ -1,7 +1,8 @@
 herbarium_specimen_csv_export.download:
-  path: '/admin/config/herbarium_core/bulk_export/{node_ids}'
+  path: '/node/{node}/herbarium/csv_export'
   defaults:
-    _controller: '\Drupal\herbarium_specimen_csv_export\Controller\DownloadSpecimenCSVController::serveFile'
+    _controller: '\Drupal\herbarium_specimen_csv_export\Controller\DownloadSpecimenCSVController::getNodeCsv'
     _title: 'Download CSV Data From Herbarium Specimen Nodes'
   requirements:
     _permission: 'access content'
+    _custom_access: '\Drupal\herbarium_specimen\Controller\HerbariumSpecimenCheckController::checkAccess'

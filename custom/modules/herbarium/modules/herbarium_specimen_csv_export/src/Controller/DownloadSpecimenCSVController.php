@@ -14,6 +14,19 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class DownloadSpecimenCSVController extends ControllerBase {
 
   /**
+   * Render a CSV formatted list specimen properties.
+   *
+   * @param string $node
+   *   The node ID to render the CSV for.
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   *   The symfony response object.
+   */
+  public function getNodeCsv($node) {
+    return $this->serveFile($node);
+  }
+
+  /**
    * Render a CSV formatted list of node objects.
    *
    * @param string $node_ids
