@@ -105,7 +105,8 @@ class DownloadSpecimenCSVController extends ControllerBase {
       'Collection Month',
       'Collection Day',
       'Verbatim Event Date',
-      'Abundance,Habitat',
+      'Abundance',
+      'Habitat',
       'Occurrence Remarks',
       'Other Catalogue No.',
       'Previous Identifications',
@@ -128,6 +129,8 @@ class DownloadSpecimenCSVController extends ControllerBase {
   private function buildNodeRowData(Node $node) {
     $data_columns = [];
     $species = $node->get('field_taxonomy_tid')->entity;
+    $collection_date = $node->get('field_dwc_eventdate')->value;
+    $collection_date_data = explode('-', $collection_date);
 
     $data_columns = [
       $node->id(),
@@ -136,22 +139,23 @@ class DownloadSpecimenCSVController extends ControllerBase {
       $species->id(),
       $this->getDelimitedSpeciesRepresentation($species),
       $this->buildDelimitedTermNames($node->get('field_collector_tid')->referencedEntities()),
-      'Country',
-      'Province/State',
-      'County',
-      'Verbatim Locality',
-      'Latitude,Longitude',
-      'Geo Precision',
-      'Collection Year',
-      'Collection Month',
-      'Collection Day',
-      'Verbatim Event Date',
-      'Abundance,Habitat',
-      'Occurrence Remarks',
-      'Other Catalogue No.',
-      'Previous Identifications',
-      'Reproductive Condition',
-      'Data Entry By',
+      $this->buildDelimitedTermNames($node->get('field_dwc_country_tax')->referencedEntities()),
+      $this->buildDelimitedTermNames($node->get('field_dwc_province_tax')->referencedEntities()),
+      $this->buildDelimitedTermNames($node->get('field_dwc_county_tax')->referencedEntities()),
+      $node->get('field_dwc_verbatimlocality')->getString(),
+      $node->get('field_dwc_decimallatitude')->getString() . ',' . $node->get('field_dwc_decimallongitude')->getString(),
+      $node->get('field_dwc_coordinateprecision')->getString(),
+      $collection_date_data[0],
+      $collection_date_data[1],
+      $collection_date_data[2],
+      $node->get('field_dwc_verbatimeventdate')->getString(),
+      $node->get('field_dwc_eventremarks')->getString(),
+      $node->get('field_dwc_habitat')->getString(),
+      $node->get('field_dwc_occurrenceremarks')->getString(),
+      $node->get('field_dwc_othercatalognumbers')->getString(),
+      $node->get('field_previous_identifications')->getString(),
+      $node->get('field_dwc_reproductivecondition')->getString(),
+      $node->get('field_dc_contributor_other')->getString(),
     ];
 
     return $data_columns;
