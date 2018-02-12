@@ -89,7 +89,26 @@ class DownloadSpecimenCSVController extends ControllerBase {
 
     $header_columns = [
       'nid',
-      'title',
+      'CMH Accession ID',
+      'Name',
+      'Species ID',
+      'Collector(s)',
+      'Country',
+      'Province/State',
+      'County',
+      'Verbatim Locality',
+      'Latitude,Longitude',
+      'Geo Precision',
+      'Collection Year',
+      'Collection Month',
+      'Collection Day',
+      'Verbatim Event Date',
+      'Abundance,Habitat',
+      'Occurrence Remarks',
+      'Other Catalogue No.',
+      'Previous Identifications',
+      'Reproductive Condition',
+      'Data Entry By',
     ];
 
     return $header_columns;
@@ -109,7 +128,26 @@ class DownloadSpecimenCSVController extends ControllerBase {
 
     $data_columns = [
       $node->id(),
+      $node->get('field_dwc_record_number')->getString(),
       $node->getTitle(),
+      'Species',
+      'Collector(s)',
+      'Country',
+      'Province/State',
+      'County',
+      'Verbatim Locality',
+      'Latitude,Longitude',
+      'Geo Precision',
+      'Collection Year',
+      'Collection Month',
+      'Collection Day',
+      'Verbatim Event Date',
+      'Abundance,Habitat',
+      'Occurrence Remarks',
+      'Other Catalogue No.',
+      'Previous Identifications',
+      'Reproductive Condition',
+      'Data Entry By',
     ];
 
     return $data_columns;
