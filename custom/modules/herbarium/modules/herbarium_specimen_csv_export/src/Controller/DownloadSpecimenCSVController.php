@@ -157,6 +157,27 @@ class DownloadSpecimenCSVController extends ControllerBase {
     $collection_date = $node->get('field_dwc_eventdate')->value;
     $collection_date_data = explode('-', $collection_date);
 
+    if (count($collection_date_data) > 1) {
+      $year_value = $collection_date_data[0];
+      $month_value = $collection_date_data[1];
+      $day_value = $collection_date_data[2];
+    }
+    else {
+      $year_value = NULL;
+      $month_value = NULL;
+      $day_value = NULL;
+    }
+
+    if (
+      !empty($node->get('field_dwc_decimallatitude')->getString()) &&
+      !empty($node->get('field_dwc_decimallongitude')->getString())
+    ) {
+      $long_lat = $node->get('field_dwc_decimallatitude')->getString() . ',' . $node->get('field_dwc_decimallongitude')->getString();
+    }
+    else {
+      $long_lat = NULL;
+    }
+
     $data_columns = [
       $node->id(),
       $node->get('field_dwc_record_number')->getString(),
@@ -168,11 +189,11 @@ class DownloadSpecimenCSVController extends ControllerBase {
       $this->buildDelimitedTermNames($node->get('field_dwc_province_tax')->referencedEntities()),
       $this->buildDelimitedTermNames($node->get('field_dwc_county_tax')->referencedEntities()),
       $node->get('field_dwc_verbatimlocality')->getString(),
-      $node->get('field_dwc_decimallatitude')->getString() . ',' . $node->get('field_dwc_decimallongitude')->getString(),
+      $long_lat,
       $node->get('field_dwc_coordinateprecision')->getString(),
-      $collection_date_data[0],
-      $collection_date_data[1],
-      $collection_date_data[2],
+      $year_value,
+      $month_value,
+      $day_value,
       $node->get('field_dwc_verbatimeventdate')->getString(),
       $node->get('field_dwc_eventremarks')->getString(),
       $node->get('field_dwc_habitat')->getString(),
