@@ -44,6 +44,7 @@ class AddCSVExportButton extends AreaPluginBase {
           'herbarium_specimen_csv_export.bulk_download',
           [
             'node_ids' => implode('|', $csv_nodes),
+            'export_filename' => 'search_results_' . (string) time(),
           ]
         ),
         '#prefix' => '<div>',

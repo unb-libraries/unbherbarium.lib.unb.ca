@@ -4,5 +4,6 @@ description: Herbarium Specimen CSV Export
 core: 8.x
 package: Herbarium
 dependencies:
+  - herbarium_core
   - herbarium_specimen_bulk_import
   - csv_serialization

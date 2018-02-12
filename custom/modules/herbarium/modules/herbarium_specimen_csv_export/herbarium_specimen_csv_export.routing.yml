@@ -8,9 +8,17 @@ herbarium_specimen_csv_export.download:
     _custom_access: '\Drupal\herbarium_specimen\Controller\HerbariumSpecimenCheckController::checkAccess'
 
 herbarium_specimen_csv_export.bulk_download:
-  path: '/herbarium/csv_export/{node_ids}'
+  path: '/herbarium/csv_export/{node_ids}/{export_filename}'
   defaults:
     _controller: '\Drupal\herbarium_specimen_csv_export\Controller\DownloadSpecimenCSVController::serveFile'
+    _title: 'Download CSV Data From Herbarium Specimen Nodes'
+  requirements:
+    _permission: 'access content'
+
+herbarium_specimen_csv_export.admin.bulk_export_all:
+  path: '/admin/config/herbarium_core/bulk_export_all'
+  defaults:
+    _controller: '\Drupal\herbarium_specimen_csv_export\Controller\DownloadSpecimenCSVController::getAllNodesCsv'
     _title: 'Download CSV Data From Herbarium Specimen Nodes'
   requirements:
     _permission: 'access content'

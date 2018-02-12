@@ -24,7 +24,28 @@ class DownloadSpecimenCSVController extends ControllerBase {
    *   The symfony response object.
    */
   public function getNodeCsv($node) {
-    return $this->serveFile($node);
+    return $this->serveFile(
+      $node,
+      "nid_{$node}_". time()
+    );
+  }
+
+  /**
+   * Render a CSV formatted list for all specimen properties.
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   *   The symfony response object.
+   */
+  public function getAllNodesCsv() {
+    $query = \Drupal::entityQuery('node')
+      ->condition('status', NODE_PUBLISHED)
+      ->condition('type', 'herbarium_specimen');
+    $result = $query->execute();
+
+    return $this->serveFile(
+      implode('|', $result),
+      'all_specimens_' . (string) time()
+    );
   }
 
   /**
@@ -32,11 +53,13 @@ class DownloadSpecimenCSVController extends ControllerBase {
    *
    * @param string $node_ids
    *   The nodes to render the CSV for.
+   * @param string $export_filename
+   *   The label to use for the filename. Defaults to current time.
    *
    * @return \Symfony\Component\HttpFoundation\Response
    *   The symfony response object.
    */
-  public function serveFile($node_ids) {
+  public function serveFile($node_ids, $export_filename = NULL) {
     $nids = explode('|', $node_ids);
 
     $nodes_to_process = $this->filterHerbariumSpecimenNodes($nids);
@@ -44,6 +67,9 @@ class DownloadSpecimenCSVController extends ControllerBase {
       throw new NotFoundHttpException();
     }
 
+    if (empty($export_filename)) {
+      $export_filename = time();
+    }
     // Instantiate and build header.
     $csv = Writer::createFromFileObject(new \SplTempFileObject());
     $csv->insertOne($this->buildExportHeader());
@@ -52,10 +78,9 @@ class DownloadSpecimenCSVController extends ControllerBase {
       $csv->insertOne($this->buildNodeRowData($node_to_process));
     }
 
-    $datestamp = time();
     $response = new Response($csv->__toString());
     $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
-    $response->headers->set('Content-Disposition', "attachment; filename=\"cmh_export_template_{$datestamp}.csv\"");
+    $response->headers->set('Content-Disposition', "attachment; filename=\"cmh_export_{$export_filename}.csv\"");
     return $response;
   }
 

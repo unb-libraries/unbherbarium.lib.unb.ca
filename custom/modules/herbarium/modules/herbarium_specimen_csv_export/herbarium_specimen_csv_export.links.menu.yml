@@ -1,0 +1,6 @@
+herbarium_specimen_csv_export.admin.bulk_export_all:
+  title: 'Export All Specimens as CSV'
+  parent: herbarium_core.admin
+  description: 'Bulk Export Herbarium Specimen(s) as CSV.'
+  route_name: herbarium_specimen_csv_export.admin.bulk_export_all
+  weight: 20
