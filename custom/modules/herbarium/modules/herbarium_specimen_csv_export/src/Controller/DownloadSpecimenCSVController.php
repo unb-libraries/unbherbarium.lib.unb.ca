@@ -26,7 +26,7 @@ class DownloadSpecimenCSVController extends ControllerBase {
   public function getNodeCsv($node) {
     return $this->serveFile(
       $node,
-      "nid_{$node}_". time()
+      "nid_{$node}_" . (string) time()
     );
   }
 
