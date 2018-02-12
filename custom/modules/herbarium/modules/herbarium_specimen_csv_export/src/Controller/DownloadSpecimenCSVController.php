@@ -4,6 +4,7 @@ namespace Drupal\herbarium_specimen_csv_export\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\node\Entity\Node;
+use Drupal\taxonomy\Entity\Term;
 use League\Csv\Writer;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -92,6 +93,7 @@ class DownloadSpecimenCSVController extends ControllerBase {
       'CMH Accession ID',
       'Name',
       'Species ID',
+      'Species Tree',
       'Collector(s)',
       'Country',
       'Province/State',
@@ -125,13 +127,15 @@ class DownloadSpecimenCSVController extends ControllerBase {
    */
   private function buildNodeRowData(Node $node) {
     $data_columns = [];
+    $species = $node->get('field_taxonomy_tid')->entity;
 
     $data_columns = [
       $node->id(),
       $node->get('field_dwc_record_number')->getString(),
       $node->getTitle(),
-      'Species',
-      'Collector(s)',
+      $species->id(),
+      $this->getDelimitedSpeciesRepresentation($species),
+      $this->buildDelimitedTermNames($node->get('field_collector_tid')->referencedEntities()),
       'Country',
       'Province/State',
       'County',
@@ -151,6 +155,41 @@ class DownloadSpecimenCSVController extends ControllerBase {
     ];
 
     return $data_columns;
+  }
+
+  /**
+   * Build a delimited species name string for a species.
+   *
+   * @param \Drupal\taxonomy\Entity\Term $term
+   *   The term to parse.
+   * @param string $delimiter
+   *   The string to use as a delimiter.
+   *
+   * @return string
+   *   The delimited species name string.
+   */
+  private function getDelimitedSpeciesRepresentation(Term $term, $delimiter = '|') {
+    $ancestors = _herbarium_core_term_get_ancestors($term);
+    return $this->buildDelimitedTermNames($ancestors);
+  }
+
+  /**
+   * Build a delimited species name string for an array of terms.
+   *
+   * @param \Drupal\taxonomy\Entity\Term[] $terms
+   *   The terms to parse.
+   * @param string $delimiter
+   *   The string to use as a delimiter.
+   *
+   * @return string
+   *   The delimited name string.
+   */
+  private function buildDelimitedTermNames(array $terms, $delimiter = '|') {
+    $names = [];
+    foreach ($terms as $term) {
+      $names[] = $term->getName();
+    }
+    return implode($delimiter, $names);
   }
 
 }
