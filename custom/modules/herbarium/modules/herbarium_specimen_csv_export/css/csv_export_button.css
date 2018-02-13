@@ -1,10 +1,12 @@
 a#csv-bulk-export-download {
-  font-size: 0.75em;
+  font-size: 0.74em;
 }
 a#csv-bulk-export-download:before {
   content: '\e025';
   font-family: 'Glyphicons Halflings';
+  font-size: .94em;
   margin-right: .4em;
+  vertical-align: text-bottom;
 }
 @media (max-width: 480px) {
   .view-header .pull-right {
