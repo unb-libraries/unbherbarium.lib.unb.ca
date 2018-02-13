@@ -38,6 +38,12 @@ class AddCSVExportButton extends AreaPluginBase {
 
       $button = [
         '#type' => 'link',
+        '#attributes' => [
+          'class' => [
+            'btn',
+            'btn-primary',
+          ],
+        ],
         '#id' => 'csv-bulk-export-download',
         '#title' => $this->t('Download These Results as CSV'),
         '#url' => Url::fromRoute(
@@ -47,8 +53,8 @@ class AddCSVExportButton extends AreaPluginBase {
             'export_filename' => 'search_results_' . (string) time(),
           ]
         ),
-        '#prefix' => '<div>',
-        '#suffix' => '</div>',
+        '#prefix' => '<div class="pull-right">',
+        '#suffix' => '</div><div class="clearfix"></div>',
         '#attached' => [
           'library' => [
             'herbarium_specimen_csv_export/csv_export_button',
