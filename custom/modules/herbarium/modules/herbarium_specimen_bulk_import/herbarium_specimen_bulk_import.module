@@ -150,11 +150,9 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
           'name' => 'CMH Accession ID',
           'validate' => [
             [
-              'function' => '_herbarium_specimen_validate_string_length',
-              'args' => [
-                'length' => 255,
-              ],
-              'error' => t('exceeds the maximum length of 255 characters'),
+              'function' => '_herbarium_specimen_validate_accession_id',
+              'args' => [],
+              'error' => t('is already a CMH accession ID registered to a specimen'),
             ],
           ],
         ],
@@ -623,4 +621,23 @@ function _herbarium_specimen_validate_precision($data) {
       ],
     ]
   );
+}
+
+/**
+ * Ensure that the accession ID in the file does not already exist as a sample.
+ *
+ * @param string $data
+ *   The accession ID to validate.
+ *
+ * @return bool
+ *   TRUE if $data is a valid, unique accession ID.
+ */
+function _herbarium_specimen_validate_accession_id($data) {
+  $values = \Drupal::entityQuery('node')
+    ->condition('type', 'herbarium_specimen')
+    ->condition('field_dwc_record_number', $data)
+    ->execute();
+  $id_exists = !empty($values);
+
+  return !$id_exists;
 }
