@@ -21,4 +21,4 @@ herbarium_specimen_csv_export.admin.bulk_export_all:
     _controller: '\Drupal\herbarium_specimen_csv_export\Controller\DownloadSpecimenCSVController::getAllNodesCsv'
     _title: 'Download CSV Data From Herbarium Specimen Nodes'
   requirements:
-    _permission: 'bulk export herbarium specimens'
+    _permission: 'administer content'
