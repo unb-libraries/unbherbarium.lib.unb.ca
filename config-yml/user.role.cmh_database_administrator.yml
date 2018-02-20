@@ -17,6 +17,7 @@ permissions:
   - 'administer menu'
   - 'administer nodes'
   - 'administer taxonomy'
+  - 'bulk import herbarium specimens'
   - 'create banner_image content'
   - 'create herbarium_specimen content'
   - 'create page content'

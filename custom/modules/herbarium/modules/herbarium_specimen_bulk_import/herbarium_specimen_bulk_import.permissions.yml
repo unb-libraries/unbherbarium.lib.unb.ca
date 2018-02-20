@@ -1,0 +1,3 @@
+bulk import herbarium specimens:
+  title: 'Bulk import herbarium specimens'
+  description: '<i>Bulk import herbarium specimens via CSV.</i>'

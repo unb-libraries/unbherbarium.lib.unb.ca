@@ -4,7 +4,7 @@ herbarium_specimen_bulk_import.admin.import:
     _form: 'Drupal\herbarium_specimen_bulk_import\Form\HerbariumSpecimenBulkImportForm'
     _title: 'Bulk Import Herbarium Specimen(s)'
   requirements:
-    _permission: 'access content'
+    _permission: 'bulk import herbarium specimens'
 
 herbarium_specimen_bulk_import.view:
   path: '/admin/config/herbarium_core/bulk_import/{migration_id}'
@@ -12,7 +12,7 @@ herbarium_specimen_bulk_import.view:
     _form: 'Drupal\herbarium_specimen_bulk_import\Form\HerbariumSpecimenBulkMigrationView'
     _title: 'Bulk Import Details'
   requirements:
-    _permission: 'access content'
+    _permission: 'bulk import herbarium specimens'
 
 herbarium_specimen_bulk_import.format.template:
   path: '/admin/config/herbarium_core/bulk_import/format/{format_id}'
@@ -20,4 +20,4 @@ herbarium_specimen_bulk_import.format.template:
     _controller: '\Drupal\herbarium_specimen_bulk_import\Controller\DownloadCSVTemplateController::serveFile'
     _title: 'Download CSV Template File'
   requirements:
-    _permission: 'access content'
+    _permission: 'bulk import herbarium specimens'
