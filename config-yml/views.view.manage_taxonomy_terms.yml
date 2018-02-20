@@ -15,11 +15,7 @@ dependencies:
     - taxonomy.vocabulary.specimen_location_province
     - taxonomy.vocabulary.taxon_rank
   content:
-    - 'taxonomy_term:taxon_rank:507f04db-16c1-41d1-a63d-cce6931f87fd'
-    - 'taxonomy_term:taxon_rank:50f27d89-5565-4509-926f-da6b0911c2b7'
-    - 'taxonomy_term:taxon_rank:678327ac-15b2-436c-988e-46793046d41d'
-    - 'taxonomy_term:taxon_rank:a0cafdbb-54c4-4a1c-ad91-9bfc72d64a7a'
-    - 'taxonomy_term:taxon_rank:d765dde3-262a-4bb7-a283-467134c641e0'
+    - 'taxonomy_term:taxon_rank:8f20a934-99f3-4bea-bb18-41867f551b35'
   module:
     - node
     - taxonomy
