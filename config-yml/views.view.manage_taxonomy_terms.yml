@@ -3612,14 +3612,14 @@ display:
           entity_type: taxonomy_term
           entity_field: name
           plugin_id: term_name
-        field_dwc_taxonid:
-          id: field_dwc_taxonid
-          table: taxonomy_term__field_dwc_taxonid
-          field: field_dwc_taxonid
+        tid:
+          id: tid
+          table: taxonomy_term_field_data
+          field: tid
           relationship: none
           group_type: group
           admin_label: ''
-          label: SPECID
+          label: 'Species ID'
           exclude: false
           alter:
             alter_text: false
@@ -3656,14 +3656,15 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: '<small class="no-result">N/A</small>'
+          empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: user_name
+          type: number_integer
           settings:
-            link_to_entity: false
+            thousand_separator: ''
+            prefix_suffix: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -3674,6 +3675,8 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+          entity_type: taxonomy_term
+          entity_field: tid
           plugin_id: field
         field_dwc_taxonrank:
           id: field_dwc_taxonrank
@@ -4149,8 +4152,8 @@ display:
           exposed: true
           expose:
             operator_id: name_op
-            label: Taxon
-            description: 'Enter 1 or more taxon names (partial match support)'
+            label: Name
+            description: 'Enter 1 or more specimen taxonomy names (partial match support)'
             use_operator: false
             operator: name_op
             identifier: name
@@ -4161,9 +4164,9 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-              student: '0'
               researcher: '0'
               cmh_database_administrator: '0'
+              editor: '0'
             autocomplete_filter: 1
             autocomplete_min_chars: '2'
             autocomplete_items: '10'
@@ -4186,6 +4189,51 @@ display:
           entity_type: taxonomy_term
           entity_field: name
           plugin_id: views_autocomplete_filters_string
+        tid_raw:
+          id: tid_raw
+          table: taxonomy_term_field_data
+          field: tid_raw
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: tid_raw_op
+            label: 'Species ID'
+            description: 'Enter an exact term ID'
+            use_operator: false
+            operator: tid_raw_op
+            identifier: specid
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              researcher: '0'
+              cmh_database_administrator: '0'
+              editor: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: taxonomy_term
+          plugin_id: numeric
         field_dwc_scientificnameauthor_value:
           id: field_dwc_scientificnameauthor_value
           table: taxonomy_term__field_dwc_scientificnameauthor
@@ -4218,102 +4266,6 @@ display:
             autocomplete_min_chars: '3'
             autocomplete_items: '10'
             autocomplete_field: field_dwc_scientificnameauthor
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: views_autocomplete_filters_string
-        field_dwc_taxonid_value:
-          id: field_dwc_taxonid_value
-          table: taxonomy_term__field_dwc_taxonid
-          field: field_dwc_taxonid_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: word
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_dwc_taxonid_value_op
-            label: 'Specimen ID'
-            description: 'Enter 1 or more spec ids'
-            use_operator: false
-            operator: field_dwc_taxonid_value_op
-            identifier: specid
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              student: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-            autocomplete_filter: 0
-            autocomplete_min_chars: '0'
-            autocomplete_items: '10'
-            autocomplete_field: field_dwc_taxonid
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: views_autocomplete_filters_string
-        field_dwc_measurementvalue_value:
-          id: field_dwc_measurementvalue_value
-          table: taxonomy_term__field_dwc_measurementvalue
-          field: field_dwc_measurementvalue_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: contains
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_dwc_measurementvalue_value_op
-            label: 'Rarity Ranking'
-            description: 'Enter an SRank code (eg. S1, S2, S1SE)'
-            use_operator: false
-            operator: field_dwc_measurementvalue_value_op
-            identifier: field_dwc_measurementvalue_value
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              student: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-            autocomplete_filter: 1
-            autocomplete_min_chars: '0'
-            autocomplete_items: '10'
-            autocomplete_field: field_dwc_measurementvalue
             autocomplete_raw_suggestion: 1
             autocomplete_raw_dropdown: 1
             autocomplete_dependent: 0
@@ -4497,5 +4449,4 @@ display:
       tags:
         - 'config:field.storage.taxonomy_term.field_dwc_measurementvalue'
         - 'config:field.storage.taxonomy_term.field_dwc_scientificnameauthor'
-        - 'config:field.storage.taxonomy_term.field_dwc_taxonid'
         - 'config:field.storage.taxonomy_term.field_dwc_taxonrank'
