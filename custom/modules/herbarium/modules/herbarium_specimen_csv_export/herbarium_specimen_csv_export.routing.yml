@@ -4,7 +4,7 @@ herbarium_specimen_csv_export.download:
     _controller: '\Drupal\herbarium_specimen_csv_export\Controller\DownloadSpecimenCSVController::getNodeCsv'
     _title: 'Download CSV Data From Herbarium Specimen Nodes'
   requirements:
-    _permission: 'access content'
+    _permission: 'export herbarium specimens'
     _custom_access: '\Drupal\herbarium_specimen\Controller\HerbariumSpecimenCheckController::checkAccess'
 
 herbarium_specimen_csv_export.bulk_download:
@@ -13,7 +13,7 @@ herbarium_specimen_csv_export.bulk_download:
     _controller: '\Drupal\herbarium_specimen_csv_export\Controller\DownloadSpecimenCSVController::serveFile'
     _title: 'Download CSV Data From Herbarium Specimen Nodes'
   requirements:
-    _permission: 'access content'
+    _permission: 'export herbarium specimens'
 
 herbarium_specimen_csv_export.admin.bulk_export_all:
   path: '/admin/config/herbarium_core/bulk_export_all'
@@ -21,4 +21,4 @@ herbarium_specimen_csv_export.admin.bulk_export_all:
     _controller: '\Drupal\herbarium_specimen_csv_export\Controller\DownloadSpecimenCSVController::getAllNodesCsv'
     _title: 'Download CSV Data From Herbarium Specimen Nodes'
   requirements:
-    _permission: 'access content'
+    _permission: 'bulk export herbarium specimens'

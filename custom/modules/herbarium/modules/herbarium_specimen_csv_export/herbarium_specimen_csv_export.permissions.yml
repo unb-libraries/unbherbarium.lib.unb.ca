@@ -1,0 +1,6 @@
+bulk export herbarium specimens:
+  title: 'Bulk export herbarium specimens'
+  description: '<i>Bulk export herbarium specimens via CSV.</i>'
+export herbarium specimens:
+  title: 'Export herbarium specimens'
+  description: '<i>Export herbarium specimens via CSV.</i>'
