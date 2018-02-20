@@ -4136,59 +4136,6 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
-        field_dwc_taxonrank_target_id_1:
-          id: field_dwc_taxonrank_target_id_1
-          table: taxonomy_term__field_dwc_taxonrank
-          field: field_dwc_taxonrank_target_id
-          relationship: parent
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            3: 3
-            5: 5
-            7: 7
-            18: 18
-            158: 158
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_dwc_taxonrank_target_id_1_op
-            label: 'Parent taxon'
-            description: ''
-            use_operator: false
-            operator: field_dwc_taxonrank_target_id_1_op
-            identifier: taxon_rank
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
-            reduce: true
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: taxon_rank
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
         name:
           id: name
           table: taxonomy_term_field_data
