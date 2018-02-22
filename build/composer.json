@@ -93,7 +93,7 @@
         "drupal/chosen": "2.5",
         "drupal/config_update": "1.5",
         "drupal/console": "~1.0",
-        "drupal/core": "8.4.4",
+        "drupal/core": "8.4.5",
         "drupal/csv_serialization": "1.2",
         "drupal/editor_file": "1.2",
         "drupal/features": "3.5",
