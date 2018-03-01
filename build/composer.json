@@ -105,7 +105,7 @@
         "drupal/migrate_tools": "4.0-beta3",
         "drupal/pathauto": "1.0",
         "drupal/redis": "1.0-rc2",
-        "drupal/search_api": "1.6",
+        "drupal/search_api": "1.7",
         "drupal/search_api_solr": "1.2",
         "drupal/simple_gmap": "1.4",
         "drupal/taxonomy_access_fix": "2.5",
