@@ -19,6 +19,8 @@ module:
   dynamic_page_cache: 0
   editor: 0
   editor_file: 0
+  elasticsearch_connector: 0
+  elasticsearch_connector_views: 0
   features: 0
   features_ui: 0
   field: 0
@@ -50,6 +52,7 @@ module:
   quickedit: 0
   rdf: 0
   search: 0
+  search_api: 0
   serialization: 0
   simple_gmap: 0
   system: 0

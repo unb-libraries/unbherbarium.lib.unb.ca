@@ -1,0 +1,24 @@
+uuid: 9d2d85e6-d2f3-43a2-937d-e9b16cb6f978
+langcode: en
+status: true
+dependencies:
+  module:
+    - elasticsearch_connector
+id: drupal_elasticsearch_lib_unb_ca
+name: drupal_elasticsearch_lib_unb_ca
+description: ''
+backend: elasticsearch
+backend_config:
+  cluster_settings:
+    cluster: drupal_elasticsearch_lib_unb_ca
+  fuzziness: auto
+  scheme: http
+  host: localhost
+  port: '9200'
+  path: ''
+  excerpt: false
+  retrieve_data: false
+  highlight_data: false
+  http_method: AUTO
+  autocorrect_spell: true
+  autocorrect_suggest_words: true

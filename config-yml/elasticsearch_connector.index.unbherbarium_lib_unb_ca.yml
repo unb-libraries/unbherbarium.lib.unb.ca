@@ -1,0 +1,9 @@
+uuid: b883914d-f9f6-485c-8bfe-3d312fa90209
+langcode: en
+status: true
+dependencies: {  }
+index_id: unbherbarium_lib_unb_ca
+name: unbherbarium.lib.unb.ca
+num_of_shards: 5
+num_of_replica: 1
+server: drupal_elasticsearch_lib_unb_ca

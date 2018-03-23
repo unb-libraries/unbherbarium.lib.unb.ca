@@ -1,0 +1,39 @@
+uuid: 464c6990-bec2-4f01-a1ec-b95692dac13d
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.server.drupal_elasticsearch_lib_unb_ca
+  module:
+    - search_api
+    - node
+id: unbherbarium_lib_unb_ca
+name: unbherbarium.lib.unb.ca
+description: ''
+read_only: false
+field_settings:
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - herbarium_specimen
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  rendered_item: {  }
+  add_url: {  }
+  aggregated_field: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: drupal_elasticsearch_lib_unb_ca
