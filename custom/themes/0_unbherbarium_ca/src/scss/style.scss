@@ -323,7 +323,6 @@ footer .unb-lib-logo {
   opacity: 0.5;
 }
 
-
 .region-content form {
   margin-bottom: 1em;
 }
@@ -526,6 +525,9 @@ figure.specimen-image img {
 }
 figure a {
   display: block;
+}
+.taxonomy-managervocabulary-terms-form #edit-add {
+  display: none;
 }
 
 // Responsive overrides.
