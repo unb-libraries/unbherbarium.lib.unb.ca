@@ -51,6 +51,7 @@ module:
   rdf: 0
   search: 0
   serialization: 0
+  simple_entity_merge: 0
   simple_gmap: 0
   system: 0
   taxonomy: 0

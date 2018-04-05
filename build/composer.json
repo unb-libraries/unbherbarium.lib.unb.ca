@@ -121,7 +121,8 @@
         "solarium/solarium": "~3.8",
         "teqneers/php-stream-wrapper-for-git": "1.0.1",
         "webflo/drupal-finder": "^0.3.0",
-        "webmozart/path-util": "^2.3"
+        "webmozart/path-util": "^2.3",
+        "drupal/simple_entity_merge": "1.0"
     },
     "require-dev": {
         "unb-libraries/drupal-development-libraries": "^8.0.0"
