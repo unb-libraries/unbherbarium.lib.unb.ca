@@ -378,16 +378,21 @@ function unb_herbarium_form_alter(&$form, FormStateInterface $form_state, $form_
  * Implements hook_menu_local_tasks_alter().
  */
 function unb_herbarium_menu_local_tasks_alter(&$data, $route_name) {
-  $merge_tab = "simple_entity_merge.entities:node.simple_entity_merge_tab";
+  $merge_tabs = [
+    "simple_entity_merge.entities:node.simple_entity_merge_tab",
+    "simple_entity_merge.entities:taxonomy_term.simple_entity_merge_tab",
+  ];
+
   switch ($route_name) {
     case "entity.taxonomy_term.edit_form":
       // Don't hide Simple Entity Merge tab on tax term edit form.
       break;
 
     default:
-      if (array_key_exists($merge_tab, $data['tabs'][0])) {
-        // Hide Simple Entity Merge tab.
-        unset($data['tabs'][0][$merge_tab]);
+      foreach ($merge_tabs as $tab) {
+        if (isset($data['tabs'][0][$tab])) {
+          unset($data['tabs'][0][$tab]);
+        }
       }
   }
 }
