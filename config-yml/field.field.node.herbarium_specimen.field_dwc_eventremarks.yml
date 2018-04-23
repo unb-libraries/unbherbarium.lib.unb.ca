@@ -11,7 +11,7 @@ id: node.herbarium_specimen.field_dwc_eventremarks
 field_name: field_dwc_eventremarks
 entity_type: node
 bundle: herbarium_specimen
-label: Abundance
+label: 'Event Remarks'
 description: 'The frequency of the species in the area'
 required: false
 translatable: false
