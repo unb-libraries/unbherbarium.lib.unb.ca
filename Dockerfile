@@ -29,6 +29,7 @@ RUN apk --update add tiff-dev tiff postfix imagemagick bash rsyslog openssh-clie
   mv magick-slicer.sh /usr/local/bin/magick-slicer && \
   chmod +x /usr/local/bin/magick-slicer && \
   touch /var/log/nginx/access.log && touch /var/log/nginx/error.log && \
+  mkdir -p /var/spool/rsyslog; chgrp adm /var/spool/rsyslog; chmod g+w /var/spool/rsyslog && \
   /scripts/InstallGitLFS.sh
 
 # Tests.
