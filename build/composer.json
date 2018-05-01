@@ -104,7 +104,6 @@
         "drupal/migrate_source_csv": "2.1",
         "drupal/migrate_tools": "4.0-beta3",
         "drupal/pathauto": "1.2",
-        "drupal/redis": "1.0-rc2",
         "drupal/search_api": "1.8",
         "drupal/search_api_solr": "1.2",
         "drupal/simple_entity_merge": "1.0",
