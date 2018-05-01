@@ -224,6 +224,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Verbatim Locality',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_string_length',
@@ -237,6 +238,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Latitude',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_latitude',
@@ -250,6 +252,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Longitude',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_longitude',
@@ -263,6 +266,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Geo Precision',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_precision',
@@ -276,6 +280,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Collection Year',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_year',
@@ -289,6 +294,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Collection Month',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_month',
@@ -302,6 +308,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Collection Day',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_day',
@@ -354,6 +361,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Occurrence Remarks',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_string_length',
@@ -380,6 +388,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Previous Identifications',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_string_length',
@@ -428,7 +437,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
             12,
             10,
           ],
-          'error' => t('contains an invalid date in YMD columns'),
+          'error' => t('contains an invalid date in YMD columns. Please include a real date or no data at all in those columns.'),
         ],
       ],
 

@@ -258,21 +258,30 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
 
     // Iterate and validate data.
     foreach ($dataRows as $row_id => $row) {
+      $data_row_id = $row_id + 2;
       foreach ($row as $column_id => $column_data) {
-        if (!empty($import_format['columns'][$column_id]['validate'])) {
-          foreach ($import_format['columns'][$column_id]['validate'] as $validator) {
-            // Pack data onto arguments.
-            $function_args = ['data' => $column_data] + $validator['args'];
-            if (!$validator['function'](...array_values($function_args))) {
-              $data_row_id = $row_id + 2;
-              // Validation failed.
-              $errors = TRUE;
-              drupal_set_message(
-                "{$import_format['columns'][$column_id]['name']} validation failed in row $data_row_id, column $column_id : $column_data {$validator['error']}.",
-                'error'
-              );
+        if (!empty($column_data)) {
+          if (!empty($import_format['columns'][$column_id]['validate'])) {
+            foreach ($import_format['columns'][$column_id]['validate'] as $validator) {
+              // Pack data onto arguments.
+              $function_args = ['data' => $column_data] + $validator['args'];
+              if (!$validator['function'](...array_values($function_args))) {
+                // Validation failed.
+                $errors = TRUE;
+                drupal_set_message(
+                  "{$import_format['columns'][$column_id]['name']} validation failed in row $data_row_id, column $column_id : $column_data {$validator['error']}.",
+                  'error'
+                );
+              }
             }
           }
+        }
+        elseif (!isset($import_format['columns'][$column_id]['required']) || $import_format['columns'][$column_id]['required'] === TRUE) {
+          $errors = TRUE;
+          drupal_set_message(
+            "{$import_format['columns'][$column_id]['name']} validation failed in row $data_row_id : required value.",
+            'error'
+          );
         }
       }
     }
