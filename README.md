@@ -23,7 +23,7 @@ The following packages are required to be globally installed on your development
 In the ```env/drupal.env``` file, change the environment settings to match your local development environment.
 
 ```
-DOCKER_ENDPOINT_IP=192.168.99.100
+DOCKER_ENDPOINT_IP=localhost
 LOCAL_USER_GROUP=20
 ```
 
