@@ -2,7 +2,7 @@
   "license": "MIT",
   "minimum-stability": "stable",
   "name": "unb-libraries/unbherbarium.ca",
-  "description": "Scaffold and provision local development for newspapers.lib.unb.ca",
+  "description": "Scaffold and provision local development for unbherbarium.lib.unb.ca",
   "config": {
     "preferred-install": {
       "*": "dist"
