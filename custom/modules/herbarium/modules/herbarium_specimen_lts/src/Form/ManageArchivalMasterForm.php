@@ -198,7 +198,7 @@ class ManageArchivalMasterForm extends FormBase {
 
       $form['local_images']['submit_regenerate'] = [
         '#type' => 'submit',
-        '#disabled' => (bool) empty($history_rows) && $storage_status,
+        '#disabled' => empty($history_rows) || !$storage_status,
         '#value' => t('Regenerate Local Images'),
         '#submit' => [
           [$this, 'regenerateSurrogatesSubmitForm'],
