@@ -14,7 +14,7 @@ use Drupal\migrate\Row;
  */
 class MigrateEvent implements EventSubscriberInterface {
 
-  const MULTIPLE_VALUE_DELIMITER = ';';
+  const MULTIPLE_VALUE_DELIMITER = '|';
 
   /**
    * {@inheritdoc}
