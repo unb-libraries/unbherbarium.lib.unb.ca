@@ -56,11 +56,13 @@ function herbarium_specimen_node_presave($node) {
         ->getString();
       if (!empty($target_id)) {
         $term = Term::load($target_id);
-        $full_title = _herbarium_core_term_build_full_name(
-          $term,
-          HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANKS_TO_OMIT_PRINTING,
-          FALSE
-        );
+        if ($term != NULL) {
+          $full_title = _herbarium_core_term_build_full_name(
+            $term,
+            HERBARIUM_CORE_SPECIMEN_VOCABULARY_RANKS_TO_OMIT_PRINTING,
+            FALSE
+          );
+        }
       }
 
       // Populate the title field.
