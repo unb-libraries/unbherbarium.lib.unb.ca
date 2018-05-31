@@ -12,6 +12,7 @@ use Drupal\user\Entity\User;
 class HerbariumImageLtsArchiver {
 
   const PUSH_FAILURE_RETRIES = 30;
+  const GIT_SSH_COMMAND_SETUP = 'GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/NULL -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa"';
 
   /**
    * The Drupal File object to generate the DZI and tiles for.
@@ -157,10 +158,11 @@ class HerbariumImageLtsArchiver {
     // Push back to origin. Check for errors indicating concurrent use / retry.
     $return = 1;
     $push_failures = 0;
+    $git_ssh_command_setup = self::GIT_SSH_COMMAND_SETUP;
 
     while ($return != 0) {
       exec(
-        "cd {$temp_clone_directory} && git pull --rebase origin master && git push origin master",
+        "cd {$temp_clone_directory} && {$git_ssh_command_setup} git pull --rebase origin master && {$git_ssh_command_setup} git push origin master",
         $output,
         $return
       );
@@ -242,10 +244,11 @@ class HerbariumImageLtsArchiver {
 
     $return = 1;
     $push_failures = 0;
+    $git_ssh_command_setup = self::GIT_SSH_COMMAND_SETUP;
 
     while ($return != 0) {
       exec(
-        "cd {$temp_clone_directory} && git pull --rebase origin master && git push origin master",
+        "cd {$temp_clone_directory} && {$git_ssh_command_setup} git pull --rebase origin master && {$git_ssh_command_setup} git push origin master",
         $output,
         $return
       );
@@ -459,10 +462,11 @@ class HerbariumImageLtsArchiver {
     $return = 1;
     $push_failures = 0;
     $push_failure_retries = 10;
+    $git_ssh_command_setup = self::GIT_SSH_COMMAND_SETUP;
 
     while ($return != 0) {
       exec(
-        "cd {$this->ltsRepoPath} && GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/NULL -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa\" git pull --rebase origin master && GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/NULL -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa\" git push origin master",
+        "cd {$this->ltsRepoPath} && {$git_ssh_command_setup} git pull --rebase origin master && {$git_ssh_command_setup} git push origin master",
         $output,
         $return
       );
@@ -509,10 +513,11 @@ class HerbariumImageLtsArchiver {
    */
   protected function smudgeFromLts(&$context) {
     $nid = $this->node->id();
+    $git_ssh_command_setup = self::GIT_SSH_COMMAND_SETUP;
 
     // Smudge out file.
     exec(
-      "cd '/lts-archive' && git lfs pull --include \"$nid.tif\"",
+      "cd '/lts-archive' && {$git_ssh_command_setup} git lfs pull --include \"$nid.tif\"",
       $output,
       $return
     );
