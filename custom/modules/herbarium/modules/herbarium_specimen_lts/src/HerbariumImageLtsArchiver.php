@@ -181,7 +181,8 @@ class HerbariumImageLtsArchiver {
         }
 
         $sleep_seconds = 3;
-        echo("Busy repo : pausing for $sleep_seconds before trying push again.\n");
+        $output_string = implode("\n", $output);
+        echo("Busy repo : pausing for $sleep_seconds before trying push again. ($output_string)\n");
         sleep($sleep_seconds);
       }
     }
@@ -267,7 +268,8 @@ class HerbariumImageLtsArchiver {
         }
 
         $sleep_seconds = 3;
-        echo("Busy repo : pausing for $sleep_seconds before trying push again.\n");
+        $output_string = implode("\n", $output);
+        echo("Busy repo : pausing for $sleep_seconds before trying push again. ($output_string)\n");
         sleep($sleep_seconds);
       }
     }
@@ -482,7 +484,8 @@ class HerbariumImageLtsArchiver {
         }
 
         $sleep_seconds = 15;
-        echo("Busy repo : pausing for $sleep_seconds before trying push again.\n");
+        $output_string = implode("\n", $output);
+        echo("Busy repo : pausing for $sleep_seconds before trying push again. ($output_string)\n");
         sleep($sleep_seconds);
       }
     }
