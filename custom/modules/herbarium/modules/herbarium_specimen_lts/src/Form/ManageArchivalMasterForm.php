@@ -159,7 +159,7 @@ class ManageArchivalMasterForm extends FormBase {
 
       $form['reassign']['submit'] = [
         '#type' => 'submit',
-        '#disabled' => TRUE,
+        '#disabled' => empty($history_rows) || !$storage_status,
         '#value' => t('Update Master Image'),
         '#submit' => [
           [$this, 'reassignArchivalMaster'],
