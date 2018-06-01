@@ -424,18 +424,14 @@ class HerbariumImageLtsArchiver {
 
     // Get the LTS history.
     exec(
-      "cd {$this->ltsRepoPath} && git log --pretty=format:\"%ai||%aE||%s\" | grep '\[{$this->node->id()}\]'",
+      "cd {$this->ltsRepoPath} && git log --pretty=format:\"%ai||%aE||%s||%h\" | grep '\[{$this->node->id()}\]'",
       $output,
       $return
     );
 
-    if ($return == 0 && !empty($output[0])) {
-      $output = trim($output[0]);
-      if (!empty($output)) {
-        $lines = explode("\n", $output);
-        foreach ($lines as $line) {
-          $history[] = explode('||', $line);
-        }
+    if ($return == 0 && !empty($output)) {
+      foreach (array_reverse($output) as $line) {
+        $history[] = explode('||', $line);
       }
     }
 

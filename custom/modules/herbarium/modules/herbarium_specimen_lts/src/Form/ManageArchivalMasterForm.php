@@ -64,15 +64,18 @@ class ManageArchivalMasterForm extends FormBase {
     if (!empty($history_rows)) {
       // Construct header.
       $header = [
+        t('Revision'),
         t('Date'),
         t('User'),
         t('Change'),
+        t('Commit'),
       ];
 
       // Build the rows.
       $rows = [];
-      foreach ($history_rows as $row) {
-        $rows[] = ['data' => (array) $row];
+      foreach ($history_rows as $index => $row) {
+        array_unshift($row, $index + 1);
+        $rows[] = ['data' => $row];
       }
 
       $form['master_history']['history_table'] = [
