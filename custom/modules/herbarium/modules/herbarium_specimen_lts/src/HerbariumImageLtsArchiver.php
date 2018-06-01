@@ -468,7 +468,7 @@ class HerbariumImageLtsArchiver {
 
     while ($return != 0) {
       exec(
-        "cd {$this->ltsRepoPath} && {$git_ssh_command_setup} git pull --rebase origin master && {$git_ssh_command_setup} git push origin master",
+        "cd {$this->ltsRepoPath} && {$git_ssh_command_setup} git push origin master",
         $output,
         $return
       );
