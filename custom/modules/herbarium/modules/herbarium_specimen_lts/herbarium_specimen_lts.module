@@ -185,10 +185,13 @@ function _herbarium_specimen_lts_remove_item_batch($nid) {
   // Delete file from LTS.
   $batch['operations'][] = [
     [
-      'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver',
+      'Drupal\herbarium_specimen_lts\HerbariumImageLtsArchive',
       'removeFileFromLts',
     ],
-    [$nid],
+    [
+      $nid,
+      \Drupal::currentUser()->id(),
+    ],
   ];
 
   return $batch;
