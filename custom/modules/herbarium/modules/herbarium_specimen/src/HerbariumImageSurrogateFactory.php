@@ -237,7 +237,7 @@ class HerbariumImageSurrogateFactory {
     $public_dzi_path = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") . '/dzi';
 
     // Delete DZI assets, surrogates will be deleted by attachNodeSurrogates().
-    $nid = $this->node->id();
+    $nid = $this->nid;
     exec(
       "rm -rf {$public_dzi_path}/{$nid}_files {$public_dzi_path}/{$nid}.dzi",
       $output,
