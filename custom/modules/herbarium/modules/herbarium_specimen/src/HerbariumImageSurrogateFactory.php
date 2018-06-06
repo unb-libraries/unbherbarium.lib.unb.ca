@@ -122,6 +122,8 @@ class HerbariumImageSurrogateFactory {
    *   The Batch API context array.
    */
   protected function generateDziTiles(&$context) {
+    $this->removeDziTiles();
+
     // Generate DZI tiles.
     exec(
       "/usr/local/bin/magick-slicer -e jpg -i \"{$this->file}\" -o \"{$this->nodeDziPath}\"",
@@ -189,11 +191,7 @@ class HerbariumImageSurrogateFactory {
    */
   protected function deleteGeneratedAssets(&$context) {
     // Delete DZI assets, surrogates will be deleted by attachNodeSurrogates().
-    exec(
-      "rm -rf  {$this->nodeDziPath}",
-      $output,
-      $return
-    );
+    $this->removeDziTiles();
 
     // Remove images attached to node.
     $surrogate_fields = [
@@ -225,10 +223,25 @@ class HerbariumImageSurrogateFactory {
 
     // Set message.
     $context['message'] = t(
-      '[NID#@nid] Deleted generated DZI assets',
+      '[NID#@nid] Deleted generated Derivative assets',
       [
         '@nid' => $this->nid,
       ]
+    );
+  }
+
+  /**
+   * Remove the tiles and DZI for this file.
+   */
+  protected function removeDziTiles() {
+    $public_dzi_path = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") . '/dzi';
+
+    // Delete DZI assets, surrogates will be deleted by attachNodeSurrogates().
+    $nid = $this->node->id();
+    exec(
+      "rm -rf {$public_dzi_path}/{$nid}_files {$public_dzi_path}/{$nid}.dzi",
+      $output,
+      $return
     );
   }
 
