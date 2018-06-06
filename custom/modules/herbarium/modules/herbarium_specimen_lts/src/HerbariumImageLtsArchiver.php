@@ -285,7 +285,7 @@ class HerbariumImageLtsArchiver {
     $this->delTree($temp_clone_directory);
 
     $context['message'] = t(
-      '[NID#@nid] Updated long term storage file for specimen.',
+      '[NID#@nid] Deleted long term storage file for specimen.',
       [
         '@nid' => $target_nid,
       ]

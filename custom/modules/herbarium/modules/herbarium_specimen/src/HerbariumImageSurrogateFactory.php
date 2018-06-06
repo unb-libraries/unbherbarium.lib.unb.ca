@@ -132,7 +132,7 @@ class HerbariumImageSurrogateFactory {
     );
 
     $context['message'] = t(
-      '[NID#@nid] Removing temporary files created for specimen image',
+      '[NID#@nid] Generated DZI tiles for specimen image',
       [
         '@nid' => $this->nid,
       ]
@@ -176,7 +176,7 @@ class HerbariumImageSurrogateFactory {
     unlink($temp_image_file);
 
     $context['message'] = t(
-      '[NID#@nid] Generating JPG specimen surrogate image.',
+      '[NID#@nid] Generated JPG specimen surrogate image.',
       [
         '@nid' => $this->nid,
       ]
@@ -223,7 +223,7 @@ class HerbariumImageSurrogateFactory {
 
     // Set message.
     $context['message'] = t(
-      '[NID#@nid] Deleted generated Derivative assets',
+      '[NID#@nid] Deleted generated derivative assets',
       [
         '@nid' => $this->nid,
       ]
