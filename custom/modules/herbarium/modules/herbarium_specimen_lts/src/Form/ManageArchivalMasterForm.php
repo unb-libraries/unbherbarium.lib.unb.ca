@@ -134,7 +134,6 @@ class ManageArchivalMasterForm extends FormBase {
         '#title' => $this->t('Actions'),
         '#options' => [
           'delete' => $this->t('Delete the master image associated with this specimen'),
-          'switch' => $this->t('Switch the master image with another specimen'),
         ],
       ];
 
