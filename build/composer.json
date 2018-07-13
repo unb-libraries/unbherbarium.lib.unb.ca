@@ -102,7 +102,7 @@
         "drupal/honeypot": "1.27",
         "drupal/migrate_plus": "4.0-beta3",
         "drupal/migrate_source_csv": "2.2",
-        "drupal/migrate_tools": "4.0-beta3",
+        "drupal/migrate_tools": "4.0-rc1",
         "drupal/pathauto": "1.2",
         "drupal/search_api": "1.8",
         "drupal/search_api_solr": "1.2",
