@@ -1307,7 +1307,7 @@ display:
         title: 'Country Terms'
         description: ''
         expanded: false
-        parent: ''
+        parent: unb_herbarium.manage
         weight: -45
         context: '0'
         menu_name: main
