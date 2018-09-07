@@ -611,7 +611,7 @@ display:
         title: 'Collector Taxonomy'
         description: ''
         expanded: false
-        parent: ''
+        parent: unb_herbarium.manage
         weight: -47
         context: '0'
         menu_name: main
