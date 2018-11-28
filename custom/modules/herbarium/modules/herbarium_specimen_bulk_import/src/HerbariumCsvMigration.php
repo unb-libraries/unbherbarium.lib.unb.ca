@@ -78,6 +78,11 @@ class HerbariumCsvMigration {
     $config_array['label'] = "Herbarium Sample Import from $date_time_string";
     $config_array['source']['path'] = $import_file;
 
+    // Normalize newlines.
+    $import_contents = file_get_contents($import_file);
+    $normalized_import = preg_replace('~\R~u', "\n", $import_contents);
+    file_put_contents($import_file, $normalized_import);
+
     $config_storage = \Drupal::service('config.storage');
     $config_storage->write('migrate_plus.migration.' . $this->importId, $config_array);
   }
