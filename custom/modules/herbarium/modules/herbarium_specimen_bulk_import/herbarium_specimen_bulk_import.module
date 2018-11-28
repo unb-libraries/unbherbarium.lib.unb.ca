@@ -442,7 +442,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
       'validate' => [
         [
           'name' => 'Date',
-          'function' => 'checkdate',
+          'function' => '_herbarium_specimen_validate_date',
           'column_args' => [
             11,
             12,
@@ -607,18 +607,21 @@ function _herbarium_specimen_validate_day($data) {
 /**
  * Validate a date.
  *
- * @param int $year
- *   The year to validate.
  * @param int $month
  *   The month to validate.
  * @param int $day
  *   The day to validate.
+ * @param int $year
+ *   The year to validate.
  *
  * @return bool
  *   TRUE if $data is a valid day.
  */
-function _herbarium_specimen_validate_date($year, $month, $day) {
-  return checkdate($month, $day, $year);
+function _herbarium_specimen_validate_date($month, $day, $year) {
+  if (!empty($month) && !empty($day) && !empty($year)) {
+    return checkdate($month, $day, $year);
+  }
+  return TRUE;
 }
 
 /**
