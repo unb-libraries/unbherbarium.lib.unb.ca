@@ -159,6 +159,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Species ID',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_term_reference',
@@ -172,6 +173,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Collector(s)',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_string_length',
@@ -185,6 +187,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Country',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_string_length',
@@ -198,6 +201,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Province/State',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_string_length',
@@ -211,6 +215,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'County',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_string_length',
@@ -322,6 +327,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Verbatim Event Date',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_string_length',
@@ -335,6 +341,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Abundance',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_string_length',
@@ -348,6 +355,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Habitat',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_string_length',
@@ -375,6 +383,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Other Catalogue No.',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_string_length',
@@ -402,6 +411,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Reproductive Condition',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_string_length',
@@ -415,6 +425,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
 
         [
           'name' => 'Data Entry By',
+          'required' => FALSE,
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_string_length',
