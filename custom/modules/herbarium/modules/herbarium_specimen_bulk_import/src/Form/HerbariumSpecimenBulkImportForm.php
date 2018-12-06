@@ -139,6 +139,8 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
     $fid = $form_state->getValue('import_file')[0];
     $file = File::Load($fid);
     $file_path = drupal_realpath($file->getFileUri());
+    $file->setPermanent();
+    $file->save();
 
     $import_id = $form_state->getValue('import_format');
 
