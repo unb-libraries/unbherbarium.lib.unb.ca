@@ -82,7 +82,7 @@
         }
     ],
     "require": {
-        "drupal/bootstrap": "3.15",
+        "drupal/bootstrap": "3.16",
         "drupal/chosen": "2.6",
         "drupal/config_update": "1.5",
         "drupal/core": "8.6.4",
