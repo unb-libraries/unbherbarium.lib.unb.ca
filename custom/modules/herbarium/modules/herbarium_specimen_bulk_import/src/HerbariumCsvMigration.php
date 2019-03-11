@@ -80,7 +80,7 @@ class HerbariumCsvMigration {
 
     // Normalize newlines.
     $import_contents = file_get_contents($import_file);
-    $normalized_import = preg_replace('~\R~u', "\n", $import_contents);
+    $normalized_import = preg_replace('~(*BSR_ANYCRLF)\R~', "\n", $import_contents);
     file_put_contents($import_file, $normalized_import);
 
     $config_storage = \Drupal::service('config.storage');
