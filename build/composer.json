@@ -84,7 +84,7 @@
     ],
     "require": {
         "drupal/bootstrap": "3.17",
-        "drupal/chosen": "2.6",
+        "drupal/chosen": "2.7",
         "drupal/config_update": "1.6",
         "drupal/core": "8.6.13",
         "drupal/csv_serialization": "1.4",
