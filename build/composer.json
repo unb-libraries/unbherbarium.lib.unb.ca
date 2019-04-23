@@ -93,7 +93,7 @@
         "drupal/field_group": "3.0-beta1",
         "drupal/google_analytics": "2.4",
         "drupal/honeypot": "1.29",
-        "drupal/migrate_plus": "4.1",
+        "drupal/migrate_plus": "4.2",
         "drupal/migrate_source_csv": "2.2",
         "drupal/migrate_tools": "4.1",
         "drupal/pathauto": "1.4",
