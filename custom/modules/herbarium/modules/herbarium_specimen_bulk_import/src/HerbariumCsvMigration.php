@@ -10,6 +10,7 @@ use Datetime;
 use Drupal\migrate_plus\Entity\MigrationGroup;
 use Drupal\migrate_tools\MigrateExecutable;
 use Drupal\migrate\MigrateMessage;
+use ForceUTF8\Encoding;
 
 /**
  * HerbariumImageSurrogateFactory caption set object.
@@ -78,10 +79,10 @@ class HerbariumCsvMigration {
     $config_array['label'] = "Herbarium Sample Import from $date_time_string";
     $config_array['source']['path'] = $import_file;
 
-    // Normalize newlines.
-    $import_contents = file_get_contents($import_file);
-    $normalized_import = preg_replace('~(*BSR_ANYCRLF)\R~', "\n", $import_contents);
-    file_put_contents($import_file, $normalized_import);
+    $import_content = file_get_contents($import_file);
+    $cleaned_content = self::cleanCsv($import_content);
+
+    file_put_contents($import_file, $cleaned_content);
 
     $config_storage = \Drupal::service('config.storage');
     $config_storage->write('migrate_plus.migration.' . $this->importId, $config_array);
@@ -95,6 +96,25 @@ class HerbariumCsvMigration {
    */
   private function addError($message) {
     $this->errors[] = $message;
+  }
+
+  /**
+   * Correct common issues with uploaded CSV files.
+   *
+   * @param string $content
+   *   The CSV file contents to clean.
+   *
+   * @return string
+   *   The cleaned content.
+   */
+  private static function cleanCsv($content) {
+    // Normalize Windows/OSX/Excel newlines.
+    $content = preg_replace('~(*BSR_ANYCRLF)\R~', "\n", $content);
+
+    // Fix Mangled UTF8 characters.
+    $content = Encoding::fixUTF8($content);
+
+    return $content;
   }
 
   /**

@@ -159,6 +159,9 @@ class MigrateEvent implements EventSubscriberInterface {
    */
   private function prepareTaxonomyData(Row $row, $source_property_name, $target_property_name, $vid, $storage_field = 'name') {
     $value = $row->getSourceProperty($source_property_name);
+    if (empty($value)) {
+      $value = 'Placeholder Text';
+    }
     $term_tid = $this->taxTermExists($value, $storage_field, $vid);
 
     if (!empty($term_tid)) {

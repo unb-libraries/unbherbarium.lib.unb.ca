@@ -10,5 +10,7 @@
     "issues": "https://www.drupal.org/project/issues/herbarium_core",
     "source": "http://cgit.drupalcode.org/herbarium_core"
   },
-  "require": { }
+  "require": {
+    "neitanod/forceutf8": "~2.0"
+  }
 }

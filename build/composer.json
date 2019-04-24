@@ -110,6 +110,7 @@
         "drupal/views_slideshow": "4.6",
         "harvesthq/chosen": "~1.8",
         "malsup/jquery.cycle": "1.0",
+        "neitanod/forceutf8": "~2.0",
         "solarium/solarium": "~3.8",
         "teqneers/php-stream-wrapper-for-git": "1.0.1",
         "unb-libraries/drupal-builder": "^8.0.0"
