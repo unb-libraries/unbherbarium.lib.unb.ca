@@ -10,7 +10,7 @@ ENV DRUPAL_SITE_URI unbherbarium.lib.unb.ca
 ENV DRUPAL_SITE_UUID 85c96bf2-f1b6-4612-8305-d3d3769d5255
 
 ENV DRUPAL_PRIVATE_FILE_PATH /app/private_filesystem
-ENV GIT_LFS_VERSION 2.2.0
+ENV GIT_LFS_VERSION 2.7.2
 
 # Deploy upstream scripts, and then override with any local.
 RUN curl -sSL https://raw.githubusercontent.com/unb-libraries/CargoDock/drupal-8.x-1.x/container/deploy.sh | sh
