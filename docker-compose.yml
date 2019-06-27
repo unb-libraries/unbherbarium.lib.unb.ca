@@ -22,6 +22,16 @@ services:
     env_file:
       - ./env/redis.env
 
+  mailhog:
+    image: mailhog/mailhog
+    expose:
+      - "1025"
+      - "8025"
+    ports:
+      - "4097:8025"
+    networks:
+      - unbherbarium.lib.unb.ca
+
   unbherbarium.lib.unb.ca:
     build:
       context: .
