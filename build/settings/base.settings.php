@@ -1,10 +1,11 @@
 <?php
-/*
-Include all settings overrides here
-# require_once 'settings_file.inc';
-*/
 
-// Load environment based includes.
+/**
+ * @file
+ * Include global settings overrides here.
+ */
+
+// Environment based includes.
 if (isset($_SERVER['APPLICATION_ENV'])) {
   $environment = strtolower($_SERVER['APPLICATION_ENV']);
   $environment_include = dirname(__FILE__) . "/settings.$environment.inc";
