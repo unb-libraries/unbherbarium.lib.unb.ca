@@ -6,43 +6,73 @@ core: 8.x
 
 dependencies:
   # Minimal Install.
-  - node
   - block
   - dblog
-  - page_cache
   - dynamic_page_cache
+  - node
+  - page_cache
 
   # Standard Install Items.
-  - history
+  - block_content
   - breakpoint
   - ckeditor
   - color
-  - config
   - comment
-  - contextual
+  - config
   - contact
-  - menu_link_content
+  - contextual
   - datetime
-  - block_content
-  - quickedit
+  - dblog
   - editor
+  - field_ui
+  - file
   - help
+  - history
   - image
+  - menu_link_content
   - menu_ui
   - options
   - path
-  - taxonomy
-  - dblog
-  - search
-  - toolbar
-  - field_ui
-  - file
+  - quickedit
   - rdf
+  - search
+  - taxonomy
+  - toolbar
   - views
   - views_ui
 
   # PROFILE_SLUG
+  - automated_cron
+  - honeypot
+  - simple_entity_merge
+  - tour
+  - config_update
+  - features
+  - features_ui
+  - serialization
+  - migrate
+  - migrate_drupal
+  - chosen_lib
+  - chosen
+  - csv_serialization
+  - ctools
+  - editor_file
+  - field_group
+  - google_analytics
+  - migrate_plus
+  - migrate_tools
+  - migrate_source_csv
+  - token
+  - pathauto
   - redis
+  - simple_gmap
+  - taxonomy_access_fix
+  - taxonomy_manager
+  - tvi
+  - twig_field_value
+  - views_autocomplete_filters
+  - views_slideshow
+  - views_slideshow_cycle
 
 themes:
   - seven
