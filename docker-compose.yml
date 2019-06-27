@@ -28,7 +28,7 @@ services:
       - "1025"
       - "8025"
     ports:
-      - "4097:8025"
+      - "4081:8025"
     networks:
       - unbherbarium.lib.unb.ca
 
