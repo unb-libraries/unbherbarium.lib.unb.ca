@@ -17,13 +17,12 @@ RUN curl -sSL https://raw.githubusercontent.com/unb-libraries/CargoDock/drupal-8
 COPY ./scripts/container /scripts
 
 # Add additional OS packages.
-ENV ADDITIONAL_OS_PACKAGES tiff-dev tiff postfix imagemagick bash rsyslog openssh-client
+ENV ADDITIONAL_OS_PACKAGES tiff-dev tiff postfix imagemagick bash rsyslog openssh-client php7-redis
 RUN /scripts/addOsPackages.sh && \
   /scripts/initRsyslog.sh && \
   curl -O https://raw.githubusercontent.com/VoidVolker/MagickSlicer/master/magick-slicer.sh && \
   mv magick-slicer.sh /usr/local/bin/magick-slicer && \
   chmod +x /usr/local/bin/magick-slicer && \
-  echo "TLS_REQCERT never" > /etc/openldap/ldap.conf && \
   /scripts/InstallGitLFS.sh
 
 # Add package conf.
