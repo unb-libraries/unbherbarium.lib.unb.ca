@@ -99,7 +99,7 @@
         "drupal/migrate_tools": "4.3",
         "drupal/pathauto": "1.4",
         "drupal/redis": "1.2",
-        "drupal/search_api": "1.13",
+        "drupal/search_api": "1.14",
         "drupal/search_api_autocomplete": "1.2",
         "drupal/search_api_solr": "3.4",
         "drupal/simple_entity_merge": "1.0",
