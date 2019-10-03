@@ -7,5 +7,4 @@ _core:
 name: 'Taxon Rank'
 vid: taxon_rank
 description: ''
-hierarchy: 0
 weight: 0

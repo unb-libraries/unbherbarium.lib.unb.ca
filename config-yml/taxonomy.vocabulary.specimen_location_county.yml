@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'Specimen Location County'
 vid: specimen_location_county
 description: 'Specimen Location County'
-hierarchy: 0
 weight: 0

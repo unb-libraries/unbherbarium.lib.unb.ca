@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'Specimen Location Province'
 vid: specimen_location_province
 description: 'Specimen Location Province'
-hierarchy: 0
 weight: 0
