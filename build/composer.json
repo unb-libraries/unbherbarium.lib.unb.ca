@@ -86,7 +86,7 @@
         "drupal/bootstrap": "3.20",
         "drupal/chosen": "2.8",
         "drupal/config_update": "1.6",
-        "drupal/core": "8.7.7",
+        "drupal/core": "8.7.8",
         "drupal/csv_serialization": "1.4",
         "drupal/editor_file": "1.4",
         "drupal/features": "3.8",
