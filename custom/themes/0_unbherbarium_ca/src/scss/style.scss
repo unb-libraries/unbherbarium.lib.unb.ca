@@ -252,11 +252,11 @@ label {
 .chosen-container-single .chosen-single div b {
   display: none;
 }
-select[data-drupal-selector="edit-collector"] + .form-control,
-select[data-drupal-selector="edit-field-taxonomy-tid"] + .form-control,
-select[data-drupal-selector="edit-province"] + .form-control,
-select[data-drupal-selector="edit-county"] + .form-control,
-select[data-drupal-selector="edit-country"] + .form-control {
+select[data-drupal-selector="edit-collector"] + .chosen-container-single,
+select[data-drupal-selector="edit-field-taxonomy-tid"] + .chosen-container-single,
+select[data-drupal-selector="edit-province"] + .chosen-container-single,
+select[data-drupal-selector="edit-county"] + .chosen-container-single,
+select[data-drupal-selector="edit-country"] + .chosen-container-single {
   padding: 2px 0;
 }
 .browse .chosen-container-single .chosen-single,
@@ -367,18 +367,6 @@ footer .unb-lib-logo {
 }
 button.btn-primary {
   min-height: 35px;
-}
-
-// Search API Excerpt.
-.excerpt {
-  color: $color-understate;
-  font-size: smaller;
-  line-height: 1.2em;
-  margin: .5em 0;
-}
-.excerpt strong {
-  color: $color-heading;
-  color: $color-heading;
 }
 
 // Admin form overrides.
@@ -497,6 +485,12 @@ th a .glyphicon-chevron-down {
   top: 2px;
 }
 
+.browse-specimens.view .table > thead > tr > th {
+  vertical-align: middle;
+}
+.browse-specimens tr th:not(.views-field-field-collector-tid) {
+  padding-right: 8px;
+}
 .browse-specimens tr th:last-child,
 .browse-specimens tr td:last-child {
   text-align: right;
@@ -599,5 +593,42 @@ figure a {
 @media (min-width: 1200px) {
   .browse .form-inline .form-group {
     width: 32%;
+  }
+}
+
+/* Chosen | Multi-select overrides */
+.chosen-container-multi {
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  width: 100% !important;
+
+  .chosen-choices {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 34px;
+    overflow-y: scroll;
+
+    li.search-choice {
+      margin: 5px 3px 0 0;
+    }
+
+    li.search-field input[type="text"] {
+      margin: 3px 0;
+    }
+  }
+
+  &.chosen-container-active {
+    .chosen-choices {
+      border-color: #66afe9;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    }
+  }
+
+  &.chosen-with-drop {
+    .chosen-choices {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
   }
 }
