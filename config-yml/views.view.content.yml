@@ -5,6 +5,7 @@ dependencies:
   module:
     - node
     - user
+    - views_autocomplete_filters
 _core:
   default_config_hash: tS8PbpJX90aRFC3-UTgXzdqkq7_2frk2pz4TMijEebM
 id: content
@@ -491,9 +492,15 @@ display:
           group_type: group
           admin_label: ''
           operator: in
-          value: {  }
+          value:
+            all: all
+            '***LANGUAGE_site_default***': '***LANGUAGE_site_default***'
+            '***LANGUAGE_language_interface***': '***LANGUAGE_language_interface***'
+            en: en
+            und: und
+            zxx: zxx
           group: 1
-          exposed: true
+          exposed: false
           expose:
             operator_id: langcode_op
             label: Language
@@ -558,6 +565,17 @@ display:
         groups:
           1: AND
       display_extenders: {  }
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          content: '<div class="messages messages--status">Displaying @start - @end of @total</div>'
+          plugin_id: result
     display_plugin: default
     display_title: Master
     id: default
