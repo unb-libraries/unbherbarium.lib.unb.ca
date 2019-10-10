@@ -131,7 +131,7 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
   $measurement_id_text_value = $assigned_taxon
     ->get('field_dwc_measurementid')
     ->getString();
-  if (filter_var($measurement_id_text_value, FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED)) {
+  if (filter_var($measurement_id_text_value, FILTER_VALIDATE_URL)) {
     $variables['specimen_measurement_id_url'] = '<a href="' . $measurement_id_text_value . '">' . $measurement_id_text_value . '</a>';
   }
   else {
@@ -328,7 +328,7 @@ function _unb_herbarium_get_tax_term_link(TermInterface $term) {
  * @param array $context
  *   The batch context array.
  */
-function _unb_herbarium_resave_tax_term($tid, $context) {
+function _unb_herbarium_resave_tax_term($tid, array $context) {
   $term_obj = Term::Load($tid);
   $term_obj->save();
 
