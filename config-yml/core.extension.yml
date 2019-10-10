@@ -36,6 +36,7 @@ module:
   history: 0
   honeypot: 0
   image: 0
+  language: 0
   link: 0
   menu_ui: 0
   migrate: 0
@@ -51,7 +52,8 @@ module:
   quickedit: 0
   rdf: 0
   redis: 0
-  search: 0
+  search_api: 0
+  search_api_solr: 0
   serialization: 0
   simple_entity_merge: 0
   simple_gmap: 0
@@ -62,7 +64,6 @@ module:
   text: 0
   token: 0
   toolbar: 0
-  tour: 0
   tvi: 0
   twig_field_value: 0
   unb_herbarium: 0
