@@ -1,0 +1,8 @@
+uuid: 5189d114-335a-452c-89f7-e40c4e6b4058
+langcode: en
+status: true
+dependencies: {  }
+id: date_collected
+label: 'Date Collected'
+locked: false
+pattern: Y/m/d
