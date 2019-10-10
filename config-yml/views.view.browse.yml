@@ -632,7 +632,7 @@ display:
           1: AND
       group_by: true
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -2506,11 +2506,11 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<div role=\"contentinfo\" aria-label=\"no results\" class=\"alert alert-warning\">\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\n  Your combination of filters did not match any records.\n</div>\n\n<p><b><span class=\"glyphicon glyphicon-info-sign\"></span> Suggestions:</b></p>\n<ul>\n  <li>Make sure that all words are spelled correctly.</li>\n  <li>Make sure all words are in their appropriate field.</li>\n  <li>Try using a partial word search: <kbd>card</kbd> will match <kbd>cardamine</kbd>.</li>\n  <li>Try <a href=\"/browse-samples\">removing your filter options</a> and starting over.</li>\n</ul>\n"
+            value: "<div role=\"contentinfo\" aria-label=\"no results\" class=\"alert alert-warning\">\r\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\r\n  Your combination of filters did not match any records.\r\n</div>\r\n\r\n<p><b><span class=\"glyphicon glyphicon-info-sign\"></span> Suggestions:</b></p>\r\n<ul>\r\n  <li>Make sure that all words are spelled correctly.</li>\r\n  <li>Make sure all words are in their appropriate field.</li>\r\n  <li>Try using a partial word search: <kbd>card</kbd> will match <kbd>cardamine</kbd>.</li>\r\n  <li>Try <a href=\"/specimen/search\">removing your filter options</a> and starting over.</li>\r\n</ul>\r\n"
             format: full_html
           plugin_id: text
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
