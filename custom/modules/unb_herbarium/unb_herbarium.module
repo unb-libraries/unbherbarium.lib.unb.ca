@@ -146,7 +146,7 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
     $variables['taxonomy_country_html'] = [
       '#markup' => Link::fromTextAndUrl(
         $country_term->getName(),
-        Url::fromUri("internal:/specimen/search?&country={$country_term->id()}")
+        Url::fromUri("internal:/specimen/search-solr?&country[]={$country_term->id()}")
       )->toString(),
     ];
   }
@@ -157,7 +157,7 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
     $variables['taxonomy_province_html'] = [
       '#markup' => Link::fromTextAndUrl(
         $province_term->getName(),
-        Url::fromUri("internal:/specimen/search?&province={$province_term->id()}")
+        Url::fromUri("internal:/specimen/search-solr?&province[]={$province_term->id()}")
       )->toString(),
     ];
   }
@@ -168,7 +168,7 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
     $variables['taxonomy_county_html'] = [
       '#markup' => Link::fromTextAndUrl(
         $county_term->getName(),
-        Url::fromUri("internal:/specimen/search?&county={$county_term->id()}")
+        Url::fromUri("internal:/specimen/search-solr?&county[]={$county_term->id()}")
       )->toString(),
     ];
   }
