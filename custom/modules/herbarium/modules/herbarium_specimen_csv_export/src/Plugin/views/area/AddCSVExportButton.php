@@ -33,7 +33,17 @@ class AddCSVExportButton extends AreaPluginBase {
 
       $csv_nodes = [];
       foreach ($view->result as $row) {
-        $csv_nodes[] = $row->_entity->id();
+        if (!empty($row->_entity)) {
+          // View browse.
+          $csv_nodes[] = $row->_entity->id();
+        }
+        else {
+          // Solr Search View.
+          $csv_nodes[] = $row
+            ->_object
+            ->getValue()
+            ->id();
+        }
       }
 
       $button = [
