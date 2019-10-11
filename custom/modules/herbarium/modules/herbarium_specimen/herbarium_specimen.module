@@ -241,14 +241,20 @@ function _herbarium_specimen_get_collector_list(Node $node) {
 
   if (!empty($node->get('field_collector_tid'))) {
     foreach ($node->get('field_collector_tid') as $collector) {
-      $collectors_id = $collector->entity->id();
-      $render_item = [
-        '#markup' => Link::fromTextAndUrl(
-          $collector->entity->getName(),
-          Url::fromUri("internal:/specimen/search?&collector=$collectors_id")
-        )->toString(),
-      ];
-      $render_array['#items'][] = $render_item;
+      if(!empty($collector->entity)) {
+        $collectors_id = $collector->entity->id();
+        $render_item = [
+          '#markup' => Link::fromTextAndUrl(
+            $collector->entity->getName(),
+            Url::fromUri("internal:/specimen/search-solr?&collector[]=$collectors_id")
+          )->toString(),
+        ];
+        $render_array['#items'][] = $render_item;
+      }
+      else {
+        $message = ("Error: node " . $node->id() . " references a collector term that's been deleted!");
+        \Drupal::logger('herbarium_specimen')->error($message);
+      }
     }
   }
   return $render_array;
