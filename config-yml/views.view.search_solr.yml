@@ -14,6 +14,7 @@ dependencies:
     - taxonomy.vocabulary.specimen_location_province
   module:
     - datetime
+    - herbarium_specimen_csv_export
     - image
     - search_api
     - user
@@ -1318,6 +1319,15 @@ display:
           empty: false
           content: 'Displaying @start - @end of @total'
           plugin_id: result
+        herbarium_specimen_csv_export_button:
+          id: herbarium_specimen_csv_export_button
+          table: views
+          field: herbarium_specimen_csv_export_button
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          plugin_id: herbarium_specimen_csv_export_button
     cache_metadata:
       max-age: -1
       contexts:
