@@ -283,10 +283,10 @@ display:
             multi_type: separator
             multi_separator: ', '
           plugin_id: search_api_field
-        name:
-          id: name
+        field_collector_name:
+          id: field_collector_name
           table: search_api_index_default_solr_index
-          field: name
+          field: field_collector_name
           relationship: none
           group_type: group
           admin_label: ''
