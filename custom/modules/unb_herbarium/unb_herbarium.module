@@ -279,30 +279,29 @@ function unb_herbarium_preprocess_page_title(&$variables) {
 /**
  * Implements hook_preprocess_views_hook().
  */
+function unb_herbarium_preprocess_views_view_field__field_collector_name(&$variables) {
+  // Link the collectors in solr search view.
+  $nid = $variables['row']
+    ->_object
+    ->getValue()
+    ->id();
+  if (!empty($nid)) {
+    $node = Node::load($nid);
+    $variables['output'] = _herbarium_specimen_get_collector_list($node);
+  }
+}
+
+/**
+ * Implements hook_preprocess_views_hook().
+ */
 function unb_herbarium_preprocess_views_view_field__field_collector_tid(&$variables) {
   // Display links to taxonomy authors as a view.
-  $node = Node::load($variables['row']->nid);
-
-  $render_array = [
-    '#theme' => 'item_list',
-    '#list_type' => 'ul',
-    '#items' => [],
-  ];
-
-  if (!empty($node->get('field_collector_tid'))) {
-    foreach ($node->get('field_collector_tid') as $collector) {
-      $collectors_id = $collector->entity->id();
-      $render_item = [
-        '#markup' => Link::fromTextAndUrl(
-          $collector->entity->getName(),
-          Url::fromUri("internal:/specimen/search?&collector=$collectors_id")
-        )->toString(),
-      ];
-      $render_array['#items'][] = $render_item;
+  if (!empty($variables['row']->nid)) {
+    $node = Node::load($variables['row']->nid);
+    if (!empty($node)) {
+      $variables['output'] = _herbarium_specimen_get_collector_list($node);
     }
   }
-
-  $variables['output'] = $render_array;
 }
 
 /**
