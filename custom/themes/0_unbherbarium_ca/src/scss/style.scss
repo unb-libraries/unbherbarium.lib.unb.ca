@@ -167,11 +167,18 @@ label {
 .browse .toggle-default-off {
   margin: 2em 0;
 }
-.views-field-field-collector-tid ul {
-  padding-left: 0;
+.views-field-field-collector-tid,
+.views-field-field-collector-name {
+  ul {
+    padding-left: 0;
+
+    li {
+      list-style-type: none;
+    }
+  }
 }
-.views-field-field-collector-tid li {
-  list-style-type: none;
+.table > tbody > tr > td.views-field-field-collector-name {
+  padding-left: 0;
 }
 .toggle-wrapper:active,
 .toggle-wrapper {
