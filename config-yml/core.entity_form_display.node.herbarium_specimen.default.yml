@@ -78,6 +78,7 @@ third_party_settings:
         required_fields: true
         id: ''
         classes: ''
+      region: content
     group_date:
       children:
         - field_dwc_eventdate
@@ -93,6 +94,7 @@ third_party_settings:
         classes: ''
         id: ''
         required_fields: true
+      region: content
     group_previous_identifications:
       children:
         - field_previous_identifications
@@ -106,6 +108,7 @@ third_party_settings:
         classes: ''
         id: ''
         required_fields: true
+      region: content
     group_details_license:
       children:
         - field_dc_type
@@ -132,6 +135,7 @@ third_party_settings:
         classes: ''
         id: ''
         required_fields: true
+      region: content
     group_collectors:
       children:
         - field_collector_tid
@@ -146,6 +150,7 @@ third_party_settings:
         id: ''
         classes: ''
       label: 'Collected By'
+      region: content
     group_initially_hidden_details:
       children:
         - group_collectors
@@ -161,6 +166,7 @@ third_party_settings:
         classes: ''
         effect: none
       label: 'Initially Hidden Details'
+      region: content
     group_images:
       children:
         - field_large_sample_surrogate
@@ -174,6 +180,7 @@ third_party_settings:
         classes: ui-state-default
         open: false
       label: 'Full Size Image'
+      region: content
 _core:
   default_config_hash: WMosJkr0GxG7D1yaPL0251VhKWECtZxowQpvjDsXJhw
 id: node.herbarium_specimen.default
