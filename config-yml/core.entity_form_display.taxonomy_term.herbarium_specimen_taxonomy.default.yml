@@ -40,6 +40,7 @@ third_party_settings:
         classes: ''
         open: false
       label: 'Legacy Fields'
+      region: content
     group_measurement_of_fact:
       children:
         - field_dwc_measurementtype
@@ -54,6 +55,7 @@ third_party_settings:
         open: false
         required_fields: true
       label: 'Measurement or Fact'
+      region: content
     group_alternate_names:
       children:
         - field_cmh_english_common_names
@@ -68,6 +70,7 @@ third_party_settings:
         open: false
         required_fields: true
       label: 'Alternate Names'
+      region: content
 _core:
   default_config_hash: tZpwdsCc5ZwmeyOF35YnbDlyCwuvCdtObpP8O8ers3E
 id: taxonomy_term.herbarium_specimen_taxonomy.default
