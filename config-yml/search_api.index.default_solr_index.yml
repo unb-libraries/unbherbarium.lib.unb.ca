@@ -21,7 +21,6 @@ dependencies:
     - field.storage.node.field_dwc_province_tax
     - field.storage.node.field_dwc_record_number
     - search_api.server.drupal_solr_lib_unb_ca
-    - core.entity_view_mode.node.search_index
 third_party_settings:
   search_api_solr:
     finalize: false
@@ -212,8 +211,7 @@ field_settings:
         anonymous: anonymous
       view_mode:
         'entity:node':
-          article: search_index
-          page: search_index
+          herbarium_specimen: default
   status:
     label: 'Publishing status'
     datasource_id: 'entity:node'
