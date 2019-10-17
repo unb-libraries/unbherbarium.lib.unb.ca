@@ -245,6 +245,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_dwc_record_number
+  field_dwc_record_number_sort:
+    label: 'UNB Accession No. (sort)'
+    datasource_id: 'entity:node'
+    property_path: field_dwc_record_number
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_record_number
   field_dwc_verbatimlocality:
     label: Locality
     datasource_id: 'entity:node'
