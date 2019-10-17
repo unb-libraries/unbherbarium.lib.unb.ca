@@ -13,6 +13,7 @@ dependencies:
     - field.storage.node.field_taxonomy_tid
     - field.storage.taxonomy_term.field_cmh_english_common_names
     - field.storage.taxonomy_term.field_cmh_french_common_names
+    - field.storage.taxonomy_term.field_cmh_full_specimen_name
     - field.storage.taxonomy_term.field_synonyms
     - field.storage.node.field_dwc_eventdate
     - field.storage.node.field_collector_tid
@@ -122,6 +123,17 @@ field_settings:
       config:
         - field.storage.node.field_taxonomy_tid
         - field.storage.taxonomy_term.field_cmh_french_common_names
+      module:
+        - taxonomy
+  field_cmh_full_specimen_name:
+    label: 'Assigned Taxon » Taxonomy term » Full Specimen Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_taxonomy_tid:entity:field_cmh_full_specimen_name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_taxonomy_tid
+        - field.storage.taxonomy_term.field_cmh_full_specimen_name
       module:
         - taxonomy
   field_collector_name:
