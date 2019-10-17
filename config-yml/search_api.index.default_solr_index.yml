@@ -328,17 +328,32 @@ processor_settings:
     weights:
       preprocess_index: -10
   html_filter:
-    all_fields: false
+    all_fields: true
     fields:
-      - rendered_item
+      - author
+      - field_additional_search_metadata
+      - field_cmh_english_common_names
+      - field_cmh_french_common_names
+      - field_cmh_full_specimen_name
+      - field_collector_name
+      - field_dwc_country_name
+      - field_dwc_county_name
+      - field_dwc_habitat
+      - field_dwc_province_name
+      - field_dwc_record_number
+      - field_dwc_verbatimlocality
+      - field_synonyms
+      - title
+      - type
     title: false
     alt: false
     tags:
-      b: 2
+      em: 2
       h1: 5
       h2: 3
       h3: 2
       string: 2
+      strong: 2
     weights:
       preprocess_index: -3
       preprocess_query: -6
