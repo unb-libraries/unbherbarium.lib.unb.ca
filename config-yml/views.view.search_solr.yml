@@ -877,7 +877,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<div role=\"contentinfo\" aria-label=\"no results\" class=\"alert alert-warning\">\r\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\r\n  Your combination of filters did not match any records.\r\n</div>\r\n\r\n<p><b><span class=\"glyphicon glyphicon-info-sign\"></span> Suggestions:</b></p>\r\n<ul>\r\n  <li>Make sure that all words are spelled correctly.</li>\r\n  <li>Make sure all words are in their appropriate field.</li>\r\n  <li>Try using a partial word search: <kbd>card</kbd> will match <kbd>cardamine</kbd>.</li>\r\n  <li>Try <a href=\"/specimen/search-solr\">removing your filter options</a> and starting over.</li>\r\n</ul>"
+            value: "<div role=\"contentinfo\" aria-label=\"no results\" class=\"alert alert-warning\">\r\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\r\n  Your combination of filters did not match any records.\r\n</div>\r\n\r\n<p><b><span class=\"glyphicon glyphicon-info-sign\"></span> Suggestions:</b></p>\r\n<ul>\r\n  <li>Make sure that all words are spelled correctly.</li>\r\n  <li>Make sure all words are in their appropriate field.</li>\r\n  <li>Try <a href=\"/specimen/search-solr\">removing your filter options</a> and starting over.</li>\r\n</ul>"
             format: full_html
           plugin_id: text
       relationships: {  }
