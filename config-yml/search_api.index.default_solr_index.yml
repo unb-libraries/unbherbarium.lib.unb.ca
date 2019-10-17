@@ -136,7 +136,7 @@ field_settings:
         - taxonomy
         - taxonomy
   field_collector_tid:
-    label: Collector
+    label: 'Collector (dropdown)'
     datasource_id: 'entity:node'
     property_path: field_collector_tid
     type: integer
@@ -151,16 +151,38 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_dwc_eventdate
+  field_dwc_country_name:
+    label: 'Country » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_dwc_country_tax:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_country_tax
+      module:
+        - taxonomy
+        - taxonomy
   field_dwc_country_tax:
-    label: Country
+    label: 'Country (dropdown)'
     datasource_id: 'entity:node'
     property_path: field_dwc_country_tax
     type: integer
     dependencies:
       config:
         - field.storage.node.field_dwc_country_tax
+  field_dwc_county_name:
+    label: 'County » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_dwc_county_tax:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_county_tax
+      module:
+        - taxonomy
+        - taxonomy
   field_dwc_county_tax:
-    label: County
+    label: 'County (dropdown)'
     datasource_id: 'entity:node'
     property_path: field_dwc_county_tax
     type: integer
@@ -183,8 +205,19 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_dwc_habitat
+  field_dwc_province_name:
+    label: 'State/Province/Territory » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_dwc_province_tax:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_dwc_province_tax
+      module:
+        - taxonomy
+        - taxonomy
   field_dwc_province_tax:
-    label: State/Province/Territory
+    label: 'State/Province/Territory (dropdown)'
     datasource_id: 'entity:node'
     property_path: field_dwc_province_tax
     type: integer
@@ -226,16 +259,6 @@ field_settings:
     indexed_locked: true
     type_locked: true
     hidden: true
-  rendered_item:
-    label: 'Rendered item'
-    property_path: rendered_item
-    type: text
-    configuration:
-      roles:
-        anonymous: anonymous
-      view_mode:
-        'entity:node':
-          herbarium_specimen: default
   status:
     label: 'Publishing status'
     datasource_id: 'entity:node'
