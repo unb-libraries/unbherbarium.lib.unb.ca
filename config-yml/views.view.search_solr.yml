@@ -9,6 +9,7 @@ dependencies:
     - field.storage.taxonomy_term.field_cmh_full_specimen_name
     - image.style.thumbnail
     - search_api.index.default_solr_index
+    - system.menu.main
     - taxonomy.vocabulary.herbarium_specimen_collector
     - taxonomy.vocabulary.specimen_location_country
     - taxonomy.vocabulary.specimen_location_county
@@ -908,7 +909,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: specimen/search-solr
+      path: specimen/search
       filters:
         search_api_fulltext:
           id: search_api_fulltext
@@ -1487,6 +1488,15 @@ display:
           admin_label: ''
           empty: false
           plugin_id: herbarium_specimen_csv_export_button
+      menu:
+        type: normal
+        title: 'Specimen Search'
+        description: ''
+        expanded: false
+        parent: ''
+        weight: -50
+        context: '0'
+        menu_name: main
     cache_metadata:
       max-age: -1
       contexts:
