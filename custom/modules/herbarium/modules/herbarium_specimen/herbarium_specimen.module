@@ -39,7 +39,7 @@ function herbarium_specimen_node_delete(EntityInterface $node) {
       );
       batch_process();
     }
-    \Drupal::service('request_stack')->getCurrentRequest()->query->set('destination', \Drupal::url('view.browse.page'));
+    \Drupal::service('request_stack')->getCurrentRequest()->query->set('destination', \Drupal::url('view.search_solr.page_1'));
   }
 }
 
@@ -241,7 +241,7 @@ function _herbarium_specimen_get_collector_list(Node $node) {
 
   if (!empty($node->get('field_collector_tid'))) {
     foreach ($node->get('field_collector_tid') as $collector) {
-      if(!empty($collector->entity)) {
+      if (!empty($collector->entity)) {
         $collectors_id = $collector->entity->id();
         $render_item = [
           '#markup' => Link::fromTextAndUrl(
