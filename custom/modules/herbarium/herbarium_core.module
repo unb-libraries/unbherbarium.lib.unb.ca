@@ -98,21 +98,6 @@ function herbarium_core_taxonomy_term_presave(TermInterface $term) {
 
       batch_set($batch);
     }
-
-    // Populate the Additional Search Metadata from multi-valued fields.
-    $metadata = '';
-    $combine_fields = [
-      'field_cmh_english_common_names',
-      'field_cmh_french_common_names',
-      'field_synonyms',
-    ];
-    foreach ($combine_fields as $field) {
-      if ($term->hasField($field)) {
-        $metadata .= _herbarium_core_taxonomy_flatten_field($term->get($field));
-      }
-    }
-    $term->get('field_additional_search_metadata')->setValue(trim($metadata));
-
   }
 }
 
