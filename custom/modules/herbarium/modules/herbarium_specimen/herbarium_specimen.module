@@ -246,7 +246,7 @@ function _herbarium_specimen_get_collector_list(Node $node) {
         $render_item = [
           '#markup' => Link::fromTextAndUrl(
             $collector->entity->getName(),
-            Url::fromUri("internal:/specimen/search-solr?&collector[]=$collectors_id")
+            Url::fromUri("internal:/specimen/search?&collector[]=$collectors_id")
           )->toString(),
         ];
         $render_array['#items'][] = $render_item;
