@@ -58,16 +58,24 @@ main a:hover {
 .pagination > li > span {
   display: inline-block;
 }
+
 .btn-primary,
 a.btn-primary {
   background-color: #545454;
   border-color: buttonface;
   color: #fff;
+
+  &:focus,
+  &:hover {
+    background-color: #567410;
+    border-color: buttonface;
+  }
 }
-.btn-primary:focus,
-.btn-primary:hover {
-  background-color: #567410;
-  border-color: buttonface;
+.local-actions {
+  .btn-success,
+  a.btn-success {
+    color: #fff;
+  }
 }
 .region-sidebar-second .nav > li > a {
   padding: 0;
@@ -239,6 +247,18 @@ label {
   font-family: 'Glyphicons Halflings';
   font-size: x-small;
   margin-right: .4em;
+}
+// Browse overrides for Content management.
+.manage-content {
+  thead tr {
+    th {
+      padding: 8px;
+
+      a {
+        padding: 0;
+      }
+    }
+  }
 }
 .view .table-striped>tbody>tr:nth-of-type(even) {
   background-color: $color-table-even;

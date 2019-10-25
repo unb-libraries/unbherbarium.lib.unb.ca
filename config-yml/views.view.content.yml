@@ -30,7 +30,7 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Filter
+          submit_button: 'Apply Filters'
           reset_button: true
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
@@ -576,6 +576,7 @@ display:
           empty: false
           content: '<div class="messages messages--status">Displaying @start - @end of @total</div>'
           plugin_id: result
+      css_class: 'manage-content browse '
     display_plugin: default
     display_title: Master
     id: default
