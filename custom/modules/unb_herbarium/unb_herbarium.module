@@ -354,7 +354,6 @@ function unb_herbarium_form_alter(&$form, FormStateInterface $form_state, $form_
           'Menu settings' => 'menu',
           'Revision information' => 'revision_information',
           'URL path settings' => 'path_settings',
-          'Authoring information' => 'author',
         ];
         break;
 
@@ -363,7 +362,6 @@ function unb_herbarium_form_alter(&$form, FormStateInterface $form_state, $form_
         $hide_vtabs = [
           'Promotion options' => 'options',
           'Revision information' => 'revision_information',
-          'Authoring information' => 'author',
         ];
     }
     foreach ($hide_vtabs as $vt_human_name => $vt_machine_name) {
