@@ -639,3 +639,7 @@ figure a {
     }
   }
 }
+// Vertical tab focus/hover fix.
+.nav > li.vertical-tab-button > a {
+  display: block;
+}
