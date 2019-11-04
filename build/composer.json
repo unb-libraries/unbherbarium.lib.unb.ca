@@ -92,7 +92,7 @@
         "drupal/features": "3.8",
         "drupal/field_group": "3.0-rc1",
         "drupal/google_analytics": "2.4",
-        "drupal/health_check": "1.1",
+        "drupal/health_check": "1.2",
         "drupal/honeypot": "1.29",
         "drupal/migrate_plus": "4.2",
         "drupal/migrate_source_csv": "2.2",
