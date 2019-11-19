@@ -1,0 +1,150 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: drupal
+    appMajor: "8"
+    instance: unbherbarium.lib.unb.ca
+    tier: frontend
+    uri: unbherbarium.lib.unb.ca
+    vcsOwner: unb-libraries
+    vcsRepository: unbherbarium.lib.unb.ca
+    vcsRef: prod
+  name: unbherbarium-lib-unb-ca
+  namespace: prod
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: drupal
+        appMajor: "8"
+        instance: unbherbarium.lib.unb.ca
+        tier: frontend
+        uri: unbherbarium.lib.unb.ca
+        vcsOwner: unb-libraries
+        vcsRepository: unbherbarium.lib.unb.ca
+        vcsRef: prod
+    spec:
+      containers:
+        -
+          name: unbherbarium-lib-unb-ca
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 65
+            timeoutSeconds: 3
+            periodSeconds: 15
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 130
+            timeoutSeconds: 3
+            periodSeconds: 15
+          env:
+            -
+              name: DEPLOY_ENV
+              value: prod
+            -
+              name: MYSQL_HOSTNAME
+              value: drupal-mysql-lib-unb-ca
+            -
+              name: MYSQL_PORT
+              value: "3306"
+            -
+              name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql
+                  key: root-password
+            -
+              name: NR_INSTALL_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: newrelic
+                  key: install-key
+            -
+              name: LOGZIO_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: logzio
+                  key: secret-key
+            -
+              name: NGINX_LOG_FILE
+              value: "/var/log/nginx/access.log"
+            -
+              name: NGINX_ERROR_LOG_FILE
+              value: "/var/log/nginx/error.log"
+            -
+              name: PHP_FPM_ERROR_LOG
+              value: "/var/log/nginx/error.log"
+            -
+              name: LTS_LFS_SERVER_HOST
+              value: "herbarium-gitlfs-lib-unb-ca"
+            -
+              name: LTS_LFS_SERVER_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: herbarium-git-lfs
+                  key: server-port
+            -
+              name: LTS_LFS_SERVER_USER
+              valueFrom:
+                secretKeyRef:
+                  name: herbarium-git-lfs
+                  key: server-user
+            -
+              name: LTS_LFS_SERVER_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: herbarium-git-lfs
+                  key: server-password
+            -
+              name: LTS_DEPLOY_PATH
+              value: "/lts-archive"
+            -
+              name: LTS_DEPLOY_REPO
+              valueFrom:
+                secretKeyRef:
+                  name: herbarium-git-lfs
+                  key: deploy-repo
+            -
+              name: LTS_DEPLOY_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: lfs
+                  key: lfs_deploy
+          image: "||DEPLOYMENTIMAGE||"
+          imagePullPolicy: Always
+          ports:
+            -
+              containerPort: 80
+          volumeMounts:
+            -
+              mountPath: /app/html/sites/default
+              name: drupal-persistent-storage
+            -
+              mountPath: /app/private_filesystem
+              name: drupal-private-storage
+      priorityClassName: high-priority-services
+      imagePullSecrets:
+        -
+          name: ecr-registry-pull
+      restartPolicy: Always
+      volumes:
+        -
+          name: drupal-persistent-storage
+          persistentVolumeClaim:
+            claimName: unbherbarium-lib-unb-ca
+        -
+          name: drupal-private-storage
+          persistentVolumeClaim:
+            claimName: unbherbarium-lib-unb-ca-private

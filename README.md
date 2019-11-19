@@ -1,5 +1,5 @@
-![unbherbarium.lib.unb.ca screenshot](screenshot.png "unbherbarium.lib.unb.ca screenshot")
-# [unbherbarium.lib.unb.ca](https://unbherbarium.lib.unb.ca) : Instance Repository
+![unbherbarium.lib.unb.ca screenshot](https://github.com/unb-libraries/unbherbarium.lib.unb.ca/raw/prod/screenshot.png "unbherbarium.lib.unb.ca screenshot")
+# [unbherbarium.lib.unb.ca](https://unbherbarium.lib.unb.ca/) : Instance Repository
 [![Build Status](https://travis-ci.com/unb-libraries/unbherbarium.lib.unb.ca.svg?branch=prod)](https://travis-ci.com/unb-libraries/unbherbarium.lib.unb.ca) [![GitHub license](https://img.shields.io/github/license/unb-libraries/unbherbarium.lib.unb.ca)](https://github.com/unb-libraries/unbherbarium.lib.unb.ca/blob/dev/LICENSE) ![GitHub repo size](https://img.shields.io/github/repo-size/unb-libraries/unbherbarium.lib.unb.ca)
 
 This repository contains all assets used to test, build, and deploy the [unbherbarium.lib.unb.ca](https://unbherbarium.lib.unb.ca) Drupal application. This repository extends the [unb-libraries/docker-drupal](https://github.com/unb-libraries/docker-drupal) base image, which deploys nginx and php-fpm in the service container.
@@ -31,7 +31,7 @@ If you work with unb-libraries applications often, you may also consider [instal
 Run ```vendor/bin/dockworker``` to list available dockworker commands for this application.
 
 ## Author / Licensing
-- Developed by [![UNB Libraries](https://github.com/unb-libraries/assets/raw/master/unblibbadge.png "UNB Libraries")](https://unbherbarium.lib.unb.ca/)
+- Developed by [![UNB Libraries](https://github.com/unb-libraries/assets/raw/master/unblibbadge.png "UNB Libraries")](https://lib.unb.ca/)
 - This work is published through our strong commitment to making as much of our development/workflow as possible freely available.
 - Consequently, the contents of this repository [unb-libraries/unbherbarium.lib.unb.ca] are licensed under the [MIT License](http://opensource.org/licenses/mit-license.html). This license explicitly excludes:
    - Any website content, which remains the exclusive property of its author(s).
