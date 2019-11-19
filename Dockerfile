@@ -14,7 +14,6 @@ COPY ./scripts/container /scripts
 # Add additional OS packages.
 ENV ADDITIONAL_OS_PACKAGES tiff-dev tiff postfix imagemagick bash rsyslog openssh-client php7-redis
 RUN /scripts/addOsPackages.sh && \
-  echo "TLS_REQCERT never" > /etc/openldap/ldap.conf && \
   /scripts/initRsyslog.sh
 
 # Add package conf.
