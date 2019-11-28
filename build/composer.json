@@ -96,7 +96,7 @@
         "drupal/honeypot": "1.29",
         "drupal/migrate_plus": "4.2",
         "drupal/migrate_source_csv": "2.2",
-        "drupal/migrate_tools": "4.4",
+        "drupal/migrate_tools": "4.5",
         "drupal/pathauto": "1.5",
         "drupal/redis": "1.2",
         "drupal/search_api": "1.15",
