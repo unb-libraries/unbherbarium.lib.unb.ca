@@ -103,7 +103,7 @@
         "drupal/search_api_solr": "3.7",
         "drupal/simple_entity_merge": "1.1",
         "drupal/simple_gmap": "1.4",
-        "drupal/taxonomy_access_fix": "2.6",
+        "drupal/taxonomy_access_fix": "2.7",
         "drupal/taxonomy_manager": "1.0-alpha2",
         "drupal/token": "1.5",
         "drupal/tvi": "1.0-beta2",
