@@ -67,6 +67,7 @@
             "type": "package"
         },
         {
+            "type": "package",
             "package": {
                 "dist": {
                     "type": "zip",
@@ -77,14 +78,13 @@
                     "composer/installers": "^1.2.0"
                 },
                 "type": "drupal-library",
-                "version": "1.8.3"
-            },
-            "type": "package"
+                "version": "1.8.7"
+            }
         }
     ],
     "require": {
         "drupal/bootstrap": "3.21",
-        "drupal/chosen": "2.8",
+        "drupal/chosen": "2.9",
         "drupal/config_update": "1.6",
         "drupal/core": "8.8.1",
         "drupal/csv_serialization": "1.4",
