@@ -100,7 +100,7 @@
         "drupal/pathauto": "1.6",
         "drupal/redis": "1.2",
         "drupal/search_api": "1.15",
-        "drupal/search_api_solr": "3.7",
+        "drupal/search_api_solr": "3.8",
         "drupal/simple_entity_merge": "1.1",
         "drupal/simple_gmap": "1.4",
         "drupal/taxonomy_access_fix": "2.7",
