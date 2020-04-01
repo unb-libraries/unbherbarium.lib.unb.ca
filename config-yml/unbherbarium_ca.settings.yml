@@ -34,4 +34,11 @@ features:
   favicon: 0
   node_user_picture: 1
 modal_enabled: 0
-button_size: ''
+tooltip_placement: 'auto bottom'
+tooltip_trigger: focus
+cdn_theme: ''
+cdn_cache_ttl_versions: 0
+cdn_cache_ttl_themes: 0
+cdn_cache_ttl_assets: 0
+cdn_cache_ttl_library: 0
+reset_http_request_cache: ''
