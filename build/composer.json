@@ -88,7 +88,7 @@
         "drupal/config_update": "1.7",
         "drupal/core": "8.8.5",
         "drupal/csv_serialization": "1.4",
-        "drupal/editor_file": "1.4",
+        "drupal/editor_file": "1.5",
         "drupal/features": "3.8",
         "drupal/field_group": "3.0",
         "drupal/google_analytics": "2.4",
