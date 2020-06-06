@@ -65,7 +65,7 @@ third_party_settings:
 _core:
   default_config_hash: lcYnKd7EBuLnAdRQR3jS8E4SqChn3zAaFqUx9DdoTqA
 id: default_solr_index
-name: 'UNB Herbarium Specimens Solr Index'
+name: specimens.unbherbarium.lib.unb.ca
 description: 'Default content index created by the Solr Search Defaults module'
 read_only: false
 field_settings:
