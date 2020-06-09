@@ -91,7 +91,7 @@
         "drupal/editor_file": "1.5",
         "drupal/features": "3.11",
         "drupal/field_group": "3.0",
-        "drupal/google_analytics": "2.4",
+        "drupal/google_analytics": "2.5",
         "drupal/health_check": "1.2",
         "drupal/honeypot": "1.30",
         "drupal/migrate_plus": "4.2",
