@@ -35,6 +35,8 @@ spec:
         vcsRepository: unbherbarium.lib.unb.ca
         vcsRef: prod
     spec:
+      nodeSelector:
+        deployenv: prod
       containers:
         -
           name: unbherbarium-lib-unb-ca
