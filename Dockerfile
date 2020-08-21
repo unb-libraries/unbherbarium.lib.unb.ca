@@ -1,7 +1,6 @@
-FROM unblibraries/drupal:dockworker-2.x
+FROM unblibraries/drupal:8.x-2.x-slim-unblib
 MAINTAINER UNB Libraries <libsupport@unb.ca>
 
-ARG COMPOSER_DEPLOY_DEV=no-dev
 ENV DRUPAL_SITE_ID unbherb
 ENV DRUPAL_SITE_URI unbherbarium.lib.unb.ca
 ENV DRUPAL_SITE_UUID 85c96bf2-f1b6-4612-8305-d3d3769d5255
@@ -26,10 +25,9 @@ RUN /scripts/setupStandardConf.sh && \
   chmod +x /usr/local/bin/magick-slicer && \
   /scripts/InstallGitLFS.sh
 COPY ./build /build
-RUN /scripts/build.sh ${COMPOSER_DEPLOY_DEV} ${DRUPAL_BASE_PROFILE}
+RUN /scripts/build.sh ${DRUPAL_BASE_PROFILE}
 
 # Deploy repository assets.
-COPY ./tests/ ${DRUPAL_TESTING_ROOT}/
 COPY ./config-yml ${DRUPAL_CONFIGURATION_DIR}
 COPY ./custom/themes ${DRUPAL_ROOT}/themes/custom
 COPY ./custom/modules ${DRUPAL_ROOT}/modules/custom
