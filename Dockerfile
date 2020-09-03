@@ -11,7 +11,6 @@ ENV DRUPAL_SITE_UUID 85c96bf2-f1b6-4612-8305-d3d3769d5255
 COPY ./build/ /build/
 RUN ${RSYNC_MOVE} /build/scripts/container/ /scripts/ && \
   /scripts/addOsPackages.sh && \
-  /scripts/initOpenLdap.sh && \
   /scripts/initRsyslog.sh && \
   /scripts/setupStandardConf.sh && \
   /scripts/build.sh
