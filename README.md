@@ -1,4 +1,4 @@
-![unbherbarium.lib.unb.ca screenshot](https://github.com/unb-libraries/unbherbarium.lib.unb.ca/raw/prod/screenshot.png "unbherbarium.lib.unb.ca screenshot")
+![unbherbarium.lib.unb.ca screenshot](https://github.com/unb-libraries/unbherbarium.lib.unb.ca/raw/prod/.dockworker/screenshot.png "unbherbarium.lib.unb.ca screenshot")
 # [unbherbarium.lib.unb.ca](https://unbherbarium.lib.unb.ca/) : Instance Repository
 [![Build Status](https://travis-ci.com/unb-libraries/unbherbarium.lib.unb.ca.svg?branch=prod)](https://travis-ci.com/unb-libraries/unbherbarium.lib.unb.ca) [![GitHub license](https://img.shields.io/github/license/unb-libraries/unbherbarium.lib.unb.ca)](https://github.com/unb-libraries/unbherbarium.lib.unb.ca/blob/dev/LICENSE) ![GitHub repo size](https://img.shields.io/github/repo-size/unb-libraries/unbherbarium.lib.unb.ca)
 
