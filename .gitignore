@@ -2,5 +2,5 @@
 .idea
 vendor
 composer.lock
-tests/features/bootstrap
+tests/behat/features/bootstrap
 scripts/local
