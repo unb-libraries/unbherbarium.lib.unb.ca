@@ -7,12 +7,19 @@ ENV DRUPAL_SITE_ID unbherb
 ENV DRUPAL_SITE_URI unbherbarium.lib.unb.ca
 ENV DRUPAL_SITE_UUID 85c96bf2-f1b6-4612-8305-d3d3769d5255
 
+ENV DRUPAL_PRIVATE_FILE_PATH /app/private_filesystem
+ENV GIT_LFS_VERSION 2.7.2
+
 # Build application.
 COPY ./build/ /build/
 RUN ${RSYNC_MOVE} /build/scripts/container/ /scripts/ && \
   /scripts/addOsPackages.sh && \
   /scripts/initRsyslog.sh && \
   /scripts/setupStandardConf.sh && \
+  curl -O https://raw.githubusercontent.com/VoidVolker/MagickSlicer/master/magick-slicer.sh && \
+  mv magick-slicer.sh /usr/local/bin/magick-slicer && \
+  chmod +x /usr/local/bin/magick-slicer && \
+  /scripts/InstallGitLFS.sh && \
   /scripts/build.sh
 
 # Deploy custom assets, configuration.
