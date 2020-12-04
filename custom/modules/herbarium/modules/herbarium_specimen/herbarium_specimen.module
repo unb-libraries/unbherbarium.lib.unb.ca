@@ -87,9 +87,8 @@ function herbarium_specimen_node_presave($node) {
       }
       if (strlen($metadata) > 2048) {
         $metadata = substr($metadata, 0, 2048);
-        drupal_set_message(
-          'Search metadata field truncated. Some text may not be searchable!',
-          'warning'
+        \Drupal::messenger()->addWarning(
+          'Search metadata field truncated. Some text may not be searchable!'
         );
       }
       $node

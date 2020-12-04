@@ -29,9 +29,8 @@ class ManageArchivalMasterForm extends FormBase {
     $node_obj = Node::load($node);
 
     if (trim(Settings::get('specimen_lts_archive') == '')) {
-      drupal_set_message(
-        t('WARNING: Settings for a LFS storage server have not been detected. Any changes to the master image for this specimen will not be stored in the permanent archive.'),
-        'warning'
+      $this->messenger()->addWarning(
+        t('WARNING: Settings for a LFS storage server have not been detected. Any changes to the master image for this specimen will not be stored in the permanent archive.')
       );
 
       // Allow the form to be submitted, but LFS storage will be skipped.
@@ -40,7 +39,7 @@ class ManageArchivalMasterForm extends FormBase {
     else {
       list($storage_status, $error_message) = HerbariumImageLtsArchiver::checkStorageStatus();
       if ($error_message) {
-        drupal_set_message($error_message, 'error');
+        $this->messenger()->addError($error_message);
       }
     }
 
