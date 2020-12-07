@@ -169,7 +169,7 @@ function drush_herbarium_specimen_lts_regen_lts_images() {
 
   while ($import_counter < $limit) {
     // Start a transaction.
-    $transaction = db_transaction();
+    $transaction = \Drupal::database()->startTransaction();
 
     // Lock the table when selecting to avoid race conditions.
     $sql = 'SELECT nid FROM ' . HERBARIUM_SPECIMEN_LTS_REGEN_TABLE . " WHERE status=" . HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED . " ORDER BY nid DESC LIMIT 1 OFFSET $import_counter FOR UPDATE";
@@ -278,7 +278,7 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
 
   while ($import_counter < $limit) {
     // Start a transaction.
-    $transaction = db_transaction();
+    $transaction = \Drupal::database()->startTransaction();
 
     // Lock the table when selecting to avoid race conditions.
     $sql = 'SELECT file FROM ' . HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE . " WHERE status=" . HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED . " LIMIT 1 OFFSET $import_counter FOR UPDATE";
