@@ -171,7 +171,7 @@ function _herbarium_specimen_generate_specimen_surrogates_batch($nid, $file_path
  *   are possible values.
  */
 function _herbarium_specimen_manually_remove_broken_file_reference($nid, $field_name) {
-  $query = db_select("node__$field_name", 'n');
+  $query = \Drupal::database()->select("node__$field_name", 'n');
   $query->fields('n', ["{$field_name}_target_id"]);
   $query->condition('n.entity_id', $nid);
   $result = $query->execute();
