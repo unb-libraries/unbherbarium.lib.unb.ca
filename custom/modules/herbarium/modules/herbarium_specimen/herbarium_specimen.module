@@ -180,19 +180,19 @@ function _herbarium_specimen_manually_remove_broken_file_reference($nid, $field_
     while ($row = $result->fetchAssoc()) {
       $fid = $row["{$field_name}_target_id"];
 
-      $deleted = db_delete("node__$field_name")
+      $deleted = \Drupal::database()->delete("node__$field_name")
         ->condition('entity_id', $nid)
         ->execute();
 
-      $deleted = db_delete("node_revision__$field_name")
+      $deleted = \Drupal::database()->delete("node_revision__$field_name")
         ->condition('entity_id', $nid)
         ->execute();
 
-      $deleted = db_delete('file_managed')
+      $deleted = \Drupal::database()->delete('file_managed')
         ->condition('fid', $fid)
         ->execute();
 
-      $deleted = db_delete('file_usage')
+      $deleted = \Drupal::database()->delete('file_usage')
         ->condition('fid', $fid)
         ->execute();
     }
