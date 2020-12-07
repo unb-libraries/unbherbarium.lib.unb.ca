@@ -39,7 +39,7 @@ function herbarium_specimen_node_delete(EntityInterface $node) {
       );
       batch_process();
     }
-    \Drupal::service('request_stack')->getCurrentRequest()->query->set('destination', \Drupal::url('view.search_solr.page_1'));
+    \Drupal::service('request_stack')->getCurrentRequest()->query->set('destination', Url::fromRoute('view.search_solr.page_1')->toString());
   }
 }
 
