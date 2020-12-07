@@ -158,7 +158,7 @@ class HerbariumImageSurrogateFactory {
     // Create unmasked file object.
     $uniqid = uniqid(rand(), TRUE);
     $target_path_u = 'private://specimen_images';
-    file_prepare_directory($target_path_u, FILE_CREATE_DIRECTORY);
+    file_prepare_directory($target_path_u, \Drupal\Core\File\FileSystemInterface::CREATE_DIRECTORY);
     $file_destination_u = "$target_path_u/$nid-$uniqid.jpg";
     $uri_u = \Drupal::service('file_system')->copy($temp_image_file, $file_destination_u, \Drupal\Core\File\FileSystemInterface::EXISTS_REPLACE);
     $file_u = File::Create([
