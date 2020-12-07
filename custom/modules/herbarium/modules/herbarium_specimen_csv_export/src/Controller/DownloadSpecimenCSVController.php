@@ -38,7 +38,7 @@ class DownloadSpecimenCSVController extends ControllerBase {
    */
   public function getAllNodesCsv() {
     $query = \Drupal::entityQuery('node')
-      ->condition('status', NODE_PUBLISHED)
+      ->condition('status', \Drupal\node\NodeInterface::PUBLISHED)
       ->condition('type', 'herbarium_specimen');
     $result = $query->execute();
 
