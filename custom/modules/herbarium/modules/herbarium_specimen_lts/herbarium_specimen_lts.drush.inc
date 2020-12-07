@@ -122,7 +122,7 @@ function drush_herbarium_specimen_lts_regen_queue_images() {
   }
 
   // Remove previous data.
-  db_truncate(HERBARIUM_SPECIMEN_LTS_REGEN_TABLE)->execute();
+  \Drupal::database()->truncate(HERBARIUM_SPECIMEN_LTS_REGEN_TABLE)->execute();
 
   $file_extension = 'tif';
   $dzi_path = '/app/html/sites/default/files/dzi';
