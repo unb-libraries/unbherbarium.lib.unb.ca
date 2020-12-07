@@ -261,7 +261,7 @@ class ManageArchivalMasterForm extends FormBase {
   public function uploadArchivalMasterSubmitForm(array &$form, FormStateInterface $form_state) {
     $fid = $form_state->getValue('tiff_file')[0];
     $file = File::Load($fid);
-    $file_path = drupal_realpath($file->getFileUri());
+    $file_path = \Drupal\Core\File\FileSystem::realpath($file->getFileUri());
     $nid = $form_state->getValue('nid');
 
     $batch = _herbarium_specimen_lts_add_archival_master($nid, $file_path);

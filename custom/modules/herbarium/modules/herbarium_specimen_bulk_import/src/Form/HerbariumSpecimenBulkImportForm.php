@@ -115,7 +115,7 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
       ini_set("auto_detect_line_endings", '1');
       $file = File::Load($form_state->getValue('import_file')[0]);
       if (!empty($file)) {
-        $file_path = drupal_realpath($file->getFileUri());
+        $file_path = \Drupal\Core\File\FileSystem::realpath($file->getFileUri());
         $format_id = $form_state->getValue('import_format');
 
         if (
@@ -138,7 +138,7 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $fid = $form_state->getValue('import_file')[0];
     $file = File::Load($fid);
-    $file_path = drupal_realpath($file->getFileUri());
+    $file_path = \Drupal\Core\File\FileSystem::realpath($file->getFileUri());
     $file->setPermanent();
     $file->save();
 
