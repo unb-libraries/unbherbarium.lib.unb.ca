@@ -19,7 +19,7 @@ use Drupal\taxonomy\Entity\Term;
  */
 function _herbarium_specimen_bulk_import_get_migration_destinations($id) {
   $table_name = "migrate_map_$id";
-  return db_query("SELECT destid1 FROM $table_name}", [
+  return \Drupal::database()->query("SELECT destid1 FROM $table_name}", [
     ':migrate_id' => $table_name,
   ]);
 }
