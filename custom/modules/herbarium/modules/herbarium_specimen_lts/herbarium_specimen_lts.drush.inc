@@ -133,7 +133,7 @@ function drush_herbarium_specimen_lts_regen_queue_images() {
   foreach (explode("\n", $file_list) as $file) {
     if (strstr($file, '.tif')) {
       $nid = (int) str_replace('.tif', '', $file);
-      db_merge(HERBARIUM_SPECIMEN_LTS_REGEN_TABLE)
+      \Drupal::database()->merge(HERBARIUM_SPECIMEN_LTS_REGEN_TABLE)
         ->key(['nid' => $nid])
         ->fields(['status' => HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED])
         ->execute();
@@ -226,7 +226,7 @@ function drush_herbarium_specimen_lts_queue_lts_images($path = NULL) {
 
   foreach ($regex as $tif_file) {
     foreach ($tif_file as $file_path) {
-      db_merge(HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE)
+      \Drupal::database()->merge(HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE)
         ->key(['file' => $file_path])
         ->fields(['status' => HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED])
         ->execute();
