@@ -87,7 +87,7 @@
         "drupal/chosen": "3.0.1",
         "drupal/config_update": "1.7",
         "drupal/core": "8.9.13",
-        "drupal/csv_serialization": "1.4",
+        "drupal/csv_serialization": "1.5",
         "drupal/editor_file": "1.5",
         "drupal/features": "3.11",
         "drupal/field_group": "3.1",
