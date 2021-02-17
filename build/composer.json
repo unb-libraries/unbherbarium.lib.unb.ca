@@ -89,7 +89,7 @@
         "drupal/core": "8.9.13",
         "drupal/csv_serialization": "1.5",
         "drupal/editor_file": "1.5",
-        "drupal/features": "3.11",
+        "drupal/features": "3.12",
         "drupal/field_group": "3.1",
         "drupal/google_analytics": "2.5",
         "drupal/health_check": "1.3",
