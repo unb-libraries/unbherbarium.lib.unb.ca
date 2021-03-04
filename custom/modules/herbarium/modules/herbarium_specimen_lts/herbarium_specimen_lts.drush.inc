@@ -418,7 +418,7 @@ function _herbarium_specimen_lts_add_temp_file_filesystem($source, $destination 
   $file_destination = "$destination://$file_basename";
 
   if (file_exists($source)) {
-    $file_uri = \Drupal::service('file_system')->copy($source, $file_destination, \Drupal\Core\File\FileSystemInterface::EXISTS_REPLACE);
+    $file_uri = file_unmanaged_copy($source, $file_destination, \Drupal\Core\File\FileSystemInterface::EXISTS_REPLACE);
 
     $file = File::Create([
       'uri' => $file_uri,
