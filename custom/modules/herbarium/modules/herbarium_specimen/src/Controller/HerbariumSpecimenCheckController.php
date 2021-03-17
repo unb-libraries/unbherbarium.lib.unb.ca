@@ -25,7 +25,7 @@ class HerbariumSpecimenCheckController extends ControllerBase {
   public function checkInspectAccess($node) {
     $actualNode = Node::load($node);
 
-    $dzi_path = \Drupal::service('file_system')->realpath(\Drupal::config('system.file')->get('default_scheme') . "://") .
+    $dzi_path = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") .
       "/dzi/$node.dzi";
 
     return AccessResult::allowedIf(

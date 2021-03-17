@@ -60,7 +60,7 @@ function herbarium_core_help($route_name, RouteMatchInterface $route_match) {
  * Implements hook_taxonomy_term_presave().
  */
 function herbarium_core_taxonomy_term_presave(TermInterface $term) {
-  if ($term->bundle() == HERBARIUM_CORE_SPECIMEN_VOCABULARY_ID) {
+  if ($term->getVocabularyId() == HERBARIUM_CORE_SPECIMEN_VOCABULARY_ID) {
 
     // Populate the full name field.
     $term->get(HERBARIUM_CORE_SPECIMEN_VOCABULARY_FULL_NAME_FIELD)->setValue(

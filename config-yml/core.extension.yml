@@ -15,6 +15,7 @@ module:
   csv_serialization: 0
   ctools: 0
   datetime: 0
+  dblog: 0
   dynamic_page_cache: 0
   editor: 0
   editor_file: 0
@@ -37,7 +38,6 @@ module:
   image: 0
   language: 0
   link: 0
-  login_destination: 0
   menu_ui: 0
   migrate: 0
   migrate_drupal: 0

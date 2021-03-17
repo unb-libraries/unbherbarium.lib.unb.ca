@@ -115,7 +115,7 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
       ini_set("auto_detect_line_endings", '1');
       $file = File::Load($form_state->getValue('import_file')[0]);
       if (!empty($file)) {
-        $file_path = \Drupal\Core\File\FileSystem::realpath($file->getFileUri());
+        $file_path = drupal_realpath($file->getFileUri());
         $format_id = $form_state->getValue('import_format');
 
         if (
@@ -138,7 +138,7 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $fid = $form_state->getValue('import_file')[0];
     $file = File::Load($fid);
-    $file_path = \Drupal\Core\File\FileSystem::realpath($file->getFileUri());
+    $file_path = drupal_realpath($file->getFileUri());
     $file->setPermanent();
     $file->save();
 
@@ -270,8 +270,9 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
               if (!$validator['function'](...array_values($function_args))) {
                 // Validation failed.
                 $errors = TRUE;
-                $this->messenger()->addError(
-                  "{$import_format['columns'][$column_id]['name']} validation failed in row $data_row_id, column $column_id : $column_data {$validator['error']}."
+                drupal_set_message(
+                  "{$import_format['columns'][$column_id]['name']} validation failed in row $data_row_id, column $column_id : $column_data {$validator['error']}.",
+                  'error'
                 );
               }
             }
@@ -279,8 +280,9 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
         }
         elseif (!isset($import_format['columns'][$column_id]['required']) || $import_format['columns'][$column_id]['required'] === TRUE) {
           $errors = TRUE;
-          $this->messenger()->addError(
-            "{$import_format['columns'][$column_id]['name']} validation failed in row $data_row_id : required value."
+          drupal_set_message(
+            "{$import_format['columns'][$column_id]['name']} validation failed in row $data_row_id : required value.",
+            'error'
           );
         }
       }
@@ -329,8 +331,9 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
             $data_row_id = $row_id + 2;
             // Validation failed.
             $errors = TRUE;
-            $this->messenger()->addError(
-              "{$validator['name']} validation failed in row $data_row_id, {$validator['error']}."
+            drupal_set_message(
+              "{$validator['name']} validation failed in row $data_row_id, {$validator['error']}.",
+              'error'
             );
           }
         }

@@ -5,7 +5,7 @@ dockworker:
     finish_marker: '99_zz_notify_user_URI'
     project_prefix: HERB
     upstream_images:
-      - ghcr.io/unb-libraries/drupal:8.x-3.x-unblib
+      - unblibraries/drupal:8.x-3.x-unblib
   deployment:
     environments:
       - dev
@@ -17,6 +17,6 @@ dockworker:
     push_branches:
       - dev
       - prod
-    name: ghcr.io/unb-libraries/unbherbarium.lib.unb.ca
+    name: unblibraries/unbherbarium.lib.unb.ca
     date_tag_image: true
-    repository: ghcr
+    repository: dockercloud

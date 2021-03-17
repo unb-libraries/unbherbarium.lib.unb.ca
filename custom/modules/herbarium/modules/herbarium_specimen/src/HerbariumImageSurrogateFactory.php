@@ -68,7 +68,7 @@ class HerbariumImageSurrogateFactory {
       }
     }
 
-    $public_dzi_path = \Drupal::service('file_system')->realpath(\Drupal::config('system.file')->get('default_scheme') . "://") . '/dzi';
+    $public_dzi_path = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") . '/dzi';
     $this->nodeDziPath = "$public_dzi_path/$nid";
   }
 
@@ -234,7 +234,7 @@ class HerbariumImageSurrogateFactory {
    * Remove the tiles and DZI for this file.
    */
   protected function removeDziTiles() {
-    $public_dzi_path = \Drupal::service('file_system')->realpath(\Drupal::config('system.file')->get('default_scheme') . "://") . '/dzi';
+    $public_dzi_path = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") . '/dzi';
 
     // Delete DZI assets, surrogates will be deleted by attachNodeSurrogates().
     $nid = $this->nid;

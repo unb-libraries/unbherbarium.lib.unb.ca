@@ -122,7 +122,7 @@ function drush_herbarium_specimen_lts_regen_queue_images() {
   }
 
   // Remove previous data.
-  \Drupal::database()->truncate(HERBARIUM_SPECIMEN_LTS_REGEN_TABLE)->execute();
+  db_truncate(HERBARIUM_SPECIMEN_LTS_REGEN_TABLE)->execute();
 
   $file_extension = 'tif';
   $dzi_path = '/app/html/sites/default/files/dzi';
@@ -133,7 +133,7 @@ function drush_herbarium_specimen_lts_regen_queue_images() {
   foreach (explode("\n", $file_list) as $file) {
     if (strstr($file, '.tif')) {
       $nid = (int) str_replace('.tif', '', $file);
-      \Drupal::database()->merge(HERBARIUM_SPECIMEN_LTS_REGEN_TABLE)
+      db_merge(HERBARIUM_SPECIMEN_LTS_REGEN_TABLE)
         ->key(['nid' => $nid])
         ->fields(['status' => HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED])
         ->execute();
@@ -169,12 +169,12 @@ function drush_herbarium_specimen_lts_regen_lts_images() {
 
   while ($import_counter < $limit) {
     // Start a transaction.
-    $transaction = \Drupal::database()->startTransaction();
+    $transaction = db_transaction();
 
     // Lock the table when selecting to avoid race conditions.
     $sql = 'SELECT nid FROM ' . HERBARIUM_SPECIMEN_LTS_REGEN_TABLE . " WHERE status=" . HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED . " ORDER BY nid DESC LIMIT 1 OFFSET $import_counter FOR UPDATE";
 
-    foreach (\Drupal::database()->query($sql) as $result) {
+    foreach (db_query($sql) as $result) {
       $nid = $result->nid;
     }
 
@@ -226,7 +226,7 @@ function drush_herbarium_specimen_lts_queue_lts_images($path = NULL) {
 
   foreach ($regex as $tif_file) {
     foreach ($tif_file as $file_path) {
-      \Drupal::database()->merge(HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE)
+      db_merge(HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE)
         ->key(['file' => $file_path])
         ->fields(['status' => HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED])
         ->execute();
@@ -278,12 +278,12 @@ function drush_herbarium_specimen_lts_import_lts_images($path = NULL) {
 
   while ($import_counter < $limit) {
     // Start a transaction.
-    $transaction = \Drupal::database()->startTransaction();
+    $transaction = db_transaction();
 
     // Lock the table when selecting to avoid race conditions.
     $sql = 'SELECT file FROM ' . HERBARIUM_SPECIMEN_LTS_QUEUE_TABLE . " WHERE status=" . HERBARIUM_SPECIMEN_LTS_QUEUE_STATUS_UNPROCESSED . " LIMIT 1 OFFSET $import_counter FOR UPDATE";
 
-    foreach (\Drupal::database()->query($sql) as $result) {
+    foreach (db_query($sql) as $result) {
       $file_path = $result->file;
     }
 

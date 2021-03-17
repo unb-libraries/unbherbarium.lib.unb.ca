@@ -91,7 +91,7 @@ spec:
       priorityClassName: dev-med-priority-services
       imagePullSecrets:
         -
-          name: github-container-registry-auth
+          name: docker-hub-auth
       restartPolicy: Always
       volumes:
         -

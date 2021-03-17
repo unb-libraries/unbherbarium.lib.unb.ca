@@ -15,8 +15,3 @@ require_once dirname(__FILE__) . "/settings.redis.inc";
 
 // Set the private filesystem path.
 $settings['file_private_path'] = '/app/private_filesystem';
-
-// Newrelic.
-if (extension_loaded('newrelic')) {
-  require_once dirname(__FILE__) . "/settings.newrelic.inc";
-}

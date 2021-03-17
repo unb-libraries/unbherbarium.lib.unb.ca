@@ -1,13 +1,14 @@
 ![unbherbarium.lib.unb.ca screenshot](https://github.com/unb-libraries/unbherbarium.lib.unb.ca/raw/prod/.dockworker/screenshot.png "unbherbarium.lib.unb.ca screenshot")
 # [unbherbarium.lib.unb.ca](https://unbherbarium.lib.unb.ca/) : Lean Instance Repository
-[![Build Status](https://github.com/unb-libraries/unbherbarium.lib.unb.ca/actions/workflows/test-suite.yaml/badge.svg?branch=prod)](https://github.com/unb-libraries/unbherbarium.lib.unb.ca/actions/workflows/test-suite.yaml)
+[![Build Status](https://travis-ci.com/unb-libraries/unbherbarium.lib.unb.ca.svg?branch=prod)](https://travis-ci.com/unb-libraries/unbherbarium.lib.unb.ca)
 [![GitHub license](https://img.shields.io/github/license/unb-libraries/unbherbarium.lib.unb.ca)](https://github.com/unb-libraries/unbherbarium.lib.unb.ca/blob/prod/LICENSE)
 ![GitHub repo size](https://img.shields.io/github/repo-size/unb-libraries/unbherbarium.lib.unb.ca?label=lean%20repo%20size)
+[![Docker image size](https://img.shields.io/docker/image-size/unblibraries/unbherbarium.lib.unb.ca/prod?label=docker%20image%20size)](https://hub.docker.com/repository/docker/unblibraries/unbherbarium.lib.unb.ca)
 
 This repository contains the assets used to test, build, and deploy the [unbherbarium.lib.unb.ca](https://unbherbarium.lib.unb.ca) Drupal application. This repository extends the [unb-libraries/docker-drupal](https://github.com/unb-libraries/docker-drupal) base image, which deploys nginx and php-fpm in the service container.
 
-## Deploy this Application Yourself!
-Local deployment, development and testing of unbherbarium.lib.unb.ca is easy, as we leverage [dockworker](https://github.com/unb-libraries/dockworker), our unified framework of [Robo](https://robo.li/) commands that streamline local development of our application on Linux or OSX.
+## Deploy, Develop in this Application Yourself!
+Local deployment, development and testing is accelerated via [dockworker](https://github.com/unb-libraries/dockworker), our unified framework of [Robo](https://robo.li/) commands that streamline local development of our application on Linux or OSX.
 
 ### Step 1: Install Dockworker Dependencies
 In your local development environment, several 'one time' dependency installations are required to deploy all applications with dockworker. Some or all of these may already be installed in your environment.
@@ -38,8 +39,8 @@ This application was created at [![UNB Libraries](https://github.com/unb-librari
 
 <a href="https://github.com/jtmcd75"><img src="https://avatars.githubusercontent.com/u/10372283?v=3" title="Jeremy McDermott" width="128" height="128"></a>
 <a href="https://github.com/JacobSanford"><img src="https://avatars.githubusercontent.com/u/244894?v=3" title="Jacob Sanford" width="128" height="128"></a>
-<a href="https://github.com/bricas"><img src="https://avatars.githubusercontent.com/u/18400?v=3" title="Brian Cassidy" width="128" height="128"></a>
 <a href="https://github.com/camilocodes"><img src="https://avatars.githubusercontent.com/u/12695787?v=3" title="Camilo V." width="128" height="128"></a>
+<a href="https://github.com/bricas"><img src="https://avatars.githubusercontent.com/u/18400?v=3" title="Brian Cassidy" width="128" height="128"></a>
 
 ## License
 - As part of our 'open' ethos, UNB Libraries licenses its applications and workflows to be freely available to all whenever possible.
