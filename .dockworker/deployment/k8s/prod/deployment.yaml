@@ -127,7 +127,7 @@ spec:
       priorityClassName: high-priority-services
       imagePullSecrets:
         -
-          name: ecr-registry-pull
+          name: github-container-registry-auth
       restartPolicy: Always
       volumes:
         -

@@ -1,4 +1,4 @@
-FROM unblibraries/drupal:8.x-3.x-unblib
+FROM ghcr.io/unb-libraries/drupal:8.x-3.x-unblib
 MAINTAINER UNB Libraries <libsupport@unb.ca>
 
 # Install additional OS packages.
@@ -27,9 +27,6 @@ COPY ./custom/themes ${DRUPAL_ROOT}/themes/custom
 COPY ./custom/modules ${DRUPAL_ROOT}/modules/custom
 
 # Container metadata.
-ARG BUILD_DATE
-ARG VCS_REF
-ARG VERSION
 LABEL ca.unb.lib.generator="drupal8" \
   com.microscaling.docker.dockerfile="/Dockerfile" \
   com.microscaling.license="MIT" \
@@ -41,4 +38,5 @@ LABEL ca.unb.lib.generator="drupal8" \
   org.label-schema.vcs-ref=$VCS_REF \
   org.label-schema.vcs-url="https://github.com/unb-libraries/unbherbarium.lib.unb.ca" \
   org.label-schema.vendor="University of New Brunswick Libraries" \
-  org.label-schema.version=$VERSION
+  org.label-schema.version=$VERSION \
+  org.opencontainers.image.source="https://github.com/unb-libraries/unbherbarium.lib.unb.ca"
