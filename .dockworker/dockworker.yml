@@ -6,6 +6,7 @@ dockworker:
     project_prefix: HERB
     upstream_images:
       - unblibraries/drupal:8.x-3.x-unblib
+    uuid: 3081
   deployment:
     environments:
       - dev
