@@ -1,4 +1,4 @@
-name: pmportal.org
+name: unbherbarium.lib.unb.ca
 
 on:
   push:
@@ -48,46 +48,6 @@ jobs:
         with:
           name: build-image-tag
           path: /tmp/image_tag.env
-
-  phpcs-drupal:
-    name: PHP Coding Standards
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      -
-        name: Install PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.4
-          coverage: none
-          tools: composer:v2
-          extensions: curl,dom,gd,mbstring,posix,yaml,zip
-      -
-        name: Install dockworker
-        run: composer install --prefer-dist --no-progress --no-suggest
-      -
-        name: Check PHP Coding Standards
-        run: vendor/bin/dockworker validate:drupal:custom:php
-
-  drupal-9-readiness:
-    name: Drupal 9 Readiness
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      -
-        name: Install PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.4
-          coverage: none
-          tools: composer:v2
-          extensions: curl,dom,gd,mbstring,posix,yaml,zip
-      -
-        name: Install dockworker
-        run: composer install --prefer-dist --no-progress --no-suggest
-      -
-        name: Check Custom Code D9 Readiness
-        run: vendor/bin/dockworker validate:drupal:9-upgrade
 
   build-image:
     name: Build Image
@@ -146,6 +106,7 @@ jobs:
 
   update-docker-compose:
     name: Update Docker Compose
+    needs: [set-deployment-image-tag]
     runs-on: ubuntu-latest
     steps:
       - uses: FranzDiebold/github-env-vars-action@v2.1.0
@@ -198,10 +159,9 @@ jobs:
         id: composercachecache
         with:
           path: ${{ steps.composer-set-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-composer-dockworker-drupal-${{ hashFiles('**/composer.json') }}
+          key: ${{ runner.os }}-composer-dockworker-${{ hashFiles('**/composer.json') }}
           restore-keys: |
-            ${{ runner.os }}-composer-dockworker-drupal-${{ hashFiles('**/composer.json') }}
-            ${{ runner.os }}-composer-dockworker-drupal-
+            ${{ runner.os }}-composer-dockworker-${{ hashFiles('**/composer.json') }}
             ${{ runner.os }}-composer-dockworker-
             ${{ runner.os }}-composer-
       -
@@ -224,111 +184,11 @@ jobs:
       -
         name: Start container and check logs for errors
         run: vendor/bin/dockworker local:start --no-tail-logs --only-start --force-recreate
-      -
-        name: Export installed settings.php
-        run: docker cp --archive $CI_REPOSITORY_NAME:/app/html/sites/default/settings.php /tmp/settings.php
-      -
-        name: Upload Drupal Settings
-        uses: actions/upload-artifact@v2
-        with:
-          name: drupal-settings-file
-          path: /tmp/settings.php
-
-  behat-tests:
-    name: Behat Tests
-    runs-on: ubuntu-latest
-    needs: [start-install-application, update-docker-compose]
-    steps:
-      - uses: FranzDiebold/github-env-vars-action@v2.1.0
-      - uses: actions/checkout@v2
-      -
-        name: Install PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.4
-          coverage: none
-          tools: composer:v2
-          extensions: curl,dom,gd,mbstring,posix,yaml,zip
-      -
-        name: Set Composer Cache Directory
-        id: composer-set-cache-dir
-        run: |
-          echo "::set-output name=dir::$(composer config cache-files-dir)"
-      -
-        name: Cache Composer Cache Dir
-        uses: actions/cache@v2
-        id: composercachecache
-        with:
-          path: ${{ steps.composer-set-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-composer-dockworker-drupal-${{ hashFiles('**/composer.json') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-dockworker-drupal-${{ hashFiles('**/composer.json') }}
-            ${{ runner.os }}-composer-dockworker-drupal-
-            ${{ runner.os }}-composer-dockworker-
-            ${{ runner.os }}-composer-
-      -
-        name: Download docker-compose.yml from artifact server
-        uses: actions/download-artifact@v2
-        with:
-          name: docker-compose
-          path: ./
-      -
-        name: Login to GHCR
-        run: echo $GH_CONTAINER_REGISTRY_TOKEN | docker login ghcr.io -u $GH_CONTAINER_REGISTRY_USER --password-stdin
-        env:
-          GH_CONTAINER_REGISTRY_TOKEN: ${{secrets.GH_CONTAINER_REGISTRY_TOKEN}}
-          GH_CONTAINER_REGISTRY_USER: ${{secrets.GH_CONTAINER_REGISTRY_USER}}
-      -
-        name: Pull Required Docker Images
-        run: docker-compose pull --parallel --quiet
-      -
-        name: Install dockworker
-        run: composer install --prefer-dist --no-progress --no-suggest
-      -
-        name: Decrypt database
-        run: gpg --quiet --batch --yes --decrypt --passphrase="$CONTENT_DECRYPTION_KEY" --output /tmp/db.sql.gz ./data/content/db.sql.gz.gpg
-        env:
-          CONTENT_DECRYPTION_KEY: ${{ secrets.CONTENT_DECRYPTION_KEY }}
-      -
-        name: Decrypt files
-        run: gpg --quiet --batch --yes --decrypt --passphrase="$CONTENT_DECRYPTION_KEY" --output /tmp/files.tar.gz ./data/content/files.tar.gz.gpg
-        env:
-          CONTENT_DECRYPTION_KEY: ${{ secrets.CONTENT_DECRYPTION_KEY }}
-      -
-        name: Extract database
-        run: rm -rf /tmp/db.sql && gunzip /tmp/db.sql.gz
-      -
-        name: Extract files
-        run: rm -rf /tmp/default && tar xvzpf /tmp/files.tar.gz -C /tmp
-      -
-        name: Download installed drupal settings.php
-        uses: actions/download-artifact@v2
-        with:
-          name: drupal-settings-file
-          path: /tmp/app/html/sites/default/
-      -
-        name: Remove generic Drupal volume from docker-compose
-        run: docker run --rm --env "GITHUB_REPOSITORY_NAME=$CI_REPOSITORY_NAME" -v "${PWD}":/workdir mikefarah/yq:3.3.4 yq delete --inplace docker-compose.yml "services[$CI_REPOSITORY_NAME].volumes(.==/app/html/sites/default)"
-      -
-        name: Add content to Drupal files dir
-        run: docker run --rm --env "GITHUB_REPOSITORY_NAME=$CI_REPOSITORY_NAME" -v "${PWD}":/workdir mikefarah/yq:3.3.4 yq write --inplace docker-compose.yml "services[$CI_REPOSITORY_NAME].volumes[+]" "/tmp/app/html/sites/default:/app/html/sites/default"
-      -
-        name: Add content import to mysql startup script
-        run: docker run --rm -v "${PWD}":/workdir mikefarah/yq:3.3.4 yq write --inplace docker-compose.yml "services.drupal-mysql-lib-unb-ca.volumes[+]" "/tmp/db.sql:/docker-entrypoint-initdb.d/db.sql"
-      -
-        name: Start container and check logs
-        run: vendor/bin/dockworker local:start --no-tail-logs --only-start --force-recreate
-      -
-        name: Dump logs
-        run: docker-compose logs
-      -
-        name: Run behat tests
-        run: vendor/bin/dockworker tests:behat
 
   push-branch-tag-image-repository:
     name: Push Branch Tag to Repository
     runs-on: ubuntu-latest
-    needs: [behat-tests]
+    needs: [start-install-application]
     if:
       contains('
       refs/heads/dev
@@ -405,10 +265,9 @@ jobs:
         id: composercachecache
         with:
           path: ${{ steps.composer-set-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-composer-dockworker-drupal-${{ hashFiles('**/composer.json') }}
+          key: ${{ runner.os }}-composer-dockworker-${{ hashFiles('**/composer.json') }}
           restore-keys: |
-            ${{ runner.os }}-composer-dockworker-drupal-${{ hashFiles('**/composer.json') }}
-            ${{ runner.os }}-composer-dockworker-drupal-
+            ${{ runner.os }}-composer-dockworker-${{ hashFiles('**/composer.json') }}
             ${{ runner.os }}-composer-dockworker-
             ${{ runner.os }}-composer-
       -
@@ -420,29 +279,6 @@ jobs:
         env:
           GH_CONTAINER_REGISTRY_TOKEN: ${{secrets.GH_CONTAINER_REGISTRY_TOKEN}}
           GH_CONTAINER_REGISTRY_USER: ${{secrets.GH_CONTAINER_REGISTRY_USER}}
-
-  newrelic-marker:
-    name: Set Newrelic Marker
-    runs-on: ubuntu-latest
-    needs: [deploy-live]
-    steps:
-      - uses: FranzDiebold/github-env-vars-action@v2.1.0
-      - name: Set Newrelic Application Name
-        run: |
-          echo "nr_application_name=$CI_REF_NAME:$CI_REPOSITORY_NAME" >> $GITHUB_ENV
-      - name: Set Application ID
-        run: |
-          echo "nr_application_id=$(curl -X GET 'https://api.newrelic.com/v2/applications.json'  -H 'X-Api-Key:${{ secrets.NEW_RELIC_API_KEY }}' -G -d 'filter[name]=${{ env.nr_application_name }}' -s | jq -r '.applications[0].id')" >> $GITHUB_ENV
-      - name: Create New Relic deployment marker
-        uses: newrelic/deployment-marker-action@v1
-        with:
-          accountId: ${{ secrets.NEW_RELIC_ACCOUNT_ID }}
-          apiKey: ${{ secrets.NEW_RELIC_API_KEY }}
-          applicationId: ${{ env.nr_application_id }}
-          revision: "${{ github.sha }}"
-          changelog: "https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
-          description: "${{ github.event.head_commit.message }}"
-          user: "${{ github.actor }}"
 
   slack-results:
     name: Notify Slack of Build Results
