@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile -- this contains batches - array contexts.
 
 namespace Drupal\herbarium_specimen_lts;
 
@@ -300,7 +301,10 @@ class HerbariumImageLtsArchiver {
 
     // Check if the LTS archive path exists.
     if (!file_exists($obj->ltsRepoPath . '/HEAD')) {
-      return [FALSE, t('ERROR: The long-term storage repository path does not exist. Please contact an administrator.')];
+      return [
+        FALSE,
+        t('ERROR: The long-term storage repository path does not exist. Please contact an administrator.')
+      ];
     }
 
     // Can we contact the LFS server?
@@ -309,7 +313,10 @@ class HerbariumImageLtsArchiver {
 
     $fp = @fsockopen("tcp://$lts_server_ip:$lts_server_port");
     if (!$fp) {
-      return [FALSE, t('ERROR: A connection cannot be made to the long-term storage server. Please contact an administrator.')];
+      return [
+        FALSE,
+        t('ERROR: A connection cannot be made to the long-term storage server. Please contact an administrator.')
+      ];
     }
 
     return [TRUE, NULL];

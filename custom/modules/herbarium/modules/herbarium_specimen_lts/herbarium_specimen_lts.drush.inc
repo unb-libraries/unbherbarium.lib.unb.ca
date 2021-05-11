@@ -5,6 +5,7 @@
  * Drush commands related to herbarium_specimen_lts.
  */
 
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Site\Settings;
 use Drupal\file\Entity\File;
 use Drupal\herbarium_specimen_lts\HerbariumImageLtsArchiver;
@@ -418,7 +419,7 @@ function _herbarium_specimen_lts_add_temp_file_filesystem($source, $destination 
   $file_destination = "$destination://$file_basename";
 
   if (file_exists($source)) {
-    $file_uri = file_unmanaged_copy($source, $file_destination, \Drupal\Core\File\FileSystemInterface::EXISTS_REPLACE);
+    $file_uri = file_unmanaged_copy($source, $file_destination, FileSystemInterface::EXISTS_REPLACE);
 
     $file = File::Create([
       'uri' => $file_uri,

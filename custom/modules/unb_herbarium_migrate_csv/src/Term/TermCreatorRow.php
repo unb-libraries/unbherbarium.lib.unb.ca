@@ -249,6 +249,11 @@ class TermCreatorRow {
    */
   public $itiscode = NULL;
 
+  /**
+   * The taxonomy authority.
+   *
+   * @var string
+   */
   public $taxauth = NULL;
 
   /**

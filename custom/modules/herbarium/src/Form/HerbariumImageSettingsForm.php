@@ -88,7 +88,6 @@ class HerbariumImageSettingsForm extends ConfigFormBase {
       ->set('magickslicker.cli_options', $form_state->getValue('execution_options'))
       ->save();
 
-
     parent::submitForm($form, $form_state);
   }
 

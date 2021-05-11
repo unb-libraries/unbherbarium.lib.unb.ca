@@ -3,6 +3,7 @@
 namespace Drupal\unb_herbarium_migrate_csv\Event;
 
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\Entity\File;
 use Drupal\migrate_plus\Event\MigrateEvents;
 use Drupal\migrate_plus\Event\MigratePrepareRowEvent;
@@ -526,7 +527,7 @@ class MigrateEvent implements EventSubscriberInterface {
     $file_destination = "$destination://$file_basename";
     if (file_exists($source)) {
       $file_uri = file_unmanaged_copy($source, $file_destination,
-        \Drupal\Core\File\FileSystemInterface::EXISTS_REPLACE);
+        FileSystemInterface::EXISTS_REPLACE);
       $file = File::Create([
         'uri' => $file_uri,
       ]);

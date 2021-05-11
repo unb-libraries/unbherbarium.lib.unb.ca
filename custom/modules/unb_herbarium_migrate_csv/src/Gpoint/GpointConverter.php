@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile -- upstream code.
 
 /**
  * PHP class to convert Latitude+Longitude coordinates into UTM and vise versa.

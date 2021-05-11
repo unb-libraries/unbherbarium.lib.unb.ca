@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile -- this contains batches - array contexts.
 
 namespace Drupal\herbarium_specimen;
 
