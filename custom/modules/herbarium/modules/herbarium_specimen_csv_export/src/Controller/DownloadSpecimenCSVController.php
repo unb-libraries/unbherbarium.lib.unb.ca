@@ -4,6 +4,7 @@ namespace Drupal\herbarium_specimen_csv_export\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 use Drupal\taxonomy\Entity\Term;
 use League\Csv\Writer;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,7 +39,7 @@ class DownloadSpecimenCSVController extends ControllerBase {
    */
   public function getAllNodesCsv() {
     $query = \Drupal::entityQuery('node')
-      ->condition('status', NODE_PUBLISHED)
+      ->condition('status', NodeInterface::PUBLISHED)
       ->condition('type', 'herbarium_specimen');
     $result = $query->execute();
 

@@ -162,7 +162,7 @@ class HerbariumImageSurrogateFactory {
     $target_path_u = 'private://specimen_images';
     \Drupal::service('file_system')->prepareDirectory($target_path_u, FileSystemInterface::CREATE_DIRECTORY);
     $file_destination_u = "$target_path_u/$nid-$uniqid.jpg";
-    $uri_u = file_unmanaged_copy($temp_image_file, $file_destination_u, FileSystemInterface::EXISTS_REPLACE);
+    $uri_u = \Drupal::service('file_system')->copy($temp_image_file, $file_destination_u, FileSystemInterface::EXISTS_REPLACE);
     $file_u = File::Create([
       'uri' => $uri_u,
     ]);

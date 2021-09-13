@@ -526,7 +526,7 @@ class MigrateEvent implements EventSubscriberInterface {
     $file_basename = basename($source);
     $file_destination = "$destination://$file_basename";
     if (file_exists($source)) {
-      $file_uri = file_unmanaged_copy($source, $file_destination,
+      $file_uri = \Drupal::service('file_system')->copy($source, $file_destination,
         FileSystemInterface::EXISTS_REPLACE);
       $file = File::Create([
         'uri' => $file_uri,
