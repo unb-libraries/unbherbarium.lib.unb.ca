@@ -88,7 +88,7 @@ function unb_herbarium_update_8004(&$sandbox) {
     $sandbox['current']++;
   }
 
-  drupal_set_message($sandbox['current'] . ' specimens processed.');
+  \Drupal::messenger()->addStatus($sandbox['current'] . ' specimens processed.');
 
   $sandbox['#finished'] = ($sandbox['current'] / $sandbox['total']);
 }

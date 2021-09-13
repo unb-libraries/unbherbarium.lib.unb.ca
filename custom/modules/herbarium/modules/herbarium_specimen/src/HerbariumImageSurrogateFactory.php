@@ -3,6 +3,7 @@
 
 namespace Drupal\herbarium_specimen;
 
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\Entity\File;
 use Drupal\node\Entity\Node;
 
@@ -69,7 +70,7 @@ class HerbariumImageSurrogateFactory {
       }
     }
 
-    $public_dzi_path = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") . '/dzi';
+    $public_dzi_path = \Drupal::service('file_system')->realpath(\Drupal::config('system.file')->get('default_scheme') . "://") . '/dzi';
     $this->nodeDziPath = "$public_dzi_path/$nid";
   }
 
@@ -159,9 +160,9 @@ class HerbariumImageSurrogateFactory {
     // Create unmasked file object.
     $uniqid = uniqid(rand(), TRUE);
     $target_path_u = 'private://specimen_images';
-    file_prepare_directory($target_path_u, FILE_CREATE_DIRECTORY);
+    \Drupal::service('file_system')->prepareDirectory($target_path_u, FileSystemInterface::CREATE_DIRECTORY);
     $file_destination_u = "$target_path_u/$nid-$uniqid.jpg";
-    $uri_u = file_unmanaged_copy($temp_image_file, $file_destination_u, \Drupal\Core\File\FileSystemInterface::EXISTS_REPLACE);
+    $uri_u = file_unmanaged_copy($temp_image_file, $file_destination_u, FileSystemInterface::EXISTS_REPLACE);
     $file_u = File::Create([
       'uri' => $uri_u,
     ]);
@@ -235,7 +236,7 @@ class HerbariumImageSurrogateFactory {
    * Remove the tiles and DZI for this file.
    */
   protected function removeDziTiles() {
-    $public_dzi_path = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") . '/dzi';
+    $public_dzi_path = \Drupal::service('file_system')->realpath(\Drupal::config('system.file')->get('default_scheme') . "://") . '/dzi';
 
     // Delete DZI assets, surrogates will be deleted by attachNodeSurrogates().
     $nid = $this->nid;
