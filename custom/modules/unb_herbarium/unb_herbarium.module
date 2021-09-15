@@ -315,7 +315,7 @@ function unb_herbarium_preprocess_views_view_field__field_collector_tid(&$variab
  */
 function _unb_herbarium_get_tax_term_link(TermInterface $term) {
   $name = $term->getName();
-  $href = $term->toUrl();
+  $href = $term->toUrl()->toString();
   return "<a href=\"$href\">$name</a>";
 }
 
