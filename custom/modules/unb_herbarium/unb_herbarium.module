@@ -414,3 +414,25 @@ function _unb_herbarium_create_tax_term_if_not_exists($name, $vid) {
   }
   return $term->id();
 }
+
+/**
+ * Locate a node ID from a CMH accession ID.
+ *
+ * @param string $accession_id
+ *   The accession ID to locate.
+ *
+ * @return string
+ *   The NID if one exists, empty otherwise.
+ */
+function _unb_herbarium_get_nid_from_accession_id($accession_id) {
+  $nids = \Drupal::entityQuery('node')
+    ->condition('type', 'herbarium_specimen')
+    ->condition('field_dwc_record_number', $accession_id)
+    ->execute();
+  if (!empty($nids)) {
+    foreach ($nids as $nid) {
+      return $nid;
+    }
+  }
+  return '';
+}
