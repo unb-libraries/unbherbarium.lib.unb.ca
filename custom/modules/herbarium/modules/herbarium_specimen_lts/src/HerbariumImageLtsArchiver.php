@@ -122,71 +122,26 @@ class HerbariumImageLtsArchiver {
     $name = $this->user->get('name')->value;
     $target_nid = $this->node->id();
 
-    // Clone local repo to temp folder, avoiding problems with concurrent use.
-    $temp_clone_directory = tempnam(sys_get_temp_dir(), 'LTSGitRepo');
-    if (file_exists($temp_clone_directory)) {
-      unlink($temp_clone_directory);
-    }
-    mkdir($temp_clone_directory);
-
-    exec(
-      "git clone {$this->ltsRepoPath} {$temp_clone_directory} && cp {$this->ltsRepoPath}/.lfsconfig {$temp_clone_directory}/.lfsconfig",
-      $output,
-      $return
-    );
-
     // Copy file to LTS folder.
     exec(
-      "cp \"{$this->file}\" {$temp_clone_directory}/{$target_nid}.tif",
+      "cp \"{$this->file}\" {$this->ltsRepoPath}/{$target_nid}.tif",
       $output,
       $return
     );
 
     // Stage the file for commit.
     exec(
-      "cd {$temp_clone_directory} && git lfs track \"*.tif\" && git add {$target_nid}.tif",
+      "cd {$this->ltsRepoPath} && git lfs track \"*.tif\" && git add {$target_nid}.tif",
       $output,
       $return
     );
 
     // Commit.
     exec(
-      "cd {$temp_clone_directory} && git config --global user.email \"libsystems@unb.ca\" && git config --global user.name \"Mr. Robot.\" && git commit --author \"$name <$email>\" -m '$commit_msg'",
+      "cd {$this->ltsRepoPath} && git config --global user.email \"libsystems@unb.ca\" && git config --global user.name \"Mr. Robot.\" && git commit --author \"$name <$email>\" -m '$commit_msg'",
       $output,
       $return
     );
-
-    // Push back to origin. Check for errors indicating concurrent use / retry.
-    $return = 1;
-    $push_failures = 0;
-    $git_ssh_command_setup = self::GIT_SSH_COMMAND_SETUP;
-
-    while ($return != 0) {
-      exec(
-        "cd {$temp_clone_directory} && {$git_ssh_command_setup} git pull --rebase origin master && {$git_ssh_command_setup} git push origin master",
-        $output,
-        $return
-      );
-      if ($return != 0) {
-
-        // Some files were getting caught in an 'Unstaged Changes' issue.
-        $push_failures++;
-        if ($push_failures >= self::PUSH_FAILURE_RETRIES) {
-          $context['message'] = t(
-            '[NID#@nid] Could not push commits upstream. Skipping.',
-            [
-              '@nid' => $target_nid,
-            ]
-          );
-          return;
-        }
-
-        $sleep_seconds = 3;
-        $output_string = implode("\n", $output);
-        echo("Busy repo : pausing for $sleep_seconds before trying push again. ($output_string)\n");
-        sleep($sleep_seconds);
-      }
-    }
 
     // Update the node to ensure that we don't double batch import.
     if ($this->node->get('field_herbarium_spec_master_impo')->value == FALSE) {
@@ -194,9 +149,6 @@ class HerbariumImageLtsArchiver {
       $this->node->setNewRevision(FALSE);
       $this->node->save();
     }
-
-    // Remove the temporary dir.
-    $this->delTree($temp_clone_directory);
 
     $context['message'] = t(
       '[NID#@nid] Updated long term storage file for specimen.',
@@ -217,63 +169,19 @@ class HerbariumImageLtsArchiver {
     $name = $this->user->get('name')->value;
     $target_nid = $this->node->id();
 
-    // Clone local repo to temp folder, avoiding problems with concurrent use.
-    $temp_clone_directory = tempnam(sys_get_temp_dir(), 'LTSGitRepo');
-    if (file_exists($temp_clone_directory)) {
-      unlink($temp_clone_directory);
-    }
-    mkdir($temp_clone_directory);
-
-    exec(
-      "git clone {$this->ltsRepoPath} {$temp_clone_directory} && cp {$this->ltsRepoPath}/.lfsconfig {$temp_clone_directory}/.lfsconfig",
-      $output,
-      $return
-    );
-
     // Stage the file for commit.
     exec(
-      "cd {$temp_clone_directory} && git lfs track \"*.tif\" && git rm {$target_nid}.tif",
+      "cd {$this->ltsRepoPath} && git lfs track \"*.tif\" && git rm {$target_nid}.tif",
       $output,
       $return
     );
 
     // Commit.
     exec(
-      "cd {$temp_clone_directory} && git config --global user.email \"libsystems@unb.ca\" && git config --global user.name \"Mr. Robot.\" && git commit --author \"$name <$email>\" -m '[$target_nid] Deletion of archival file.'",
+      "cd {$this->ltsRepoPath} && git config --global user.email \"libsystems@unb.ca\" && git config --global user.name \"Mr. Robot.\" && git commit --author \"$name <$email>\" -m '[$target_nid] Deletion of archival file.'",
       $output,
       $return
     );
-
-    $return = 1;
-    $push_failures = 0;
-    $git_ssh_command_setup = self::GIT_SSH_COMMAND_SETUP;
-
-    while ($return != 0) {
-      exec(
-        "cd {$temp_clone_directory} && {$git_ssh_command_setup} git pull --rebase origin master && {$git_ssh_command_setup} git push origin master",
-        $output,
-        $return
-      );
-      if ($return != 0) {
-
-        // Some files were getting caught in an 'Unstaged Changes' issue.
-        $push_failures++;
-        if ($push_failures >= self::PUSH_FAILURE_RETRIES) {
-          $context['message'] = t(
-            '[NID#@nid] Could not push commits upstream. Skipping.',
-            [
-              '@nid' => $target_nid,
-            ]
-          );
-          return;
-        }
-
-        $sleep_seconds = 3;
-        $output_string = implode("\n", $output);
-        echo("Busy repo : pausing for $sleep_seconds before trying push again. ($output_string)\n");
-        sleep($sleep_seconds);
-      }
-    }
 
     // Update the node to ensure that we don't double batch import.
     if ($this->node->get('field_herbarium_spec_master_impo')->value == FALSE) {
@@ -281,9 +189,6 @@ class HerbariumImageLtsArchiver {
       $this->node->setNewRevision(FALSE);
       $this->node->save();
     }
-
-    // Remove the temporary dir.
-    $this->delTree($temp_clone_directory);
 
     $context['message'] = t(
       '[NID#@nid] Deleted long term storage file for specimen.',
