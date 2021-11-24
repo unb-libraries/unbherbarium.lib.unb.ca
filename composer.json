@@ -12,6 +12,11 @@
   "require": {
     "unb-libraries/unb_lib_theme": "dev-8.x-bootstrap-3.x"
   },
+  "autoload": {
+    "psr-4": {
+      "Dockworker\\": ".dockworker/src"
+    }
+  },
   "require-dev": {
     "unb-libraries/dockworker-drupal": "~4"
   },
