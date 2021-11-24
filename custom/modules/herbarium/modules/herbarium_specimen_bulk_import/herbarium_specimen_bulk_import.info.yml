@@ -2,6 +2,7 @@ name: Herbarium Specimen Bulk Import
 type: module
 description: Herbarium Specimen Bulk Import
 core: 8.x
+core_version_requirement: ^8 || ^9
 package: Herbarium
 dependencies:
   - migrate_source_csv

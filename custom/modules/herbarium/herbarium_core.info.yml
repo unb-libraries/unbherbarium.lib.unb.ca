@@ -2,4 +2,5 @@ name: Herbarium Core
 type: module
 description: Herbarium Core Functions
 core: 8.x
+core_version_requirement: ^8 || ^9
 package: Herbarium
