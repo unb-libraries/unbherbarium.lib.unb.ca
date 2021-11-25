@@ -487,7 +487,7 @@ function _herbarium_specimen_bulk_import_get_import_format($format_id) {
  */
 function _herbarium_specimen_validate_term_reference($tid, $vid) {
   $term = Term::load(trim($tid));
-  if (!empty($term) && $term->getVocabularyId() == $vid) {
+  if (!empty($term) && $term->bundle() == $vid) {
     return TRUE;
   }
   return FALSE;
