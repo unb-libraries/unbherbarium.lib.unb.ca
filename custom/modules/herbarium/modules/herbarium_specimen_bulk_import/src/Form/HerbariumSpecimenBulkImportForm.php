@@ -9,6 +9,8 @@ use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\herbarium_specimen_bulk_import\HerbariumCsvMigration;
 use League\Csv\Reader;
+use League\Csv\Statement;
+
 
 /**
  * HerbariumSpecimenBulkImportForm object.
@@ -199,7 +201,6 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
     try {
       $reader = Reader::createFromPath($file_path, 'r');
       $nbColumns = $reader->fetchOne();
-      $allColumns = $reader->fetchAll();
 
       // Check header matches expected number of rows from format.
       $import_format = _herbarium_specimen_bulk_import_get_import_format($format_id);
@@ -215,7 +216,7 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
       }
 
       // Check Row Consistency.
-      foreach ($allColumns as $row_num => $column) {
+      foreach ($reader as $row_num => $column) {
         if (count($column) != count($nbColumns)) {
           $form_state->setErrorByName('import_file', $this->t(
             'The number of columns in row #@row_num (@row_columns) of the file is not the same as the header (@header_columns)',
@@ -255,7 +256,8 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
   private function validateRowData(array &$form, FormStateInterface $form_state, $file_path, $format_id) {
     $errors = FALSE;
     $reader = Reader::createFromPath($file_path, 'r');
-    $dataRows = $reader->setOffset(1)->fetchAll();
+    $stmt = (new Statement())->offset(1);
+    $dataRows = $stmt->process($reader);
     $import_format = _herbarium_specimen_bulk_import_get_import_format($format_id);
 
     // Iterate and validate data.
@@ -307,7 +309,8 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
   private function validateData(array &$form, FormStateInterface $form_state, $file_path, $format_id) {
     $errors = FALSE;
     $reader = Reader::createFromPath($file_path, 'r');
-    $dataRows = $reader->setOffset(1)->fetchAll();
+    $stmt = (new Statement())->offset(1);
+    $dataRows = $stmt->process($reader);
     $import_format = _herbarium_specimen_bulk_import_get_import_format($format_id);
 
     // Iterate and validate data.
