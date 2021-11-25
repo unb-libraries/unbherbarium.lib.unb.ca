@@ -9,52 +9,8 @@ migration_tags:
 source:
   plugin: csv
   path: 'HERBIMPORTFILEPATH'
-  header_row_count: 1
-  keys:
-    - cmh_accid
-  column_names:
-    0:
-      cmh_accid: CMH Accession ID
-    1:
-      cmh_specid: Species Taxonomy ID
-    2:
-      cmh_collectors: Collector(s)
-    3:
-      cmh_country: Country
-    4:
-      cmh_province: Province/State
-    5:
-      cmh_county: County
-    6:
-      cmh_verbatim_locality: Verbatim Locality
-    7:
-      cmh_geo_latitude: Latitude
-    8:
-      cmh_geo_longitude: Longitude
-    9:
-      cmh_precision: Geo Precision
-    10:
-      cmh_year: Collection Year
-    11:
-      cmh_month: Collection Month
-    12:
-      cmh_day: Collection Day
-    13:
-      cmh_verbatim_date: Verbatim Event Date
-    14:
-      cmh_abundance: Abundance
-    15:
-      cmh_habitat: Habitat
-    16:
-      cmh_occurrence_remarks: Occurrence Remarks
-    17:
-      cmh_other_cat_no: Other Catalogue No.
-    18:
-      cmh_previous_identifications: Previous Identifications
-    19:
-      cmh_reproductive_condition: Reproductive Condition
-    20:
-      cmh_data_entry: Data Entered By
+  ids:
+    - 'CMH Accession ID'
 
 destination:
   plugin: entity:node
@@ -64,23 +20,23 @@ process:
     plugin: default_value
     default_value: herbarium_specimen
 
-  field_dwc_record_number: cmh_accid
-  field_taxonomy_tid: cmh_specid
+  field_dwc_record_number: 'CMH Accession ID'
+  field_taxonomy_tid: 'Species ID'
   field_collector_tid: specimen_collectors
   field_dwc_country_tax: specimen_country
   field_dwc_province_tax: specimen_province
   field_dwc_county_tax: specimen_county
-  field_dwc_verbatimlocality: cmh_verbatim_locality
-  field_dwc_decimallongitude: cmh_geo_longitude
-  field_dwc_decimallatitude: cmh_geo_latitude
+  field_dwc_verbatimlocality: 'Verbatim Locality'
+  field_dwc_decimallongitude: 'Longitude'
+  field_dwc_decimallatitude: 'Latitude'
   field_dwc_coordinateprecision: geo_precision
   field_geoheritage: geo_heritage
   field_dwc_eventdate: cmh_date
-  field_dwc_verbatimeventdate: cmh_verbatim_date
-  field_dwc_eventremarks: cmh_abundance
-  field_dc_contributor_other: cmh_data_entry
-  field_dwc_habitat: cmh_habitat
-  field_dwc_occurrenceremarks: cmh_occurrence_remarks
-  field_dwc_othercatalognumbers: cmh_other_cat_no
-  field_previous_identifications: cmh_previous_identifications
-  field_dwc_reproductivecondition: cmh_reproductive_condition
+  field_dwc_verbatimeventdate: 'Verbatim Event Date'
+  field_dwc_eventremarks: 'Abundance'
+  field_dc_contributor_other: 'Data Entry By'
+  field_dwc_habitat: 'Habitat'
+  field_dwc_occurrenceremarks: 'Occurrence Remarks'
+  field_dwc_othercatalognumbers: 'Other Catalogue No.'
+  field_previous_identifications: 'Previous Identifications'
+  field_dwc_reproductivecondition: 'Reproductive Condition'

@@ -45,7 +45,7 @@ class MigrateEvent implements EventSubscriberInterface {
       // Country.
       $this->prepareTaxonomyData(
         $row,
-        'cmh_country',
+        'Country',
         'specimen_country',
         'specimen_location_country'
       );
@@ -53,7 +53,7 @@ class MigrateEvent implements EventSubscriberInterface {
       // Province.
       $this->prepareTaxonomyData(
         $row,
-        'cmh_province',
+        'Province/State',
         'specimen_province',
         'specimen_location_province'
       );
@@ -61,15 +61,15 @@ class MigrateEvent implements EventSubscriberInterface {
       // County.
       $this->prepareTaxonomyData(
         $row,
-        'cmh_county',
+        'County',
         'specimen_county',
         'specimen_location_county'
       );
 
       // Collection Date.
-      $year = $row->getSourceProperty('cmh_year');
-      $month = $row->getSourceProperty('cmh_month');
-      $day = $row->getSourceProperty('cmh_day');
+      $year = $row->getSourceProperty('Collection Year');
+      $month = $row->getSourceProperty('Collection Month');
+      $day = $row->getSourceProperty('Collection Day');
       $iso_date = NULL;
       if (_herbarium_specimen_validate_year($year) &&
         _herbarium_specimen_validate_month($month) &&
@@ -86,20 +86,20 @@ class MigrateEvent implements EventSubscriberInterface {
       // Geo precision.
       $row->setSourceProperty(
         'geo_precision',
-        $this->precMap($row->getSourceProperty('cmh_precision'))
+        $this->precMap($row->getSourceProperty('Geo Precision'))
       );
 
       $row->setSourceProperty('geo_heritage', NULL);
       if (
-        !empty($row->getSourceProperty('cmh_geo_latitude')) &&
-        !empty($row->getSourceProperty('cmh_geo_longitude'))
+        !empty($row->getSourceProperty('Latitude')) &&
+        !empty($row->getSourceProperty('Longitude'))
       ) {
         $heritage = t(
           'Direct from spreadsheet import : @long/@lat/@precision',
           [
-            '@long' => $row->getSourceProperty('cmh_geo_longitude'),
-            '@lat' => $row->getSourceProperty('cmh_geo_latitude'),
-            '@precision' => $row->getSourceProperty('cmh_precision'),
+            '@long' => $row->getSourceProperty('Longitude'),
+            '@lat' => $row->getSourceProperty('Latitude'),
+            '@precision' => $row->getSourceProperty('Geo Precision'),
           ]
         );
         $row->setSourceProperty('geo_heritage', $heritage);
@@ -120,7 +120,7 @@ class MigrateEvent implements EventSubscriberInterface {
     $vocabulary = 'herbarium_specimen_collector';
     $collectors = explode(
       self::MULTIPLE_VALUE_DELIMITER,
-      $row->getSourceProperty('cmh_collectors')
+      $row->getSourceProperty('Collector(s)')
     );
 
     foreach ($collectors as $value) {
