@@ -205,7 +205,7 @@ class HerbariumImageLtsArchiver {
     $obj = new static(FALSE);
 
     // Check if the LTS archive path exists.
-    if (!file_exists($obj->ltsRepoPath . '/HEAD')) {
+    if (!file_exists($obj->ltsRepoPath . '/.git/HEAD')) {
       return [
         FALSE,
         t('ERROR: The long-term storage repository path does not exist. Please contact an administrator.')
