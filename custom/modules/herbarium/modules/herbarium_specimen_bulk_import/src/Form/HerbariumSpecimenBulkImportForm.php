@@ -11,7 +11,6 @@ use Drupal\herbarium_specimen_bulk_import\HerbariumCsvMigration;
 use League\Csv\Reader;
 use League\Csv\Statement;
 
-
 /**
  * HerbariumSpecimenBulkImportForm object.
  */
