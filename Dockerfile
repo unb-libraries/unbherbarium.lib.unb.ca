@@ -19,8 +19,7 @@ RUN ${RSYNC_MOVE} /build/scripts/container/ /scripts/ && \
   mv magick-slicer.sh /usr/local/bin/magick-slicer && \
   chmod +x /usr/local/bin/magick-slicer && \
   /scripts/InstallGitLFS.sh && \
-  /scripts/build.sh && \
-  /scripts/linkDrupalCronEntryInitHerbarium.sh
+  /scripts/build.sh
 
 # Deploy custom assets, configuration.
 COPY ./config-yml ${DRUPAL_CONFIGURATION_DIR}
