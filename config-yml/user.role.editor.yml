@@ -9,6 +9,7 @@ label: Editor
 weight: 9
 is_admin: null
 permissions:
+  - 'access taxonomy manager list'
   - 'create herbarium_specimen content'
   - 'delete own herbarium_specimen content'
   - 'edit any herbarium_specimen content'

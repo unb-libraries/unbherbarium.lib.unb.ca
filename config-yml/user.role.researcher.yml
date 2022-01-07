@@ -10,5 +10,6 @@ weight: 7
 is_admin: null
 permissions:
   - 'access site-wide contact form'
+  - 'access taxonomy manager list'
   - 'use text format full_html'
   - 'view private files'

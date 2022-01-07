@@ -11,6 +11,7 @@ is_admin: null
 permissions:
   - 'access content'
   - 'access content overview'
+  - 'access taxonomy manager list'
   - 'access user profiles'
   - 'add terms in herbarium_specimen_collector'
   - 'add terms in herbarium_specimen_taxonomy'
