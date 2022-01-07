@@ -526,7 +526,10 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<span class=\"nowrap\"><span class=\"glyphicon glyphicon-pencil dedication\"></span>{{ edit_node }}</span>\n&nbsp;\n<span class=\"nowrap\"><span class=\"glyphicon glyphicon-trash dedication\"></span>{{ delete_node }}</span>"
+            text: |-
+              <span class="nowrap"><span class="glyphicon glyphicon-pencil dedication"></span>{{ edit_node }}</span>
+              &nbsp;
+              <span class="nowrap"><span class="glyphicon glyphicon-trash dedication"></span>{{ delete_node }}</span>
             make_link: false
             path: ''
             absolute: false
@@ -600,7 +603,10 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<div class=\"clearfix pull-right\">\n  <a class=\"btn btn-primary\" href=\"/node/add/banner_image\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add new banner image</a>\n</div>\n"
+            value: |
+              <div class="clearfix pull-right">
+                <a class="btn btn-primary" href="/node/add/banner_image" role="button"><span class="glyphicon glyphicon-plus"></span>Add new banner image</a>
+              </div>
             format: full_html
           plugin_id: text
       footer: {  }
@@ -663,7 +669,11 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<div class=\"pull-right\">\n  <a class=\"btn btn-primary\" href=\"/node/add/banner_image\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add banner image</a>\n</div>\n<div class=\"clearfix\"></div>"
+            value: |-
+              <div class="pull-right">
+                <a class="btn btn-primary" href="/node/add/banner_image" role="button"><span class="glyphicon glyphicon-plus"></span>Add banner image</a>
+              </div>
+              <div class="clearfix"></div>
             format: full_html
           plugin_id: text
       defaults:

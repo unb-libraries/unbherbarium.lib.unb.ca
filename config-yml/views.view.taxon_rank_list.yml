@@ -368,7 +368,11 @@ display:
           empty: true
           tokenize: true
           content:
-            value: "<div role=\"contentinfo\" aria-label=\"no results\" class=\"alert alert-warning\">\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\n  No specimen has yet been identified as taxon <b>{{ arguments.term_node_tid_depth }}</b>.\n</div>"
+            value: |-
+              <div role="contentinfo" aria-label="no results" class="alert alert-warning">
+                <span class="glyphicon glyphicon-warning-sign"></span>
+                No specimen has yet been identified as taxon <b>{{ arguments.term_node_tid_depth }}</b>.
+              </div>
             format: full_html
           plugin_id: text
       relationships:

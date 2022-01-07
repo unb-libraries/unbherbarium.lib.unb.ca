@@ -371,7 +371,11 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<div role=\"contentinfo\" aria-label=\"no results\" class=\"alert alert-warning\">\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\n  Oops! Did not match any records.\n</div>"
+            value: |-
+              <div role="contentinfo" aria-label="no results" class="alert alert-warning">
+                <span class="glyphicon glyphicon-warning-sign"></span>
+                Oops! Did not match any records.
+              </div>
             format: full_html
           plugin_id: text
       relationships:

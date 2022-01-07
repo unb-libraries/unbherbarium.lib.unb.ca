@@ -208,7 +208,11 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<figure class=\"banner\">\n  {{ field_image }}\n  <figcaption>{{ title }}</figcaption>\n</figure>"
+            text: |-
+              <figure class="banner">
+                {{ field_image }}
+                <figcaption>{{ title }}</figcaption>
+              </figure>
             make_link: false
             path: ''
             absolute: false
