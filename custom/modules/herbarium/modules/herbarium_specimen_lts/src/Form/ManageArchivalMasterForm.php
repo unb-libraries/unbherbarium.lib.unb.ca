@@ -35,7 +35,7 @@ class ManageArchivalMasterForm extends FormBase {
       $storage_status = TRUE;
     }
     else {
-      list($storage_status, $error_message) = HerbariumImageLtsArchiver::checkStorageStatus();
+      [$storage_status, $error_message] = HerbariumImageLtsArchiver::checkStorageStatus();
       if ($error_message) {
         $this->messenger()->addError($error_message);
       }

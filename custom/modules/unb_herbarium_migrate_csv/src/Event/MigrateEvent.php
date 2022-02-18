@@ -71,7 +71,7 @@ class MigrateEvent implements EventSubscriberInterface {
       $date_str = str_replace("/", "-",
         trim($row->getSourceProperty('dc_created')));
       if (!empty($date_str)) {
-        list($date_array['year'], $date_array['month'], $date_array['day']) = array_filter(explode("-",
+        [$date_array['year'], $date_array['month'], $date_array['day']] = array_filter(explode("-",
           $date_str));
         if ($this->isValidYearRange($date_array['year']) &&
           $this->isValidMonthRange($date_array['month']) &&
@@ -91,7 +91,7 @@ class MigrateEvent implements EventSubscriberInterface {
       $date_str = str_replace("/", "-",
         trim($row->getSourceProperty('dc_modified')));
       if (!empty($date_str)) {
-        list($date_array['year'], $date_array['month'], $date_array['day']) = array_filter(explode("-",
+        [$date_array['year'], $date_array['month'], $date_array['day']] = array_filter(explode("-",
           $date_str));
         if ($this->isValidYearRange($date_array['year']) &&
           $this->isValidMonthRange($date_array['month']) &&
@@ -145,7 +145,7 @@ class MigrateEvent implements EventSubscriberInterface {
         $geoUTME,
         $geoUTMN,
       ];
-      list($decLong, $decLat, $geoRefRem) = $this->determineLongitudeLatitude($longLatItems);
+      [$decLong, $decLat, $geoRefRem] = $this->determineLongitudeLatitude($longLatItems);
       $row->setSourceProperty('geo_heritage', $geoRefRem);
 
       // Coordinate Precision.
@@ -310,9 +310,10 @@ class MigrateEvent implements EventSubscriberInterface {
   public function determineLongitudeLatitude(array $longLatVals) {
     $longVal = $latVal = '';
     $srcMethod = "Unknown";
-    list($id, $prec, $longDec, $latDec, $longDig, $latDig, $longDeg, $longMin,
+    [$id, $prec, $longDec, $latDec, $longDig, $latDig, $longDeg, $longMin,
       $longSec, $latDeg, $latMin, $latSec, $geoUtmz, $geoUtme,
-      $geoUtmn) = $longLatVals;
+      $geoUtmn
+    ] = $longLatVals;
     if ($this->testLongitudeLatitudeFormat($longDec, $latDec)) {
       $srcMethod = "Direct From Spreadsheet";
       $longVal = $longDec;
@@ -341,7 +342,7 @@ class MigrateEvent implements EventSubscriberInterface {
       (strlen($geoUtme) < 10)
     ) {
       $thisPoint = new GpointConverter();
-      list($latVal, $longVal) = $thisPoint->convertUtmToLatLng($geoUtme, $geoUtmn, $geoUtmz . 'N');
+      [$latVal, $longVal] = $thisPoint->convertUtmToLatLng($geoUtme, $geoUtmn, $geoUtmz . 'N');
       if ($latVal && $longVal) {
         $srcMethod = 'Translated from UTM To Decimal';
       }
