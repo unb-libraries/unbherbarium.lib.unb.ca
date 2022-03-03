@@ -1,145 +1,145 @@
 {
-  "authors": [
-    {
-      "name": "UNB Libraries libsupport@unb.ca",
-      "role": "Creator"
-    }
-  ],
-  "autoload": {
-    "classmap": [
-      "scripts/composer/ScriptHandler.php"
-    ]
-  },
-  "config": {
-    "allow-plugins": {
-      "composer/installers": true,
-      "cweagans/composer-patches": true,
-      "drupal/core-composer-scaffold": true
-    },
-    "discard-changes": true,
-    "preferred-install": {
-      "*": "dist"
-    },
-    "sort-packages": true
-  },
-  "conflict": {
-    "drupal/drupal": "*"
-  },
-  "description": "Drupal 8 component of unbherbarium.lib.unb.ca",
-  "extra": {
-    "enable-patching": true,
-    "installer-paths": {
-      "core": [
-        "type:drupal-core"
-      ],
-      "drush/contrib/{$name}": [
-        "type:drupal-drush"
-      ],
-      "libraries/{$name}": [
-        "type:drupal-library"
-      ],
-      "modules/contrib/{$name}": [
-        "type:drupal-module"
-      ],
-      "profiles/contrib/{$name}": [
-        "type:drupal-profile"
-      ],
-      "themes/contrib/{$name}": [
-        "type:drupal-theme"
-      ]
-    }
-  },
-  "license": "MIT",
-  "minimum-stability": "dev",
-  "name": "unb-libraries/unbherbarium.lib.unb.ca",
-  "prefer-stable": true,
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://packages.drupal.org/8"
-    },
-    {
-      "package": {
-        "dist": {
-          "type": "file",
-          "url": "https://malsup.github.io/jquery.cycle.all.js"
-        },
-        "name": "malsup/jquery.cycle",
-        "require": {
-          "composer/installers": "^1.0.20"
-        },
-        "type": "drupal-library",
-        "version": "1.0"
-      },
-      "type": "package"
-    },
-    {
-      "package": {
-        "dist": {
-          "type": "zip",
-          "url": "https://github.com/harvesthq/chosen/releases/download/v1.8.7/chosen_v1.8.7.zip"
-        },
-        "name": "harvesthq/chosen",
-        "require": {
-          "composer/installers": "^1.2.0"
-        },
-        "type": "drupal-library",
-        "version": "1.8.7"
-      },
-      "type": "package"
-    }
-  ],
-  "require": {
-    "drupal/bootstrap": "3.23",
-    "drupal/chosen": "3.0.1",
-    "drupal/config_update": "1.7",
-    "drupal/core": "9.3.6",
-    "drupal/csv_serialization": "2.0",
-    "drupal/editor_file": "1.6",
-    "drupal/field_group": "3.2",
-    "drupal/google_analytics": "2.5",
-    "drupal/health_check": "1.3",
-    "drupal/honeypot": "1.31",
-    "drupal/migrate_plus": "5.2",
-    "drupal/migrate_source_csv": "3.5",
-    "drupal/migrate_tools": "5.1",
-    "drupal/pathauto": "1.9",
-    "drupal/redis": "1.5",
-    "drupal/search_api": "1.23",
-    "drupal/search_api_solr": "4.2.7",
-    "drupal/simple_entity_merge": "1.2",
-    "drupal/simple_gmap": "3.0.1",
-    "drupal/taxonomy_access_fix": "3.3",
-    "drupal/taxonomy_manager": "2.0.6",
-    "drupal/token": "1.10",
-    "drupal/tvi": "1.0-rc4",
-    "drupal/twig_field_value": "2.0.0",
-    "drupal/views_autocomplete_filters": "1.3",
-    "drupal/views_slideshow": "4.8",
-    "harvesthq/chosen": "~1.8",
-    "league/csv": "^9",
-    "malsup/jquery.cycle": "1.0",
-    "neitanod/forceutf8": "~2.0",
-    "teqneers/php-stream-wrapper-for-git": "1.0.1",
-    "unb-libraries/drupal-builder": "^9"
-  },
-  "require-dev": {
-    "unb-libraries/drupal-development-libraries": "^9"
-  },
-  "scripts": {
-    "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
-    "post-install-cmd": [
-      "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+    "authors": [
+        {
+            "name": "UNB Libraries libsupport@unb.ca",
+            "role": "Creator"
+        }
     ],
-    "post-update-cmd": [
-      "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+    "autoload": {
+        "classmap": [
+            "scripts/composer/ScriptHandler.php"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "drupal/core-composer-scaffold": true
+        },
+        "discard-changes": true,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "description": "Drupal 8 component of unbherbarium.lib.unb.ca",
+    "extra": {
+        "enable-patching": true,
+        "installer-paths": {
+            "core": [
+                "type:drupal-core"
+            ],
+            "drush/contrib/{$name}": [
+                "type:drupal-drush"
+            ],
+            "libraries/{$name}": [
+                "type:drupal-library"
+            ],
+            "modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ]
+        }
+    },
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "name": "unb-libraries/unbherbarium.lib.unb.ca",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        {
+            "package": {
+                "dist": {
+                    "type": "file",
+                    "url": "https://malsup.github.io/jquery.cycle.all.js"
+                },
+                "name": "malsup/jquery.cycle",
+                "require": {
+                    "composer/installers": "^1.0.20"
+                },
+                "type": "drupal-library",
+                "version": "1.0"
+            },
+            "type": "package"
+        },
+        {
+            "package": {
+                "dist": {
+                    "type": "zip",
+                    "url": "https://github.com/harvesthq/chosen/releases/download/v1.8.7/chosen_v1.8.7.zip"
+                },
+                "name": "harvesthq/chosen",
+                "require": {
+                    "composer/installers": "^1.2.0"
+                },
+                "type": "drupal-library",
+                "version": "1.8.7"
+            },
+            "type": "package"
+        }
     ],
-    "pre-install-cmd": [
-      "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
-    ],
-    "pre-update-cmd": [
-      "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
-    ]
-  },
-  "type": "project"
+    "require": {
+        "drupal/bootstrap": "3.23",
+        "drupal/chosen": "3.0.1",
+        "drupal/config_update": "1.7",
+        "drupal/core": "9.3.7",
+        "drupal/csv_serialization": "2.0",
+        "drupal/editor_file": "1.6",
+        "drupal/field_group": "3.2",
+        "drupal/google_analytics": "2.5",
+        "drupal/health_check": "1.3",
+        "drupal/honeypot": "1.31",
+        "drupal/migrate_plus": "5.2",
+        "drupal/migrate_source_csv": "3.5",
+        "drupal/migrate_tools": "5.1",
+        "drupal/pathauto": "1.9",
+        "drupal/redis": "1.5",
+        "drupal/search_api": "1.23",
+        "drupal/search_api_solr": "4.2.7",
+        "drupal/simple_entity_merge": "1.2",
+        "drupal/simple_gmap": "3.0.1",
+        "drupal/taxonomy_access_fix": "3.3",
+        "drupal/taxonomy_manager": "2.0.6",
+        "drupal/token": "1.10",
+        "drupal/tvi": "1.0-rc4",
+        "drupal/twig_field_value": "2.0.0",
+        "drupal/views_autocomplete_filters": "1.3",
+        "drupal/views_slideshow": "4.8",
+        "harvesthq/chosen": "~1.8",
+        "league/csv": "^9",
+        "malsup/jquery.cycle": "1.0",
+        "neitanod/forceutf8": "~2.0",
+        "teqneers/php-stream-wrapper-for-git": "1.0.1",
+        "unb-libraries/drupal-builder": "^9"
+    },
+    "require-dev": {
+        "unb-libraries/drupal-development-libraries": "^9"
+    },
+    "scripts": {
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ]
+    },
+    "type": "project"
 }
