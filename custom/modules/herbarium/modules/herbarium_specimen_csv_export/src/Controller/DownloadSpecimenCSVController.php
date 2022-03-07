@@ -122,7 +122,7 @@ class DownloadSpecimenCSVController extends ControllerBase {
       'Species Tree',
       'Collector(s)',
       'Country',
-      'Province/State',
+      'ProvinceState',
       'County',
       'Verbatim Locality',
       'Latitude,Longitude',

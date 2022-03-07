@@ -53,7 +53,7 @@ class MigrateEvent implements EventSubscriberInterface {
       // Province.
       $this->prepareTaxonomyData(
         $row,
-        'Province/State',
+        'ProvinceState',
         'specimen_province',
         'specimen_location_province'
       );
