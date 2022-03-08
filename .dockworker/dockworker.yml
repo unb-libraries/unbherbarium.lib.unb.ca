@@ -13,6 +13,8 @@ dockworker:
       - prod
   drupal:
     major: 9
+    persistent_config:
+      migrate_plus.migration.cmh_herb_import_.* : Bulk CSV migrations
   github:
     repo: unbherbarium.lib.unb.ca
     owner: unb-libraries
