@@ -108,11 +108,11 @@ class ManageArchivalMasterForm extends FormBase {
       '#disabled' => !$storage_status,
       '#title' => t('TIF File'),
       '#type' => 'managed_file',
-      '#description' => t('Upload an master image, allowed extensions: TIF TIFF'),
+      '#description' => t('Upload an master image, allowed extensions: TIF'),
       '#upload_location' => "temporary://arc-tif/$node/",
       '#required' => TRUE,
       '#upload_validators' => [
-        'file_validate_extensions' => ['tif', 'tiff'],
+        'file_validate_extensions' => ['tif'],
       ],
     ];
 
