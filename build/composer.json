@@ -93,7 +93,7 @@
     "drupal/bootstrap": "3.24",
     "drupal/chosen": "3.0.2",
     "drupal/config_update": "1.7",
-    "drupal/core": "9.3.9",
+    "drupal/core": "9.3.11",
     "drupal/csv_serialization": "2.0",
     "drupal/editor_file": "1.6",
     "drupal/field_group": "3.2",
