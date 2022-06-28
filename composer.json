@@ -18,7 +18,7 @@
   "name": "unb-libraries/unbherbarium.ca",
   "prefer-stable": true,
   "require": {
-    "unb-libraries/unb_lib_theme": "dev-9.x-bootstrap-3.x"
+    "twbs/bootstrap-sass": "3.4.1"
   },
   "require-dev": {
     "unb-libraries/dockworker-drupal": "^5"
