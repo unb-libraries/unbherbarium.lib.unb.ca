@@ -106,7 +106,7 @@
     "drupal/pathauto": "1.10",
     "drupal/redis": "1.5",
     "drupal/search_api": "1.24",
-    "drupal/search_api_solr": "4.2.7",
+    "drupal/search_api_solr": "4.2.8",
     "drupal/simple_entity_merge": "1.2",
     "drupal/simple_gmap": "3.0.1",
     "drupal/taxonomy_access_fix": "3.3",
