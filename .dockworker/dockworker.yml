@@ -11,10 +11,13 @@ dockworker:
     environments:
       - dev
       - prod
+    workflow:
+      source: dockworker-drupal
+      type: deployment-workflow
   drupal:
     major: 9
     persistent_config:
-      migrate_plus.migration.cmh_herb_import_.* : Bulk CSV migrations
+      migrate_plus.migration.cmh_herb_import_.*: Bulk CSV migrations
   github:
     repo: unbherbarium.lib.unb.ca
     owner: unb-libraries
