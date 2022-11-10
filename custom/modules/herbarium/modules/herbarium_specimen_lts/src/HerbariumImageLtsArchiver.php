@@ -13,7 +13,7 @@ use Drupal\user\Entity\User;
 class HerbariumImageLtsArchiver {
 
   const PUSH_FAILURE_RETRIES = 30;
-  const GIT_SSH_COMMAND_SETUP = 'GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/NULL -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa"';
+  const GIT_SSH_COMMAND_SETUP = 'GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa"';
 
   /**
    * The Drupal File object to generate the DZI and tiles for.
