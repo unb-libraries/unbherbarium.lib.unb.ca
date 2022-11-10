@@ -162,8 +162,8 @@ class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
    * @throws \Dockworker\DockworkerException
    */
   protected function initTargetPod() {
-    $pods = $this->getDeploymentExecPodIds($this->targetDeployEnv);
-    $this->targetPodId = array_shift($pods);
+    $this->k8sInitSetupPods($this->targetDeployEnv, 'deployment', 'Import Samples');
+    $this->targetPodId = $this->kubernetesGetLatestPod();
   }
 
   /**
