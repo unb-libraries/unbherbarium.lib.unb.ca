@@ -2,6 +2,7 @@
 
 namespace Dockworker\Robo\Plugin\Commands;
 
+use Dockworker\PersistentLocalDockworkerDataTrait;
 use Dockworker\RecursivePathFileOperatorTrait;
 use Dockworker\Robo\Plugin\Commands\DrupalDeploymentDrushCommands;
 
@@ -10,6 +11,7 @@ use Dockworker\Robo\Plugin\Commands\DrupalDeploymentDrushCommands;
  */
 class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
 
+  use PersistentLocalDockworkerDataTrait;
   use RecursivePathFileOperatorTrait;
 
   /**
@@ -146,24 +148,36 @@ class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
   protected function importQueuedArchivalMasters() {
     $import_files = $this->getRecursivePathFiles();
     if (!empty($import_files)) {
-      $this->initTargetPod();
+      $this->initLocalDockworkerConfig('bulk_imports');
+      $this->targetPodId = $this->k8sGetLatestPod($this->targetDeployEnv, 'deployment', 'Open Shell');
+      $imported_items = $this->curLocalDockworkerConfiguration->get('dockworker.imported_items');
+      if (empty($imported_items)) {
+        $imported_items = [];
+      }
       foreach ($import_files as $import_file) {
         $this->curFilePath = $import_file;
         if (!empty($this->curFilePath) && file_exists($this->curFilePath)) {
-          $this->importArchivalMaster();
+          $this->curFileName = basename($this->curFilePath);
+          if (!in_array($this->curFileName, $imported_items)) {
+            $this->curFileAccessionId = $this->getAccessionIdFromFilepath($this->curFilePath);
+            $this->curFileNodeId = $this->getNidFromAccessionId();
+            if (!empty($this->curFileNodeId)) {
+              $this->io()->title($this->curFileName);
+              $this->importArchivalMaster();
+              $imported_items[] = $this->curFileName;
+              $this->curLocalDockworkerConfiguration->set('dockworker.imported_items', $imported_items);
+              $this->witeLocalDockworkerConfig();
+            }
+            else {
+              $this->say("[$this->curFileName] No NIDs found for accession ID [$this->curFileAccessionId], skipping...");
+            }
+          }
+          else {
+            $this->say("[$this->curFileName] File is marked as previously imported, skipping...");
+          }
         }
       }
     }
-  }
-
-  /**
-   * Initializes and sets up the target pod for import.
-   *
-   * @throws \Dockworker\DockworkerException
-   */
-  protected function initTargetPod() {
-    $this->k8sInitSetupPods($this->targetDeployEnv, 'deployment', 'Import Samples');
-    $this->targetPodId = $this->kubernetesGetLatestPod();
   }
 
   /**
@@ -172,25 +186,8 @@ class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
    * @throws \Dockworker\DockworkerException
    */
   protected function importArchivalMaster() {
-    $this->curFileName = basename($this->curFilePath);
-    $marker_filename = ".$this->curFileName.imported";
-    $marker_filepath = str_replace($this->curFileName, $marker_filename, $this->curFilePath);
-    if (!file_exists($marker_filepath)) {
-      $this->io()->title($this->curFileName);
-      $this->curFileAccessionId = $this->getAccessionIdFromFilepath($this->curFilePath);
-      $this->curFileNodeId = $this->getNidFromAccessionId();
-      if (!empty($this->curFileNodeId)) {
-        $this->copyArchivalMasterToPod();
-        $this->executeArchivalMasterDeployedImport();
-        file_put_contents($marker_filepath, time());
-      }
-      else {
-        $this->say("No NIDs found for accession ID [$this->curFileAccessionId], skipping...");
-      }
-    }
-    else {
-      $this->say("Skipping previously-imported file [$this->curFilePath]...");
-    }
+    $this->copyArchivalMasterToPod();
+    $this->executeArchivalMasterDeployedImport();
   }
 
   /**
