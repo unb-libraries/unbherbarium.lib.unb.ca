@@ -7,7 +7,7 @@ use Dockworker\RecursivePathFileOperatorTrait;
 use Dockworker\Robo\Plugin\Commands\DrupalDeploymentDrushCommands;
 
 /**
- * Defines the commands used to interact with a deployed Drupal application.
+ * Defines the commands used to bulk import archival masters into the CMH.
  */
 class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
 
@@ -15,7 +15,12 @@ class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
   use RecursivePathFileOperatorTrait;
 
   /**
-   * The PHP snippet used to log-in a user in a Drush eval command.
+   * The PHP snippet used to set the batch for adding an archival master.
+   */
+  const DRUSH_EVAL_BATCH_SET = 'batch_set(_herbarium_specimen_lts_add_archival_master(\"%s\", \"%s\", \"%s\"));';
+
+  /**
+   * The PHP snippet used to log in a user via a Drush eval command.
    */
   const DRUSH_EVAL_LOGIN_USER = 'use \Drupal\user\Entity\User; \Drupal::currentUser()->setAccount(User::load(%s))';
 
@@ -29,66 +34,66 @@ class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
    *
    * @var string
    */
-  protected $curFileAccessionId;
+  protected string $curFileAccessionId;
 
   /**
    * The file name of the current file being imported.
    *
    * @var string
    */
-  protected $curFileName;
+  protected string $curFileName;
 
   /**
    * The corresponding remote node ID of the current file being imported.
    *
    * @var string
    */
-  protected $curFileNodeId;
+  protected string $curFileNodeId;
 
   /**
-   * The full file path to the current file being imported.
+   * The full file path to the current file being queued for import.
    *
    * @var string
    */
-  protected $curFilePath;
+  protected string $curFilePath;
 
   /**
    * The base of the tree to parse for files to import.
    *
    * @var string
    */
-  protected $sourceTreePath;
+  protected string $sourceTreePath;
 
   /**
    * The commit message to use when archiving the file.
    *
    * @var string
    */
-  protected $targetCommitMessage;
+  protected string $targetCommitMessage;
 
   /**
    * The k8s deployment environment to use when importing the file.
    *
    * @var string
    */
-  protected $targetDeployEnv;
+  protected string $targetDeployEnv;
 
   /**
    * The Drupal user ID to use when importing the archival master.
    *
    * @var string
    */
-  protected $targetDrupalUid;
+  protected string $targetDrupalUid;
 
   /**
    * The k8s pod ID to target when importing the file.
    *
    * @var string
    */
-  protected $targetPodId;
+  protected string $targetPodId;
 
   /**
-   * Adds a tree of images as the archival masters in the herbarium site.
+   * Adds a tree of images as the archival masters in the CMH site.
    *
    * @param string $path
    *   The path to parse for the files.
@@ -141,15 +146,20 @@ class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
   }
 
   /**
-   * Imports the previously-queued archival masters into the remote instance.
+   * Imports previously-queued archival masters into the CMH instance.
    *
    * @throws \Dockworker\DockworkerException
+   * @throws \Exception
    */
   protected function importQueuedArchivalMasters() {
     $import_files = $this->getRecursivePathFiles();
     if (!empty($import_files)) {
       $this->initLocalDockworkerConfig('bulk_imports');
-      $this->targetPodId = $this->k8sGetLatestPod($this->targetDeployEnv, 'deployment', 'Open Shell');
+      $this->targetPodId = $this->k8sGetLatestPod(
+        $this->targetDeployEnv,
+        'deployment',
+        'Open Shell'
+      );
       $imported_items = $this->curLocalDockworkerConfiguration->get('dockworker.imported_items');
       if (empty($imported_items)) {
         $imported_items = [];
@@ -159,7 +169,10 @@ class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
         if (!empty($this->curFilePath) && file_exists($this->curFilePath)) {
           $this->curFileName = basename($this->curFilePath);
           if (!in_array($this->curFileName, $imported_items)) {
-            $this->curFileAccessionId = $this->getAccessionIdFromFilepath($this->curFilePath);
+            $this->curFileAccessionId = $this->getAccessionIdFromFilepath(
+              $this->curFilePath,
+              $this->options['issue-page-extension']
+            );
             $this->curFileNodeId = $this->getNidFromAccessionId();
             if (!empty($this->curFileNodeId)) {
               $this->io()->title($this->curFileName);
@@ -181,26 +194,18 @@ class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
   }
 
   /**
-   * Imports the current archival master file into the remote instance.
-   *
-   * @throws \Dockworker\DockworkerException
-   */
-  protected function importArchivalMaster() {
-    $this->copyArchivalMasterToPod();
-    $this->executeArchivalMasterDeployedImport();
-  }
-
-  /**
    * Determines the probable CMH accession ID from an import file path.
    *
    * @param string $file_path
    *   The file path to use when determining the CMH accession ID.
+   * @param string $extension
+   *   The extension of the file.
    *
    * @return string
    *   The probable CMH accession ID.
    */
-  private function getAccessionIdFromFilepath(string $file_path) : string {
-    return basename($file_path, '.' . $this->options['issue-page-extension']);
+  private static function getAccessionIdFromFilepath(string $file_path, string $extension) : string {
+    return basename($file_path, '.' . $extension);
   }
 
   /**
@@ -228,6 +233,16 @@ class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
   }
 
   /**
+   * Imports the current archival master file into the remote instance.
+   *
+   * @throws \Dockworker\DockworkerException
+   */
+  protected function importArchivalMaster() {
+    $this->copyArchivalMasterToPod();
+    $this->executeArchivalMasterDeployedImport();
+  }
+
+  /**
    * Copies the local archival master to the remote target pod.
    *
    * @throws \Dockworker\DockworkerException
@@ -249,10 +264,11 @@ class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
    */
   protected function executeArchivalMasterDeployedImport() {
     $this->say("Importing archival master [NID#$this->curFileNodeId]...");
-    $cmd = sprintf('$DRUSH eval "' .
-      self::DRUSH_EVAL_LOGIN_USER . ';' .
-     'batch_set(_herbarium_specimen_lts_add_archival_master(\"%s\", \"%s\", \"%s\"));' .
-      self::DRUSH_EVAL_PROCESS_BATCH . ';"',
+    $cmd = sprintf(
+      '$DRUSH eval "' .
+        self::DRUSH_EVAL_LOGIN_USER . ';' .
+        self::DRUSH_EVAL_BATCH_SET .
+        self::DRUSH_EVAL_PROCESS_BATCH . ';"',
       $this->targetDrupalUid,
       $this->curFileNodeId,
       "/tmp/$this->curFileName",
