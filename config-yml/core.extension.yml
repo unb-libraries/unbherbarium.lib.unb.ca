@@ -1,3 +1,5 @@
+_core:
+  default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
 module:
   automated_cron: 0
   block: 0
@@ -37,13 +39,11 @@ module:
   jquery_ui: 0
   language: 0
   link: 0
-  menu_link_content: 1
   menu_ui: 0
   migrate: 0
   migrate_plus: 0
   migrate_source_csv: 0
   migrate_tools: 0
-  minimal: 1000
   mysql: 0
   node: 0
   options: 0
@@ -71,10 +71,12 @@ module:
   unb_herbarium: 0
   update: 0
   user: 0
-  views: 10
   views_autocomplete_filters: 0
   views_slideshow: 0
   views_slideshow_cycle: 0
+  menu_link_content: 1
+  views: 10
+  minimal: 1000
 theme:
   stable: 0
   classy: 0
@@ -83,5 +85,3 @@ theme:
   bootstrap: 0
   unbherbarium_ca: 0
 profile: minimal
-_core:
-  default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc

@@ -31,126 +31,12 @@ base_table: search_api_index_default_solr_index
 base_field: search_api_id
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Master
+    display_plugin: default
     position: 0
     display_options:
-      access:
-        type: perm
-        options:
-          perm: 'access content'
-      cache:
-        type: tag
-        options: {  }
-      query:
-        type: views_query
-        options:
-          bypass_access: false
-          skip_access: false
-          preserve_facet_query_args: false
-      exposed_form:
-        type: input_required
-        options:
-          submit_button: 'Apply search'
-          reset_button: true
-          reset_button_label: Clear
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-          text_input_required: '<small class="text-muted">Submit values in one or more fields of the form to filter specimens based on your criteria.</small>'
-          text_input_required_format: full_html
-      pager:
-        type: full
-        options:
-          items_per_page: 25
-          offset: 0
-          id: 0
-          total_pages: null
-          tags:
-            previous: '‹ Previous'
-            next: 'Next ›'
-            first: '« First'
-            last: 'Last »'
-          expose:
-            items_per_page: true
-            items_per_page_label: 'Specimens per page'
-            items_per_page_options: '25, 50, 100, 250'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          quantity: 9
-      style:
-        type: table
-        options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: false
-          override: true
-          sticky: false
-          caption: ''
-          summary: ''
-          description: ''
-          columns:
-            field_dwc_record_number_sort: field_dwc_record_number_sort
-            nid: nid
-            field_cmh_full_specimen_name: field_cmh_full_specimen_name
-            title_1: title_1
-            field_collector_name: field_collector_name
-            field_date_sort: field_date_sort
-            field_large_sample_surrogate: field_large_sample_surrogate
-          info:
-            field_dwc_record_number_sort:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            nid:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_cmh_full_specimen_name:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            title_1:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_collector_name:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_date_sort:
-              sortable: true
-              default_sort_order: desc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_large_sample_surrogate:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-          default: '-1'
-          empty_table: false
-      row:
-        type: fields
+      title: 'Specimen Search'
       fields:
         field_dwc_record_number_sort:
           id: field_dwc_record_number_sort
@@ -159,6 +45,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_field
           label: ID
           exclude: false
           alter:
@@ -221,7 +108,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          plugin_id: search_api_field
         nid:
           id: nid
           table: search_api_datasource_default_solr_index_entity_node
@@ -229,6 +115,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: search_api_field
           label: 'Node ID'
           exclude: true
           alter:
@@ -301,8 +189,6 @@ display:
             format_plural_values:
               - '1'
               - '@count'
-          entity_type: node
-          plugin_id: search_api_field
         field_cmh_full_specimen_name:
           id: field_cmh_full_specimen_name
           table: search_api_index_default_solr_index
@@ -310,6 +196,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_field
           label: 'Assigned Taxon » Taxonomy term » Full Specimen Name (indexed field)'
           exclude: true
           alter:
@@ -371,7 +258,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          plugin_id: search_api_field
         title_1:
           id: title_1
           table: search_api_index_default_solr_index
@@ -379,6 +265,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_field
           label: 'Scientific Name'
           exclude: false
           alter:
@@ -441,7 +328,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          plugin_id: search_api_field
         field_collector_name:
           id: field_collector_name
           table: search_api_index_default_solr_index
@@ -449,6 +335,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_field
           label: Collector(s)
           exclude: false
           alter:
@@ -511,7 +398,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          plugin_id: search_api_field
         field_date_sort:
           id: field_date_sort
           table: search_api_index_default_solr_index
@@ -519,6 +405,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_field
           label: 'Collection Date'
           exclude: false
           alter:
@@ -582,7 +469,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          plugin_id: search_api_field
         field_large_sample_surrogate:
           id: field_large_sample_surrogate
           table: search_api_datasource_default_solr_index_entity_node
@@ -590,6 +476,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: search_api_field
           label: Image
           exclude: false
           alter:
@@ -634,8 +522,8 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: thumbnail
             image_link: content
+            image_style: thumbnail
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -653,8 +541,75 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          entity_type: node
-          plugin_id: search_api_field
+      pager:
+        type: full
+        options:
+          offset: 0
+          items_per_page: 25
+          total_pages: null
+          id: 0
+          tags:
+            next: 'Next ›'
+            previous: '‹ Previous'
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page: true
+            items_per_page_label: 'Specimens per page'
+            items_per_page_options: '25, 50, 100, 250'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          quantity: 9
+      exposed_form:
+        type: input_required
+        options:
+          submit_button: 'Apply search'
+          reset_button: true
+          reset_button_label: Clear
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+          text_input_required: '<small class="text-muted">Submit values in one or more fields of the form to filter specimens based on your criteria.</small>'
+          text_input_required_format: full_html
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      cache:
+        type: none
+        options: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: "<div role=\"contentinfo\" aria-label=\"no results\" class=\"alert alert-warning\">\r\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\r\n  Your combination of filters did not match any records.\r\n</div>\r\n\r\n<p><b><span class=\"glyphicon glyphicon-info-sign\"></span> Suggestions:</b></p>\r\n<ul>\r\n  <li>Make sure that all words are spelled correctly.</li>\r\n  <li>Make sure all words are in their appropriate field.</li>\r\n  <li>Try <a href=\"/specimen/search-solr\">removing your filter options</a> and starting over.</li>\r\n</ul>"
+            format: full_html
+          tokenize: false
+      sorts:
+        search_api_relevance:
+          id: search_api_relevance
+          table: search_api_index_default_solr_index
+          field: search_api_relevance
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: search_api_relevance
+          exposed: false
+      arguments: {  }
       filters:
         search_api_fulltext:
           id: search_api_fulltext
@@ -663,6 +618,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: views_autocomplete_filters_search_api_fulltext
           operator: and
           value: ''
           group: 1
@@ -673,6 +629,8 @@ display:
             description: ''
             use_operator: false
             operator: search_api_fulltext_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: query
             required: false
             remember: false
@@ -691,8 +649,6 @@ display:
             autocomplete_raw_suggestion: 1
             autocomplete_raw_dropdown: 1
             autocomplete_dependent: 0
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -708,7 +664,6 @@ display:
           parse_mode: terms
           min_length: null
           fields: {  }
-          plugin_id: views_autocomplete_filters_search_api_fulltext
         field_dwc_eventdate:
           id: field_dwc_eventdate
           table: search_api_index_default_solr_index
@@ -716,6 +671,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_date
           operator: '>='
           value:
             min: ''
@@ -730,6 +686,8 @@ display:
             description: 'eg: 1964-08-01'
             use_operator: false
             operator: field_dwc_eventdate_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: mindate
             required: false
             remember: false
@@ -741,11 +699,9 @@ display:
               researcher: '0'
               cmh_database_administrator: '0'
               editor: '0'
-            placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
-            operator_limit_selection: false
-            operator_list: {  }
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -758,7 +714,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: search_api_date
         field_dwc_eventdate_1:
           id: field_dwc_eventdate_1
           table: search_api_index_default_solr_index
@@ -766,6 +721,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_date
           operator: '<='
           value:
             min: ''
@@ -780,6 +736,8 @@ display:
             description: ''
             use_operator: false
             operator: field_dwc_eventdate_1_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: maxdate
             required: false
             remember: false
@@ -791,11 +749,9 @@ display:
               researcher: '0'
               cmh_database_administrator: '0'
               editor: '0'
-            placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
-            operator_limit_selection: false
-            operator_list: {  }
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -808,7 +764,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: search_api_date
         field_dwc_record_number:
           id: field_dwc_record_number
           table: search_api_index_default_solr_index
@@ -816,6 +771,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_string
           operator: '='
           value:
             min: ''
@@ -829,6 +785,8 @@ display:
             description: ''
             use_operator: false
             operator: field_dwc_record_number_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: field_dwc_record_number
             required: false
             remember: false
@@ -840,11 +798,9 @@ display:
               researcher: '0'
               cmh_database_administrator: '0'
               editor: '0'
-            placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
-            operator_limit_selection: false
-            operator_list: {  }
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -857,45 +813,90 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: search_api_string
-      sorts:
-        search_api_relevance:
-          id: search_api_relevance
-          table: search_api_index_default_solr_index
-          field: search_api_relevance
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: DESC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: search_api
-      title: 'Specimen Search'
-      header: {  }
-      footer: {  }
-      empty:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: "<div role=\"contentinfo\" aria-label=\"no results\" class=\"alert alert-warning\">\r\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\r\n  Your combination of filters did not match any records.\r\n</div>\r\n\r\n<p><b><span class=\"glyphicon glyphicon-info-sign\"></span> Suggestions:</b></p>\r\n<ul>\r\n  <li>Make sure that all words are spelled correctly.</li>\r\n  <li>Make sure all words are in their appropriate field.</li>\r\n  <li>Try <a href=\"/specimen/search-solr\">removing your filter options</a> and starting over.</li>\r\n</ul>"
-            format: full_html
-          plugin_id: text
-      relationships: {  }
-      arguments: {  }
-      display_extenders: {  }
       filter_groups:
         operator: AND
         groups:
           1: AND
+      style:
+        type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: false
+          columns:
+            field_dwc_record_number_sort: field_dwc_record_number_sort
+            nid: nid
+            field_cmh_full_specimen_name: field_cmh_full_specimen_name
+            title_1: title_1
+            field_collector_name: field_collector_name
+            field_date_sort: field_date_sort
+            field_large_sample_surrogate: field_large_sample_surrogate
+          default: '-1'
+          info:
+            field_dwc_record_number_sort:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            nid:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_cmh_full_specimen_name:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            title_1:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_collector_name:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_date_sort:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_large_sample_surrogate:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          override: true
+          sticky: false
+          summary: ''
+          empty_table: false
+          caption: ''
+          description: ''
+      row:
+        type: fields
+      query:
+        type: search_api_query
+        options:
+          bypass_access: false
+          skip_access: false
+          preserve_facet_query_args: false
+      relationships: {  }
       css_class: 'browse  browse-specimens'
+      header: {  }
+      footer: {  }
+      display_extenders: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -910,13 +911,11 @@ display:
         - 'config:field.storage.node.field_large_sample_surrogate'
         - 'config:field.storage.taxonomy_term.field_cmh_full_specimen_name'
   page_1:
-    display_plugin: page
     id: page_1
     display_title: Page
+    display_plugin: page
     position: 1
     display_options:
-      display_extenders: {  }
-      path: specimen/search
       filters:
         search_api_fulltext:
           id: search_api_fulltext
@@ -925,6 +924,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: views_autocomplete_filters_search_api_fulltext
           operator: and
           value: ''
           group: 1
@@ -935,6 +935,8 @@ display:
             description: 'Enter 1 or more search terms'
             use_operator: false
             operator: search_api_fulltext_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: query
             required: false
             remember: false
@@ -953,8 +955,6 @@ display:
             autocomplete_raw_suggestion: 1
             autocomplete_raw_dropdown: 1
             autocomplete_dependent: 0
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -970,7 +970,6 @@ display:
           parse_mode: terms
           min_length: null
           fields: {  }
-          plugin_id: views_autocomplete_filters_search_api_fulltext
         search_api_fulltext_3:
           id: search_api_fulltext_3
           table: search_api_index_default_solr_index
@@ -978,6 +977,7 @@ display:
           relationship: none
           group_type: group
           admin_label: 'Scientific Name'
+          plugin_id: views_autocomplete_filters_search_api_fulltext
           operator: and
           value: ''
           group: 1
@@ -988,6 +988,8 @@ display:
             description: 'eg: Lycopodium lagopus'
             use_operator: false
             operator: search_api_fulltext_3_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: title
             required: false
             remember: false
@@ -1006,8 +1008,6 @@ display:
             autocomplete_raw_suggestion: 1
             autocomplete_raw_dropdown: 1
             autocomplete_dependent: 0
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1024,7 +1024,6 @@ display:
           min_length: 3
           fields:
             - title
-          plugin_id: views_autocomplete_filters_search_api_fulltext
         field_dwc_country_tax:
           id: field_dwc_country_tax
           table: search_api_index_default_solr_index
@@ -1032,6 +1031,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value: {  }
           group: 1
@@ -1042,6 +1042,8 @@ display:
             description: ''
             use_operator: false
             operator: field_dwc_country_tax_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: country
             required: false
             remember: false
@@ -1054,8 +1056,6 @@ display:
               cmh_database_administrator: '0'
               editor: '0'
             reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1069,12 +1069,11 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: specimen_location_country
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: search_api_term
         field_dwc_province_tax:
           id: field_dwc_province_tax
           table: search_api_index_default_solr_index
@@ -1082,6 +1081,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value: {  }
           group: 1
@@ -1092,6 +1092,8 @@ display:
             description: ''
             use_operator: false
             operator: field_dwc_province_tax_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: province
             required: false
             remember: false
@@ -1104,8 +1106,6 @@ display:
               cmh_database_administrator: '0'
               editor: '0'
             reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1119,12 +1119,11 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: specimen_location_province
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: search_api_term
         field_dwc_county_tax:
           id: field_dwc_county_tax
           table: search_api_index_default_solr_index
@@ -1132,6 +1131,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value: {  }
           group: 1
@@ -1142,6 +1142,8 @@ display:
             description: ''
             use_operator: false
             operator: field_dwc_county_tax_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: county
             required: false
             remember: false
@@ -1154,8 +1156,6 @@ display:
               cmh_database_administrator: '0'
               editor: '0'
             reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1169,12 +1169,11 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: specimen_location_county
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: search_api_term
         search_api_fulltext_2:
           id: search_api_fulltext_2
           table: search_api_index_default_solr_index
@@ -1182,6 +1181,7 @@ display:
           relationship: none
           group_type: group
           admin_label: Habitat
+          plugin_id: views_autocomplete_filters_search_api_fulltext
           operator: and
           value: ''
           group: 1
@@ -1192,6 +1192,8 @@ display:
             description: 'eg: open roadside dry sandy'
             use_operator: false
             operator: search_api_fulltext_2_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: habitat
             required: false
             remember: false
@@ -1210,8 +1212,6 @@ display:
             autocomplete_raw_suggestion: 1
             autocomplete_raw_dropdown: 1
             autocomplete_dependent: 0
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1228,7 +1228,6 @@ display:
           min_length: 3
           fields:
             - field_dwc_habitat
-          plugin_id: views_autocomplete_filters_search_api_fulltext
         search_api_fulltext_1:
           id: search_api_fulltext_1
           table: search_api_index_default_solr_index
@@ -1236,6 +1235,7 @@ display:
           relationship: none
           group_type: group
           admin_label: Locality
+          plugin_id: views_autocomplete_filters_search_api_fulltext
           operator: and
           value: ''
           group: 1
@@ -1246,6 +1246,8 @@ display:
             description: 'eg: Acadia Forest Experiment Station'
             use_operator: false
             operator: search_api_fulltext_1_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: locality
             required: false
             remember: false
@@ -1264,8 +1266,6 @@ display:
             autocomplete_raw_suggestion: 1
             autocomplete_raw_dropdown: 1
             autocomplete_dependent: 0
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1282,7 +1282,6 @@ display:
           min_length: 3
           fields:
             - field_dwc_verbatimlocality
-          plugin_id: views_autocomplete_filters_search_api_fulltext
         field_dwc_eventdate:
           id: field_dwc_eventdate
           table: search_api_index_default_solr_index
@@ -1290,6 +1289,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_date
           operator: '>='
           value:
             min: ''
@@ -1304,6 +1304,8 @@ display:
             description: 'Show specimens collected from this date onward'
             use_operator: false
             operator: field_dwc_eventdate_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: mindate
             required: false
             remember: false
@@ -1315,11 +1317,9 @@ display:
               researcher: '0'
               cmh_database_administrator: '0'
               editor: '0'
-            placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
-            operator_limit_selection: false
-            operator_list: {  }
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -1332,7 +1332,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: search_api_date
         field_dwc_eventdate_1:
           id: field_dwc_eventdate_1
           table: search_api_index_default_solr_index
@@ -1340,6 +1339,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_date
           operator: '<='
           value:
             min: ''
@@ -1354,6 +1354,8 @@ display:
             description: 'Show specimens collected up and until this date'
             use_operator: false
             operator: field_dwc_eventdate_1_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: maxdate
             required: false
             remember: false
@@ -1365,11 +1367,9 @@ display:
               researcher: '0'
               cmh_database_administrator: '0'
               editor: '0'
-            placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
-            operator_limit_selection: false
-            operator_list: {  }
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -1382,7 +1382,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: search_api_date
         field_collector_tid:
           id: field_collector_tid
           table: search_api_index_default_solr_index
@@ -1390,6 +1389,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value: {  }
           group: 1
@@ -1400,6 +1400,8 @@ display:
             description: ''
             use_operator: false
             operator: field_collector_tid_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: collector
             required: false
             remember: false
@@ -1412,8 +1414,6 @@ display:
               cmh_database_administrator: '0'
               editor: '0'
             reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1427,12 +1427,11 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: herbarium_specimen_collector
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: search_api_term
         field_dwc_record_number:
           id: field_dwc_record_number
           table: search_api_index_default_solr_index
@@ -1440,6 +1439,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_string
           operator: '='
           value:
             min: ''
@@ -1453,6 +1453,8 @@ display:
             description: 'eg: 10000'
             use_operator: false
             operator: field_dwc_record_number_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: id
             required: false
             remember: false
@@ -1464,9 +1466,9 @@ display:
               researcher: '0'
               cmh_database_administrator: '0'
               editor: '0'
-            placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
+            placeholder: ''
             autocomplete_filter: 0
             autocomplete_min_chars: '0'
             autocomplete_items: '10'
@@ -1474,8 +1476,6 @@ display:
             autocomplete_raw_suggestion: 1
             autocomplete_raw_dropdown: 1
             autocomplete_dependent: 0
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1488,15 +1488,14 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: search_api_string
-      defaults:
-        filters: false
-        filter_groups: false
-        header: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        filters: false
+        filter_groups: false
+        header: false
       header:
         result:
           id: result
@@ -1505,9 +1504,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: result
           empty: false
           content: 'Displaying @start - @end of @total'
-          plugin_id: result
         herbarium_specimen_csv_export_button:
           id: herbarium_specimen_csv_export_button
           table: views
@@ -1515,17 +1514,19 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: false
           plugin_id: herbarium_specimen_csv_export_button
+          empty: false
+      display_extenders: {  }
+      path: specimen/search
       menu:
         type: normal
         title: 'Specimen Search'
         description: ''
-        expanded: false
-        parent: ''
         weight: -50
-        context: '0'
+        expanded: false
         menu_name: main
+        parent: ''
+        context: '0'
     cache_metadata:
       max-age: -1
       contexts:

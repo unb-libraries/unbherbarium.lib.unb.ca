@@ -30,47 +30,47 @@ third_party_settings:
         - field_dwc_taxonid
         - field_dc_replaces
         - description
+      label: 'Legacy Fields'
+      region: content
       parent_name: ''
       weight: 6
       format_type: details
       format_settings:
         label: 'Legacy Fields'
-        required_fields: true
-        id: ''
         classes: ''
+        id: ''
         open: false
-      label: 'Legacy Fields'
-      region: content
+        required_fields: true
     group_measurement_of_fact:
       children:
         - field_dwc_measurementtype
         - field_dwc_measurementid
         - field_dwc_measurementvalue
+      label: 'Measurement or Fact'
+      region: content
       parent_name: ''
       weight: 5
       format_type: details
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         open: false
         required_fields: true
-      label: 'Measurement or Fact'
-      region: content
     group_alternate_names:
       children:
         - field_cmh_english_common_names
         - field_cmh_french_common_names
         - field_synonyms
+      label: 'Alternate Names'
+      region: content
       parent_name: ''
       weight: 3
       format_type: details
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         open: false
         required_fields: true
-      label: 'Alternate Names'
-      region: content
 _core:
   default_config_hash: tZpwdsCc5ZwmeyOF35YnbDlyCwuvCdtObpP8O8ers3E
 id: taxonomy_term.herbarium_specimen_taxonomy.default
@@ -81,65 +81,65 @@ content:
   description:
     type: text_textarea
     weight: 15
+    region: content
     settings:
-      placeholder: ''
       rows: 5
+      placeholder: ''
     third_party_settings: {  }
-    region: content
   field_cmh_english_common_names:
+    type: string_textfield
     weight: 4
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_cmh_french_common_names:
+    type: string_textfield
     weight: 5
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_dc_replaces:
+    type: string_textfield
     weight: 14
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_dwc_measurementid:
+    type: string_textfield
     weight: 8
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_dwc_measurementtype:
     type: options_select
     weight: 7
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_dwc_measurementvalue:
+    type: string_textfield
     weight: 9
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_dwc_scientificnameauthor:
+    type: string_textfield
     weight: 1
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_dwc_taxonid:
     type: string_textfield
     weight: 13
@@ -149,27 +149,27 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_dwc_taxonrank:
+    type: options_select
     weight: 2
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_dwc_taxonremarks:
+    type: string_textfield
     weight: 4
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_synonyms:
+    type: string_textfield
     weight: 6
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   langcode:
     type: language_select
     weight: 2
@@ -180,11 +180,11 @@ content:
   name:
     type: string_textfield
     weight: 0
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    region: content
   path:
     type: path
     weight: 7
@@ -193,16 +193,16 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 100
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   tvi:
     weight: 100
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
   field_additional_search_metadata: true
   field_cmh_full_specimen_name: true

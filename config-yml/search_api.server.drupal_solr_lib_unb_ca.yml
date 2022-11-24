@@ -18,6 +18,12 @@ name: drupal-solr-lib-unb-ca
 description: ''
 backend: search_api_solr
 backend_config:
+  retrieve_data: false
+  highlight_data: false
+  site_hash: false
+  server_prefix: ''
+  domain: generic
+  environment: default
   connector: standard
   connector_config:
     scheme: http
@@ -29,18 +35,12 @@ backend_config:
     index_timeout: 5
     optimize_timeout: 10
     finalize_timeout: 30
-    commit_within: 1000
     solr_version: ''
     http_method: AUTO
+    commit_within: 1000
     jmx: false
     solr_install_dir: ../../..
+  optimize: false
   disabled_field_types: {  }
   rows: 10
-  retrieve_data: false
-  highlight_data: false
   skip_schema_check: false
-  server_prefix: ''
-  domain: generic
-  optimize: false
-  site_hash: false
-  environment: default

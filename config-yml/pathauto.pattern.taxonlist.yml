@@ -14,12 +14,12 @@ pattern: 'taxonlist/[term:parents]/[term:name]'
 selection_criteria:
   1d1e68cd-5c69-4143-9717-429196c427dc:
     id: 'entity_bundle:taxonomy_term'
-    bundles:
-      herbarium_specimen_taxonomy: herbarium_specimen_taxonomy
     negate: false
+    uuid: 1d1e68cd-5c69-4143-9717-429196c427dc
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: 1d1e68cd-5c69-4143-9717-429196c427dc
+    bundles:
+      herbarium_specimen_taxonomy: herbarium_specimen_taxonomy
 selection_logic: and
 weight: -5
 relationships: {  }

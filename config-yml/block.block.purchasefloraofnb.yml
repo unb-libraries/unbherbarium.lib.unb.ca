@@ -15,14 +15,14 @@ plugin: 'block_content:8cdc6994-5e67-4b5b-8e24-ed7e369a3f46'
 settings:
   id: 'block_content:8cdc6994-5e67-4b5b-8e24-ed7e369a3f46'
   label: 'Purchase Flora of NB'
-  provider: block_content
   label_display: visible
+  provider: block_content
   status: true
   info: ''
   view_mode: full
 visibility:
   request_path:
     id: request_path
-    pages: '<front>'
     negate: false
     context_mapping: {  }
+    pages: '<front>'

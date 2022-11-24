@@ -1,21 +1,21 @@
+_core:
+  default_config_hash: m09-D9lEMh3sNiyny5OkBaqyKB7-A-zhUsFZ2Rbq7nQ
 minimum_single: 0
 minimum_multiple: 20
 disable_search_threshold: 0
 minimum_width: 256
+max_shown_results: null
+use_relative_width: false
 jquery_selector: "select[name=\"collector\"],select[name=\"field_taxonomy_tid\"],select[name=\"county\"],select[name=\"province\"],select[name=\"country\"],\r\nselect[data-drupal-selector=\"edit-collector\"],select[data-drupal-selector=\"edit-county\"],select[data-drupal-selector=\"edit-province\"],select[data-drupal-selector=\"edit-country\"]"
 search_contains: true
 disable_search: false
-placeholder_text_multiple: 'Choose 1 or more options'
-placeholder_text_single: 'Choose an option'
-no_results_text: 'No results match'
+allow_single_deselect: false
 disabled_themes:
   bartik: '0'
   seven: '0'
   bootstrap: '0'
   unbherbarium_ca: '0'
 chosen_include: 2
-_core:
-  default_config_hash: m09-D9lEMh3sNiyny5OkBaqyKB7-A-zhUsFZ2Rbq7nQ
-allow_single_deselect: false
-max_shown_results: null
-use_relative_width: false
+placeholder_text_multiple: 'Choose 1 or more options'
+placeholder_text_single: 'Choose an option'
+no_results_text: 'No results match'

@@ -1,3 +1,5 @@
+_core:
+  default_config_hash: 5YkLBJiAXgH9BDLkDIb1ozqfCXWwvZggf4XfcXgfjzc
 account: UA-36446262-1
 domain_mode: 0
 cross_domains: ''
@@ -31,5 +33,3 @@ codesnippet:
 translation_set: false
 cache: false
 debug: false
-_core:
-  default_config_hash: 5YkLBJiAXgH9BDLkDIb1ozqfCXWwvZggf4XfcXgfjzc

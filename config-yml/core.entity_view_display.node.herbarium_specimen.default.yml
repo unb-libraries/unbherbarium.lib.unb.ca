@@ -63,105 +63,105 @@ bundle: herbarium_specimen
 mode: default
 content:
   field_additional_search_metadata:
-    weight: 38
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 38
     region: content
   field_collector_tid:
     type: entity_reference_label
-    weight: 4
     label: above
     settings:
       link: false
     third_party_settings: {  }
+    weight: 4
     region: content
   field_dc_contributor_other:
-    weight: 5
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 5
     region: content
   field_dc_created:
-    weight: 31
+    type: datetime_default
     label: above
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: medium
     third_party_settings: {  }
-    type: datetime_default
+    weight: 31
     region: content
   field_dc_format:
     type: list_default
-    weight: 10
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 10
     region: content
   field_dc_language:
     type: list_default
-    weight: 11
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 11
     region: content
   field_dc_modified:
     type: datetime_default
-    weight: 12
     label: above
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: medium
     third_party_settings: {  }
+    weight: 12
     region: content
   field_dc_publisher:
     type: list_default
-    weight: 13
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 13
     region: content
   field_dc_rights:
     type: list_default
-    weight: 14
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 14
     region: content
   field_dc_rightsholder:
     type: list_default
-    weight: 15
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 15
     region: content
   field_dc_type:
     type: list_default
-    weight: 16
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 16
     region: content
   field_dwc_basisofrecord:
     type: list_default
-    weight: 2
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 2
     region: content
   field_dwc_collectioncode:
     type: list_default
-    weight: 19
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 19
     region: content
   field_dwc_coordinateprecision:
-    weight: 6
+    type: number_decimal
     label: above
     settings:
       thousand_separator: ''
@@ -169,57 +169,57 @@ content:
       scale: 6
       prefix_suffix: false
     third_party_settings: {  }
-    type: number_decimal
+    weight: 6
     region: content
   field_dwc_country:
-    weight: 7
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 7
     region: content
   field_dwc_country_tax:
-    weight: 39
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 39
     region: content
   field_dwc_countrycode:
-    weight: 20
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 20
     region: content
   field_dwc_county:
-    weight: 8
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 8
     region: content
   field_dwc_county_tax:
-    weight: 41
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 41
     region: content
   field_dwc_datageneralizations:
     type: list_default
-    weight: 9
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 9
     region: content
   field_dwc_decimallatitude:
-    weight: 17
+    type: number_decimal
     label: above
     settings:
       thousand_separator: ''
@@ -227,10 +227,10 @@ content:
       scale: 2
       prefix_suffix: true
     third_party_settings: {  }
-    type: number_decimal
+    weight: 17
     region: content
   field_dwc_decimallongitude:
-    weight: 18
+    type: number_decimal
     label: above
     settings:
       thousand_separator: ''
@@ -238,175 +238,177 @@ content:
       scale: 2
       prefix_suffix: true
     third_party_settings: {  }
-    type: number_decimal
+    weight: 18
     region: content
   field_dwc_eventdate:
     type: datetime_default
-    weight: 3
     label: above
     settings:
       timezone_override: ''
       format_type: html_date
     third_party_settings: {  }
+    weight: 3
     region: content
   field_dwc_eventremarks:
-    weight: 0
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 0
     region: content
   field_dwc_georeferencedby:
-    weight: 21
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 21
     region: content
   field_dwc_habitat:
-    weight: 24
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 24
     region: content
   field_dwc_informationwithheld:
     type: list_default
-    weight: 25
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 25
     region: content
   field_dwc_institutioncode:
     type: list_default
-    weight: 26
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 26
     region: content
   field_dwc_institutionid:
     type: list_default
-    weight: 27
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 27
     region: content
   field_dwc_occurrenceremarks:
-    weight: 28
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 28
     region: content
   field_dwc_othercatalognumbers:
-    weight: 29
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 29
     region: content
   field_dwc_province_tax:
-    weight: 40
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 40
     region: content
   field_dwc_record_number:
-    weight: 35
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 35
     region: content
   field_dwc_reproductivecondition:
-    weight: 32
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 32
     region: content
   field_dwc_stateprovince:
-    weight: 34
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 34
     region: content
   field_dwc_verbatimeventdate:
-    weight: 36
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 36
     region: content
   field_dwc_verbatimlocality:
-    weight: 37
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 37
     region: content
   field_geoheritage:
     type: string
-    weight: 22
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 22
     region: content
   field_gmap:
-    weight: 23
+    type: simple_gmap
     label: hidden
     settings:
       include_map: true
-      apikey: ''
-      iframe_width: '210'
-      iframe_height: '305'
-      static_scale: 2
+      include_static_map: false
       include_link: true
-      link_text: 'View larger map'
+      include_text: false
+      iframe_height: '305'
+      iframe_width: '210'
+      static_scale: 2
       zoom_level: 9
+      link_text: 'View larger map'
       map_type: k
       langcode: page
-      include_static_map: false
-      include_text: false
+      apikey: ''
     third_party_settings: {  }
-    type: simple_gmap
+    weight: 23
     region: content
   field_large_sample_surrogate:
     type: image
-    weight: 33
     label: hidden
     settings:
-      image_style: 220_wide
       image_link: file
+      image_style: 220_wide
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
+    weight: 33
     region: content
   field_previous_identifications:
-    weight: 30
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 30
     region: content
   field_taxonomy_tid:
     type: entity_reference_entity_view
-    weight: 1
     label: above
     settings:
       view_mode: default
       link: false
     third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
   field_herbarium_spec_master_impo: true

@@ -17,6 +17,6 @@ plugin: unblibrarieslogo
 settings:
   id: unblibrarieslogo
   label: 'UNB Libraries Logo'
-  provider: unb_herbarium
   label_display: '0'
+  provider: unb_herbarium
 visibility: {  }

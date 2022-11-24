@@ -12,12 +12,12 @@ pattern: '/provincelist/[term:name]'
 selection_criteria:
   c2543646-9f74-4832-bebb-738e24bf771c:
     id: 'entity_bundle:taxonomy_term'
-    bundles:
-      specimen_location_province: specimen_location_province
     negate: false
+    uuid: c2543646-9f74-4832-bebb-738e24bf771c
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: c2543646-9f74-4832-bebb-738e24bf771c
+    bundles:
+      specimen_location_province: specimen_location_province
 selection_logic: and
 weight: -5
 relationships: {  }

@@ -43,26 +43,348 @@ base_table: node_field_data
 base_field: nid
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Master
+    display_plugin: default
     position: 0
     display_options:
-      access:
-        type: perm
+      title: 'Advanced Search'
+      fields:
+        field_dwc_record_number:
+          id: field_dwc_record_number
+          table: node__field_dwc_record_number
+          field: field_dwc_record_number
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ID
+          exclude: false
+          alter:
+            alter_text: true
+            text: '{{ field_dwc_record_number__value }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: NA
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: text_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: Specimen
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: false
+            ellipsis: false
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: NA
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_dwc_county:
+          id: field_dwc_county
+          table: node__field_dwc_county
+          field: field_dwc_county
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: County
+          exclude: false
+          alter:
+            alter_text: true
+            text: '{{ field_dwc_county__value }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: text_trimmed
+          settings:
+            trim_length: 600
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_dwc_eventdate:
+          id: field_dwc_eventdate
+          table: node__field_dwc_eventdate
+          field: field_dwc_eventdate
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Collection Date'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: Unknown
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: datetime_custom
+          settings:
+            timezone_override: ''
+            date_format: Y/m/d
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_large_sample_surrogate:
+          id: field_large_sample_surrogate
+          table: node__field_large_sample_surrogate
+          field: field_large_sample_surrogate
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: Image
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: specimen-image
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: 'No&nbsp;Image'
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+      pager:
+        type: full
         options:
-          perm: 'access content'
-      cache:
-        type: tag
-        options: {  }
-      query:
-        type: views_query
-        options:
-          disable_sql_rewrite: false
-          distinct: false
-          replica: false
-          query_comment: ''
-          query_tags: {  }
+          offset: 0
+          items_per_page: 0
+          total_pages: null
+          id: 0
+          tags:
+            next: 'Next ›'
+            previous: '‹ Previous'
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page: true
+            items_per_page_label: 'Specimens per page'
+            items_per_page_options: '25,50,100,250'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          quantity: 9
       exposed_form:
         type: input_required
         options:
@@ -75,38 +397,101 @@ display:
           sort_desc_label: Desc
           text_input_required: '<small class="text-muted">Submit values in one or more fields of the form to filter specimens based on your criteria.<small>'
           text_input_required_format: full_html
-      pager:
-        type: full
+      access:
+        type: perm
         options:
-          items_per_page: 0
-          offset: 0
-          id: 0
-          total_pages: null
-          tags:
-            previous: '‹ Previous'
-            next: 'Next ›'
-            first: '« First'
-            last: 'Last »'
+          perm: 'access content'
+      cache:
+        type: tag
+        options: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: |-
+              <div role="contentinfo" aria-label="no results" class="messages messages--warning">Your search did not match any records.</div>
+              <br />
+              <p><b>Suggestions:</b></p>
+              <ul>
+                <li>Make sure that all words are spelled correctly.</li>
+                <li>Try different keywords.</li>
+                <li>Try using a partial word search - <kbd>card</kbd> will match <kbd>cardamine</kbd>.
+              </ul>
+            format: full_html
+          tokenize: false
+      sorts: {  }
+      arguments: {  }
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: false
           expose:
-            items_per_page: true
-            items_per_page_label: 'Specimens per page'
-            items_per_page_options: '25,50,100,250'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          quantity: 9
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            herbarium_specimen: herbarium_specimen
+          group: 1
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
       style:
         type: table
         options:
           grouping: {  }
           row_class: ''
           default_row_class: false
-          override: true
-          sticky: false
-          caption: ''
-          summary: ''
-          description: ''
           columns:
             title: title
             field_dwc_record_number: field_dwc_record_number
@@ -122,6 +507,7 @@ display:
             field_large_sample_surrogate_msk: field_large_sample_surrogate_msk
             field_large_sample_surrogate: field_large_sample_surrogate
             name: name
+          default: field_dwc_eventdate
           info:
             title:
               sortable: true
@@ -217,381 +603,24 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-          default: field_dwc_eventdate
+          override: true
+          sticky: false
+          summary: ''
           empty_table: false
+          caption: ''
+          description: ''
       row:
         type: fields
-      fields:
-        field_dwc_record_number:
-          id: field_dwc_record_number
-          table: node__field_dwc_record_number
-          field: field_dwc_record_number
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ID
-          exclude: false
-          alter:
-            alter_text: true
-            text: '{{ field_dwc_record_number__value }}'
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: false
-          empty: NA
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: text_default
-          settings: {  }
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Specimen
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: false
-            ellipsis: false
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: false
-          empty: NA
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: true
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
-        field_dwc_county:
-          id: field_dwc_county
-          table: node__field_dwc_county
-          field: field_dwc_county
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: County
-          exclude: false
-          alter:
-            alter_text: true
-            text: '{{ field_dwc_county__value }}'
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: false
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: text_trimmed
-          settings:
-            trim_length: 600
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        field_dwc_eventdate:
-          id: field_dwc_eventdate
-          table: node__field_dwc_eventdate
-          field: field_dwc_eventdate
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Collection Date'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: false
-          empty: Unknown
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: datetime_custom
-          settings:
-            timezone_override: ''
-            date_format: Y/m/d
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        field_large_sample_surrogate:
-          id: field_large_sample_surrogate
-          table: node__field_large_sample_surrogate
-          field: field_large_sample_surrogate
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Image
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: specimen-image
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: false
-          empty: 'No&nbsp;Image'
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-      filters:
-        status:
-          id: status
-          table: node_field_data
-          field: status
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '='
-          value: '1'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          entity_type: node
-          entity_field: status
-          plugin_id: boolean
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          value:
-            herbarium_specimen: herbarium_specimen
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          group: 1
-          expose:
-            operator_limit_selection: false
-            operator_list: {  }
-      sorts: {  }
-      title: 'Advanced Search'
+      query:
+        type: views_query
+        options:
+          query_comment: ''
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_tags: {  }
+      relationships: {  }
+      group_by: true
       header:
         result:
           id: result
@@ -600,9 +629,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: result
           empty: false
           content: 'Displaying @start - @end of @total'
-          plugin_id: result
         herbarium_specimen_csv_export_button:
           id: herbarium_specimen_csv_export_button
           table: views
@@ -610,39 +639,10 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: false
           plugin_id: herbarium_specimen_csv_export_download_button
+          empty: false
       footer: {  }
-      empty:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: |-
-              <div role="contentinfo" aria-label="no results" class="messages messages--warning">Your search did not match any records.</div>
-              <br />
-              <p><b>Suggestions:</b></p>
-              <ul>
-                <li>Make sure that all words are spelled correctly.</li>
-                <li>Try different keywords.</li>
-                <li>Try using a partial word search - <kbd>card</kbd> will match <kbd>cardamine</kbd>.
-              </ul>
-            format: full_html
-          plugin_id: text
-      relationships: {  }
-      arguments: {  }
       display_extenders: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      group_by: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -657,687 +657,12 @@ display:
         - 'config:field.storage.node.field_dwc_record_number'
         - 'config:field.storage.node.field_large_sample_surrogate'
   page:
-    display_plugin: page
     id: page
     display_title: Page
+    display_plugin: page
     position: 2
     display_options:
-      display_extenders: {  }
-      display_description: ''
-      path: specimen/search
       title: 'Specimen Search'
-      defaults:
-        title: false
-        filters: false
-        filter_groups: false
-        css_class: false
-        use_ajax: false
-        fields: false
-        relationships: false
-        empty: false
-      filters:
-        status:
-          id: status
-          table: node_field_data
-          field: status
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '='
-          value: '1'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          entity_type: node
-          entity_field: status
-          plugin_id: boolean
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          value:
-            herbarium_specimen: herbarium_specimen
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          group: 1
-          expose:
-            operator_limit_selection: false
-            operator_list: {  }
-        combine:
-          id: combine
-          table: views
-          field: combine
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: allwords
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: combine_op
-            label: Keyword(s)
-            description: 'Enter 1 or more search terms'
-            use_operator: false
-            operator: combine_op
-            identifier: query
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
-            autocomplete_filter: 0
-            autocomplete_min_chars: '0'
-            autocomplete_items: '10'
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: 'Combine fields filter'
-            description: ''
-            identifier: combine
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: '1'
-            default_group_multiple: {  }
-            group_items:
-              1:
-                title: ''
-                operator: allwords
-                value: ''
-              2:
-                title: ''
-                operator: allwords
-                value: ''
-              3:
-                title: ''
-                operator: allwords
-                value: ''
-          fields:
-            field_dwc_record_number: field_dwc_record_number
-            title: title
-            field_dwc_verbatimlocality: field_dwc_verbatimlocality
-            name: name
-            field_additional_search_metadata: field_additional_search_metadata
-            field_additional_search_metadata_1: field_additional_search_metadata_1
-            name_1: name_1
-            name_2: name_2
-            name_3: name_3
-          plugin_id: views_autocomplete_filters_combine
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: allwords
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: title_op
-            label: 'Scientific Name'
-            description: 'eg: Lycopodium lagopus'
-            use_operator: false
-            operator: title_op
-            identifier: title
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              herbarium_specimen_add_edit_only: '0'
-              herbarium_specimen_add_edit_all: '0'
-              herbarium_specimen_administrator: '0'
-              cmh_database_administrator: '0'
-              student: '0'
-              researcher: '0'
-              public_user: '0'
-              herbarium_admin: '0'
-            autocomplete_filter: 1
-            autocomplete_min_chars: '0'
-            autocomplete_items: '10'
-            autocomplete_field: title
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: views_autocomplete_filters_string
-        field_dwc_country_tax_target_id:
-          id: field_dwc_country_tax_target_id
-          table: node__field_dwc_country_tax
-          field: field_dwc_country_tax_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_dwc_country_tax_target_id_op
-            label: Country
-            description: 'eg: Canada'
-            use_operator: false
-            operator: field_dwc_country_tax_target_id_op
-            identifier: country
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
-            reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: specimen_location_country
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
-        field_dwc_province_tax_target_id:
-          id: field_dwc_province_tax_target_id
-          table: node__field_dwc_province_tax
-          field: field_dwc_province_tax_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_dwc_province_tax_target_id_op
-            label: Province/Territory/State
-            description: 'eg: New Brunswick'
-            use_operator: false
-            operator: field_dwc_province_tax_target_id_op
-            identifier: province
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
-            reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: specimen_location_province
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
-        field_dwc_county_tax_target_id:
-          id: field_dwc_county_tax_target_id
-          table: node__field_dwc_county_tax
-          field: field_dwc_county_tax_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_dwc_county_tax_target_id_op
-            label: County
-            description: 'eg: York'
-            use_operator: false
-            operator: field_dwc_county_tax_target_id_op
-            identifier: county
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
-            reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: specimen_location_county
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
-        field_dwc_habitat_value:
-          id: field_dwc_habitat_value
-          table: node__field_dwc_habitat
-          field: field_dwc_habitat_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: allwords
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_dwc_habitat_value_op
-            label: Habitat
-            description: 'eg: open roadside dry sandy'
-            use_operator: false
-            operator: field_dwc_habitat_value_op
-            identifier: habitat
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              student: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-            autocomplete_filter: 1
-            autocomplete_min_chars: '3'
-            autocomplete_items: '10'
-            autocomplete_field: field_dwc_habitat
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: views_autocomplete_filters_string
-        field_dwc_verbatimlocality_value:
-          id: field_dwc_verbatimlocality_value
-          table: node__field_dwc_verbatimlocality
-          field: field_dwc_verbatimlocality_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: allwords
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_dwc_verbatimlocality_value_op
-            label: Locality
-            description: 'eg: Acadia Forest Experiment Station'
-            use_operator: false
-            operator: field_dwc_verbatimlocality_value_op
-            identifier: locality
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              student: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-            autocomplete_filter: 1
-            autocomplete_min_chars: '3'
-            autocomplete_items: '10'
-            autocomplete_field: field_dwc_verbatimlocality
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: views_autocomplete_filters_string
-        field_dwc_eventdate_value:
-          id: field_dwc_eventdate_value
-          table: node__field_dwc_eventdate
-          field: field_dwc_eventdate_value
-          relationship: none
-          group_type: group
-          admin_label: 'Min collection date'
-          operator: '>='
-          value:
-            min: ''
-            max: ''
-            value: ''
-            type: date
-            widget: date
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_dwc_eventdate_value_op
-            label: 'Date Collected [From]'
-            description: 'eg: 1964-08-01'
-            use_operator: false
-            operator: field_dwc_eventdate_value_op
-            identifier: mindate
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              herbarium_specimen_add_edit_only: '0'
-              herbarium_specimen_add_edit_all: '0'
-              herbarium_specimen_administrator: '0'
-              cmh_database_administrator: '0'
-              student: '0'
-              researcher: '0'
-              public_user: '0'
-              herbarium_admin: '0'
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: datetime
-        field_dwc_eventdate_value_1:
-          id: field_dwc_eventdate_value_1
-          table: node__field_dwc_eventdate
-          field: field_dwc_eventdate_value
-          relationship: none
-          group_type: group
-          admin_label: 'Max Collection Date'
-          operator: '<='
-          value:
-            min: ''
-            max: ''
-            value: ''
-            type: date
-            widget: date
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_dwc_eventdate_value_1_op
-            label: '[To]'
-            description: 'eg: 1965-12-31'
-            use_operator: false
-            operator: field_dwc_eventdate_value_1_op
-            identifier: maxdate
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              herbarium_specimen_add_edit_only: '0'
-              herbarium_specimen_add_edit_all: '0'
-              herbarium_specimen_administrator: '0'
-              cmh_database_administrator: '0'
-              student: '0'
-              researcher: '0'
-              public_user: '0'
-              herbarium_admin: '0'
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: datetime
-        field_collector_tid_target_id:
-          id: field_collector_tid_target_id
-          table: node__field_collector_tid
-          field: field_collector_tid_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_collector_tid_target_id_op
-            label: Collector
-            description: 'eg: Roberts, P.R.'
-            use_operator: false
-            operator: field_collector_tid_target_id_op
-            identifier: collector
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              herbarium_specimen_add_edit_only: '0'
-              herbarium_specimen_add_edit_all: '0'
-              herbarium_specimen_administrator: '0'
-              cmh_database_administrator: '0'
-              student: '0'
-              researcher: '0'
-              public_user: '0'
-              herbarium_admin: '0'
-            reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: herbarium_specimen_collector
-          hierarchy: false
-          error_message: false
-          plugin_id: taxonomy_index_tid
-        field_dwc_record_number_value:
-          id: field_dwc_record_number_value
-          table: node__field_dwc_record_number
-          field: field_dwc_record_number_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: contains
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_dwc_record_number_value_op
-            label: 'UNB Accession ID'
-            description: 'eg: 10000'
-            use_operator: false
-            operator: field_dwc_record_number_value_op
-            identifier: id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              herbarium_specimen_add_edit_only: '0'
-              herbarium_specimen_add_edit_all: '0'
-              herbarium_specimen_administrator: '0'
-              cmh_database_administrator: '0'
-              student: '0'
-              researcher: '0'
-              public_user: '0'
-              herbarium_admin: '0'
-            autocomplete_filter: 0
-            autocomplete_min_chars: '0'
-            autocomplete_items: '10'
-            autocomplete_field: field_dwc_record_number
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: views_autocomplete_filters_string
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      menu:
-        type: normal
-        title: 'Specimen Search'
-        description: ''
-        expanded: false
-        parent: ''
-        weight: -50
-        context: '0'
-        menu_name: main
-      css_class: 'browse browse-specimens use-chosen'
-      use_ajax: false
       fields:
         nid:
           id: nid
@@ -1346,6 +671,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: nid
+          plugin_id: field
           label: ID
           exclude: true
           alter:
@@ -1400,9 +728,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: nid
-          plugin_id: field
         field_cmh_full_specimen_name:
           id: field_cmh_full_specimen_name
           table: taxonomy_term__field_cmh_full_specimen_name
@@ -1410,6 +735,7 @@ display:
           relationship: field_taxonomy_tid
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Scientific Name'
           exclude: true
           alter:
@@ -1464,7 +790,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_dwc_record_number:
           id: field_dwc_record_number
           table: node__field_dwc_record_number
@@ -1472,6 +797,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: ID
           exclude: false
           alter:
@@ -1527,7 +853,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         title:
           id: title
           table: node_field_data
@@ -1535,6 +860,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: 'Scientific Name'
           exclude: false
           alter:
@@ -1590,9 +918,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         field_collector_tid:
           id: field_collector_tid
           table: node__field_collector_tid
@@ -1600,6 +925,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Collector(s)
           exclude: false
           alter:
@@ -1655,7 +981,6 @@ display:
           multi_type: ul
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_dwc_eventdate:
           id: field_dwc_eventdate
           table: node__field_dwc_eventdate
@@ -1663,6 +988,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Date Collected'
           exclude: false
           alter:
@@ -1719,7 +1045,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_dwc_province_tax:
           id: field_dwc_province_tax
           table: node__field_dwc_province_tax
@@ -1727,6 +1052,7 @@ display:
           relationship: none
           group_type: group
           admin_label: 'Province (Taxon)'
+          plugin_id: field
           label: State/Province/Territory
           exclude: true
           alter:
@@ -1782,7 +1108,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_dwc_county_tax:
           id: field_dwc_county_tax
           table: node__field_dwc_county_tax
@@ -1790,6 +1115,7 @@ display:
           relationship: none
           group_type: group
           admin_label: 'County (Taxon)'
+          plugin_id: field
           label: County
           exclude: true
           alter:
@@ -1845,7 +1171,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_dwc_country_tax:
           id: field_dwc_country_tax
           table: node__field_dwc_country_tax
@@ -1853,6 +1178,7 @@ display:
           relationship: none
           group_type: group
           admin_label: 'Country (Taxon)'
+          plugin_id: field
           label: Country
           exclude: true
           alter:
@@ -1908,7 +1234,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_dwc_habitat:
           id: field_dwc_habitat
           table: node__field_dwc_habitat
@@ -1916,6 +1241,7 @@ display:
           relationship: none
           group_type: group
           admin_label: 'Habitat autocomplete'
+          plugin_id: field
           label: Habitat
           exclude: true
           alter:
@@ -1970,7 +1296,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_dwc_verbatimlocality:
           id: field_dwc_verbatimlocality
           table: node__field_dwc_verbatimlocality
@@ -1978,6 +1303,7 @@ display:
           relationship: none
           group_type: group
           admin_label: 'Locality autocomplete'
+          plugin_id: field
           label: 'Verbatim Locality'
           exclude: true
           alter:
@@ -2033,7 +1359,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_large_sample_surrogate:
           id: field_large_sample_surrogate
           table: node__field_large_sample_surrogate
@@ -2041,6 +1366,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Image
           exclude: false
           alter:
@@ -2085,8 +1411,10 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: thumbnail
             image_link: content
+            image_style: thumbnail
+            image_loading:
+              attribute: lazy
           group_column: target_id
           group_columns: {  }
           group_rows: true
@@ -2097,7 +1425,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         name:
           id: name
           table: taxonomy_term_field_data
@@ -2105,6 +1432,9 @@ display:
           relationship: field_collector_tid
           group_type: group
           admin_label: 'Collector term name'
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
           label: 'Collector Name'
           exclude: true
           alter:
@@ -2161,9 +1491,6 @@ display:
           separator: ', '
           field_api_classes: false
           convert_spaces: false
-          entity_type: taxonomy_term
-          entity_field: name
-          plugin_id: term_name
         field_additional_search_metadata:
           id: field_additional_search_metadata
           table: taxonomy_term__field_additional_search_metadata
@@ -2171,6 +1498,7 @@ display:
           relationship: field_taxonomy_tid
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Additional Search Metadata'
           exclude: true
           alter:
@@ -2226,7 +1554,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_additional_search_metadata_1:
           id: field_additional_search_metadata_1
           table: node__field_additional_search_metadata
@@ -2234,6 +1561,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Additional Search Metadata'
           exclude: true
           alter:
@@ -2289,7 +1617,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         name_1:
           id: name_1
           table: taxonomy_term_field_data
@@ -2297,6 +1624,9 @@ display:
           relationship: field_dwc_province_tax
           group_type: group
           admin_label: 'Province term name'
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
           label: Name
           exclude: true
           alter:
@@ -2353,9 +1683,6 @@ display:
           separator: ', '
           field_api_classes: false
           convert_spaces: false
-          entity_type: taxonomy_term
-          entity_field: name
-          plugin_id: term_name
         name_2:
           id: name_2
           table: taxonomy_term_field_data
@@ -2363,6 +1690,9 @@ display:
           relationship: field_dwc_county_tax
           group_type: group
           admin_label: 'County term name'
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
           label: Name
           exclude: true
           alter:
@@ -2419,9 +1749,6 @@ display:
           separator: ', '
           field_api_classes: false
           convert_spaces: false
-          entity_type: taxonomy_term
-          entity_field: name
-          plugin_id: term_name
         name_3:
           id: name_3
           table: taxonomy_term_field_data
@@ -2429,6 +1756,9 @@ display:
           relationship: field_dwc_country_tax
           group_type: group
           admin_label: 'Country term name'
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
           label: Name
           exclude: true
           alter:
@@ -2485,55 +1815,6 @@ display:
           separator: ', '
           field_api_classes: false
           convert_spaces: false
-          entity_type: taxonomy_term
-          entity_field: name
-          plugin_id: term_name
-      relationships:
-        field_taxonomy_tid:
-          id: field_taxonomy_tid
-          table: node__field_taxonomy_tid
-          field: field_taxonomy_tid
-          relationship: none
-          group_type: group
-          admin_label: 'field_taxonomy_tid: Taxonomy term'
-          required: true
-          plugin_id: standard
-        field_collector_tid:
-          id: field_collector_tid
-          table: node__field_collector_tid
-          field: field_collector_tid
-          relationship: none
-          group_type: group
-          admin_label: 'field_collector_tid: Taxonomy term'
-          required: false
-          plugin_id: standard
-        field_dwc_province_tax:
-          id: field_dwc_province_tax
-          table: node__field_dwc_province_tax
-          field: field_dwc_province_tax
-          relationship: none
-          group_type: group
-          admin_label: 'field_dwc_province_tax: Taxonomy term'
-          required: false
-          plugin_id: standard
-        field_dwc_country_tax:
-          id: field_dwc_country_tax
-          table: node__field_dwc_country_tax
-          field: field_dwc_country_tax
-          relationship: none
-          group_type: group
-          admin_label: 'field_dwc_country_tax: Taxonomy term'
-          required: false
-          plugin_id: standard
-        field_dwc_county_tax:
-          id: field_dwc_county_tax
-          table: node__field_dwc_county_tax
-          field: field_dwc_county_tax
-          relationship: none
-          group_type: group
-          admin_label: 'field_dwc_county_tax: Taxonomy term'
-          required: false
-          plugin_id: standard
       empty:
         area:
           id: area
@@ -2542,12 +1823,733 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: text
           empty: true
-          tokenize: false
           content:
             value: "<div role=\"contentinfo\" aria-label=\"no results\" class=\"alert alert-warning\">\r\n  <span class=\"glyphicon glyphicon-warning-sign\"></span>\r\n  Your combination of filters did not match any records.\r\n</div>\r\n\r\n<p><b><span class=\"glyphicon glyphicon-info-sign\"></span> Suggestions:</b></p>\r\n<ul>\r\n  <li>Make sure that all words are spelled correctly.</li>\r\n  <li>Make sure all words are in their appropriate field.</li>\r\n  <li>Try using a partial word search: <kbd>card</kbd> will match <kbd>cardamine</kbd>.</li>\r\n  <li>Try <a href=\"/specimen/search\">removing your filter options</a> and starting over.</li>\r\n</ul>\r\n"
             format: full_html
-          plugin_id: text
+          tokenize: false
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            herbarium_specimen: herbarium_specimen
+          group: 1
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        combine:
+          id: combine
+          table: views
+          field: combine
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: views_autocomplete_filters_combine
+          operator: allwords
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: combine_op
+            label: Keyword(s)
+            description: 'Enter 1 or more search terms'
+            use_operator: false
+            operator: combine_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: query
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              researcher: '0'
+              cmh_database_administrator: '0'
+              editor: '0'
+            autocomplete_filter: 0
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: 'Combine fields filter'
+            description: ''
+            identifier: combine
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: '1'
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: ''
+                operator: allwords
+                value: ''
+              2:
+                title: ''
+                operator: allwords
+                value: ''
+              3:
+                title: ''
+                operator: allwords
+                value: ''
+          fields:
+            field_dwc_record_number: field_dwc_record_number
+            title: title
+            field_dwc_verbatimlocality: field_dwc_verbatimlocality
+            name: name
+            field_additional_search_metadata: field_additional_search_metadata
+            field_additional_search_metadata_1: field_additional_search_metadata_1
+            name_1: name_1
+            name_2: name_2
+            name_3: name_3
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: views_autocomplete_filters_string
+          operator: allwords
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: title_op
+            label: 'Scientific Name'
+            description: 'eg: Lycopodium lagopus'
+            use_operator: false
+            operator: title_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: title
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              cmh_database_administrator: '0'
+              student: '0'
+              researcher: '0'
+              public_user: '0'
+              herbarium_admin: '0'
+            autocomplete_filter: 1
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_field: title
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_dwc_country_tax_target_id:
+          id: field_dwc_country_tax_target_id
+          table: node__field_dwc_country_tax
+          field: field_dwc_country_tax_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_country_tax_target_id_op
+            label: Country
+            description: 'eg: Canada'
+            use_operator: false
+            operator: field_dwc_country_tax_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: country
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              researcher: '0'
+              cmh_database_administrator: '0'
+              editor: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: specimen_location_country
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
+        field_dwc_province_tax_target_id:
+          id: field_dwc_province_tax_target_id
+          table: node__field_dwc_province_tax
+          field: field_dwc_province_tax_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_province_tax_target_id_op
+            label: Province/Territory/State
+            description: 'eg: New Brunswick'
+            use_operator: false
+            operator: field_dwc_province_tax_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: province
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              researcher: '0'
+              cmh_database_administrator: '0'
+              editor: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: specimen_location_province
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
+        field_dwc_county_tax_target_id:
+          id: field_dwc_county_tax_target_id
+          table: node__field_dwc_county_tax
+          field: field_dwc_county_tax_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_county_tax_target_id_op
+            label: County
+            description: 'eg: York'
+            use_operator: false
+            operator: field_dwc_county_tax_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: county
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              researcher: '0'
+              cmh_database_administrator: '0'
+              editor: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: specimen_location_county
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
+        field_dwc_habitat_value:
+          id: field_dwc_habitat_value
+          table: node__field_dwc_habitat
+          field: field_dwc_habitat_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: views_autocomplete_filters_string
+          operator: allwords
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_habitat_value_op
+            label: Habitat
+            description: 'eg: open roadside dry sandy'
+            use_operator: false
+            operator: field_dwc_habitat_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: habitat
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              student: '0'
+              researcher: '0'
+              cmh_database_administrator: '0'
+            autocomplete_filter: 1
+            autocomplete_min_chars: '3'
+            autocomplete_items: '10'
+            autocomplete_field: field_dwc_habitat
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_dwc_verbatimlocality_value:
+          id: field_dwc_verbatimlocality_value
+          table: node__field_dwc_verbatimlocality
+          field: field_dwc_verbatimlocality_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: views_autocomplete_filters_string
+          operator: allwords
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_verbatimlocality_value_op
+            label: Locality
+            description: 'eg: Acadia Forest Experiment Station'
+            use_operator: false
+            operator: field_dwc_verbatimlocality_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: locality
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              student: '0'
+              researcher: '0'
+              cmh_database_administrator: '0'
+            autocomplete_filter: 1
+            autocomplete_min_chars: '3'
+            autocomplete_items: '10'
+            autocomplete_field: field_dwc_verbatimlocality
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_dwc_eventdate_value:
+          id: field_dwc_eventdate_value
+          table: node__field_dwc_eventdate
+          field: field_dwc_eventdate_value
+          relationship: none
+          group_type: group
+          admin_label: 'Min collection date'
+          plugin_id: datetime
+          operator: '>='
+          value:
+            min: ''
+            max: ''
+            value: ''
+            type: date
+            widget: date
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_eventdate_value_op
+            label: 'Date Collected [From]'
+            description: 'eg: 1964-08-01'
+            use_operator: false
+            operator: field_dwc_eventdate_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: mindate
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              cmh_database_administrator: '0'
+              student: '0'
+              researcher: '0'
+              public_user: '0'
+              herbarium_admin: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_dwc_eventdate_value_1:
+          id: field_dwc_eventdate_value_1
+          table: node__field_dwc_eventdate
+          field: field_dwc_eventdate_value
+          relationship: none
+          group_type: group
+          admin_label: 'Max Collection Date'
+          plugin_id: datetime
+          operator: '<='
+          value:
+            min: ''
+            max: ''
+            value: ''
+            type: date
+            widget: date
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_eventdate_value_1_op
+            label: '[To]'
+            description: 'eg: 1965-12-31'
+            use_operator: false
+            operator: field_dwc_eventdate_value_1_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: maxdate
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              cmh_database_administrator: '0'
+              student: '0'
+              researcher: '0'
+              public_user: '0'
+              herbarium_admin: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_collector_tid_target_id:
+          id: field_collector_tid_target_id
+          table: node__field_collector_tid
+          field: field_collector_tid_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_collector_tid_target_id_op
+            label: Collector
+            description: 'eg: Roberts, P.R.'
+            use_operator: false
+            operator: field_collector_tid_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: collector
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              cmh_database_administrator: '0'
+              student: '0'
+              researcher: '0'
+              public_user: '0'
+              herbarium_admin: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: herbarium_specimen_collector
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: false
+        field_dwc_record_number_value:
+          id: field_dwc_record_number_value
+          table: node__field_dwc_record_number
+          field: field_dwc_record_number_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: views_autocomplete_filters_string
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_dwc_record_number_value_op
+            label: 'UNB Accession ID'
+            description: 'eg: 10000'
+            use_operator: false
+            operator: field_dwc_record_number_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              herbarium_specimen_add_edit_only: '0'
+              herbarium_specimen_add_edit_all: '0'
+              herbarium_specimen_administrator: '0'
+              cmh_database_administrator: '0'
+              student: '0'
+              researcher: '0'
+              public_user: '0'
+              herbarium_admin: '0'
+            autocomplete_filter: 0
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_field: field_dwc_record_number
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        empty: false
+        title: false
+        css_class: false
+        use_ajax: false
+        relationships: false
+        fields: false
+        filters: false
+        filter_groups: false
+      relationships:
+        field_taxonomy_tid:
+          id: field_taxonomy_tid
+          table: node__field_taxonomy_tid
+          field: field_taxonomy_tid
+          relationship: none
+          group_type: group
+          admin_label: 'field_taxonomy_tid: Taxonomy term'
+          plugin_id: standard
+          required: true
+        field_collector_tid:
+          id: field_collector_tid
+          table: node__field_collector_tid
+          field: field_collector_tid
+          relationship: none
+          group_type: group
+          admin_label: 'field_collector_tid: Taxonomy term'
+          plugin_id: standard
+          required: false
+        field_dwc_province_tax:
+          id: field_dwc_province_tax
+          table: node__field_dwc_province_tax
+          field: field_dwc_province_tax
+          relationship: none
+          group_type: group
+          admin_label: 'field_dwc_province_tax: Taxonomy term'
+          plugin_id: standard
+          required: false
+        field_dwc_country_tax:
+          id: field_dwc_country_tax
+          table: node__field_dwc_country_tax
+          field: field_dwc_country_tax
+          relationship: none
+          group_type: group
+          admin_label: 'field_dwc_country_tax: Taxonomy term'
+          plugin_id: standard
+          required: false
+        field_dwc_county_tax:
+          id: field_dwc_county_tax
+          table: node__field_dwc_county_tax
+          field: field_dwc_county_tax
+          relationship: none
+          group_type: group
+          admin_label: 'field_dwc_county_tax: Taxonomy term'
+          plugin_id: standard
+          required: false
+      css_class: 'browse browse-specimens use-chosen'
+      use_ajax: false
+      display_description: ''
+      display_extenders: {  }
+      path: specimen/search
+      menu:
+        type: normal
+        title: 'Specimen Search'
+        description: ''
+        weight: -50
+        expanded: false
+        menu_name: main
+        parent: ''
+        context: '0'
     cache_metadata:
       max-age: -1
       contexts:

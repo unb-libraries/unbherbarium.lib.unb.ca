@@ -12,12 +12,12 @@ pattern: '/countylist/[term:name]'
 selection_criteria:
   fd302148-299d-48da-9580-c2a10516b8b3:
     id: 'entity_bundle:taxonomy_term'
-    bundles:
-      specimen_location_county: specimen_location_county
     negate: false
+    uuid: fd302148-299d-48da-9580-c2a10516b8b3
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: fd302148-299d-48da-9580-c2a10516b8b3
+    bundles:
+      specimen_location_county: specimen_location_county
 selection_logic: and
 weight: -5
 relationships: {  }

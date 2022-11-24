@@ -68,47 +68,47 @@ third_party_settings:
         - field_dwc_habitat
         - field_dwc_eventremarks
         - field_dwc_occurrenceremarks
+      label: 'Specimen Details'
+      region: content
       parent_name: group_initially_hidden_details
       weight: 60
-      label: 'Specimen Details'
       format_type: accordion_item
       format_settings:
         label: 'Specimen Details'
+        classes: ''
+        id: ''
         formatter: closed
         required_fields: true
-        id: ''
-        classes: ''
-      region: content
     group_date:
       children:
         - field_dwc_eventdate
         - field_dwc_verbatimeventdate
         - field_dc_created
+      label: 'Date Information'
+      region: content
       parent_name: group_initially_hidden_details
       weight: 61
-      label: 'Date Information'
       format_type: accordion_item
       format_settings:
-        formatter: closed
-        description: ''
         classes: ''
         id: ''
+        formatter: closed
+        description: ''
         required_fields: true
-      region: content
     group_previous_identifications:
       children:
         - field_previous_identifications
+      label: 'Previous Identifications'
+      region: content
       parent_name: group_initially_hidden_details
       weight: 62
-      label: 'Previous Identifications'
       format_type: accordion_item
       format_settings:
-        formatter: closed
-        description: ''
         classes: ''
         id: ''
+        formatter: closed
+        description: ''
         required_fields: true
-      region: content
     group_details_license:
       children:
         - field_dc_type
@@ -125,32 +125,32 @@ third_party_settings:
         - field_dc_language
         - field_geoheritage
         - field_dc_modified
+      label: 'Details / License'
+      region: content
       parent_name: group_initially_hidden_details
       weight: 63
-      label: 'Details / License'
       format_type: accordion_item
       format_settings:
-        formatter: closed
-        description: ''
         classes: ''
         id: ''
+        formatter: closed
+        description: ''
         required_fields: true
-      region: content
     group_collectors:
       children:
         - field_collector_tid
         - field_dc_contributor_other
+      label: 'Collected By'
+      region: content
       parent_name: group_initially_hidden_details
       weight: 58
       format_type: accordion_item
       format_settings:
         label: 'Collected By'
+        classes: ''
+        id: ''
         formatter: closed
         required_fields: true
-        id: ''
-        classes: ''
-      label: 'Collected By'
-      region: content
     group_initially_hidden_details:
       children:
         - group_collectors
@@ -158,29 +158,29 @@ third_party_settings:
         - group_date
         - group_previous_identifications
         - group_details_license
+      label: 'Initially Hidden Details'
+      region: content
       parent_name: ''
       weight: 4
       format_type: accordion
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         effect: none
-      label: 'Initially Hidden Details'
-      region: content
     group_images:
       children:
         - field_large_sample_surrogate
+      label: 'Full Size Image'
+      region: content
       parent_name: ''
       weight: 5
       format_type: details
       format_settings:
         label: 'Full Size Image'
-        required_fields: true
-        id: ''
         classes: ui-state-default
+        id: ''
         open: false
-      label: 'Full Size Image'
-      region: content
+        required_fields: true
 _core:
   default_config_hash: WMosJkr0GxG7D1yaPL0251VhKWECtZxowQpvjDsXJhw
 id: node.herbarium_specimen.default
@@ -191,265 +191,265 @@ content:
   created:
     type: datetime_timestamp
     weight: 10
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_collector_tid:
     type: entity_reference_autocomplete
     weight: 2
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: 'Find a name that contains'
-      match_limit: 10
     third_party_settings: {  }
-    region: content
   field_dc_contributor_other:
+    type: string_textfield
     weight: 3
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_dc_created:
+    type: datetime_default
     weight: 6
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_dc_format:
     type: options_select
     weight: 28
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_dc_language:
     type: options_select
     weight: 34
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_dc_modified:
     type: datetime_datelist
     weight: 36
+    region: content
     settings:
+      increment: 15
       date_order: MDY
       time_type: none
-      increment: 15
     third_party_settings: {  }
-    region: content
   field_dc_publisher:
     type: options_select
     weight: 33
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_dc_rights:
     type: options_select
     weight: 25
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_dc_rightsholder:
     type: options_select
     weight: 23
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_dc_type:
     type: options_select
     weight: 22
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_dwc_basisofrecord:
     type: options_select
     weight: 30
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_dwc_collectioncode:
     type: options_select
     weight: 29
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_dwc_coordinateprecision:
-    weight: 58
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
     type: number
+    weight: 58
     region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
   field_dwc_country_tax:
+    type: entity_reference_autocomplete_tags
     weight: 60
+    region: content
     settings:
       match_operator: STARTS_WITH
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
-    type: entity_reference_autocomplete_tags
-    region: content
   field_dwc_county_tax:
+    type: entity_reference_autocomplete_tags
     weight: 64
+    region: content
     settings:
       match_operator: STARTS_WITH
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
-    type: entity_reference_autocomplete_tags
-    region: content
   field_dwc_datageneralizations:
     type: options_select
     weight: 31
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_dwc_decimallatitude:
+    type: number
     weight: 56
+    region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: number
-    region: content
   field_dwc_decimallongitude:
+    type: number
     weight: 57
+    region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: number
-    region: content
   field_dwc_eventdate:
     type: datetime_default
     weight: 4
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_dwc_eventremarks:
+    type: string_textarea
     weight: 67
+    region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: string_textarea
-    region: content
   field_dwc_habitat:
+    type: string_textarea
     weight: 66
+    region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: string_textarea
-    region: content
   field_dwc_informationwithheld:
     type: options_select
     weight: 24
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_dwc_institutioncode:
     type: options_select
     weight: 27
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_dwc_institutionid:
     type: options_select
     weight: 32
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_dwc_occurrenceremarks:
-    weight: 68
-    settings:
-      placeholder: ''
-      rows: 5
-    third_party_settings: {  }
     type: string_textarea
+    weight: 68
     region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_dwc_othercatalognumbers:
+    type: string_textfield
     weight: 2
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_dwc_province_tax:
+    type: entity_reference_autocomplete_tags
     weight: 62
+    region: content
     settings:
       match_operator: STARTS_WITH
-      size: 60
-      placeholder: ''
       match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete_tags
-    region: content
   field_dwc_record_number:
+    type: string_textfield
     weight: 1
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_dwc_reproductivecondition:
+    type: string_textfield
     weight: 3
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_dwc_verbatimeventdate:
+    type: string_textfield
     weight: 5
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_dwc_verbatimlocality:
+    type: string_textfield
     weight: 65
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_geoheritage:
+    type: string_textfield
     weight: 35
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_large_sample_surrogate:
     type: image_image
     weight: 64
+    region: content
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
-    region: content
   field_previous_identifications:
+    type: string_textfield
     weight: 27
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_taxonomy_tid:
     type: options_select
     weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   langcode:
     type: language_select
     weight: 2
@@ -460,40 +460,40 @@ content:
   path:
     type: path
     weight: 6
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   promote:
     type: boolean_checkbox
+    weight: 7
+    region: content
     settings:
       display_label: true
-    weight: 7
     third_party_settings: {  }
-    region: content
   status:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 11
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
+    weight: 8
+    region: content
     settings:
       display_label: true
-    weight: 8
     third_party_settings: {  }
-    region: content
   uid:
     type: entity_reference_autocomplete
     weight: 9
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
-    region: content
 hidden:
   field_additional_search_metadata: true
   field_dwc_country: true

@@ -17,6 +17,6 @@ plugin: dedication
 settings:
   id: dedication
   label: 'Dedication Statement'
-  provider: unb_herbarium
   label_display: '0'
+  provider: unb_herbarium
 visibility: {  }

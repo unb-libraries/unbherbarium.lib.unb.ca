@@ -13,12 +13,12 @@ field_name: field_large_sample_surrogate
 entity_type: node
 type: image
 settings:
-  uri_scheme: private
-  default_image:
-    uuid: ''
   target_type: file
   display_field: false
   display_default: false
+  uri_scheme: private
+  default_image:
+    uuid: ''
 module: image
 locked: false
 cardinality: 1
