@@ -337,6 +337,7 @@ function _unb_herbarium_resave_tax_term($tid, array $context) {
       '@tid' => $tid,
     ]
   );
+  unset($term_obj);
 }
 
 /**
@@ -452,6 +453,7 @@ function _unb_herbarium_resave_herb_sample_nid($nid) {
     _unb_herbarium_resave_tax_term($term->entity->id(), []);
   }
   $node->save();
+  unset($node);
 }
 
 /**
@@ -502,14 +504,20 @@ function _unb_herbarium_get_all_bulk_import_migration_nids() {
  * Resaves all nodes that have ever been created by a CMH bulk migration.
  */
 function _unb_herbarium_resave_all_bulk_migration_nodes() {
-  foreach (_unb_herbarium_get_all_bulk_import_migration_nids() as $migration_nid) {
-    $values = \Drupal::entityQuery('node')->condition('nid', $migration_nid)->execute();
-    if(!empty($values)) {
-      sprintf(
-        'Resaving NID#%s',
-        $migration_nid
-      );
-      _unb_herbarium_resave_herb_sample_nid($migration_nid);
+  $nids_to_process = _unb_herbarium_get_all_bulk_import_migration_nids();
+  sort($nids_to_process);
+  $last_resaved_node = \Drupal::state()->get('unb_herbarium.last_resaved_node', 0);
+
+  foreach ($nids_to_process as $migration_nid) {
+    if (!empty($migration_nid) && $migration_nid > $last_resaved_node) {
+      // Ensure the node still exists.
+      $values = \Drupal::entityQuery('node')->condition('nid', $migration_nid)->execute();
+      if(!empty($values)) {
+        echo("Resaving NID#$migration_nid\n");
+        _unb_herbarium_resave_herb_sample_nid($migration_nid);
+      }
+      unset($values);
+      \Drupal::state()->set('unb_herbarium.last_resaved_node', $migration_nid);
     }
   }
 }
