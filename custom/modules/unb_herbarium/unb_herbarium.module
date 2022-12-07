@@ -436,3 +436,20 @@ function _unb_herbarium_get_nid_from_accession_id($accession_id) {
   }
   return '';
 }
+
+/**
+ * Resaves the node and its corresponding taxonomy term.
+ *
+ * This was written to ensure that titles are properly populated when migrating.
+ *
+ * @param string $nid
+ *   The NID to resave.
+ *
+ */
+function _resave_herb_sample_nid($nid) {
+  $node = Node::load($nid);
+  foreach ($node->get('field_taxonomy_tid') as $term) {
+    _unb_herbarium_resave_tax_term($term->entity->id(), []);
+  }
+  $node->save();
+}

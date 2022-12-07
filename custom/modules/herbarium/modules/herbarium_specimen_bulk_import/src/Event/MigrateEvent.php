@@ -2,6 +2,7 @@
 
 namespace Drupal\herbarium_specimen_bulk_import\Event;
 
+use Drupal\migrate\Event\MigrateEvents as CoreMigrateEvents;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\migrate_plus\Event\MigrateEvents;
 use Drupal\migrate_plus\Event\MigratePrepareRowEvent;
@@ -21,6 +22,7 @@ class MigrateEvent implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents() {
     $events[MigrateEvents::PREPARE_ROW][] = ['onPrepareRow', 0];
+    $events[CoreMigrateEvents::POST_ROW_SAVE][] = ['onPostRowSave', 0];
     return $events;
   }
 
@@ -229,6 +231,28 @@ class MigrateEvent implements EventSubscriberInterface {
       }
     }
     return $coordPrec;
+  }
+
+  /**
+   * Reacts to the save of a completed migration row and resaves terms and node.
+   *
+   * I am not sure why this is necessary, but the titles do not update correctly
+   * without this second save - JS.
+   *
+   * @param \Drupal\migrate\Event\MigratePostRowSaveEvent $event
+   *   The migrate post row save event.
+   */
+  public function onPostRowSave(MigratePostRowSaveEvent $event) : void {
+    $migration = $event->getMigration();
+    $migration_id = $migration->id();
+    $query = 'cmh_herb_import_standard';
+
+    // Only act on saves for this migration.
+    if (substr($migration_id, 0, strlen($query)) === $query) {
+      $id = $event->getDestinationIdValues();
+      $id = reset($id);
+      _resave_herb_sample_nid($id);
+    }
   }
 
 }
