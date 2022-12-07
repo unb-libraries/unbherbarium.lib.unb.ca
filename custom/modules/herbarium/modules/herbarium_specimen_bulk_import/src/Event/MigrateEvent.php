@@ -251,7 +251,7 @@ class MigrateEvent implements EventSubscriberInterface {
     if (substr($migration_id, 0, strlen($query)) === $query) {
       $id = $event->getDestinationIdValues();
       $id = reset($id);
-      _resave_herb_sample_nid($id);
+      _unb_herbarium_resave_herb_sample_nid($id);
     }
   }
 

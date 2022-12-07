@@ -446,10 +446,70 @@ function _unb_herbarium_get_nid_from_accession_id($accession_id) {
  *   The NID to resave.
  *
  */
-function _resave_herb_sample_nid($nid) {
+function _unb_herbarium_resave_herb_sample_nid($nid) {
   $node = Node::load($nid);
   foreach ($node->get('field_taxonomy_tid') as $term) {
     _unb_herbarium_resave_tax_term($term->entity->id(), []);
   }
   $node->save();
+}
+
+/**
+ * Retrieves all CMH bulk migration table names.
+ *
+ * @return array
+ *   The table names created by the migration(s).
+ */
+function _unb_herbarium_get_all_bulk_import_migration_tables() {
+  $sql = "SHOW TABLES LIKE 'migrate_map_cmh_herb_import_standard_%'";
+  $results = \Drupal\core\Database\Database::getConnection()->query($sql);
+  return $results->fetchCol();
+}
+
+/**
+ * Retrieves all NIDs created by a previous CMH bulk migration.
+ *
+ * @param string $migration_table_name
+ *   The name of the table to retrieve the NIDs from.
+ *
+ * @return array
+ *   The NIDs created by that migration.
+ */
+function _unb_herbarium_get_bulk_import_migration_nids($migration_table_name) {
+  $sql_ids = "select destid1 from $migration_table_name";
+  $id_results = \Drupal\core\Database\Database::getConnection()->query($sql_ids);
+  return $id_results->fetchCol();
+}
+
+/**
+ * Retrieves all NIDs that have ever been created by a CMH bulk migration.
+ *
+ * @return array
+ *   The NIDs created by all migrations.
+ */
+function _unb_herbarium_get_all_bulk_import_migration_nids() {
+  $ids = [];
+  foreach (_unb_herbarium_get_all_bulk_import_migration_tables() as $migration_table_name) {
+    $ids = array_merge(
+      $ids,
+      _unb_herbarium_get_bulk_import_migration_nids($migration_table_name)
+    );
+  }
+  return $ids;
+}
+
+/**
+ * Resaves all nodes that have ever been created by a CMH bulk migration.
+ */
+function _unb_herbarium_resave_all_bulk_migration_nodes() {
+  foreach (_unb_herbarium_get_all_bulk_import_migration_nids() as $migration_nid) {
+    $values = \Drupal::entityQuery('node')->condition('nid', $migration_nid)->execute();
+    if(!empty($values)) {
+      sprintf(
+        'Resaving NID#%s',
+        $migration_nid
+      );
+      _unb_herbarium_resave_herb_sample_nid($migration_nid);
+    }
+  }
 }
