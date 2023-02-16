@@ -14,7 +14,8 @@
     "allow-plugins": {
       "composer/installers": true,
       "cweagans/composer-patches": true,
-      "drupal/core-composer-scaffold": true
+      "drupal/core-composer-scaffold": true,
+      "php-http/discovery": true
     },
     "discard-changes": true,
     "preferred-install": {
@@ -91,7 +92,7 @@
     }
   ],
   "require": {
-    "drupal/bootstrap": "3.25",
+    "drupal/bootstrap": "3.26",
     "drupal/chosen": "3.0.5",
     "drupal/config_update": "1.7",
     "drupal/core": "9.5.2",
