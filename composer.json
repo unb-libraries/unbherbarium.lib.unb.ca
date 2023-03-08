@@ -19,7 +19,7 @@
   "name": "unb-libraries/unbherbarium.ca",
   "prefer-stable": true,
   "require": {
-    "twbs/bootstrap-sass": "3.4.1"
+    "twbs/bootstrap-sass": "<3.4.2"
   },
   "require-dev": {
     "unb-libraries/dockworker-drupal": "^5"
