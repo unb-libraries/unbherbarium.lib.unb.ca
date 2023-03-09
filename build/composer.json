@@ -114,7 +114,7 @@
     "drupal/taxonomy_access_fix": "3.3",
     "drupal/taxonomy_manager": "2.0.8",
     "drupal/token": "1.11",
-    "drupal/tvi": "1.0-rc4",
+    "drupal/tvi": "2.0.0-alpha1",
     "drupal/twig_field_value": "2.0.2",
     "drupal/views_autocomplete_filters": "1.4",
     "drupal/views_slideshow": "4.8",
