@@ -395,6 +395,32 @@ function unb_herbarium_menu_local_tasks_alter(&$data, $route_name) {
 }
 
 /**
+ * Filter out punctuation from Solr autocomplete suggestions.
+ *
+ * @param array $suggestions
+ * @param array $alter_params
+ * @return void
+ * @link https://drupal.stackexchange.com/questions/310535/how-to-create-a-solr-search-with-partial-matches-and-autocomplete
+ */
+function unb_herbarium_search_api_autocomplete_suggestions_alter(array &$suggestions, array $alter_params) {
+  $allNewSuggestions = [];
+  foreach ($suggestions as $index => $suggestion) {
+    // Remove punctuation from the end of autocomplete suggestions.
+    $newSuggestionSuffix = rtrim($suggestion->getSuggestionSuffix(), ".!?,;()-'\"");
+    $suggestion->setSuggestionSuffix($newSuggestionSuffix);
+
+    // Now remove duplicates that occur if two different input suggestions are
+    // reduced to the same token when removing the punctuation.
+    $newSuggestion = $suggestion->getSuggestionPrefix() . $newSuggestionSuffix;
+    if (in_array($newSuggestion, $allNewSuggestions)) {
+      unset($suggestions[$index]);
+      continue;
+    }
+    $allNewSuggestions[] = $newSuggestion;
+  }
+}
+
+/**
  * Get the TID of an existing term, creating one if not exists.
  *
  * @param string $name

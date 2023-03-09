@@ -894,6 +894,7 @@ display:
           preserve_facet_query_args: false
       relationships: {  }
       css_class: 'browse  browse-specimens'
+      use_ajax: false
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -1251,7 +1252,7 @@ display:
           expose:
             operator_id: search_api_fulltext_1_op
             label: Locality
-            description: 'eg: Acadia Forest Experiment Station'
+            description: 'eg: Acadia Forest Experiment'
             use_operator: false
             operator: search_api_fulltext_1_op
             operator_limit_selection: false

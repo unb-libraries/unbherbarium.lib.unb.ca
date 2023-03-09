@@ -370,7 +370,27 @@ footer .unb-lib-logo {
 }
 
 // Search layout.
-// Hide sidebar search form on Search page.
+.ui-autocomplete {
+  background: #f6f6f6;
+  padding-top: 2.75rem;
+
+  .ui-menu-item {
+    padding: 0 .75rem;
+  }
+}
+.search-api-autocomplete-suggestion {
+  .autocomplete-suggestion-user-input {
+    font-weight: normal;
+    margin-right: 1px;
+  }
+
+  .autocomplete-suggestion-suggestion-suffix {
+    font-style: italic;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+}
+  // Hide sidebar search form on Search page.
 .path-specimen-search .region-sidebar-second .block-views-exposed-filter-blockunb-search-page {
   display: none;
 }
