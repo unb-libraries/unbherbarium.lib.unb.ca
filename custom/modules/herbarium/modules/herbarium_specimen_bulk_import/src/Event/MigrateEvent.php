@@ -2,13 +2,14 @@
 
 namespace Drupal\herbarium_specimen_bulk_import\Event;
 
-use Drupal\migrate\Event\MigrateEvents as CoreMigrateEvents;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\migrate\Event\MigrateEvents as CoreMigrateEvents;
+use Drupal\migrate\Event\MigratePostRowSaveEvent;
+use Drupal\migrate\Row;
 use Drupal\migrate_plus\Event\MigrateEvents;
 use Drupal\migrate_plus\Event\MigratePrepareRowEvent;
 use Drupal\taxonomy\Entity\Term;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Drupal\migrate\Row;
 
 /**
  * Defines the migrate event subscriber.
