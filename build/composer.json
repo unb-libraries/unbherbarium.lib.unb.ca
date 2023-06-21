@@ -100,7 +100,7 @@
     "drupal/csv_serialization": "2.1",
     "drupal/editor_file": "1.7",
     "drupal/field_group": "3.4",
-    "drupal/google_analytics": "2.5",
+    "drupal/google_analytics": "4.0.2",
     "drupal/health_check": "2.0.1",
     "drupal/honeypot": "2.1.2",
     "drupal/migrate_plus": "5.3",
