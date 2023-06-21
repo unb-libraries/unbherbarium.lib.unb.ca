@@ -312,7 +312,7 @@ class MigrateEvent implements EventSubscriberInterface {
     $srcMethod = "Unknown";
     [$id, $prec, $longDec, $latDec, $longDig, $latDig, $longDeg, $longMin,
       $longSec, $latDeg, $latMin, $latSec, $geoUtmz, $geoUtme,
-      $geoUtmn
+      $geoUtmn,
     ] = $longLatVals;
     if ($this->testLongitudeLatitudeFormat($longDec, $latDec)) {
       $srcMethod = "Direct From Spreadsheet";
