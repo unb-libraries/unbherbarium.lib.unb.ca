@@ -97,7 +97,7 @@
     "drupal/chosen": "3.0.5",
     "drupal/config_update": "1.7",
     "drupal/core": "9.5.11",
-    "drupal/csv_serialization": "2.1",
+    "drupal/csv_serialization": "3.0.1",
     "drupal/editor_file": "1.7",
     "drupal/field_group": "3.4",
     "drupal/google_analytics": "4.0.2",
