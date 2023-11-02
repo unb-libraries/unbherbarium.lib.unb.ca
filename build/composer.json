@@ -111,7 +111,7 @@
     "drupal/search_api": "1.30",
     "drupal/search_api_solr": "4.3.0",
     "drupal/simple_entity_merge": "1.4",
-    "drupal/simple_gmap": "3.0.1",
+    "drupal/simple_gmap": "3.1.0",
     "drupal/taxonomy_access_fix": "3.3",
     "drupal/taxonomy_manager": "2.0.8",
     "drupal/token": "1.12",
