@@ -106,7 +106,7 @@
     "drupal/migrate_plus": "5.3",
     "drupal/migrate_source_csv": "3.5",
     "drupal/migrate_tools": "5.2",
-    "drupal/pathauto": "1.11",
+    "drupal/pathauto": "1.12",
     "drupal/redis": "1.7",
     "drupal/search_api": "1.29",
     "drupal/search_api_solr": "4.2.12",
