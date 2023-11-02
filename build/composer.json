@@ -117,7 +117,7 @@
     "drupal/token": "1.13",
     "drupal/tvi": "2.0.0-alpha1",
     "drupal/twig_field_value": "2.0.2",
-    "drupal/views_autocomplete_filters": "1.4",
+    "drupal/views_autocomplete_filters": "1.7",
     "drupal/views_slideshow": "4.8",
     "harvesthq/chosen": "~1.8",
     "league/csv": "^9",
