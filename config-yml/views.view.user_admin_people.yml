@@ -4,7 +4,6 @@ status: true
 dependencies:
   module:
     - user
-    - views_autocomplete_filters
 _core:
   default_config_hash: wTJRNzsLVTenCALONNlVfgm_pBOlqucSPuVFLOD56ck
 id: user_admin_people

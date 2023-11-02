@@ -19,7 +19,6 @@ dependencies:
     - taxonomy
     - text
     - user
-    - views_autocomplete_filters
 _core:
   default_config_hash: JA0XFWEzps-kLKJk9PX4NnqJedZ9UfxAvB8nSuIDx6Y
 id: region_list

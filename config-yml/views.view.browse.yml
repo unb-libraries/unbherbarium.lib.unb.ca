@@ -31,7 +31,6 @@ dependencies:
     - taxonomy
     - text
     - user
-    - views_autocomplete_filters
 _core:
   default_config_hash: zrTCx-esreJNLIRWPAPJ3nF0HVnhRM2tOvcUAvlWLLE
 id: browse
