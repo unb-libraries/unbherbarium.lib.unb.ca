@@ -93,7 +93,7 @@
     }
   ],
   "require": {
-    "drupal/bootstrap": "3.26",
+    "drupal/bootstrap": "<3.27",
     "drupal/chosen": "3.0.5",
     "drupal/config_update": "1.7",
     "drupal/core": "9.5.11",
@@ -108,7 +108,7 @@
     "drupal/migrate_tools": "5.2",
     "drupal/pathauto": "1.12",
     "drupal/redis": "1.7",
-    "drupal/search_api": "1.30",
+    "drupal/search_api": "<1.31",
     "drupal/search_api_solr": "4.3.0",
     "drupal/simple_entity_merge": "1.4",
     "drupal/simple_gmap": "3.1.0",
