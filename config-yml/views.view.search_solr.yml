@@ -912,6 +912,7 @@ display:
         - 'config:field.storage.node.field_large_sample_surrogate'
         - 'config:field.storage.taxonomy_term.field_cmh_full_specimen_name'
         - 'config:search_api.index.default_solr_index'
+        - 'search_api_list:default_solr_index'
   page_1:
     id: page_1
     display_title: Page
@@ -1526,7 +1527,15 @@ display:
           admin_label: ''
           plugin_id: herbarium_specimen_csv_export_button
           empty: false
-      display_extenders: {  }
+      display_extenders:
+        simple_sitemap_display_extender:
+          variants:
+            default:
+              index: true
+              priority: '0.5'
+              changefreq: ''
+              arguments: {  }
+              max_links: 100
       path: specimen/search
       menu:
         type: normal
@@ -1553,3 +1562,4 @@ display:
         - 'config:field.storage.node.field_large_sample_surrogate'
         - 'config:field.storage.taxonomy_term.field_cmh_full_specimen_name'
         - 'config:search_api.index.default_solr_index'
+        - 'search_api_list:default_solr_index'
