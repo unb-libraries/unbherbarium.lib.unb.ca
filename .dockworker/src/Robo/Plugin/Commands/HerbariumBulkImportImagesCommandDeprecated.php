@@ -1,6 +1,6 @@
 <?php
 
-namespace Dockworker\Robo\Plugin\Commands;
+namespace Dockworker\Robo\Plugin\CommandsDeprecated;
 
 use Dockworker\PersistentLocalDockworkerDataTrait;
 use Dockworker\RecursivePathFileOperatorTrait;

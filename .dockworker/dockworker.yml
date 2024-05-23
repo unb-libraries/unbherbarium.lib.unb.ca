@@ -1,30 +1,72 @@
 dockworker:
-  version: '5'
+  version: '6'
   application:
-    name: unbherbarium.lib.unb.ca
-    finish_marker: '99_zz_notify_user_URI'
-    project_prefix: HERB
-    upstream_images:
-      - ghcr.io/unb-libraries/drupal:9.x-2.x-unblib
-    uuid: 3081
-  deployment:
-    environments:
+    name: Connell Memorial Herbarium
+    uri: https://unbherbarium.lib.unb.ca
+    description: >
+      Connell Memorial Herbarium provides a searchable database of the vascular
+      plant collections maintained at the  Connell Memorial Herbarium, and in-depth information about its policies,
+      facilities and collections.
+    topics:
+      - herbarium
+      - vascular plants
+      - botany
+      - research
+    identifiers:
+      id: unbherbarium.lib.unb.ca
+      slug: unbherbarium-lib-unb-ca
+      short_slug: herb
+      uuid: 3081
+    framework:
+      name: Drupal
+      version: 9
+      startup_finished_marker: '99_zz_notify_user_URI'
+      endpoint:
+        name: http
+        port: 80
+        readiness_timeout: 15
+    license:
+      license: MIT
+      holder: University of New Brunswick Libraries
+    shell:
+      path: /bin/sh
+  endpoints:
+    env:
       - dev
       - prod
-    workflow:
-      source: dockworker-drupal
-      type: deployment-workflow
-  drupal:
-    major: 9
-    persistent_config:
-      migrate_plus.migration.cmh_herb_import_.*: Bulk CSV migrations
-  github:
-    repo: unbherbarium.lib.unb.ca
-    owner: unb-libraries
-  image:
-    push_branches:
-      - dev
-      - prod
-    name: ghcr.io/unb-libraries/unbherbarium.lib.unb.ca
-    date_tag_image: true
-    repository: ghcr
+    deployments:
+      unbherbarium-lib-unb-ca:
+        default: true
+        managed: true
+        name: unbherbarium-lib-unb-ca
+      drupal-mysql-lib-unb-ca:
+        managed: false
+        name: mysql
+      drupal-redis-lib-unb-ca:
+        managed: false
+        name: redis
+      drupal-solr-lib-unb-ca:
+        managed: false
+        name: solr
+  workflows:
+    vcs:
+      type: github
+      owner: unb-libraries
+      name: unbherbarium.lib.unb.ca
+    jira:
+      project_keys:
+        - HERB
+    image:
+      name: ghcr.io/unb-libraries/unbherbarium.lib.unb.ca
+      parent: ghcr.io/unb-libraries/drupal:9.x-2.x-unblib
+      repository: GitHub
+      push-branches:
+        - dev
+        - prod
+    e2e_tests:
+        - id: core
+          frequency: '*/5 * * * *'
+          source_files:
+            - .dockworker/tests/e2e/unbherbarium.lib.unb.ca.yml
+          namespaces:
+            - prod
