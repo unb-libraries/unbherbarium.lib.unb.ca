@@ -44,6 +44,8 @@ services:
       - "4081:8025"
     networks:
       - unbherbarium.lib.unb.ca
+    profiles:
+      - mailhog
   unbherbarium-lib-unb-ca:
     build:
       context: .
