@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   module:
-    - ctools
     - taxonomy
 _core:
   default_config_hash: aPUNBc9ZqMsl_DclWW5NNA72qnwp-hfjLqUbb8CK9RI
@@ -12,10 +11,10 @@ label: Collectors
 type: 'canonical_entities:taxonomy_term'
 pattern: '/collectorlist/[term:name]'
 selection_criteria:
-  9668175c-02bc-493d-b847-948c83c1627c:
+  d4c84a82-0e44-4da1-9993-2b444fa886b2:
     id: 'entity_bundle:taxonomy_term'
     negate: false
-    uuid: 9668175c-02bc-493d-b847-948c83c1627c
+    uuid: d4c84a82-0e44-4da1-9993-2b444fa886b2
     context_mapping:
       taxonomy_term: taxonomy_term
     bundles:

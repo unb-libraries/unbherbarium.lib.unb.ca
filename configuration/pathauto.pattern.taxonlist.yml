@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   module:
-    - ctools
     - taxonomy
 _core:
   default_config_hash: KPUr38e_APYPVKIE9VxElfwFBPHyoRQQ4AxYajELwtY
@@ -12,10 +11,10 @@ label: Taxonlist
 type: 'canonical_entities:taxonomy_term'
 pattern: 'taxonlist/[term:parents]/[term:name]'
 selection_criteria:
-  1d1e68cd-5c69-4143-9717-429196c427dc:
+  e1321acf-2d1a-455a-84cf-16e7ce2e8370:
     id: 'entity_bundle:taxonomy_term'
     negate: false
-    uuid: 1d1e68cd-5c69-4143-9717-429196c427dc
+    uuid: e1321acf-2d1a-455a-84cf-16e7ce2e8370
     context_mapping:
       taxonomy_term: taxonomy_term
     bundles:

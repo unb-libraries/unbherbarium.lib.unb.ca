@@ -3,17 +3,16 @@ langcode: en
 status: true
 dependencies:
   module:
-    - ctools
     - taxonomy
 id: country_list
 label: 'Country List'
 type: 'canonical_entities:taxonomy_term'
 pattern: '/countrylist/[term:name]'
 selection_criteria:
-  f0193a97-df99-4cf2-a51d-3284077e85ee:
+  6d3f7ecb-8975-4cb0-ac23-00e39bc2dd6d:
     id: 'entity_bundle:taxonomy_term'
     negate: false
-    uuid: f0193a97-df99-4cf2-a51d-3284077e85ee
+    uuid: 6d3f7ecb-8975-4cb0-ac23-00e39bc2dd6d
     context_mapping:
       taxonomy_term: taxonomy_term
     bundles:
