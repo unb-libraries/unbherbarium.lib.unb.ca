@@ -121,7 +121,7 @@
     "drupal/migrate_source_csv": "3.6",
     "drupal/migrate_tools": "5.2",
     "drupal/pathauto": "1.13",
-    "drupal/redis": "1.7",
+    "drupal/redis": "1.8",
     "drupal/search_api": "<1.31",
     "drupal/search_api_solr": "<4.3.2",
     "drupal/simple_entity_merge": "1.4",
