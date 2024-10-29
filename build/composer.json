@@ -63,6 +63,21 @@
     {
       "package": {
         "dist": {
+          "type": "zip",
+          "url": "https://github.com/douglascrockford/JSON-js/archive/master.zip"
+        },
+        "extra": {
+          "installer-name": "json2"
+        },
+        "name": "jquery/json2",
+        "type": "drupal-library",
+        "version": "dev-master"
+      },
+      "type": "package"
+    },
+    {
+      "package": {
+        "dist": {
           "type": "file",
           "url": "https://malsup.github.io/jquery.cycle.all.js"
         },
@@ -118,8 +133,9 @@
     "drupal/tvi": "<2.0.0-alpha2",
     "drupal/twig_field_value": "2.0.2",
     "drupal/views_autocomplete_filters": "1.7",
-    "drupal/views_slideshow": "4.8",
+    "drupal/views_slideshow": "5.0.1",
     "harvesthq/chosen": "~1.8",
+    "jquery/json2": "dev-master",
     "league/csv": "^9",
     "malsup/jquery.cycle": "1.0",
     "neitanod/forceutf8": "~2.0",
