@@ -2,16 +2,18 @@
 
 namespace Dockworker\Robo\Plugin\CommandsDeprecated;
 
-use Dockworker\PersistentLocalDockworkerDataTrait;
-use Dockworker\RecursivePathFileOperatorTrait;
-use Dockworker\Robo\Plugin\Commands\DrupalDeploymentDrushCommands;
+use Dockworker\DockworkerDrupalCommands;
+use Dockworker\FileSystem\RecursivePathFileOperatorTrait;
+use Dockworker\IO\DockworkerIOTrait;
+use Dockworker\Storage\ApplicationPersistentDataStorageTrait;
 
 /**
  * Defines the commands used to bulk import archival masters into the CMH.
  */
-class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
+class HerbariumBulkImportImagesCommands extends DockworkerDrupalCommands {
 
-  use PersistentLocalDockworkerDataTrait;
+  use ApplicationPersistentDataStorageTrait;
+  use DockworkerIOTrait;
   use RecursivePathFileOperatorTrait;
 
   /**
@@ -129,19 +131,27 @@ class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
     $this->targetDrupalUid = $options['uid'];
     $this->targetCommitMessage = $options['commit-message'];
     $this->targetDeployEnv = $env;
-    $this->options = $options;
 
-    $this->setUpArchivalMasterQueue();
-    $this->importQueuedArchivalMasters();
+    $this->io()->title('Herbarium Archival Master Import');
+    $this->io()->section('Import Options');
+
+    // Query the user for an ID string for this import. If none is given, generate one randomly.
+    $options['import_id'] = $this->dockworkerIO->ask(
+      'Provide an ID for this import?',
+      'herbarium-import-' . date('Y-m-d-H-i-s')
+    );
+
+    $this->setUpArchivalMasterQueue($options);
+    $this->importQueuedArchivalMasters($options);
   }
 
   /**
    * Queues any files in the tree that are to be imported as archival masters.
    */
-  protected function setUpArchivalMasterQueue() {
+  protected function setUpArchivalMasterQueue($options) {
     $this->addRecursivePathFilesFromPath(
       [$this->sourceTreePath],
-      [$this->options['issue-page-extension']]
+      [$options['issue-page-extension']]
     );
   }
 
@@ -151,10 +161,11 @@ class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
    * @throws \Dockworker\DockworkerException
    * @throws \Exception
    */
-  protected function importQueuedArchivalMasters() {
+  protected function importQueuedArchivalMasters($options) {
     $import_files = $this->getRecursivePathFiles();
     if (!empty($import_files)) {
-      $this->initLocalDockworkerConfig('bulk_imports');
+
+
       $this->targetPodId = $this->k8sGetLatestPod(
         $this->targetDeployEnv,
         'deployment',
@@ -171,12 +182,12 @@ class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
           if (!in_array($this->curFileName, $imported_items)) {
             $this->curFileAccessionId = $this->getAccessionIdFromFilepath(
               $this->curFilePath,
-              $this->options['issue-page-extension']
+              $options['issue-page-extension']
             );
             $this->curFileNodeId = $this->getNidFromAccessionId();
             if (!empty($this->curFileNodeId)) {
               $this->io()->title($this->curFileName);
-              $this->importArchivalMaster();
+              $this->importArchivalMaster($options);
               $imported_items[] = $this->curFileName;
               $this->curLocalDockworkerConfiguration->set('dockworker.imported_items', $imported_items);
               $this->witeLocalDockworkerConfig();
@@ -237,9 +248,9 @@ class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
    *
    * @throws \Dockworker\DockworkerException
    */
-  protected function importArchivalMaster() {
+  protected function importArchivalMaster($options) {
     $this->copyArchivalMasterToPod();
-    $this->executeArchivalMasterDeployedImport();
+    $this->executeArchivalMasterDeployedImport($options);
   }
 
   /**
@@ -262,7 +273,7 @@ class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
    *
    * @throws \Dockworker\DockworkerException
    */
-  protected function executeArchivalMasterDeployedImport() {
+  protected function executeArchivalMasterDeployedImport($options) {
     $this->say("Importing archival master [NID#$this->curFileNodeId]...");
     $cmd = sprintf(
       '$DRUSH eval "' .
@@ -272,13 +283,29 @@ class HerbariumBulkImportImagesCommand extends DrupalDeploymentDrushCommands {
       $this->targetDrupalUid,
       $this->curFileNodeId,
       "/tmp/$this->curFileName",
-      $this->options['commit-message']
+      $options['commit-message']
     );
     $this->kubernetesPodExecCommand(
       $this->targetPodId,
       $this->targetDeployEnv,
       $cmd
     );
+  }
+
+  protected function getCurrentImportedItems($import_id) {
+    $cur = $this->getApplicationPersistentDataConfigurationItem(
+      'bulk_imports',
+      $import_id
+    );
+    if (empty($cur)) {
+      $this->setApplicationPersistentDataConfigurationItem(
+        'bulk_imports',
+        $import_id,
+        []
+      );
+      return [];
+    }
+    return $cur;
   }
 
 }
