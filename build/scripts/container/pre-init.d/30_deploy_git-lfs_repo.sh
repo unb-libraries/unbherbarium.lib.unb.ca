@@ -24,6 +24,7 @@ if [ "$LTS_DEPLOY_KEY" != "" ] && [ "$LTS_DEPLOY_PATH" != "" ]; then
   echo -e ".lfsconfig\n.gitattributes" > "${NGINX_USER_HOME}/.gitignore"
   chown ${NGINX_RUN_USER}:${NGINX_RUN_GROUP} "${NGINX_USER_HOME}/.gitignore"
   su - ${NGINX_RUN_USER} -s /bin/sh -c "git config --global core.excludesfile ~/.gitignore"
+  su - ${NGINX_RUN_USER} -s /bin/sh -c "git config --global --add safe.directory /lts-archive"
 
   # Ensure PHP has access to these variables for testing.
   sed -i "s|LTS_SERVER_HOST|$LTS_LFS_SERVER_HOST|g" "$NGINX_APP_CONF_FILE"

@@ -314,11 +314,10 @@ class HerbariumBulkImportImagesCommands extends DockworkerDrupalCommands
             $batch_set_cmd .
             $process_batch_cmd . ';',
         ];
-        print_r($cmd);
         $this->curContainer->run(
             $cmd,
             $this->dockworkerIO,
-            false
+            true
         );
     }
 
