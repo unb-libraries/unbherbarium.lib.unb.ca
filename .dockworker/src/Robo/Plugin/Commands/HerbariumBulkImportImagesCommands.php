@@ -1,6 +1,6 @@
 <?php
 
-namespace Dockworker\Robo\Plugin\CommandsDeprecated;
+namespace Dockworker\Robo\Plugin\Commands;
 
 use Dockworker\Docker\DockerContainer;
 use Dockworker\Docker\DockerContainerExecTrait;
@@ -22,7 +22,7 @@ class HerbariumBulkImportImagesCommands extends DockworkerDrupalCommands
     /**
      * The PHP snippet used to set the batch for adding an archival master.
      */
-    protected const DRUSH_EVAL_BATCH_SET = 'batch_set(_herbarium_specimen_lts_add_archival_master(\"%s\", \"%s\", \"%s\"));';
+    protected const DRUSH_EVAL_BATCH_SET = 'batch_set(_herbarium_specimen_lts_add_archival_master("%s", "%s", "%s"));';
 
     /**
      * The PHP snippet used to log in a user via a Drush eval command.
@@ -32,7 +32,7 @@ class HerbariumBulkImportImagesCommands extends DockworkerDrupalCommands
     /**
      * The PHP snippet used to trigger a Drush batch process.
      */
-    protected const DRUSH_EVAL_PROCESS_BATCH = 'drush_backend_batch_process();';
+    protected const DRUSH_EVAL_PROCESS_BATCH = 'drush_backend_batch_process()';
 
     /**
      * The CMH accession ID of the current file being imported.
@@ -112,13 +112,6 @@ class HerbariumBulkImportImagesCommands extends DockworkerDrupalCommands
     protected string $targetDrupalUid;
 
     /**
-     * The k8s pod ID to target when importing the file.
-     *
-     * @var string
-     */
-    protected string $targetPodId;
-
-    /**
      * Adds a tree of images as the archival masters in the CMH site.
      *
      * @param string $path
@@ -151,6 +144,7 @@ class HerbariumBulkImportImagesCommands extends DockworkerDrupalCommands
             'uid' => '1274',
         ]
     ) {
+        $this->initContainerExecCommand($this->dockworkerIO, $env);
         $this->sourceTreePath = $path;
         $this->targetDrupalUid = $options['uid'];
         $this->targetCommitMessage = $options['commit-message'];
@@ -162,7 +156,7 @@ class HerbariumBulkImportImagesCommands extends DockworkerDrupalCommands
 
       // Query the user for an ID string for this import. If none is given, generate one randomly.
         $this->curImportID = $this->dockworkerIO->ask(
-            'Provide an ID for this import?',
+            'ID for the import? If continuing a previous import, enter the previous ID.',
             'herbarium-import-' . date('Y-m-d-H-i-s')
         );
 
@@ -192,7 +186,12 @@ class HerbariumBulkImportImagesCommands extends DockworkerDrupalCommands
         $import_files = $this->getRecursivePathFiles();
         if (!empty($import_files)) {
             $imported_items = $this->getCurrentImportedItems();
-
+            $this->curContainer = $this->getDeployedContainer(
+                $this->dockworkerIO,
+                $this->targetDeployEnv,
+                false,
+                true
+            );
             foreach ($import_files as $import_file) {
                 $this->curFilePath = $import_file;
                 if (!empty($this->curFilePath) && file_exists($this->curFilePath)) {
@@ -202,12 +201,12 @@ class HerbariumBulkImportImagesCommands extends DockworkerDrupalCommands
                             $this->curFilePath,
                             $this->imageExtension
                         );
-                          $this->curFileNodeId = $this->getNidFromAccessionId();
+                        $this->curFileNodeId = $this->getNidFromAccessionId();
                         if (!empty($this->curFileNodeId)) {
-                              $this->dockworkerIO->title($this->curFileName);
-                              $this->importArchivalMaster();
-                              $imported_items[] = $this->curFileName;
-                              $this->updateCurrentImportedItems($imported_items);
+                            $this->dockworkerIO->title($this->curFileName);
+                            $this->importArchivalMaster();
+                            $imported_items[] = $this->curFileName;
+                            $this->updateCurrentImportedItems($imported_items);
                         } else {
                             $this->say("[$this->curFileName] No NIDs found for accession ID [$this->curFileAccessionId], skipping...");
                         }
@@ -246,16 +245,14 @@ class HerbariumBulkImportImagesCommands extends DockworkerDrupalCommands
     private function getNidFromAccessionId(): string
     {
         $cmd = [
-            '$DRUSH',
+            '/usr/bin/drush',
             'eval',
             'echo _unb_herbarium_get_nid_from_accession_id("' . $this->curFileAccessionId . '")',
         ];
-        [$this->curContainer, $result] = $this->executeContainerCommand(
-            $this->targetDeployEnv,
+        $result = $this->curContainer->run(
             $cmd,
             $this->dockworkerIO,
-            '',
-            ''
+            false
         );
         $response = explode("\n", $result->getOutput());
         if (!empty($response[0])) {
@@ -282,7 +279,7 @@ class HerbariumBulkImportImagesCommands extends DockworkerDrupalCommands
      */
     protected function copyArchivalMasterToPod()
     {
-        $target_location = "$this->targetPodId:/tmp/$this->curFileName";
+        $target_location = "/tmp/$this->curFileName";
         $this->say("Copying archival master $this->curFilePath -> $target_location...");
         $this->curContainer->copyTo(
             $this->dockworkerIO,
@@ -311,18 +308,17 @@ class HerbariumBulkImportImagesCommands extends DockworkerDrupalCommands
         );
         $process_batch_cmd = self::DRUSH_EVAL_PROCESS_BATCH;
         $cmd = [
-          '$DRUSH',
-          'eval',
+            '/usr/bin/drush',
+            'eval',
             $login_user_cmd . ';' .
-              $batch_set_cmd .
-              $process_batch_cmd . ';"',
+            $batch_set_cmd .
+            $process_batch_cmd . ';',
         ];
-        [$this->curContainer, $result] = $this->executeContainerCommand(
-            $this->targetDeployEnv,
+        print_r($cmd);
+        $this->curContainer->run(
             $cmd,
             $this->dockworkerIO,
-            '',
-            ''
+            false
         );
     }
 
