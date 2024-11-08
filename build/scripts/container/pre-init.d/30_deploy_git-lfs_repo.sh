@@ -12,19 +12,19 @@ if [ "$LTS_DEPLOY_KEY" != "" ] && [ "$LTS_DEPLOY_PATH" != "" ]; then
   # Clone LFS repo.
   mkdir -p ${LTS_DEPLOY_PATH}
   chown ${NGINX_RUN_USER}:${NGINX_RUN_GROUP} ${LTS_DEPLOY_PATH}
-  su - ${NGINX_RUN_USER} -s /bin/bash -c "GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ${NGINX_USER_HOME}/.ssh/id_rsa \" /usr/bin/git clone ${LTS_DEPLOY_REPO} ${LTS_DEPLOY_PATH}"
+  doas -u ${NGINX_RUN_USER} GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ${NGINX_USER_HOME}/.ssh/id_rsa \" /usr/bin/git clone ${LTS_DEPLOY_REPO} ${LTS_DEPLOY_PATH}
   cd ${LTS_DEPLOY_PATH}
   echo -e "[lfs]\n    url = \"http://${LTS_LFS_SERVER_USER}:${LTS_LFS_SERVER_PASS}@${LTS_LFS_SERVER_HOST}:${LTS_LFS_SERVER_PORT}/\"\n" > .lfsconfig
   chown ${NGINX_RUN_USER}:${NGINX_RUN_GROUP} .lfsconfig
 
   #  Setup local LFS and track tif without smudge on clone, saving space.
-  su - ${NGINX_RUN_USER} -s /bin/sh -c "git lfs install --skip-smudge"
+  doas -u ${NGINX_RUN_USER} -s /bin/sh -c "git lfs install --skip-smudge
 
   # Ignore .lfsconfig file by default
   echo -e ".lfsconfig\n.gitattributes" > "${NGINX_USER_HOME}/.gitignore"
   chown ${NGINX_RUN_USER}:${NGINX_RUN_GROUP} "${NGINX_USER_HOME}/.gitignore"
-  su - ${NGINX_RUN_USER} -s /bin/sh -c "git config --global core.excludesfile ~/.gitignore"
-  git config --global --add safe.directory /lts-archive
+  doas -u ${NGINX_RUN_USER} git config --global core.excludesfile ~/.gitignore
+  doas -u ${NGINX_RUN_USER} git config --global --add safe.directory /lts-archive
 
   # Ensure PHP has access to these variables for testing.
   sed -i "s|LTS_SERVER_HOST|$LTS_LFS_SERVER_HOST|g" "$NGINX_APP_CONF_FILE"

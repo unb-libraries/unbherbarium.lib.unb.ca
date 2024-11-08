@@ -308,6 +308,9 @@ class HerbariumBulkImportImagesCommands extends DockworkerDrupalCommands
         );
         $process_batch_cmd = self::DRUSH_EVAL_PROCESS_BATCH;
         $cmd = [
+            'doas',
+            '-u',
+            'nginx',
             '/usr/bin/drush',
             'eval',
             $login_user_cmd . ';' .
