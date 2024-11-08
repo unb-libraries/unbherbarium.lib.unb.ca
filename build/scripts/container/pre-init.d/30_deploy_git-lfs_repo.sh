@@ -18,7 +18,7 @@ if [ "$LTS_DEPLOY_KEY" != "" ] && [ "$LTS_DEPLOY_PATH" != "" ]; then
   chown ${NGINX_RUN_USER}:${NGINX_RUN_GROUP} .lfsconfig
 
   #  Setup local LFS and track tif without smudge on clone, saving space.
-  doas -u ${NGINX_RUN_USER} -s /bin/sh -c "git lfs install --skip-smudge
+  doas -u ${NGINX_RUN_USER} git lfs install --skip-smudge
 
   # Ignore .lfsconfig file by default
   echo -e ".lfsconfig\n.gitattributes" > "${NGINX_USER_HOME}/.gitignore"
