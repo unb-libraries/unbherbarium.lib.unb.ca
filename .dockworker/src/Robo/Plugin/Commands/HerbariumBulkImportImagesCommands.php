@@ -125,6 +125,8 @@ class HerbariumBulkImportImagesCommands extends DockworkerDrupalCommands
      *   The commit message to use when archiving the file.
      * @option string $image-extension
      *   The file extension to use when parsing the tree for files to import.
+     * @option string $import-id
+     *   If continuing a previous import, the previous ID to continue.
      * @option string $uid
      *   The file extension to use when parsing the tree for files to import.
      *
@@ -141,6 +143,7 @@ class HerbariumBulkImportImagesCommands extends DockworkerDrupalCommands
         array $options = [
             'commit-message' => 'Automated import of archival master',
             'image-extension' => 'tif',
+            'import-id' => '',
             'uid' => '1274',
         ]
     ) {
@@ -154,11 +157,14 @@ class HerbariumBulkImportImagesCommands extends DockworkerDrupalCommands
         $this->dockworkerIO->title('Herbarium Archival Master Import');
         $this->dockworkerIO->section('Import Options');
 
-      // Query the user for an ID string for this import. If none is given, generate one randomly.
-        $this->curImportID = $this->dockworkerIO->ask(
-            'ID for the import? If continuing a previous import, enter the previous ID.',
-            'herbarium-import-' . date('Y-m-d-H-i-s')
-        );
+        if (empty($options['import-id'])) {
+            $this->curImportID = $this->dockworkerIO->ask(
+                'ID for the import? If continuing a previous import, enter the previous ID.',
+                'herbarium-import-' . date('Y-m-d-H-i-s')
+            );
+        } else {
+            $this->curImportID = $options['import-id'];
+        }
 
         $this->setUpArchivalMasterQueue();
         $this->importQueuedArchivalMasters();
