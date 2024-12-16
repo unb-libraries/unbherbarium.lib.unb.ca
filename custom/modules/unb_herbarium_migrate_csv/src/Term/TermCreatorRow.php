@@ -284,7 +284,7 @@ class TermCreatorRow {
     $query = \Drupal::entityQuery('taxonomy_term');
     $query->condition('vid', $vocabulary);
     $query->condition($field, $value);
-    $tids = $query->execute();
+    $tids = $query->accessCheck(FALSE)->execute();
     if (!empty($tids)) {
       foreach ($tids as $tid) {
         return $tid;
@@ -334,7 +334,7 @@ class TermCreatorRow {
     $query->condition('vid', 'herbarium_specimen_taxonomy');
     $query->condition('name', $name);
 
-    $tids = $query->execute();
+    $tids = $query->accessCheck(FALSE)->execute();
     if (!empty($tids)) {
       foreach ($tids as $tid) {
         $storage = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term');

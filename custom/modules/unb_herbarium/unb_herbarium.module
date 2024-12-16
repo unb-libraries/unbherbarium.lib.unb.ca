@@ -4,7 +4,7 @@
  * @file
  * Contains unb_herbarium.module.
  */
-
+use Drupal\core\Database\Database;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -33,7 +33,7 @@ function unb_herbarium_help($route_name, RouteMatchInterface $route_match) {
  * Implements hook_theme_registry_alter().
  */
 function unb_herbarium_theme_registry_alter(&$theme_registry) {
-  $theme_registry['taxonomy_term']['path'] = drupal_get_path('module', 'unb_herbarium') . '/templates';
+  $theme_registry['taxonomy_term']['path'] = \Drupal::service('extension.list.module')->getPath('unb_herbarium') . '/templates';
 }
 
 /**
@@ -49,7 +49,7 @@ function unb_herbarium_theme($existing, $type, $theme, $path) {
         'output' => NULL,
       ],
       'template' => 'node--herbarium-specimen',
-      'path' => drupal_get_path('module', 'unb_herbarium') . '/templates',
+      'path' => \Drupal::service('extension.list.module')->getPath('unb_herbarium') . '/templates',
       'base hook' => 'node__herbarium_specimen',
     ],
   ];
@@ -429,7 +429,7 @@ function unb_herbarium_search_api_autocomplete_suggestions_alter(array &$suggest
  *   The vocabulary ID.
  */
 function _unb_herbarium_create_tax_term_if_not_exists($name, $vid) {
-  if ($terms = taxonomy_term_load_multiple_by_name($name, $vid)) {
+  if ($terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['name' => $name, 'vid' => $vid])) {
     $term = reset($terms);
   }
   else {
@@ -455,7 +455,7 @@ function _unb_herbarium_get_nid_from_accession_id($accession_id) {
   $nids = \Drupal::entityQuery('node')
     ->condition('type', 'herbarium_specimen')
     ->condition('field_dwc_record_number', $accession_id)
-    ->execute();
+    ->accessCheck(FALSE)->execute();
   if (!empty($nids)) {
     foreach ($nids as $nid) {
       return $nid;
@@ -490,7 +490,7 @@ function _unb_herbarium_resave_herb_sample_nid($nid) {
  */
 function _unb_herbarium_get_all_bulk_import_migration_tables() {
   $sql = "SHOW TABLES LIKE 'migrate_map_cmh_herb_import_standard_%'";
-  $results = \Drupal\core\Database\Database::getConnection()->query($sql);
+  $results = Database::getConnection()->query($sql);
   return $results->fetchCol();
 }
 
@@ -505,7 +505,7 @@ function _unb_herbarium_get_all_bulk_import_migration_tables() {
  */
 function _unb_herbarium_get_bulk_import_migration_nids($migration_table_name) {
   $sql_ids = "select destid1 from $migration_table_name";
-  $id_results = \Drupal\core\Database\Database::getConnection()->query($sql_ids);
+  $id_results = Database::getConnection()->query($sql_ids);
   return $id_results->fetchCol();
 }
 
@@ -537,7 +537,7 @@ function _unb_herbarium_resave_all_bulk_migration_nodes() {
   foreach ($nids_to_process as $migration_nid) {
     if (!empty($migration_nid) && $migration_nid > $last_resaved_node) {
       // Ensure the node still exists.
-      $values = \Drupal::entityQuery('node')->condition('nid', $migration_nid)->execute();
+      $values = \Drupal::entityQuery('node')->condition('nid', $migration_nid)->accessCheck(FALSE)->execute();
       if(!empty($values)) {
         echo("Resaving NID#$migration_nid\n");
         _unb_herbarium_resave_herb_sample_nid($migration_nid);

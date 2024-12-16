@@ -2,7 +2,7 @@ name: Herbarium Specimen CSV Export
 type: module
 description: Herbarium Specimen CSV Export
 core: 8.x
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9 || ^10
 package: Herbarium
 dependencies:
   - herbarium_core

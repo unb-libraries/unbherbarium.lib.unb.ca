@@ -60,7 +60,7 @@ class HerbariumSpecimenBulkMigrationView extends FormBase {
               count($rows) + 1,
               $node->get('field_dwc_record_number')->value,
               Link::createFromRoute($node->getTitle(), 'entity.node.canonical', ['node' => $target->destid1]),
-              render($collectors),
+              \Drupal::service('renderer')->render($collectors),
               $node->get('field_dwc_eventdate')->value,
             ],
           ];

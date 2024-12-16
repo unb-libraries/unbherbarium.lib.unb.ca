@@ -18,7 +18,7 @@ function unbherbarium_ca_preprocess_menu_local_task(&$variables) {
     $query = \Drupal::entityQuery('node')
       ->condition('nid', $node_id)
       ->condition('type', $content_type)
-      ->execute();
+      ->accessCheck(FALSE)->execute();
 
     if (!empty($query)) {
       $variables['link']['#title'] = t('Specimen Data');

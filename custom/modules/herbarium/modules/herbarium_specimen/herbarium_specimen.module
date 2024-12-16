@@ -4,7 +4,7 @@
  * @file
  * Add style to feature pages.
  */
-
+use Drupal\core\Database\Database;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\node\Entity\Node;
 use Drupal\taxonomy\Entity\Term;
@@ -169,7 +169,7 @@ function _herbarium_specimen_generate_specimen_surrogates_batch($nid, $file_path
  *   are possible values.
  */
 function _herbarium_specimen_manually_remove_broken_file_reference($nid, $field_name) {
-  $query = \Drupal\core\Database\Database::getConnection()->select("node__$field_name", 'n');
+  $query = Database::getConnection()->select("node__$field_name", 'n');
   $query->fields('n', ["{$field_name}_target_id"]);
   $query->condition('n.entity_id', $nid);
   $result = $query->execute();
@@ -178,19 +178,19 @@ function _herbarium_specimen_manually_remove_broken_file_reference($nid, $field_
     while ($row = $result->fetchAssoc()) {
       $fid = $row["{$field_name}_target_id"];
 
-      $deleted = \Drupal\core\Database\Database::getConnection()->delete("node__$field_name")
+      $deleted = Database::getConnection()->delete("node__$field_name")
         ->condition('entity_id', $nid)
         ->execute();
 
-      $deleted = \Drupal\core\Database\Database::getConnection()->delete("node_revision__$field_name")
+      $deleted = Database::getConnection()->delete("node_revision__$field_name")
         ->condition('entity_id', $nid)
         ->execute();
 
-      $deleted = \Drupal\core\Database\Database::getConnection()->delete('file_managed')
+      $deleted = Database::getConnection()->delete('file_managed')
         ->condition('fid', $fid)
         ->execute();
 
-      $deleted = \Drupal\core\Database\Database::getConnection()->delete('file_usage')
+      $deleted = Database::getConnection()->delete('file_usage')
         ->condition('fid', $fid)
         ->execute();
     }

@@ -4,7 +4,7 @@
  * @file
  * Contains herbarium_core.module.
  */
-
+use Drupal\core\Database\Database;
 use Drupal\Core\Link;
 use Drupal\taxonomy\Entity\Term;
 
@@ -19,7 +19,7 @@ use Drupal\taxonomy\Entity\Term;
  */
 function _herbarium_specimen_bulk_import_get_migration_destinations($id) {
   $table_name = "migrate_map_$id";
-  return \Drupal\core\Database\Database::getConnection()->query("SELECT destid1 FROM $table_name", [
+  return Database::getConnection()->query("SELECT destid1 FROM $table_name", [
     ':migrate_id' => $table_name,
   ]);
 }
@@ -659,7 +659,7 @@ function _herbarium_specimen_validate_accession_id($data) {
   $values = \Drupal::entityQuery('node')
     ->condition('type', 'herbarium_specimen')
     ->condition('field_dwc_record_number', $data)
-    ->execute();
+    ->accessCheck(FALSE)->execute();
   $id_exists = !empty($values);
 
   return !$id_exists;

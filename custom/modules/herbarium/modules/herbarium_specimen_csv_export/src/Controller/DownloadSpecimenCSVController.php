@@ -41,7 +41,7 @@ class DownloadSpecimenCSVController extends ControllerBase {
     $query = \Drupal::entityQuery('node')
       ->condition('status', NodeInterface::PUBLISHED)
       ->condition('type', 'herbarium_specimen');
-    $result = $query->execute();
+    $result = $query->accessCheck(FALSE)->execute();
 
     return $this->serveFile(
       implode('|', $result),

@@ -19,7 +19,7 @@ class MigrateEvent implements EventSubscriberInterface {
   /**
    * {@inheritdoc}
    */
-  public static function getSubscribedEvents() {
+  public static function getSubscribedEvents(): array {
     $events[MigrateEvents::PREPARE_ROW][] = ['onPrepareRow', 0];
     return $events;
   }
@@ -499,7 +499,7 @@ class MigrateEvent implements EventSubscriberInterface {
     $query = \Drupal::entityQuery('taxonomy_term');
     $query->condition('vid', $vocabulary);
     $query->condition($field, $value);
-    $tids = $query->execute();
+    $tids = $query->accessCheck(FALSE)->execute();
     if (!empty($tids)) {
       foreach ($tids as $tid) {
         return $tid;
