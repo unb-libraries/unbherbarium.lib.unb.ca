@@ -76,7 +76,7 @@ module:
   views: 10
   minimal: 1000
 theme:
-  seven: 0
+  claro: 0
   bootstrap: 0
   unbherbarium_ca: 0
 profile: minimal
