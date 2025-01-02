@@ -1,7 +1,6 @@
 name: UNB Herbarium CSV Import
 type: module
 description: Migratation import from UNB Herbarium filemaker CSV export to D8 Sample node content.
-core: 8.x
 core_version_requirement: ^9 || ^10
 package: Migration
 dependencies:

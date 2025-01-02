@@ -2,7 +2,6 @@ name: 'Connell Memorial Herbarium'
 description: 'UNB CMH custom features'
 package: 'UNB Herbarium'
 type: module
-core: 8.x
 core_version_requirement: ^9 || ^10
 dependencies:
   - block
