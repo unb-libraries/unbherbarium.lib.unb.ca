@@ -14,7 +14,7 @@ field_name: field_dwc_measurementtype
 entity_type: taxonomy_term
 bundle: herbarium_specimen_taxonomy
 label: 'Measurement Type'
-description: 'DwC:measurementType - This is a placeholder for the label for Rarity Ranking, and should be ''Rarity Ranking'' unless significant changes occur.'
+description: "DwC:measurementType - This is a placeholder for the label for Rarity Ranking, and should be 'Rarity Ranking' unless significant changes occur."
 required: false
 translatable: true
 default_value:

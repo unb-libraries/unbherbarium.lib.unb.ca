@@ -12,7 +12,7 @@ field_name: field_synonyms
 entity_type: taxonomy_term
 bundle: herbarium_specimen_taxonomy
 label: Synonym
-description: 'For CMH this is the ''Synonym'' field from the old Filemaker Database.'
+description: "For CMH this is the 'Synonym' field from the old Filemaker Database."
 required: false
 translatable: false
 default_value: {  }

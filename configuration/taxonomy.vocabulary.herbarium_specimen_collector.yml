@@ -6,5 +6,6 @@ _core:
   default_config_hash: cBVUOyYFWSAWQuul0L6llMb8HkRYvEMxv5Wz8poZZuY
 name: 'Herbarium Specimen Collector'
 vid: herbarium_specimen_collector
-description: ''
+description: null
 weight: 0
+new_revision: false

@@ -6,3 +6,4 @@ name: 'Specimen Location Country'
 vid: specimen_location_country
 description: 'Specimen Location Country'
 weight: 0
+new_revision: false

@@ -1,7 +1,22 @@
 uuid: 49f583f1-8537-4705-b802-d89aa9c80509
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.basic_html
+    - taxonomy.vocabulary.herbarium_specimen_collector
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
+    - taxonomy.vocabulary.specimen_location_country
+    - taxonomy.vocabulary.specimen_location_county
+    - taxonomy.vocabulary.specimen_location_province
+    - taxonomy.vocabulary.taxon_rank
+  module:
+    - contact
+    - filter
+    - herbarium_specimen
+    - herbarium_specimen_csv_export
+    - system
+    - taxonomy_access_fix
 _core:
   default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
 id: authenticated

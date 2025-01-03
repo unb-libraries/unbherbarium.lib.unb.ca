@@ -6,3 +6,4 @@ name: 'Specimen Location Province'
 vid: specimen_location_province
 description: 'Specimen Location Province'
 weight: 0
+new_revision: false

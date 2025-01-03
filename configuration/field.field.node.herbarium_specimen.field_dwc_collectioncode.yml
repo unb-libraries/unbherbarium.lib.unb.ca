@@ -14,7 +14,7 @@ field_name: field_dwc_collectioncode
 entity_type: node
 bundle: herbarium_specimen
 label: 'DwC:collectionCode'
-description: 'The name, acronym, coden, or initialism identifying the collection or data set. Almost certainly ''CMH''.'
+description: "The name, acronym, coden, or initialism identifying the collection or data set. Almost certainly 'CMH'."
 required: false
 translatable: true
 default_value:

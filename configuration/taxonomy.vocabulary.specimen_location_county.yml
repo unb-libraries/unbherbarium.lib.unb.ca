@@ -6,3 +6,4 @@ name: 'Specimen Location County'
 vid: specimen_location_county
 description: 'Specimen Location County'
 weight: 0
+new_revision: false

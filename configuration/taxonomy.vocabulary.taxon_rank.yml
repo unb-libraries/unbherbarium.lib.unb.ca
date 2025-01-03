@@ -6,5 +6,6 @@ _core:
   default_config_hash: PUqisIu_JIuiO9mSValg6GSmia-0gUom371Tf7K9d1A
 name: 'Taxon Rank'
 vid: taxon_rank
-description: ''
+description: null
 weight: 0
+new_revision: false

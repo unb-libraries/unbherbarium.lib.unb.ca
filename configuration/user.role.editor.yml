@@ -1,7 +1,16 @@
 uuid: faafe974-2d1e-47bb-b1fc-187fe5018454
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - node.type.herbarium_specimen
+    - taxonomy.vocabulary.herbarium_specimen_collector
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
+  module:
+    - file
+    - node
+    - taxonomy
+    - taxonomy_manager
 _core:
   default_config_hash: nb2oDQaPYey1lr8_CP2xVJcT0tjuofLBbeONBrmKqAE
 id: editor
@@ -9,10 +18,10 @@ label: Editor
 weight: 9
 is_admin: null
 permissions:
+  - 'access files overview'
   - 'access taxonomy manager list'
   - 'create herbarium_specimen content'
   - 'delete own herbarium_specimen content'
   - 'edit any herbarium_specimen content'
   - 'edit terms in herbarium_specimen_collector'
   - 'edit terms in herbarium_specimen_taxonomy'
-  - 'view private files'

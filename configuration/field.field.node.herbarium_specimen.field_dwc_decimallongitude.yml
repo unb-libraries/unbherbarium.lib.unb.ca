@@ -19,7 +19,7 @@ default_value: {  }
 default_value_callback: ''
 settings:
   min: null
-  max: !!float 180
+  max: 180.0
   prefix: ''
   suffix: ''
 field_type: decimal

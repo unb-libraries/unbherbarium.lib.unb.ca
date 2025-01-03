@@ -6,5 +6,6 @@ _core:
   default_config_hash: irpxUZobiOxXef8DnqsUuK7Av25I_Baj-FmxiCZAGgo
 name: 'Herbarium Specimen Taxonomy'
 vid: herbarium_specimen_taxonomy
-description: ''
+description: null
 weight: 0
+new_revision: false

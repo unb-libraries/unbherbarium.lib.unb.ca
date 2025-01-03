@@ -14,7 +14,7 @@ _core:
 name: 'Banner image'
 type: banner_image
 description: 'Use <em>Banners</em> to upload decorative images that are usually displayed below navigation menu and above main content.'
-help: ''
+help: null
 new_revision: false
 preview_mode: 0
 display_submitted: false

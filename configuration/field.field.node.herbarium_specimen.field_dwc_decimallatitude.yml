@@ -18,8 +18,8 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  min: !!float -90
-  max: !!float 90
+  min: -90.0
+  max: 90.0
   prefix: ''
   suffix: ''
 field_type: decimal

@@ -1,7 +1,23 @@
 uuid: 2e40aab5-782e-4d50-8aac-bf6865c686ef
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.full_html
+    - node.type.banner_image
+    - node.type.herbarium_specimen
+    - node.type.page
+    - taxonomy.vocabulary.herbarium_specimen_collector
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
+  module:
+    - filter
+    - herbarium_specimen_bulk_import
+    - herbarium_specimen_lts
+    - node
+    - system
+    - taxonomy
+    - taxonomy_access_fix
+    - taxonomy_manager
 _core:
   default_config_hash: ubwS_AfEAX1axcGMoknrUl5-mAzKj0MwLKX5GYGwyxY
 id: cmh_database_administrator
@@ -13,8 +29,6 @@ permissions:
   - 'access content overview'
   - 'access taxonomy manager list'
   - 'access user profiles'
-  - 'add terms in herbarium_specimen_collector'
-  - 'add terms in herbarium_specimen_taxonomy'
   - 'administer menu'
   - 'administer nodes'
   - 'administer taxonomy'
@@ -22,6 +36,8 @@ permissions:
   - 'create banner_image content'
   - 'create herbarium_specimen content'
   - 'create page content'
+  - 'create terms in herbarium_specimen_collector'
+  - 'create terms in herbarium_specimen_taxonomy'
   - 'delete any banner_image content'
   - 'delete any herbarium_specimen content'
   - 'delete any page content'
@@ -37,4 +53,3 @@ permissions:
   - 'reorder terms in herbarium_specimen_taxonomy'
   - 'use text format full_html'
   - 'view own unpublished content'
-  - 'view private files'

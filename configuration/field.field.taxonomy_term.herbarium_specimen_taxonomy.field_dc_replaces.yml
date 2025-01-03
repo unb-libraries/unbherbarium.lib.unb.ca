@@ -12,7 +12,7 @@ field_name: field_dc_replaces
 entity_type: taxonomy_term
 bundle: herbarium_specimen_taxonomy
 label: 'DC:replaces'
-description: 'The full scientific name that this item replaces. For CMH this is the ''Name1st'' field from the old Filemaker Database. This field was/is absent from the specimen display template.'
+description: "The full scientific name that this item replaces. For CMH this is the 'Name1st' field from the old Filemaker Database. This field was/is absent from the specimen display template."
 required: false
 translatable: false
 default_value: {  }
