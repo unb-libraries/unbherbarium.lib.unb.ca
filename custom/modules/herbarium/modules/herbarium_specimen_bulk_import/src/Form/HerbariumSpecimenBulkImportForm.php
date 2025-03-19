@@ -198,6 +198,12 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
   private function validateCsvStructure(array &$form, FormStateInterface $form_state, $file_path, $format_id) {
     // Validate CSV structure.
     try {
+
+      // Strip ^M characters from the file.
+      $content = file_get_contents($file_path);
+      $content = preg_replace('/\r\n|\r|\n/', "\n", $content);
+      file_put_contents($file_path, $content);
+
       $reader = Reader::createFromPath($file_path, 'r');
       $nbColumns = $reader->fetchOne();
 
