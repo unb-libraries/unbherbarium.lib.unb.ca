@@ -207,20 +207,23 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
       $reader = Reader::createFromPath($file_path, 'r');
       $nbColumns = $reader->fetchOne();
 
-      // Check header matches expected number of rows from format.
-      $import_format = _herbarium_specimen_bulk_import_get_import_format($format_id);
-      if (count($nbColumns) != count($import_format['columns'])) {
+      // Check header matches expected column names from format.
+      $expected_header_values = [];
+      foreach ($import_format['columns'] as $column) {
+        $expected_header_values[] = $column['name'];
+      }
+      $header_values = array_map('trim', $nbColumns);
+      if ($header_values != $expected_header_values) {
         $form_state->setErrorByName('import_file', $this->t(
-          'The number of columns in the file (@file_columns) is different than expected by the import format (@format_columns).',
+          'The header row of the file does not match the expected column names. Expected: @expected, found: @found',
           [
-            '@format_columns' => count($import_format['columns']),
-            '@file_columns' => count($nbColumns),
+            '@expected' => implode(', ', $expected_header_values),
+            '@found' => implode(', ', $header_values),
           ]
         ));
         return FALSE;
       }
 
-      // Check Row Consistency.
       foreach ($reader as $row_num => $column) {
         if (count($column) != count($nbColumns)) {
           $form_state->setErrorByName('import_file', $this->t(

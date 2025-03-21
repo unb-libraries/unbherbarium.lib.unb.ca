@@ -147,7 +147,7 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
       'columns' => [
 
         [
-          'name' => 'CMH_Accession_ID',
+          'name' => 'accession_id',
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_accession_id',

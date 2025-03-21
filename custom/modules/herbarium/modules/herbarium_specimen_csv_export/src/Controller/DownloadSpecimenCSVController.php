@@ -116,7 +116,7 @@ class DownloadSpecimenCSVController extends ControllerBase {
 
     $header_columns = [
       'nid',
-      'CMH_Accession_ID',
+      'accession_id',
       'Name',
       'Species ID',
       'Species Tree',
