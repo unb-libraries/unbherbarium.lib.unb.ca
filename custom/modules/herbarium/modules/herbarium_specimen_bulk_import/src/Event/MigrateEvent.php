@@ -41,7 +41,6 @@ class MigrateEvent implements EventSubscriberInterface {
 
     // Only act on rows for this migration.
     if (substr($id, 0, strlen($query)) === $query) {
-
       // Collectors.
       $this->prepareCollectorData($row, 'specimen_collectors');
 

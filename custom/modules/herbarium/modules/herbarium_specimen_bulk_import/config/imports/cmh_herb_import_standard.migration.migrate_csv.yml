@@ -10,7 +10,7 @@ source:
   plugin: csv
   path: 'HERBIMPORTFILEPATH'
   ids:
-    - 'CMH Accession ID'
+    - accession_id
 
 destination:
   plugin: entity:node
@@ -20,7 +20,7 @@ process:
     plugin: default_value
     default_value: herbarium_specimen
 
-  field_dwc_record_number: 'CMH Accession ID'
+  field_dwc_record_number: 'accession_id'
   field_taxonomy_tid: 'Species ID'
   field_collector_tid: specimen_collectors
   field_dwc_country_tax: specimen_country

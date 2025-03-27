@@ -147,16 +147,20 @@ function _herbarium_specimen_bulk_import_get_import_formats() {
       'columns' => [
 
         [
-          'name' => 'CMH Accession ID',
+          'name' => 'accession_id',
           'validate' => [
             [
               'function' => '_herbarium_specimen_validate_accession_id',
               'args' => [],
               'error' => t('is already a CMH accession ID registered to a specimen'),
             ],
+            [
+              'function' => '_herbarium_specimen_validate_accession_id_characters',
+              'args' => [],
+              'error' => t('must only include word characters a-z, A-Z, 0-9, including _ (underscore).'),
+            ]
           ],
         ],
-
         [
           'name' => 'Species ID',
           'required' => FALSE,
@@ -663,4 +667,17 @@ function _herbarium_specimen_validate_accession_id($data) {
   $id_exists = !empty($values);
 
   return !$id_exists;
+}
+
+/**
+ * Validate a string as a valid accession ID.
+ *
+ * @param string $data
+ *   The string to validate.
+ *
+ * @return bool
+ *   TRUE if $data is a valid date.
+ */
+function _herbarium_specimen_validate_accession_id_characters($data) {
+  return preg_match('/^[\w]+$/', $data);
 }
