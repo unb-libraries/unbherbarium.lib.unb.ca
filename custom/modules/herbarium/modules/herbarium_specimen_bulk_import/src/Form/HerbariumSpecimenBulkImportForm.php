@@ -208,6 +208,7 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
       $nbColumns = $reader->fetchOne();
 
       // Check header matches expected column names from format.
+      $import_format = _herbarium_specimen_bulk_import_get_import_format($format_id);
       $expected_header_values = [];
       foreach ($import_format['columns'] as $column) {
         $expected_header_values[] = $column['name'];
@@ -215,7 +216,7 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
       $header_values = array_map('trim', $nbColumns);
       if ($header_values != $expected_header_values) {
         $form_state->setErrorByName('import_file', $this->t(
-          'The header row of the file does not match the expected column names. Expected: @expected, found: @found',
+          "<pre>The header row of the file does not match the expected column names.\n\nExpected:\n@expected\n\nFound:\n@found</pre>",
           [
             '@expected' => implode(', ', $expected_header_values),
             '@found' => implode(', ', $header_values),
