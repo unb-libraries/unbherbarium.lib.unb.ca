@@ -214,14 +214,26 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
         $expected_header_values[] = $column['name'];
       }
       $header_values = array_map('trim', $nbColumns);
+
+      // Highlight mismatched values in the "Found" header.
+      $highlighted_header_values = [];
+      foreach ($header_values as $index => $value) {
+        if (isset($expected_header_values[$index]) && $value !== $expected_header_values[$index]) {
+          $highlighted_header_values[] = '<strong>' . $value . '</strong>';
+        } else {
+          $highlighted_header_values[] = $value;
+        }
+      }
+
+      $message = sprintf(
+        '<p>The header row of the file does not match the expected column names.</p><p>Expected<br>%s<p>Found:<br>%s</p>',
+        implode(', ', $expected_header_values),
+        implode(', ', $highlighted_header_values)
+      );
+      $rendered_message = \Drupal\Core\Render\Markup::create($message);
+
       if ($header_values != $expected_header_values) {
-        $form_state->setErrorByName('import_file', $this->t(
-          "<pre>The header row of the file does not match the expected column names.\n\nExpected:\n@expected\n\nFound:\n@found</pre>",
-          [
-            '@expected' => implode(', ', $expected_header_values),
-            '@found' => implode(', ', $header_values),
-          ]
-        ));
+        $form_state->setErrorByName('import_file', $rendered_message);
         return FALSE;
       }
 
