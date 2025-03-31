@@ -10,6 +10,7 @@ body {
   // Fix horizontal scrolling on iOS devices.
   // http://drupal.org/node/1870076
   position: relative;
+  margin-top: 0 !important;
 
   &.navbar-is-static-top {
     margin-top: 0;
@@ -19,6 +20,14 @@ body {
   }
   &.navbar-is-fixed-bottom {
     padding-bottom: ($navbar-height + ($grid-gutter-width / 2));
+  }
+
+  .header-wrapper {
+    background-color: #222;
+
+    header {
+      border: none;
+    }
   }
 
   @media #{$tablet} {
