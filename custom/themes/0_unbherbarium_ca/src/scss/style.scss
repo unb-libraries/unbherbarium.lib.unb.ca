@@ -361,6 +361,11 @@ footer .unb-lib-logo {
 // Banner image.
 .banner {
   margin-bottom: .75em;
+  .image-style-banner {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
 }
 .banner figcaption {
   color: $color-desc;
