@@ -138,8 +138,7 @@ p {
 .specimen-details dd {
   width: 59%;
 }
-.region-sidebar-second section,
-.region-sidebar-second nav {
+aside > * {
   border-top: 4px solid $color-border-dark;
   padding: 1.25em 0;
 }
@@ -320,7 +319,8 @@ h1 {
   font-size: x-large;
 }
 .navbar {
-  margin-bottom: 0;
+  margin-bottom: 3rem;
+  padding: 0;
   opacity: .94;
 }
 

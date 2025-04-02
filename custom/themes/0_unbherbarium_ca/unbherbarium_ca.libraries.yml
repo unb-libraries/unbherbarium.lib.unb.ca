@@ -3,6 +3,9 @@ global-styling:
     theme:
       dist/css/style.css: {}
 
-bootstrap-scripts:
+bootstrap_cdn:
   js:
-   '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js': {type: external}
+    //cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js: {}
+  css:
+    component:
+      //cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css: {}
