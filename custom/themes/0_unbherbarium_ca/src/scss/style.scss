@@ -575,6 +575,17 @@ figure a {
   display: none;
 }
 
+// Bootstrap 5 adjustments.
+.header-wrapper {
+  background-color: #222;
+
+  header {
+    z-index: 1;
+    border: none;
+    background-color: inherit !important;
+  }
+}
+
 // Responsive overrides.
 @media (max-width: 414px) {
   .navbar-brand {
