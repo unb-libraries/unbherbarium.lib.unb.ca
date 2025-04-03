@@ -1,6 +1,6 @@
 uuid: dd95bc9f-039a-4250-9974-c4efd394d286
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - system
@@ -10,7 +10,7 @@ _core:
   default_config_hash: l-SjTgsJDMWi3jjixTc0S1KEad0nx2Gcs4Fpxkcn8C4
 id: unbherbarium_ca_branding
 theme: unbherbarium_ca
-region: navigation
+region: top_header
 weight: -7
 provider: null
 plugin: system_branding_block

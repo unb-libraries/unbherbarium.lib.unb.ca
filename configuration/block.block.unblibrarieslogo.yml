@@ -1,6 +1,6 @@
 uuid: d766c632-2348-42b4-b769-6c6ae6c17602
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - unb_herbarium
@@ -10,7 +10,7 @@ _core:
   default_config_hash: OaL5hGYz0dd3UVxbGH2NEsKIyj_mJNTNr3HVKz4bQIw
 id: unblibrarieslogo
 theme: unbherbarium_ca
-region: footer
+region: top_header
 weight: -6
 provider: null
 plugin: unblibrarieslogo

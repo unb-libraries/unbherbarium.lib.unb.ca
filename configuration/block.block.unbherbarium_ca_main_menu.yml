@@ -12,8 +12,8 @@ _core:
   default_config_hash: aYNfGQE9TQAgxSLBGE23Vq-HDo89ylZBBGxqfQstqyI
 id: unbherbarium_ca_main_menu
 theme: unbherbarium_ca
-region: navigation_collapsible
-weight: -7
+region: primary_menu
+weight: -8
 provider: null
 plugin: 'system_menu_block:main'
 settings:

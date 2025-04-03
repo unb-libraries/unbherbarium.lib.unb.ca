@@ -1,6 +1,6 @@
 uuid: 4ba763b5-4823-4e27-a6d5-632242edf495
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - unb_herbarium
@@ -10,8 +10,8 @@ _core:
   default_config_hash: skymCcA6_pflkHUiJKleYfKdGzXEVfjjs9gzWMCH318
 id: dedicationstatement
 theme: unbherbarium_ca
-region: footer
-weight: -7
+region: top_header
+weight: -9
 provider: null
 plugin: dedication
 settings:

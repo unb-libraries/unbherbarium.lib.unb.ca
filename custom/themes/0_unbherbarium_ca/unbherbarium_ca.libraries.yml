@@ -3,7 +3,7 @@ global-styling:
     theme:
       dist/css/style.css: {}
 
-bootstrap_cdn:
+bootstrap-cdn:
   js:
     //cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js: {}
   css:
