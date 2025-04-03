@@ -10,7 +10,7 @@ _core:
   default_config_hash: OaL5hGYz0dd3UVxbGH2NEsKIyj_mJNTNr3HVKz4bQIw
 id: unblibrarieslogo
 theme: unbherbarium_ca
-region: footer_first
+region: footer
 weight: -6
 provider: null
 plugin: unblibrarieslogo

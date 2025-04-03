@@ -12,7 +12,7 @@ _core:
   default_config_hash: umvRceoe_zUeTS2i51dPnw9D0CWRlzRU_Cnm8JDF0Lo
 id: unbherbarium_ca_footer
 theme: unbherbarium_ca
-region: footer_first
+region: footer
 weight: -7
 provider: null
 plugin: 'system_menu_block:footer'

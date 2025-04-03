@@ -1,6 +1,6 @@
 uuid: 68b5048a-1d92-4127-9780-24be908a08b9
 langcode: en
-status: false
+status: true
 dependencies:
   module:
     - help
@@ -10,7 +10,7 @@ _core:
   default_config_hash: MhtNdV__HKRTab0ZPjkPNfYL4Ng4UPBucDLoC7Rg5Eo
 id: bootstrap_help
 theme: bootstrap
-region: top_header
+region: help
 weight: -30
 provider: null
 plugin: help_block

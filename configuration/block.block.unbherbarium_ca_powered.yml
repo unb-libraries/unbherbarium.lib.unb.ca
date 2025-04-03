@@ -10,8 +10,8 @@ _core:
   default_config_hash: gl9CKZ1ljN1JUQssAwtTsWjigxBfjsSAkcqK4gx-2Uc
 id: unbherbarium_ca_powered
 theme: unbherbarium_ca
-region: top_header
-weight: -8
+region: navigation
+weight: -5
 provider: null
 plugin: system_powered_by_block
 settings:

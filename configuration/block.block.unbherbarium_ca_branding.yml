@@ -10,8 +10,8 @@ _core:
   default_config_hash: l-SjTgsJDMWi3jjixTc0S1KEad0nx2Gcs4Fpxkcn8C4
 id: unbherbarium_ca_branding
 theme: unbherbarium_ca
-region: top_header
-weight: -9
+region: navigation
+weight: -7
 provider: null
 plugin: system_branding_block
 settings:

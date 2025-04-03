@@ -10,8 +10,8 @@ _core:
   default_config_hash: skymCcA6_pflkHUiJKleYfKdGzXEVfjjs9gzWMCH318
 id: dedicationstatement
 theme: unbherbarium_ca
-region: footer_first
-weight: -8
+region: footer
+weight: -7
 provider: null
 plugin: dedication
 settings:
