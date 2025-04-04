@@ -77,11 +77,11 @@ a.btn-primary {
     color: #fff;
   }
 }
-.region-sidebar-second .nav > li > a {
+aside .nav > li > a {
   padding: 0;
 }
-.menu.nav > li > a:focus,
-.menu.nav > li > a:hover {
+.nav-item > li > a:focus,
+.nav-item > li > a:hover {
   background: none;
 }
 .pagination > .active > a,
@@ -142,7 +142,7 @@ aside > * {
   border-top: 4px solid $color-border-dark;
   padding: 1.25em 0;
 }
-.region-sidebar-second h2 {
+aside h2 {
   font-size: 1em;
   letter-spacing: .05em;
   margin-top: 0;
