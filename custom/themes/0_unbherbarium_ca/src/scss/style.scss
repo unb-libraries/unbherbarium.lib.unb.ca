@@ -659,8 +659,13 @@ figure a {
   }
 }
 @media (min-width: 1200px) {
-  .browse .form-inline .form-group {
-    width: 32%;
+  .browse .form-group .views-exposed-form .js-form-item {
+    display: inline-block;
+    margin: 0 1rem;
+    width: 31%;
+    small {
+      display: none;
+    }
   }
 }
 
