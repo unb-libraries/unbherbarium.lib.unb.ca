@@ -585,6 +585,11 @@ figure a {
     background-color: inherit !important;
   }
 }
+#block-unbherbarium-ca-tools {
+  .nav-item {
+    width: 100%;
+  }
+}
 
 // Responsive overrides.
 @media (max-width: 414px) {
