@@ -19,6 +19,10 @@ class RouteSubscriber extends RouteSubscriberBase {
     if ($route = $collection->get('user.pass')) {
       $route->setRequirement('_access', 'FALSE');
     }
+    if ($route = $collection->get('herbarium_specimen_lts.manage_archival_master')) {
+      // Set the _admin_route option to TRUE to use the administration theme.
+      $route->setOption('_admin_route', TRUE);
+    }
   }
 
 }
