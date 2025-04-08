@@ -578,7 +578,7 @@ figure a {
   display: none;
 }
 
-// Bootstrap 5 adjustments.
+// BS5 adjustments.
 select {
   font-size: 1.5rem !important;
 }
@@ -594,6 +594,43 @@ select {
 #block-unbherbarium-ca-tools {
   .nav-item {
     width: 100%;
+  }
+}
+.browse-specimens.view .table {
+  font-size: 16px !important;
+  th {
+    border: none;
+    color: initial;
+  }
+  tr {
+    border-bottom: 1px solid var(--bs-table-border-color);
+    td {
+      border: none !important;
+    }
+  }
+  .item-list {
+    ul {
+      li {
+        border: none !important;
+        background-color: initial !important;
+      }
+    }
+  }
+}
+[aria-label="pagination-heading"] {
+  margin-top: 1rem;
+  text-align: center;
+  .pagination {
+    .page-item {
+      .page-link {
+        font-size: 16px;
+      }
+    }
+  }
+}
+#block-unbherbarium-ca-account-menu {
+  .flex-row {
+    justify-content: flex-end;
   }
 }
 
