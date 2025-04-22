@@ -62,13 +62,16 @@ main a:hover {
 .btn-primary,
 a.btn-primary {
   background-color: #545454;
-  border-color: buttonface;
+  border: 1px solid buttonface !important;
+  box-shadow: none !important;
+  outline: none !important;
   color: #fff;
-
+  
   &:focus,
-  &:hover {
-    background-color: #567410;
-    border-color: buttonface;
+  &:focus-visible,
+  &:hover,
+  &:active {
+    background-color: #567410 !important;
   }
 }
 .local-actions {
