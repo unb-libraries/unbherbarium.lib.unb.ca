@@ -3,11 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
+    - filter.format.footnote
     - node.type.herbarium_specimen
     - taxonomy.vocabulary.herbarium_specimen_collector
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
   module:
     - file
+    - filter
     - node
     - taxonomy
     - taxonomy_manager
@@ -25,3 +27,4 @@ permissions:
   - 'edit any herbarium_specimen content'
   - 'edit terms in herbarium_specimen_collector'
   - 'edit terms in herbarium_specimen_taxonomy'
+  - 'use text format footnote'

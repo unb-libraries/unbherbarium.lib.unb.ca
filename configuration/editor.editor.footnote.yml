@@ -1,0 +1,22 @@
+uuid: 75510a68-c8b0-4f75-a1be-d93ac33108b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.footnote
+  module:
+    - ckeditor5
+format: footnote
+editor: ckeditor5
+settings:
+  toolbar:
+    items:
+      - bold
+      - italic
+      - link
+      - sourceEditing
+  plugins:
+    ckeditor5_sourceEditing:
+      allowed_tags: {  }
+image_upload:
+  status: false

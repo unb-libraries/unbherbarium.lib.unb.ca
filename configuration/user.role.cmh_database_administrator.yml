@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - filter.format.footnote
     - filter.format.full_html
     - node.type.banner_image
     - node.type.herbarium_specimen
@@ -51,5 +52,6 @@ permissions:
   - 'manage herbarium lts master images'
   - 'reorder terms in herbarium_specimen_collector'
   - 'reorder terms in herbarium_specimen_taxonomy'
+  - 'use text format footnote'
   - 'use text format full_html'
   - 'view own unpublished content'

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - filter.format.footnote
     - filter.format.full_html
   module:
     - contact
@@ -19,4 +20,5 @@ permissions:
   - 'access files overview'
   - 'access site-wide contact form'
   - 'access taxonomy manager list'
+  - 'use text format footnote'
   - 'use text format full_html'

@@ -54,5 +54,6 @@ content:
 hidden:
   comment: true
   field_tags: true
+  footnotes_group: true
   langcode: true
   search_api_excerpt: true

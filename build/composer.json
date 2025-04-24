@@ -65,6 +65,11 @@
       "themes/custom/{$name}": [
         "type:drupal-custom-theme"
       ]
+    },
+    "patches": {
+      "drupal/core": {
+        "Fix 3410100 for Footnotes CKEditor 5 plugin": "/build/patches/cke5-footnotes-3410100.patch"
+      }
     }
   },
   "license": "MIT",
@@ -132,6 +137,7 @@
     "drupal/csv_serialization": "^3",
     "drupal/editor_file": "<=1.8",
     "drupal/field_group": "<3.5",
+    "drupal/footnotes": "4.0.x-dev",
     "drupal/google_analytics": "4.0.3",
     "drupal/health_check": "<=2.0.1",
     "drupal/honeypot": "2.1.4",
