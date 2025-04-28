@@ -111,6 +111,13 @@ a.button--danger {
 }
 
 // Elements.
+figure {
+  display: table;
+  figcaption {
+    display: table-caption;
+    caption-side: bottom;
+  }
+}
 dd {
   margin-bottom: .5em;
 }

@@ -98,8 +98,10 @@ settings:
         - '<a class>'
         - '<footnotes data-value data-text>'
         - '<cite>'
-        - '<figure data-align>'
-        - '<figcaption>'
+        - '<figure data-align class>'
+        - '<figcaption class>'
+        - '<p class>'
+        - '<img class loading>'
     media_media:
       allow_view_mode_override: false
 image_upload:
