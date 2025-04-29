@@ -21,6 +21,21 @@ h1 {
 }
 
 // Hyperlink styles.
+a {
+  &.footnote__citation {
+    left: -.2em;
+    font-size: .9em;
+  }
+  &.footnote__citation,
+  &.footnotes__item-backlink {
+    padding: 0 .2em;
+    text-decoration: none !important;
+    &:hover {
+      background-color: $color-link !important;
+      color: white;
+    }
+  }
+}
 a:link,
 a:visited,
 .pagination > li > a,
