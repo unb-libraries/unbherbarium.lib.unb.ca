@@ -102,6 +102,7 @@ settings:
         - '<figcaption class>'
         - '<p class>'
         - '<img class loading>'
+        - '<span class>'
     media_media:
       allow_view_mode_override: false
 image_upload:
