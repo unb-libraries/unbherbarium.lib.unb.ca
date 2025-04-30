@@ -11,6 +11,7 @@ dependencies:
     - file
     - filter
     - node
+    - system
     - taxonomy
     - taxonomy_manager
 _core:
@@ -28,3 +29,4 @@ permissions:
   - 'edit terms in herbarium_specimen_collector'
   - 'edit terms in herbarium_specimen_taxonomy'
   - 'use text format footnote'
+  - 'view the administration theme'

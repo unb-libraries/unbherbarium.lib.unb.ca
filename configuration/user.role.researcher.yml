@@ -9,6 +9,7 @@ dependencies:
     - contact
     - file
     - filter
+    - system
     - taxonomy_manager
 _core:
   default_config_hash: HjlNTaPcYqem3vAXoLEiMYJX2DdaZKJ3WrZLffxowAg
@@ -22,3 +23,4 @@ permissions:
   - 'access taxonomy manager list'
   - 'use text format footnote'
   - 'use text format full_html'
+  - 'view the administration theme'
