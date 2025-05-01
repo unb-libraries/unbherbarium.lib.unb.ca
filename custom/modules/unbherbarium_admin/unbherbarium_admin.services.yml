@@ -1,0 +1,5 @@
+services:
+  unbherbarium_admin.unbherbarium_route_subscriber:
+    class: Drupal\unbherbarium_admin\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }

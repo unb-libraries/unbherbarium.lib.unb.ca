@@ -1,0 +1,17 @@
+<?php
+
+/**
+* @file
+* Contains unbherbarium_admin.module.
+*/
+
+/**
+* Implements hook_page_attachments().
+*/
+function unbherbarium_admin_page_attachments(array &$attachments) {
+ if (!\Drupal::currentUser()->hasPermission('access toolbar')) {
+   return;
+ }
+
+ $attachments['#attached']['library'][] = 'unbherbarium_admin/toolbar-overrides';
+}

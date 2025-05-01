@@ -1,0 +1,6 @@
+name: Herbarium Administration Module
+type: module
+description: Administration functionality for unbherbarium.lib.unb.ca
+core: 10.x
+core_version_requirement: ^9 || ^10
+package: Custom

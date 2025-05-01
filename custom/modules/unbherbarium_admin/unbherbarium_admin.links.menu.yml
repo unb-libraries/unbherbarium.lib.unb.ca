@@ -1,0 +1,16 @@
+unbherbarium_admin.admin:
+  title: 'UNB Herbarium'
+  description: 'Manage content admin features.'
+  route_name: <front>
+  parent: system.admin
+  weight: -100
+  options:
+    attributes:
+      class:
+        - custom-editor-menu
+unbherbarium_admin.content:
+  title: 'Content'
+  description: 'Manage site content.'
+  url: internal:/admin/content
+  parent: unbherbarium_admin.admin
+  weight: 10

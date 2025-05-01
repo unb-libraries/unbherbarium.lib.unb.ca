@@ -131,6 +131,7 @@
     }
   ],
   "require": {
+    "drupal/admin_toolbar": "^3",
     "drupal/bootstrap": "^5",
     "drupal/chosen": "^4",
     "drupal/config_update": "^2",
