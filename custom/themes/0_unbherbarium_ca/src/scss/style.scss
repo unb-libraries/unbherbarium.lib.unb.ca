@@ -35,6 +35,12 @@ a {
       color: white;
     }
   }
+  &.toolbar-icon {
+    color: initial !important;
+    &:hover {
+      color: white !important;
+    }
+  }
 }
 a:link,
 a:visited,

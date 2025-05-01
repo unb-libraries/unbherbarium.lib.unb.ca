@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_image
     - node.type.banner_image
-    - system.menu.main
   module:
     - image
     - node
@@ -640,7 +639,7 @@ display:
       footer: {  }
       display_extenders: {  }
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -686,19 +685,21 @@ display:
               <div class="clearfix"></div>
             format: full_html
           tokenize: false
-      display_extenders: {  }
+      display_extenders:
+        simple_sitemap_display_extender:
+          variants: {  }
       path: manage/banner-images
       menu:
-        type: normal
+        type: none
         title: 'Banner images'
         description: ''
         weight: -40
         expanded: false
         menu_name: main
-        parent: unb_herbarium.manage
+        parent: ''
         context: '0'
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'

@@ -3,9 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.field_dwc_country_tax
+    - field.storage.node.field_dwc_county_tax
+    - field.storage.node.field_dwc_province_tax
     - field.storage.taxonomy_term.field_dwc_scientificnameauthor
     - field.storage.taxonomy_term.field_dwc_taxonrank
-    - system.menu.main
     - taxonomy.vocabulary.herbarium_specimen_collector
     - taxonomy.vocabulary.herbarium_specimen_taxonomy
     - taxonomy.vocabulary.specimen_location_country
@@ -1300,16 +1302,18 @@ display:
             value: "<div class=\"pull-right\">\r\n<a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_collector/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add collector term</a>\r\n</div>\r\n<div class=\"clearfix\"></div>"
             format: full_html
           tokenize: false
-      display_extenders: {  }
+      display_extenders:
+        simple_sitemap_display_extender:
+          variants: {  }
       path: manage/taxonomy/collector
       menu:
-        type: normal
+        type: none
         title: 'Collector Taxonomy'
         description: ''
         weight: -47
         expanded: false
         menu_name: main
-        parent: unb_herbarium.manage
+        parent: ''
         context: '0'
     cache_metadata:
       max-age: -1
@@ -2007,16 +2011,18 @@ display:
             value: "<div class=\"pull-right\">\r\n  <a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/specimen_location_country/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add country term</a>\r\n</div>\r\n<div class=\"clearfix\"></div>"
             format: full_html
           tokenize: false
-      display_extenders: {  }
+      display_extenders:
+        simple_sitemap_display_extender:
+          variants: {  }
       path: manage/taxonomy/country
       menu:
-        type: normal
+        type: none
         title: 'Country Terms'
         description: ''
         weight: -45
         expanded: false
         menu_name: main
-        parent: unb_herbarium.manage
+        parent: ''
         context: '0'
     cache_metadata:
       max-age: -1
@@ -2026,7 +2032,8 @@ display:
         - url
         - url.query_args
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_dwc_country_tax'
   county:
     id: county
     display_title: County
@@ -2712,16 +2719,18 @@ display:
             value: "<div class=\"pull-right\">\r\n  <a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/specimen_location_county/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add county term</a>\r\n</div>\r\n<div class=\"clearfix\"></div>"
             format: full_html
           tokenize: false
-      display_extenders: {  }
+      display_extenders:
+        simple_sitemap_display_extender:
+          variants: {  }
       path: manage/taxonomy/county
       menu:
-        type: normal
+        type: none
         title: 'County terms'
         description: ''
         weight: -43
         expanded: false
         menu_name: main
-        parent: unb_herbarium.manage
+        parent: ''
         context: '0'
     cache_metadata:
       max-age: -1
@@ -2731,7 +2740,8 @@ display:
         - url
         - url.query_args
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_dwc_county_tax'
   province:
     id: province
     display_title: Province
@@ -3417,16 +3427,18 @@ display:
             value: "<div class=\"pull-right\">\r\n  <a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/specimen_location_province/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add province term</a>\r\n</div>\r\n<div class=\"clearfix\"></div>"
             format: full_html
           tokenize: false
-      display_extenders: {  }
+      display_extenders:
+        simple_sitemap_display_extender:
+          variants: {  }
       path: manage/taxonomy/province
       menu:
-        type: normal
+        type: none
         title: 'Province terms'
         description: ''
         weight: -44
         expanded: false
         menu_name: main
-        parent: unb_herbarium.manage
+        parent: ''
         context: '0'
     cache_metadata:
       max-age: -1
@@ -3436,7 +3448,8 @@ display:
         - url
         - url.query_args
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_dwc_province_tax'
   specimen:
     id: specimen
     display_title: Specimen
@@ -4541,16 +4554,18 @@ display:
             value: "<div class=\"pull-right\">\r\n  <a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_taxonomy/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add taxon</a>\r\n</div>\r\n<div class=\"clearfix\"></div>"
             format: full_html
           tokenize: false
-      display_extenders: {  }
+      display_extenders:
+        simple_sitemap_display_extender:
+          variants: {  }
       path: manage/taxonomy/specimen
       menu:
-        type: normal
+        type: none
         title: 'Specimen Taxonomy'
         description: ''
         weight: -48
         expanded: false
         menu_name: main
-        parent: unb_herbarium.manage
+        parent: ''
         context: '0'
     cache_metadata:
       max-age: -1
@@ -4559,7 +4574,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:field.storage.taxonomy_term.field_dwc_scientificnameauthor'

@@ -14,3 +14,46 @@ unbherbarium_admin.content:
   url: internal:/admin/content
   parent: unbherbarium_admin.admin
   weight: 10
+unbherbarium_admin.collectors:
+  title: 'Collector taxonomy'
+  description: 'Manage collector taxonomy.'
+  url: internal:/manage/taxonomy/collector
+  parent: unbherbarium_admin.admin
+  weight: 20
+unbherbarium_admin.countries:
+  title: 'Country taxonomy'
+  description: 'Manage country taxonomy.'
+  url: internal:/manage/taxonomy/country
+  parent: unbherbarium_admin.admin
+  weight: 30
+unbherbarium_admin.counties:
+  title: 'County taxonomy'
+  description: 'Manage county taxonomy.'
+  url: internal:/manage/taxonomy/county
+  parent: unbherbarium_admin.admin
+  weight: 40
+unbherbarium_admin.provinces:
+  title: 'Province taxonomy'
+  description: 'Manage provinces taxonomy.'
+  url: internal:/manage/taxonomy/province
+  parent: unbherbarium_admin.admin
+  weight: 50
+unbherbarium_admin.specimen:
+  title: 'Specimen taxonomy'
+  description: 'Manage specimen taxonomy.'
+  url: internal:/manage/taxonomy/specimen
+  parent: unbherbarium_admin.admin
+  weight: 60
+unbherbarium_admin.banner:
+  title: 'Banner images'
+  description: 'Manage banner images.'
+  url: internal:/manage/banner-images
+  parent: unbherbarium_admin.admin
+  weight: 70
+unbherbarium_admin.users:
+  title: Users
+  description: Manage users custom menu item
+  route_name: entity.user.collection
+  parent: unbherbarium_admin.admin
+  menu_name: main
+  weight: 100
