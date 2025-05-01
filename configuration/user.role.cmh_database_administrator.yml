@@ -19,6 +19,7 @@ dependencies:
     - taxonomy
     - taxonomy_access_fix
     - taxonomy_manager
+    - toolbar
 _core:
   default_config_hash: ubwS_AfEAX1axcGMoknrUl5-mAzKj0MwLKX5GYGwyxY
 id: cmh_database_administrator
@@ -29,6 +30,7 @@ permissions:
   - 'access content'
   - 'access content overview'
   - 'access taxonomy manager list'
+  - 'access toolbar'
   - 'access user profiles'
   - 'administer menu'
   - 'administer nodes'
