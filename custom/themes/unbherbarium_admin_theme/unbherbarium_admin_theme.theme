@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function unbherbarium_admin_theme_element_info_alter(array &$info) {
+  // Alter datetetime fields.
+  $info['datetime']['#process'][] = 'datetime_settings';
+}
+
+/**
+ * Custom function to alter HTML 5 date fields.
+ */
+function datetime_settings($element) {
+  // Only for field_date.
+  if ($element['#parents'][0] == 'field_date') {
+    // Set HTML5 range attributes. Prevents defaulting to loaded value.
+    $element['date']['#attributes']['min'] = '1000-01-01';
+    $element['date']['#attributes']['max'] = date('Y-m-d');
+  }
+
+return $element;
+}

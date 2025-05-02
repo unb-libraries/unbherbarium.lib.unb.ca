@@ -1,0 +1,10 @@
+// Limit width of admin forms block.
+#block-unbherbarium-admin-theme-content {
+  max-width: 80rem;
+}
+
+// Hide "About text formats" form component.
+.field--widget-text-textarea-with-summary [id$="format"],
+.field--widget-text-textarea [id$="format"] {
+  display: none;
+}
