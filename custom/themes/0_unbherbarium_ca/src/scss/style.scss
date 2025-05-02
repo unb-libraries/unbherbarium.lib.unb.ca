@@ -35,12 +35,6 @@ a {
       color: white;
     }
   }
-  &.toolbar-icon:not(.toolbar-icon-menu) {
-    color: initial !important;
-    &:hover {
-      color: white !important;
-    }
-  }
 }
 a:link,
 a:visited,
