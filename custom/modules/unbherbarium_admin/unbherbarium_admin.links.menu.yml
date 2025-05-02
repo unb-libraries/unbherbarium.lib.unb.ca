@@ -8,6 +8,12 @@ unbherbarium_admin.admin:
     attributes:
       class:
         - custom-editor-menu
+unbherbarium_admin.add.specimen:
+  title: 'New Specimen'
+  description: 'Create new specimen.'
+  url: internal:/node/add/herbarium_specimen
+  parent: unbherbarium_admin.admin
+  weight: 0
 unbherbarium_admin.content:
   title: 'Content'
   description: 'Manage site content.'
@@ -44,12 +50,18 @@ unbherbarium_admin.specimen:
   url: internal:/manage/taxonomy/specimen
   parent: unbherbarium_admin.admin
   weight: 60
+unbherbarium_admin.bulk_import:
+  title: 'Bulk import'
+  description: 'Import specimens in bulk.'
+  url: internal:/admin/config/herbarium_core/bulk_import
+  parent: unbherbarium_admin.admin
+  weight: 70
 unbherbarium_admin.banner:
   title: 'Banner images'
   description: 'Manage banner images.'
   url: internal:/manage/banner-images
   parent: unbherbarium_admin.admin
-  weight: 70
+  weight: 80
 unbherbarium_admin.users:
   title: Users
   description: Manage users custom menu item

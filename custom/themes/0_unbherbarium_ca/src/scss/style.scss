@@ -35,7 +35,7 @@ a {
       color: white;
     }
   }
-  &.toolbar-icon {
+  &.toolbar-icon:not(.toolbar-icon-menu) {
     color: initial !important;
     &:hover {
       color: white !important;
