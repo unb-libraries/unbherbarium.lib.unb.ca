@@ -150,6 +150,7 @@
     "drupal/migrate_tools": "^6",
     "drupal/pathauto": "1.13",
     "drupal/redis": "1.9",
+    "drupal/samlauth": "^3",
     "drupal/search_api": "<1.31",
     "drupal/search_api_solr": "<4.3.2",
     "drupal/simple_entity_merge": "<1.6",
@@ -169,7 +170,8 @@
     "malsup/jquery.cycle": "^1",
     "neitanod/forceutf8": "^2",
     "teqneers/php-stream-wrapper-for-git": "^1",
-    "unb-libraries/composer-drupal-scaffold": "^10"
+    "unb-libraries/composer-drupal-scaffold": "^10",
+    "unb-libraries/saml_features": "dev-10.x-1.x"
   },
   "require-dev": {
     "unb-libraries/drupal-development-libraries": "^10"
