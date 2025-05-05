@@ -46,14 +46,6 @@
 }
 
 /* Link overrides */
-.toolbar-icon:not(.toolbar-icon-menu):not(.toolbar-icon-escape-admin) {
-  color: initial !important;
+.toolbar-icon {
+  color: initial;
 }
-.toolbar-icon:hover {
-  color: white !important;
-}
-.toolbar-icon.is-active {
-  &:hover {
-    color: initial !important;
-  }
-} 
