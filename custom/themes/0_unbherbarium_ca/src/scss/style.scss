@@ -22,6 +22,7 @@ h1 {
 
 // Hyperlink styles.
 a {
+  color: $color-link;
   &.footnote__citation {
     left: -.2em;
     font-size: .9em;
@@ -34,6 +35,19 @@ a {
       background-color: $color-link !important;
       color: white;
     }
+  }
+}
+#block-unbherbarium-ca-tools a {
+  color: $color-link;
+  &:hover {
+    background-color: initial !important;
+    color: $color-hover;
+  } 
+}
+.nav.primary.nav-tabs a {
+  color: $color-link;
+  &:hover {
+    color: $color-hover;
   }
 }
 a:visited,
