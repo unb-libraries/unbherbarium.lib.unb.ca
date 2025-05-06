@@ -4,8 +4,8 @@ login_menu_item_title: ''
 logout_menu_item_title: ''
 login_link_title: ''
 login_auto_redirect: false
-login_redirect_url: /
-logout_redirect_url: /
+login_redirect_url: ''
+logout_redirect_url: ''
 error_redirect_url: ''
 error_throw: false
 login_error_keep_session: false
@@ -33,8 +33,8 @@ map_users_roles: {  }
 create_users: false
 sync_name: false
 sync_mail: true
-user_name_attribute: ''
-user_mail_attribute: ''
+user_name_attribute: uid
+user_mail_attribute: mail
 request_set_name_id_policy: true
 strict: true
 security_metadata_sign: false
