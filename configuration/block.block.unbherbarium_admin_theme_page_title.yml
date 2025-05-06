@@ -1,0 +1,20 @@
+uuid: 3e5d4f84-a7b9-43ae-9e54-b7c807e6603b
+langcode: en
+status: true
+dependencies:
+  theme:
+    - unbherbarium_admin_theme
+_core:
+  default_config_hash: fNwDdW063tk_ktzSWzZVeQS9wzvLooVO280BQ9WrsIs
+id: unbherbarium_admin_theme_page_title
+theme: unbherbarium_admin_theme
+region: header
+weight: -30
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }
