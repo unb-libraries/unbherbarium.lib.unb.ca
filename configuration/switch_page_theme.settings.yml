@@ -1,7 +1,7 @@
 spt_table:
   -
     status: '1'
-    pages: "/manage/taxonomy/specimen\r\n/manage/taxonomy/country\r\n/manage/taxonomy/county\r\n/manage/taxonomy/province\r\n/manage/taxonomy/collector"
+    pages: '/manage/*'
     theme_key: ''
     theme: claro
     weight: '-10'
