@@ -15,6 +15,7 @@ dependencies:
     - filter
     - herbarium_specimen
     - herbarium_specimen_csv_export
+    - samlauth
     - system
     - taxonomy_access_fix
 _core:
@@ -29,6 +30,7 @@ permissions:
   - 'export herbarium specimens'
   - 'use text format restricted_html'
   - 'view detailed herbarium specimens'
+  - 'view sp metadata'
   - 'view terms in herbarium_specimen_collector'
   - 'view terms in herbarium_specimen_taxonomy'
   - 'view terms in specimen_location_country'
