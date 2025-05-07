@@ -72,13 +72,13 @@ third_party_settings:
       region: content
       parent_name: group_initially_hidden_details
       weight: 60
-      format_type: accordion_item
+      format_type: details
       format_settings:
-        label: 'Specimen Details'
         classes: ''
         id: ''
-        formatter: closed
+        open: false
         required_fields: true
+        formatter: closed
     group_date:
       children:
         - field_dwc_eventdate
@@ -88,13 +88,14 @@ third_party_settings:
       region: content
       parent_name: group_initially_hidden_details
       weight: 61
-      format_type: accordion_item
+      format_type: details
       format_settings:
         classes: ''
         id: ''
-        formatter: closed
+        open: false
         description: ''
         required_fields: true
+        formatter: closed
     group_previous_identifications:
       children:
         - field_previous_identifications
@@ -102,13 +103,14 @@ third_party_settings:
       region: content
       parent_name: group_initially_hidden_details
       weight: 62
-      format_type: accordion_item
+      format_type: details
       format_settings:
         classes: ''
         id: ''
-        formatter: closed
+        open: false
         description: ''
         required_fields: true
+        formatter: closed
     group_details_license:
       children:
         - field_dc_type
@@ -129,13 +131,14 @@ third_party_settings:
       region: content
       parent_name: group_initially_hidden_details
       weight: 63
-      format_type: accordion_item
+      format_type: details
       format_settings:
         classes: ''
         id: ''
-        formatter: closed
+        open: false
         description: ''
         required_fields: true
+        formatter: closed
     group_collectors:
       children:
         - field_collector_tid
@@ -144,13 +147,13 @@ third_party_settings:
       region: content
       parent_name: group_initially_hidden_details
       weight: 58
-      format_type: accordion_item
+      format_type: details
       format_settings:
-        label: 'Collected By'
         classes: ''
         id: ''
-        formatter: closed
+        open: false
         required_fields: true
+        formatter: closed
     group_initially_hidden_details:
       children:
         - group_collectors
@@ -162,10 +165,12 @@ third_party_settings:
       region: content
       parent_name: ''
       weight: 4
-      format_type: accordion
+      format_type: details
       format_settings:
         classes: ''
         id: ''
+        open: false
+        required_fields: true
         effect: none
     group_images:
       children:
@@ -176,7 +181,6 @@ third_party_settings:
       weight: 5
       format_type: details
       format_settings:
-        label: 'Full Size Image'
         classes: ui-state-default
         id: ''
         open: false
