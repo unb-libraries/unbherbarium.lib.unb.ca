@@ -1299,7 +1299,7 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: "<div class=\"pull-right\">\r\n<a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_collector/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add collector term</a>\r\n</div>\r\n<div class=\"clearfix\"></div>"
+            value: "<div class=\"pull-right\">\r\n<a class=\"btn btn-primary button\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_collector/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add collector term</a>\r\n</div>\r\n<div class=\"clearfix\"></div>"
             format: full_html
           tokenize: false
       display_extenders:
@@ -2008,7 +2008,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: "<div class=\"pull-right\">\r\n  <a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/specimen_location_country/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add country term</a>\r\n</div>\r\n<div class=\"clearfix\"></div>"
+            value: "<div class=\"pull-right\">\r\n  <a class=\"btn btn-primary button\" href=\"/admin/structure/taxonomy/manage/specimen_location_country/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add country term</a>\r\n</div>\r\n<div class=\"clearfix\"></div>"
             format: full_html
           tokenize: false
       display_extenders:
@@ -2716,7 +2716,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: "<div class=\"pull-right\">\r\n  <a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/specimen_location_county/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add county term</a>\r\n</div>\r\n<div class=\"clearfix\"></div>"
+            value: "<div class=\"pull-right\">\r\n  <a class=\"btn btn-primary button\" href=\"/admin/structure/taxonomy/manage/specimen_location_county/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add county term</a>\r\n</div>\r\n<div class=\"clearfix\"></div>"
             format: full_html
           tokenize: false
       display_extenders:
@@ -3424,7 +3424,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: "<div class=\"pull-right\">\r\n  <a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/specimen_location_province/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add province term</a>\r\n</div>\r\n<div class=\"clearfix\"></div>"
+            value: "<div class=\"pull-right\">\r\n  <a class=\"btn btn-primary button\" href=\"/admin/structure/taxonomy/manage/specimen_location_province/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add province term</a>\r\n</div>\r\n<div class=\"clearfix\"></div>"
             format: full_html
           tokenize: false
       display_extenders:
@@ -4538,7 +4538,7 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: "<div class=\"clearfix pull-right\">\r\n  <a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy_manager/voc/herbarium_specimen_taxonomy\" role=\"button\"><span class=\"glyphicon glyphicon-th-list\"></span>Tree view</a>\r\n</div>\r\n"
+            value: "<div class=\"clearfix pull-right\">\r\n  <a class=\"btn btn-primary button\" href=\"/admin/structure/taxonomy_manager/voc/herbarium_specimen_taxonomy\" role=\"button\"><span class=\"glyphicon glyphicon-th-list\"></span>Tree view</a>\r\n</div>\r\n"
             format: full_html
           tokenize: false
         area_2:
@@ -4551,7 +4551,7 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: "<div class=\"pull-right\">\r\n  <a class=\"btn btn-primary\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_taxonomy/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add taxon</a>\r\n</div>\r\n<div class=\"clearfix\"></div>"
+            value: "<div class=\"pull-right\">\r\n  <a class=\"btn btn-primary button\" href=\"/admin/structure/taxonomy/manage/herbarium_specimen_taxonomy/add\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add taxon</a>\r\n</div>\r\n<div class=\"clearfix\"></div>"
             format: full_html
           tokenize: false
       display_extenders:
