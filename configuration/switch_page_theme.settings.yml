@@ -3,7 +3,7 @@ spt_table:
     status: '1'
     pages: '/manage/*'
     theme_key: ''
-    theme: claro
+    theme: unbherbarium_admin_theme
     weight: '-10'
     roles:
       anonymous: '0'
