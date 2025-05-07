@@ -678,11 +678,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: |-
-              <div class="pull-right">
-                <a class="btn btn-primary" href="/node/add/banner_image" role="button"><span class="glyphicon glyphicon-plus"></span>Add banner image</a>
-              </div>
-              <div class="clearfix"></div>
+            value: "<div class=\"pull-right\">\r\n  <a class=\"btn btn-primary button\" href=\"/node/add/banner_image\" role=\"button\"><span class=\"glyphicon glyphicon-plus\"></span>Add banner image</a>\r\n</div>\r\n<div class=\"clearfix\"></div>"
             format: full_html
           tokenize: false
       display_extenders:
