@@ -1,0 +1,14 @@
+// Override Chosen inner select formatting.
+.chosen-single {
+  background: initial !important;
+  box-shadow: initial !important;
+  border: initial !important;
+
+  b {
+    background: initial !important;
+  }
+}
+
+.chosen-search-input:focus {
+  box-shadow: none !important;
+}
