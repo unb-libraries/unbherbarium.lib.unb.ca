@@ -9,7 +9,7 @@ _core:
 id: unbherbarium_ca_local_actions
 theme: unbherbarium_ca
 region: content
-weight: -8
+weight: -5
 provider: null
 plugin: local_actions_block
 settings:

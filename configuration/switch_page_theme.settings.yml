@@ -1,7 +1,7 @@
 spt_table:
   -
     status: '1'
-    pages: '/manage/*'
+    pages: "/manage/*\r\n/user/login"
     theme_key: ''
     theme: unbherbarium_admin_theme
     weight: '-10'
