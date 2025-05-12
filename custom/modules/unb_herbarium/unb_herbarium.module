@@ -554,3 +554,19 @@ function _unb_herbarium_resave_all_bulk_migration_nodes() {
     }
   }
 }
+
+/**
+ * Implements hook_views_post_execute().
+ */
+function unb_herbarium_views_post_execute($view) {
+  // Check for a specific View and display.
+//  if ($view->id() == 'my_view_id' && $view->current_display == 'my_display_id') {
+    // Loop through the results and alter them.
+    foreach ($view->result as $key => $row) {
+      // Example: Change a field value.
+      if ($row->taxonomy_term_field_data_name = 'Fredericton') {
+        dump($row);
+      }
+    }
+//  }
+}
