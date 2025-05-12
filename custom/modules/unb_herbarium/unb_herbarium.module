@@ -564,7 +564,7 @@ function unb_herbarium_views_post_execute($view) {
     // Loop through the results and alter them.
     foreach ($view->result as $key => $row) {
       // Example: Change a field value.
-      if ($row->taxonomy_term_field_data_name = 'Fredericton') {
+      if ($row->taxonomy_term_field_data_name == 'Canada') {
         dump($row);
       }
     }
