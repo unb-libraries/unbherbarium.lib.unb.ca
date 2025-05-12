@@ -567,5 +567,23 @@ function unb_herbarium_theme_suggestions_views_view_field(array $variables) {
     $suggestions[] = 'views_view_field__manage_taxonomy_terms__field_dwc_country_tax';
   }
 
+  if ($variables['view']->id() === 'manage_taxonomy_terms' && 
+      $variables['view']->current_display === 'county' && 
+      $variables['field']->field === 'field_dwc_county_tax') {
+    $suggestions[] = 'views_view_field__manage_taxonomy_terms__field_dwc_county_tax';
+  }
+
+  if ($variables['view']->id() === 'manage_taxonomy_terms' && 
+      $variables['view']->current_display === 'province' && 
+      $variables['field']->field === 'field_dwc_province_tax') {
+    $suggestions[] = 'views_view_field__manage_taxonomy_terms__field_dwc_province_tax';
+  }
+
+  if ($variables['view']->id() === 'manage_taxonomy_terms' && 
+      $variables['view']->current_display === 'collector' && 
+      $variables['field']->field === 'field_collector_tid') {
+    $suggestions[] = 'views_view_field__manage_taxonomy_terms__field_collector_tid';
+  }
+
   return $suggestions;
 }
