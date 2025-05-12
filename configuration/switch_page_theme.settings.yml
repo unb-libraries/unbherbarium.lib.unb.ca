@@ -1,7 +1,7 @@
 spt_table:
   -
     status: '1'
-    pages: "/manage/*\r\n/user/login\r\n/collectorlist/*\r\n/countrylist/*\r\n/countylist/*\r\n/provincelist/*"
+    pages: "/manage/*\r\n/user/login\r\n/collectorlist/*\r\n/countrylist/*\r\n/countylist/*\r\n/provincelist/*\r\n/taxonlist/*"
     theme_key: ''
     theme: unbherbarium_admin_theme
     weight: '-10'
