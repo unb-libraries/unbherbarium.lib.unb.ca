@@ -556,17 +556,16 @@ function _unb_herbarium_resave_all_bulk_migration_nodes() {
 }
 
 /**
- * Implements hook_views_post_execute().
+ * Implements hook_theme_suggestions_views_view_field().
  */
-function unb_herbarium_views_post_execute($view) {
-  // Check for a specific View and display.
-//  if ($view->id() == 'my_view_id' && $view->current_display == 'my_display_id') {
-    // Loop through the results and alter them.
-    foreach ($view->result as $key => $row) {
-      // Example: Change a field value.
-      if ($row->taxonomy_term_field_data_name == 'Canada' or $row->taxonomy_term_field_data_name == 'Brazil') {
-        dump($row);
-      }
-    }
-//  }
+function unb_herbarium_theme_suggestions_views_view_field(array $variables) {
+  $suggestions = [];
+
+  if ($variables['view']->id() === 'manage_taxonomy_terms' && 
+      $variables['view']->current_display === 'country' && 
+      $variables['field']->field === 'field_dwc_country_tax') {
+    $suggestions[] = 'views_view_field__manage_taxonomy_terms__field_dwc_country_tax';
+  }
+
+  return $suggestions;
 }
