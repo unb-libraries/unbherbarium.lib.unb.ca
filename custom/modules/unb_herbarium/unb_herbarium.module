@@ -581,8 +581,8 @@ function unb_herbarium_theme_suggestions_views_view_field(array $variables) {
 
   if ($variables['view']->id() === 'manage_taxonomy_terms' && 
       $variables['view']->current_display === 'collector' && 
-      $variables['field']->field === 'field_collector_tid') {
-    $suggestions[] = 'views_view_field__manage_taxonomy_terms__field_collector_tid';
+      $variables['field']->field === 'field_name') {
+    $suggestions[] = 'views_view_field__manage_taxonomy_terms__field_name';
   }
 
   return $suggestions;
