@@ -693,6 +693,10 @@ select {
     justify-content: flex-end;
   }
 }
+.list-group-item {
+  border: none;
+  background: initial;
+}
 
 // Responsive overrides.
 @media (max-width: 414px) {
