@@ -697,6 +697,16 @@ select {
   border: none;
   background: initial;
 }
+#navbar-main {
+  display: block;
+}
+.container > .navbar-header, 
+.container > .navbar-collapse, 
+.container-fluid > .navbar-header, 
+.container-fluid > .navbar-collapse {
+  margin-right: 0;
+  margin-left: 1rem;
+} 
 
 // Responsive overrides.
 @media (max-width: 414px) {
