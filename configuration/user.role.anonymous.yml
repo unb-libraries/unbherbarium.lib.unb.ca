@@ -18,6 +18,7 @@ dependencies:
     - samlauth
     - system
     - taxonomy_access_fix
+    - taxonomy_manager
 _core:
   default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
 id: anonymous
@@ -27,8 +28,10 @@ is_admin: false
 permissions:
   - 'access content'
   - 'access site-wide contact form'
+  - 'access taxonomy manager list'
   - 'export herbarium specimens'
   - 'use text format restricted_html'
+  - 'view any term name'
   - 'view detailed herbarium specimens'
   - 'view sp metadata'
   - 'view terms in herbarium_specimen_collector'

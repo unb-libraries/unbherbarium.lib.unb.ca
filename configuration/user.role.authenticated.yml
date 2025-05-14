@@ -28,6 +28,7 @@ permissions:
   - 'access site-wide contact form'
   - 'export herbarium specimens'
   - 'use text format basic_html'
+  - 'view any term name'
   - 'view detailed herbarium specimens'
   - 'view terms in herbarium_specimen_collector'
   - 'view terms in herbarium_specimen_taxonomy'
