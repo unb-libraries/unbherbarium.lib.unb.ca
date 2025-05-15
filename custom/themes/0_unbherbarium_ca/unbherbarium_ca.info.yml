@@ -21,5 +21,5 @@ regions:
 
 libraries:
   - 'unbherbarium_ca/global-styling'
-  - 'unbherbarium_ca/toggle-navbar'
+#  - 'unbherbarium_ca/toggle-navbar'
   - 'unbherbarium_ca/bootstrap-cdn'

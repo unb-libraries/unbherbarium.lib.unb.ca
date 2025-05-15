@@ -3,13 +3,6 @@ global-styling:
     theme:
       dist/css/style.css: {}
 
-toggle-navbar:
-  js:
-    dist/js/toggle-navbar.js: {}
-  dependencies:
-    - core/drupal
-    - core/once
-
 bootstrap-cdn:
   js:
     //cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js: {}
