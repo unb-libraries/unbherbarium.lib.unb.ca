@@ -706,6 +706,7 @@ select {
 .container-fluid > .navbar-collapse {
   margin-right: 0;
   margin-left: 1rem;
+  overflow: hidden !important;
 } 
 
 // Responsive overrides.
@@ -761,6 +762,30 @@ select {
   }
   .region-sidebar-second {
     margin-top: 2em;
+  }
+  #navbar-main {
+    max-width: 100%;
+    margin: 0;
+    .navbar-header {
+      margin: 0;
+    }
+    #navbar-collapse {
+      position: absolute;
+      width: 100%;
+      margin: 0;
+      * {
+        border: none !important;
+        box-shadow: none !important;
+        background-color: #222 !important;
+        color: #d3d3d3 !important;
+        &:hover {
+          color: white !important;
+        }
+      }
+      #block-unbherbarium-ca-main-menu {
+        background-color: #222;
+      }
+    }
   }
 }
 @media (min-width:768px) and (max-width: 990px) {
