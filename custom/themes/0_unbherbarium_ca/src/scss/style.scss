@@ -766,9 +766,13 @@ select {
   #navbar-main {
     max-width: 100%;
     margin: 0;
+    margin-bottom: 2rem;
     .navbar-header {
       height: 50px;
       margin: 0;
+      .navbar-brand {
+        margin-left: 2rem !important;
+      }
       .region-navigation {
         display: inline-block;
       }
@@ -795,7 +799,7 @@ select {
         }
       }
       #block-unbherbarium-ca-main-menu {
-        background-color: #222;
+        padding-left: 2rem !important;
       }
     }
   }
