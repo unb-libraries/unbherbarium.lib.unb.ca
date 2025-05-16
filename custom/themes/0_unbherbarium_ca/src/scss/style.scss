@@ -767,17 +767,29 @@ select {
     max-width: 100%;
     margin: 0;
     .navbar-header {
+      height: 50px;
       margin: 0;
+      .region-navigation {
+        display: inline-block;
+      }
+      .navbar-toggle {
+        background-color: #404040 !important;
+        border: none;
+        > * {
+          background-color: #d0d0d0 !important;
+        }
+      }
     }
     #navbar-collapse {
       position: absolute;
       width: 100%;
       margin: 0;
+      border-color: #404040;
       * {
         border: none !important;
         box-shadow: none !important;
         background-color: #222 !important;
-        color: #d3d3d3 !important;
+        color: #d0d0d0 !important;
         &:hover {
           color: white !important;
         }
