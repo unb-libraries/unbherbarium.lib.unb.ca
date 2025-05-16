@@ -1,5 +1,9 @@
 services:
-  example.route_subscriber:
+  unb_herbarium.route_subscriber:
     class: Drupal\unb_herbarium\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
+  unb_herbarium.login_redirect_subscriber:
+    class: Drupal\unb_herbarium\EventSubscriber\LoginRedirectSubscriber
     tags:
       - { name: event_subscriber }

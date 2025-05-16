@@ -8,6 +8,7 @@ use Drupal\core\Database\Database;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\Core\Theme\ThemeInitialization;
 use Drupal\Core\Theme\ThemeManagerInterface;
 use Drupal\Core\Url;
@@ -586,4 +587,11 @@ function unb_herbarium_theme_suggestions_views_view_field(array $variables) {
   }
 
   return $suggestions;
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function unb_herbarium_user_login($account) {
+  \Drupal::request()->getSession()->set('custom_login_redirect', '/');
 }
