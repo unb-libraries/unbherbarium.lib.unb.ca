@@ -4,6 +4,7 @@ base theme: claro
 
 name: 'unbherbarium_admin_theme'
 description: 'Administration theme for unbherbarium.lib.unb.ca'
+favicon: dist/img/favicon.svg
 package: 'Claro'
 
 regions:

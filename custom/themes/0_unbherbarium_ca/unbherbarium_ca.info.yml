@@ -4,6 +4,7 @@ base theme: bootstrap
 
 name: 'unbherbarium_ca'
 description: 'Uses the Bootstrap framework Sass source files and must be compiled.'
+favicon: dist/img/favicon.svg
 package: 'Bootstrap'
 
 regions:

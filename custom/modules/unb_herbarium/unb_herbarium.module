@@ -593,5 +593,6 @@ function unb_herbarium_theme_suggestions_views_view_field(array $variables) {
  * Implements hook_user_login().
  */
 function unb_herbarium_user_login($account) {
+  // Redirect to home after login.
   \Drupal::request()->getSession()->set('custom_login_redirect', '/');
 }
