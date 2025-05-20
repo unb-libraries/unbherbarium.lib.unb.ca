@@ -19,10 +19,10 @@ table: ''
 navbar_inverse: 1
 breadcrumb: '0'
 favicon:
-  mimetype: image/png
-  path: ''
+  mimetype: image/svg+xml
+  path: themes/custom/0_unbherbarium_ca/dist/img/favicon.svg
   url: 'http://unbherbarium.lib.unb.ca/themes/custom/0_unbherbarium_ca/favicon.ico'
-  use_default: 1
+  use_default: 0
 _core:
   default_config_hash: bRFagEWOnJOtglJnv0ALb3R7xf4n9wT7J4-1AJ8RNnc
 schemas:
@@ -31,7 +31,7 @@ schemas:
 features:
   comment_user_picture: 1
   comment_user_verification: 1
-  favicon: 0
+  favicon: 1
   node_user_picture: 1
 modal_enabled: 0
 tooltip_placement: 'auto bottom'
@@ -42,3 +42,84 @@ cdn_cache_ttl_themes: 0
 cdn_cache_ttl_assets: 0
 cdn_cache_ttl_library: 0
 reset_http_request_cache: ''
+bootstrap_source: '0'
+bootstrap_enable_color: 0
+bootstrap_system_messages: ''
+bootstrap_table_style: ''
+bootstrap_table_hover: 0
+bootstrap_table_head: ''
+bootstrap_container: container
+bootstrap_region_clean_navigation: 0
+bootstrap_region_width_navigation: 0
+bootstrap_region_class_navigation: row
+bootstrap_region_clean_navigation_collapsible: 0
+bootstrap_region_width_navigation_collapsible: 0
+bootstrap_region_class_navigation_collapsible: row
+bootstrap_region_clean_header: 1
+bootstrap_region_width_header: 0
+bootstrap_region_class_header: ''
+bootstrap_region_clean_highlighted: 1
+bootstrap_region_width_highlighted: 0
+bootstrap_region_class_highlighted: ''
+bootstrap_region_clean_help: 0
+bootstrap_region_width_help: 0
+bootstrap_region_class_help: row
+bootstrap_region_clean_content: 1
+bootstrap_region_width_content: 0
+bootstrap_region_class_content: ''
+bootstrap_region_clean_sidebar_first: 1
+bootstrap_region_width_sidebar_first: 0
+bootstrap_region_class_sidebar_first: ''
+bootstrap_region_clean_sidebar_second: 1
+bootstrap_region_width_sidebar_second: 0
+bootstrap_region_class_sidebar_second: ''
+bootstrap_region_clean_footer: 0
+bootstrap_region_width_footer: 0
+bootstrap_region_class_footer: row
+bootstrap_region_clean_page_top: 0
+bootstrap_region_width_page_top: 0
+bootstrap_region_class_page_top: row
+bootstrap_region_clean_page_bottom: 0
+bootstrap_region_width_page_bottom: 0
+bootstrap_region_class_page_bottom: row
+bootstrap_sidebar_position: left
+bootstrap_content_offset: '0'
+bootstrap_sidebar_collapse: 0
+bootstrap_sidebar_first_width: '2'
+bootstrap_sidebar_first_offset: '0'
+bootstrap_sidebar_second_width: '2'
+bootstrap_sidebar_second_offset: '0'
+bootstrap_hide_node_label: 0
+bootstrap_breadcrumb_divider: ''
+bootstrap_button: 0
+bootstrap_button_type: primary
+bootstrap_button_size: ''
+bootstrap_button_outline: 0
+bootstrap_image_fluid: 0
+bootstrap_navbar_container: 0
+bootstrap_navbar_toggle: navbar-toggleable-xl
+bootstrap_navbar_top_navbar: 0
+bootstrap_navbar_top_position: ''
+bootstrap_navbar_top_color: ''
+bootstrap_navbar_top_background: ''
+bootstrap_navbar_position: ''
+bootstrap_navbar_color: ''
+bootstrap_navbar_background: ''
+bootstrap_navbar_top_class: ''
+bootstrap_navbar_class: ''
+bootstrap_navbar_offcanvas: ''
+bootstrap_navbar_flyout: 0
+bootstrap_navbar_slide: 0
+bootstrap_tabs_style: ''
+bootstrap_messages_widget: default
+bootstrap_messages_widget_toast_delay: '10000'
+bootstrap_float_label: 0
+bootstrap_checkbox: ''
+bootstrap_navbar_top_affix: 0
+bootstrap_navbar_affix: 0
+bootstrap_sidebar_first_affix: 0
+bootstrap_sidebar_second_affix: 0
+bootstrap_scroll_spy: ''
+bootstrap_google_fonts: ''
+bootstrap_bootstrap_icons: 0
+bootstrap_icons: ''
