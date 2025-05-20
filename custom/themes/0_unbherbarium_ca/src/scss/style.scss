@@ -706,7 +706,6 @@ select {
 .container-fluid > .navbar-collapse {
   margin-right: 0;
   margin-left: 1rem;
-  overflow: hidden !important;
 } 
 
 // Responsive overrides.
@@ -714,12 +713,12 @@ select {
   .navbar-brand {
     font-size: 17px;
   }
-
+  
   .pagination > li > a,
   .pagination > li > span {
     padding: 1em 1.2em;
   }
-
+  
   .specimen-details dt,
   .specimen-details dd {
     width: 100%;
@@ -788,6 +787,7 @@ select {
       position: absolute;
       width: 100%;
       margin: 0;
+      overflow: hidden !important;
       border-color: #404040;
       * {
         border: none !important;
