@@ -146,6 +146,7 @@ figure {
   display: table;
   figcaption {
     display: table-caption;
+    width: max-content;
     caption-side: bottom;
   }
 }
