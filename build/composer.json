@@ -155,7 +155,7 @@
     "drupal/search_api_solr": "<4.3.2",
     "drupal/simple_entity_merge": "1.x-dev",
     "drupal/simple_gmap": "<=3.1.0",
-    "drupal/simple_sitemap": "<=4.1.9",
+    "drupal/simple_sitemap": "^4",
     "drupal/switch_page_theme": "^4",
     "drupal/taxonomy_access_fix": "^4",
     "drupal/taxonomy_manager": "<2.0.12",
