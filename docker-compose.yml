@@ -22,7 +22,7 @@ services:
     env_file:
       - ./env/redis.env
   drupal-solr-lib-unb-ca:
-    image: ghcr.io/unb-libraries/solr-drupal:8.x-4.x
+    image: ghcr.io/unb-libraries/solr-drupal:8.x-10.x
     restart: unless-stopped
     env_file:
       - ./env/solr.env
