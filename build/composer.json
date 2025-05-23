@@ -67,9 +67,6 @@
       ]
     },
     "patches": {
-      "drupal/core": {
-        "Fix 3410100 for Footnotes CKEditor 5 plugin": "/build/patches/cke5-footnotes-3410100.patch"
-      },
       "drupal/migrate_tools": {
         "Fix 3512203 for migrate_tools": "https://www.drupal.org/files/issues/2025-03-24/update-failed-3512203-3.patch"
       }
@@ -139,17 +136,17 @@
     "drupal/core-composer-scaffold": "^10",
     "drupal/core-recommended": "^10",
     "drupal/csv_serialization": "^4",
-    "drupal/editor_file": "2.1.x-dev",
+    "drupal/editor_file": "^2",
     "drupal/field_group": "^3",
-    "drupal/footnotes": "4.0.0-beta6",
-    "drupal/google_analytics": "4.0.3",
-    "drupal/health_check": "<=2.0.1",
+    "drupal/footnotes": "^4",
+    "drupal/google_analytics": "^4",
+    "drupal/health_check": "^2",
     "drupal/honeypot": "^2",
     "drupal/migrate_plus": "^6",
     "drupal/migrate_source_csv": "^3",
     "drupal/migrate_tools": "^6",
-    "drupal/pathauto": "1.13",
-    "drupal/redis": "1.9",
+    "drupal/pathauto": "^1",
+    "drupal/redis": "^1",
     "drupal/samlauth": "^3",
     "drupal/search_api": "^1",
     "drupal/search_api_solr": "^4",
@@ -160,11 +157,11 @@
     "drupal/taxonomy_access_fix": "^4",
     "drupal/taxonomy_manager": "^2",
     "drupal/token": "^1",
-    "drupal/tvi": "2.0.x-dev",
+    "drupal/tvi": "^2",
     "drupal/twig_field_value": "^2",
     "drupal/views_autocomplete_filters": "^1",
     "drupal/views_slideshow": "^5",
-    "harvesthq/chosen": "~1.8",
+    "harvesthq/chosen": "^1",
     "jquery/json2": "dev-master",
     "league/csv": "^9",
     "malsup/jquery.cycle": "^1",
