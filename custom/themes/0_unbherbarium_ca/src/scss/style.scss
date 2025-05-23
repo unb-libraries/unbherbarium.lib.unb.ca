@@ -146,8 +146,10 @@ figure {
   display: table;
   figcaption {
     display: table-caption;
-    width: max-content;
     caption-side: bottom;
+    &:not(.custom-caption) {
+      width: max-content;
+    }
   }
 }
 dd {
@@ -858,6 +860,10 @@ select {
 
     li.search-choice {
       margin: 5px 3px 0 0;
+      & > span {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 1.3rem;
+      }
     }
 
     li.search-field input[type="text"] {
