@@ -68,7 +68,7 @@ third_party_settings:
         - field_dwc_habitat
         - field_dwc_eventremarks
         - field_dwc_occurrenceremarks
-      label: 'Specimen Details'
+      label: 'Location Details and Comments'
       region: content
       parent_name: group_initially_hidden_details
       weight: 60
@@ -99,7 +99,7 @@ third_party_settings:
     group_previous_identifications:
       children:
         - field_previous_identifications
-      label: 'Previous Identifications'
+      label: 'Determinations'
       region: content
       parent_name: group_initially_hidden_details
       weight: 62
@@ -161,7 +161,7 @@ third_party_settings:
         - group_date
         - group_previous_identifications
         - group_details_license
-      label: 'Initially Hidden Details'
+      label: 'Specimen Details'
       region: content
       parent_name: ''
       weight: 4
