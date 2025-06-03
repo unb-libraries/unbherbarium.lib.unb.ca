@@ -817,8 +817,8 @@ select {
     #block-unbherbarium-ca-main-menu {
       .navbar-nav {
         flex-direction: row !important;
-        &:first-child {
-          margin-left: 0 !important;
+        &:first-child > a {
+          padding-left: 0 !important;
         }
       }
     }
