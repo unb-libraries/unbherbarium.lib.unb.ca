@@ -805,6 +805,11 @@ select {
   }
 }
 @media (min-width:768px) and (max-width: 990px) {
+  #block-unbherbarium-ca-main-menu-menu {
+    .navbar-nav {
+      flex-direction: row !important;
+    }
+  }
   .region-sidebar-second #views-exposed-form-unb-search-page .form-item-query,
   .region-sidebar-second #edit-actions {
     max-width: 100%;
