@@ -812,9 +812,15 @@ select {
   }
 }
 @media (min-width:768px) and (max-width: 990px) {
-  #block-unbherbarium-ca-main-menu {
-    .navbar-nav {
-      flex-direction: row !important;
+  .region-navigation-collapsible {
+    display: block !important;
+    #block-unbherbarium-ca-main-menu {
+      .navbar-nav {
+        flex-direction: row !important;
+        &:first-child {
+          margin-left: 0 !important;
+        }
+      }
     }
   }
   .region-sidebar-second #views-exposed-form-unb-search-page .form-item-query,
