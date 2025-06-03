@@ -817,9 +817,6 @@ select {
     #block-unbherbarium-ca-main-menu {
       .navbar-nav {
         flex-direction: row !important;
-        &:first-child > a {
-          padding-left: 0 !important;
-        }
       }
     }
   }
@@ -853,6 +850,13 @@ select {
         margin-left: 1.8rem;
       }
     }
+  }
+}
+
+@media (min-width: 1450px) {
+  .container {
+    max-width: 1400px !important;
+    width: 1400px;
   }
 }
 
