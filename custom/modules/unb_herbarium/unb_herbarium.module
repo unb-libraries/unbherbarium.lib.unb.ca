@@ -205,14 +205,31 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
     $specimen_image = $variables['elements']['field_large_sample_surrogate'][0];
     // Create styled quick view image render array.
     $qimg = $specimen_image;
-    $qimg['#theme'] = 'image_style';
-    $qimg['#style_name'] = 'thumbnail';
+
+    if (!empty($qimg['#item'])) {
+      $item = $qimg['#item'];
+      
+      if ($item instanceof \Drupal\image\Plugin\Field\FieldType\ImageItem && $item->entity) {
+        $file_uri = $item->entity->getFileUri();
+        $alt = $item->alt ?? '';
+        $title = $item->title ?? '';
+        
+        $qimg = [
+          '#theme' => 'image_style',
+          '#style_name' => 'thumbnail',
+          '#uri' => $file_uri,
+          '#alt' => $alt,
+          '#title' => $title,
+        ];
+      }
+    }
   }
 
   if ($specimen_image) {
     $specimen_image['#prefix'] = '<figure class="specimen-image">';
     $specimen_image['#suffix'] = '<figcaption class="description">';
     $download_url = $specimen_image['#url']->toString();
+
     if ($access_hires) {
       // Override image link destination: High Resolution Image route.
       $specimen_image['#url'] = Url::fromRoute(
@@ -235,9 +252,17 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
         '</a>';
     }
 
-    $modal_id = 'qImgModal';
-
     // Build quick view modal render array.
+    $modal_id = 'qImgModal';
+    $download_link = [
+      '#markup' => '<a class="download-link" href="' . 
+      $download_url . '" download="unbherbarium-' . 
+      $node->get('field_dwc_record_number')->getString() . 
+      '"><i class="glyphicon glyphicon-download-alt"></i>' . 
+      t('Download image (JPEG)') . 
+      '</a>',
+    ];
+
     $qimg_modal = [
       '#type' => 'container',
       '#attributes' => [
@@ -259,7 +284,7 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
             'title' => [
               '#type' => 'html_tag',
               '#tag' => 'h5',
-              '#value' => t('Image Preview'),
+              '#value' => t('Standard resolution image'),
               '#attributes' => ['class' => ['modal-title'], 'id' => $modal_id . 'Label'],
             ],
             'close' => [
@@ -281,6 +306,8 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
           'footer' => [
             '#type' => 'container',
             '#attributes' => ['class' => ['modal-footer']],
+            'download_link' => $download_link,
+            /*
             'close_button' => [
               '#type' => 'html_tag',
               '#tag' => 'button',
@@ -291,17 +318,15 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
                 'data-bs-dismiss' => 'modal',
               ],
             ],
+            */
           ],
         ],
       ],
     ];
 
-    // Pass $modal to your template, or render it directly:
-    $output = \Drupal::service('renderer')->render($qimg_modal);
-
-    // Add 'download' text link to figure caption.
+    // Add 'view' text link to figure caption.
     $specimen_image['#suffix'] .=
-      '<a class="download-link" href="#" data-bs-toggle="modal" data-bs-target="#' . $modal_id .'">' .
+      '<a href="#" data-bs-toggle="modal" data-bs-target="#' . $modal_id .'">' .
         '<i class="glyphicon glyphicon-eye-open"></i>' . 
         t('View standard resolution image') .
       '</a>';
