@@ -203,6 +203,10 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
 
   if (isset($variables['elements']['field_large_sample_surrogate'][0])) {
     $specimen_image = $variables['elements']['field_large_sample_surrogate'][0];
+    // Create styled quick view image render array.
+    $qimg = $specimen_image;
+    $qimg['#theme'] = 'image_style';
+    $qimg['#style_name'] = 'thumbnail';
   }
 
   if ($specimen_image) {
@@ -230,6 +234,79 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
         t('View full size image') .
         '</a>';
     }
+
+    $modal_id = 'qImgModal';
+
+    // Build quick view modal render array.
+    $qimg_modal = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => ['modal', 'fade'],
+        'id' => $modal_id,
+        'tabindex' => '-1',
+        'aria-labelledby' => $modal_id . 'Label',
+        'aria-hidden' => 'true',
+      ],
+      'dialog' => [
+        '#type' => 'container',
+        '#attributes' => ['class' => ['modal-dialog']],
+        'content' => [
+          '#type' => 'container',
+          '#attributes' => ['class' => ['modal-content']],
+          'header' => [
+            '#type' => 'container',
+            '#attributes' => ['class' => ['modal-header']],
+            'title' => [
+              '#type' => 'html_tag',
+              '#tag' => 'h5',
+              '#value' => t('Image Preview'),
+              '#attributes' => ['class' => ['modal-title'], 'id' => $modal_id . 'Label'],
+            ],
+            'close' => [
+              '#type' => 'html_tag',
+              '#tag' => 'button',
+              '#attributes' => [
+                'type' => 'button',
+                'class' => ['btn-close'],
+                'data-bs-dismiss' => 'modal',
+                'aria-label' => 'Close',
+              ],
+            ],
+          ],
+          'body' => [
+            '#type' => 'container',
+            '#attributes' => ['class' => ['modal-body']],
+            'image' => $qimg,
+          ],
+          'footer' => [
+            '#type' => 'container',
+            '#attributes' => ['class' => ['modal-footer']],
+            'close_button' => [
+              '#type' => 'html_tag',
+              '#tag' => 'button',
+              '#value' => t('Close'),
+              '#attributes' => [
+                'type' => 'button',
+                'class' => ['btn', 'btn-secondary'],
+                'data-bs-dismiss' => 'modal',
+              ],
+            ],
+          ],
+        ],
+      ],
+    ];
+
+    // Pass $modal to your template, or render it directly:
+    $output = \Drupal::service('renderer')->render($qimg_modal);
+
+    // Add 'download' text link to figure caption.
+    $specimen_image['#suffix'] .=
+      '<a class="download-link" href="#" data-bs-toggle="modal" data-bs-target="#' . $modal_id .'">' .
+        '<i class="glyphicon glyphicon-eye-open"></i>' . 
+        t('View standard resolution image') .
+      '</a>';
+
+    /*
     // Add 'download' text link to figure caption.
     $specimen_image['#suffix'] .=
       '<a class="download-link" href="' .
@@ -241,9 +318,11 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
       '"><i class="glyphicon glyphicon-download-alt"></i>' .
       t('Download image (JPEG)') .
       '</a>';
+    */
 
     $specimen_image['#suffix'] .= '</figcaption></figure>';
     $variables['specimen_image'] = $specimen_image;
+    $variables['qimg_modal'] = $qimg_modal;
   }
 
 }

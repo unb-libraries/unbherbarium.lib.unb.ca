@@ -620,6 +620,9 @@ figure a {
 }
 
 // BS5 adjustments.
+.modal.fade.show {
+  opacity: 1 !important;
+}
 input {
   box-shadow: none !important;
   outline: none !important;
