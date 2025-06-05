@@ -1,0 +1,15 @@
+uuid: 0c85200a-3e42-43f4-a0df-21d2f3cf87dc
+langcode: en
+status: true
+dependencies: {  }
+name: 640h
+label: '640px height'
+effects:
+  0b89bfb1-f693-4f43-86a3-68b14039a2ad:
+    uuid: 0b89bfb1-f693-4f43-86a3-68b14039a2ad
+    id: image_scale
+    weight: 1
+    data:
+      width: null
+      height: 640
+      upscale: true
