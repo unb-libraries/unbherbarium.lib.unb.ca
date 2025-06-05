@@ -817,19 +817,15 @@ select {
     }
   }
 }
-@media (min-width:768px) {
-  #block-unbherbarium-ca-main-menu {
-    .navbar-nav {
-      flex-direction: row !important;
-    }
-  }
-}
-@media (min-width:768px) and (max-width: 990px) {
+@media (min-width:768px) and (max-width: 992px) {
   .region-navigation-collapsible {
     display: block !important;
     #block-unbherbarium-ca-main-menu {
       .navbar-nav {
+        position: relative;
+        left: -22px;
         flex-direction: row !important;
+        width: max-content !important;
       }
     }
   }
