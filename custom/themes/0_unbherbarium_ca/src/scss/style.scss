@@ -622,6 +622,10 @@ figure a {
 // BS5 adjustments.
 .modal.fade.show {
   opacity: 1 !important;
+  .modal-content {
+    position: absolute;
+    width: auto;
+  }
 }
 input {
   box-shadow: none !important;
