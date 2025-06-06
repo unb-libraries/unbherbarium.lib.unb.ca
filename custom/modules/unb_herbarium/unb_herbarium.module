@@ -216,7 +216,7 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
         
         $qimg = [
           '#theme' => 'image_style',
-          '#style_name' => '720h',
+          '#style_name' => '640h',
           '#uri' => $file_uri,
           '#alt' => $alt,
           '#title' => $title,
