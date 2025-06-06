@@ -216,7 +216,7 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
         
         $qimg = [
           '#theme' => 'image_style',
-          '#style_name' => '640h',
+          '#style_name' => '1080h',
           '#uri' => $file_uri,
           '#alt' => $alt,
           '#title' => $title,
@@ -281,12 +281,6 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
           'header' => [
             '#type' => 'container',
             '#attributes' => ['class' => ['modal-header']],
-            'title' => [
-              '#type' => 'html_tag',
-              '#tag' => 'h5',
-              '#value' => t('Standard resolution image'),
-              '#attributes' => ['class' => ['modal-title'], 'id' => $modal_id . 'Label'],
-            ],
             'close' => [
               '#type' => 'html_tag',
               '#tag' => 'button',
@@ -316,7 +310,7 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
     $specimen_image['#suffix'] .=
       '<a href="#" data-bs-toggle="modal" data-bs-target="#' . $modal_id .'">' .
         '<i class="glyphicon glyphicon-eye-open"></i>' . 
-        t('View standard resolution image') .
+        t('View standard image') .
       '</a>';
 
     $specimen_image['#suffix'] .= '</figcaption></figure>';

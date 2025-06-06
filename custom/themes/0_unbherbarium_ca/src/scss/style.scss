@@ -625,10 +625,19 @@ figure a {
   .modal-dialog {
     margin-top: 0;
     .modal-content {
-      position: absolute;
-      width: auto;
-      img {
-        height: 80vh;
+      position: fixed;
+      .modal-header {
+        padding: 6px !important;
+        button {
+          scale: .8;
+        }
+      }
+      .modal-body {
+        overflow: scroll;
+        height: 78vh;
+        width: 97.5%;
+        img {
+        }
       }
     }
   }
