@@ -626,6 +626,8 @@ figure a {
     margin-top: 0;
     .modal-content {
       position: fixed;
+      max-width: 96vw;
+      width: fit-content;
       .modal-header {
         padding: 6px !important;
         button {
@@ -634,8 +636,8 @@ figure a {
       }
       .modal-body {
         overflow: scroll;
-        height: 78vh;
-        width: 97.5%;
+        height: 88vh;
+        width: 98%;
         img {
         }
       }
@@ -857,6 +859,11 @@ select {
     width: 100%;
   }
 }
+@media (min-width:800px) {
+  .modal-body {
+    overflow: hidden !important;
+  }
+}
 @media (min-width:990px) {
   .region-navigation-collapsible {
     #block-unbherbarium-ca-main-menu {
@@ -887,6 +894,13 @@ select {
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .modal-dialog {
+    margin: 0 2vw;
+  }
+}
+
 
 @media (min-width: 1450px) {
   .container {
