@@ -99,7 +99,7 @@ third_party_settings:
     group_previous_identifications:
       children:
         - field_previous_identifications
-      label: 'Determinations'
+      label: Determinations
       region: content
       parent_name: group_initially_hidden_details
       weight: 62

@@ -3,3 +3,10 @@ herbarium_specimen:
   css:
     theme:
       css/unb_herbarium.herbarium_specimen.css: {}
+
+colorbox_force:
+  js:
+    js/colorbox-force.js: {}
+  dependencies:
+    - core/jquery
+    - colorbox/colorbox

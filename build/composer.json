@@ -112,6 +112,18 @@
       "type": "package"
     },
     {
+      "type": "package",
+      "package": {
+        "name": "jackmoore/colorbox",
+        "version": "1.6.4",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://github.com/jackmoore/colorbox/archive/refs/tags/1.6.4.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
       "package": {
         "dist": {
           "type": "zip",
@@ -131,6 +143,7 @@
     "drupal/admin_toolbar": "3.x-dev",
     "drupal/bootstrap": "^5",
     "drupal/chosen": "^4",
+    "drupal/colorbox": "^2",
     "drupal/config_update": "^2",
     "drupal/core": "^10",
     "drupal/core-composer-scaffold": "^10",
@@ -162,6 +175,7 @@
     "drupal/views_autocomplete_filters": "^1",
     "drupal/views_slideshow": "^5",
     "harvesthq/chosen": "^1",
+    "jackmoore/colorbox": "^1",
     "jquery/json2": "dev-master",
     "league/csv": "^9",
     "malsup/jquery.cycle": "^1",

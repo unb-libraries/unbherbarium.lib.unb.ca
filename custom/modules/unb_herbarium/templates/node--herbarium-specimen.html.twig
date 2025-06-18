@@ -1,3 +1,4 @@
+{{ attach_library('colorbox/default') }}
 {{ attach_library('unb_herbarium/herbarium_specimen') }}
 {{ attach_library('herbarium_specimen/views-form') }}
 
@@ -348,7 +349,7 @@
         </main>
         <aside>
             {% if specimen_image %}
-                {{ specimen_image }}
+                {{ specimen_image|raw }}
             {% endif %}
 
             {% if content.field_gmap|field_value %}
