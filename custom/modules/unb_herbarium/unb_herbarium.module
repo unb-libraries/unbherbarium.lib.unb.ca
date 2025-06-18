@@ -203,26 +203,6 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
 
   if (isset($variables['elements']['field_large_sample_surrogate'][0])) {
     $specimen_image = $variables['elements']['field_large_sample_surrogate'][0];
-    // Create styled quick view image render array.
-    $qimg = $specimen_image;
-
-    if (!empty($qimg['#item'])) {
-      $item = $qimg['#item'];
-      
-      if ($item instanceof \Drupal\image\Plugin\Field\FieldType\ImageItem && $item->entity) {
-        $file_uri = $item->entity->getFileUri();
-        $alt = $item->alt ?? '';
-        $title = $item->title ?? '';
-        
-        $qimg = [
-          '#theme' => 'image_style',
-          '#style_name' => '1080h',
-          '#uri' => $file_uri,
-          '#alt' => $alt,
-          '#title' => $title,
-        ];
-      }
-    }
   }
 
   if ($specimen_image) {
@@ -251,71 +231,20 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
         t('View full size image') .
         '</a>';
     }
-
-    // Build quick view modal render array.
-    $modal_id = 'qImgModal';
-    $download_link = [
-      '#markup' => '<a class="download-link" href="' . 
-      $download_url . '" download="unbherbarium-' . 
-      $node->get('field_dwc_record_number')->getString() . 
-      '"><i class="glyphicon glyphicon-download-alt"></i>' . 
-      t('Download image (JPEG)') . 
-      '</a>',
-    ];
-
-    $qimg_modal = [
-      '#type' => 'container',
-      '#attributes' => [
-        'class' => ['modal', 'fade'],
-        'id' => $modal_id,
-        'tabindex' => '-1',
-        'aria-labelledby' => $modal_id . 'Label',
-        'aria-hidden' => 'true',
-      ],
-      'dialog' => [
-        '#type' => 'container',
-        '#attributes' => ['class' => ['modal-dialog']],
-        'content' => [
-          '#type' => 'container',
-          '#attributes' => ['class' => ['modal-content']],
-          'header' => [
-            '#type' => 'container',
-            '#attributes' => ['class' => ['modal-header']],
-            'close' => [
-              '#type' => 'html_tag',
-              '#tag' => 'button',
-              '#attributes' => [
-                'type' => 'button',
-                'class' => ['btn-close'],
-                'data-bs-dismiss' => 'modal',
-                'aria-label' => 'Close',
-              ],
-            ],
-          ],
-          'body' => [
-            '#type' => 'container',
-            '#attributes' => ['class' => ['modal-body']],
-            'image' => $qimg,
-          ],
-          'footer' => [
-            '#type' => 'container',
-            '#attributes' => ['class' => ['modal-footer']],
-            'download_link' => $download_link,
-          ],
-        ],
-      ],
-    ];
-
-    // Add 'view' text link to figure caption.
+    // Add 'download' text link to figure caption.
     $specimen_image['#suffix'] .=
-      '<a href="#" data-bs-toggle="modal" data-bs-target="#' . $modal_id .'">' .
-        '<i class="glyphicon glyphicon-eye-open"></i>' . 
-        t('View standard image') .
+      '<a class="download-link" href="' .
+      $download_url .
+      '" download="unbherbarium-' .
+      $node
+        ->get('field_dwc_record_number')
+        ->getString() .
+      '"><i class="glyphicon glyphicon-download-alt"></i>' .
+      t('Download image (JPEG)') .
       '</a>';
 
     $specimen_image['#suffix'] .= '</figcaption></figure>';
     $variables['specimen_image'] = $specimen_image;
-    $variables['qimg_modal'] = $qimg_modal;
   }
 
 }

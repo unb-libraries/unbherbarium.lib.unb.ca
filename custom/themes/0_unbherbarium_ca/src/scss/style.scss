@@ -620,30 +620,6 @@ figure a {
 }
 
 // BS5 adjustments.
-.modal.fade.show {
-  opacity: 1 !important;
-  .modal-dialog {
-    margin-top: 0;
-    .modal-content {
-      position: fixed;
-      max-width: 96vw;
-      width: fit-content;
-      .modal-header {
-        padding: 6px !important;
-        button {
-          scale: .8;
-        }
-      }
-      .modal-body {
-        overflow: scroll;
-        height: 88vh;
-        width: 98%;
-        img {
-        }
-      }
-    }
-  }
-}
 input {
   box-shadow: none !important;
   outline: none !important;
