@@ -19,8 +19,8 @@ dockworker:
       uuid: 3081
     framework:
       name: Drupal
-      version: 9
-      startup_finished_marker: '99_zz_notify_user_URI'
+      version: 10
+      startup_finished_marker: '99_startup_sequence_complete'
       endpoint:
         name: http
         port: 80
