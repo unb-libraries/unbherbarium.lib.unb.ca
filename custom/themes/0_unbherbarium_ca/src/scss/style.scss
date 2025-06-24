@@ -706,26 +706,7 @@ select {
 .container-fluid > .navbar-collapse {
   margin-right: 0;
   margin-left: 1rem;
-}
-// Colorbox
-#colorbox {
-  max-height: 95vh;
-  #cboxWrapper {
-    height: -webkit-fill-available !important;
-    #cboxContent {
-      height: fit-content !important;
-      #cboxLoadedContent {
-        max-height: calc(88vh - 34px);
-        width: fit-content !important;
-        margin-bottom: 34px;
-        #cboxClose {
-          position: relative;
-          float: inline-end;
-        }
-      }
-    }
-  }
-}
+} 
 
 // Responsive overrides.
 @media (max-width: 414px) {
