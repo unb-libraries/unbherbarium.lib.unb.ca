@@ -67,12 +67,10 @@ dd li {
   display: block;
   max-width: 100%;
   vertical-align: top;
+  text-align: center;
 }
 .specimen-details figure > a {
   display: block;
-}
-.specimen-details figure {
-  text-align: center;
 }
 .specimen-details .field--type-image img {
   margin-bottom: 0;
