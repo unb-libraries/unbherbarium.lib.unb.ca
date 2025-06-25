@@ -142,7 +142,7 @@ dd li {
 @media (min-width: 1024px) {
   .specimen-details main {
     float: left;
-    width: 76%;
+    width: 75%;
   }
   .specimen-details aside {
     float: right;
@@ -160,7 +160,7 @@ dd li {
 }
 @media (min-width: 1200px) {
   .specimen-details main {
-    width: 80%;
+    width: 79%;
   }
   .specimen-details aside {
     max-width: 20%;
