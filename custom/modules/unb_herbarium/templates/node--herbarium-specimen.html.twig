@@ -348,8 +348,11 @@
             </section>
         </main>
         <aside>
-            {% if specimen_image %}
-                {{ specimen_image|raw }}
+            {% if content.field_large_sample_surrogate|field_value %}
+                <figure class="specimen-image">
+                    {{ content.field_large_sample_surrogate|field_value }}
+                    {% if specimen_image_links %}{{ specimen_image_links }}{% endif %}
+                </figure>
             {% endif %}
 
             {% if content.field_gmap|field_value %}
