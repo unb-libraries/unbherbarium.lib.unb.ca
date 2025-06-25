@@ -67,7 +67,6 @@ dd li {
   display: block;
   max-width: 100%;
   vertical-align: top;
-  text-align: center;
 }
 .specimen-details figure > a {
   display: block;
@@ -165,5 +164,9 @@ dd li {
   }
   .specimen-details aside {
     max-width: 20%;
+  }
+  .specimen-details aside figure,
+  .specimen-details aside .gmap {
+    text-align: center;
   }
 }
