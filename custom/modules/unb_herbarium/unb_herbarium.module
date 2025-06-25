@@ -262,7 +262,7 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
         $specimen_image['image_download'],
         $specimen_image['image_view'],
       ],
-      '#prefix' => '<figcaption class="description">',
+      '#prefix' => '<figcaption class="description text-left">',
       '#suffix' => '</figcaption>',
       '#theme' => 'item_list',
       '#type' => 'ul',
