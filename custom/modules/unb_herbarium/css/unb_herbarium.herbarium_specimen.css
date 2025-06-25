@@ -17,6 +17,7 @@
 
 .gmap iframe {
   border: 1px solid #ececec!important;
+  width: 220px;
 }
 
 .toggle-default-off {
@@ -63,27 +64,17 @@ dd li {
 }
 .specimen-details aside figure,
 .specimen-details aside .gmap {
-  display: inline-block;
+  display: block;
   max-width: 100%;
   vertical-align: top;
 }
-.specimen-details aside figure {
-  margin: 0 1em 1em 0;
-}
-
 .specimen-details figure > a {
   display: block;
 }
 .specimen-details .field--type-image img {
   margin-bottom: 0;
 }
-.gmap,
-.specimen-image { /* add loading indicator for gmap */
-  display: inline-block;
-  width: 210px;
-  max-width: 100%;
-}
-.gmap,
+.gmap iframe,
 .specimen-details figure > a {
   background: url(../images/ajax-loader.gif) no-repeat center center;
   min-height: 305px;
