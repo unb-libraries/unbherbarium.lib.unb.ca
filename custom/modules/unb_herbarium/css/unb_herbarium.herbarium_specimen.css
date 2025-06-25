@@ -59,6 +59,9 @@ dd ul {
 dd li {
   list-style-type: none;
 }
+.specimen-details {
+  text-align: center;
+}
 .specimen-details main {
   margin-bottom: .5em;
 }
