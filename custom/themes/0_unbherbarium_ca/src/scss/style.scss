@@ -251,6 +251,11 @@ label {
   padding: .5em;
   text-decoration: none;
 }
+.toggle-wrapper input[type="checkbox"] {
+  margin: 0 0 2px 0;
+  transform: scale(1.25);
+  vertical-align: middle;
+}
 #toggle-widget:hover,
 .toggle-wrapper label:hover {
   cursor: pointer;
