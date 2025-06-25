@@ -248,11 +248,6 @@ function unb_herbarium_preprocess_node__herbarium_specimen(&$variables) {
       ];
     }
     else {
-      $hires_image_link = Url::fromRoute(
-        'herbarium_specimen.inspect_specimen', [
-          'node' => $node->id(),
-        ]
-      );
       $full_size_link = Link::fromTextAndUrl(
         Markup::create('<i class="glyphicon glyphicon-picture"></i>Open full size image'),
         Url::fromUri($specimen_image_url)
