@@ -377,7 +377,7 @@ content:
       iframe_title: ''
       static_scale: 2
       zoom_level: 9
-      link_text: 'View larger map'
+      link_text: 'Open in Google Maps'
       map_type: k
       langcode: page
       apikey: ''
