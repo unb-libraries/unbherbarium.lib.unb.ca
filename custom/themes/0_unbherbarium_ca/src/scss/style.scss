@@ -690,6 +690,20 @@ select {
       .page-link {
         font-size: 16px;
       }
+
+      span.page-link {
+        margin-top: 2px;
+
+        &:hover {
+          background-color: inherit;
+        }
+      }
+
+      &.active {
+        span.page-link:hover {
+          background-color: #567410;
+        }
+      }
     }
   }
 }
