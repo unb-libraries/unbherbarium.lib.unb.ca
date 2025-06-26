@@ -1,29 +1,39 @@
+/* Utility */
 .clear:after,
 .specimen-details aside:after {
   content: "";
   clear: both;
   display: table;
 }
-
-.description {
-  color: #888;
-  font-size: .92em;
-  margin: .5em auto 0 auto;
+.fieldset-toggle legend input,
+.fieldset-toggle legend label {
+  display: inline-block;
 }
-
+.fieldset-toggle legend label {
+  margin-right: .25em;
+}
+.fieldset-toggle {
+  border: none;
+  border-top: 1px solid #ddd;
+  padding: 0;
+}
+.fieldset-toggle .views-exposed-form input {
+  height: 2em;
+}
 .specimen-details a div {
   display: inline;
 }
-
-.gmap iframe {
-  border: 1px solid #ececec!important;
-  width: 220px;
+.specimen-details .field--type-image img {
+  margin-bottom: 0;
 }
-
 .toggle-default-off {
   display: none;
 }
 
+/* Specimen Details Main */
+.specimen-details main {
+  margin-bottom: .5em;
+}
 /* dl default display */
 header dl {
   display: none;
@@ -59,8 +69,15 @@ dd ul {
 dd li {
   list-style-type: none;
 }
-.specimen-details main {
-  margin-bottom: .5em;
+
+/* Specimen Details Aside */
+.specimen-details aside > :nth-child(2) {
+  border-top: 2px solid rgb(221, 221, 221);
+  margin-top: 2rem;
+  padding-top: 2rem;
+}
+.specimen-details aside .description {
+  font-size: inherit;
 }
 .specimen-details aside figure,
 .specimen-details aside .gmap {
@@ -68,34 +85,21 @@ dd li {
   max-width: 100%;
   vertical-align: top;
 }
-.specimen-details figure > a {
-  display: block;
+.specimen-details .gmap iframe {
+  border: 1px solid #ececec!important;
+  width: 220px;
 }
-.specimen-details .field--type-image img {
-  margin-bottom: 0;
-}
-.gmap iframe,
-.specimen-details figure > a {
+.specimen-details figure > a,
+.specimen-details.gmap iframe {
   background: url(../images/ajax-loader.gif) no-repeat center center;
   display: inline-block;
   min-height: 305px;
 }
-
-.fieldset-toggle legend input,
-.fieldset-toggle legend label {
+.simple-gmap-link a {
   display: inline-block;
 }
-.fieldset-toggle legend label {
-  margin-right: .25em;
-}
-.fieldset-toggle {
-  border: none;
-  border-top: 1px solid #ddd;
-  padding: 0;
-}
-.fieldset-toggle .views-exposed-form input {
-  height: 2em;
-}
+
+/* Responsive Adjustments */
 @media (min-width: 568px) {
   /* dl table display */
   main {

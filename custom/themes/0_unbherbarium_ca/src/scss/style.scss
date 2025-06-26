@@ -179,10 +179,6 @@ p {
 .specimen-details dd {
   width: 59%;
 }
-aside > * {
-  border-top: 4px solid $color-border-dark;
-  padding: 1.25em 0;
-}
 aside h2 {
   font-size: 1em;
   letter-spacing: .05em;
@@ -380,8 +376,7 @@ h1 {
 }
 .footer {
   border: none;
-  margin-top: 1em;
-  padding: 1em 0;
+  margin-top: 0;
 }
 footer section {
   text-align: center;
@@ -524,9 +519,15 @@ select#edit-parent {
 .dedication {
   color: $color-desc;
   margin-bottom: 1em;
+  padding: 0 0.75rem;
 }
 .dedication a {
   color: $color-desc;
+}
+.description {
+  color: #888;
+  font-size: .92em;
+  margin: .5em auto 0 auto;
 }
 .flora-nb-block-thumb {
   display: block;
