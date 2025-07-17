@@ -1,0 +1,11 @@
+uuid: 16cc68f2-1712-4c6f-af1d-f4a35b2eca0b
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.herb_pdf
+id: media.herb_pdf
+target_entity_type_id: media
+target_bundle: herb_pdf
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,29 @@
+uuid: 07ddc9d9-ead2-4387-847b-a613536eae8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.herb_pdf.field_media_file
+    - media.type.herb_pdf
+  module:
+    - file
+id: media.herb_pdf.default
+targetEntityType: media
+bundle: herb_pdf
+mode: default
+content:
+  field_media_file:
+    type: file_default
+    label: visually_hidden
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true
