@@ -58,6 +58,12 @@ a:visited,
   color: $color-link;
   text-decoration: none;
 }
+aside > * {
+  padding: 2rem;
+  &:first-child {
+    border-bottom: 1px solid #bbb;
+  }
+}
 article a:link,
 article a:visited,
 aside a:link,
