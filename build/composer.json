@@ -148,7 +148,7 @@
     "drupal/field_group": "^3",
     "drupal/footnotes": "^4",
     "drupal/google_analytics": "^4",
-    "drupal/health_check": "^2",
+    "drupal/health_check": "^3",
     "drupal/honeypot": "^2",
     "drupal/migrate_plus": "^6",
     "drupal/migrate_source_csv": "^3",
