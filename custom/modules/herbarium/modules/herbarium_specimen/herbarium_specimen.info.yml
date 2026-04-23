@@ -1,7 +1,7 @@
 name: 'Herbarium Specimen'
 description: 'Herbarium Specimen'
 type: module
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^9 || ^10 || ^11
 dependencies:
   - chosen
   - datetime

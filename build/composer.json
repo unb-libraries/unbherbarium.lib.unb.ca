@@ -140,9 +140,9 @@
     "drupal/chosen": "^4",
     "drupal/colorbox": "^2",
     "drupal/config_update": "^2",
-    "drupal/core": "^10",
-    "drupal/core-composer-scaffold": "^10",
-    "drupal/core-recommended": "^10",
+    "drupal/core": "^11",
+    "drupal/core-composer-scaffold": "^11",
+    "drupal/core-recommended": "^11",
     "drupal/csv_serialization": "^4",
     "drupal/editor_file": "^2",
     "drupal/field_group": "^3",
@@ -161,13 +161,12 @@
     "drupal/simple_entity_merge": "^1",
     "drupal/simple_gmap": "^3",
     "drupal/simple_sitemap": "^4",
-    "drupal/switch_page_theme": "^4",
     "drupal/taxonomy_access_fix": "^4",
     "drupal/taxonomy_manager": "^2",
     "drupal/token": "^1",
     "drupal/tvi": "^2",
     "drupal/twig_field_value": "^2",
-    "drupal/views_autocomplete_filters": "^1",
+    "drupal/views_autocomplete_filters": "^2",
     "drupal/views_slideshow": "^5",
     "harvesthq/chosen": "^1",
     "jackmoore/colorbox": "^1",
@@ -176,11 +175,11 @@
     "malsup/jquery.cycle": "^1",
     "neitanod/forceutf8": "^2",
     "teqneers/php-stream-wrapper-for-git": "^1",
-    "unb-libraries/composer-drupal-scaffold": "^10",
+    "unb-libraries/composer-drupal-scaffold": "^11",
     "unb-libraries/saml_features": "dev-10.x-1.x"
   },
   "require-dev": {
-    "unb-libraries/drupal-development-libraries": "^10"
+    "unb-libraries/drupal-development-libraries": "^11"
   },
   "type": "project"
 }

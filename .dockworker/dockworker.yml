@@ -58,7 +58,7 @@ dockworker:
         - HERB
     image:
       name: ghcr.io/unb-libraries/unbherbarium.lib.unb.ca
-      parent: ghcr.io/unb-libraries/drupal:9.x-2.x-unblib
+      parent: ghcr.io/unb-libraries/drupal:11.x-1.x-unblib
       repository: GitHub
       push-branches:
         - dev
