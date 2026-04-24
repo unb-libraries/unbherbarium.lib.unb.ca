@@ -65,6 +65,14 @@
       "themes/custom/{$name}": [
         "type:drupal-custom-theme"
       ]
+    },
+    "patches": {
+      "drupal/bootstrap": {
+        "Drupal 11 schema fixes": "/build/patches/bootstrap_5.0.x_schema.patch"
+      },
+      "drupal/search_api": {
+        "Drupal 11 schema fixes": "/build/patches/search_api_8.x-1.x_schema.patch"
+      }
     }
   },
   "license": "MIT",

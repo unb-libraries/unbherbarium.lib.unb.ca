@@ -1,0 +1,13 @@
+diff --git a/config/schema/bootstrap.schema.yml b/config/schema/bootstrap.schema.yml
+index 91a223d..7e58822 100644
+--- a/config/schema/bootstrap.schema.yml
++++ b/config/schema/bootstrap.schema.yml
+@@ -308,7 +308,7 @@ bootstrap.settings:
+       type: integer
+       label: 'Use Bootstrap icons'
+     bootstrap_icons:
+-      type: string
++      type: ignore
+       label: 'Icon set'
+ 
+     # System messages.

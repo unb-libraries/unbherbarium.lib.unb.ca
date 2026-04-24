@@ -2,8 +2,6 @@ uuid: 2f694ff3-10cc-48bb-ac47-60f93b28e3fe
 langcode: en
 status: true
 dependencies:
-  module:
-    - help
   theme:
     - unbherbarium_ca
 _core:

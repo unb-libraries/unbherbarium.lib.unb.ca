@@ -1,5 +1,24 @@
 dockworker:
   version: '6'
+  drupal:
+  schemas:
+    ignore_enforcement:
+      - bootstrap.settings.schemas
+      - core.entity_form_display.node.herbarium_specimen.default.third_party_settings
+      - search_api.server.drupal_solr_lib_unb_ca.backend_config.skip_schema_check
+      - system.authorize.*
+      - system.performance.stale_file_threshold
+      - system.rss.*
+      - tvi.settings.*
+      - tvi.taxonomy_vocabulary.herbarium_specimen_collector.uuid
+      - tvi.taxonomy_vocabulary.herbarium_specimen_taxonomy.uuid
+      - unbherbarium_admin_theme.settings.*
+      - unbherbarium_ca.settings.*
+      - update.settings.notification.emails
+      - views.settings.ui.show.*
+      - views.view.browse.display.page.display_options.filters.*
+      - views.view.search_solr.display.page_1.display_options.filters.*
+      - views.view.banner:display.default.display_options.style.options.widgets.top.views_slideshow_pager.*
   application:
     name: Connell Memorial Herbarium
     uri: https://unbherbarium.lib.unb.ca
