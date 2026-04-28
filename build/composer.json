@@ -67,9 +67,6 @@
       ]
     },
     "patches": {
-      "drupal/bootstrap": {
-        "Drupal 11 schema fixes": "/build/patches/bootstrap_5.0.x_schema.patch"
-      },
       "drupal/search_api": {
         "Drupal 11 schema fixes": "/build/patches/search_api_8.x-1.x_schema.patch"
       }
@@ -171,6 +168,7 @@
     "drupal/simple_sitemap": "^4",
     "drupal/taxonomy_access_fix": "^4",
     "drupal/taxonomy_manager": "^2",
+    "drupal/theme_change": "^4",
     "drupal/token": "^1",
     "drupal/tvi": "^2",
     "drupal/twig_field_value": "^2",
