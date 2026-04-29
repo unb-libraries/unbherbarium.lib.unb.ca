@@ -19,6 +19,7 @@ description: ''
 backend: search_api_solr
 backend_config:
   retrieve_data: false
+  skip_schema_check: false
   highlight_data: false
   site_hash: false
   server_prefix: ''
@@ -43,4 +44,7 @@ backend_config:
   optimize: false
   disabled_field_types: {  }
   rows: 10
-  skip_schema_check: false
+  fallback_multiple: false
+  index_single_documents_fallback_count: 10
+  index_empty_text_fields: false
+  suppress_missing_languages: false

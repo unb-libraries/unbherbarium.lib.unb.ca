@@ -1,0 +1,17 @@
+uuid: 99ec3117-3728-4882-8f80-1d284fef767f
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+id: admin_for_all
+label: 'Admin for all'
+weight: 0
+theme: unbherbarium_admin_theme
+admin_theme: ''
+conjunction: and
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/manage/*\r\n/user/login\r\n/collectorlist/*\r\n/countrylist/*\r\n/countylist/*\r\n/provincelist/*\r\n"

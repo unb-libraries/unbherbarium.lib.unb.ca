@@ -1,0 +1,20 @@
+uuid: 4d87f3b5-28b8-4097-a763-02fe2f2eeb4e
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: chm_db_admin
+label: 'CHM DB admin'
+weight: 0
+theme: unbherbarium_admin_theme
+admin_theme: ''
+conjunction: and
+visibility:
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      cmh_database_administrator: cmh_database_administrator

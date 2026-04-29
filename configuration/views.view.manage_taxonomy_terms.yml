@@ -754,7 +754,7 @@ display:
           set_precision: false
           precision: 0
           decimal: .
-          format_plural: 0
+          format_plural: false
           format_plural_string: !!binary MQNAY291bnQ=
           prefix: ''
           suffix: ''
@@ -1140,11 +1140,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             placeholder: ''
             autocomplete_filter: 1
             autocomplete_min_chars: '2'
@@ -1463,7 +1458,7 @@ display:
           set_precision: false
           precision: 0
           decimal: .
-          format_plural: 0
+          format_plural: false
           format_plural_string: !!binary MQNAY291bnQ=
           prefix: ''
           suffix: ''
@@ -1847,11 +1842,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             placeholder: ''
             autocomplete_filter: 1
             autocomplete_min_chars: '2'
@@ -2173,7 +2163,7 @@ display:
           set_precision: false
           precision: 0
           decimal: .
-          format_plural: 0
+          format_plural: false
           format_plural_string: !!binary MQNAY291bnQ=
           prefix: ''
           suffix: ''
@@ -2556,11 +2546,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             placeholder: ''
             autocomplete_filter: 1
             autocomplete_min_chars: '2'
@@ -2881,7 +2866,7 @@ display:
           set_precision: false
           precision: 0
           decimal: .
-          format_plural: 0
+          format_plural: false
           format_plural_string: !!binary MQNAY291bnQ=
           prefix: ''
           suffix: ''
@@ -3264,11 +3249,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             placeholder: ''
             autocomplete_filter: 1
             autocomplete_min_chars: '2'
@@ -4249,11 +4229,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             placeholder: ''
             autocomplete_filter: 1
             autocomplete_min_chars: '2'
@@ -4304,11 +4279,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -4350,11 +4320,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             placeholder: ''
             autocomplete_filter: 1
             autocomplete_min_chars: '3'

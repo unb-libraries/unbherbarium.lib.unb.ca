@@ -637,11 +637,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             placeholder: ''
             autocomplete_filter: 0
             autocomplete_min_chars: '0'
@@ -694,11 +689,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -744,11 +734,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -793,11 +778,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -947,11 +927,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             expose_fields: false
             placeholder: ''
             searched_fields_id: ''
@@ -1002,11 +977,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             expose_fields: false
             placeholder: ''
             searched_fields_id: ''
@@ -1058,11 +1028,6 @@ display:
             multiple: true
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1108,11 +1073,6 @@ display:
             multiple: true
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1158,11 +1118,6 @@ display:
             multiple: true
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1208,11 +1163,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             expose_fields: false
             placeholder: ''
             searched_fields_id: ''
@@ -1264,11 +1214,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             expose_fields: false
             placeholder: ''
             searched_fields_id: ''
@@ -1324,11 +1269,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -1374,11 +1314,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -1420,11 +1355,6 @@ display:
             multiple: true
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1473,11 +1403,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              researcher: '0'
-              cmh_database_administrator: '0'
-              editor: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''

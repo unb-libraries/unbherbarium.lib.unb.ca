@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "265553139401a97e438afb612e07a6d1",
+    "content-hash": "6425b0dd30f62067e4adb7f12f48af9b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1972,20 +1972,20 @@
         },
         {
             "name": "drupal/field_group",
-            "version": "3.6.0",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/field_group.git",
-                "reference": "8.x-3.6"
+                "reference": "4.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/field_group-8.x-3.6.zip",
-                "reference": "8.x-3.6",
-                "shasum": "427c0a65dc1936e69e60c120776056cfe5b43e86"
+                "url": "https://ftp.drupal.org/files/projects/field_group-4.0.0.zip",
+                "reference": "4.0.0",
+                "shasum": "d3ff81d8a64b6ac392989b668cfa417be5101642"
             },
             "require": {
-                "drupal/core": "^9.2 || ^10 || ^11"
+                "drupal/core": "^10.3 || ^11"
             },
             "require-dev": {
                 "drupal/jquery_ui_accordion": "*"
@@ -1993,8 +1993,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.6",
-                    "datestamp": "1722672510",
+                    "version": "4.0.0",
+                    "datestamp": "1745478894",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3303,27 +3303,27 @@
             }
         },
         {
-            "name": "drupal/theme_change",
-            "version": "4.0.0",
+            "name": "drupal/theme_switcher",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/project/theme_change.git",
-                "reference": "4.0.0"
+                "url": "https://git.drupalcode.org/project/theme_switcher.git",
+                "reference": "2.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/theme_change-4.0.0.zip",
-                "reference": "4.0.0",
-                "shasum": "69b6a7b2ecae17e611f281b92fc8d7dc8c4bd445"
+                "url": "https://ftp.drupal.org/files/projects/theme_switcher-2.1.0.zip",
+                "reference": "2.1.0",
+                "shasum": "4aa9b119c9c992fd9930fa50f97cd89959c3bafb"
             },
             "require": {
-                "drupal/core": "^10 || ^11"
+                "drupal/core": "^8.9 || ^9 || ^10 || ^11"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.0.0",
-                    "datestamp": "1762423587",
+                    "version": "2.1.0",
+                    "datestamp": "1732010759",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3336,22 +3336,26 @@
             ],
             "authors": [
                 {
-                    "name": "ajay_reddy",
-                    "homepage": "https://www.drupal.org/user/3261994"
+                    "name": "amarincolas",
+                    "homepage": "https://www.drupal.org/user/3529039"
                 },
                 {
-                    "name": "jahanaras",
-                    "homepage": "https://www.drupal.org/user/3277526"
+                    "name": "anybody",
+                    "homepage": "https://www.drupal.org/user/291091"
                 },
                 {
-                    "name": "nagy.balint",
-                    "homepage": "https://www.drupal.org/user/1763952"
+                    "name": "carlos romero",
+                    "homepage": "https://www.drupal.org/user/3722452"
+                },
+                {
+                    "name": "mkalkbrenner",
+                    "homepage": "https://www.drupal.org/user/124705"
                 }
             ],
-            "description": "Changes admin theme for selected pages.",
-            "homepage": "https://www.drupal.org/project/theme_change",
+            "description": "Switches active themes on specific conditions.",
+            "homepage": "https://www.drupal.org/project/theme_switcher",
             "support": {
-                "source": "https://git.drupalcode.org/project/theme_change"
+                "source": "https://git.drupalcode.org/project/theme_switcher"
             }
         },
         {
@@ -9741,5 +9745,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
