@@ -17,13 +17,11 @@ module:
   contextual: 0
   csv_serialization: 0
   datetime: 0
-  dblog: 0
   dynamic_page_cache: 0
   editor: 0
   editor_file: 0
   field: 0
   field_group: 0
-  field_ui: 0
   file: 0
   filter: 0
   footnotes: 0
@@ -82,7 +80,6 @@ module:
   views_autocomplete_filters: 0
   views_slideshow: 0
   views_slideshow_cycle: 0
-  views_ui: 0
   menu_link_content: 1
   externalauth: 10
   views: 10
