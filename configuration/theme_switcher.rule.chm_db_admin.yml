@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - system
     - user
 id: chm_db_admin
 label: 'CHM DB admin'
@@ -18,3 +19,7 @@ visibility:
       user: '@user.current_user_context:current_user'
     roles:
       cmh_database_administrator: cmh_database_administrator
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/taxonlist/*'
