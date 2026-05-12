@@ -11,5 +11,6 @@ jobs:
     with:
       add-paths: 'build/composer.*'
       php-version: '8.3'
+      composer-version: '2.9.5'
     secrets:
       PAT_TOKEN: ${{ secrets.UNBLIBBOT_PAT_TOKEN }}
