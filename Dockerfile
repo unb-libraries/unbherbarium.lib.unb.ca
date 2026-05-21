@@ -2,7 +2,7 @@ FROM ghcr.io/unb-libraries/drupal:11.x-1.x-unblib
 MAINTAINER UNB Libraries <libsupport@unb.ca>
 
 # Install additional OS packages.
-ENV ADDITIONAL_OS_PACKAGES tiff-dev tiff postfix imagemagick bash openssh-client php84-pecl-redis
+ENV ADDITIONAL_OS_PACKAGES tiff-dev tiff postfix imagemagick bash openssh-client php${PHP_VERSION}-pecl-redis
 ENV DRUPAL_SITE_ID unbherb
 ENV DRUPAL_SITE_URI unbherbarium.lib.unb.ca
 ENV DRUPAL_SITE_UUID 85c96bf2-f1b6-4612-8305-d3d3769d5255
