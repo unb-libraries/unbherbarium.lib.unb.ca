@@ -249,8 +249,8 @@ function _herbarium_specimen_get_collector_list(Node $node) {
         $render_array['#items'][] = $render_item;
       }
       else {
-        $message = ("Warning: node " . $node->id() . " references a collector term that's been deleted!");
-        \Drupal::logger('herbarium_specimen')->warning($message);
+        $message = ("Error: node " . $node->id() . " references a collector term that's been deleted!");
+        \Drupal::logger('herbarium_specimen')->error($message);
       }
     }
   }
