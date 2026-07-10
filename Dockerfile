@@ -33,16 +33,12 @@ ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION
 LABEL ca.unb.lib.generator="drupal11" \
-  com.microscaling.docker.dockerfile="/Dockerfile" \
-  com.microscaling.license="MIT" \
-  org.label-schema.build-date=$BUILD_DATE \
-  org.label-schema.description="unbherbarium.lib.unb.ca provides a searchable database of the vascular plant collections maintained at the  Connell Memorial Herbarium, and in-depth information about its policies, facilities and collections." \
-  org.label-schema.name="unbherbarium.lib.unb.ca" \
-  org.label-schema.schema-version="1.0" \
-  org.label-schema.url="https://unbherbarium.lib.unb.ca" \
-  org.label-schema.vcs-ref=$VCS_REF \
-  org.label-schema.vcs-url="https://github.com/unb-libraries/unbherbarium.lib.unb.ca" \
-  org.label-schema.vendor="University of New Brunswick Libraries" \
-  org.label-schema.version=$VERSION \
+  org.opencontainers.image.title="unbherbarium.lib.unb.ca" \
+  org.opencontainers.image.description="unbherbarium.lib.unb.ca provides a searchable database of the vascular plant collections maintained at the  Connell Memorial Herbarium, and in-depth information about its policies, facilities and collections." \
+  org.opencontainers.image.vendor="University of New Brunswick Libraries" \
   org.opencontainers.image.authors="UNB Libraries <libsupport@unb.ca>" \
-  org.opencontainers.image.source="https://github.com/unb-libraries/unbherbarium.lib.unb.ca"
+  org.opencontainers.image.url="https://unbherbarium.lib.unb.ca" \
+  org.opencontainers.image.source="https://github.com/unb-libraries/unbherbarium.lib.unb.ca" \
+  org.opencontainers.image.version="$VERSION" \
+  org.opencontainers.image.revision="$VCS_REF" \
+  org.opencontainers.image.created="$BUILD_DATE"
