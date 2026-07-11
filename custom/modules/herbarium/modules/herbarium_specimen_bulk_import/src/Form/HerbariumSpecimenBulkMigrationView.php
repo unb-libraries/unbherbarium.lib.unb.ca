@@ -25,14 +25,21 @@ class HerbariumSpecimenBulkMigrationView extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state, $migration_id = NULL) {
     $form = [];
 
+    // Prefer the stored, human-readable label; fall back to the raw id.
+    $label = \Drupal::database()->select('herbarium_bulk_import_history', 'h')
+      ->fields('h', ['label'])
+      ->condition('migration_id', $migration_id)
+      ->execute()
+      ->fetchField();
+
     $form['import_details'] = [
       '#type' => 'fieldset',
     ];
     $form['import_details']['header'] = [
       '#markup' => t(
-        '<h2>Details for @import_id:</h2>',
+        '<h2>Details for @import:</h2>',
         [
-          '@import_id' => $migration_id,
+          '@import' => $label ?: $migration_id,
         ]
       ),
     ];
@@ -54,6 +61,10 @@ class HerbariumSpecimenBulkMigrationView extends FormBase {
       foreach ($migrate_targets as $target) {
         if (!empty($target->destid1)) {
           $node = Node::load($target->destid1);
+          // The specimen may have been deleted since import; skip gracefully.
+          if (empty($node)) {
+            continue;
+          }
           $collectors = _herbarium_specimen_get_collector_list($node);
           $rows[] = [
             'data' => [
@@ -89,7 +100,7 @@ class HerbariumSpecimenBulkMigrationView extends FormBase {
     }
     else {
       $form['import_details']['none_found'] = [
-        '#markup' => t('Invalid Migration ID.'),
+        '#markup' => t('No specimens are recorded for this import.'),
       ];
     }
 

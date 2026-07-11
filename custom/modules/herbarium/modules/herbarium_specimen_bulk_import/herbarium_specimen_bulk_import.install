@@ -1,0 +1,128 @@
+<?php
+
+/**
+ * @file
+ * Install, update and schema hooks for herbarium_specimen_bulk_import.
+ */
+
+use Drupal\Core\Database\Database;
+
+/**
+ * Implements hook_schema().
+ */
+function herbarium_specimen_bulk_import_schema() {
+  $schema['herbarium_bulk_import_history'] = [
+    'description' => 'Durable record of bulk CSV specimen imports, decoupled from the ephemeral migrate_plus config entities (which are wiped on every pod boot by full-sync config import).',
+    'fields' => [
+      'migration_id' => [
+        'description' => 'The dynamic migration id, e.g. cmh_herb_import_standard_<timestamp>.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'label' => [
+        'description' => 'Human-readable label for the import.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'format_id' => [
+        'description' => 'The import format id, e.g. cmh_herb_import_standard.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'source_filename' => [
+        'description' => 'Original uploaded CSV filename, for display.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
+      'fid' => [
+        'description' => 'The uploaded managed file id, if known.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+      ],
+      'total_rows' => [
+        'description' => 'Source row count captured at import time. NULL when unknown (backfilled rows), rendered as "N/A".',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+      ],
+      'uid' => [
+        'description' => 'The user id that ran the import.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'created' => [
+        'description' => 'Unix timestamp the import was started.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => ['migration_id'],
+    'indexes' => [
+      'created' => ['created'],
+    ],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Create the bulk import history table and backfill from existing map tables.
+ */
+function herbarium_specimen_bulk_import_update_10001() {
+  $schema = Database::getConnection()->schema();
+
+  // Create the table on sites that had the module installed before this
+  // .install file existed (hook_schema is only applied automatically on fresh
+  // installs).
+  if (!$schema->tableExists('herbarium_bulk_import_history')) {
+    $table_schema = herbarium_specimen_bulk_import_schema();
+    $schema->createTable('herbarium_bulk_import_history', $table_schema['herbarium_bulk_import_history']);
+  }
+
+  // Backfill history rows from any orphaned migrate map tables. These persist
+  // across boots even though the migrate_plus config that created them does
+  // not, so this recovers imports whose history was previously lost. The true
+  // source total is unrecoverable, so total_rows is left NULL ("N/A").
+  $connection = Database::getConnection();
+  $backfilled = 0;
+  foreach ($connection->query("SHOW TABLES LIKE 'migrate_map_cmh_herb_import_standard_%'")->fetchCol() as $table_name) {
+    $migration_id = substr($table_name, strlen('migrate_map_'));
+
+    // Parse the trailing unix timestamp out of the id.
+    $created = 0;
+    if (preg_match('/_(\d+)$/', $migration_id, $matches)) {
+      $created = (int) $matches[1];
+    }
+    $label = 'Herbarium Sample Import from ' . ($created ? date('Y-m-d H:i:s', $created) : 'unknown date');
+
+    // keys() sets the match condition for the exists-check. insertFields()
+    // *replaces* the insert-field set, so migration_id must be listed here
+    // explicitly. Supplying no updateFields()/fields() leaves needsUpdate
+    // FALSE, so an existing row (e.g. one written by a live import) is left
+    // untouched.
+    $connection->merge('herbarium_bulk_import_history')
+      ->keys(['migration_id' => $migration_id])
+      ->insertFields([
+        'migration_id' => $migration_id,
+        'label' => $label,
+        'format_id' => 'cmh_herb_import_standard',
+        'total_rows' => NULL,
+        'uid' => 0,
+        'created' => $created,
+      ])
+      ->execute();
+    $backfilled++;
+  }
+
+  return t('Created herbarium_bulk_import_history and backfilled @count import(s) from existing map tables.', ['@count' => $backfilled]);
+}

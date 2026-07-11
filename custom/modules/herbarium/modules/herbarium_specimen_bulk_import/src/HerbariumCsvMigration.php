@@ -4,7 +4,6 @@ namespace Drupal\herbarium_specimen_bulk_import;
 
 use Drupal\file\Entity\File;
 use Drupal\migrate\MigrateMessage;
-use Drupal\migrate_plus\Entity\MigrationGroup;
 use Drupal\migrate_tools\MigrateExecutable;
 use Drupal\node\Entity\Node;
 use Drupal\user\Entity\User;

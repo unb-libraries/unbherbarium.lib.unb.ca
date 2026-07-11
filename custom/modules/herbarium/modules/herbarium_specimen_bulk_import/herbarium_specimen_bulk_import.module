@@ -5,128 +5,192 @@
  * Contains herbarium_core.module.
  */
 use Drupal\core\Database\Database;
+use Drupal\Core\Database\Query\PagerSelectExtender;
 use Drupal\Core\Link;
 use Drupal\taxonomy\Entity\Term;
 
 /**
- * Get migration destinations for a specific migration ID.
+ * Get the destination node IDs recorded for a migration, paged.
+ *
+ * Reads the persistent migrate_map_<id> table directly (it survives the
+ * boot-time config wipe). Uses the query builder so DB table prefixing is
+ * handled, and guards the id/table before touching them.
  *
  * @param string $id
  *   The migration ID.
  *
- * @return object
- *   The db query objects.
+ * @return array
+ *   An array of row objects each exposing a destid1 property (may be empty).
  */
 function _herbarium_specimen_bulk_import_get_migration_destinations($id) {
-  $table_name = "migrate_map_$id";
-  return Database::getConnection()->query("SELECT destid1 FROM {$table_name}");
+  // Defensive: never interpolate an unexpected id into a table name.
+  if (!preg_match('/^cmh_herb_import_standard_\d+$/', $id)) {
+    return [];
+  }
+
+  $connection = Database::getConnection();
+  $table_name = 'migrate_map_' . $id;
+  if (!$connection->schema()->tableExists($table_name)) {
+    return [];
+  }
+
+  $query = $connection->select($table_name, 'm')
+    ->fields('m', ['destid1'])
+    ->extend(PagerSelectExtender::class)
+    ->limit(50);
+  // Only rows that actually produced a destination node; failed/ignored rows
+  // have a NULL destid1 and would otherwise consume pager slots.
+  $query->isNotNull('destid1');
+  $query->orderBy('destid1');
+
+  return $query->execute()->fetchAll();
 }
 
 /**
- * Get the CMH coded migrations.
+ * Get imported / failed / processed counts from a migration's map table.
+ *
+ * Matches core MigrateIdMap semantics: imported = STATUS_IMPORTED (0) +
+ * STATUS_NEEDS_UPDATE (1), failed = STATUS_FAILED (3), processed = all rows.
+ * The map table survives the boot-time config wipe, so counts stay accurate
+ * after a restart even though the migrate_plus config is gone.
  *
  * @param string $migration_id
- *   The migration ID to match.
- * @param string $prefix
- *   The migration prefix to filter on.
+ *   The migration ID.
  *
  * @return array
- *   An array of migration objects, keyed by migration ID.
+ *   Associative array with integer 'imported', 'failed' and 'processed' keys.
  */
-function _herbarium_specimen_bulk_import_get_cmh_migrations($migration_id = NULL, $prefix = 'cmh_') {
-  $manager = \Drupal::service('plugin.manager.migration');
-  $plugins = $manager->createInstances([]);
-  $matched_migrations = [];
+function _herbarium_specimen_bulk_import_get_map_counts($migration_id) {
+  $counts = ['imported' => 0, 'failed' => 0, 'processed' => 0];
 
-  // Get the requested migrations.
-  foreach ($plugins as $id => $migration) {
-    if (substr($id, 0, strlen($prefix)) === $prefix) {
-      if (
-        (!empty($migration_id) && $migration_id == $id) ||
-        empty($migration_id)
-      ) {
-        $matched_migrations[$id] = $migration;
-      }
+  // Defensive: never interpolate an unexpected id into a table name.
+  if (!preg_match('/^cmh_herb_import_standard_\d+$/', $migration_id)) {
+    return $counts;
+  }
+
+  $connection = Database::getConnection();
+  $table_name = 'migrate_map_' . $migration_id;
+  if (!$connection->schema()->tableExists($table_name)) {
+    return $counts;
+  }
+
+  $query = $connection->select($table_name, 'm');
+  $query->addField('m', 'source_row_status', 'status');
+  $query->addExpression('COUNT(*)', 'total');
+  $query->groupBy('source_row_status');
+
+  foreach ($query->execute() as $bucket) {
+    $status = (int) $bucket->status;
+    $count = (int) $bucket->total;
+    $counts['processed'] += $count;
+    if ($status === 0 || $status === 1) {
+      $counts['imported'] += $count;
+    }
+    elseif ($status === 3) {
+      $counts['failed'] += $count;
     }
   }
 
-  return $matched_migrations;
+  return $counts;
 }
 
 /**
- * Get the form elements for a list of migrations.
+ * Build the render array listing previous bulk imports.
+ *
+ * Driven entirely by the durable herbarium_bulk_import_history table plus the
+ * surviving migrate_map_<id> tables, so the list persists across pod restarts
+ * (the migrate_plus config objects it used to rely on are wiped on every boot
+ * by full-sync config import). No live migration plugins are instantiated.
  *
  * @param string $migration_id
- *   The migration ID to match.
- * @param string $prefix
- *   The migration prefix to filter on.
+ *   If set, restrict to a single migration (used by the detail view); no pager.
+ *   When NULL, the full list is shown with a pager.
  *
  * @return array
- *   A form API render array of the migration details.
+ *   A render array of the migration history.
  */
-function _herbarium_specimen_bulk_import_get_cmh_migration_table($migration_id = NULL, $prefix = 'cmh_') {
-  $previous_migrations = _herbarium_specimen_bulk_import_get_cmh_migrations($migration_id, $prefix);
+function _herbarium_specimen_bulk_import_get_cmh_migration_table($migration_id = NULL) {
+  $connection = Database::getConnection();
 
-  if (!empty($previous_migrations)) {
-    // Construct header.
-    $header = [
-      t('ID'),
-      t('Status'),
-      t('Total'),
-      t('Imported'),
-      t('Errored'),
-      t('Date'),
+  $query = $connection->select('herbarium_bulk_import_history', 'h')
+    ->fields('h');
+  if (!empty($migration_id)) {
+    $query->condition('migration_id', $migration_id);
+  }
+  else {
+    $query = $query
+      ->extend(PagerSelectExtender::class)
+      ->limit(25);
+  }
+  $query->orderBy('created', 'DESC');
+  $records = $query->execute()->fetchAll();
+
+  if (empty($records)) {
+    return [
+      'none_found' => [
+        '#markup' => t('No imports have been performed yet.'),
+      ],
     ];
-    // Build the rows.
-    $rows = [];
-    foreach ($previous_migrations as $migration) {
-      $map = $migration->getIdMap();
+  }
 
-      $imported = $map->importedCount();
-      $source_plugin = $migration->getSourcePlugin();
-      $migrate_last_imported_store = \Drupal::keyValue('migrate_last_imported');
-      $last_imported = $migrate_last_imported_store->get($migration->id(), FALSE);
+  $header = [
+    t('ID'),
+    t('Status'),
+    t('Total'),
+    t('Imported'),
+    t('Failed'),
+    t('Remaining'),
+    t('Date'),
+  ];
 
-      $source_rows = $source_plugin->count();
-      if ($source_rows == -1) {
-        $source_rows = t('N/A');
-        $unprocessed = t('N/A');
-      }
-      else {
-        $unprocessed = $source_rows - $map->processedCount();
-      }
+  $rows = [];
+  foreach ($records as $record) {
+    $counts = _herbarium_specimen_bulk_import_get_map_counts($record->migration_id);
 
-      $imported_date = 'Never';
-      if ($last_imported != 0) {
-        $imported_date = date("Y-m-d H:i:s", (int) substr($last_imported, 0, 10));
-      }
+    $has_total = $record->total_rows !== NULL;
+    $total = $has_total ? (int) $record->total_rows : NULL;
+    $remaining = $has_total ? max(0, $total - $counts['processed']) : NULL;
 
-      $rows[] = [
-        'data' => [
-          Link::createFromRoute($migration->id(), 'herbarium_specimen_bulk_import.view', ['migration_id' => $migration->id()]),
-          $migration->getStatusLabel(),
-          $source_rows,
-          $imported,
-          $unprocessed,
-          $imported_date,
-        ],
-      ];
+    // Derive status from counts; the live migration plugin is gone post-boot.
+    if (!$has_total) {
+      $status = t('Archived');
     }
-    $form['history_table'] = [
-      '#theme' => 'table',
-      '#header' => $header,
-      '#rows' => $rows,
+    elseif ($counts['processed'] >= $total) {
+      $status = t('Complete');
+    }
+    elseif ($counts['processed'] > 0) {
+      $status = t('Incomplete');
+    }
+    else {
+      $status = t('Pending');
+    }
+
+    $rows[] = [
+      'data' => [
+        Link::createFromRoute($record->migration_id, 'herbarium_specimen_bulk_import.view', ['migration_id' => $record->migration_id]),
+        $status,
+        $has_total ? $total : t('N/A'),
+        $counts['imported'],
+        $counts['failed'],
+        $has_total ? $remaining : t('N/A'),
+        $record->created ? date('Y-m-d H:i:s', (int) $record->created) : t('Never'),
+      ],
     ];
-    $form['pager'] = [
+  }
+
+  $build = [];
+  $build['history_table'] = [
+    '#theme' => 'table',
+    '#header' => $header,
+    '#rows' => $rows,
+  ];
+  if (empty($migration_id)) {
+    $build['pager'] = [
       '#type' => 'pager',
     ];
   }
-  else {
-    $form['none_found'] = [
-      '#markup' => t('No imports have been performed yet.'),
-    ];
-  }
-  return $form;
+
+  return $build;
 }
 
 /**

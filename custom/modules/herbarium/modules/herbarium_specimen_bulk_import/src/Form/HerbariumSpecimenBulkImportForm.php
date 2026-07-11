@@ -97,7 +97,7 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
 
     $form['import_history']['message'] = [
       '#markup' => t(
-        '<p style="margin:10px;">Below is a listing of previous bulk imports performed within the last 30 days. After 30 days, the imports will be presumed to be complete and the reference to them will be removed from this display.</p>'
+        '<p style="margin:10px;">Below is a listing of all previous bulk imports, most recent first. Use the pager to browse older imports.</p>'
       ),
     ];
 
@@ -156,6 +156,25 @@ class HerbariumSpecimenBulkImportForm extends FormBase {
     $source_plugin = $migration->getSourcePlugin();
     $source_rows = $source_plugin->count();
     $unprocessed = $source_rows - $map->processedCount();
+
+    // Record a durable history row so this import remains visible after the
+    // migrate_plus config object is wiped on the next pod boot (full-sync
+    // config import deletes config not present in /configuration). See the
+    // module .install file. merge() upserts so a same-second id reuse cannot
+    // throw on the primary key.
+    $created = \Drupal::time()->getRequestTime();
+    \Drupal::database()->merge('herbarium_bulk_import_history')
+      ->keys(['migration_id' => $migrateObject->importId])
+      ->fields([
+        'label' => 'Herbarium Sample Import from ' . date('Y-m-d H:i:s', $created),
+        'format_id' => $import_id,
+        'source_filename' => $file->getFilename(),
+        'fid' => $fid,
+        'total_rows' => $source_rows,
+        'uid' => \Drupal::currentUser()->id(),
+        'created' => $created,
+      ])
+      ->execute();
 
     $batch = [
       'title' => t('Importing Herbarium Specimen'),
