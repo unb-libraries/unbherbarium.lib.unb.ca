@@ -2,6 +2,8 @@ uuid: 3bed24f4-27e6-4db5-996c-fbd7bd52b1a6
 langcode: en
 status: true
 dependencies:
+  config:
+    - taxonomy.vocabulary.herbarium_specimen_collector
   module:
     - taxonomy
 _core:
@@ -14,7 +16,6 @@ selection_criteria:
   d4c84a82-0e44-4da1-9993-2b444fa886b2:
     id: 'entity_bundle:taxonomy_term'
     negate: false
-    uuid: d4c84a82-0e44-4da1-9993-2b444fa886b2
     context_mapping:
       taxonomy_term: taxonomy_term
     bundles:

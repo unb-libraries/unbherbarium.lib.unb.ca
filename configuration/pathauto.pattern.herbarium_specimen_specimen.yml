@@ -2,6 +2,8 @@ uuid: d08ce62b-f3d7-48dd-afed-c96dcb9e6ff4
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.herbarium_specimen
   module:
     - node
 _core:
@@ -9,12 +11,11 @@ _core:
 id: herbarium_specimen_specimen
 label: 'Sample Specimen'
 type: 'canonical_entities:node'
-pattern: 'specimen/[node:title]'
+pattern: '/specimen/[node:title]'
 selection_criteria:
   b1f912d6-809d-4092-9021-dd65d9fd6493:
     id: 'entity_bundle:node'
     negate: false
-    uuid: b1f912d6-809d-4092-9021-dd65d9fd6493
     context_mapping:
       node: node
     bundles:

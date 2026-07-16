@@ -2,6 +2,8 @@ uuid: 66dc75d9-ecc8-4075-a622-ce96199b02a9
 langcode: en
 status: true
 dependencies:
+  config:
+    - taxonomy.vocabulary.specimen_location_country
   module:
     - taxonomy
 id: country_list
@@ -12,7 +14,6 @@ selection_criteria:
   6d3f7ecb-8975-4cb0-ac23-00e39bc2dd6d:
     id: 'entity_bundle:taxonomy_term'
     negate: false
-    uuid: 6d3f7ecb-8975-4cb0-ac23-00e39bc2dd6d
     context_mapping:
       taxonomy_term: taxonomy_term
     bundles:

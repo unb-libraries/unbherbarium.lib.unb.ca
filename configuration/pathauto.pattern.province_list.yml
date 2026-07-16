@@ -2,6 +2,8 @@ uuid: 5b1f288e-a42e-4964-9dfc-088c3d4f5de1
 langcode: en
 status: true
 dependencies:
+  config:
+    - taxonomy.vocabulary.specimen_location_province
   module:
     - taxonomy
 id: province_list
@@ -12,7 +14,6 @@ selection_criteria:
   abb296be-c514-4704-9196-62c3ca23a0ae:
     id: 'entity_bundle:taxonomy_term'
     negate: false
-    uuid: abb296be-c514-4704-9196-62c3ca23a0ae
     context_mapping:
       taxonomy_term: taxonomy_term
     bundles:

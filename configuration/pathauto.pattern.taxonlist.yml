@@ -2,6 +2,8 @@ uuid: 182bcfc6-e11e-4aa6-9d0d-4ee7f60f5db2
 langcode: en
 status: true
 dependencies:
+  config:
+    - taxonomy.vocabulary.herbarium_specimen_taxonomy
   module:
     - taxonomy
 _core:
@@ -9,12 +11,11 @@ _core:
 id: taxonlist
 label: Taxonlist
 type: 'canonical_entities:taxonomy_term'
-pattern: 'taxonlist/[term:parents]/[term:name]'
+pattern: '/taxonlist/[term:parents]/[term:name]'
 selection_criteria:
   e1321acf-2d1a-455a-84cf-16e7ce2e8370:
     id: 'entity_bundle:taxonomy_term'
     negate: false
-    uuid: e1321acf-2d1a-455a-84cf-16e7ce2e8370
     context_mapping:
       taxonomy_term: taxonomy_term
     bundles:

@@ -2,6 +2,8 @@ uuid: 61caa5ef-7012-470f-8b5d-0fe76de41d99
 langcode: en
 status: true
 dependencies:
+  config:
+    - taxonomy.vocabulary.specimen_location_county
   module:
     - taxonomy
 id: county_list
@@ -12,7 +14,6 @@ selection_criteria:
   497c1b32-549f-47e1-8ded-96bfc91678fe:
     id: 'entity_bundle:taxonomy_term'
     negate: false
-    uuid: 497c1b32-549f-47e1-8ded-96bfc91678fe
     context_mapping:
       taxonomy_term: taxonomy_term
     bundles:

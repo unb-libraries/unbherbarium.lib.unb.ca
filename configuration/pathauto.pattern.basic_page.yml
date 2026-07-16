@@ -2,6 +2,8 @@ uuid: 3f906b66-5c62-4ab7-8791-eaf8d09625b0
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.page
   module:
     - node
 _core:
@@ -9,12 +11,11 @@ _core:
 id: basic_page
 label: 'Basic Page'
 type: 'canonical_entities:node'
-pattern: 'page/[node:title]'
+pattern: '/page/[node:title]'
 selection_criteria:
   500c648c-9b27-45a2-9635-b195aa2c610e:
     id: 'entity_bundle:node'
     negate: false
-    uuid: 500c648c-9b27-45a2-9635-b195aa2c610e
     context_mapping:
       node: node
     bundles:
