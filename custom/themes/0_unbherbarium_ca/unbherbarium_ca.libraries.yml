@@ -2,6 +2,10 @@ global-styling:
   css:
     theme:
       dist/css/style.css: {}
+  js:
+    dist/js/global.js: {}
+  dependencies:
+    - core/jquery
 
 bootstrap-cdn:
   js:
