@@ -7,7 +7,7 @@ views-form:
   js:
     js/herbarium_specimen.views_form.js: {}
   dependencies:
-     - core/jquery
+    - core/jquery
 
 openseadragon:
   remote: https://github.com/openseadragon/openseadragon
