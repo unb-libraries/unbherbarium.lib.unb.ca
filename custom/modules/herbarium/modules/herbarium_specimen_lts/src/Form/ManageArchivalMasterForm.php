@@ -112,7 +112,7 @@ class ManageArchivalMasterForm extends FormBase {
       '#upload_location' => "temporary://arc-tif/$node/",
       '#required' => TRUE,
       '#upload_validators' => [
-        'file_validate_extensions' => ['tif'],
+        'FileExtension' => ['extensions' => 'tif'],
       ],
     ];
 
