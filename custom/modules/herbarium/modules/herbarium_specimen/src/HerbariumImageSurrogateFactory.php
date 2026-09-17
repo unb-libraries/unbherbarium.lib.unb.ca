@@ -152,7 +152,7 @@ class HerbariumImageSurrogateFactory {
     $temp_image_file = tempnam(sys_get_temp_dir(), "$nid-unmasked-") . '.jpg';
 
     exec(
-      "convert \"{$this->file}\" -unsharp 0x1.0+0.5+0 $temp_image_file ",
+      "magick \"{$this->file}\" -unsharp 0x1.0+0.5+0 $temp_image_file ",
       $output,
       $return
     );
