@@ -14,14 +14,8 @@ COPY ./build/ /build/
 RUN ${RSYNC_MOVE} /build/scripts/container/ /scripts/ && \
   /scripts/addOsPackages.sh && \
   /scripts/setupStandardConf.sh && \
-  curl -O https://raw.githubusercontent.com/VoidVolker/MagickSlicer/master/magick-slicer.sh && \
-  mv magick-slicer.sh /usr/local/bin/magick-slicer && \
+  mv /scripts/magick-slicer.sh /usr/local/bin/magick-slicer && \
   chmod +x /usr/local/bin/magick-slicer && \
-  sed -i \
-    -e 's/^\([[:space:]]*\)convert /\1magick /' \
-    -e 's/command -v convert /command -v magick /' \
-    -e "s/tool 'convert'/tool 'magick'/" \
-    /usr/local/bin/magick-slicer && \
   /scripts/InstallGitLFS.sh && \
   /scripts/build.sh
 
