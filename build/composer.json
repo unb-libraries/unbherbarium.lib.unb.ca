@@ -138,7 +138,7 @@
     }
   ],
   "require": {
-    "drupal/admin_toolbar": "3.x-dev",
+    "drupal/admin_toolbar": "^3",
     "drupal/bootstrap": "^5",
     "drupal/chosen": "^5",
     "drupal/colorbox": "^2",
