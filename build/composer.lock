@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f66df3851964fffd90c7829df278a734",
+    "content-hash": "58e372f4d1f72bd0255e834bd6456efb",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1007,37 +1007,36 @@
         },
         {
             "name": "drupal/admin_toolbar",
-            "version": "dev-3.x",
+            "version": "3.6.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/admin_toolbar.git",
-                "reference": "2008516eb2182f26c13cc143d50a732c528a7793"
+                "reference": "3.6.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/admin_toolbar-3.6.3.zip",
+                "reference": "3.6.3",
+                "shasum": "9dfd1088a96464237998c3606b63c2d71644a1bf"
             },
             "require": {
-                "drupal/core": "^10.3 || ^11",
+                "drupal/core": "^9.5 || ^10 || ^11",
                 "drupal/toolbar": "*"
             },
             "conflict": {
-                "drupal/automatic_updates": "<4",
                 "drupal/project_browser": "<2.1.0"
-            },
-            "provide": {
-                "drupal/toolbar": "*"
             },
             "require-dev": {
                 "drupal/toolbar": "*"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
                 "drupal": {
-                    "version": "3.6.3+25-dev",
-                    "datestamp": "1794276340",
+                    "version": "3.6.3",
+                    "datestamp": "1767318997",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -1168,27 +1167,27 @@
         },
         {
             "name": "drupal/chosen",
-            "version": "4.0.3",
+            "version": "5.0.7",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/chosen.git",
-                "reference": "4.0.3"
+                "reference": "5.0.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/chosen-4.0.3.zip",
-                "reference": "4.0.3",
-                "shasum": "72a4090b4b21ff7341d1f2e05866b25feede3188"
+                "url": "https://ftp.drupal.org/files/projects/chosen-5.0.7.zip",
+                "reference": "5.0.7",
+                "shasum": "ac798d1771b84367aaead73fec8db8d5d9126319"
             },
             "require": {
                 "drupal/chosen_lib": "*",
-                "drupal/core": "^9.2 || ^10 || ^11"
+                "drupal/core": "^10.3 || ^11 || ^12"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.0.3",
-                    "datestamp": "1725307446",
+                    "version": "5.0.7",
+                    "datestamp": "1785921877",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -1237,7 +1236,7 @@
                     "homepage": "https://www.drupal.org/user/235438"
                 }
             ],
-            "description": "Makes select elements more user-friendly using <a href=\"https://github.com/JJJ/chosen\">Chosen</a>.",
+            "description": "Makes select elements more user-friendly using <a href=\"https://github.com/noli42/chosen\">Chosen</a>.",
             "homepage": "https://www.drupal.org/project/chosen",
             "support": {
                 "source": "https://git.drupalcode.org/project/chosen"
@@ -1245,16 +1244,16 @@
         },
         {
             "name": "drupal/chosen_lib",
-            "version": "4.0.3",
+            "version": "5.0.7",
             "require": {
-                "drupal/chosen": "^4",
-                "drupal/core": "^9.2 || ^10 || ^11"
+                "drupal/chosen": "^5",
+                "drupal/core": "^10.3 || ^11 || ^12"
             },
             "type": "metapackage",
             "extra": {
                 "drupal": {
-                    "version": "4.0.3",
-                    "datestamp": "1725307446",
+                    "version": "5.0.7",
+                    "datestamp": "1785921877",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -1303,7 +1302,7 @@
                     "homepage": "https://www.drupal.org/user/235438"
                 }
             ],
-            "description": "Add <a href=\"https://github.com/JJJ/chosen\">chosen</a> library definition.",
+            "description": "Add <a href=\"https://github.com/noli42/chosen\">chosen</a> library definition.",
             "homepage": "https://www.drupal.org/project/chosen",
             "support": {
                 "source": "https://git.drupalcode.org/project/chosen"
@@ -4230,16 +4229,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "2.13.2",
+            "version": "2.13.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "adee536f95101929f262b8c59e8a61472f347d58"
+                "reference": "6d3cd8285a97eaa352956a4ada92fa03ecce1c4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/adee536f95101929f262b8c59e8a61472f347d58",
-                "reference": "adee536f95101929f262b8c59e8a61472f347d58",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/6d3cd8285a97eaa352956a4ada92fa03ecce1c4e",
+                "reference": "6d3cd8285a97eaa352956a4ada92fa03ecce1c4e",
                 "shasum": ""
             },
             "require": {
@@ -4329,7 +4328,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/2.13.2"
+                "source": "https://github.com/guzzle/psr7/tree/2.13.3"
             },
             "funding": [
                 {
@@ -4345,7 +4344,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-17T23:49:46+00:00"
+            "time": "2026-11-12T15:57:42+00:00"
         },
         {
             "name": "halaxa/json-machine",
@@ -4408,27 +4407,6 @@
                 }
             ],
             "time": "2025-12-05T14:53:09+00:00"
-        },
-        {
-            "name": "harvesthq/chosen",
-            "version": "1.8.7",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/harvesthq/chosen/releases/download/v1.8.7/chosen_v1.8.7.zip"
-            },
-            "require": {
-                "composer/installers": "^2"
-            },
-            "type": "drupal-library"
-        },
-        {
-            "name": "jackmoore/colorbox",
-            "version": "1.6.4",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/jackmoore/colorbox/archive/refs/tags/1.6.4.zip"
-            },
-            "type": "drupal-library"
         },
         {
             "name": "jquery/json2",
@@ -5188,6 +5166,15 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v5.9.0"
             },
             "time": "2026-09-13T18:51:52+00:00"
+        },
+        {
+            "name": "noli42/chosen",
+            "version": "3.1.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/noli42/chosen/releases/download/3.1.4/chosen-assets-v3.1.4.zip"
+            },
+            "type": "drupal-library"
         },
         {
             "name": "onelogin/php-saml",
@@ -9741,6 +9728,15 @@
             "time": "2015-11-26T15:23:29+00:00"
         },
         {
+            "name": "turbojettechnologies/colorbox",
+            "version": "dev-master",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/TurbojetTechnologies/colorbox/archive/master.zip"
+            },
+            "type": "drupal-library"
+        },
+        {
             "name": "twbs/bootstrap",
             "version": "v5.3.9",
             "source": {
@@ -10483,13 +10479,13 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/admin_toolbar": 20,
         "jquery/json2": 20,
+        "turbojettechnologies/colorbox": 20,
         "unb-libraries/saml_features": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": {},
-    "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }
